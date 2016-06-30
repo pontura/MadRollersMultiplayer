@@ -1,0 +1,50 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+
+public class RainManager : MonoBehaviour {
+
+    private CharactersManager charactersManager;
+    private bool isCompetition;
+    private float offset = 300;//400;
+    private float restaOffset = 30; //20;
+    private float min_offset = 20; //150;
+    private float distanceToAdd = 50; //700;
+
+    void Start()
+    {
+        if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
+        {
+            isCompetition = true;
+            charactersManager = GetComponent<CharactersManager>();
+        }
+    }
+    void Update()
+    {
+        if (!isCompetition) return;
+
+        if (charactersManager.distance > distanceToAdd)
+        {
+            distanceToAdd = charactersManager.distance + (offset * 2);
+            offset -= restaOffset;
+            if (offset < min_offset) offset = min_offset;
+
+            if(Random.Range(0,10)<5)
+                AddSceneObject(new Vector3(0, 0, charactersManager.distance + 100), "Bomb1_real");
+            else
+                AddSceneObject(new Vector3(0, 0, charactersManager.distance + 100), "BombTeledirigida_real");
+        }
+    }
+    public void AddSceneObject(Vector3 position, string sceneObjectName)
+    {
+        Vector3 newPos = position;
+        newPos.x = Random.Range(-6, 6);
+        SceneObject obj = ObjectPool.instance.GetObjectForType(sceneObjectName, true);
+        if (obj)
+        {
+            obj.Restart(newPos);
+        }
+    }
+}
+
