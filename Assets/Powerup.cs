@@ -29,7 +29,9 @@ public class Powerup : GrabbableItem {
             transform.position = Vector3.MoveTowards(position, characterPosition, 15 * Time.deltaTime);
             if (sec > 13)
             {
-                Data.Instance.events.OnAvatarGetItem( player.id, type );
+                if(player!=null && player.id!=null)
+                    Data.Instance.events.OnAvatarGetItem( player.id, type );
+
                 Pool();               
             }
         }

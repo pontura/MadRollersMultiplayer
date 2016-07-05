@@ -18,8 +18,8 @@ public class Ranking : MonoBehaviour {
 	}
     void RankingVoice()
     {
-        if (GetComponent<CompetitionSelection>().popup.activeSelf) return;
-        Data.Instance.voicesManager.VoiceSecondaryFromResources("suenas_con_estar_en_el_ranking");
+      //  if (GetComponent<CompetitionSelection>().popup.activeSelf) return;
+      //  Data.Instance.voicesManager.VoiceSecondaryFromResources("suenas_con_estar_en_el_ranking");
     }
     void Update()
     {

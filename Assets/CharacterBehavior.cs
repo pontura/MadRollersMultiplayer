@@ -161,8 +161,8 @@ public class CharacterBehavior : MonoBehaviour {
         }
         else
         {
-            if (transform.position.y > 20 && Random.Range(0,10)<4)
-                Data.Instance.voicesManager.VoiceSecondaryFromResources("que_vertigo_no");
+            //if (transform.position.y > 20 && Random.Range(0,10)<4)
+              //  Data.Instance.voicesManager.VoiceSecondaryFromResources("que_vertigo_no");
 
             GetComponent<Rigidbody>().mass = 100;
             GetComponent<Rigidbody>().useGravity = true;
