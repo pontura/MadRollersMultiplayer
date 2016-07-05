@@ -15,7 +15,9 @@ public class ListenerDispatcher : MonoBehaviour {
     public enum myEnum // your custom enumeration
     {
         ShowMissionId,
-        ShowMissionName
+        ShowMissionName,
+        LevelFinish,
+        LevelTransition        
     };
 	
 	void OnTriggerEnter(Collider other) {

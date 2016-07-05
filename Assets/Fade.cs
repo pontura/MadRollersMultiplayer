@@ -66,6 +66,7 @@ public class Fade : MonoBehaviour
             Application.LoadLevel(m_LevelName);
         else
             Application.LoadLevel(m_LevelIndex);
+
         while (t > 0f)
         {
             yield return new WaitForEndOfFrame();
@@ -88,4 +89,5 @@ public class Fade : MonoBehaviour
         m_LevelName = aLevelName;
         StartFade(aFadeTime, aColor);
     }
+    
 }

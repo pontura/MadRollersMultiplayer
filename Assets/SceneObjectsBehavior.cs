@@ -119,6 +119,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
                 case "bloodx1":
                 case "Yuyo":
                 case "enemyFrontal":
+                case "castle":
                     
                     sceneObject = Pool.GetObjectForType(go.name + "_real", false);
 
@@ -201,7 +202,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
                     clone = flyer;
                 else if (go.name == "wallBig")
                 {
-                  //  addDecorationWithRotation("Graffiti_Real", pos, go.transform.localEulerAngles);
+                    //  addDecorationWithRotation("Graffiti_Real", pos, go.transform.localEulerAngles);
                     clone = wallBig;
                 }
                 else if (go.name == "wallMedium")
@@ -252,7 +253,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
                 {
                     // int random = Random.Range(1, 4);
                     //if (random < 2)
-                   // clone = enemyFrontal1;
+                    // clone = enemyFrontal1;
                     //else if (random < 3)
                     //    clone = enemyFrontal2;
                     //else

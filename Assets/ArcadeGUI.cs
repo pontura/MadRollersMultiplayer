@@ -77,6 +77,7 @@ public class ArcadeGUI : MonoBehaviour {
     }
     void Reset()
     {
+        Data.Instance.events.OnResetLevel();
         Data.Instance.LoadLevel("SummaryMultiplayer");        
     }
     void OnScoreOn(int playerID, Vector3 pos, int total)

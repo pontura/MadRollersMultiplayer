@@ -20,7 +20,14 @@ public class Level : MonoBehaviour {
 	private AreasManager areasManager;
 	private FloorManager floorManager;
 	
-	private float lastDistanceToLoadLevel; 
+	private float lastDistanceToLoadLevel;
+
+    /// para arcade
+    private float nextDistanceVictoryArea;
+    private int distanceVictoryArea = 400;
+    public Area victoryArea;
+    //////////////////////
+
 	static Area areaActive;
 	static float areasLength = 0;
 	private int nextPlatformSpace = 30;
@@ -42,6 +49,7 @@ public class Level : MonoBehaviour {
     }
     public void Init()
 	{
+        nextDistanceVictoryArea = distanceVictoryArea;
         areasX = 0;
         playing = true;
         areaActive = null;
@@ -197,14 +205,18 @@ public class Level : MonoBehaviour {
         if (areasLength==0)
        {
            createNextArea(areasManager.getStartingArea());
-       } else
-
-            if (charactersManager.getDistance() > (areasLength - nextPlatformSpace)
+       } else if (charactersManager.getDistance() > (areasLength - nextPlatformSpace)
 		&&
         lastDistanceToLoadLevel != charactersManager.getDistance())
 		{
-            lastDistanceToLoadLevel = charactersManager.getDistance();	
-			Area newArea;
+            lastDistanceToLoadLevel = charactersManager.getDistance();
+
+            Area newArea;
+            if (lastDistanceToLoadLevel > nextDistanceVictoryArea)
+            {
+                nextDistanceVictoryArea = lastDistanceToLoadLevel + distanceVictoryArea;
+                newArea = victoryArea;
+            } else
 			if(showStartArea)
 			{
 				newArea = areasManager.getRandomArea(true);
@@ -214,6 +226,7 @@ public class Level : MonoBehaviour {
 				newArea = areasManager.getRandomArea(false);
 			}	
 			createNextArea(newArea);
+            print("new area " + newArea.name + " lastDistanceToLoadLevel: " + lastDistanceToLoadLevel);
 		}
 	}
     public void FallDown(int fallDownHeight)

@@ -5,15 +5,29 @@ public class GameBackground : MonoBehaviour {
 
     private CharactersManager charactersManager;
     public Renderer renderer;
+    public Material[] materials;
+    public int id;
 
     void Start()
     {
+        id = Random.Range(0, materials.Length - 1);
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
+        Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
         Data.Instance.events.OnChangeMood += OnChangeMood;
     }
     void OnDestroy()
     {
         Data.Instance.events.OnChangeMood -= OnChangeMood;
+        Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
+    }
+    void OnListenerDispatcher(string type)
+    {
+        if (type == "LevelFinish")
+        {
+            id++;
+            if (id > materials.Length - 1) id = 0;
+            renderer.material = materials[id];
+        }
     }
     void OnChangeMood(int id)
     {

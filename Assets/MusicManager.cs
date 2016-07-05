@@ -19,6 +19,7 @@ public class MusicManager : MonoBehaviour {
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        GetComponent<AudioLowPassFilter>().enabled = false;
     }
 	public void Init () {
         Data.Instance.events.OnMissionStart += OnMissionStart;
@@ -30,7 +31,20 @@ public class MusicManager : MonoBehaviour {
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
         Data.Instance.events.OnAvatarFall += OnAvatarCrash;
         Data.Instance.events.OnSoundFX += OnSoundFX;
+        Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
 	}
+    void OnListenerDispatcher(string type)
+    {
+        if (type == "LevelFinish")
+        {
+            GetComponent<AudioLowPassFilter>().enabled = true;
+            Invoke("ResetFilter", 2.5f);
+        }
+    }
+    void ResetFilter()
+    {
+        GetComponent<AudioLowPassFilter>().enabled = false;
+    }
     void OnSoundFX(string name)
     {
         switch (name)

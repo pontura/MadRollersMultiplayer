@@ -128,8 +128,9 @@ public class AreasManager : MonoBehaviour {
                    // Debug.Log("__setNewAreaSet__" + activeAreaSetID);
                     Data.Instance.events.OnSetNewAreaSet(activeAreaSetID);
                     setNewAreaSet();
-                    if (Random.Range(0, 100) < 50) activeAreaSetID++;
-                    activeAreaSetID++;
+                //    if (Random.Range(0, 100) < 50) 
+                        activeAreaSetID++;
+                   // activeAreaSetID++;
                     num = 0;
             }
            

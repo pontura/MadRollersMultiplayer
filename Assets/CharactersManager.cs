@@ -166,11 +166,26 @@ public class CharactersManager : MonoBehaviour {
     {
         if (characters.Count > 1)
         {
-            Vector3 pos1 = characters[0].transform.localPosition;
-            Vector3 pos2 = characters[1].transform.localPosition;
-            characterPosition = new Vector3((pos1.x + pos2.x) / 2, ((pos1.y + pos2.y) / 2) + 1, pos1.z - 1f);
+            float _x = 0;
+            Vector3 normalPosition = Vector3.zero;
+            Vector3 lastCharacterPosition = Vector3.zero;
+            float MaxDistance = 0;
+            foreach(CharacterBehavior cb in characters)
+            {
+                if(lastCharacterPosition != Vector3.zero)
+                {
+                    float dist = Vector3.Distance(cb.transform.localPosition, lastCharacterPosition);
+                    if(dist>MaxDistance) MaxDistance = dist;
+                }
+                lastCharacterPosition = cb.transform.localPosition;
+                normalPosition += lastCharacterPosition;
+            }
 
-            return characterPosition;
+            normalPosition /= characters.Count;
+            normalPosition.y += 0.8f + (MaxDistance / 2f );
+            normalPosition.z -= 0.5f + (MaxDistance/20);
+
+            return normalPosition;
         }
         else if (characters.Count == 0) return characterPosition;
         else
