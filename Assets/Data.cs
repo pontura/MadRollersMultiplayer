@@ -98,7 +98,7 @@ public class Data : MonoBehaviour {
             DEBUG = false;
             mode = modes.ACCELEROMETER;            
         }
-        voicesManager.Init();
+       // voicesManager.Init();
 
         if (Application.isWebPlayer)
             Application.ExternalCall("OnUnityReady");

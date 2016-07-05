@@ -34,7 +34,7 @@ public class AreaSet : MonoBehaviour {
         if (id < areas.Length - 1)
             id++;
 
-        print("AREA: " + area.name);
+       // print("AREA: " + area.name);
 
         return area;
 	}
