@@ -12,8 +12,8 @@ public class GameCamera : MonoBehaviour
     }
     private CharactersManager charactersManager;	
     
-	public Vector3 cameraOrientationVector = new Vector3 (0, 4.5f, -0.2f);
-    public float rotationX = 40;
+	public Vector3 cameraOrientationVector = new Vector3 (0, 4.5f, -0.8f);
+    public float rotationX = 47;
     public Vector3 newCameraOrientationVector;
     public bool onExplotion;
 	float explotionForce = 0.25f;
@@ -45,7 +45,6 @@ public class GameCamera : MonoBehaviour
 
         }
 
-        rotationX = 40;
         Vector3 pos = transform.position;
         pos.x = 0;
         pos.y = 0;
@@ -58,7 +57,7 @@ public class GameCamera : MonoBehaviour
 
         state = states.PLAYING;
         
-		newCameraOrientationVector = cameraOrientationVector;
+		//newCameraOrientationVector = cameraOrientationVector;
 
         transform.localEulerAngles = new Vector3(rotationX, 0, 0);
        
