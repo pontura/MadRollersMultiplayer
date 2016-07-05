@@ -72,7 +72,7 @@ public class ArcadeGUI : MonoBehaviour {
                 case 2: Data.Instance.multiplayerData.score_player3 = muis.score; break;
                 case 3: Data.Instance.multiplayerData.score_player4 = muis.score; break;
             }
-            muis.gameObject.SetActive(false);
+           // muis.gameObject.SetActive(false);
         }
     }
     void Reset()

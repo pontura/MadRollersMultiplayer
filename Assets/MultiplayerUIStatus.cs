@@ -85,6 +85,6 @@ public class MultiplayerUIStatus : MonoBehaviour {
     }
     public void Reset()
     {
-        Destroy(this.gameObject);
+       // Destroy(this.gameObject);
     }
 }
