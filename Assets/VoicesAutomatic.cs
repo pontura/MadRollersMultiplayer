@@ -8,16 +8,16 @@ public class VoicesAutomatic : MonoBehaviour {
     private int seconds_didnt_shoot = 0;
 
 	void Start () {
-        Data.Instance.events.OnAvatarShoot += OnAvatarShoot;
-        Data.Instance.events.OnSoundFX += OnSoundFX;
+        //Data.Instance.events.OnAvatarShoot += OnAvatarShoot;
+        //Data.Instance.events.OnSoundFX += OnSoundFX;
 
         if (Data.Instance.playingTutorial) return;
         Invoke("Loop", 4);
 	}
     void OnDestroy()
     {
-        Data.Instance.events.OnAvatarShoot -= OnAvatarShoot;
-        Data.Instance.events.OnSoundFX -= OnSoundFX;
+       // Data.Instance.events.OnAvatarShoot -= OnAvatarShoot;
+       // Data.Instance.events.OnSoundFX -= OnSoundFX;
     }
     void Loop()
     {
@@ -34,7 +34,7 @@ public class VoicesAutomatic : MonoBehaviour {
         }
     }
    
-    void OnAvatarShoot()
+    void OnAvatarShoot(int playerID)
     {
         seconds_didnt_shoot = 0;
     }

@@ -8,14 +8,18 @@ public class MainMenuArcade : MonoBehaviour {
     public MainMenuCharacterActor[] mainMenuCharacterActor;
     private MultiplayerData multiplayerData;
 
-    public AudioClip[] select_player_clip;
     public AudioClip countdown_clip;
     private AudioSource audioSource;
 
     public Text CountDown1;
     public Text CountDown2;
+
+    public GameObject players;
+
     public int sec = 10;
     bool playing;
+    public int totalPlayers = 0;
+    private bool done;
 
 	void Start () {
         Data.Instance.events.OnInterfacesStart();
@@ -33,30 +37,34 @@ public class MainMenuArcade : MonoBehaviour {
 	}
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) Clicked(0);
-        if (Input.GetKeyDown(KeyCode.Alpha2)) Clicked(1);
-        if (Input.GetKeyDown(KeyCode.Alpha3)) Clicked(2);
-        if (Input.GetKeyDown(KeyCode.Alpha4)) Clicked(3);
+        if (done) return;
+        if ((InputManager.getFire(0) || InputManager.getJump(0)))
+        {
+            Clicked(0);
+        }
+        if ((InputManager.getFire(1) || InputManager.getJump(1)))
+        {
+            Clicked(1);
+        }
+        if ((InputManager.getFire(2) || InputManager.getJump(2)))
+        {
+            Clicked(2);
+        }
+        if ((InputManager.getFire(3) || InputManager.getJump(3)))
+        {
+            Clicked(3);
+        }
     }
+    bool anyActive = false;
     void Clicked(int playerID)
     {
-        audioSource.clip = select_player_clip[ Random.Range(0,select_player_clip.Length) ];
-        audioSource.Play();
+        totalPlayers = 0;
+        Data.Instance.events.OnSoundFX("FXCheer", playerID);
 
         playerMainMenuUI[playerID].Toogle();
         mainMenuCharacterActor[playerID].SetState(playerID, playerMainMenuUI[playerID].isActive);
 
-        bool anyActive = false;
-        int id;
-        foreach (PlayerMainMenuUI pm in playerMainMenuUI)
-        {
-            if (pm.id == 0) multiplayerData.player1 = pm.isActive;
-            if (pm.id == 1) multiplayerData.player2 = pm.isActive;
-            if (pm.id == 2) multiplayerData.player3 = pm.isActive;
-            if (pm.id == 3) multiplayerData.player4 = pm.isActive;
-
-            if (pm.isActive) anyActive = true;
-        }
+        GetTotalPlayers();        
 
         if (!anyActive)
         {
@@ -68,6 +76,22 @@ public class MainMenuArcade : MonoBehaviour {
             Loop();
         }
     }
+    void GetTotalPlayers()
+    {
+        foreach (PlayerMainMenuUI pm in playerMainMenuUI)
+        {
+            if (pm.id == 0) { multiplayerData.player1 = pm.isActive; }
+            if (pm.id == 1) { multiplayerData.player2 = pm.isActive; }
+            if (pm.id == 2) { multiplayerData.player3 = pm.isActive; }
+            if (pm.id == 3) { multiplayerData.player4 = pm.isActive; }
+
+            if (pm.isActive)
+            {
+                anyActive = true;
+                totalPlayers++;
+            }
+        }
+    }
     void Loop()
     {
         if (!playing) return;
@@ -75,10 +99,21 @@ public class MainMenuArcade : MonoBehaviour {
 
         CountDown1.text = "0" + sec;
         CountDown2.text = "0" + sec;
-        
+
+        foreach (Text field in players.GetComponentsInChildren<Text>())
+            field.text = totalPlayers + " PLAYERS";
+
         if (sec < 1)
-            Data.Instance.LoadLevel("GameMultiplayer");
-        else
-            Invoke("Loop", 0.3f);
+        {
+            GetTotalPlayers();
+            if (totalPlayers > 0)
+            {
+                done = true;
+                Data.Instance.LoadLevel("GameMultiplayer");
+                return;
+            }
+            else sec = 1;
+        }
+        Invoke("Loop", 0.3f);
     }
 }

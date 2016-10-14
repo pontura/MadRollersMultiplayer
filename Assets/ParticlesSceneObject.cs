@@ -19,16 +19,6 @@ public class ParticlesSceneObject : SceneObject {
 
         explotion.Clear();
         explotion.Play();
-
-        if (GetComponent<AudioSource>())
-        {
-           // GetComponent<AudioSource>().Play();
-        }
-        //GameObject go = Instantiate(esplotionParticles, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-        //pos.y += 5;
-        //pos.z -= 2;
-        //go.transform.localPosition = pos;
-        //go.transform.localScale = new Vector3(1.5f,1.5f,1.5f);
     }
     public void SetColor(Color color)
     {        

@@ -26,7 +26,13 @@ public class RainManager : MonoBehaviour {
 
         if (charactersManager.distance > distanceToAdd)
         {
-            distanceToAdd = charactersManager.distance + (offset * 2);
+            int dificultLevel = 0;
+            switch (Game.Instance.level.Dificulty)
+            {
+                case Level.Dificult.HARD: dificultLevel = 120;  break;
+                case Level.Dificult.MEDIUM: dificultLevel = 40; break;
+            }
+            distanceToAdd = charactersManager.distance + (offset * 2) - dificultLevel;  
             offset -= restaOffset;
             if (offset < min_offset) offset = min_offset;
 

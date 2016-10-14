@@ -8,7 +8,6 @@ public class DroppableSceneObject : SceneObject {
 	private float rotationZ;
 
     private bool exploted = false;
-    public AudioClip coli;
 
     private float sec = 0;
     private float delay = 0.5f;
@@ -44,12 +43,10 @@ public class DroppableSceneObject : SceneObject {
             case "wall":
                 addExplotionWall();
                 Destroy();
-                AudioSource.PlayClipAtPoint(coli, other.gameObject.transform.position);
                 break;
             case "floor":
                 addExplotion(0.2f);
                 Destroy();
-                AudioSource.PlayClipAtPoint(coli, other.gameObject.transform.position);
                 break;
             case "enemy":
                 MmoCharacter enemy = other.gameObject.GetComponent<MmoCharacter>();
@@ -57,12 +54,10 @@ public class DroppableSceneObject : SceneObject {
 
                 enemy.Die();
                 Destroy();
-                AudioSource.PlayClipAtPoint(coli, other.gameObject.transform.position);
                 break;
             case "destroyable":
                 other.gameObject.SendMessage("breakOut", other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);
                 Destroy();
-                AudioSource.PlayClipAtPoint(coli, other.gameObject.transform.position);
                 break;
         }
     }

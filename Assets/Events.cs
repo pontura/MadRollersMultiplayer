@@ -15,6 +15,7 @@ public class Events : MonoBehaviour {
 
     public System.Action OnGameOver = delegate { };
     public System.Action<string> VoiceFromResources = delegate { };
+    public System.Action<string, int> OnSoundFX = delegate { };
     public System.Action<float> SetVolume = delegate { };
     public System.Action<bool> OnFadeALittle = delegate { };
     public System.Action OnInterfacesStart = delegate { };
@@ -41,6 +42,7 @@ public class Events : MonoBehaviour {
     public System.Action<int> OnAddNewPlayer = delegate { };
 
     public System.Action<Vector3> OnAddPowerUp = delegate { };
+    public System.Action OnCreateBonusArea = delegate { };
     public System.Action<Vector3, Color> OnAddExplotion = delegate { };
     public System.Action<List<int>> OnReorderAvatarsByPosition = delegate { };
     public void AddExplotion(Vector3 position, Color color) { OnAddExplotion(position, color); }
@@ -57,6 +59,8 @@ public class Events : MonoBehaviour {
     public System.Action OnCloseMainmenu = delegate { };
 
     public System.Action OnResetLevel = delegate { };
+    public System.Action StartMultiplayerRace = delegate { };
+    
 
     public System.Action<int, Powerup.types> OnAvatarGetItem = delegate { };
     public System.Action<Player.fxStates> OnAvatarChangeFX = delegate { };
@@ -64,15 +68,13 @@ public class Events : MonoBehaviour {
     public System.Action<CharacterBehavior> OnAvatarFall = delegate { };
     public System.Action<CharacterBehavior> OnAvatarDie = delegate { };
     public System.Action OnAvatarProgressBarEmpty = delegate { };
-
-    public System.Action<string> OnSoundFX = delegate { };    
-
+    
     public System.Action OncharacterCheer = delegate { };
 
     public System.Action OnAvatarJump = delegate { };
     public void AvatarJump() { OnAvatarJump(); }
 
-    public System.Action OnAvatarShoot = delegate { };
+    public System.Action<int> OnAvatarShoot = delegate { };
 
     public System.Action OnCompetitionMissionComplete = delegate { };
 

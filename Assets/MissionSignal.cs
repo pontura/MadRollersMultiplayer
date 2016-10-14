@@ -54,7 +54,7 @@ public class MissionSignal : MonoBehaviour {
     {
         Open("MISIóN COMPLETA!");
         yield return new WaitForSeconds(1.5f);
-        GetComponent<AudioSource>().Play();
+        //GetComponent<AudioSource>().Play();
         CloseAfter(1);
 	}
     private void OnListenerDispatcher(string message)

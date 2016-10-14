@@ -65,7 +65,7 @@ public class MmoCharacter : SceneObject
 	public void Die() {
 		if(state== states.DEAD) return;
 
-        Data.Instance.events.OnSoundFX("enemyDead");
+        Data.Instance.events.OnSoundFX("FX muerte malo00", -1);
 
         setScore();
 
@@ -123,7 +123,7 @@ public class MmoCharacter : SceneObject
         state = states.WAIT_TO_JUMP;
     }
 	public void jump() {
-        Data.Instance.events.OnSoundFX("enemyShout");
+        Data.Instance.events.OnSoundFX("FX malo00", -1);
         _animation.Play("enemyJump");
         state = states.JUMP;
 	}

@@ -11,7 +11,7 @@ public class Player : MonoBehaviour {
     public GameObject particles;
 
     public int id; //numero de player;
-    public EnergyBar progressBar;
+   // public EnergyBar progressBar;
 
     [HideInInspector]
     public Weapon weapon;
@@ -29,6 +29,7 @@ public class Player : MonoBehaviour {
     public bool canShoot = true;
 
     private CharacterBehavior characterBehavior;
+    private IEnumerator progressBarCoroutine;
 
     public enum fxStates
     {
@@ -87,19 +88,31 @@ public class Player : MonoBehaviour {
     }
     void OnAvatarDie(CharacterBehavior cb)
     {
-       // Destroy(this);
+        if (progressBarCoroutine != null)
+        {
+            try
+            {
+                StopCoroutine(progressBarCoroutine);
+                if (fxState == fxStates.SUPER)
+                    OnAvatarProgressBarEmpty();
+            } catch
+            {
+                Debug.Log("ERROR en OnAvatarDie");
+            }
+        }
+        cb.Die();
     }
     public void OnAvatarProgressBarStart(Color color)
     {
         //if (progressBar.isOn) return;
-        progressBar.Init(color);
-        progressBar.gameObject.SetActive(true);
+      //  progressBar.Init(color);
+      //  progressBar.gameObject.SetActive(true);
     }
     public void OnAvatarProgressBarEmpty()
     {
 
-        print("OnAvatarProgressBarEmpty " + fxState);
-        progressBar.gameObject.SetActive(false);
+        //print("OnAvatarProgressBarEmpty " + fxState);
+       // progressBar.gameObject.SetActive(false);
 
         if (fxState == fxStates.SUPER)
         {
@@ -113,7 +126,7 @@ public class Player : MonoBehaviour {
     }
     public void OnAvatarProgressBarUnFill(float qty )
     {
-        progressBar.UnFill(qty);
+     //   progressBar.UnFill(qty);
     }
     private void OnAvatarGetItem(int playerID, Powerup.types item)
     {
@@ -141,14 +154,23 @@ public class Player : MonoBehaviour {
         }
         else if (item == Powerup.types.INVENSIBLE)
         {
+            print("INVENSIBLE player id: " + id);
+            if (gameObject == null) return;
             if (characterBehavior.state == CharacterBehavior.states.JETPACK) return;
 
             if (fxState == fxStates.SUPER) return;
             setSuperState();
             Data.Instance.events.AdvisesOn("INVENSIBLE!");
             OnAvatarProgressBarStart(Color.blue);
-            progressBar.SetTimer(0.2f);
+         //   progressBar.SetTimer(0.2f);
+            progressBarCoroutine = StartProgressBarCoroutine();
+            StartCoroutine(progressBarCoroutine);            
         }
+    }
+    IEnumerator StartProgressBarCoroutine()
+    {
+        yield return new WaitForSeconds(12);
+        OnAvatarProgressBarEmpty();
     }
    private void OnListenerDispatcher(string message)
     {
@@ -199,8 +221,10 @@ public class Player : MonoBehaviour {
     private void setSuperState()
     {
        // Data.Instance.events.OnChangeMood(2);
+        
         Data.Instance.events.OnAvatarChangeFX(Player.fxStates.SUPER);
         fxState = fxStates.SUPER;
+        
         gameObject.layer = LayerMask.NameToLayer("SuperFX");
         particles.SetActive(true);
     }

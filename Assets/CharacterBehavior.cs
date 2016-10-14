@@ -12,16 +12,11 @@ public class CharacterBehavior : MonoBehaviour {
     public Collider[] colliders;
     public CharacterFloorCollitions floorCollitions;
 
-    public AudioClip jumpClip;
-    public AudioClip jump2Clip;
-    public AudioClip jump3Clip;
-    public AudioClip FXFall;
-    public AudioClip FXCrash;
-    public AudioClip FXCheer;
-
     public states state;
+
     public enum states
     {
+        IDLE,
         RUN,
         JUMP,
         DOUBLEJUMP,
@@ -33,9 +28,11 @@ public class CharacterBehavior : MonoBehaviour {
         JETPACK,
         JETPACK_OFF
     }
+    public CharacterBehavior hasSomeoneOver;
+    public CharacterBehavior isOver;
 
     private int MAX_JETPACK_HEIGHT = 25;
-    private float speedRun = 18f;
+
     private int heightToFall = -5;
 	private float jumpHeight = 1300;
 	public float superJumpHeight = 1200;
@@ -65,14 +62,71 @@ public class CharacterBehavior : MonoBehaviour {
         data.events.OnAvatarProgressBarEmpty += OnAvatarProgressBarEmpty;
         data.events.OncharacterCheer += OncharacterCheer;
         data.events.OnReorderAvatarsByPosition += OnReorderAvatarsByPosition;
+        data.events.StartMultiplayerRace += StartMultiplayerRace;
 
         Invoke("RefreshPosition", 0.1f);
+        _animation_hero.Play("saluda");
 	}
     void OnDestroy ()
     {
         data.events.OnAvatarProgressBarEmpty -= OnAvatarProgressBarEmpty;
         data.events.OncharacterCheer -= OncharacterCheer;
         data.events.OnReorderAvatarsByPosition -= OnReorderAvatarsByPosition;
+        data.events.StartMultiplayerRace -= StartMultiplayerRace;
+    }
+
+
+
+
+    /// <summary>
+    /// /////////////////////////////over
+    /// </summary>
+    public void OnAvatarOverOther(CharacterBehavior other)
+    {
+        isOver = other;
+    }
+    void RunOverOther()
+    {
+        _animation_hero.Play("over");
+    }
+    public void OnGetRidOfOverAvatar()
+    {
+        if (hasSomeoneOver != null)
+            hasSomeoneOver.OnAvatarFree();
+        Reset();
+    }
+    public void OnGetRidOfBelowAvatar()
+    {
+        if (isOver != null)
+            isOver.Reset();
+        Reset();
+    }
+    public void OnAvatarFree()
+    {
+        Jump();
+        Reset();
+    }
+    public void OnAvatarStartCarringSomeone(CharacterBehavior other)
+    {
+        hasSomeoneOver = other;
+    }
+    public void Reset()
+    {
+        isOver = null;
+        hasSomeoneOver = null;
+    }
+    /// <summary>
+    /// /////////////////////////////over
+    /// </summary>
+    /// 
+
+
+
+
+    void StartMultiplayerRace()
+    {
+        state = states.JUMP;
+        Run();
     }
     void OnReorderAvatarsByPosition(List<int> players)
     {
@@ -87,8 +141,7 @@ public class CharacterBehavior : MonoBehaviour {
     {
         if (Random.Range(0, 8) < 2)
         {
-            GetComponent<AudioSource>().clip = FXCheer;
-            GetComponent<AudioSource>().Play();
+            Data.Instance.events.OnSoundFX("FXCheer", player.id);
         }
     }
 	public void CheckFire()
@@ -103,10 +156,12 @@ public class CharacterBehavior : MonoBehaviour {
             GetComponent<Rigidbody>().AddForce(new Vector3(0, jumpHeight/3, 0), ForceMode.Impulse);
         }
 
+        Data.Instance.events.OnSoundFX("fire", player.id);
+
         state = states.SHOOT;
             
         player.weapon.Shoot();
-        data.events.OnAvatarShoot();
+        data.events.OnAvatarShoot(player.id);
 
 		if(lastShot+0.3f > Time.time) return;
 		lastShot = Time.time;
@@ -142,7 +197,7 @@ public class CharacterBehavior : MonoBehaviour {
     }
     public void UpdateByController(float rotationY)
     {
-        
+       
         if (state == states.JETPACK)
         {
             player.OnAvatarProgressBarUnFill(0.25f * Time.deltaTime);
@@ -169,8 +224,18 @@ public class CharacterBehavior : MonoBehaviour {
         }
 
         Vector3 goTo = transform.position;
-        goTo.x += (rotationY/3)*Time.deltaTime;
-        goTo.z = player.charactersManager.distance - (position);
+
+        if (isOver)
+        {
+            goTo.x = isOver.transform.localPosition.x;
+            goTo.y = isOver.transform.localPosition.y + 1;
+            goTo.z = isOver.transform.localPosition.z+0.2f;
+        }
+        else
+        {
+            goTo.x += (rotationY / 3) * Time.deltaTime;
+            goTo.z = player.charactersManager.distance - (position / 2);
+        }
         transform.position = Vector3.Lerp(transform.position, goTo, 6);
 
         if (transform.position.y < heightToFall)
@@ -199,16 +264,22 @@ public class CharacterBehavior : MonoBehaviour {
 	}
     public void Revive()
     {
+        Reset();
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<Rigidbody>().freezeRotation = true;
         Run();
     }
 	public void Run()
 	{
+        if (state == states.IDLE) return;
 		if(state == states.RUN) return;
         jumpsNumber = 0;
 		state = states.RUN;
-        _animation_hero.Play("run");
+
+        if(isOver != null)
+            RunOverOther();
+        else
+            _animation_hero.Play("run");
 	}
     public void Slide()
     {
@@ -261,6 +332,11 @@ public class CharacterBehavior : MonoBehaviour {
     }
 	public void Jump()
 	{
+        if (hasSomeoneOver != null)
+            OnGetRidOfOverAvatar();
+        else if (isOver != null)
+            OnGetRidOfBelowAvatar();
+
         if (player.transport != null && player.transport.isOn) return;
         
         jumpsNumber++;
@@ -278,9 +354,7 @@ public class CharacterBehavior : MonoBehaviour {
         if (!player.canJump) return;
 
         floorCollitions.OnAvatarJump();
-        GetComponent<AudioSource>().clip = jumpClip;
-        GetComponent<AudioSource>().Play();
-
+        Data.Instance.events.OnSoundFX("FXJump", player.id);
 
 		if(state == states.JUMP) return;
 
@@ -309,8 +383,8 @@ public class CharacterBehavior : MonoBehaviour {
         GetComponent<Rigidbody>().velocity = Vector3.zero;
 
         floorCollitions.OnAvatarJump();
-        GetComponent<AudioSource>().clip = jump2Clip;
-        GetComponent<AudioSource>().Play();
+        Data.Instance.events.OnSoundFX("FX jump03 chicle", player.id);
+
         data.events.AvatarJump();
 
             _animation_hero.Play("doubleJump");
@@ -331,8 +405,7 @@ public class CharacterBehavior : MonoBehaviour {
         transform.localPosition = pos;
         SuperJump(force);
 
-        GetComponent<AudioSource>().clip = jump3Clip;
-        GetComponent<AudioSource>().Play();
+        Data.Instance.events.OnSoundFX("FX jump03 chicle", player.id);
 
         if (!dir_forward)
         {
@@ -344,15 +417,14 @@ public class CharacterBehavior : MonoBehaviour {
         }
 
         //lo hago para resetear el doble salto:
-        state = states.JUMP;
+       // state = states.JUMP;
 
 	}
     public void Fall()
     {
-        GetComponent<AudioSource>().clip = FXFall;
-        GetComponent<AudioSource>().Play();
+        Data.Instance.events.OnSoundFX("FX vox caida01", player.id);
         Data.Instance.events.OnAvatarFall(this);
-        Die();
+       // Die();
     }
 
     public void HitWithObject(Vector3 objPosition)
@@ -363,8 +435,7 @@ public class CharacterBehavior : MonoBehaviour {
     {
         SaveDistance();
 
-        GetComponent<AudioSource>().clip = FXCrash;
-        GetComponent<AudioSource>().Play();
+        Data.Instance.events.OnSoundFX("FXCrash", player.id);
 
         Data.Instance.events.OnAvatarCrash(this);
 
@@ -381,6 +452,7 @@ public class CharacterBehavior : MonoBehaviour {
     }
     void CrashReal()
     {
+        if (player.charactersManager.getTotalCharacters() == 1) return;
         Time.timeScale = 0.02f;
         StartCoroutine(lowCamera());
     }

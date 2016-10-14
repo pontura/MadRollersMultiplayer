@@ -8,6 +8,8 @@ public class SceneObjectsBehavior : MonoBehaviour {
     [HideInInspector]
     public Area area;
 
+    public SceneObject Starting;
+    public SceneObject Calecita;
     public SceneObject FloorSlider;
     public SceneObject FloorSurface;
     public SceneObject house1;
@@ -120,16 +122,16 @@ public class SceneObjectsBehavior : MonoBehaviour {
                 case "Yuyo":
                 case "enemyFrontal":
                 case "castle":
-                    
-                    sceneObject = Pool.GetObjectForType(go.name + "_real", false);
+                case "bonusEntrance":   
 
-                   
+                    sceneObject = Pool.GetObjectForType(go.name + "_real", false);                   
 
                     //HACK creo que esto arregla que desaparezca cada tanto un objeto, sino es asi borrame!
-                    sceneObject.isActive = false;
+                    
 
                     if (sceneObject)
                     {
+                        sceneObject.isActive = false;
                         sceneObject.Restart(pos);
                         sceneObject.transform.rotation = go.transform.rotation;
 
@@ -213,6 +215,10 @@ public class SceneObjectsBehavior : MonoBehaviour {
                     clone = wallSuperSmall;
                 else if (go.name == "jumper")
                     clone = jumper;
+                else if (go.name == "Calecita")
+                    clone = Calecita;
+                else if (go.name == "Starting")
+                    clone = Starting;                    
                 else if (go.name == "bomb1")
                     clone = bomb1;
                 else if (go.name == "tunel1")

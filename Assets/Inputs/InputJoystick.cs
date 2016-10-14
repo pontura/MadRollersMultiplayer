@@ -8,7 +8,7 @@ public class InputJoystick : InputType {
 
     public InputJoystick(int playerID)
     {
-        this.id = playerID;
+        this.id = playerID+1;
     }
     public override bool getOpenMenu()
     {
@@ -16,7 +16,7 @@ public class InputJoystick : InputType {
     }
     public override bool getStart()
     {
-        return Input.GetButton("Start" + id);
+        return Input.GetButton("Fire" + id);
     }
     public override float getHorizontal()
     {

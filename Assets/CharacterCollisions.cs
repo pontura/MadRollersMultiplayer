@@ -17,7 +17,25 @@ public class CharacterCollisions : MonoBehaviour {
         if (characterBehavior.state == CharacterBehavior.states.DEAD) return;
         if (characterBehavior.state == CharacterBehavior.states.CRASH) return;
         if (characterBehavior.state == CharacterBehavior.states.FALL) return;
+        if (other.tag == "Player")
+        {
+            if (characterBehavior.state == CharacterBehavior.states.JUMP)
+            {
+                if (other.GetComponent<CharacterCollisions>())
+                {
+                    CharacterBehavior cb = other.GetComponent<CharacterCollisions>().characterBehavior;
 
+                   // if (cb.transform.localPosition.y > characterBehavior.transform.localPosition.y) return;
+                    if (cb.state != CharacterBehavior.states.RUN) return;
+                    if (cb.isOver != null) return;
+                    if (characterBehavior.isOver != null) return;
+
+                    print("Player " + player.id + " con " + cb.player.id);
+                    cb.OnAvatarStartCarringSomeone(characterBehavior);
+                    characterBehavior.OnAvatarOverOther(cb);
+                }
+            }
+        } else
         if (other.tag == "wall") 
 		{
             if (characterBehavior.state == CharacterBehavior.states.SHOOT) return;
@@ -35,8 +53,6 @@ public class CharacterCollisions : MonoBehaviour {
             if (player.fxState == Player.fxStates.NORMAL)
                 if (!other.GetComponent<Breakable>().dontKillPlayers) 
                     characterBehavior.HitWithObject(other.transform.position);
-
-          //  breakBreakable(other.GetComponent<Breakable>(), other.transform.position);
         }
         else if (other.tag == "floor" && !hitted)
         {

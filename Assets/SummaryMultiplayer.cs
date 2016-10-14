@@ -23,6 +23,7 @@ public class SummaryMultiplayer : MonoBehaviour {
     private IEnumerator nextRoutine;
 
 	void Start () {
+        Time.timeScale = 1;
         multiplayerData = Data.Instance.multiplayerData;
 
         MultiplayerSummaryTexts texts = Data.Instance.GetComponent<MultiplayerSummaryTexts>();
@@ -44,7 +45,7 @@ public class SummaryMultiplayer : MonoBehaviour {
         string title_2 = texts.GetText(2, score2);
         string title_3 = texts.GetText(3, score3);
         string title_4 = texts.GetText(4, score4);
-        int totalScore = score1 + score2 + score3 + score4;
+        int totalScore = 1+ score1 + score2 + score3 + score4;
 
         player1.Init(multiplayerData.colors[player_position_1], title_1, score1, (score1 * 100) / totalScore, 1);
         player2.Init(multiplayerData.colors[player_position_2], title_2, score2, (score2 * 100) / totalScore, 2);
@@ -69,10 +70,11 @@ public class SummaryMultiplayer : MonoBehaviour {
     {
         if (state == states.READY)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Alpha4))
-            {
+            if (InputManager.getFire(0) || InputManager.getJump(0) || InputManager.getFire(1) || InputManager.getJump(1)
+                || InputManager.getFire(2) || InputManager.getJump(2) || InputManager.getFire(3) || InputManager.getJump(3))
+            {           
                 Reset();
-                Data.Instance.LoadLevel("GameMultiplayer");
+                Data.Instance.LoadLevel("MainMenuArcade");
                 state = states.DONE;
             }
         }

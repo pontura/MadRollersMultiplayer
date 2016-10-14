@@ -45,12 +45,12 @@ public class AreasManager : MonoBehaviour {
 	{
         activeAreaSetID = 1;
 
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
         if (Data.Instance.DEBUG && Data.Instance.missions.test_mission) return;
         if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
         {
             areaSets.Clear();
-            GameObject[] thisAreaSets = Resources.LoadAll<GameObject>("competition_1");
+            GameObject[] thisAreaSets = Resources.LoadAll<GameObject>("competition_" + Data.Instance.competitionID);
             foreach (GameObject go in thisAreaSets)
             {
                 AreaSet thisAreaSet = go.GetComponent<AreaSet>() as AreaSet;
@@ -58,7 +58,7 @@ public class AreasManager : MonoBehaviour {
             }
             RandomizeAreaSetsByPriority();
         }
-#endif
+//#endif
         num = 0;
 		activeAreaSetID = 0;
 		setNewAreaSet();
@@ -128,9 +128,9 @@ public class AreasManager : MonoBehaviour {
                    // Debug.Log("__setNewAreaSet__" + activeAreaSetID);
                     Data.Instance.events.OnSetNewAreaSet(activeAreaSetID);
                     setNewAreaSet();
-                //    if (Random.Range(0, 100) < 50) 
+                    if (Random.Range(0, 10) < 5) 
                         activeAreaSetID++;
-                   // activeAreaSetID++;
+                    activeAreaSetID++;
                     num = 0;
             }
            

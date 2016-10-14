@@ -27,6 +27,9 @@ public class FlyingBehavior : MonoBehaviour
     public void OnSceneObjectUpdated()
     {
         transform.Translate(-Vector3.forward * realSpeed * Time.deltaTime);
+        Dropper droppableSceneObject = GetComponent<Dropper>();
+        if (droppableSceneObject != null)
+            droppableSceneObject.OnSceneObjectUpdated();
     }
 
 }

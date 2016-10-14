@@ -220,7 +220,7 @@ public class GuiTutorial : MonoBehaviour {
          Data.Instance.events.OnGamePaused(false);
          //Data.Instance.events.OnAvatarJump -= OnAvatarJump;
     }
-    private void OnAvatarShoot()
+    private void OnAvatarShoot(int playerID)
     {
 
         if (!ready) return;

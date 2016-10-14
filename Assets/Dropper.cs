@@ -9,7 +9,7 @@ public class Dropper : MonoBehaviour
 
     private float sec;
 
-    public void OnSceneObjectRestarted()
+    void Start()
     {
         sec = 0;
         delayRandom = Random.Range(0, delayRandom);
@@ -19,7 +19,7 @@ public class Dropper : MonoBehaviour
         
     }
 
-    void OnSceneObjectUpdated()
+    public void OnSceneObjectUpdated()
     {
         if (sec > delay + delayRandom)
         {

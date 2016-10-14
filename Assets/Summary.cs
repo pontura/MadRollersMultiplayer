@@ -90,7 +90,7 @@ public class Summary : MonoBehaviour {
     public void ReviveConfirma()
     {
         Data.Instance.events.OnUseHearts(heartsToReviveNum);
-        Data.Instance.events.OnSoundFX("consumeHearts");
+        Data.Instance.events.OnSoundFX("consumeHearts", -1);
         
         panela.SetActive(false);
         panel.SetActive(false);

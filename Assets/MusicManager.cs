@@ -22,6 +22,7 @@ public class MusicManager : MonoBehaviour {
         GetComponent<AudioLowPassFilter>().enabled = false;
     }
 	public void Init () {
+        Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
         Data.Instance.events.OnMissionStart += OnMissionStart;
         Data.Instance.events.OnInterfacesStart += OnInterfacesStart;
         Data.Instance.events.OnAvatarChangeFX += OnAvatarChangeFX;
@@ -30,40 +31,42 @@ public class MusicManager : MonoBehaviour {
         Data.Instance.events.SetVolume += SetVolume;
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
         Data.Instance.events.OnAvatarFall += OnAvatarCrash;
-        Data.Instance.events.OnSoundFX += OnSoundFX;
+     //   Data.Instance.events.OnSoundFX += OnSoundFX;
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
 	}
     void OnListenerDispatcher(string type)
     {
-        if (type == "LevelFinish")
+        
+        if (type == "LevelFinish_hard" || type == "LevelFinish_medium" || type == "LevelFinish_easy")
         {
             GetComponent<AudioLowPassFilter>().enabled = true;
-            Invoke("ResetFilter", 2.5f);
+            Invoke("ResetFilter", 2.7f);
         }
     }
+    
     void ResetFilter()
     {
         GetComponent<AudioLowPassFilter>().enabled = false;
     }
-    void OnSoundFX(string name)
-    {
-        switch (name)
-        {
-            case "enemyShout": audioSource.PlayOneShot(enemyShout); break;
-            case "enemyDead": audioSource.PlayOneShot(enemyDead); break;
-            case "consumeHearts": audioSource.PlayOneShot(consumeHearts); break;
-        }
-    }
+    //void OnSoundFX(string name)
+    //{
+    //    switch (name)
+    //    {
+    //        case "enemyShout": audioSource.PlayOneShot(enemyShout); break;
+    //        case "enemyDead": audioSource.PlayOneShot(enemyDead); break;
+    //        case "consumeHearts": audioSource.PlayOneShot(consumeHearts); break;
+    //    }
+    //}
     void OnAvatarCrash(CharacterBehavior cb)
     {
         if (Game.Instance.GetComponent<CharactersManager>().getTotalCharacters() > 0) return;
         audioSource.Stop();
     }
-    void SetVolume(float vol)
+    public void SetVolume(float vol)
     {
         audioSource.volume = vol;
     }
-    private void playSound(AudioClip _clip, bool looped = true)
+    public void playSound(AudioClip _clip, bool looped = true)
     {        
         if (audioSource.clip.name == _clip.name) return;
         stopAllSounds();
@@ -83,9 +86,13 @@ public class MusicManager : MonoBehaviour {
     {
         playSound( interfaces );
     }
-    void OnMissionStart(int id)
+    void StartMultiplayerRace()
     {
         playSound(MainTheme);
+    }
+    void OnMissionStart(int id)
+    {
+        //playSound(MainTheme);
 	}
     void OnAvatarChangeFX(Player.fxStates state)
     {
@@ -99,7 +106,7 @@ public class MusicManager : MonoBehaviour {
         if (Game.Instance.GetComponent<CharactersManager>().getTotalCharacters() > 0) return;
         playSound(deathFX, false);
     }
-    void stopAllSounds()
+    public void stopAllSounds()
     {
         audioSource.Stop();
     }

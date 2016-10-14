@@ -17,10 +17,11 @@ public class CharactersManager : MonoBehaviour {
     private float separationX  = 2;
 
     public float distance;
-    public float speedRun = 19;
+    private float speedRun = 19;
     private Missions missions;
     public List<int> playerPositions;
     private bool gameOver;
+    private IEnumerator RalentaCoroutine;
 
     void Awake()
     {
@@ -30,9 +31,45 @@ public class CharactersManager : MonoBehaviour {
     void Start()
     {
         missions = Data.Instance.GetComponent<Missions>();
+        
+    }
+    void OnListenerDispatcher(string type)
+    {
+        if (type == "Ralenta")
+        {
+            RalentaCoroutine = DoRalentaCoroutine(11);
+            StartCoroutine(RalentaCoroutine);
+        }
+        if (type == "BonusEntrande")
+        {
+            RalentaCoroutine = DoRalentaCoroutine(11);
+            StartCoroutine(RalentaCoroutine);
+
+            Data.Instance.events.OnCreateBonusArea();
+            foreach (CharacterBehavior cb in characters)
+                cb.transform.localPosition = new Vector3(0, 25, 0);
+        }
+    }
+    void StartMultiplayerRace()
+    {
+        RalentaCoroutine = DoRalentaCoroutine(2);
+        StartCoroutine(RalentaCoroutine);
+    }
+    IEnumerator DoRalentaCoroutine(float _speedRun)
+    {
+        float speedTeRecover = 0.05f;
+        speedRun = _speedRun;
+        while (speedRun < 19)
+        {
+            yield return new WaitForEndOfFrame();
+            speedRun += Time.deltaTime + speedTeRecover;
+        }
+        speedRun = 19;
+        yield return null;
     }
     void Update()
     {
+        if (Game.Instance.level.waitingToStart) return;
         if (gameOver) return;
         distance += speedRun * Time.deltaTime;
         missions.updateDistance(distance);
@@ -40,6 +77,7 @@ public class CharactersManager : MonoBehaviour {
     }
     public int GetPositionByID(int _playerID)
     {
+        if (Game.Instance.level.waitingToStart) return 0;
         int position = 0;
         foreach(int playerID in playerPositions)
         {
@@ -51,12 +89,14 @@ public class CharactersManager : MonoBehaviour {
     }
     public void Init()
     {
-        
+        Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
         Data.Instance.events.OnReorderAvatarsByPosition += OnReorderAvatarsByPosition;
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
         Data.Instance.events.OnAvatarFall += OnAvatarFall;
+        Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
 
-        Vector3 pos = new Vector3(1, 10, 1);
+        Vector3 pos;
+        pos = new Vector3(1, 10, 1);
 
         if (Data.Instance.multiplayerData.player1) { addCharacter(pos, 0); playerPositions.Add(0); };
         if (Data.Instance.multiplayerData.player2) { addCharacter(pos, 1); playerPositions.Add(1); };
@@ -68,6 +108,8 @@ public class CharactersManager : MonoBehaviour {
         Data.Instance.events.OnAvatarCrash -= OnAvatarCrash;
         Data.Instance.events.OnAvatarFall -= OnAvatarFall;
         Data.Instance.events.OnReorderAvatarsByPosition -= OnReorderAvatarsByPosition;
+        Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
+        Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
     }
     void OnReorderAvatarsByPosition(List<int> playerPositions)
     {
@@ -92,6 +134,7 @@ public class CharactersManager : MonoBehaviour {
     }
     public void addNewCharacter(int id)
     {
+        Data.Instance.events.OnSoundFX("FXCheer", id);
         Data.Instance.events.OnAddNewPlayer(id);
         Vector3 pos = characters[0].transform.position;
         pos.y += 3;
@@ -100,7 +143,14 @@ public class CharactersManager : MonoBehaviour {
     }
     public void addCharacter(Vector3 pos, int id)
     {
-        pos.x *= separationX;
+        if (Game.Instance.level.waitingToStart)
+        {
+            pos = new Vector3((3.5f * id) - (4.5f), 1);
+        }
+        else
+        {
+            pos.x *= separationX;
+        }
         CharacterBehavior newCharacter = null;
         foreach (CharacterBehavior cb in deadCharacters)
         {
@@ -125,6 +175,7 @@ public class CharactersManager : MonoBehaviour {
     }
     public void killCharacter(CharacterBehavior characterBehavior)
     {
+        print(" killCharacter " + characterBehavior.player.id);
         characters.ForEach((cb) =>
         {
             if (cb.player.id == characterBehavior.player.id)
@@ -182,8 +233,8 @@ public class CharactersManager : MonoBehaviour {
             }
 
             normalPosition /= characters.Count;
-            normalPosition.y += 0.8f + (MaxDistance / 2f );
-            normalPosition.z -= 0.5f + (MaxDistance/20);
+            normalPosition.y += 0.15f + (MaxDistance / 4f );
+            normalPosition.z -= 1.6f + (MaxDistance/17);
 
             return normalPosition;
         }

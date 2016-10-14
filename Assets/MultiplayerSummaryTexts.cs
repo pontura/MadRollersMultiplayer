@@ -63,7 +63,7 @@ public class MultiplayerSummaryTexts : MonoBehaviour {
     public string GetText(int position, int score)
     {
         if (score == 0)
-            return "XXXXX";
+            return "";
 
         Condition condition = conditions[0];
         foreach(Condition _condition in conditions)

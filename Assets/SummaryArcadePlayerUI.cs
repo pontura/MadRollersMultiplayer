@@ -19,7 +19,10 @@ public class SummaryArcadePlayerUI : MonoBehaviour {
         foreach (Text field in scoreFields.GetComponentsInChildren<Text>())
         {
             if (score == 0)
-                field.text = "NO EsITE";
+            {
+                field.text = "";
+                positionFields.SetActive(false);
+            }
             else
             {
                 field.text = score + "x (" + percent + "%)";
@@ -28,5 +31,7 @@ public class SummaryArcadePlayerUI : MonoBehaviour {
 
         foreach (Text field in positionFields.GetComponentsInChildren<Text>())
             field.text = position.ToString();
+
+        
 	}
 }

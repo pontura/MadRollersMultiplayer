@@ -11,9 +11,6 @@ public class Projectil : SceneObject {
 	private float myDist;
 	private bool exploted;
 
-	public AudioClip fire;
-	public AudioClip coli;
-
     private Vector3 rotation;
     private Level level;
 
@@ -37,8 +34,6 @@ public class Projectil : SceneObject {
         exploted = false;
         pos.z += 1;
         transform.position = pos;
-        AudioSource.PlayClipAtPoint(fire, pos);
-        GetComponent<AudioSource>().Play();
     }
     
     public override void OnSceneObjectUpdate()
@@ -69,13 +64,11 @@ public class Projectil : SceneObject {
                 addExplotionWall();
                 SetScore(120);
                 Destroy();
-                AudioSource.PlayClipAtPoint(coli, other.gameObject.transform.position);
                 break;
 			case "floor":
 				addExplotion(0.2f);
                 SetScore(100);
 				Destroy();
-				AudioSource.PlayClipAtPoint(coli,other.gameObject.transform.position);
 				break;
 			case "enemy":
 				MmoCharacter enemy= other.gameObject.GetComponent<MmoCharacter>();
@@ -83,13 +76,11 @@ public class Projectil : SceneObject {
                 SetScore(enemy.score);
 				enemy.Die ();
 				Destroy();
-				AudioSource.PlayClipAtPoint(coli,other.gameObject.transform.position);
 				break;
 			case "destroyable":
                 SetScore(50);
 				other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);
                 Destroy();
-				AudioSource.PlayClipAtPoint(coli,other.gameObject.transform.position);
 				break;
 		}
 	}

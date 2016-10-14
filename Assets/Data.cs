@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Data : MonoBehaviour {
 
+    public int competitionID = 1;
     public bool isArcade;
     public bool isArcadeMultiplayer;
 
@@ -63,6 +64,8 @@ public class Data : MonoBehaviour {
         }
     }
 	void Awake () {
+
+        Cursor.visible = false;
 
         if (FORCE_LOCAL_SCORE > 0 )
             PlayerPrefs.SetInt("scoreLevel_1", FORCE_LOCAL_SCORE);

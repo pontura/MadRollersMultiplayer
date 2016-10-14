@@ -4,6 +4,15 @@ using System.Collections;
 
 public class Level : MonoBehaviour {
 
+    public bool waitingToStart;
+    public Dificult Dificulty;
+    public enum Dificult
+    {
+        ALL,
+        EASY,
+        MEDIUM,
+        HARD
+    }
     public SceneObject explotion;
     public SceneObject wallExplotion;
 
@@ -24,7 +33,7 @@ public class Level : MonoBehaviour {
 
     /// para arcade
     private float nextDistanceVictoryArea;
-    private int distanceVictoryArea = 400;
+    private int distanceVictoryArea = 550;
     public Area victoryArea;
     //////////////////////
 
@@ -43,9 +52,15 @@ public class Level : MonoBehaviour {
     public CharactersManager charactersManager;
     private PowerupsManager powerupsManager;
    
-
+    public void SetDificultyByScore(int score)
+    {
+        if (score < 40) Dificulty = Dificult.EASY;
+        else if (score < 85) Dificulty = Dificult.MEDIUM;
+        else Dificulty = Dificult.HARD;
+    }
     private void Awake()
     {
+        Dificulty = Dificult.EASY;
     }
     public void Init()
 	{
@@ -68,7 +83,8 @@ public class Level : MonoBehaviour {
 
         areasLength = 0;
 
-        missions.StartNext();
+        if (!waitingToStart)
+            missions.StartNext();
 
         data.events.OnResetLevel += reset;
         data.events.OnSetFinalScore += OnSetFinalScore;
@@ -77,6 +93,7 @@ public class Level : MonoBehaviour {
         data.events.OnAddObjectExplotion += OnAddObjectExplotion;
         data.events.OnAddHeartsByBreaking += OnAddHeartsByBreaking;
         data.events.OnAddTumba += OnAddTumba;
+        data.events.StartMultiplayerRace += StartMultiplayerRace;
 
     }
     
@@ -88,6 +105,11 @@ public class Level : MonoBehaviour {
         data.events.OnAddWallExplotion -= OnAddWallExplotion;
         data.events.OnAddObjectExplotion -= OnAddObjectExplotion;
         data.events.OnAddTumba -= OnAddTumba;
+        data.events.StartMultiplayerRace -= StartMultiplayerRace;
+    }
+    void StartMultiplayerRace()
+    {
+        waitingToStart = false;
     }
 	public void Complete()
 	{
@@ -108,6 +130,7 @@ public class Level : MonoBehaviour {
 	}
     public void OnAddObjectExplotion(Vector3 position, int type)
     {
+        Data.Instance.events.OnSoundFX("FX break", -1);
         SceneObject explpotionEffect;
         switch (type)
         {
@@ -135,6 +158,7 @@ public class Level : MonoBehaviour {
     }
     public void OnAddExplotion(Vector3 position, string _name, string _explotionEffect, string _explotionGift, int force, Color color)
 	{
+        Data.Instance.events.OnSoundFX("FX explot00", -1);
         Vector3 newPos = position;
         newPos.y -= 4;
 
@@ -196,8 +220,7 @@ public class Level : MonoBehaviour {
         areasLength += area.z_length / 2;
                
         sceneObjects.replaceSceneObject(area, areasLength - 4, areasX);
-        areasX += area.nextAreaX; 
-	   
+        areasX += area.nextAreaX; 	   
 	}
 	
 	private void Update () {

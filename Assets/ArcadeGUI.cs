@@ -10,37 +10,99 @@ public class ArcadeGUI : MonoBehaviour {
     public MultiplayerUIStatus[] multiplayerUI;
     public List<int> multiplayerUI_Y;
     private CharactersManager characterManager;
-    public GameObject gameOver;
+    public GameObject singleSignal;
+    public GameObject singleSignalTexts;
+    public List<int> avatarsThatShoot;
+    public states state;
+    public enum states
+    {
+        INTRO,
+        SHOOT_ONE,
+        SHOOTS_READY,
+        WELLCOME
+    }
 
 	void Start () {
-        gameOver.SetActive(false);
+        singleSignal.SetActive(false);
         characterManager = Game.Instance.GetComponent<CharactersManager>();
         ended = false;
         Data.Instance.events.OnScoreOn += OnScoreOn;
         Data.Instance.events.OnGameOver += OnGameOver;
         Data.Instance.events.OnAddNewPlayer += OnAddNewPlayer;
         Data.Instance.events.OnAvatarDie += OnAvatarDie;
+        Data.Instance.events.OnAvatarShoot += OnAvatarShoot;
         StartMultiplayerStatus();
+        SetIntroFields();
+        Invoke("SecondAdvise", 3);
 	}
+    void SecondAdvise()
+    {
+
+    }
+    void OnAvatarShoot(int playerID)
+    {
+        
+        foreach (int id in avatarsThatShoot)
+            if (id == playerID) return;
+
+        avatarsThatShoot.Add(playerID);
+        
+        if (avatarsThatShoot.Count >= characterManager.getTotalCharacters())
+        {
+            Data.Instance.events.OnAvatarShoot -= OnAvatarShoot;
+            Data.Instance.events.StartMultiplayerRace();
+            state = states.SHOOTS_READY;
+            SetIntroFields();
+            Invoke("ResetFields", 3);
+        }
+        else
+        {
+            state = states.SHOOT_ONE;
+            SetIntroFields();
+        }
+        
+    }
+    void SetIntroFields()
+    {
+        if (state == states.INTRO) 
+            SetFields("ABRAN PASO!");
+        else if (state == states.SHOOT_ONE)
+            SetFields("TODOS DISPAREN!");
+        else if (state == states.SHOOTS_READY)
+            SetFields("BIEN!...");
+        else if (state == states.WELLCOME)
+            SetFields("...AHORA ROMPAN TODO!");
+    }
+    void ResetFields()
+    {
+        if (ended) return;
+        if (state == states.WELLCOME)
+        {
+            SetFields("");return;
+        }
+        state = states.WELLCOME;
+        SetIntroFields();
+        Invoke("ResetFields", 3);
+    }
     void Update()
     {
         if (ended) return;
-        if (Input.GetKeyDown(KeyCode.Alpha1) && CanRevive(0))
+        if ((InputManager.getFire(0) || InputManager.getJump(0)) && CanRevive(0))
         {
             if (!characterManager.existsPlayer(0))
                 characterManager.addNewCharacter(0);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && CanRevive(1))
+        else if ((InputManager.getFire(1) || InputManager.getJump(1)) && CanRevive(1))
         {
             if (!characterManager.existsPlayer(1))
                 characterManager.addNewCharacter(1);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3) && CanRevive(2))
+        else if ((InputManager.getFire(2) || InputManager.getJump(2)) && CanRevive(2))
         {
             if (!characterManager.existsPlayer(2))
                 characterManager.addNewCharacter(2);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha4) && CanRevive(3))
+        else if ((InputManager.getFire(3) || InputManager.getJump(3)) && CanRevive(3))
         {
             if (!characterManager.existsPlayer(3))
                 characterManager.addNewCharacter(3);
@@ -52,13 +114,22 @@ public class ArcadeGUI : MonoBehaviour {
         Data.Instance.events.OnGameOver -= OnGameOver;
         Data.Instance.events.OnAddNewPlayer -= OnAddNewPlayer;
         Data.Instance.events.OnAvatarDie -= OnAvatarDie;
+        Data.Instance.events.OnAvatarShoot -= OnAvatarShoot;
+    }
+    void SetFields(string _text)
+    {
+        singleSignal.SetActive(true);
+        foreach (Text field in singleSignalTexts.GetComponentsInChildren<Text>())
+            field.text = _text;
+        singleSignal.GetComponent<Animation>().Play("gameOver");
     }
     void OnGameOver()
     {
+        print("OnGameOver");
         Data.Instance.multiplayerData.distance = Game.Instance.GetComponent<CharactersManager>().distance;
-
-        gameOver.SetActive(true);
-        gameOver.GetComponent<Animation>().Play("gameOver");
+        
+        SetFields("GAME OVER");
+        
         ended = true;
         Data.Instance.scoreForArcade = 0;
         Invoke("Reset", 2);
@@ -96,6 +167,7 @@ public class ArcadeGUI : MonoBehaviour {
         }
         Loop();
     }
+    bool startedSettingPositions;
     void Loop()
     {
 
@@ -114,8 +186,10 @@ public class ArcadeGUI : MonoBehaviour {
                 }
             }
         }
-        if (reorder)
+        if (reorder || !startedSettingPositions)
         {
+            Data.Instance.events.OnSoundFX("FX upgrade004", -1);
+
             List<int> positions = new List<int>();
             for (int a = 0; a < multiplayerUI.Length; a++)
             {
@@ -130,7 +204,7 @@ public class ArcadeGUI : MonoBehaviour {
                     multiplayerUI[a].MoveTo(multiplayerUI_Y[a]);
             }
         }
-        /////////////////////////////
+        startedSettingPositions = true;
         Invoke("Loop", 1f);
     }
     private MultiplayerUIStatus GetPlayerUI(int playerID)

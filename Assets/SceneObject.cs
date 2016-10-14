@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SceneObject : MonoBehaviour {
 
-  //  public Shadow shadow;
+    public Level.Dificult Dificult;
 
     //sirve para quitar el objeto de pantalla màs tarde...
     public int size_z = 0;
@@ -22,6 +22,9 @@ public class SceneObject : MonoBehaviour {
     public int distanceFromCharacter;
 
     private Transform[] childs;
+
+    //se dibuja solo si hay mas de un avatar vivo:
+    public bool onlyMultiplayers;
 
     void Start()
     {
@@ -46,7 +49,10 @@ public class SceneObject : MonoBehaviour {
     }
     public void Restart(Vector3 pos)
     {
-        OnRestart(pos);
+        if (onlyMultiplayers && Game.Instance.level.charactersManager.getTotalCharacters() <= 1) 
+            Pool();
+        else
+            OnRestart(pos);
     }
     public void setRotation(Vector3 rot)
     {

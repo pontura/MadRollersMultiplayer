@@ -10,25 +10,45 @@ public class GameCamera : MonoBehaviour
         PLAYING,
         END
     }
-    private CharactersManager charactersManager;	
-    
+    private CharactersManager charactersManager;
+
+    public Vector3 startRotation = new Vector3(0, 0,0);
+    public Vector3 startPosition = new Vector3(0, 0,0);
+
 	public Vector3 cameraOrientationVector = new Vector3 (0, 4.5f, -0.8f);
     public float rotationX = 47;
     public Vector3 newCameraOrientationVector;
     public bool onExplotion;
 	float explotionForce = 0.25f;
 
+    public Animation anim;
+
     void Awake()
     {
+        state = states.START;
+        startPosition.y -= 0.7f;
+        transform.position = startPosition;
+        transform.localEulerAngles = startRotation;
+
+        Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
         Data.Instance.events.OnAvatarDie += OnAvatarDie;
         Data.Instance.events.OnChangeMood += OnChangeMood;
         if (Data.Instance.mode == Data.modes.ACCELEROMETER)
 			GetComponent<Camera>().rect = new Rect (0, 0, 1, 1);
+
+        anim.Play("intro");
     }
     void OnDestroy()
     {
+        Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
         Data.Instance.events.OnAvatarDie -= OnAvatarDie;
         Data.Instance.events.OnChangeMood -= OnChangeMood;
+    }
+    void StartMultiplayerRace()
+    {
+        anim.Stop();
+        Init();
+        state = states.PLAYING;
     }
     void OnChangeMood(int id)
     {
@@ -49,10 +69,7 @@ public class GameCamera : MonoBehaviour
         pos.x = 0;
         pos.y = 0;
         transform.position = pos;
-        //if (Application.platform == RuntimePlatform.Android)
-        //{
-        //    GetComponent<Vignetting>().enabled = false;
-        //}
+
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
 
         state = states.PLAYING;
@@ -94,12 +111,20 @@ public class GameCamera : MonoBehaviour
 
 	void LateUpdate () 
 	{
-        if (state == states.END || state == states.START)
+         Vector3 newPos;
+        if (state == states.START)
+        {
+            //newPos = transform.localPosition;
+            //newPos.y += Time.deltaTime/4;
+            //transform.localPosition = newPos;
+            return;
+        }
+        if (state == states.END )
         {
             return;
         }
 
-        Vector3 newPos = charactersManager.getPosition();
+        newPos  = charactersManager.getPosition();
 
 		newPos += cameraOrientationVector;
 

@@ -21,6 +21,8 @@ public class GrabbableItem : SceneObject
 
     public override void OnRestart(Vector3 pos)
     {
+        player = null;
+
         if (gameObject.GetComponent<TrailRenderer>())
             gameObject.GetComponent<TrailRenderer>().enabled = true;
 
@@ -41,13 +43,14 @@ public class GrabbableItem : SceneObject
     }
     public override void OnPool()
     {
-
+        player = null;
     }
     public override void OnSceneObjectUpdate()
     {
 		if(hitted)
 		{
-            sec += Time.deltaTime*100;
+            if (player == null) return;
+            sec += Time.deltaTime * 100;
 			Vector3 position = transform.position;
             Vector3 characterPosition = player.transform.position;
 			characterPosition.y+=1f;
@@ -69,10 +72,13 @@ public class GrabbableItem : SceneObject
         if (!isActive) return;
 		if(other.gameObject.CompareTag("Player"))
 		{
+
             if (other.transform.GetComponent<Player>())
                 player = other.transform.GetComponent<Player>();
             else
                 player = other.transform.parent.GetComponent<Player>();
+
+            if (player.GetComponent<CharacterBehavior>().state == CharacterBehavior.states.DEAD) return;
 
             if (gameObject.GetComponent<TrailRenderer>())
                 gameObject.GetComponent<TrailRenderer>().enabled = false;

@@ -57,13 +57,30 @@ public class MultiplayerUIStatus : MonoBehaviour {
 
         anim.Play("dead");
 
-        Hashtable tweenData = new Hashtable();
-        tweenData.Add("x", -100);
-        tweenData.Add("time", timeDead);
-        tweenData.Add("easeType", iTween.EaseType.linear);
-        tweenData.Add("onCompleteTarget", this.gameObject);
-        tweenData.Add("onComplete", "DeadReady");
-        iTween.MoveTo(deadMask.gameObject, tweenData);
+        //Hashtable tweenData = new Hashtable();
+        //tweenData.Add("x", -100);
+        //tweenData.Add("time", timeDead);
+        //tweenData.Add("easeType", iTween.EaseType.linear);
+        //tweenData.Add("onCompleteTarget", this.gameObject);
+        //tweenData.Add("onComplete", "DeadReady");
+        //iTween.MoveTo(deadMask.gameObject, tweenData);
+    }
+    void Update()
+    {
+       
+        if (state == states.DEAD)
+        {
+             Vector2 pos = deadMask.gameObject.transform.localPosition;
+             if (pos.x > -100)
+             {
+                 pos.x -= Time.deltaTime * 30;
+                 deadMask.gameObject.transform.localPosition = pos;
+             }
+             else
+             {
+                 DeadReady();
+             }
+        }
     }
     public void MoveTo(int _y)
     {
