@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
 #ifndef VACUUM_CURVEDWORLD_UNITY_STANDARD_CORE_INCLUDED
 #define VACUUM_CURVEDWORLD_UNITY_STANDARD_CORE_INCLUDED
 
@@ -327,7 +329,7 @@ VertexOutputForwardBase vertForwardBase (VertexInput v)
 	 
 	V_CW_TransformPointAndNormal(v.vertex, v.normal, v.tangent);
 
-	float4 posWorld = mul(_Object2World, v.vertex);
+	float4 posWorld = mul(unity_ObjectToWorld, v.vertex);
 	#if UNITY_SPECCUBE_BOX_PROJECTION
 		o.posWorld = posWorld.xyz;
 	#endif
@@ -464,7 +466,7 @@ VertexOutputForwardAdd vertForwardAdd (VertexInput v)
 
 	V_CW_TransformPointAndNormal(v.vertex, v.normal, v.tangent);
 
-	float4 posWorld = mul(_Object2World, v.vertex);
+	float4 posWorld = mul(unity_ObjectToWorld, v.vertex);
 	o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
 	o.tex = TexCoords(v);
 	o.eyeVec.xyz = NormalizePerVertexNormal(posWorld.xyz - _WorldSpaceCameraPos);
@@ -572,7 +574,7 @@ VertexOutputDeferred vertDeferred (VertexInput v)
 
 	V_CW_TransformPointAndNormal(v.vertex, v.normal, v.tangent);
 
-	float4 posWorld = mul(_Object2World, v.vertex);
+	float4 posWorld = mul(unity_ObjectToWorld, v.vertex);
 	#if UNITY_SPECCUBE_BOX_PROJECTION
 		o.posWorld = posWorld;
 	#endif

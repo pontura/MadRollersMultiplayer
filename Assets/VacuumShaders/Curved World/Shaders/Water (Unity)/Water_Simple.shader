@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
 Shader "VacuumShaders/Curved World/FX/Water (Unity)/Simple" 
 {
 	Properties 
@@ -125,7 +127,7 @@ CGINCLUDE
 		V_CW_TransformPointAndNormal(v.vertex, v.normal, v.tangent);
 		//V_CW_TransformPoint(v.vertex);
 		
-		half3 worldSpaceVertex = mul(_Object2World,(v.vertex)).xyz;
+		half3 worldSpaceVertex = mul(unity_ObjectToWorld,(v.vertex)).xyz;
 		half3 vtxForAni = (worldSpaceVertex).xzz;
 
 		half3 nrml;
@@ -221,7 +223,7 @@ CGINCLUDE
 		V_CW_TransformPointAndNormal(v.vertex, v.normal, v.tangent);
 		//V_CW_TransformPoint(v.vertex);
 
-		half3 worldSpaceVertex = mul(_Object2World,(v.vertex)).xyz;
+		half3 worldSpaceVertex = mul(unity_ObjectToWorld,(v.vertex)).xyz;
 		half3 vtxForAni = (worldSpaceVertex).xzz;
 
 		half3 nrml;
@@ -302,7 +304,7 @@ CGINCLUDE
 		V_CW_TransformPointAndNormal(v.vertex, v.normal, v.tangent);
 		//V_CW_TransformPoint(v.vertex);
 
-		half3 worldSpaceVertex = mul(_Object2World, v.vertex).xyz;
+		half3 worldSpaceVertex = mul(unity_ObjectToWorld, v.vertex).xyz;
 		half2 tileableUv = worldSpaceVertex.xz;
 
 		o.bumpCoords.xyzw = (tileableUv.xyxy + _Time.xxxx * _BumpDirection.xyzw) * _BumpTiling.xyzw;

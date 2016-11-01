@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
 Shader "VacuumShaders/Curved World/FX/Water (Unity)/Basic" 
 {
 	Properties 
@@ -47,7 +49,7 @@ Shader "VacuumShaders/Curved World/FX/Water (Unity)/Basic"
 
 		// scroll bump waves
 		float4 temp;
-		float4 wpos = mul (_Object2World, v.vertex);
+		float4 wpos = mul (unity_ObjectToWorld, v.vertex);
 		temp.xyzw = wpos.xzxz * _WaveScale + _WaveOffset;
 		o.bumpuv[0] = temp.xy * float2(.4, .45);
 		o.bumpuv[1] = temp.wz;

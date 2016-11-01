@@ -1,3 +1,6 @@
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+// Upgrade NOTE: replaced 'unity_World2Shadow' with 'unity_WorldToShadow'
+
 #ifndef VACUUM_CURVEDWORLD_SHADOW_CGINC
 #define VACUUM_CURVEDWORLD_SHADOW_CGINC
 
@@ -55,13 +58,13 @@ vOutput vert_ShadowCollector(appdata_full v)
 		o.texcoord = v.texcoord.xy * _MainTex_ST.xy + _MainTex_ST.zw;
 	#endif
 	
-	float4 wpos = mul(_Object2World, v.vertex); 
+	float4 wpos = mul(unity_ObjectToWorld, v.vertex); 
 	o._WorldPosViewZ.xyz = wpos; 
 	o._WorldPosViewZ.w = -mul( UNITY_MATRIX_MV, v.vertex ).z; 
-	o._ShadowCoord0 = mul(unity_World2Shadow[0], wpos).xyz; 
-	o._ShadowCoord1 = mul(unity_World2Shadow[1], wpos).xyz; 
-	o._ShadowCoord2 = mul(unity_World2Shadow[2], wpos).xyz; 
-	o._ShadowCoord3 = mul(unity_World2Shadow[3], wpos).xyz;
+	o._ShadowCoord0 = mul(unity_WorldToShadow[0], wpos).xyz; 
+	o._ShadowCoord1 = mul(unity_WorldToShadow[1], wpos).xyz; 
+	o._ShadowCoord2 = mul(unity_WorldToShadow[2], wpos).xyz; 
+	o._ShadowCoord3 = mul(unity_WorldToShadow[3], wpos).xyz;
 
 	return o;
 }

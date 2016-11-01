@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
 // Upgrade NOTE: unity_Scale shader variable was removed; replaced 'unity_Scale.w' with '1.0'
 
 #ifndef VACUUM_CURVEDWORLD_VERTEX_CGINC
@@ -61,11 +63,11 @@ vOutput vert(vInput v)
 	
 	
 	#ifdef NEED_V_CALC_POS_WS
-		half3 pos_WS = mul(_Object2World, v.vertex).xyz;
+		half3 pos_WS = mul(unity_ObjectToWorld, v.vertex).xyz;
 	#endif
 
 	#ifdef NEED_V_CALC_NORMAL_WS
-		float3 normal_WS = normalize(mul((half3x3)_Object2World, v.normal * 1.0));
+		float3 normal_WS = normalize(mul((half3x3)unity_ObjectToWorld, v.normal * 1.0));
 	#endif
 
 

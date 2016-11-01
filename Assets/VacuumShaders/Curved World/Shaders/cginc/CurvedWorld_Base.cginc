@@ -1,3 +1,6 @@
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
+
 #ifndef VACUUM_CURVEDWORLD_BASE_CGINC
 #define VACUUM_CURVEDWORLD_BASE_CGINC 
 
@@ -35,8 +38,8 @@ const float3 _zero3 = float3(0,0,0);
 	#define Object2World _V_CW_Camera2World
 	#define World2Object _V_CW_World2Camera
 #else
-	#define Object2World _Object2World
-	#define World2Object _World2Object
+	#define Object2World unity_ObjectToWorld
+	#define World2Object unity_WorldToObject
 #endif
 
 ////////////////////////////////////////////////////////////////////////////

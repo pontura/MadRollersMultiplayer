@@ -1,4 +1,7 @@
-﻿Shader "Hidden/VacuumShaders/Curved World/Projector/Multiply" 
+﻿// Upgrade NOTE: replaced '_Projector' with 'unity_Projector'
+// Upgrade NOTE: replaced '_ProjectorClip' with 'unity_ProjectorClip'
+
+Shader "Hidden/VacuumShaders/Curved World/Projector/Multiply" 
 { 
 	Properties 
 	{
@@ -74,8 +77,8 @@
 				half fog : TEXCOORD2;
 			};
 			
-			float4x4 _Projector;
-			float4x4 _ProjectorClip;
+			float4x4 unity_Projector;
+			float4x4 unity_ProjectorClip;
 			sampler2D _ShadowTex;
 			sampler2D _FalloffTex;
 
@@ -86,8 +89,8 @@
 				
 				V_CW_BEND(vertex)
 
-				o.uvShadow = mul (_Projector, vertex);
-				o.uvFalloff = mul (_ProjectorClip, vertex);
+				o.uvShadow = mul (unity_Projector, vertex);
+				o.uvFalloff = mul (unity_ProjectorClip, vertex);
 
 				#ifdef V_CW_GLOBAL_FOG_ON
 					o.fog = saturate((V_CW_FOG_END.x - length(mv.xyz) * V_CW_FOG_DENSITY) / (V_CW_FOG_END.x - V_CW_FOG_START.x));

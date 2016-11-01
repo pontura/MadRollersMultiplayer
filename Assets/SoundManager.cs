@@ -10,6 +10,7 @@ public class SoundManager : MonoBehaviour
     public string[] FXCheer;
     public string[] FXJump;
     public string[] FXCrash;
+    public string coin;
 
     void Start()
     {

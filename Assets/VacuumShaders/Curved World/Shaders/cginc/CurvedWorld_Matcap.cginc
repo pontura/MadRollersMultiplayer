@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
+
 #ifndef VACUUM_CURVEDWORLD_MATCAP_CGINC
 #define VACUUM_CURVEDWORLD_MATCAP_CGINC
 
@@ -154,7 +156,7 @@ vOutput vert(vInput v)
 		o.r2 = fixed3(tangent_WS.y, binormal_WS.y, normal_WS.y);
 		o.r3 = fixed3(tangent_WS.z, binormal_WS.z, normal_WS.z);
 	#else
-		float3 normal_OS = normalize(_World2Object[0].xyz * v.normal.x + _World2Object[1].xyz * v.normal.y + _World2Object[2].xyz * v.normal.z);
+		float3 normal_OS = normalize(unity_WorldToObject[0].xyz * v.normal.x + unity_WorldToObject[1].xyz * v.normal.y + unity_WorldToObject[2].xyz * v.normal.z);
 		o.matcap.xy = mul((float3x3)UNITY_MATRIX_V, normal_OS) * 0.5 + 0.5;
 	#endif
 		

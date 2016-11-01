@@ -11,7 +11,7 @@ public class MusicManager : MonoBehaviour {
     public AudioClip deathFX;
     public AudioClip enemyShout;
     public AudioClip enemyDead;
-    
+    public AudioClip credits;
 
     private float heartsDelay = 0.1f;
     private AudioSource audioSource;

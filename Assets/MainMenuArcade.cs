@@ -15,13 +15,18 @@ public class MainMenuArcade : MonoBehaviour {
     public Text CountDown2;
 
     public GameObject players;
+    public GameObject winnersText;
 
     public int sec = 10;
     bool playing;
     public int totalPlayers = 0;
     private bool done;
 
+    public MeshRenderer winnersPicture;
+    public Light lightInScene;
+
 	void Start () {
+                
         Data.Instance.events.OnInterfacesStart();
         audioSource = GetComponent<AudioSource>();
         multiplayerData = Data.Instance.multiplayerData;
@@ -34,9 +39,43 @@ public class MainMenuArcade : MonoBehaviour {
             id++;
             pm.Init();
         }
-	}
+        LoopWinners();
+        SetFields(0);
+    }
+    int actualWinner;
+    void LoopWinners()
+    {
+        float timeToLoop = 2;
+        if (actualWinner > 0)
+            timeToLoop = 0.7f;
+        
+        winnersPicture.material.mainTexture = Data.Instance.GetComponent<ArcadeRanking>().all[actualWinner].texture;
+        actualWinner++;
+        if (actualWinner >= Data.Instance.GetComponent<ArcadeRanking>().all.Count)
+            actualWinner = 0;
+        Invoke("LoopWinners", timeToLoop);
+        
+    }
+    void SetFields(int puesto)
+    {
+        int hiscore = Data.Instance.GetComponent<ArcadeRanking>().all[puesto].score;
+        foreach (Text field in winnersText.GetComponentsInChildren<Text>())
+        {
+            if (puesto == 0)
+                field.text = "PUNTERx/S (" + hiscore + " PUNTOS) - CAMPEONATO EVA 2016 -";
+           // else
+              //  field.text = "PUESTO " + (int)(puesto + 1);
+        }
+    }
+    int n = 0;
     void Update()
     {
+        n++;
+        if (n > 5)
+        {
+            lightInScene.intensity = (float)Random.Range(80, 150) / 100;
+            n = 0;
+        }
         if (done) return;
         if ((InputManager.getFire(0) || InputManager.getJump(0)))
         {
@@ -59,7 +98,7 @@ public class MainMenuArcade : MonoBehaviour {
     void Clicked(int playerID)
     {
         totalPlayers = 0;
-        Data.Instance.events.OnSoundFX("FXCheer", playerID);
+        Data.Instance.events.OnSoundFX("coin", playerID);
 
         playerMainMenuUI[playerID].Toogle();
         mainMenuCharacterActor[playerID].SetState(playerID, playerMainMenuUI[playerID].isActive);

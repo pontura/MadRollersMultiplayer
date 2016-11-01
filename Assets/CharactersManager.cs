@@ -134,7 +134,8 @@ public class CharactersManager : MonoBehaviour {
     }
     public void addNewCharacter(int id)
     {
-        Data.Instance.events.OnSoundFX("FXCheer", id);
+        print("addNewCharacter ");
+        Data.Instance.events.OnSoundFX("coin", id);
         Data.Instance.events.OnAddNewPlayer(id);
         Vector3 pos = characters[0].transform.position;
         pos.y += 3;

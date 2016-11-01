@@ -11,7 +11,7 @@ public class Events : MonoBehaviour {
 
     //public System.Action OnHiscoresLoaded = delegate { };
 
-    //public System.Action<int> OnHiscore = delegate { };   
+    public System.Action<Texture2D, int> OnHiscore = delegate { };   
 
     public System.Action OnGameOver = delegate { };
     public System.Action<string> VoiceFromResources = delegate { };

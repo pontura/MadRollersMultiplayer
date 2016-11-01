@@ -1,3 +1,6 @@
+// Upgrade NOTE: replaced '_Projector' with 'unity_Projector'
+// Upgrade NOTE: replaced '_ProjectorClip' with 'unity_ProjectorClip'
+
 #ifndef VACUUM_CURVEDWORLD_PROJECTOR_CGINC
 #define VACUUM_CURVEDWORLD_PROJECTOR_CGINC
 
@@ -8,8 +11,8 @@
 //Variables/////////////////////////////////////////////////////////////
 fixed4 _Color;
 
-float4x4 _Projector;
-float4x4 _ProjectorClip;			
+float4x4 unity_Projector;
+float4x4 unity_ProjectorClip;			
 sampler2D _ShadowTex;
 sampler2D _FalloffTex;
 
@@ -33,8 +36,8 @@ v2f vert(float4 vertex : POSITION)
 	o.pos = mul(UNITY_MATRIX_MVP, vertex);
 
 
-	o.uvShadow = mul (_Projector, vertex);
-	o.uvFalloff = mul (_ProjectorClip, vertex);
+	o.uvShadow = mul (unity_Projector, vertex);
+	o.uvFalloff = mul (unity_ProjectorClip, vertex);
 
 	UNITY_TRANSFER_FOG(o,o.pos);
 

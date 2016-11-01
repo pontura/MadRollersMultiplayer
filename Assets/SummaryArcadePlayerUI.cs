@@ -11,7 +11,10 @@ public class SummaryArcadePlayerUI : MonoBehaviour {
 
 	public void Init(Color color, string title, int score, int percent, int position) {
 
-        background.color = color;
+        if (score == 0)
+            background.enabled = false;
+        else
+            background.color = color;
 
         foreach (Text field in titleFields.GetComponentsInChildren<Text>())
             field.text = title;
@@ -25,7 +28,7 @@ public class SummaryArcadePlayerUI : MonoBehaviour {
             }
             else
             {
-                field.text = score + "x (" + percent + "%)";
+                field.text = "PEGÓ " + score + " PUNTOS ( UN " + percent + "%)";
             }
         }
 

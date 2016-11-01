@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
 #ifndef VACUUM_CURVEDWORLD_FORWARDBASE_CGINC
 #define VACUUM_CURVEDWORLD_FORWARDBASE_CGINC
 
@@ -255,7 +257,7 @@ vOutput vert(vInput v)
 		o.lm = v.texcoord1.xy * unity_LightmapST.xy + unity_LightmapST.zw;
 	#else
 		#if defined(VERTEXLIGHT_ON) && defined(V_CW_MOBILE_INCLUDE_VERTEX_POINTLIGHTS)	
-			float3 pos_WS = mul(_Object2World, v.vertex).xyz;
+			float3 pos_WS = mul(unity_ObjectToWorld, v.vertex).xyz;
 			
 			o.vLight.rgb = Shade4PointLights ( unity_4LightPosX0, unity_4LightPosY0, unity_4LightPosZ0,
 						 					   unity_LightColor[0].rgb, unity_LightColor[1].rgb, unity_LightColor[2].rgb, unity_LightColor[3].rgb,
