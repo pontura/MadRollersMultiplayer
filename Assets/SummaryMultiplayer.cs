@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class SummaryMultiplayer : MonoBehaviour {
 
     public GameObject title;
+    public GameObject winnersTitle;
+
     public SummaryArcadePlayerUI player1;
     public SummaryArcadePlayerUI player2;
     public SummaryArcadePlayerUI player3;
@@ -30,11 +32,15 @@ public class SummaryMultiplayer : MonoBehaviour {
     private IEnumerator nextRoutine;
 
 	void Start () {
+        Data.Instance.GetComponent<MusicManager>().stopAllSounds();
         int hiscore = Data.Instance.GetComponent<ArcadeRanking>().all[0].score;
 
         rawimageRanking.material.mainTexture = Data.Instance.GetComponent<ArcadeRanking>().all[0].texture;
 
-        foreach( Text field in rankingScore.GetComponentsInChildren<Text>())
+        foreach (Text field in winnersTitle.GetComponentsInChildren<Text>())
+            field.text = "1er PUESTO - CAMPEONATO: " + Data.Instance.GetComponent<MultiplayerCompetitionManager>().actualCompetition;
+
+        foreach ( Text field in rankingScore.GetComponentsInChildren<Text>())
             field.text = "con " + hiscore + " PUNTOS.";
 
         Time.timeScale = 1;

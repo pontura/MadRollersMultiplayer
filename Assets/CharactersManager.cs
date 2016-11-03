@@ -37,12 +37,12 @@ public class CharactersManager : MonoBehaviour {
     {
         if (type == "Ralenta")
         {
-            RalentaCoroutine = DoRalentaCoroutine(11);
+            RalentaCoroutine = DoRalentaCoroutine(4, 1f, 0.05f);
             StartCoroutine(RalentaCoroutine);
         }
         if (type == "BonusEntrande")
         {
-            RalentaCoroutine = DoRalentaCoroutine(11);
+            RalentaCoroutine = DoRalentaCoroutine(11, 0, 0.05f);
             StartCoroutine(RalentaCoroutine);
 
             Data.Instance.events.OnCreateBonusArea();
@@ -52,12 +52,20 @@ public class CharactersManager : MonoBehaviour {
     }
     void StartMultiplayerRace()
     {
-        RalentaCoroutine = DoRalentaCoroutine(2);
+        RalentaCoroutine = DoRalentaCoroutine(2, 0, 0.05f);
         StartCoroutine(RalentaCoroutine);
     }
-    IEnumerator DoRalentaCoroutine(float _speedRun)
+    IEnumerator DoRalentaCoroutine(float _speedRun, float delay, float speedTeRecover)
     {
-        float speedTeRecover = 0.05f;
+        yield return new WaitForSeconds(delay);
+        if (delay > 0)
+        {
+            while (speedRun > _speedRun)
+            {
+                yield return new WaitForEndOfFrame();
+                speedRun -= Time.deltaTime + speedTeRecover;
+            }
+        }
         speedRun = _speedRun;
         while (speedRun < 19)
         {
@@ -89,6 +97,7 @@ public class CharactersManager : MonoBehaviour {
     }
     public void Init()
     {
+        Data.Instance.events.OnAlignAllCharacters += OnAlignAllCharacters;
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
         Data.Instance.events.OnReorderAvatarsByPosition += OnReorderAvatarsByPosition;
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
@@ -110,6 +119,7 @@ public class CharactersManager : MonoBehaviour {
         Data.Instance.events.OnReorderAvatarsByPosition -= OnReorderAvatarsByPosition;
         Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
         Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
+        Data.Instance.events.OnAlignAllCharacters -= OnAlignAllCharacters;
     }
     void OnReorderAvatarsByPosition(List<int> playerPositions)
     {
@@ -252,5 +262,15 @@ public class CharactersManager : MonoBehaviour {
     public float getDistance()
     {
         return distance;
+    }
+    void OnAlignAllCharacters()
+    {
+        foreach (CharacterBehavior cb in characters)
+        {
+            Vector3 pos = cb.transform.localPosition;
+            pos.x = 0;
+            pos.y = 1;
+            cb.transform.localPosition = pos;
+        }
     }
 }

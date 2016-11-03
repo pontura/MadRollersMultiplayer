@@ -7,22 +7,27 @@ using System.Text.RegularExpressions;
 
 public class PhotosManager : MonoBehaviour {
 	
-	private string FOLDER = "competencias";
-    private string COMPETENCIA = "eva-2016";
-	
-	void Start () {
+	private string FOLDER;
+    private string actualCompetition;
 
-        var info = new DirectoryInfo(FOLDER + "/" + COMPETENCIA);
+    void Start() {
+
+    }
+    public void LoadPhotos()
+    {
+        FOLDER = MultiplayerCompetitionManager.FOLDER;
+        actualCompetition = Data.Instance.GetComponent<MultiplayerCompetitionManager>().actualCompetition;
+
+        var info = new DirectoryInfo(FOLDER + "/" + actualCompetition);
         var fileInfo = info.GetFiles();
         ArcadeRanking arcadeRanking = Data.Instance.GetComponent<ArcadeRanking>();
         foreach (FileInfo fileData in fileInfo)
         {
             string fileName = fileData.Name;
-            print(fileName);
             string[] scoreNum = fileName.Split("."[0]);
             int score = int.Parse(scoreNum[0]);
 
-            string url = GetFullPathByFolder(FOLDER + "/" + COMPETENCIA, fileName);
+            string url = GetFullPathByFolder(FOLDER + "/" + actualCompetition, fileName);
             Texture2D winners = LoadLocal(url);            
             arcadeRanking.OnAddHiscore(winners, score);
         }
@@ -31,7 +36,7 @@ public class PhotosManager : MonoBehaviour {
     {
         byte[] bytes = photo.EncodeToPNG();
         string path = score.ToString();
-		string url = GetFullPathByFolder(FOLDER + "/" + COMPETENCIA, path + ".png");
+		string url = GetFullPathByFolder(FOLDER + "/" + actualCompetition, path + ".png");
         File.WriteAllBytes(url, bytes);
 		print("GRABA: " + url);
         Texture2D winners = photo;

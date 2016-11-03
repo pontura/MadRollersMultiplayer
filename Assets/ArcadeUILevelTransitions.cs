@@ -7,10 +7,12 @@ public class ArcadeUILevelTransitions : MonoBehaviour {
     public GameObject panel;
     public GameObject texts;
     public GameObject texts2;
+    public Image blackMask;
 
     private int level;
 
 	void Start () {
+        SetOff();
         level = 1;
         panel.SetActive(false);
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
@@ -25,8 +27,11 @@ public class ArcadeUILevelTransitions : MonoBehaviour {
     void OnListenerDispatcher(string type)
     {
         print("OnListenerDispatcher : " + type);
+        
         if (type == "Ralenta")
         {
+            StopAllCoroutines();
+            StartCoroutine(DoFade(0.2f));
             panel.SetActive(true);
             foreach (Text field in texts.GetComponentsInChildren<Text>())
                 field.text = "Bien hecho!";
@@ -41,7 +46,6 @@ public class ArcadeUILevelTransitions : MonoBehaviour {
                 field.text = "B O N U S !!!";
             foreach (Text field in texts2.GetComponentsInChildren<Text>())
                 field.text = "";
-            StartCoroutine(DoFade());
             return;
         }
 
@@ -50,7 +54,7 @@ public class ArcadeUILevelTransitions : MonoBehaviour {
         else if (type == "LevelFinish_easy") percent += 33;
 
         if(percent==0) return;
-        Invoke("Delay", 0.2f);
+        Invoke("Delay", 2f);
 	}
     
     void Delay()
@@ -71,7 +75,7 @@ public class ArcadeUILevelTransitions : MonoBehaviour {
         panel.SetActive(true);
         //  panel.GetComponent<Animation>().Play("levelTransition");
 
-        StartCoroutine(DoFade());
+       // StartCoroutine(DoFade());
         foreach (Text field in texts.GetComponentsInChildren<Text>())
             field.text = "Nivel " + level;
         foreach (Text field in texts2.GetComponentsInChildren<Text>())
@@ -96,27 +100,31 @@ public class ArcadeUILevelTransitions : MonoBehaviour {
     void SetOff()
     {
         panel.SetActive(false);
+        blackMask.enabled = false;
     }
 
-    public IEnumerator DoFade()
+    public IEnumerator DoFade(float delay)
     {
-        float t = 1;
-        while (t > 0)
-        {
-            yield return new WaitForEndOfFrame();
-            t -= Time.deltaTime/1.5f;
-            RenderSettings.ambientIntensity = t;
-        }
-        yield return new WaitForSeconds(0.1f);
-        foreach (Text field in texts.GetComponentsInChildren<Text>())
-        {
-            field.text = "Yeah!";
-        }
+        yield return new WaitForSeconds(delay);
+        blackMask.enabled = true;
+        float t = 0;
         while (t < 1)
         {
             yield return new WaitForEndOfFrame();
-            t += Time.deltaTime/1.5f;
-            RenderSettings.ambientIntensity = t;
+            t += Time.deltaTime / 3f;
+            Color color = blackMask.color;
+            color.a = t;
+            blackMask.color = color;
+        }
+        yield return new WaitForSeconds(0.25f);
+        Data.Instance.events.OnAlignAllCharacters();
+        while (t > 0)
+        {
+            yield return new WaitForEndOfFrame();
+            t -= Time.deltaTime / 3f;
+            Color color = blackMask.color;
+            color.a = t;
+            blackMask.color = color;
         }
         SetOff();
     }

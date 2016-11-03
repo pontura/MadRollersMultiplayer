@@ -59,10 +59,11 @@ public class MainMenuArcade : MonoBehaviour {
     void SetFields(int puesto)
     {
         int hiscore = Data.Instance.GetComponent<ArcadeRanking>().all[puesto].score;
+        string actualCompetition = Data.Instance.GetComponent<MultiplayerCompetitionManager>().actualCompetition;
         foreach (Text field in winnersText.GetComponentsInChildren<Text>())
         {
             if (puesto == 0)
-                field.text = "PUNTERx/S (" + hiscore + " PUNTOS) - CAMPEONATO EVA 2016 -";
+                field.text = "PUNTERx/S (" + hiscore + " PUNTOS) - CAMPEONATO " + actualCompetition + " -";
            // else
               //  field.text = "PUESTO " + (int)(puesto + 1);
         }

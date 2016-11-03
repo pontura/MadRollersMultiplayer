@@ -40,7 +40,7 @@ public class MusicManager : MonoBehaviour {
         if (type == "LevelFinish_hard" || type == "LevelFinish_medium" || type == "LevelFinish_easy")
         {
             GetComponent<AudioLowPassFilter>().enabled = true;
-            Invoke("ResetFilter", 2.7f);
+            Invoke("ResetFilter", 4.7f);
         }
     }
     

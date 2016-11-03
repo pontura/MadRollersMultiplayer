@@ -18,8 +18,10 @@ public class NewHiscoreArcade : MonoBehaviour {
         
         introPanel.SetActive(true);
 		Invoke("ResetIntro", 3);
-		SetTexts(title, "CAMPEONATO: EVA-2016");
-		SetTexts(title, "CAMPEONATO: EVA-2016");
+
+        string actualCompetition = Data.Instance.GetComponent<MultiplayerCompetitionManager>().actualCompetition;
+
+        SetTexts(title, "CAMPEONATO: " + actualCompetition);
 	}
 	
 	void ResetIntro () {

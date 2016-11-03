@@ -34,6 +34,7 @@ public class Level : MonoBehaviour {
     /// para arcade
     private float nextDistanceVictoryArea;
     private int distanceVictoryArea = 550;
+
     public Area victoryArea;
     //////////////////////
 
