@@ -4,7 +4,7 @@ using System.Collections;
 namespace VacuumShaders.CurvedWorld.Demo
 {
     [AddComponentMenu("VacuumShaders/Curved World/Demo/Little Planet/Horse")]
-    [RequireComponent(typeof(NavMeshAgent))]
+    [RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
     public class CW_Demo_LittlePlanet_Horse : MonoBehaviour
     {
         //////////////////////////////////////////////////////////////////////////////
@@ -12,7 +12,7 @@ namespace VacuumShaders.CurvedWorld.Demo
         //Variables                                                                 //                
         //                                                                          //               
         //////////////////////////////////////////////////////////////////////////////
-        NavMeshAgent agent;
+        UnityEngine.AI.NavMeshAgent agent;
 
         //////////////////////////////////////////////////////////////////////////////
         //                                                                          // 
@@ -21,7 +21,7 @@ namespace VacuumShaders.CurvedWorld.Demo
         //////////////////////////////////////////////////////////////////////////////
         void Start()
         {
-            agent = GetComponent<NavMeshAgent>();
+            agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
             agent.speed *= Random.Range(1.2f, 0.8f);
 
             SetDestination();

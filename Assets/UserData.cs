@@ -140,7 +140,7 @@ public class UserData : MonoBehaviour {
     }
     public void resetProgress()
     {
-        FB.Logout();
+       // FB.Logout();
         userId = 0;
         facebookId = "";
         username = "";

@@ -32,8 +32,8 @@ public class RegistryScreen : MonoBehaviour {
             Application.ExternalCall("FBLogin");
         else if (Data.Instance.userData.facebookId != "")
             OnFacebookNewUserLogged(Data.Instance.userData.facebookId);
-        else
-            Data.Instance.GetComponentInChildren<FBHolder>().Login();
+     //   else
+        //    Data.Instance.GetComponentInChildren<FBHolder>().Login();
 
     }
     public void SimpleLogin()

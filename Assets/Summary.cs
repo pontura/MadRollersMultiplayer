@@ -102,7 +102,7 @@ public class Summary : MonoBehaviour {
         Reset();
         Game.Instance.Revive();
     }
-    private IEnumerator Play(this Animation animation, string clipName, bool useTimeScale, Action onComplete)
+    IEnumerator Play(Animation animation, string clipName, bool useTimeScale, Action onComplete)
     {
 
         //We Don't want to use timeScale, so we have to animate by frame..

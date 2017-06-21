@@ -109,7 +109,7 @@ public class GameMenu : MonoBehaviour {
        // Game.Instance.UnPause();
         Data.Instance.events.OnCloseMainmenu();
     }
-    private IEnumerator Play(this Animation animation, string clipName, bool useTimeScale, Action onComplete)
+    IEnumerator Play(Animation animation, string clipName, bool useTimeScale, Action onComplete)
     {
 
         //We Don't want to use timeScale, so we have to animate by frame..

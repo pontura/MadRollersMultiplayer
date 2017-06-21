@@ -16,10 +16,7 @@ public class MainMenuActions : MonoBehaviour {
 
         if (Application.platform == RuntimePlatform.Android)
             Data.Instance.mode = Data.modes.ACCELEROMETER;
-
-        FacebookScene facebookScene = GetComponent<FacebookScene>();
-
-        facebookScene.Init();
+        
     }
     void Update()
     {

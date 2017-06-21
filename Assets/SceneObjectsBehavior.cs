@@ -26,6 +26,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
     public SceneObject palm3;
     public SceneObject palm4;
     public SceneObject palm5;
+    public SceneObject cilindro;
 
     public SceneObject GrabbableJetpack;
     public SceneObject borde1;
@@ -225,7 +226,9 @@ public class SceneObjectsBehavior : MonoBehaviour {
                     clone = tunel1;
                 else if (go.name == "tunel2")
                     clone = tunel2;
-                else if (go.name == "palm")
+                else if (go.name == "cilindro")
+                    clone = cilindro;
+            else if (go.name == "palm")
                 {
                     int ran = Random.Range(0, 100);
                     if (ran < 20)

@@ -234,7 +234,7 @@ public class GuiTutorial : MonoBehaviour {
     
 
     //private IEnumerator Play(this Animation animation, string clipName, bool useTimeScale, Action onComplete)
-    private IEnumerator Play(this Animation animation, string clipName, bool useTimeScale)
+    IEnumerator Play(Animation animation, string clipName, bool useTimeScale)
     {
         if (canDisplaySignal())
         {

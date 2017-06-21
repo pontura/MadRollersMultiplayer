@@ -22,14 +22,14 @@ public class AdvisesManager : MonoBehaviour {
     {
         panel.SetActive(true);
         field.text = name.ToUpper();
-        StartCoroutine(Play(panel.GetComponent<Animation>(), "advisesShow", false, OnComplete));
+        StartCoroutine(Play(panel.GetComponent<Animation>(), "advisesShow", false));//, OnComplete));
       //  Time.timeScale = 0;
 	}
     void OnComplete()
     {
        // Time.timeScale = 1;
     }
-    private IEnumerator Play(this Animation animation, string clipName, bool useTimeScale, Action onComplete)
+    IEnumerator Play(Animation animation, string clipName, bool useTimeScale)//, Action onComplete)
     {
 
         //We Don't want to use timeScale, so we have to animate by frame..
@@ -72,10 +72,10 @@ public class AdvisesManager : MonoBehaviour {
                 yield return new WaitForEndOfFrame();
             }
             yield return null;
-            if (onComplete != null)
-            {
-                onComplete();
-            }
+           // if (onComplete != null)
+         //   {
+           //     onComplete();
+         //   }
         }
         else
             animation.Play(clipName);

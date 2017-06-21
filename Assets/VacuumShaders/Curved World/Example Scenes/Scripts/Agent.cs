@@ -19,7 +19,7 @@ namespace VacuumShaders
             //////////////////////////////////////////////////////////////////////////////
             static public float mainSpeed = 1;
 
-            NavMeshAgent navMeshAgent;
+            UnityEngine.AI.NavMeshAgent navMeshAgent;
             float speed = 1;
             //////////////////////////////////////////////////////////////////////////////
             //                                                                          // 
@@ -31,7 +31,7 @@ namespace VacuumShaders
             {
                 transform.position = Vector3.zero;
 
-                navMeshAgent = GetComponent<NavMeshAgent>();
+                navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
 
                 Vector3 destination = Random.insideUnitSphere * 35;

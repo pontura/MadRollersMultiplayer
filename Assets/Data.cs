@@ -84,9 +84,7 @@ public class Data : MonoBehaviour {
         competitions.Init();
         if(userData)
             userData.Init();
-
-        if (!isArcade && !Application.isWebPlayer)
-            GetComponentInChildren<FBHolder>().Init();
+        
 
         GetComponent<MusicManager>().Init();
         GetComponent<Tracker>().Init();
