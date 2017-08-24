@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 #ifndef VACUUM_CURVEDWORLD_COLORMASK0_CGINC
 #define VACUUM_CURVEDWORLD_COLORMASK0_CGINC
 
@@ -16,7 +18,7 @@ v2f vert(float4 v : POSITION)
 	UNITY_INITIALIZE_OUTPUT(v2f,o); 
 	
 	V_CW_TransformPoint(v);
-	o.pos = mul(UNITY_MATRIX_MVP, v);	
+	o.pos = UnityObjectToClipPos(v);	
 
 	return o;
 }

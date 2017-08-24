@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class LandingForArcade : MonoBehaviour {
 
     public MultiplayerCompetitionButton button;
     public Transform container;
+    public Toggle switchPlayers;
+    public Toggle musicOn;
 
-	void Start () {
+    void Start () {
         Invoke("Next", 1);
 	}
     void Next()
@@ -41,6 +44,10 @@ public class LandingForArcade : MonoBehaviour {
     }
     public void Selected(string competitionTitle)
     {
+        if (!musicOn.isOn)
+            Data.Instance.GetComponent<MusicManager>().TurnOff();
+
+        Data.Instance.switchPlayerInputs = switchPlayers.isOn;
         Cursor.visible = false;
         Data.Instance.GetComponent<MultiplayerCompetitionManager>().actualCompetition = competitionTitle;
         Data.Instance.GetComponent<PhotosManager>().LoadPhotos();

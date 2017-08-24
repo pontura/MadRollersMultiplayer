@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 #ifndef VACUUM_CURVEDWORLD_VERTEXLIT_CGINC
 #define VACUUM_CURVEDWORLD_VERTEXLIT_CGINC
 
@@ -71,7 +73,7 @@ v2f vert (appdata_full v)
 		V_CW_TransformPointAndNormal(v.vertex, v.normal, v.tangent);
 	#endif
 
-	o.pos = mul(UNITY_MATRIX_MVP, v.vertex); 
+	o.pos = UnityObjectToClipPos(v.vertex); 
 	o.uv = v.texcoord.xy * _MainTex_ST.xy + _MainTex_ST.zw;
 	o.uv += _V_CW_MainTex_Scroll.xy * _Time.x;
 				

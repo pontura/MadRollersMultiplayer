@@ -167,8 +167,31 @@ public class CharacterBehavior : MonoBehaviour {
 		lastShot = Time.time;
 
 		Vector3 pos = new Vector3(transform.position.x, transform.position.y+1.7f, transform.position.z+0.1f);
-
-        Projectil projectil = ObjectPool.instance.GetObjectForType(myProjectile.name, true) as Projectil;       
+        OnShoot(pos);
+        Invoke("ResetShoot", 0.3f);
+	}
+    void OnShoot(Vector3 pos)
+    {
+        switch (player.weapon.type)
+        {
+            case Weapon.types.SIMPLE:
+                Shoot(pos, 0);
+                break;
+            case Weapon.types.DOUBLE:
+                Shoot(new Vector3(pos.x+1, pos.y, pos.z), 0);
+                Shoot(new Vector3(pos.x-1, pos.y, pos.z), 0);
+                break;
+            case Weapon.types.TRIPLE:
+                Shoot(pos, 0);
+                Shoot(new Vector3(pos.x + 1, pos.y, pos.z), -10);
+                Shoot(new Vector3(pos.x - 1, pos.y, pos.z), 10);
+                break;
+        }
+       
+    }
+    void Shoot(Vector3 pos, float RotationY)
+    {
+        Projectil projectil = ObjectPool.instance.GetObjectForType(myProjectile.name, true) as Projectil;
 
         if (projectil)
         {
@@ -178,14 +201,14 @@ public class CharacterBehavior : MonoBehaviour {
             projectil.Restart(pos);
             Vector3 rot = transform.localEulerAngles;
             rot.x -= 4;
+            rot.y = RotationY;
             projectil.transform.localEulerAngles = rot;
         }
         else
         {
             print("no hay projectil");
         }
-        Invoke("ResetShoot", 0.3f);
-	}
+    }
     void ResetShoot()
     {
         if (floorCollitions.state == CharacterFloorCollitions.states.ON_FLOOR)
@@ -234,7 +257,7 @@ public class CharacterBehavior : MonoBehaviour {
         else
         {
             goTo.x += (rotationY / 3) * Time.deltaTime;
-            goTo.z = player.charactersManager.distance - (position / 2);
+            goTo.z = player.charactersManager.distance - (position / 1);
         }
         transform.position = Vector3.Lerp(transform.position, goTo, 6);
 

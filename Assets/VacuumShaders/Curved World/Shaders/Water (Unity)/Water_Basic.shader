@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 // Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 
 Shader "VacuumShaders/Curved World/FX/Water (Unity)/Basic" 
@@ -45,7 +47,7 @@ Shader "VacuumShaders/Curved World/FX/Water (Unity)/Basic"
 		V_CW_TransformPoint(v.vertex);
 
 		
-		o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+		o.pos = UnityObjectToClipPos (v.vertex);
 
 		// scroll bump waves
 		float4 temp;

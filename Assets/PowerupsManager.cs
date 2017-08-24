@@ -4,6 +4,7 @@ using System.Collections;
 public class PowerupsManager : MonoBehaviour {
 
     public SceneObject Invencible;
+    public SceneObject Missile;
     private bool powerUpOn;
     private Player player;
 
@@ -26,7 +27,14 @@ public class PowerupsManager : MonoBehaviour {
     void OnAddPowerUp(Vector3 pos)
     {
         powerUpOn = true;
-        SceneObject newSO = ObjectPool.instance.GetObjectForType(Invencible.name, true);
+        SceneObject newSO = null;
+        int rand = Random.Range(0, 10); 
+
+        if(rand<50)
+            newSO = ObjectPool.instance.GetObjectForType(Missile.name, true);
+        else
+            newSO = ObjectPool.instance.GetObjectForType(Invencible.name, true);
+
         if (newSO)
         {
             int force = 600;

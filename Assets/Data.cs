@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Data : MonoBehaviour {
 
+    public bool musicOn = true;
+    public bool switchPlayerInputs;
     public int competitionID = 1;
     public bool isArcade;
     public bool isArcadeMultiplayer;

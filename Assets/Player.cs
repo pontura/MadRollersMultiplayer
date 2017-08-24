@@ -45,6 +45,7 @@ public class Player : MonoBehaviour {
 
     void OnDestroy()
     {
+        Data.Instance.events.OnChangeWeapon -= OnChangeWeapon;
         Data.Instance.events.OnAvatarDie -= OnAvatarDie;
         Data.Instance.events.OnMissionStart -= OnMissionStart;
         Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
@@ -75,6 +76,7 @@ public class Player : MonoBehaviour {
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
         Data.Instance.events.OnAvatarGetItem += OnAvatarGetItem;
         Data.Instance.events.OnAvatarProgressBarEmpty += OnAvatarProgressBarEmpty;
+        Data.Instance.events.OnChangeWeapon += OnChangeWeapon;
 
         this.id = id;
        // this.energyBar = energyBar;
@@ -227,5 +229,13 @@ public class Player : MonoBehaviour {
         
         gameObject.layer = LayerMask.NameToLayer("SuperFX");
         particles.SetActive(true);
+    }
+    void OnChangeWeapon(int playerID, Weapon.types type)
+    {       
+        if (playerID != id) return;       
+
+        Missil missil =  weapon.GetComponent<Missil>();
+        if (missil)
+            missil.OnChangeWeapon(type);
     }
 }

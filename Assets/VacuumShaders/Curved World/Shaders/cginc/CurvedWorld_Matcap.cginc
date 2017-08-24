@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 // Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
 
 #ifndef VACUUM_CURVEDWORLD_MATCAP_CGINC
@@ -124,7 +126,7 @@ vOutput vert(vInput v)
 	
 		
 	V_CW_TransformPointAndNormal(v.vertex, v.normal, v.tangent);		
-	o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+	o.pos = UnityObjectToClipPos(v.vertex);
 
 
 	#ifdef V_CW_MOBILE_TERRAIN

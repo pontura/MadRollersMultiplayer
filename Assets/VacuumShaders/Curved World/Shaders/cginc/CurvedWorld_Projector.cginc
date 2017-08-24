@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 // Upgrade NOTE: replaced '_Projector' with 'unity_Projector'
 // Upgrade NOTE: replaced '_ProjectorClip' with 'unity_ProjectorClip'
 
@@ -33,7 +35,7 @@ v2f vert(float4 vertex : POSITION)
 	UNITY_INITIALIZE_OUTPUT(v2f,o); 
 				
 	V_CW_TransformPoint(vertex);	
-	o.pos = mul(UNITY_MATRIX_MVP, vertex);
+	o.pos = UnityObjectToClipPos(vertex);
 
 
 	o.uvShadow = mul (unity_Projector, vertex);

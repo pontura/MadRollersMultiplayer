@@ -7,7 +7,7 @@ using System.Linq;
 public class ArcadeRanking : MonoBehaviour {
 
     public int newHiscore;
-    private int totalHiscores = 10;
+    private int totalHiscores = 5;
 
     [Serializable]
     public class RankingData
@@ -27,9 +27,9 @@ public class ArcadeRanking : MonoBehaviour {
     }
     public bool CheckIfEnterHiscore(int score)
     {
-        if (score>1000 && all.Count < totalHiscores) return true;
+        if (score>50 && all.Count < totalHiscores) return true;
 
-        if (score> all[all.Count-1].score)
+        if (score > all[totalHiscores-1].score)
             return true;
 
         return false;

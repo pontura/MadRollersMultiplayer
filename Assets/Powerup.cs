@@ -10,9 +10,14 @@ public class Powerup : GrabbableItem {
     {
         MISSILE,
         JETPACK,
-        INVENSIBLE
+        INVENSIBLE,
+        MISSILE_DOUBLE,
+        MISSILE_TRIPLE,
     }
-
+    public override void OnRestart(Vector3 pos)
+    {
+        base.OnRestart(pos);
+    }
     public override void OnSceneObjectUpdate()
     {
         if (hitted)

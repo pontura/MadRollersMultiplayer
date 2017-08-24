@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 // Per pixel bumped refraction.
 // Uses a normal map to distort the image behind, and
 // an additional texture to tint the color.
@@ -84,7 +86,7 @@ Shader "VacuumShaders/Curved World/FX/Glass/GrabPass"
 
 				V_CW_TransformPoint(v.vertex);
 
-				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.vertex = UnityObjectToClipPos(v.vertex);
 				
 				#if UNITY_UV_STARTS_AT_TOP
 					float scale = -1.0;

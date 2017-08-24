@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 // Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 
 Shader "VacuumShaders/Curved World/FX/Water (Unity)/Advanced" 
@@ -157,7 +159,7 @@ CGINCLUDE
 
 		o.viewInterpolator.xyz = worldSpaceVertex - _WorldSpaceCameraPos;
 
-		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+		o.pos = UnityObjectToClipPos(v.vertex);
 		 
 		ComputeScreenAndGrabPassPos(o.pos, o.screenPos, o.grabPassPos);
 
@@ -260,7 +262,7 @@ CGINCLUDE
 
 		o.viewInterpolator.xyz = worldSpaceVertex - _WorldSpaceCameraPos;
 
-		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+		o.pos = UnityObjectToClipPos(v.vertex);
 
 		o.screenPos = ComputeScreenPos(o.pos);
 		
@@ -325,7 +327,7 @@ CGINCLUDE
 
 		o.viewInterpolator.xyz = worldSpaceVertex-_WorldSpaceCameraPos;
 		
-		o.pos = mul(UNITY_MATRIX_MVP,  v.vertex);
+		o.pos = UnityObjectToClipPos(v.vertex);
 		
 		o.viewInterpolator.w = 1;//GetDistanceFadeout(ComputeScreenPos(o.pos).w, DISTANCE_SCALE);
 		

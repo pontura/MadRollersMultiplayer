@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "VacuumShaders/Curved World/SpeedTree/SpeedTree"
 {
 	Properties
@@ -133,7 +135,7 @@ Shader "VacuumShaders/Curved World/SpeedTree/SpeedTree"
 					v2f o;
 					SpeedTreeVert(v, o.data);
 					o.data.color.rgb *= ShadeVertexLightsFull(v.vertex, v.normal, 4, true);
-					o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+					o.vertex = UnityObjectToClipPos(v.vertex);
 					UNITY_TRANSFER_FOG(o,o.vertex);
 					return o;
 				}
@@ -254,7 +256,7 @@ Shader "VacuumShaders/Curved World/SpeedTree/SpeedTree"
 					v2f o;
 					SpeedTreeVert(v, o.data);
 					o.data.color.rgb *= ShadeVertexLightsFull(v.vertex, v.normal, 2, false);
-					o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+					o.vertex = UnityObjectToClipPos(v.vertex);
 					UNITY_TRANSFER_FOG(o,o.vertex);
 					return o;
 				}

@@ -7,7 +7,7 @@ public class InputManager {
     private static bool initialized;
     private const int PLAYERS_COUNT = 4;
 
-    
+   
     public static bool getStart(int id = 0)
     {
         if (!initialized) Init();
@@ -35,11 +35,20 @@ public class InputManager {
     }
 
     static void Init()
-    {
+    {        
         inputs = new InputType[PLAYERS_COUNT];
         for (int a = 0; a < PLAYERS_COUNT; a++)
         {
             inputs[a] = new InputKeyboard(a);
+        }
+        if (Data.Instance.switchPlayerInputs)
+        {
+            InputType inputs0 = inputs[0];
+            InputType inputs1 = inputs[1];
+            inputs[0] = inputs[2];
+            inputs[1] = inputs[3];
+            inputs[2] = inputs0;
+            inputs[3] = inputs1;
         }
         initialized = true;
     }

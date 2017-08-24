@@ -41,7 +41,7 @@ public class Projectil : SceneObject {
 		Vector3 pos = transform.position;
 		myDist += Time.deltaTime * speed;
         rotation = transform.localEulerAngles;
-        rotation.y = 0;
+       // rotation.y = 0;
         if (pos.y < - 0.8) Destroy();
         else
 		if(myDist >= myRange)

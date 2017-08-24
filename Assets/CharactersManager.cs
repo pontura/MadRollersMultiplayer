@@ -22,7 +22,7 @@ public class CharactersManager : MonoBehaviour {
     public List<int> playerPositions;
     private bool gameOver;
     private IEnumerator RalentaCoroutine;
-
+    bool isArcadeMultiplayer;
     void Awake()
     {
         colors = Data.Instance.multiplayerData.colors;
@@ -31,7 +31,7 @@ public class CharactersManager : MonoBehaviour {
     void Start()
     {
         missions = Data.Instance.GetComponent<Missions>();
-        
+        isArcadeMultiplayer = Data.Instance.isArcadeMultiplayer;
     }
     void OnListenerDispatcher(string type)
     {
@@ -80,7 +80,10 @@ public class CharactersManager : MonoBehaviour {
         if (Game.Instance.level.waitingToStart) return;
         if (gameOver) return;
         distance += speedRun * Time.deltaTime;
-        missions.updateDistance(distance);
+
+        if(!isArcadeMultiplayer)
+            missions.updateDistance(distance);
+
        // lastDistance = distance;
     }
     public int GetPositionByID(int _playerID)
@@ -144,7 +147,6 @@ public class CharactersManager : MonoBehaviour {
     }
     public void addNewCharacter(int id)
     {
-        print("addNewCharacter ");
         Data.Instance.events.OnSoundFX("coin", id);
         Data.Instance.events.OnAddNewPlayer(id);
         Vector3 pos = characters[0].transform.position;
@@ -186,7 +188,6 @@ public class CharactersManager : MonoBehaviour {
     }
     public void killCharacter(CharacterBehavior characterBehavior)
     {
-        print(" killCharacter " + characterBehavior.player.id);
         characters.ForEach((cb) =>
         {
             if (cb.player.id == characterBehavior.player.id)
@@ -207,9 +208,6 @@ public class CharactersManager : MonoBehaviour {
         yield return new WaitForSeconds(0.05f);
         Data.Instance.events.OnGameOver();
         yield return new WaitForSeconds(1.32f);
-       // Destroy(cb.GetComponent<Player>().energyBar.gameObject);
-        //Destroy(cb.gameObject);
-        //Game.Instance.ResetLevel();
     }
     public CharacterBehavior getMainCharacter()
     {
@@ -228,7 +226,6 @@ public class CharactersManager : MonoBehaviour {
     {
         if (characters.Count > 1)
         {
-            float _x = 0;
             Vector3 normalPosition = Vector3.zero;
             Vector3 lastCharacterPosition = Vector3.zero;
             float MaxDistance = 0;

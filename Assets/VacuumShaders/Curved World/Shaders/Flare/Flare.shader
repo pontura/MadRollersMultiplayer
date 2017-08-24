@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "VacuumShaders/Curved World/FX/Flare" 
 {
 	Properties 
@@ -69,7 +71,7 @@ Shader "VacuumShaders/Curved World/FX/Flare"
 
 				V_CW_TransformPoint(v.vertex);	
 
-				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);				
+				o.vertex = UnityObjectToClipPos(v.vertex);				
 				o.texcoord = TRANSFORM_TEX(v.texcoord, _MainTex);
 				o.color = v.color * _Color;
 

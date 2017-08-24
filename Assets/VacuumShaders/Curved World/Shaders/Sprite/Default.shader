@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "VacuumShaders/Curved World/Sprites/Default"
 {
 	Properties
@@ -71,7 +73,7 @@ Shader "VacuumShaders/Curved World/Sprites/Default"
 				V_CW_TransformPoint(IN.vertex); 
 				
 
-				o.pos = mul(UNITY_MATRIX_MVP, IN.vertex);
+				o.pos = UnityObjectToClipPos(IN.vertex);
 				o.texcoord = IN.texcoord;
 				o.color = IN.color * _Color;
 				#ifdef PIXELSNAP_ON

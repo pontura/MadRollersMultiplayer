@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "VacuumShaders/Curved World/Particles/~Additive-Multiply" 
 {
 	Properties 
@@ -82,7 +84,7 @@ Shader "VacuumShaders/Curved World/Particles/~Additive-Multiply"
 					V_CW_TransformPoint(v.vertex);
 
 
-					o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);		
+					o.vertex = UnityObjectToClipPos(v.vertex);		
 					#ifdef SOFTPARTICLES_ON
 						o.projPos = ComputeScreenPos (o.vertex);
 						COMPUTE_EYEDEPTH(o.projPos.z);

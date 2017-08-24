@@ -9,11 +9,14 @@ public class NewHiscoreArcade : MonoBehaviour {
 	public GameObject subtitle;
 	public GameObject countDown;
     public GameObject scoreField;
+    public GameObject flash;
 
     public Light lightInScene;
-	
-	
-	void Start () {
+
+    int newHiscore;
+
+    void Start () {
+        flash.SetActive(false);
         scoreField.SetActive(false);
         
         introPanel.SetActive(true);
@@ -22,7 +25,21 @@ public class NewHiscoreArcade : MonoBehaviour {
         string actualCompetition = Data.Instance.GetComponent<MultiplayerCompetitionManager>().actualCompetition;
 
         SetTexts(title, "CAMPEONATO: " + actualCompetition);
-	}
+
+        scoreField.SetActive(true);
+        newHiscore = Data.Instance.GetComponent<ArcadeRanking>().newHiscore;
+        SetTexts(scoreField, newHiscore + " PUNTOS");
+        int puesto = 1;
+        foreach (ArcadeRanking.RankingData rd in Data.Instance.GetComponent<ArcadeRanking>().all)
+        {
+            if (newHiscore > rd.score)
+            {
+                SetTexts(subtitle, "PUESTO #" + puesto);
+                return;
+            }
+            puesto++;
+        }
+    }
 	
 	void ResetIntro () {
 		introPanel.SetActive(false);
@@ -31,8 +48,10 @@ public class NewHiscoreArcade : MonoBehaviour {
 
 	int sec = 5;
     int n = 0;
+    bool stopLights;
     void Update()
     {
+        if (stopLights) return;
         n++;
         if (n > 5)
         {
@@ -53,17 +72,19 @@ public class NewHiscoreArcade : MonoBehaviour {
 		}
 		
 	}
-	void TakePhoto()
-	{
-        Data.Instance.events.OnInterfacesStart();
-        scoreField.SetActive(true);
-        foreach (Text field in scoreField.GetComponentsInChildren<Text>())
-            field.text = Data.Instance.GetComponent<ArcadeRanking>().all[0].score + " PUNTOS";
-
+    void TakePhoto()
+    {
+        stopLights = true;
+        flash.SetActive(true);
+        Invoke("DoIt", 0.05f);
+    }
+    void DoIt()
+    { 
+        Data.Instance.events.OnInterfacesStart();        
         GetComponent<WebCamPhotoCamera>().TakePhoto(Data.Instance.GetComponent<ArcadeRanking>().newHiscore);
-
-        Invoke("Reset", 4);
+        Invoke("Reset", 3);
 	}
+
     void Reset()
     {
         Data.Instance.LoadLevel("MainMenuArcade");

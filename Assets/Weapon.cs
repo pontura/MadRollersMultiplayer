@@ -3,14 +3,22 @@ using System.Collections;
 
 public class Weapon : MonoBehaviour {
 
+    public types type;
+    public enum types
+    {
+        SIMPLE,
+        DOUBLE,
+        TRIPLE
+    }
     public bool isOn;
     public GameObject asset;
     private Color color;
-    public MeshRenderer meshToColorize;
+    public MeshRenderer[] meshToColorize;
 
     public void SetColor(Color color)
     {
-        meshToColorize.material.color = color;
+        foreach(MeshRenderer mr in meshToColorize)
+            mr.material.color = color;
     }
     virtual public void setOff()
     {

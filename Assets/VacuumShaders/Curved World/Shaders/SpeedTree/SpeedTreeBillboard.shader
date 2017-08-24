@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "VacuumShaders/Curved World/SpeedTree/Billboard"
 {
 	Properties
@@ -117,7 +119,7 @@ Shader "VacuumShaders/Curved World/SpeedTree/Billboard"
 					SpeedTreeBillboardVert(v, o.data);
 
 					o.data.color.rgb *= ShadeVertexLightsFull(v.vertex, v.normal, 4, true);
-					o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+					o.vertex = UnityObjectToClipPos(v.vertex);
 					UNITY_TRANSFER_FOG(o,o.vertex);
 					return o;
 				}
@@ -186,7 +188,7 @@ Shader "VacuumShaders/Curved World/SpeedTree/Billboard"
 					v2f o;
 					SpeedTreeBillboardVert(v, o.data);
 					o.data.color.rgb *= ShadeVertexLightsFull(v.vertex, v.normal, 2, false);
-					o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+					o.vertex = UnityObjectToClipPos(v.vertex);
 					UNITY_TRANSFER_FOG(o,o.vertex);
 					return o;
 				}

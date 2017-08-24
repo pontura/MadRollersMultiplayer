@@ -61,8 +61,8 @@ public class Events : MonoBehaviour {
 
     public System.Action OnResetLevel = delegate { };
     public System.Action StartMultiplayerRace = delegate { };
-    
 
+    public System.Action<int, Weapon.types> OnChangeWeapon = delegate { };
     public System.Action<int, Powerup.types> OnAvatarGetItem = delegate { };
     public System.Action<Player.fxStates> OnAvatarChangeFX = delegate { };
     public System.Action<CharacterBehavior> OnAvatarCrash = delegate { };

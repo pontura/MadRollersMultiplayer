@@ -1,4 +1,6 @@
-﻿Shader "Custom/Example_Unlit"
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Custom/Example_Unlit"
 {
 	Properties 
 	{
@@ -47,7 +49,7 @@
 				V_CW_TransformPoint(i.vertex);
 
 
-                o.position = mul (UNITY_MATRIX_MVP, i.vertex);
+                o.position = UnityObjectToClipPos (i.vertex);
                 o.uv = i.texcoord0.xy;
                 return o;
             }

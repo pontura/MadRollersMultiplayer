@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Hidden/Camera-DepthNormalTexture" 
 {
 Properties
@@ -24,7 +26,7 @@ SubShader
 		v2f vert( appdata_base v ) 
 		{
 			v2f o;
-			o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+			o.pos = UnityObjectToClipPos(v.vertex);
 			o.nz.xyz = COMPUTE_VIEW_NORMAL;
 			o.nz.w = COMPUTE_DEPTH_01;
 			return o;
@@ -56,7 +58,7 @@ SubShader
 		v2f vert( appdata_base v ) 
 		{
 			v2f o;
-			o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+			o.pos = UnityObjectToClipPos(v.vertex);
 			o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);
 			o.nz.xyz = COMPUTE_VIEW_NORMAL;
 			o.nz.w = COMPUTE_DEPTH_01;
@@ -97,7 +99,7 @@ SubShader
 			v2f o;
 			TreeVertBark(v);
 	
-			o.pos = mul( UNITY_MATRIX_MVP, v.vertex );
+			o.pos = UnityObjectToClipPos( v.vertex );
 			o.uv = v.texcoord.xy;
 			o.nz.xyz = COMPUTE_VIEW_NORMAL;
 			o.nz.w = COMPUTE_DEPTH_01;
@@ -133,7 +135,7 @@ SubShader
 			v2f o;
 			TreeVertLeaf(v);
 	
-			o.pos = mul( UNITY_MATRIX_MVP, v.vertex );
+			o.pos = UnityObjectToClipPos( v.vertex );
 			o.uv = v.texcoord.xy;
 			o.nz.xyz = COMPUTE_VIEW_NORMAL;
 			o.nz.w = COMPUTE_DEPTH_01;
@@ -178,7 +180,7 @@ SubShader
 		{
 			v2f o;
 			TerrainAnimateTree(v.vertex, v.color.w);
-			o.pos = mul( UNITY_MATRIX_MVP, v.vertex );
+			o.pos = UnityObjectToClipPos( v.vertex );
 			o.nz.xyz = COMPUTE_VIEW_NORMAL;
 			o.nz.w = COMPUTE_DEPTH_01;
 			return o;
@@ -219,7 +221,7 @@ SubShader
 		{
 			v2f o;
 			TerrainAnimateTree(v.vertex, v.color.w);
-			o.pos = mul( UNITY_MATRIX_MVP, v.vertex );
+			o.pos = UnityObjectToClipPos( v.vertex );
 			o.uv = v.texcoord.xy;
 			o.nz.xyz = COMPUTE_VIEW_NORMAL;
 			o.nz.w = COMPUTE_DEPTH_01;
@@ -260,7 +262,7 @@ SubShader
 		v2f vert( appdata v ) {
 			v2f o;
 			TerrainAnimateTree(v.vertex, v.color.w);
-			o.pos = mul( UNITY_MATRIX_MVP, v.vertex );
+			o.pos = UnityObjectToClipPos( v.vertex );
 			o.uv = v.texcoord.xy;
 			o.nz.xyz = -COMPUTE_VIEW_NORMAL;
 			o.nz.w = COMPUTE_DEPTH_01;
@@ -298,7 +300,7 @@ SubShader
 		v2f vert (appdata_tree_billboard v) {
 			v2f o;
 			TerrainBillboardTree(v.vertex, v.texcoord1.xy, v.texcoord.y);
-			o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+			o.pos = UnityObjectToClipPos (v.vertex);
 			o.uv.x = v.texcoord.x;
 			o.uv.y = v.texcoord.y > 0;
 			o.nz.xyz = float3(0,0,1);
@@ -342,7 +344,7 @@ SubShader
 			v2f o;
 			WavingGrassBillboardVert (v);
 			o.color = v.color;
-			o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+			o.pos = UnityObjectToClipPos (v.vertex);
 			o.uv = v.texcoord.xy;
 			o.nz.xyz = COMPUTE_VIEW_NORMAL;
 			o.nz.w = COMPUTE_DEPTH_01;
@@ -385,7 +387,7 @@ SubShader
 			v2f o;
 			WavingGrassVert (v);
 			o.color = v.color;
-			o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+			o.pos = UnityObjectToClipPos (v.vertex);
 			o.uv = v.texcoord;
 			o.nz.xyz = COMPUTE_VIEW_NORMAL;
 			o.nz.w = COMPUTE_DEPTH_01;
@@ -432,7 +434,7 @@ SubShader
 
 			V_CW_TransformPointAndNormal(v.vertex, v.normal, v.tangent);
 
-			o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+			o.pos = UnityObjectToClipPos(v.vertex);
 			o.nz.xyz = COMPUTE_VIEW_NORMAL;
 			o.nz.w = COMPUTE_DEPTH_01;
 			return o;
@@ -472,7 +474,7 @@ SubShader
 
 			V_CW_TransformPointAndNormal(v.vertex, v.normal, v.tangent);
 
-			o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+			o.pos = UnityObjectToClipPos(v.vertex);
 			o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);
 			o.nz.xyz = COMPUTE_VIEW_NORMAL;
 			o.nz.w = COMPUTE_DEPTH_01;
@@ -516,7 +518,7 @@ SubShader
 			v2f o;
 			TreeVertBark(v);
 	
-			o.pos = mul( UNITY_MATRIX_MVP, v.vertex );
+			o.pos = UnityObjectToClipPos( v.vertex );
 			o.uv = v.texcoord.xy;
 			o.nz.xyz = COMPUTE_VIEW_NORMAL;
 			o.nz.w = COMPUTE_DEPTH_01;
@@ -555,7 +557,7 @@ SubShader
 			v2f o;
 			TreeVertLeaf(v);
 	
-			o.pos = mul( UNITY_MATRIX_MVP, v.vertex );
+			o.pos = UnityObjectToClipPos( v.vertex );
 			o.uv = v.texcoord.xy;
 			o.nz.xyz = COMPUTE_VIEW_NORMAL;
 			o.nz.w = COMPUTE_DEPTH_01;
@@ -608,7 +610,7 @@ SubShader
 			float4 tangent = float4(cross(v.normal, float3(0,0,1)), -1);
 			V_CW_TransformPointAndNormal(v.vertex, v.normal, tangent);
 
-			o.pos = mul( UNITY_MATRIX_MVP, v.vertex );
+			o.pos = UnityObjectToClipPos( v.vertex );
 			o.nz.xyz = COMPUTE_VIEW_NORMAL;
 			o.nz.w = COMPUTE_DEPTH_01;
 			return o;
@@ -656,7 +658,7 @@ SubShader
 			float4 tangent = float4(cross(v.normal, float3(0,0,1)), -1);
 			V_CW_TransformPointAndNormal(v.vertex, v.normal, tangent);
 
-			o.pos = mul( UNITY_MATRIX_MVP, v.vertex );
+			o.pos = UnityObjectToClipPos( v.vertex );
 			o.uv = v.texcoord.xy;
 			o.nz.xyz = COMPUTE_VIEW_NORMAL;
 			o.nz.w = COMPUTE_DEPTH_01;
@@ -707,7 +709,7 @@ SubShader
 			float4 tangent = float4(cross(v.normal, float3(0,0,1)), -1);
 			V_CW_TransformPointAndNormal(v.vertex, v.normal, tangent);
 
-			o.pos = mul( UNITY_MATRIX_MVP, v.vertex );
+			o.pos = UnityObjectToClipPos( v.vertex );
 			o.uv = v.texcoord.xy;
 			o.nz.xyz = -COMPUTE_VIEW_NORMAL;
 			o.nz.w = COMPUTE_DEPTH_01;
@@ -753,7 +755,7 @@ SubShader
 			V_CW_TransformPoint(v.vertex);
 
 			TerrainBillboardTree(v.vertex, v.texcoord1.xy, v.texcoord.y);
-			o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+			o.pos = UnityObjectToClipPos (v.vertex);
 			o.uv.x = v.texcoord.x;
 			o.uv.y = v.texcoord.y > 0;
 			o.nz.xyz = float3(0,0,1);
@@ -802,7 +804,7 @@ SubShader
 
 			WavingGrassVert (v);
 			o.color = v.color;
-			o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+			o.pos = UnityObjectToClipPos (v.vertex);
 			o.uv = v.texcoord;
 			o.nz.xyz = COMPUTE_VIEW_NORMAL;
 			o.nz.w = COMPUTE_DEPTH_01;
@@ -853,7 +855,7 @@ SubShader
 
 			WavingGrassBillboardVert (v);
 			o.color = v.color;
-			o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+			o.pos = UnityObjectToClipPos (v.vertex);
 			o.uv = v.texcoord.xy;
 			o.nz.xyz = COMPUTE_VIEW_NORMAL;
 			o.nz.w = COMPUTE_DEPTH_01;

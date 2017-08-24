@@ -34,7 +34,7 @@ public class ArcadeUILevelTransitions : MonoBehaviour {
             StartCoroutine(DoFade(0.2f));
             panel.SetActive(true);
             foreach (Text field in texts.GetComponentsInChildren<Text>())
-                field.text = "Bien hecho!";
+                field.text = "Rock!";
              foreach (Text field in texts2.GetComponentsInChildren<Text>())
                 field.text = "";
             return;

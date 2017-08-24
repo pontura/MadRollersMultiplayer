@@ -33,7 +33,11 @@ public class MusicManager : MonoBehaviour {
         Data.Instance.events.OnAvatarFall += OnAvatarCrash;
      //   Data.Instance.events.OnSoundFX += OnSoundFX;
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
-	}
+    }
+    public void TurnOff()
+    {
+        audioSource.volume = 0;
+    }
     void OnListenerDispatcher(string type)
     {
         
@@ -64,6 +68,8 @@ public class MusicManager : MonoBehaviour {
     }
     public void SetVolume(float vol)
     {
+        if (!Data.Instance.musicOn)
+            return;
         audioSource.volume = vol;
     }
     public void playSound(AudioClip _clip, bool looped = true)

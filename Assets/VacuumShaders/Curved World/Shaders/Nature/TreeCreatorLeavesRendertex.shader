@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Hidden/VacuumShaders/Curved World/Nature/Tree Creator Leaves Rendertex" 
 {
 	Properties 
@@ -73,7 +75,7 @@ Shader "Hidden/VacuumShaders/Curved World/Nature/Tree Creator Leaves Rendertex"
 
 				V_CW_TransformPointAndNormal(v.vertex, v.normal, v.tangent);
 
-				o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos (v.vertex);
 				o.uv = v.texcoord.xy;
 				float3 viewDir = normalize(ObjSpaceViewDir(v.vertex));
 	

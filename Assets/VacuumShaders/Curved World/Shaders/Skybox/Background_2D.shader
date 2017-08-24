@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "VacuumShaders/Curved World/Skybox/Background 2D" 
 {
 	Properties 
@@ -47,7 +49,7 @@ Shader "VacuumShaders/Curved World/Skybox/Background 2D"
             vertOut vert(appdata_base v) 
 			{
                 vertOut o;
-                o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+                o.pos = UnityObjectToClipPos (v.vertex);
                 o.scrPos = ComputeScreenPos(o.pos);
                 
 				return o;
