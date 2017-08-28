@@ -16,16 +16,38 @@ public class ArcadeUILevelTransitions : MonoBehaviour {
         level = 1;
         panel.SetActive(false);
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
+		Data.Instance.events.ShowNotification += ShowNotification;
 	}
     void OnDestroy()
     {
         Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
+		Data.Instance.events.ShowNotification -= ShowNotification;
     }
     int percent = 0;
     bool ready;
 
+	string lastNotification;
+	void ShowNotification(string notification)
+	{
+		panel.SetActive(true);
+		foreach (Text field in texts.GetComponentsInChildren<Text>())
+			field.text = notification;
+
+		foreach (Text field in texts2.GetComponentsInChildren<Text>())
+			field.text = "";
+
+		lastNotification = notification;
+
+		Invoke("ResetNotification", 2);
+	}
+	void ResetNotification()
+	{
+		if (lastNotification == texts.GetComponentsInChildren<Text>()[0].text)
+			SetOff ();
+	}
     void OnListenerDispatcher(string type)
     {
+		
         print("OnListenerDispatcher : " + type);
         
         if (type == "Ralenta")

@@ -31,6 +31,7 @@ public class Events : MonoBehaviour {
     public System.Action<int> OnMissionComplete = delegate { };
     public void MissionComplete() { OnMissionComplete(Data.Instance.missionActive); }    
 
+	public System.Action<string> ShowNotification = delegate { };
     public System.Action<string> OnListenerDispatcher = delegate { };
     public void ListenerDispatcher(string message) { OnListenerDispatcher(message); }
 

@@ -162,7 +162,7 @@ public class ArcadeGUI : MonoBehaviour {
         {
             multiplayerUI_Y.Add((int)muis.transform.localPosition.y);
             bool active = false;
-            muis.Init(id, Game.Instance.GetComponent<CharactersManager>().colors[id], active);
+			muis.Init(id, Data.Instance.GetComponent<MultiplayerData>().colors[id], active);
             id++;
         }
         Loop();

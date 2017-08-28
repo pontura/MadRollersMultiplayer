@@ -21,7 +21,7 @@ public class ScoreSignal : SceneObject
     }
     public void SetScore(int playerID, int qty)
     {
-        field.color = Game.Instance.GetComponent<CharactersManager>().colors[playerID];
+		field.color = Data.Instance.GetComponent<MultiplayerData>().colors[playerID];
         field.text = "+" + qty.ToString();
         field_outline.text = "+" + qty.ToString();
     }

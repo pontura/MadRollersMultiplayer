@@ -34,6 +34,13 @@ public class Projectil : SceneObject {
         exploted = false;
         pos.z += 1;
         transform.position = pos;
+
+		MultiplayerData multiplayerData = Data.Instance.multiplayerData;
+		Color playerColor = multiplayerData.colors[playerID];
+		playerColor.a = 0.5f;
+
+		GetComponent<TrailRenderer> ().startColor = playerColor;
+		GetComponent<TrailRenderer> ().endColor = playerColor;
     }
     
     public override void OnSceneObjectUpdate()

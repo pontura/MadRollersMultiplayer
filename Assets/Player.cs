@@ -13,9 +13,9 @@ public class Player : MonoBehaviour {
     public int id; //numero de player;
    // public EnergyBar progressBar;
 
-    [HideInInspector]
-    public Weapon weapon;
-    public Weapon[] weapons;
+  //  [HideInInspector]
+	public Weapon weapon;
+	public Weapon weaponToInstantiate;
     public GameObject weaponContainer;
 
     [HideInInspector]
@@ -43,6 +43,15 @@ public class Player : MonoBehaviour {
 
  //   public EnergyBar energyBar;
 
+	void Start()
+	{
+		Data.Instance.events.OnAvatarDie += OnAvatarDie;
+		Data.Instance.events.OnMissionStart += OnMissionStart;
+		Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
+		Data.Instance.events.OnAvatarGetItem += OnAvatarGetItem;
+		Data.Instance.events.OnAvatarProgressBarEmpty += OnAvatarProgressBarEmpty;
+		Data.Instance.events.OnChangeWeapon += OnChangeWeapon;
+	}
     void OnDestroy()
     {
         Data.Instance.events.OnChangeWeapon -= OnChangeWeapon;
@@ -55,7 +64,7 @@ public class Player : MonoBehaviour {
     public void Init(int id)
     {
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
-        color = charactersManager.colors[id];
+		color = Data.Instance.GetComponent<MultiplayerData>().colors[id];
 
         if (Data.Instance.isArcadeMultiplayer)
             GorroMaterial.material.color = color;
@@ -71,16 +80,11 @@ public class Player : MonoBehaviour {
 
        // setStartingState();
       //  Invoke("setStartingState2", 1);
-        Data.Instance.events.OnAvatarDie += OnAvatarDie;
-        Data.Instance.events.OnMissionStart += OnMissionStart;
-        Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
-        Data.Instance.events.OnAvatarGetItem += OnAvatarGetItem;
-        Data.Instance.events.OnAvatarProgressBarEmpty += OnAvatarProgressBarEmpty;
-        Data.Instance.events.OnChangeWeapon += OnChangeWeapon;
+        
 
         this.id = id;
        // this.energyBar = energyBar;
-        weapon = Instantiate(weapons[0] as Weapon, Vector3.zero, Quaternion.identity) as Weapon;
+        weapon = Instantiate(weaponToInstantiate as Weapon, Vector3.zero, Quaternion.identity) as Weapon;
         weapon.SetColor(color);
         weapon.transform.parent = weaponContainer.transform;
         weapon.transform.localPosition = Vector3.zero;
@@ -232,9 +236,12 @@ public class Player : MonoBehaviour {
     }
     void OnChangeWeapon(int playerID, Weapon.types type)
     {       
-        if (playerID != id) return;       
+        if (playerID != id) return;    
 
         Missil missil =  weapon.GetComponent<Missil>();
+
+		print ("playerID : " + playerID + "   misil: " + missil);
+
         if (missil)
             missil.OnChangeWeapon(type);
     }

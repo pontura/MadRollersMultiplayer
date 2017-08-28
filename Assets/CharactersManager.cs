@@ -10,8 +10,6 @@ public class CharactersManager : MonoBehaviour {
     public List<CharacterBehavior> characters;
     public List<CharacterBehavior> deadCharacters;
 
-    public Color[] colors;
-
     private Vector3 characterPosition = new Vector3(0,0,0);
 
     private float separationX  = 2;
@@ -25,7 +23,6 @@ public class CharactersManager : MonoBehaviour {
     bool isArcadeMultiplayer;
     void Awake()
     {
-        colors = Data.Instance.multiplayerData.colors;
         distance = 20;
     }
     void Start()
@@ -147,8 +144,12 @@ public class CharactersManager : MonoBehaviour {
     }
     public void addNewCharacter(int id)
     {
+		if (characters.Count == 0)
+			return;
+		
         Data.Instance.events.OnSoundFX("coin", id);
         Data.Instance.events.OnAddNewPlayer(id);
+
         Vector3 pos = characters[0].transform.position;
         pos.y += 3;
         pos.x = 0;

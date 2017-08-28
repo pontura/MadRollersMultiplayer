@@ -38,7 +38,7 @@ public class SummaryMultiplayer : MonoBehaviour {
         rawimageRanking.material.mainTexture = Data.Instance.GetComponent<ArcadeRanking>().all[0].texture;
 
         foreach (Text field in winnersTitle.GetComponentsInChildren<Text>())
-            field.text = "1er PUESTO - CAMPEONATO: " + Data.Instance.GetComponent<MultiplayerCompetitionManager>().actualCompetition;
+            field.text = "1er PUESTO - " + Data.Instance.GetComponent<MultiplayerCompetitionManager>().actualCompetition;
 
         foreach ( Text field in rankingScore.GetComponentsInChildren<Text>())
             field.text = "con " + hiscore + " PUNTOS.";
