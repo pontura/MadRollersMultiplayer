@@ -95,7 +95,7 @@ public class Level : MonoBehaviour {
         data.events.OnAddHeartsByBreaking += OnAddHeartsByBreaking;
         data.events.OnAddTumba += OnAddTumba;
         data.events.StartMultiplayerRace += StartMultiplayerRace;
-
+        data.events.SetVictoryArea += SetVictoryArea;
     }
     
     public void OnDestroy()
@@ -107,6 +107,8 @@ public class Level : MonoBehaviour {
         data.events.OnAddObjectExplotion -= OnAddObjectExplotion;
         data.events.OnAddTumba -= OnAddTumba;
         data.events.StartMultiplayerRace -= StartMultiplayerRace;
+        data.events.SetVictoryArea -= SetVictoryArea;
+        data.events.OnAddHeartsByBreaking -= OnAddHeartsByBreaking;
     }
     void StartMultiplayerRace()
     {
@@ -223,7 +225,12 @@ public class Level : MonoBehaviour {
         sceneObjects.replaceSceneObject(area, areasLength - 4, areasX);
         areasX += area.nextAreaX; 	   
 	}
-	
+    bool showVictory;
+	void SetVictoryArea()
+    {
+        print("__________________victory!");
+        showVictory = true;
+    }
 	private void Update () {
 
         if (areasLength==0)
@@ -236,11 +243,16 @@ public class Level : MonoBehaviour {
             lastDistanceToLoadLevel = charactersManager.getDistance();
 
             Area newArea;
-            if (lastDistanceToLoadLevel > nextDistanceVictoryArea)
+            if(showVictory == true)
             {
-                nextDistanceVictoryArea = lastDistanceToLoadLevel + distanceVictoryArea;
                 newArea = victoryArea;
+                showVictory = false;
             } else
+          //  if (lastDistanceToLoadLevel > nextDistanceVictoryArea)
+         //   {
+           //     nextDistanceVictoryArea = lastDistanceToLoadLevel + distanceVictoryArea;
+           //     newArea = victoryArea;
+          //  } else
 			if(showStartArea)
 			{
 				newArea = areasManager.getRandomArea(true);

@@ -103,8 +103,8 @@ public class Data : MonoBehaviour {
         }
        // voicesManager.Init();
 
-        if (Application.isWebPlayer)
-            Application.ExternalCall("OnUnityReady");
+       // if (Application.isWebPlayer)
+        //    Application.ExternalCall("OnUnityReady");
 
         events.SetVolume += SetVolume;
 	}

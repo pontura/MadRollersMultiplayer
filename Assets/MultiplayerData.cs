@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class MultiplayerData : MonoBehaviour
 {
+    public float newVictoryAreaScore;
     public float distance;
 
     public bool player1;

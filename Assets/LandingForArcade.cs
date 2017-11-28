@@ -34,7 +34,7 @@ public class LandingForArcade : MonoBehaviour {
     void LoadCompetitions()
     {
         Cursor.visible = true;
-        print("LoadCompetitions");
+
         foreach (string title in Data.Instance.GetComponent<MultiplayerCompetitionManager>().competitions)
         {
             MultiplayerCompetitionButton newButton = Instantiate(button);

@@ -11,12 +11,16 @@ public class ScoreBarMultiplayer : MonoBehaviour {
 	public RawImage hiscoreImage;
 	public int score;
 	public int hiscore;
-	bool hiscoreWinned;
+    float newVictoryAreaScore;
 
-	void Start () {
+    bool hiscoreWinned;
+    
+
+    void Start () {
 		hiscoreWinned = false;
+        newVictoryAreaScore = Data.Instance.multiplayerData.newVictoryAreaScore;
 
-		Data.Instance.events.OnScoreOn += OnScoreOn;
+        Data.Instance.events.OnScoreOn += OnScoreOn;
 
 		score = 0;
 		bar.fillAmount = 0;
@@ -39,6 +43,11 @@ public class ScoreBarMultiplayer : MonoBehaviour {
 	{
 		score += total;
 		UpdateScore ();
+        if(score>newVictoryAreaScore)
+        {
+            Data.Instance.events.SetVictoryArea();
+            newVictoryAreaScore += (newVictoryAreaScore * 1.5f);
+        }
 	}
 	void UpdateScore()
 	{	

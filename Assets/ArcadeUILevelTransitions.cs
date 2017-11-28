@@ -47,9 +47,7 @@ public class ArcadeUILevelTransitions : MonoBehaviour {
 	}
     void OnListenerDispatcher(string type)
     {
-		
-        print("OnListenerDispatcher : " + type);
-        
+		       
         if (type == "Ralenta")
         {
             StopAllCoroutines();

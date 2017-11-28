@@ -24,6 +24,8 @@ public class MainMenuArcade : MonoBehaviour {
 
     public MeshRenderer winnersPicture;
     public Light lightInScene;
+    public Material[] backgrounds;
+    public MeshRenderer backgruond;
 
 	void Start () {
                 
@@ -41,6 +43,12 @@ public class MainMenuArcade : MonoBehaviour {
         }
         LoopWinners();
         SetFields(0);
+        LoopBG();
+    }
+    void LoopBG()
+    {
+        backgruond.material = backgrounds[Random.Range(0, backgrounds.Length-1)];
+        Invoke("LoopBG", Random.Range(10, 40) / 10);
     }
     int actualWinner;
     void LoopWinners()

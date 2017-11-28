@@ -21,6 +21,7 @@ public class CharactersManager : MonoBehaviour {
     private bool gameOver;
     private IEnumerator RalentaCoroutine;
     bool isArcadeMultiplayer;
+
     void Awake()
     {
         distance = 20;

@@ -32,7 +32,8 @@ public class UserData : MonoBehaviour {
         //  PlayerPrefs.SetString("facebookId", "");
        // PlayerPrefs.SetInt("hiscore", 0);
 
-        if (!Application.isWebPlayer)
+       // if (!Application.isWebPlayer)
+       if(3==2)
         {
             Debug.Log("CARGA DATOS de PlayerPrefs");
             username = PlayerPrefs.GetString("username");

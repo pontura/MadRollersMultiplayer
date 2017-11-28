@@ -14,8 +14,8 @@ public class Area : MonoBehaviour {
         Transform[] childs = GetComponentsInChildren<Transform>(true);
         foreach (var t in childs)
         {
-            if (t != transform)
-            {
+           // if (t != transform)
+           // {
                 if (t.tag == "sceneObject")
                 {
                     gos.Add(t.gameObject);
@@ -32,7 +32,7 @@ public class Area : MonoBehaviour {
                 {
                     gos.Add(t.gameObject);
                 } 
-            }
+          //  }
         }
         return gos.ToArray();
     }

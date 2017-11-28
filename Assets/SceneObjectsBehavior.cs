@@ -88,9 +88,11 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	}
 	public void replaceSceneObject(Area area, float areasLength, int areasX)
 	{
+        
         this.area = area;
         GameObject[] gos = area.getSceneObjects();
         bool nubesOn = false;
+  
         foreach (GameObject go in gos)
         {
             SceneObject sceneObject = null;

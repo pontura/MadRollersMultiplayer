@@ -25,7 +25,7 @@ public class MoodManager : MonoBehaviour {
         return null;
 	}
 
-    public void Change(int id)
+    public void Changes(int id)
     {
         Data.Instance.events.OnChangeMood(id);
     }

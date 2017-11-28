@@ -240,7 +240,7 @@ public class Player : MonoBehaviour {
 
         Missil missil =  weapon.GetComponent<Missil>();
 
-		print ("playerID : " + playerID + "   misil: " + missil);
+
 
         if (missil)
             missil.OnChangeWeapon(type);

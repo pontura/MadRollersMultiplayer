@@ -69,23 +69,23 @@ public class Projectil : SceneObject {
 		{
             case "wall":
                 addExplotionWall();
-                SetScore(120);
+                SetScore(350);
                 Destroy();
                 break;
 			case "floor":
 				addExplotion(0.2f);
-                SetScore(100);
+                SetScore(280);
 				Destroy();
 				break;
 			case "enemy":
 				MmoCharacter enemy= other.gameObject.GetComponent<MmoCharacter>();
 				if(enemy.state ==  MmoCharacter.states.DEAD) return;
-                SetScore(enemy.score);
+                SetScore(enemy.score*3);
 				enemy.Die ();
 				Destroy();
 				break;
 			case "destroyable":
-                SetScore(50);
+                SetScore(120);
 				other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);
                 Destroy();
 				break;
