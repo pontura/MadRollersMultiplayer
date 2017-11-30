@@ -43,12 +43,12 @@ public class MainMenuArcade : MonoBehaviour {
         }
         LoopWinners();
         SetFields(0);
-        LoopBG();
+        //LoopBG();
     }
     void LoopBG()
     {
-        backgruond.material = backgrounds[Random.Range(0, backgrounds.Length-1)];
-        Invoke("LoopBG", Random.Range(10, 40) / 10);
+       // backgruond.material = backgrounds[Random.Range(0, backgrounds.Length-1)];
+       // Invoke("LoopBG", Random.Range(10, 40) / 10);
     }
     int actualWinner;
     void LoopWinners()

@@ -235,7 +235,7 @@ public class Missions : MonoBehaviour {
             else
             {
                 lastDistance = distance;
-                level.Complete();
+               // level.Complete();
             }
             
 		}

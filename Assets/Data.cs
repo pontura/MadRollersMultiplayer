@@ -16,6 +16,8 @@ public class Data : MonoBehaviour {
     public float volume;
     public int scoreForArcade;
 
+    public int WebcamID;
+
     [HideInInspector]
     public UserData userData;
     [HideInInspector]

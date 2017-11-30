@@ -102,7 +102,5 @@ public class SceneObject : MonoBehaviour {
     }
     public virtual void setScore()
     {
-     //   if(score>0)
-        //    Data.Instance.events.OnScoreOn(transform.localPosition, score);
     }    
 }

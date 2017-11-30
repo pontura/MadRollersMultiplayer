@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class AreasManager : MonoBehaviour {
+public class AreasManager : MonoBehaviour { 
 
 	public Area startingArea;
     private int num = 0;
@@ -54,7 +54,8 @@ public class AreasManager : MonoBehaviour {
             foreach (GameObject go in thisAreaSets)
             {
                 AreaSet thisAreaSet = go.GetComponent<AreaSet>() as AreaSet;
-                if (thisAreaSet) areaSets.Add(thisAreaSet);
+                if (thisAreaSet.competitionsPriority >=99 || thisAreaSet.competitionsPriority<50 || Random.Range(0,10)<7)
+                    areaSets.Add(thisAreaSet);
             }
             RandomizeAreaSetsByPriority();
         }

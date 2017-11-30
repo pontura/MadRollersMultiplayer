@@ -32,8 +32,8 @@ public class Level : MonoBehaviour {
 	private float lastDistanceToLoadLevel;
 
     /// para arcade
-    private float nextDistanceVictoryArea;
-    private int distanceVictoryArea = 550;
+    //private float nextDistanceVictoryArea;
+    //private int distanceVictoryArea = 550;
 
     public Area victoryArea;
     //////////////////////
@@ -65,7 +65,7 @@ public class Level : MonoBehaviour {
     }
     public void Init()
 	{
-        nextDistanceVictoryArea = distanceVictoryArea;
+       // nextDistanceVictoryArea = distanceVictoryArea;
         areasX = 0;
         playing = true;
         areaActive = null;
@@ -116,6 +116,7 @@ public class Level : MonoBehaviour {
     }
 	public void Complete()
 	{
+        Debug.Log("Complete DONE");
 		showStartArea = true;
 		missions.Complete();
 		missions.StartNext();

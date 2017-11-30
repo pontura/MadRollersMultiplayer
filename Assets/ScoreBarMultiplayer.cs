@@ -46,7 +46,7 @@ public class ScoreBarMultiplayer : MonoBehaviour {
         if(score>newVictoryAreaScore)
         {
             Data.Instance.events.SetVictoryArea();
-            newVictoryAreaScore += (newVictoryAreaScore * 1.5f);
+            newVictoryAreaScore += Data.Instance.multiplayerData.newVictoryAreaScore;
         }
 	}
 	void UpdateScore()
