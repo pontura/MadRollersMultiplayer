@@ -1,5 +1,3 @@
-// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
 Shader "VacuumShaders/Curved World/Skybox/Background 2D" 
 {
 	Properties 
@@ -11,12 +9,12 @@ Shader "VacuumShaders/Curved World/Skybox/Background 2D"
 		//Albedo
 		[CurvedWorldLargeLabel] V_CW_Label_Albedo("Albedo", float) = 0	
 		_Color("  Color", color) = (1, 1, 1, 1)
-		_MainTex ("  Map", 2D) = "white" {}
+		[NoScaleOffset] _MainTex ("  Map", 2D) = "white" {}
 
 
 
 		//Curved World
-		[CurvedWorldLabel] V_CW_Label_UnityDefaults("Curved World Optionals", float) = 0
+		[CurvedWorldLabel] V_CW_Label_UnityDefaults("Unity Advanced Rendering Options", float) = 0
 	}
 
 	SubShader 
@@ -49,7 +47,7 @@ Shader "VacuumShaders/Curved World/Skybox/Background 2D"
             vertOut vert(appdata_base v) 
 			{
                 vertOut o;
-                o.pos = UnityObjectToClipPos (v.vertex);
+                o.pos = UnityObjectToClipPos(v.vertex);
                 o.scrPos = ComputeScreenPos(o.pos);
                 
 				return o;

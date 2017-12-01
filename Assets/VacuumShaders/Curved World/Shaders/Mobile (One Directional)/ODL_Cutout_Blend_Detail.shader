@@ -1,7 +1,7 @@
-// VacuumShaders 2015
+// VacuumShaders 2017
 // https://www.facebook.com/VacuumShaders
 
-Shader "Hidden/VacuumShaders/Curved World/Mobile/One Directional Light/Cutout/Detail"
+Shader "Hidden/VacuumShaders/Curved World/One Directional Light/Cutout/Detail"
 {
 	Properties 
 	{
@@ -19,8 +19,8 @@ Shader "Hidden/VacuumShaders/Curved World/Mobile/One Directional Light/Cutout/De
 		_Color("  Color", color) = (1, 1, 1, 1)
 		_MainTex ("  Map (RGB) RefStr, Gloss & Trans (A)", 2D) = "white" {}
 		[CurvedWorldUVScroll] _V_CW_MainTex_Scroll("    ", vector) = (0, 0, 0, 0)
-		_Detail ("  Detail", 2D) = "gray" {}
-		[CurvedWorldUVScroll] _V_CW_Detail_Scroll("    ", vector) = (0, 0, 0, 0)
+		_V_CW_SecondaryTex ("  Detail", 2D) = "gray" {}
+		[CurvedWorldUVScroll] _V_CW_SecondaryTex_Scroll("    ", vector) = (0, 0, 0, 0)
 
 		//Cutoff
 		[CurvedWorldLargeLabel] V_CW_Label_Cutoff("Cutout", float) = 0	
@@ -29,34 +29,36 @@ Shader "Hidden/VacuumShaders/Curved World/Mobile/One Directional Light/Cutout/De
 
 
 		//Curved World
-		[CurvedWorldLabel] V_CW_Label_UnityDefaults("Curved World Optionals", float) = 0
+		[CurvedWorldLabel] V_CW_Label_UnityDefaults("Unity Advanced Rendering Options", float) = 0
 
 		[HideInInspector] _V_CW_Rim_Color("", color) = (1, 1, 1, 1)
 		[HideInInspector] _V_CW_Rim_Bias("", Range(-1, 1)) = 0.2
 		[HideInInspector] _V_CW_Rim_Power("", Range(0.5, 8.0)) = 3
 		
-		[HideInInspector] _EmissionMap("", 2D) = "black"{}
+		[HideInInspector] _EmissionMap("", 2D) = "white"{}
 		[HideInInspector] _EmissionColor("", color) = (1, 1, 1, 1)	
 
 		[HideInInspector] _V_CW_IBL_Intensity("", float) = 1
 		[HideInInspector] _V_CW_IBL_Contrast("", float) = 1 
 		[HideInInspector] _V_CW_IBL_Cube("", cube ) = ""{}  
 
-		[HideInInspector] _ReflectColor("", color) = (1, 1, 1, 1)
-		[HideInInspector] _ReflectStrengthAlphaOffset("", Range(-1, 1)) = 0
-		[HideInInspector] _Cube("", Cube) = "_Skybox"{}	
+		[HideInInspector] _V_CW_ReflectColor("", color) = (1, 1, 1, 1)
+		[HideInInspector] _V_CW_ReflectStrengthAlphaOffset("", Range(-1, 1)) = 0
+		[HideInInspector] _V_CW_Cube("", Cube) = "_Skybox"{}	
 		[HideInInspector] _V_CW_Fresnel_Bias("", Range(-1, 1)) = 0
 
 		[HideInInspector] _V_CW_Specular_Intensity("", Range(0, 5)) = 1		
 		[HideInInspector] _V_CW_SpecularOffset("", Range(-0.25, 0.25)) = 0
 		[HideInInspector] _V_CW_Specular_Lookup("", 2D) = "black"{}
 		
-		[HideInInspector] _BumpStrength("", float) = 1
-		[HideInInspector] _BumpMap ("", 2D) = "bump" {}
-		[HideInInspector] _BumpMap_UV_Scale ("", float) = 1
+		[HideInInspector] _V_CW_NormalMapStrength("", float) = 1
+		[HideInInspector] _V_CW_NormalMap("", 2D) = "bump" {}
+		[HideInInspector] _V_CW_NormalMap_UV_Scale ("", float) = 1
 
-		[HideInInspector] _SecondBumpMap("", 2D) = ""{}
-		[HideInInspector] _SecondBumpMap_UV_Scale("", float) = 1
+		[HideInInspector] _V_CW_SecondaryNormalMap("", 2D) = ""{}
+		[HideInInspector] _V_CW_SecondaryNormalMap_UV_Scale("", float) = 1
+
+		[HideInInspector] _V_CW_LightRampTex("", 2D) = "grey"{}
 	}
 
 
@@ -67,7 +69,7 @@ Shader "Hidden/VacuumShaders/Curved World/Mobile/One Directional Light/Cutout/De
 			   "RenderType"="CurvedWorld_TransparentCutout" 
 		       "CurvedWorldTag"="One Directional Light/Cutout/Detail" 
 			   "CurvedWorldNoneRemoveableKeywords"="" 
-			   "CurvedWorldAvailableOptions"="V_CW_REFLECTIVE;V_CW_VERTEX_COLOR;V_CW_IBL;_EMISSION;V_CW_RIM;V_CW_FOG;_NORMALMAP;V_CW_SPECULAR_MOBILE;" 
+			   "CurvedWorldAvailableOptions"="V_CW_USE_LIGHT_RAMP_TEXTURE;V_CW_REFLECTIVE;V_CW_VERTEX_COLOR;_EMISSION;V_CW_RIM;V_CW_FOG;_NORMALMAP;V_CW_SPECULAR_LOOKUP;" 
 			 } 
 		LOD 200		
 		     
@@ -81,20 +83,23 @@ Shader "Hidden/VacuumShaders/Curved World/Mobile/One Directional Light/Cutout/De
 			CGPROGRAM       
 			#pragma vertex vert  
 	    	#pragma fragment frag  
+#pragma multi_compile_instancing
 			#define UNITY_PASS_FORWARDBASE   		  
 			#pragma multi_compile_fwdbase nodirlightmap nodynlightmap
 						       
 
 /*DO NOT DELETE - CURVED WORLD ODL LIGHT TYPE*/ 
 /*DO NOT DELETE - CURVED WORLD ODL INCLUDE POINT LIGHTS*/ 
+/*DO NOT DELETE - CURVED WORLD ODL INCLUDE SPHERICAL HARMONICS AND UNITY AMBIENT*/ 
 			#pragma shader_feature V_CW_REFLECTIVE_OFF V_CW_REFLECTIVE V_CW_REFLECTIVE_FRESNEL
 			#pragma shader_feature V_CW_VERTEX_COLOR_OFF V_CW_VERTEX_COLOR 
-			#pragma shader_feature V_CW_IBL_OFF V_CW_IBL
 			#pragma shader_feature _EMISSION_OFF _EMISSION
 			#pragma shader_feature V_CW_RIM_OFF V_CW_RIM
 	
 			#pragma shader_feature _NORMALMAP_OFF _NORMALMAP
 			#pragma shader_feature V_CW_SPECULAR_OFF V_CW_SPECULAR
+
+			#pragma shader_feature V_CW_USE_LIGHT_RAMP_TEXTURE_OFF V_CW_USE_LIGHT_RAMP_TEXTURE
 
 			#pragma shader_feature V_CW_FOG_OFF V_CW_FOG
 			#ifdef V_CW_FOG
@@ -102,8 +107,8 @@ Shader "Hidden/VacuumShaders/Curved World/Mobile/One Directional Light/Cutout/De
 			#endif   
 
 			#ifdef _NORMALMAP
-				#ifndef V_CW_MOBILE_LIGHT_CALC_PER_PIXEL
-				#define V_CW_MOBILE_LIGHT_CALC_PER_PIXEL
+				#ifndef V_CW_CALCULATE_LIGHT_PER_PIXEL
+				#define V_CW_CALCULATE_LIGHT_PER_PIXEL
 				#endif
 			#endif
 			 
@@ -116,7 +121,7 @@ Shader "Hidden/VacuumShaders/Curved World/Mobile/One Directional Light/Cutout/De
 			ENDCG    
 			 
 		} //Pass   		  
-		  		
+		  
 	} //SubShader
 
 

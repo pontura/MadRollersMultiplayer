@@ -7,72 +7,188 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: TrainMaterial
-  m_Shader: {fileID: 4800000, guid: 8ac010d4ec0142c46aa352792453b46f, type: 3}
-  m_ShaderKeywords: V_EXH_FOG_ON V_EXH_IBL_OFF V_EXH_RIM_OFF V_EXH_VERTEX_COLOR_OFF
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_Shader: {fileID: 4800000, guid: b34654626c8ce6e439d2bdded5f33dc8, type: 3}
+  m_ShaderKeywords: V_CW_SPECULAR _LIGHTMAPPING_DYNAMIC_LIGHTMAPS _LIGHTMAPPING_REALTIME
+    _NORMALMAP _UVSEC_UV1
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: 2000
   stringTagMap: {}
-  disabledShaderPasses: []
   m_SavedProperties:
-    serializedVersion: 3
+    serializedVersion: 2
     m_TexEnvs:
-    - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: be35671cce6cb3a41bb46a0f08ac3153, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _CubeIBL:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: fc902eba910f47642be8eedaf151b0b9, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _V_INC_IBL_Cube:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: b14c8e325b9410d4a9700ebb36b41875, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _BumpMap
+        second:
+          m_Texture: {fileID: 2800000, guid: 381a5191badc49d4e9a90118cadf64ac, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DetailNormalMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _EmissionMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _ParallaxMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Occlusion
+        second:
+          m_Texture: {fileID: 2800000, guid: 410beef8631343141bc5c918b4f4fe03, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _SpecGlossMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DetailMask
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DetailAlbedoMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _OcclusionMap
+        second:
+          m_Texture: {fileID: 2800000, guid: 410beef8631343141bc5c918b4f4fe03, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
     m_Floats:
-    - V_EXH_D_OPTIONS: 0
-    - V_EXH_FOG: 1
-    - V_EXH_IBL: 0
-    - V_EXH_LIGHT_PER: 0
-    - V_EXH_RIM: 0
-    - V_EXH_SELF_ILLUMINATED: 0
-    - V_EXH_TAG: 0
-    - V_EXH_VERTEX_COLOR: 0
-    - V_EXH_W_OPTIONS: 0
-    - V_INC_D_OPTIONS: 0
-    - V_INC_LIGHT_PER: 0
-    - V_INC_SELF_ILLUMINATED: 0
-    - V_INC_TAG: 0
-    - V_INC_W_OPTIONS: 0
-    - _BrightnessIBL: 1
-    - _Shininess: 0.36463735
-    - _V_EXH_Bend_Camera_Offset: 0
-    - _V_EXH_Fog_End: 222.6
-    - _V_EXH_Fog_Start: 8.1
-    - _V_EXH_Rim_Bias: 0.2
-    - _V_EXH_X_Bend_Bias: 0
-    - _V_EXH_X_Bend_Offset: 7.55
-    - _V_EXH_X_Bend_Size: 0
-    - _V_EXH_Y_Bend_Size: -0.5
-    - _V_INC_Camera_Bend_Offset: 0
-    - _V_INC_Fog_Density: 1
-    - _V_INC_Fog_End: 100
-    - _V_INC_Fog_Start: 0
-    - _V_INC_IBL_Brightness: 1
-    - _V_INC_Rim_Bias: 0.2
-    - _V_INC_X_Bend_Bias: 0
-    - _V_INC_X_Bend_Offset: 0
-    - _V_INC_X_Bend_Size: 0
-    - _V_INC_Y_Bend_Size: 0
+      data:
+        first:
+          name: _SrcBlend
+        second: 1
+      data:
+        first:
+          name: _DstBlend
+        second: 0
+      data:
+        first:
+          name: _Cutoff
+        second: 0.5
+      data:
+        first:
+          name: _AlphaTestRef
+        second: 0.5
+      data:
+        first:
+          name: _Shininess
+        second: 0.45953777
+      data:
+        first:
+          name: _Lightmapping
+        second: 1
+      data:
+        first:
+          name: _Parallax
+        second: 0.02
+      data:
+        first:
+          name: _ZWrite
+        second: 1
+      data:
+        first:
+          name: _Glossiness
+        second: 0.5
+      data:
+        first:
+          name: _BumpScale
+        second: 1
+      data:
+        first:
+          name: _OcclusionStrength
+        second: 1
+      data:
+        first:
+          name: _DetailNormalMapScale
+        second: 1
+      data:
+        first:
+          name: _UVSec
+        second: 0
+      data:
+        first:
+          name: _Mode
+        second: 0
+      data:
+        first:
+          name: _EmissionScaleUI
+        second: 1
+      data:
+        first:
+          name: _V_CW_Rim_Bias
+        second: 0.2
+      data:
+        first:
+          name: _V_CW_Rim_Power
+        second: 3
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _SpecColor: {r: 0.5294118, g: 0.5294118, b: 0.5294118, a: 1}
-    - _V_EXH_Fog_Color: {r: 0.26794982, g: 0.86764705, b: 0.6942522, a: 1}
-    - _V_EXH_Rim_Color: {r: 1, g: 1, b: 1, a: 1}
-    - _V_INC_Fog_Color: {r: 1, g: 1, b: 1, a: 1}
-    - _V_INC_Rim_Color: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _EmissionColor
+        second: {r: 0, g: 0, b: 0, a: 0.99999994}
+      data:
+        first:
+          name: _Color
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _SpecColor
+        second: {r: 0.49264705, g: 0.49264705, b: 0.49264705, a: 1}
+      data:
+        first:
+          name: _SpecularColor
+        second: {r: 0.2205882, g: 0.2205882, b: 0.2205882, a: 1}
+      data:
+        first:
+          name: _EmissionColorUI
+        second: {r: 0, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _EmissionColorWithMapUI
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _V_CW_MainTex_Scroll
+        second: {r: 0, g: 0, b: 0, a: 0}
+      data:
+        first:
+          name: _V_CW_DetailTex_Scroll
+        second: {r: 0, g: 0, b: 0, a: 0}
+      data:
+        first:
+          name: _V_CW_Rim_Color
+        second: {r: 1, g: 1, b: 1, a: 1}

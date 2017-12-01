@@ -1,6 +1,3 @@
-// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
-// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
-
 #ifndef VACUUM_CURVEDWORLD_BASE_CGINC
 #define VACUUM_CURVEDWORLD_BASE_CGINC 
 
@@ -15,9 +12,6 @@
 uniform float3 _V_CW_Bend;
 uniform float3 _V_CW_Bias;	
 uniform float4 _V_CW_PivotPoint_Position;
-
-uniform float4x4 _V_CW_Camera2World;
-uniform float4x4 _V_CW_World2Camera;
 
 const float2 _zero2 = float2(0,0);
 const float3 _zero3 = float3(0,0,0);
@@ -34,14 +28,6 @@ const float3 _zero3 = float3(0,0,0);
 
 #define PIVOT _V_CW_PivotPoint_Position.xyz
 
-#if defined(V_CW_PARTICLE_SYSTEM_ON)
-	#define Object2World _V_CW_Camera2World
-	#define World2Object _V_CW_World2Camera
-#else
-	#define Object2World unity_ObjectToWorld
-	#define World2Object unity_WorldToObject
-#endif
-
 ////////////////////////////////////////////////////////////////////////////
 //																		  //
 //Functions    															  //
@@ -52,18 +38,18 @@ inline void V_CW_TransformPoint(inout float4 vertex)
 {	
 	#if defined(V_CW_BENDTYPE_CLASSIC_RUNNER)
 		
-		float4 worldPos = mul( Object2World, vertex ); 
+		float4 worldPos = mul( unity_ObjectToWorld, vertex ); 
 		worldPos.xyz -= PIVOT;
 
 		float2 xyOff = max(_zero2, worldPos.zz - _V_CW_Bias.xy);
 		xyOff *= xyOff;
 		worldPos = float4(-_V_CW_Bend.y * xyOff.y, _V_CW_Bend.x * xyOff.x, 0.0f, 0.0f) * 0.001; 
 
-		vertex += mul(World2Object, worldPos);
+		vertex += mul(unity_WorldToObject, worldPos);
 
-	#elif defined(V_CW_BENDTYPE_LITTLEPLANET) 
+	#elif defined(V_CW_BENDTYPE_LITTLE_PLANET) 
 		
-		float4 worldPos = mul( Object2World, vertex ); 
+		float4 worldPos = mul( unity_ObjectToWorld, vertex ); 
 		worldPos.xyz -= PIVOT;
 
 		float2 xzOff = max(_zero2, abs(worldPos.zx) - _V_CW_Bias.xz);
@@ -71,11 +57,11 @@ inline void V_CW_TransformPoint(inout float4 vertex)
 		xzOff *= xzOff;
 		worldPos = float4(0, (_V_CW_Bend.x * xzOff.x + _V_CW_Bend.z * xzOff.y) * 0.001, 0, 0); 
 
-		vertex += mul(World2Object, worldPos);
+		vertex += mul(unity_WorldToObject, worldPos);
 
 	#elif defined(V_CW_BENDTYPE_UNIVERSAL)
 		
-		float4 worldPos = mul( Object2World, vertex ); 
+		float4 worldPos = mul( unity_ObjectToWorld, vertex ); 
 		worldPos.xyz -= PIVOT;
 
 		float3 xyzOff = max(_zero3, abs(worldPos.zzx) - _V_CW_Bias.xyz);
@@ -83,9 +69,21 @@ inline void V_CW_TransformPoint(inout float4 vertex)
 		xyzOff *= xyzOff;
 		worldPos = float4(-_V_CW_Bend.y * xyzOff.y, _V_CW_Bend.x * xyzOff.x + _V_CW_Bend.z * xyzOff.z, 0.0f, 0.0f) * 0.001; 
 
-		vertex += mul(World2Object, worldPos);
+		vertex += mul(unity_WorldToObject, worldPos);
 
-	#elif defined(V_CW_BENDTYPE_PERSPECTIVE2D)
+	#elif defined(V_CW_BENDTYPE_CYLINDRICAL_TOWER)
+
+		float4 worldPos = mul( unity_ObjectToWorld, vertex ); 
+		worldPos.xyz -= PIVOT;
+
+		float2 xyOff = max(_zero2, abs(worldPos.xy) - _V_CW_Bias.yx);
+		xyOff *= step(_zero2, worldPos.xy) * 2 - 1;
+		xyOff *= xyOff;
+		worldPos = float4(0, 0, _V_CW_Bend.x * xyOff.y + _V_CW_Bend.y * xyOff.x, 0) * 0.001; 
+
+		vertex += mul(unity_WorldToObject, worldPos);
+
+	#elif defined(V_CW_BENDTYPE_PERSPECTIVE_2D)
 
 		float4 modelView = mul(UNITY_MATRIX_MV, vertex); 	
 
@@ -128,10 +126,10 @@ inline void V_CW_TransformPointAndNormal(inout float4 vertex, inout float3 norma
 		v2.xy += float2(-_V_CW_Bend.y * xyOff.y, _V_CW_Bend.x * xyOff.x) * 0.001; 
 
 
-		vertex.xyz += mul((float3x3)World2Object, transformedVertex);
-		normal = normalize(mul((float3x3)World2Object, normalize(cross(v2 - v0, v1 - v0))));
+		vertex.xyz += mul((float3x3)unity_WorldToObject, transformedVertex);
+		normal = normalize(mul((float3x3)unity_WorldToObject, normalize(cross(v2 - v0, v1 - v0))));
 
-	#elif defined(V_CW_BENDTYPE_LITTLEPLANET)
+	#elif defined(V_CW_BENDTYPE_LITTLE_PLANET)
 
 		float2 xzOff = max(_zero2, abs(v0.zx) - _V_CW_Bias.xz);
 		xzOff *= step(_zero2, v0.zx) * 2 - 1;
@@ -152,8 +150,8 @@ inline void V_CW_TransformPointAndNormal(inout float4 vertex, inout float3 norma
 		v2.y += (_V_CW_Bend.x * xzOff.x + _V_CW_Bend.z * xzOff.y) * 0.001;	
 
 
-		vertex.xyz += mul((float3x3)World2Object, transformedVertex);
-		normal = normalize(mul((float3x3)World2Object, normalize(cross(v2 - v0, v1 - v0))));
+		vertex.xyz += mul((float3x3)unity_WorldToObject, transformedVertex);
+		normal = normalize(mul((float3x3)unity_WorldToObject, normalize(cross(v2 - v0, v1 - v0))));
 
 	#elif defined(V_CW_BENDTYPE_UNIVERSAL)
 
@@ -176,8 +174,32 @@ inline void V_CW_TransformPointAndNormal(inout float4 vertex, inout float3 norma
 		v2.xy += float2(-_V_CW_Bend.y * xyzOff.y, _V_CW_Bend.x * xyzOff.x + _V_CW_Bend.z * xyzOff.z) * 0.001; 
 	
 		
-		vertex.xyz += mul((float3x3)World2Object, transformedVertex);
-		normal = normalize(mul((float3x3)World2Object, normalize(cross(v2 - v0, v1 - v0))));
+		vertex.xyz += mul((float3x3)unity_WorldToObject, transformedVertex);
+		normal = normalize(mul((float3x3)unity_WorldToObject, normalize(cross(v2 - v0, v1 - v0))));
+
+	#elif defined(V_CW_BENDTYPE_CYLINDRICAL_TOWER)
+
+		float2 xyOff = max(_zero2, abs(v0.xy) - _V_CW_Bias.yx);
+		xyOff *= step(_zero2, v0.xy) * 2 - 1;
+		xyOff *= xyOff;
+		float3 transformedVertex = float3(0, 0, (_V_CW_Bend.x * xyOff.y + _V_CW_Bend.y * xyOff.x) * 0.001); 
+		v0 += transformedVertex;
+					  
+	  		
+		xyOff = max(_zero2, abs(v1.xy) - _V_CW_Bias.yx);
+		xyOff *= step(_zero2, v1.xy) * 2 - 1;
+		xyOff *= xyOff; 		
+		v1.z += (_V_CW_Bend.x * xyOff.y + _V_CW_Bend.y * xyOff.x) * 0.001;
+				 
+			
+		xyOff = max(_zero2, abs(v2.xy) - _V_CW_Bias.yx);
+		xyOff *= step(_zero2, v2.xy) * 2 - 1;
+		xyOff *= xyOff; 		
+		v2.z += (_V_CW_Bend.x * xyOff.y + _V_CW_Bend.y * xyOff.x) * 0.001;	
+
+		
+		vertex.xyz += mul((float3x3)unity_WorldToObject, transformedVertex);
+		normal = normalize(mul((float3x3)unity_WorldToObject, normalize(cross(v2 - v0, v1 - v0))));
 
 	#else
 
@@ -188,7 +210,7 @@ inline void V_CW_TransformPointAndNormal(inout float4 vertex, inout float3 norma
 
 inline void V_CW_TransformPointAndNormal(inout float4 vertex, inout float3 normal, float4 tangent)
 {	
-	float3 worldPos = mul(Object2World, vertex).xyz; 
+	float3 worldPos = mul(unity_ObjectToWorld, vertex).xyz; 
 	float3 worldNormal = UnityObjectToWorldNormal(normal);
 	float3 worldTangent = UnityObjectToWorldDir(tangent.xyz);
 	float3 worldBinormal = cross(worldNormal, worldTangent) * -1;// * tangent.w;

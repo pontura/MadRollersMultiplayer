@@ -10,7 +10,8 @@
 
 	SubShader 
 	{
-		Tags { "RenderType"="Opaque" }
+		//CurvedWorld rendertype, used by image effects
+		Tags { "RenderType"="CurvedWorld_Opaque" }
 		LOD 200
 		
 		CGPROGRAM

@@ -24,15 +24,15 @@ fixed2 _V_CW_MainTex_Scroll;
 #endif
 
 #ifdef _NORMALMAP
-	sampler2D _BumpMap;
-	half _BumpMap_UV_Scale;
-	half _BumpStrength;
+	sampler2D _V_CW_NormalMap;
+	half _V_CW_NormalMap_UV_Scale;
+	half _V_CW_NormalMapStrength;
 #endif
 
 #if defined(V_CW_REFLECTIVE) || defined(V_CW_REFLECTIVE_FRESNEL)
-	samplerCUBE _Cube;
-	fixed4 _ReflectColor;
-	fixed _ReflectStrengthAlphaOffset;
+	samplerCUBE _V_CW_Cube;
+	fixed4 _V_CW_ReflectColor;
+	fixed _V_CW_ReflectStrengthAlphaOffset;
 
 	#ifdef V_CW_REFLECTIVE_FRESNEL
 		half _V_CW_Fresnel_Power;
@@ -52,27 +52,18 @@ fixed2 _V_CW_MainTex_Scroll;
 #endif
 
 
-#ifdef _NORMALMAP
-	#if defined(V_CW_DECAL) || defined(V_CW_DETAIL) || defined(V_CW_BLEND_BY_VERTEX)
-		sampler2D _SecondBumpMap;
-		half _SecondBumpMap_UV_Scale;
+#if defined(V_CW_DECAL) || defined(V_CW_DETAIL) || defined(V_CW_BLEND_BY_VERTEX)
+	sampler2D _V_CW_SecondaryTex;
+	fixed2    _V_CW_SecondaryTex_Scroll;
+
+	#ifdef V_CW_BLEND_BY_VERTEX
+		fixed _V_CW_SecondaryTex_Blend;
 	#endif
-#endif
 
-#ifdef V_CW_DECAL
-	sampler2D _DecalTex;
-	fixed2 _V_CW_DecalTex_Scroll;
-#endif
-
-#ifdef V_CW_DETAIL
-	sampler2D _Detail;
-	fixed2 _V_CW_Detail_Scroll;
-#endif
-
-#ifdef V_CW_BLEND_BY_VERTEX
-	fixed _VertexBlend;
-	sampler2D _BlendTex;
-	fixed2 _V_CW_BlendTex_Scroll;
+	#ifdef _NORMALMAP
+		sampler2D _V_CW_SecondaryNormalMap;
+		half _V_CW_SecondaryNormalMap_UV_Scale;
+	#endif
 #endif
 
 
@@ -108,12 +99,8 @@ struct Input
 {
 	float2 uv_MainTex;
 
-	#if defined(V_CW_DECAL)
-		float2 uv_DecalTex;
-	#elif defined(V_CW_DETAIL)
-		float2 uv_Detail;
-	#elif defined(V_CW_BLEND_BY_VERTEX)
-		float2 uv_BlendTex;
+	#if defined(V_CW_DECAL) || defined(V_CW_DETAIL) || defined(V_CW_BLEND_BY_VERTEX)
+		float2 uv_V_CW_SecondaryTex;
 	#endif
 
 	
@@ -177,14 +164,15 @@ void surf (Input IN, inout SurfaceOutput o)
 #endif
 {
 	fixed4 mainTex = tex2D(_MainTex, IN.uv_MainTex + _V_CW_MainTex_Scroll * _Time.x);
+	
 	#ifdef V_CW_DECAL
-		fixed4 decal = tex2D(_DecalTex, IN.uv_DecalTex + _V_CW_DecalTex_Scroll.xy * _Time.x);
+		fixed4 decal = tex2D(_V_CW_SecondaryTex, IN.uv_V_CW_SecondaryTex + _V_CW_SecondaryTex_Scroll.xy * _Time.x);
 		mainTex = fixed4(lerp(mainTex.rgb, decal.rgb, decal.a), mainTex.a);
 	#elif defined(V_CW_DETAIL)
-		mainTex.rgb *= tex2D(_Detail, IN.uv_Detail + _V_CW_Detail_Scroll.xy * _Time.x).rgb * 2;
+		mainTex.rgb *= tex2D(_V_CW_SecondaryTex, IN.uv_V_CW_SecondaryTex + _V_CW_SecondaryTex_Scroll.xy * _Time.x).rgb * 2;
 	#elif defined(V_CW_BLEND_BY_VERTEX)
-		fixed vBlend = clamp(_VertexBlend + IN.color.a, 0, 1);
-		mainTex = lerp(mainTex, tex2D(_BlendTex, IN.uv_BlendTex + _V_CW_BlendTex_Scroll.xy * _Time.x), vBlend);
+		fixed vBlend = clamp(_V_CW_SecondaryTex_Blend + IN.color.a, 0, 1);
+		mainTex = lerp(mainTex, tex2D(_V_CW_SecondaryTex, IN.uv_V_CW_SecondaryTex + _V_CW_SecondaryTex_Scroll.xy * _Time.x), vBlend);
 	#endif
 
 	
@@ -207,21 +195,21 @@ void surf (Input IN, inout SurfaceOutput o)
 	#endif
 
 	#ifdef _NORMALMAP
-		fixed4 normalMap = tex2D(_BumpMap, IN.uv_MainTex * _BumpMap_UV_Scale + _V_CW_MainTex_Scroll * _Time.x);
+		fixed4 normalMap = tex2D(_V_CW_NormalMap, IN.uv_MainTex * _V_CW_NormalMap_UV_Scale + _V_CW_MainTex_Scroll * _Time.x);
 
 		#ifdef V_CW_DECAL
-			fixed4 secondN =  tex2D(_SecondBumpMap, IN.uv_DecalTex * _SecondBumpMap_UV_Scale + _V_CW_DecalTex_Scroll.xy * _Time.x);
+			fixed4 secondN =  tex2D(_V_CW_SecondaryNormalMap, IN.uv_V_CW_SecondaryTex * _V_CW_SecondaryNormalMap_UV_Scale + _V_CW_SecondaryTex_Scroll.xy * _Time.x);
 			normalMap = lerp(normalMap, secondN, decal.a);		
 		#elif defined(V_CW_DETAIL)
-			fixed4 secondN =  tex2D(_SecondBumpMap, IN.uv_Detail * _SecondBumpMap_UV_Scale + _V_CW_Detail_Scroll.xy * _Time.x);
+			fixed4 secondN =  tex2D(_V_CW_SecondaryNormalMap, IN.uv_V_CW_SecondaryTex * _V_CW_SecondaryNormalMap_UV_Scale + _V_CW_SecondaryTex_Scroll.xy * _Time.x);
 			normalMap = (normalMap + secondN) * 0.5;	
 		#elif defined(V_CW_BLEND_BY_VERTEX)
-			fixed4 secondN =  tex2D(_SecondBumpMap, IN.uv_BlendTex * _SecondBumpMap_UV_Scale + _V_CW_BlendTex_Scroll.xy * _Time.x);
+			fixed4 secondN =  tex2D(_V_CW_SecondaryNormalMap, IN.uv_V_CW_SecondaryTex * _V_CW_SecondaryNormalMap_UV_Scale + _V_CW_SecondaryTex_Scroll.xy * _Time.x);
 			normalMap = lerp(normalMap, secondN, vBlend);		
 		#endif
 
 		o.Normal = UnpackNormal(normalMap);
-		o.Normal = normalize(half3(o.Normal.x * _BumpStrength, o.Normal.y * _BumpStrength, o.Normal.z));
+		o.Normal = normalize(half3(o.Normal.x * _V_CW_NormalMapStrength, o.Normal.y * _V_CW_NormalMapStrength, o.Normal.z));
 	#endif
 
 
@@ -236,8 +224,8 @@ void surf (Input IN, inout SurfaceOutput o)
 			IN.worldRefl = WorldReflectionVector (IN, o.Normal);
 		#endif
 
-		fixed4 reflcol = texCUBE (_Cube, IN.worldRefl);
-		o.Emission = reflcol.rgb * _ReflectColor.rgb * clamp(o.Alpha + _ReflectStrengthAlphaOffset, 0, 1);;
+		fixed4 reflcol = texCUBE (_V_CW_Cube, IN.worldRefl);
+		o.Emission = reflcol.rgb * _V_CW_ReflectColor.rgb * clamp(o.Alpha + _V_CW_ReflectStrengthAlphaOffset, 0, 1);;
 
 		#ifdef V_CW_REFLECTIVE_FRESNEL
 			o.Emission *= pow(1 - dotVN, _V_CW_Fresnel_Power);

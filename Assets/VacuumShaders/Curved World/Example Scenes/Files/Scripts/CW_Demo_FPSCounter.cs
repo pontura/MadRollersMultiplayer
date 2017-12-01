@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 namespace VacuumShaders.CurvedWorld.Demo 
 {
-    [AddComponentMenu("VacuumShaders/Curved World/Demo/FPSCounter")]
+    [AddComponentMenu("VacuumShaders/Curved World/Example/FPS Counter")]
     [RequireComponent(typeof(Text))]
-    public class CW_Demo_FPSCounter : MonoBehaviour
+    public class FPSCounter : MonoBehaviour
     {
         //////////////////////////////////////////////////////////////////////////////
         //                                                                          // 

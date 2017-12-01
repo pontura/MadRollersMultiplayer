@@ -3,18 +3,18 @@ using UnityEngine;
 
 namespace VacuumShaders.CurvedWorld.Demo
 {
-    [AddComponentMenu("VacuumShaders/Curved World/Demo/2D/Platformer User Control")]
-    [RequireComponent(typeof(CW_Demo_2D_PlatformerCharacter))]
-    public class CW_Demo_2D_PlatformerUserControl : MonoBehaviour
+    [AddComponentMenu("VacuumShaders/Curved World/Example/2D/Platformer User Control")]
+    [RequireComponent(typeof(Perspective2D_PlatformerCharacter))]
+    public class Perspective2D_PlatformerUserControl : MonoBehaviour
     {
-        private CW_Demo_2D_PlatformerCharacter m_Character;
+        private Perspective2D_PlatformerCharacter m_Character;
         private bool m_Jump;
         bool uiButtonJump;
         Vector2 touchPivot;
 
         private void Awake()
         {
-            m_Character = GetComponent<CW_Demo_2D_PlatformerCharacter>();
+            m_Character = GetComponent<Perspective2D_PlatformerCharacter>();
         }
 
 

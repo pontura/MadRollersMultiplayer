@@ -1,7 +1,7 @@
-// VacuumShaders 2015
+// VacuumShaders 2017
 // https://www.facebook.com/VacuumShaders
 
-Shader "Hidden/VacuumShaders/Curved World/Mobile/Unlit/Transparent/Texture"
+Shader "Hidden/VacuumShaders/Curved World/Unlit/Transparent/Texture"
 {
 	Properties 
 	{
@@ -22,30 +22,32 @@ Shader "Hidden/VacuumShaders/Curved World/Mobile/Unlit/Transparent/Texture"
 		
 
 		//CurvedWorld Options
-		[CurvedWorldLabel] V_CW_CW_OPTIONS("Curved World Optionals", float) = 0
+		[CurvedWorldLabel] V_CW_CW_OPTIONS("Unity Advanced Rendering Options", float) = 0
 		
 		[HideInInspector] _V_CW_Rim_Color("", color) = (1, 1, 1, 1)
 		[HideInInspector] _V_CW_Rim_Bias("", Range(-1, 1)) = 0.2
 		[HideInInspector] _V_CW_Rim_Power("", Range(0.5, 8.0)) = 3
 		
-		[HideInInspector] _EmissionMap("", 2D) = "black"{}
+		[HideInInspector] _EmissionMap("", 2D) = "white"{}
 		[HideInInspector] _EmissionColor("", color) = (1, 1, 1, 1)	
 
 		[HideInInspector] _V_CW_IBL_Intensity("", float) = 1
 		[HideInInspector] _V_CW_IBL_Contrast("", float) = 1 
 		[HideInInspector] _V_CW_IBL_Cube("", cube ) = ""{}  
 
-		[HideInInspector] _ReflectColor("", color) = (1, 1, 1, 1)
-		[HideInInspector] _ReflectStrengthAlphaOffset("", Range(-1, 1)) = 0
-		[HideInInspector] _Cube("", Cube) = "_Skybox"{}	
+		[HideInInspector] _V_CW_IBL_Matcap ("", 2D) = "Gray" {}	
+
+		[HideInInspector] _V_CW_ReflectColor("", color) = (1, 1, 1, 1)
+		[HideInInspector] _V_CW_ReflectStrengthAlphaOffset("", Range(-1, 1)) = 0
+		[HideInInspector] _V_CW_Cube("", Cube) = "_Skybox"{}	
 		[HideInInspector] _V_CW_Fresnel_Bias("", Range(-1, 1)) = 0
 
-		[HideInInspector] _BumpStrength("", float) = 1
-		[HideInInspector] _BumpMap ("", 2D) = "bump" {}
-		[HideInInspector] _BumpMap_UV_Scale ("", float) = 1
+		[HideInInspector] _V_CW_NormalMapStrength("", float) = 1
+		[HideInInspector] _V_CW_NormalMap("", 2D) = "bump" {}
+		[HideInInspector] _V_CW_NormalMap_UV_Scale ("", float) = 1
 
-		[HideInInspector] _SecondBumpMap("", 2D) = ""{}
-		[HideInInspector] _SecondBumpMap_UV_Scale("", float) = 1
+		[HideInInspector] _V_CW_SecondaryNormalMap("", 2D) = ""{}
+		[HideInInspector] _V_CW_SecondaryNormalMap_UV_Scale("", float) = 1
 	}
 
 
@@ -72,13 +74,14 @@ Shader "Hidden/VacuumShaders/Curved World/Mobile/Unlit/Transparent/Texture"
 			CGPROGRAM
 			#pragma vertex vert
 	    	#pragma fragment frag  			         
-			    			                          
+#pragma multi_compile_instancing		                          
 			           
 
 			#pragma shader_feature V_CW_REFLECTIVE_OFF V_CW_REFLECTIVE V_CW_REFLECTIVE_FRESNEL
 			#pragma shader_feature _NORMALMAP_OFF _NORMALMAP
 			#pragma shader_feature V_CW_VERTEX_COLOR_OFF V_CW_VERTEX_COLOR 
-			#pragma shader_feature V_CW_IBL_OFF V_CW_IBL
+			#pragma shader_feature V_CW_IBL_OFF V_CW_IBL_CUBE V_CW_IBL_MATCAP
+			#pragma shader_feature V_CW_MATCAP_BLEND_MULTIPLY V_CW_MATCAP_BLEND_ADD
 			#pragma shader_feature _EMISSION_OFF _EMISSION
 			#pragma shader_feature V_CW_RIM_OFF V_CW_RIM
 

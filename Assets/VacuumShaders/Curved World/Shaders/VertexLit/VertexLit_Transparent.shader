@@ -14,13 +14,13 @@ Shader "Hidden/VacuumShaders/Curved World/VertexLit/Transparent"
 
 
 		//CurvedWorld Options
-		[CurvedWorldLabel] V_CW_CW_OPTIONS("Curved World Optionals", float) = 0
+		[CurvedWorldLabel] V_CW_CW_OPTIONS("Unity Advanced Rendering Options", float) = 0
 		
 		[HideInInspector] _V_CW_Rim_Color("", color) = (1, 1, 1, 1)
 		[HideInInspector] _V_CW_Rim_Bias("", Range(-1, 1)) = 0.2
 		[HideInInspector] _V_CW_Rim_Power("", Range(0.5, 8.0)) = 3
 		
-		[HideInInspector] _EmissionMap("", 2D) = "black"{}
+		[HideInInspector] _EmissionMap("", 2D) = "white"{}
 		[HideInInspector] _EmissionColor("", color) = (1, 1, 1, 1)	
 
 		[HideInInspector] _V_CW_IBL_Intensity("", float) = 1
@@ -53,7 +53,7 @@ Shader "Hidden/VacuumShaders/Curved World/VertexLit/Transparent"
 				CGPROGRAM
 				#pragma vertex vert
 				#pragma fragment frag
-				 
+#pragma multi_compile_instancing
 
 
 				#pragma shader_feature V_CW_VERTEX_COLOR_OFF V_CW_VERTEX_COLOR
@@ -80,7 +80,7 @@ Shader "Hidden/VacuumShaders/Curved World/VertexLit/Transparent"
 				CGPROGRAM
 				#pragma vertex vert
 				#pragma fragment frag
-
+#pragma multi_compile_instancing
 
 
 				#pragma shader_feature V_CW_VERTEX_COLOR_OFF V_CW_VERTEX_COLOR
@@ -107,7 +107,7 @@ Shader "Hidden/VacuumShaders/Curved World/VertexLit/Transparent"
 				CGPROGRAM
 				#pragma vertex vert
 				#pragma fragment frag
-
+#pragma multi_compile_instancing
 
 
 				#pragma shader_feature V_CW_VERTEX_COLOR_OFF V_CW_VERTEX_COLOR

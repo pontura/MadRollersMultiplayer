@@ -52,7 +52,7 @@ namespace VacuumShaders.CurvedWorld.Demo
         {
             if (parent != null && CurvedWorld_Controller.get != null)
             {
-                Vector3 newPos = CurvedWorld_Controller.get.TransformPoint(parent.position);
+                Vector3 newPos = CurvedWorld_Controller.get.TransformPoint(parent.position, BEND_TYPE.ClassicRunner);
 
                 if (followX == false)
                     newPos.x = transform.position.x;
