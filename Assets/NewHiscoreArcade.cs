@@ -76,7 +76,7 @@ public class NewHiscoreArcade : MonoBehaviour {
     {
         stopLights = true;
         flash.SetActive(true);
-        Invoke("DoIt", 0.05f);
+        Invoke("DoIt", 0.1f);
     }
     void DoIt()
     { 

@@ -97,7 +97,7 @@ public class ArcadeUILevelTransitions : MonoBehaviour {
 
        // StartCoroutine(DoFade());
         foreach (Text field in texts.GetComponentsInChildren<Text>())
-            field.text = "Nivel " + level;
+            field.text = "Nivel " + (level+1).ToString();
         foreach (Text field in texts2.GetComponentsInChildren<Text>())
         {
             switch( Game.Instance.level.Dificulty)

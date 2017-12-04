@@ -14,6 +14,7 @@ public class LandingForArcade : MonoBehaviour {
     WebCamTexture webCamTexture;
 
     void Start () {
+        Data.Instance.WebcamID = WebCamTexture.devices.Length - 1;
         Invoke("Next", 1);
         UpdateWebCam();
         rawImage.material.mainTexture = webCamTexture;
@@ -30,14 +31,13 @@ public class LandingForArcade : MonoBehaviour {
     void UpdateWebCam()
     {
         camerasField.text = "cam: " + Data.Instance.WebcamID + "/" + WebCamTexture.devices.Length;
-        webCamTexture = new WebCamTexture(WebCamTexture.devices[WebCamTexture.devices.Length - 1].name, 800, 600, 12);
+        webCamTexture = new WebCamTexture(WebCamTexture.devices[Data.Instance.WebcamID].name, 800, 600, 12);
         webCamTexture.Play();
-
         Vector3 scale = rawImage.transform.localScale;
     }
     void Next()
     {
-        webCamTexture.Stop();
+        
         print("Data.Instance.isArcadeMultiplayer " + Data.Instance.isArcadeMultiplayer);
         Data.Instance.playMode = Data.PlayModes.COMPETITION;
         if (Data.Instance.isArcadeMultiplayer)
@@ -68,6 +68,7 @@ public class LandingForArcade : MonoBehaviour {
     }
     public void Selected(string competitionTitle)
     {
+        webCamTexture.Stop();
         if (!musicOn.isOn)
             Data.Instance.GetComponent<MusicManager>().TurnOff();
 

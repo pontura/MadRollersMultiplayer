@@ -13,6 +13,8 @@ public class MultiplayerUIStatus : MonoBehaviour {
     public GameObject deadMask;
     private float timeDead = 3;
     private bool done;
+    float speedToRevive = 40;
+    float timesRevived = 0;
 
     public states state;
     public enum states
@@ -71,9 +73,14 @@ public class MultiplayerUIStatus : MonoBehaviour {
         if (state == states.DEAD)
         {
              Vector2 pos = deadMask.gameObject.transform.localPosition;
-             if (pos.x > -100)
+             if (pos.x > -140)
              {
-                 pos.x -= Time.deltaTime * 30;
+                float realSpeed = speedToRevive - (timesRevived * 4);               
+                if (speedToRevive < 5) speedToRevive = 5;
+
+                print(realSpeed + " speedToRevive: " + speedToRevive + "  timesrevived: " + timesRevived);
+
+                pos.x -= Time.deltaTime * realSpeed;
                  deadMask.gameObject.transform.localPosition = pos;
              }
              else
@@ -95,6 +102,7 @@ public class MultiplayerUIStatus : MonoBehaviour {
     {
         state = states.WAITING_TO_RESTART;
         Inactive();
+        timesRevived++;
     }
     public void Active()
     {

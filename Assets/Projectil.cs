@@ -69,7 +69,7 @@ public class Projectil : SceneObject {
 		{
             case "wall":
                 addExplotionWall();
-                SetScore(200);
+                SetScore(180);
                 Destroy();
                 break;
 			case "floor":

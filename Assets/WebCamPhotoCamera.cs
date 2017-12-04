@@ -17,7 +17,7 @@ public class WebCamPhotoCamera : MonoBehaviour
     void Start()
     {
         lastPhotoTexture = null;
-        webCamTexture = new WebCamTexture(WebCamTexture.devices[WebCamTexture.devices.Length-1].name, 800, 600, 12);
+        webCamTexture = new WebCamTexture(WebCamTexture.devices[Data.Instance.WebcamID].name, 800, 600, 12);
 
         print("CAntidad de camaras: " + WebCamTexture.devices.Length);
 

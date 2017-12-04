@@ -263,7 +263,7 @@ public class Level : MonoBehaviour {
 				newArea = areasManager.getRandomArea(false);
 			}	
 			createNextArea(newArea);
-           // print("new area " + newArea.name + " lastDistanceToLoadLevel: " + lastDistanceToLoadLevel);
+            print("new area " + newArea.name + " lastDistanceToLoadLevel: " + lastDistanceToLoadLevel);
 		}
 	}
     public void FallDown(int fallDownHeight)

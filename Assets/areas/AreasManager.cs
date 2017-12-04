@@ -119,6 +119,7 @@ public class AreasManager : MonoBehaviour {
                     {
                         Debug.Log("__setNewAreaSet STORY__" + activeAreaSetID);
                         setNewAreaSet();
+                        Debug.Log("new areaSet__" + areaSet.name);
                         activeAreaSetID++;
                         num = 0;
                     }
@@ -126,7 +127,7 @@ public class AreasManager : MonoBehaviour {
             } else 
             if (num >= areaSet.totalAreasInSet)
                 {
-                   // Debug.Log("__setNewAreaSet__" + activeAreaSetID);
+                    Debug.Log("areaSet: " + areaSet.name + " __setNewAreaSet__" + activeAreaSetID + " areaSet.totalAreasInSet: " + areaSet.totalAreasInSet);
                     Data.Instance.events.OnSetNewAreaSet(activeAreaSetID);
                     setNewAreaSet();
                     if (Random.Range(0, 10) < 5) 

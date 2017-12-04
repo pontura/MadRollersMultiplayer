@@ -35,7 +35,7 @@ public class CurvedWorldManager : MonoBehaviour {
         int rand = Random.Range(0, 20);
         if (rand > 10) newTurn = 0;
         else
-            newTurn = (rand-5)*2;
+            newTurn = (rand-5)*6;
     }
     void OnCurvedWorldTurn(int _newTurn)
     {
@@ -54,7 +54,7 @@ public class CurvedWorldManager : MonoBehaviour {
     }
     void OnCurvedWorldIncreaseBend(int _newBending)
     {
-        this.newBending += _newBending;
+        this.newBending += (_newBending/1.5f);
         if (newBending < MAX_BENDING) newBending = MAX_BENDING;
     }
     void OnAvatarCrash(CharacterBehavior cb)

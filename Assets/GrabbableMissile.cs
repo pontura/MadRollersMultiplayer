@@ -7,24 +7,24 @@ public class GrabbableMissile : Powerup {
     public GameObject simpleShot;
     public GameObject doubleShot;
     public GameObject tripleShot;
-    Weapon.types type;
+    Weapon.types missileType;
 
     public override void OnRestart(Vector3 pos)
     {
         base.OnRestart(pos);
         int rand = Random.Range(0, 100);
         if (rand < 33)
-            type = Weapon.types.SIMPLE;
+            missileType = Weapon.types.SIMPLE;
         else if (rand < 66)
-            type = Weapon.types.DOUBLE;
+            missileType = Weapon.types.DOUBLE;
         else
-            type = Weapon.types.TRIPLE;
-        InitWeapon(type);
+            missileType = Weapon.types.TRIPLE;
+        InitWeapon(missileType);
     }
-    public void InitWeapon(Weapon.types type)
+    public void InitWeapon(Weapon.types _type)
     {
         ResetAll();
-        switch (type)
+        switch (_type)
         {
             case Weapon.types.SIMPLE:
                 simpleShot.SetActive(true);
@@ -47,10 +47,6 @@ public class GrabbableMissile : Powerup {
     {
         if (hitted)
         {
-            if (sec == 0)
-            {
-                // _collider.isTrigger = true;
-            }
             sec++;
             Vector3 position = transform.position;
             Vector3 characterPosition = player.transform.position;
@@ -59,8 +55,8 @@ public class GrabbableMissile : Powerup {
             transform.position = Vector3.MoveTowards(position, characterPosition, 15 * Time.deltaTime);
             if (sec > 13)
             {
-                if (player != null && player.id != null)
-                    Data.Instance.events.OnChangeWeapon(player.id, type);
+                if (player != null)
+                    Data.Instance.events.OnChangeWeapon(player.id, missileType);
 
                 Pool();
             }
