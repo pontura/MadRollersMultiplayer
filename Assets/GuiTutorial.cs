@@ -44,6 +44,7 @@ public class GuiTutorial : MonoBehaviour {
     }
 	void Start () 
     {
+		state = states.READY;
         if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
         {
             Destroy(helpPanel);
@@ -75,23 +76,23 @@ public class GuiTutorial : MonoBehaviour {
 
             if (Data.Instance.playMode == Data.PlayModes.STORY)
             {
-                if (Data.Instance.missionActive == 1)
+				if (Data.Instance.missions.MissionActiveID == 1)
                 {
                     helpMove.SetActive(true);
                     helpJump.SetActive(false);
                     helpShoot.SetActive(false);
                 }
-                else if (Data.Instance.missionActive == 2)
+				else if (Data.Instance.missions.MissionActiveID == 2)
                 {
                     helpJump.SetActive(false);
                     helpShoot.SetActive(false);
                 }
-                else if (Data.Instance.missionActive == 3)
+				else if (Data.Instance.missions.MissionActiveID == 3)
                 {
                     helpJump.SetActive(true);
                     helpShoot.SetActive(false);
                 }
-                else if (Data.Instance.missionActive > 3)
+				else if (Data.Instance.missions.MissionActiveID > 3)
                 {
                     helpJump.SetActive(true);
                     helpShoot.SetActive(true);
@@ -101,7 +102,7 @@ public class GuiTutorial : MonoBehaviour {
            
 
             MissionSignal.Close();
-            Time.timeScale = 0;
+           // Time.timeScale = 0;
         }
     }
     public void CloseHelp()
@@ -126,18 +127,18 @@ public class GuiTutorial : MonoBehaviour {
         if (!canDisplaySignal())
             return;
 
-        if (Data.Instance.missionActive == 1)
+		if (Data.Instance.missions.MissionActiveID == 1)
         {
             state = states.MOVE;
 
             if(message != "ShowMissionName")
                 Invoke("showHelp", 1);
         }
-        else if (Data.Instance.missionActive == jumpLevel)
+		else if (Data.Instance.missions.MissionActiveID == jumpLevel)
             state = states.JUMP;
-        else if (Data.Instance.missionActive == doubleJumpLevel)
+		else if (Data.Instance.missions.MissionActiveID == doubleJumpLevel)
             state = states.DOUBLEJUMP;
-        else if (Data.Instance.missionActive == shootLevel)
+		else if (Data.Instance.missions.MissionActiveID == shootLevel)
             state = states.SHOOT;
         else
         {
@@ -207,7 +208,7 @@ public class GuiTutorial : MonoBehaviour {
     private void OnDeviceMovedOver()
     {
         helpMove.SetActive(false);
-        Data.Instance.events.OnGamePaused(false);
+       // Data.Instance.events.OnGamePaused(false);
     }
     private void OnAvatarJump()
     {
@@ -217,7 +218,7 @@ public class GuiTutorial : MonoBehaviour {
 
          helpJump.SetActive(false);
 
-         Data.Instance.events.OnGamePaused(false);
+        // Data.Instance.events.OnGamePaused(false);
          //Data.Instance.events.OnAvatarJump -= OnAvatarJump;
     }
     private void OnAvatarShoot(int playerID)
@@ -228,7 +229,7 @@ public class GuiTutorial : MonoBehaviour {
         ready = false;
 
         helpShoot.SetActive(false);
-        Data.Instance.events.OnGamePaused(false);
+       // Data.Instance.events.OnGamePaused(false);
         //Data.Instance.events.OnAvatarJump -= OnAvatarJump;
     }
     
@@ -260,7 +261,7 @@ public class GuiTutorial : MonoBehaviour {
 
             //if (ready) yield break;
 
-            Data.Instance.events.OnGamePaused(true);
+          //  Data.Instance.events.OnGamePaused(true);
             charactersManager.character.ResetJump();
 
             if (isMobile())

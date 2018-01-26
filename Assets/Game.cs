@@ -55,7 +55,7 @@ public class Game : MonoBehaviour {
     }
 	private void Init()
 	{
-        Data.Instance.events.MissionStart(Data.Instance.missionActive);
+		Data.Instance.events.MissionStart(Data.Instance.missions.MissionActiveID);
         Data.Instance.events.OnGamePaused(false);
 	}
     public void Revive()
@@ -75,6 +75,7 @@ public class Game : MonoBehaviour {
     //pierdo y arranca de ni
     public void ResetLevel()
 	{
+		
         Data.Instance.events.OnResetLevel();
         Data.Instance.replays++;
 
@@ -118,7 +119,7 @@ public class Game : MonoBehaviour {
         Data.Instance.events.OnResetLevel();
        // Application.LoadLevel("LevelSelector");
         Time.timeScale = 1;
-        Data.Instance.LoadLevel("MainMenu");
+        Data.Instance.LoadLevel("LevelSelector");
     }
     public void GotoMainMenu()
     {

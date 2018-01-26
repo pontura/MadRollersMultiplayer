@@ -11,7 +11,7 @@ public class MissionsTopPanel : MonoBehaviour
         {
             Data.Instance.events.OnMissionComplete += OnMissionComplete;
             Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
-            anim.Play("MissionTopOff");
+           // anim.Play("MissionTopOff");
         } else
             anim.Play("MissionTopOpen");
     }
@@ -22,12 +22,10 @@ public class MissionsTopPanel : MonoBehaviour
     }
     private void OnMissionComplete(int levelID)
     {
-        print("_____________OnMissionComplete");
         anim.Play("MissionTopClose");
     }
     private void OnListenerDispatcher(string message)
     {
-        print("_______________ShowMissionName");
        if (message == "ShowMissionName" )
            anim.Play("MissionTopOpen");
     }

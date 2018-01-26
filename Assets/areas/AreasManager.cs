@@ -5,7 +5,6 @@ using System.Linq;
 
 public class AreasManager : MonoBehaviour { 
 
-	public Area startingArea;
     private int num = 0;
 
 	public List<AreaSet> areaSets;
@@ -117,9 +116,7 @@ public class AreasManager : MonoBehaviour {
                 {
                     if (num >= areaSet.totalAreasInSet)
                     {
-                        Debug.Log("__setNewAreaSet STORY__" + activeAreaSetID);
                         setNewAreaSet();
-                        Debug.Log("new areaSet__" + areaSet.name);
                         activeAreaSetID++;
                         num = 0;
                     }
@@ -127,7 +124,6 @@ public class AreasManager : MonoBehaviour {
             } else 
             if (num >= areaSet.totalAreasInSet)
                 {
-                    Debug.Log("areaSet: " + areaSet.name + " __setNewAreaSet__" + activeAreaSetID + " areaSet.totalAreasInSet: " + areaSet.totalAreasInSet);
                     Data.Instance.events.OnSetNewAreaSet(activeAreaSetID);
                     setNewAreaSet();
                     if (Random.Range(0, 10) < 5) 
@@ -147,6 +143,12 @@ public class AreasManager : MonoBehaviour {
 	}
 	public Area getStartingArea()
 	{
-		return startingArea;
+		float al = Game.Instance.level.areasLength;
+		if (al == 0) {
+			return Data.Instance.missions.startingArea;
+		}
+		else
+			return Data.Instance.missions.startingAreaDuringGame;
+		
 	}
 }

@@ -13,6 +13,10 @@ public class InputKeyboard : InputType{
     {
         return Input.GetButtonDown("MainMenu");
     }
+	public override float getVertical()
+	{
+		return Input.GetAxisRaw("Vertical" + id );
+	}
     public override float getHorizontal()
     {
        return Input.GetAxisRaw("Horizontal" + id);

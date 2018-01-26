@@ -4,6 +4,10 @@ using System.Collections;
 
 public class Missions : MonoBehaviour {
 
+
+	public Area startingArea;
+	public Area startingAreaDuringGame;
+
     public Mission test_mission;
 
 	public Mission[] missions;
@@ -22,8 +26,8 @@ public class Missions : MonoBehaviour {
         ACTIVE
     }
 
-    private Text name_txt;
-    private Text desc_txt;
+	private GameObject name_txt;
+	private GameObject desc_txt;
 	//private Transform background;
 	private Level level;
 	private bool showStartArea;
@@ -36,7 +40,7 @@ public class Missions : MonoBehaviour {
         data = Data.Instance;
         Data.Instance.events.OnScoreOn += OnScoreOn;
         Data.Instance.events.OnGrabHeart += OnGrabHeart;
-        
+		Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
     }
     void OnDestroy()
     {
@@ -46,7 +50,7 @@ public class Missions : MonoBehaviour {
 
     public void OnDisable()
     {
-        data.events.OnListenerDispatcher -= OnListenerDispatcher;
+      //  data.events.OnListenerDispatcher -= OnListenerDispatcher;
     }
     private void OnListenerDispatcher(string message)
     {        
@@ -54,24 +58,20 @@ public class Missions : MonoBehaviour {
             activateMissionByListener();        
     }
 	public void Init (int _MissionActiveID, Level level) {
-
-       
-        data.events.OnListenerDispatcher += OnListenerDispatcher;
+      
         state = states.INACTIVE; 
 
+		MissionActiveID = _MissionActiveID;
+		MissionActive = missions [MissionActiveID];
+
 		this.missionCompletedPercent = 0;
-		this.MissionActiveID = _MissionActiveID-1;
 
         this.level = level;
         progressBar = level.missionBar;
 
-        name_txt = level.missionName;
-        desc_txt = level.missionDesc;
-
 #if UNITY_EDITOR
         if (data.DEBUG && test_mission)
         {
-            print("___________");
             MissionActive = test_mission;
             MissionActive.reset();
             return;
@@ -117,10 +117,9 @@ public class Missions : MonoBehaviour {
         {
             if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
             {
-                print("____TERMINO LA MISION EN MODO COMPETENCIA");
                 MissionActiveID = 0;
                 MissionActive.reset();
-                desc_txt.text = "CORRE ";
+               //desc_txt.text = "CORRE ";
                 return;
             }
             else
@@ -129,30 +128,35 @@ public class Missions : MonoBehaviour {
                 MissionActiveID = Random.Range(2, GetActualMissions().Length - 1);
             }
         }
+		MissionActiveID++;
         MissionActive = GetActualMissions()[MissionActiveID];
 		MissionActive.reset();
-		MissionActiveID++;
+
 	}
     private void activateMissionByListener()
     {
 
         state = states.ACTIVE;
+		string text = "";
         if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
         {
             if(!Data.Instance.isArcade)
-                desc_txt.text = "CORRE " + MissionActive.distance + " METROS";
+				text = "CORRE " + MissionActive.distance + " METROS";
         } else 
         if (MissionActive.Hiscore > 0)
         {
-            name_txt.text = MissionActive.avatarHiscore;
-            desc_txt.text = "SCORE: " + MissionActive.Hiscore; 
+				//text = MissionActive.avatarHiscore;
+				text = "SCORE: " + MissionActive.Hiscore; 
         }
         else
         {
-            name_txt.text = "MISSION " + MissionActiveID;
-            desc_txt.text = MissionActive.description.ToUpper();
+				//text = "MISSION " + MissionActiveID;
+				text = MissionActive.description.ToUpper();
         }
-        
+
+		foreach (Text t in Game.Instance.level.missionDesc.GetComponentsInChildren<Text>())
+			t.text = text;
+
         MissionActive.points = 0;
         lastDistance = (int)Game.Instance.GetComponent<CharactersManager>().distance;
     }
@@ -221,7 +225,8 @@ public class Missions : MonoBehaviour {
     }
 	void setMissionStatus(int total)
 	{
-        if (Data.Instance.isArcade) return;
+		if (Data.Instance.playMode != Data.PlayModes.STORY)
+			return;
         if (state == states.INACTIVE) return;
 		missionCompletedPercent = MissionActive.points * 100 / total;
 		progressBar.setProgression(missionCompletedPercent);
@@ -235,9 +240,13 @@ public class Missions : MonoBehaviour {
             else
             {
                 lastDistance = distance;
-               // level.Complete();
+                level.Complete();
             }
             
 		}
+	}
+	public Mission GetMissionActive()
+	{
+		return missions[MissionActiveID];
 	}
 }

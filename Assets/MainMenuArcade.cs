@@ -14,6 +14,8 @@ public class MainMenuArcade : MonoBehaviour {
     public Text CountDown1;
     public Text CountDown2;
 
+	public Text[] missionFields;
+
     public GameObject players;
     public GameObject winnersText;
 
@@ -28,7 +30,10 @@ public class MainMenuArcade : MonoBehaviour {
     public MeshRenderer backgruond;
 
 	void Start () {
-                
+		string desc = Data.Instance.missions.GetMissionActive ().description;
+		foreach (Text t in missionFields) {
+			t.text = desc;
+		}
         Data.Instance.events.OnInterfacesStart();
         audioSource = GetComponent<AudioSource>();
         multiplayerData = Data.Instance.multiplayerData;
@@ -41,8 +46,10 @@ public class MainMenuArcade : MonoBehaviour {
             id++;
             pm.Init();
         }
-        LoopWinners();
-        SetFields(0);
+		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {
+			LoopWinners ();
+			SetFields (0);
+		}
         //LoopBG();
     }
     void LoopBG()
@@ -157,7 +164,11 @@ public class MainMenuArcade : MonoBehaviour {
             if (totalPlayers > 0)
             {
                 done = true;
-                Data.Instance.LoadLevel("GameMultiplayer");
+				if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {
+					Data.Instance.LoadLevel ("GameMultiplayer");
+				} else {
+					Data.Instance.LoadLevel ("Game");
+				}
                 return;
             }
             else sec = 1;

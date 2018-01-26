@@ -33,7 +33,6 @@ public class Floor : MonoBehaviour
     }
     void OnChangeMood(int id)
     {
-        print("OnChangeMood " + id);
         string texture = Game.Instance.moodManager.GetMood(id).floorTexture;
         
         foreach (GameObject area in areas)

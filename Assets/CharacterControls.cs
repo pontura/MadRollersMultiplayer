@@ -29,6 +29,12 @@ public class CharacterControls : MonoBehaviour {
     }
 	// Update is called once per frame
 	void LateUpdate () {
+
+		if (InputManager.getFire(player.id))
+		{
+			Data.Instance.events.OnFireUI();
+		}
+
         if (characterBehavior.state == CharacterBehavior.states.CRASH || characterBehavior.state == CharacterBehavior.states.DEAD) return;
 
         if (mobileController)
@@ -92,22 +98,21 @@ public class CharacterControls : MonoBehaviour {
 
     private void moveByKeyboard()
     {
-        
-        float newPosX = InputManager.getHorizontal(player.id) * speedX;
-
-        if (newPosX == 0)
-        {
-            rotationY = 0;
-        }
-        else
-            if (newPosX > 0)
-                rotationY += turnSpeed;
-            else if (newPosX < 0)
-                rotationY -= turnSpeed;
-            else if (rotationY > 0)
-                rotationY -= turnSpeed;
-            else if (rotationY < 0)
-                rotationY += turnSpeed;
+		
+		float _speed = InputManager.getHorizontal(player.id);
+		if (_speed < -0.5f || _speed > 0.5f) {
+			float newPosX = _speed*speedX;
+			if (newPosX > 0)
+				rotationY += turnSpeed;
+			else if (newPosX < 0)
+				rotationY -= turnSpeed;
+			else if (rotationY > 0)
+				rotationY -= turnSpeed;
+			else if (rotationY < 0)
+				rotationY += turnSpeed;
+		} else{
+			rotationY = 0;
+		}
 
         if (rotationY > 30) rotationY = 30;
         else if (rotationY < -30) rotationY = -30;

@@ -4,7 +4,7 @@ using System.Collections;
 
 public class HearsManager : MonoBehaviour {
 
-    public Text label;
+	public Text[] labels;
     public int total;
     public int newHearts = 0;
     public Animation anim;
@@ -54,6 +54,7 @@ public class HearsManager : MonoBehaviour {
     }
     void SetHearts()
     {
-        label.text = total.ToString();
+		foreach(Text label in labels)
+       		label.text = total.ToString();
     }
 }

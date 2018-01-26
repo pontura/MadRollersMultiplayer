@@ -4,15 +4,17 @@ using System.Collections;
 
 public class LevelComplete : MonoBehaviour {
 
-    [SerializeField]
-    Stars stars;
-     [SerializeField]
-    Text label;
+	public Stars stars;
+    public Text[] fields;
 
+	void Start()
+	{
+		gameObject.SetActive(false);
+	}
      void OnDestroy()
      {
          stars = null;
-         label = null;
+		fields = null;
      }
     public void Init(int missionNum)
     {
@@ -28,9 +30,10 @@ public class LevelComplete : MonoBehaviour {
 
         stars.Init(starsQty);
         gameObject.SetActive(true);
-        label.text = "SCORE " + missionScore;
-        print("____ Mission [" + (missionNum-1) + " " + Data.Instance.GetComponent<Missions>().MissionActive.description + "] hiciste : " + missionScore + " puntos ...... su MaxHiscore: " + maxScore);
 
+		foreach(Text label in fields)
+        	label.text = "SCORE " + missionScore;
+      
         Data.Instance.events.OnSetStarsToMission(missionNum, starsQty);
     }
 }

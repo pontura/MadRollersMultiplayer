@@ -5,9 +5,6 @@ using System.Collections;
 public class Gui : MonoBehaviour {
     
     [SerializeField]
-    Text scoreLabel;
-
-    [SerializeField]
     LevelComplete levelComplete;
 
     public GameObject[] hideOnCompetitions;
@@ -47,7 +44,6 @@ public class Gui : MonoBehaviour {
 
         events = null;
         levelComplete = null;
-        scoreLabel = null;
     }
     void OnAvatarCrash(CharacterBehavior cb)
     {

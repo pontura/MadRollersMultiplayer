@@ -18,6 +18,10 @@ public class InputJoystick : InputType {
     {
         return Input.GetButton("Fire" + id);
     }
+	public override float getVertical()
+	{
+		return Input.GetAxisRaw("Vertical" + id );
+	}
     public override float getHorizontal()
     {
         return Input.GetAxisRaw("Horizontal" + id );

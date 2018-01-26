@@ -4,9 +4,8 @@ using System.Collections;
 
 public class MissionSignal : MonoBehaviour {
 
-	public Image bg;
-    public Text field;
-    private Missions AllMissions;
+	public GameObject panel;
+    public Text[] fields;
     private bool isClosing;
 
 	// Use this for initialization
@@ -17,7 +16,6 @@ public class MissionSignal : MonoBehaviour {
             return;
         }
 
-        AllMissions = Data.Instance.GetComponent<Missions>();
 
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
         Data.Instance.events.OnAvatarFall += OnAvatarCrash;
@@ -42,13 +40,11 @@ public class MissionSignal : MonoBehaviour {
     }
     void SetOff()
     {
-        bg.enabled = false;
-        field.enabled = false;
+		panel.SetActive (false);
     }
     void SetOn()
     {
-        bg.enabled = true;
-        field.enabled = true;
+		panel.SetActive (true);
     }
     private IEnumerator MissionComplete()
     {
@@ -67,12 +63,14 @@ public class MissionSignal : MonoBehaviour {
     }
     private void MissionSignalOn()
     {
-        Open("MISIóN " + AllMissions.MissionActiveID);
+		Open("MISIóN " +  Data.Instance.GetComponent<Missions>().MissionActiveID);
         CloseAfter(1.5f);
     }
     private void ShowMissionName()
     {
-        Open(AllMissions.missions[AllMissions.MissionActiveID - 1].description.ToUpper());
+		Missions missions = Data.Instance.GetComponent<Missions> ();
+		//print ("LL:" + missions.MissionActiveID + "    desc   " + missions.missions[ missions.MissionActiveID].description) ;
+		Open( missions.missions[ missions.MissionActiveID].description.ToUpper());
         CloseAfter(3);
     }
     private void Open(string text)
@@ -80,7 +78,8 @@ public class MissionSignal : MonoBehaviour {
         SetOn();
         GetComponent<Animation>().Play("missionOpen");
         GetComponent<Animation>()["missionOpen"].normalizedTime = 0;
-        field.text = text;		
+		foreach(Text f in fields)
+       		f.text = text;		
 	}
     void CloseAfter(float delay)
     {

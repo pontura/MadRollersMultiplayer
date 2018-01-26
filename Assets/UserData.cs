@@ -107,15 +107,15 @@ public class UserData : MonoBehaviour {
     {
         if (Data.Instance.playMode == Data.PlayModes.COMPETITION) return;
 
-        if (stars[missionId - 1] < starsQty)
+        if (stars[missionId] < starsQty)
         {
             PlayerPrefs.SetInt("stars_level_" + missionId, starsQty);
-            stars[missionId - 1] = starsQty;
+            stars[missionId] = starsQty;
         }
     }
     public int GetStars(int MissionID)
     {
-        return stars[MissionID - 1];
+        return stars[MissionID];
     }
     void OnListenerDispatcher(string message)
     {
@@ -128,8 +128,7 @@ public class UserData : MonoBehaviour {
     }
     private void OnScoreOn(int playerID, Vector3 pos, int _score)
     {
-        print("OnScoreOn " + _score);
-        int newScore = _score + (data.missionActive * 2);
+		int newScore = _score + (data.missions.MissionActiveID * 2);
         score += newScore;
         missionScore += newScore;
        // data.events.OnSetFinalScore(pos, score);

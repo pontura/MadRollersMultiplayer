@@ -17,6 +17,10 @@ public class InputMobile : InputType {
     {
         return Input.GetButton("MainMenu");
     }
+	public override float getVertical()
+	{
+		return Input.GetAxisRaw("Vertical" + id );
+	}
     public override float getHorizontal()
     {
         return Input.GetAxisRaw("Horizontal" + id );

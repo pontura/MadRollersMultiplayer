@@ -29,7 +29,7 @@ public class Events : MonoBehaviour {
     public System.Action<int> OnMissionStart = delegate { };
 
     public System.Action<int> OnMissionComplete = delegate { };
-    public void MissionComplete() { OnMissionComplete(Data.Instance.missionActive); }    
+	public void MissionComplete() { OnMissionComplete(Data.Instance.missions.MissionActiveID); }    
 
 	public System.Action<string> ShowNotification = delegate { };
     public System.Action<string> OnListenerDispatcher = delegate { };
@@ -91,4 +91,13 @@ public class Events : MonoBehaviour {
 
     public System.Action OnGrabHeart = delegate { };
     public System.Action<string> AdvisesOn = delegate { };
+
+	public System.Action OnFireUI = delegate { };
+
+	public System.Action OnJoystickUp = delegate { };
+	public System.Action OnJoystickDown = delegate { };
+	public System.Action OnJoystickRight = delegate { };
+	public System.Action OnJoystickLeft = delegate { };
+	public System.Action OnJoystickClick = delegate { };
+	public System.Action OnJoystickBack= delegate { };
 }

@@ -20,8 +20,6 @@ public class Competitions : MonoBehaviour {
     public void Init()
     {
         SocialEvents.OnMissionReady += OnMissionReady;
-        Data.Instance.missionActive = 0;
-        if (Data.Instance.missionActive == 0) Data.Instance.missionActive = 1;
     }
     public Mission[] GetMissions()
     {

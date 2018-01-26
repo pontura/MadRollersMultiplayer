@@ -5,6 +5,12 @@ public class Player : MonoBehaviour {
 
     public Color color;
     public MeshRenderer GorroMaterial;
+
+	public Material Gorro1;
+	public Material Gorro2;
+	public Material Gorro3;
+	public Material Gorro4;
+
 	private Game game;
 	private Gui gui;
 
@@ -25,8 +31,7 @@ public class Player : MonoBehaviour {
 
     public fxStates fxState;
 
-    public bool canJump = true;
-    public bool canShoot = true;
+	public bool canJump = false;
 
     private CharacterBehavior characterBehavior;
     private IEnumerator progressBarCoroutine;
@@ -66,11 +71,21 @@ public class Player : MonoBehaviour {
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
 		color = Data.Instance.GetComponent<MultiplayerData>().colors[id];
 
-        if (Data.Instance.isArcadeMultiplayer)
-            GorroMaterial.material.color = color;
-
-        canJump = true;
-        canShoot = true;
+       // if (Data.Instance.isArcadeMultiplayer)
+		switch (id) {
+		case 0:
+			GorroMaterial.material = Gorro1;
+			break;
+		case 1:
+			GorroMaterial.material = Gorro2;
+			break;
+		case 2:
+			GorroMaterial.material = Gorro3;
+			break;
+		case 3:
+			GorroMaterial.material = Gorro4;
+			break;
+		}
 
         characterBehavior = GetComponent<CharacterBehavior>();
         if (id == 0)
@@ -136,11 +151,11 @@ public class Player : MonoBehaviour {
     }
     private void OnAvatarGetItem(int playerID, Powerup.types item)
     {
+		print ("OnAvatarGetItem" + playerID + " item :" + item);
         if (playerID != id) return;
 
         if (item == Powerup.types.MISSILE)
         {
-            canShoot = true;
             weapon.setOn();
         }
         else if (item == Powerup.types.JETPACK)
@@ -181,7 +196,7 @@ public class Player : MonoBehaviour {
    private void OnListenerDispatcher(string message)
     {
         if (message == "ShowMissionName")
-            OnMissionStart(Data.Instance.missionActive);
+			OnMissionStart(Data.Instance.missions.MissionActiveID);
    }
    public void OnMissionStart(int missionID)
    {
@@ -189,15 +204,14 @@ public class Player : MonoBehaviour {
        if (Data.Instance.DEBUG || Data.Instance.playMode == Data.PlayModes.COMPETITION)
        {
            canJump = true;
-           canShoot = true;
        }
        else
        {
 
            if (missionID > 1)
                canJump = true;
-           if (missionID > 4)
-               canShoot = true;
+          // if (missionID > 4)
+             //  canShoot = true;
 
            if (missionID < 5)
                weapon.setOff();

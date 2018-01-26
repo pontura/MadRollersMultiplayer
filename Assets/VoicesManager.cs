@@ -85,7 +85,7 @@ public class VoicesManager : MonoBehaviour
     }
     void PlayMission()
     {
-        int id = Data.Instance.missionActive;
+		int id = Data.Instance.missions.MissionActiveID;
         Mission MissionActive = Data.Instance.GetComponent<Missions>().MissionActive;
         if (MissionActive.hearts>0)
             PlayClip(MissionHearts);
@@ -112,7 +112,7 @@ public class VoicesManager : MonoBehaviour
     void PlayRandom(AudioClip[] clips)
     {
         int rand = Random.Range(0, clips.Length);
-        PlayClipInLibrary(clips[rand].name, clips); 
+      //  PlayClipInLibrary(clips[rand].name, clips); 
     }
     private void PlayClipInLibrary(string clip_name, AudioClip[] clipLibrary)
     {

@@ -31,6 +31,12 @@ public class ListenerDispatcher : MonoBehaviour {
 		if(other.tag == "Player")
 		{
             Player player = other.GetComponentInParent<Player>();
+			if (message == myEnum.ShowMissionName)
+			{
+				if (!ready)
+					data.events.ListenerDispatcher("ShowMissionName");
+				ready = true;
+			} else
             if (message == myEnum.Ralenta)
             {
                 if (!ready)

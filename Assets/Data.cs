@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Data : MonoBehaviour {
 
+	public bool RESET;
     public bool musicOn = true;
     public bool switchPlayerInputs;
     public int competitionID = 1;
@@ -10,7 +11,6 @@ public class Data : MonoBehaviour {
     public bool isArcadeMultiplayer;
 
     public int levelUnlockedID = 0;
-	public int missionActive = 0;
     public int totalReplays = 3;
     public int replays = 0;
     public float volume;
@@ -35,7 +35,6 @@ public class Data : MonoBehaviour {
 
     public modes mode;
 
-    [HideInInspector]
     public VoicesManager voicesManager;
 
     public bool DEBUG;
@@ -69,7 +68,9 @@ public class Data : MonoBehaviour {
     }
 	void Awake () {
 
-        Cursor.visible = false;
+		if (RESET)
+			PlayerPrefs.DeleteAll ();
+      //  Cursor.visible = false;
 
         if (FORCE_LOCAL_SCORE > 0 )
             PlayerPrefs.SetInt("scoreLevel_1", FORCE_LOCAL_SCORE);
@@ -103,7 +104,7 @@ public class Data : MonoBehaviour {
             DEBUG = false;
             mode = modes.ACCELEROMETER;            
         }
-       // voicesManager.Init();
+        voicesManager.Init();
 
        // if (Application.isWebPlayer)
         //    Application.ExternalCall("OnUnityReady");
@@ -119,7 +120,7 @@ public class Data : MonoBehaviour {
         //print("MODE: " + playMode + " Set NEW mission " + num + "   levelUnlockedID: " + levelUnlockedID);
         replays = 0;
 
-        missionActive = num;
+		missions.MissionActiveID = num;
 
         if (playMode == PlayModes.COMPETITION)
         {
@@ -129,7 +130,7 @@ public class Data : MonoBehaviour {
         {
             if (num > levelUnlockedID)
             {
-                levelUnlockedID = num - 1;
+                levelUnlockedID = num;
                 PlayerPrefs.SetInt("levelUnlocked", num - 1);
             }
         }

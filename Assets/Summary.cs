@@ -2,106 +2,117 @@
 using UnityEngine.UI;
 using System.Collections;
 using System;
+using UnityEngine.SceneManagement;
 
 public class Summary : MonoBehaviour {
 
     public GameObject panel;
     public GameObject panela;
-    public Text meters;
-    public Text heartsToRevive;
-    public Text Continue;
-    public Button ContinueButton;
+   // public Text meters;
+    //public Text heartsToRevive;
+    public Text[] Continue;
+   // public Button ContinueButton;
     private int countDown;
     public Animation anim;
-    int totalHearts;
-    int newHearts;
-    private int heartsToReviveNum = 250;
-    private bool cancelCountDown;
+   // int totalHearts;
+   // int newHearts;
+   // private int heartsToReviveNum = 250;
+   // private bool cancelCountDown;
     private bool isOn;
 
     void Start()
     {
         panel.SetActive(false);
         panela.SetActive(false);
-        Data.Instance.events.OnAvatarFall += Init;
-        Data.Instance.events.OnAvatarCrash += Init;        
+		Data.Instance.events.OnGameOver += OnGameOver;
+        //Data.Instance.events.OnAvatarFall += Init;
+        //Data.Instance.events.OnAvatarCrash += Init; 
+		Data.Instance.events.OnFireUI += OnFireUI;
     }
+	void OnFireUI()
+	{
+		if (!isOn)
+			return;
+		isOn = false;
+		Restart ();
+	}
     void OnDestroy()
     {
-        Data.Instance.events.OnAvatarFall -= Init;
-        Data.Instance.events.OnAvatarCrash -= Init;
+		Data.Instance.events.OnGameOver -= OnGameOver;
+       // Data.Instance.events.OnAvatarFall -= Init;
+       // Data.Instance.events.OnAvatarCrash -= Init;
+		Data.Instance.events.OnFireUI -= OnFireUI;
     }
-    void Init(CharacterBehavior cb)
+	void OnGameOver()
     {
         if (isOn) return;
 
         countDown = 9;
         isOn = true;
-        Invoke("SetOn", 1);
-        meters.text = Game.Instance.GetComponent<CharactersManager>().distance + " mts";
+        Invoke("SetOn", 2F);
+       // meters.text = Game.Instance.GetComponent<CharactersManager>().distance + " mts";
     }
     void SetOn()
     {
-        totalHearts = GetComponent<HearsManager>().total;
-        if (Data.Instance.playMode == Data.PlayModes.STORY || heartsToReviveNum > totalHearts)
-        {
-            Restart();
-            return;
-        }
-
+       // totalHearts = GetComponent<HearsManager>().total;
+       // if (Data.Instance.playMode == Data.PlayModes.STORY || heartsToReviveNum > totalHearts)
+      //  {
+           // Restart();
+           // return;
+      //  }
+	//
         panel.SetActive(true);
         panela.SetActive(true);
         
-        newHearts = GetComponent<HearsManager>().newHearts;
-        heartsToRevive.text = "x" + heartsToReviveNum.ToString();
+      //  newHearts = GetComponent<HearsManager>().newHearts;
+      //  heartsToRevive.text = "x" + heartsToReviveNum.ToString();
 
-        Invoke("CountDown", 0.5f);
+		CountDown ();
 
         StartCoroutine(Play(anim, "popupOpen", false, null));
 
 	}
     void CountDown()
     {
-        if (cancelCountDown) return;
-        if (countDown < 2)
+		if (!isOn) return;
+        if (countDown < 1)
         {
-            Restart();
+			isOn = false;
+			Game.Instance.GotoLevelSelector ();
             return;
         }
         countDown--;
-        Continue.text = countDown.ToString();
+
+		foreach(Text C in Continue)
+        	C.text = countDown.ToString();
+		
         Invoke("CountDown", 0.5f);
     }
-	public void Revive()
-    {
-        cancelCountDown = true;
-        ReviveConfirma();
-    }
+	//public void Revive()
+  //  {
+	//	isOn = false;
+     //   cancelCountDown = true;
+     //   ReviveConfirma();
+   // }
     public void Restart()
     {
-        Reset();
         Game.Instance.ResetLevel();        
     }
-    void Reset()
-    {
-        cancelCountDown = false;
-        isOn = false;
-    }
-    public void ReviveConfirma()
-    {
-        Data.Instance.events.OnUseHearts(heartsToReviveNum);
-        Data.Instance.events.OnSoundFX("consumeHearts", -1);
+   // public void ReviveConfirma()
+  //  {
+      //  Data.Instance.events.OnUseHearts(heartsToReviveNum);
+     //   Data.Instance.events.OnSoundFX("consumeHearts", -1);
         
-        panela.SetActive(false);
-        panel.SetActive(false);
+      //  panela.SetActive(false);
+      //  panel.SetActive(false);
 
-        Invoke("ReviveTimeOut", 1);
-    }
-    void ReviveTimeOut()
-    {
-        Reset();
-        Game.Instance.Revive();
-    }
+      //  Invoke("ReviveTimeOut", 1);
+   // }
+  //  void ReviveTimeOut()
+   // {
+    //    Reset();
+    //    Game.Instance.Revive();
+  //  }
     IEnumerator Play(Animation animation, string clipName, bool useTimeScale, Action onComplete)
     {
 

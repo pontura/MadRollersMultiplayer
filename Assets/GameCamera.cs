@@ -26,6 +26,7 @@ public class GameCamera : MonoBehaviour
     void Awake()
     {
         state = states.START;
+		//state = states.PLAYING;
         startPosition.y -= 0.7f;
         transform.position = startPosition;
         transform.localEulerAngles = startRotation;
@@ -36,7 +37,10 @@ public class GameCamera : MonoBehaviour
         if (Data.Instance.mode == Data.modes.ACCELEROMETER)
 			GetComponent<Camera>().rect = new Rect (0, 0, 1, 1);
 
-        anim.Play("intro");
+		//if (Data.Instance.isArcadeMultiplayer)
+			anim.Play ("intro");
+		//else
+			//anim.Play ("intro_notMultiplayer");
     }
     void OnDestroy()
     {
@@ -52,8 +56,10 @@ public class GameCamera : MonoBehaviour
     }
     void OnChangeMood(int id)
     {
-        Color cameraColor = Game.Instance.moodManager.GetMood(id).cameraColor;
-        GetComponent<Camera>().backgroundColor = cameraColor;
+		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {
+			Color cameraColor = Game.Instance.moodManager.GetMood (id).cameraColor;
+			GetComponent<Camera> ().backgroundColor = cameraColor;
+		}
     }
     public void Init() 
 	{
@@ -72,7 +78,7 @@ public class GameCamera : MonoBehaviour
 
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
 
-        state = states.PLAYING;
+        //state = states.PLAYING;
         
 		//newCameraOrientationVector = cameraOrientationVector;
 
@@ -114,9 +120,9 @@ public class GameCamera : MonoBehaviour
          Vector3 newPos;
         if (state == states.START)
         {
-            //newPos = transform.localPosition;
-            //newPos.y += Time.deltaTime/4;
-            //transform.localPosition = newPos;
+            newPos = transform.localPosition;
+            newPos.y += Time.deltaTime/4;
+            transform.localPosition = newPos;
             return;
         }
         if (state == states.END )
@@ -158,7 +164,7 @@ public class GameCamera : MonoBehaviour
 	{
         if (Game.Instance.GetComponent<CharactersManager>().getTotalCharacters() > 1) return;
         if (state == states.END) return;
-        print("OnAvatarFall");
+
         state = states.END;
         iTween.MoveTo(gameObject, iTween.Hash(
             "position", new Vector3(transform.localPosition.x, transform.localPosition.y+3f, transform.localPosition.z-3.5f),

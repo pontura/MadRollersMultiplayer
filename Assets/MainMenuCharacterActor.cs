@@ -6,14 +6,27 @@ public class MainMenuCharacterActor : MonoBehaviour {
 
     public int id;
     public Animation anim;
-    public MeshRenderer[] toColorize;
     public GameObject bg;
+
+	public MeshRenderer GorroMaterial;
+
+	public Material gorro1;
+	public Material gorro2;
+	public Material gorro3;
+	public Material gorro4;
+
 
 	void Start () {
         anim.Play("run");
 
-        foreach(MeshRenderer mr in toColorize)
-            mr.material.color = Data.Instance.multiplayerData.colors[id];
+		if(id==0)
+			GorroMaterial.material = gorro1;
+		else if(id==2)
+			GorroMaterial.material = gorro2;
+		else if(id==3)
+			GorroMaterial.material = gorro3;
+		else
+			GorroMaterial.material = gorro4;
 
         SetState(id, false);
 	}

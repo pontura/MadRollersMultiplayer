@@ -65,7 +65,10 @@ public class CharacterBehavior : MonoBehaviour {
         data.events.StartMultiplayerRace += StartMultiplayerRace;
 
         Invoke("RefreshPosition", 0.1f);
-        _animation_hero.Play("saluda");
+		//if(Data.Instance.isArcadeMultiplayer)
+       		_animation_hero.Play("saluda");
+
+		//state = states.RUN;
 	}
     void OnDestroy ()
     {
@@ -146,7 +149,7 @@ public class CharacterBehavior : MonoBehaviour {
     }
 	public void CheckFire()
 	{
-		if(!player.canShoot) return;
+		//if(!player.canShoot) return;
 
         if (_animation_hero)
             _animation_hero.Play("shoot");
@@ -338,7 +341,6 @@ public class CharacterBehavior : MonoBehaviour {
     public void JetpackOff()
     {
         _animation_hero.transform.localEulerAngles = new Vector3(20, 0, 0);
-        print("JetpackOff");
         floorCollitions.OnAvatarFalling();
 
         if (player.transport)
@@ -349,7 +351,6 @@ public class CharacterBehavior : MonoBehaviour {
     }
     public void ResetJump()
     {
-        print("ResetJump");
         state = states.JUMP;
         jumpsNumber = 0;
     }

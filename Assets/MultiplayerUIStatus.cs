@@ -78,8 +78,6 @@ public class MultiplayerUIStatus : MonoBehaviour {
                 float realSpeed = speedToRevive - (timesRevived * 4);               
                 if (speedToRevive < 5) speedToRevive = 5;
 
-                print(realSpeed + " speedToRevive: " + speedToRevive + "  timesrevived: " + timesRevived);
-
                 pos.x -= Time.deltaTime * realSpeed;
                  deadMask.gameObject.transform.localPosition = pos;
              }

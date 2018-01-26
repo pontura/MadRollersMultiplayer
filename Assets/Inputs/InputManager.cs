@@ -18,6 +18,11 @@ public class InputManager {
         if (!initialized) Init();
         return inputs[id].getHorizontal();
     }
+	public static float getVertical(int id = 0)
+	{
+		if (!initialized) Init();
+		return inputs[id].getVertical();
+	}
     public static bool getOpenMenu(int id = 0)
     {
         if (!initialized) Init();

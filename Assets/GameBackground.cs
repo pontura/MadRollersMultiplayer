@@ -12,7 +12,7 @@ public class GameBackground : MonoBehaviour {
     {
         id = 0;
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
-        Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
+       	Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
         Data.Instance.events.OnChangeMood += OnChangeMood;
     }
     void OnDestroy()
@@ -22,7 +22,6 @@ public class GameBackground : MonoBehaviour {
     }
     void OnListenerDispatcher(string type)
     {
-        print("__________OnListenerDispatcher " + type);
         if (type == "LevelFinish" 
             || type == "LevelFinish_medium"
             || type == "LevelFinish_easy"

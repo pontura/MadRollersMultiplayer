@@ -64,14 +64,18 @@ public class ArcadeGUI : MonoBehaviour {
     }
     void SetIntroFields()
     {
-        if (state == states.INTRO) 
-            SetFields("ABRAN PASO!");
-        else if (state == states.SHOOT_ONE)
-            SetFields("TODOS DISPAREN!");
-        else if (state == states.SHOOTS_READY)
-            SetFields("BIEN!...");
-        else if (state == states.WELLCOME)
-            SetFields("...AHORA ROMPAN TODO!");
+		if (state == states.INTRO)
+			SetFields ("ABRAN PASO!");
+		else if (state == states.SHOOT_ONE)
+			SetFields ("TODOS DISPAREN!");
+		else if (state == states.SHOOTS_READY)
+			SetFields ("BIEN!...");
+		else if (state == states.WELLCOME) {
+			if(Data.Instance.playMode ==Data.PlayModes.COMPETITION)
+				SetFields ("...AHORA ROMPAN TODO!");
+			else
+				SetFields ("");
+		}
     }
     void ResetFields()
     {
@@ -148,8 +152,11 @@ public class ArcadeGUI : MonoBehaviour {
     }
     void Reset()
     {
-        Data.Instance.events.OnResetLevel();
-        Data.Instance.LoadLevel("SummaryMultiplayer");        
+		SetFields("");
+		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {
+			Data.Instance.events.OnResetLevel ();
+			Data.Instance.LoadLevel ("SummaryMultiplayer");  
+		}
     }
     void OnScoreOn(int playerID, Vector3 pos, int total)
     {

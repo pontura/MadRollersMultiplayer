@@ -23,8 +23,8 @@ public class Level : MonoBehaviour {
     public ScoreSignal scoreSignal;
 
     public ProgressBar missionBar;
-    public Text missionName;
-    public Text missionDesc;
+
+	public GameObject missionDesc;
 
 	private AreasManager areasManager;
 	private FloorManager floorManager;
@@ -39,7 +39,7 @@ public class Level : MonoBehaviour {
     //////////////////////
 
 	static Area areaActive;
-	static float areasLength = 0;
+	public float areasLength = 0;
 	private int nextPlatformSpace = 30;
 	public SceneObjectsBehavior sceneObjects;
 	Game game;
@@ -62,6 +62,7 @@ public class Level : MonoBehaviour {
     private void Awake()
     {
         Dificulty = Dificult.EASY;
+		waitingToStart = true;
     }
     public void Init()
 	{
@@ -70,7 +71,6 @@ public class Level : MonoBehaviour {
         playing = true;
         areaActive = null;
         
-        
 		data = Data.Instance;
         game = Game.Instance;
         missions = data.GetComponent<Missions>(); 		
@@ -78,13 +78,14 @@ public class Level : MonoBehaviour {
         floorManager = GetComponent<FloorManager>();
         powerupsManager = GetComponent<PowerupsManager>();
         floorManager.Init(charactersManager);
-        missions.Init(data.missionActive, this);
+
+		missions.Init(data.missions.MissionActiveID, this);
         areasManager = missions.getAreasManager();
         areasManager.Init(1);
 
         areasLength = 0;
 
-        if (!waitingToStart)
+		if (!Data.Instance.isArcadeMultiplayer && !waitingToStart) // nunevo && !waitingToStart)
             missions.StartNext();
 
         data.events.OnResetLevel += reset;
@@ -116,7 +117,6 @@ public class Level : MonoBehaviour {
     }
 	public void Complete()
 	{
-        Debug.Log("Complete DONE");
 		showStartArea = true;
 		missions.Complete();
 		missions.StartNext();
@@ -129,7 +129,6 @@ public class Level : MonoBehaviour {
         if (!playing) return;
         playing = false;
         sceneObjects.PoolSceneObjectsInScene();
-        print("PoolSceneObjectsInScene");
         //Init();
 	}
     public void OnAddObjectExplotion(Vector3 position, int type)
@@ -191,7 +190,7 @@ public class Level : MonoBehaviour {
 
         }
 
-        if ((Data.Instance.playMode == Data.PlayModes.STORY && Data.Instance.missionActive<7) 
+		if ((Data.Instance.playMode == Data.PlayModes.STORY && Data.Instance.missions.MissionActiveID<7) 
             || !powerupsManager.CanBeThrown() 
             || Random.Range(0, 100) > 50
             || charactersManager.getDistance()<300
@@ -263,7 +262,7 @@ public class Level : MonoBehaviour {
 				newArea = areasManager.getRandomArea(false);
 			}	
 			createNextArea(newArea);
-            print("new area " + newArea.name + " lastDistanceToLoadLevel: " + lastDistanceToLoadLevel);
+            //print("new area " + newArea.name + " lastDistanceToLoadLevel: " + lastDistanceToLoadLevel);
 		}
 	}
     public void FallDown(int fallDownHeight)

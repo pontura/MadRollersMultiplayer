@@ -30,6 +30,10 @@ public class CharactersManager : MonoBehaviour {
     {
         missions = Data.Instance.GetComponent<Missions>();
         isArcadeMultiplayer = Data.Instance.isArcadeMultiplayer;
+		//if (!isArcadeMultiplayer) {
+			RalentaCoroutine = DoRalentaCoroutine (0.5f, 0, 0.1f);
+			StartCoroutine (RalentaCoroutine);
+		//}
     }
     void OnListenerDispatcher(string type)
     {
@@ -75,7 +79,9 @@ public class CharactersManager : MonoBehaviour {
     }
     void Update()
     {
-        if (Game.Instance.level.waitingToStart) return;
+		
+		if (Data.Instance.isArcadeMultiplayer) return;
+		if (Game.Instance.level.waitingToStart) return;
         if (gameOver) return;
         distance += speedRun * Time.deltaTime;
 
@@ -86,7 +92,8 @@ public class CharactersManager : MonoBehaviour {
     }
     public int GetPositionByID(int _playerID)
     {
-        if (Game.Instance.level.waitingToStart) return 0;
+		if (distance < 100) return 0;
+		if (Data.Instance.isArcadeMultiplayer && Game.Instance.level.waitingToStart) return 0;
         int position = 0;
         foreach(int playerID in playerPositions)
         {
@@ -108,6 +115,9 @@ public class CharactersManager : MonoBehaviour {
         Vector3 pos;
         pos = new Vector3(1, 10, 1);
 
+		//if (Data.Instance.playMode == Data.PlayModes.STORY) {
+		//	addCharacter(pos, 0); playerPositions.Add(0);
+		//}
         if (Data.Instance.multiplayerData.player1) { addCharacter(pos, 0); playerPositions.Add(0); };
         if (Data.Instance.multiplayerData.player2) { addCharacter(pos, 1); playerPositions.Add(1); };
         if (Data.Instance.multiplayerData.player3) { addCharacter(pos, 2); playerPositions.Add(2); };
@@ -158,14 +168,14 @@ public class CharactersManager : MonoBehaviour {
     }
     public void addCharacter(Vector3 pos, int id)
     {
-        if (Game.Instance.level.waitingToStart)
-        {
+	//	if (Data.Instance.isArcadeMultiplayer && Game.Instance.level.waitingToStart)
+     //   {
             pos = new Vector3((3.5f * id) - (4.5f), 1);
-        }
-        else
-        {
-            pos.x *= separationX;
-        }
+     //   }
+      //  else
+      //  {
+      //      pos.x *= separationX;
+     //   }
         CharacterBehavior newCharacter = null;
         foreach (CharacterBehavior cb in deadCharacters)
         {
