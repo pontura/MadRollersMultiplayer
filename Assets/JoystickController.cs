@@ -21,7 +21,6 @@ public class JoystickController : MonoBehaviour {
 					OnJoystickUp ();
 				else if (v > 0.5f)
 					OnJoystickDown ();
-				print (v);
 				float h = InputManager.getHorizontal (a);
 
 				if (h < -0.5f)

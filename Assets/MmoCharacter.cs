@@ -71,18 +71,23 @@ public class MmoCharacter : SceneObject
 
 		Missions missions = Data.Instance.GetComponent<Missions>();
 		missions.SendMessage ("killGuy", 1);
-
-        _animation.Play("enemyDie");
+		       
 		state = states.DEAD;
 
 		SendMessage("isDead", SendMessageOptions.DontRequireReceiver);
 		
 		Vector3 pos = transform.position;
 		pos.y+= 2.1f;
-		SendMessage("breakOut",pos);
-
-        StartCoroutine(reset());
+		SendMessage("breakOut",pos);        
         gameObject.GetComponent<Collider>().enabled = false;
+
+		//nuevo:
+		Data.Instance.events.OncharacterCheer();
+		Pool();
+		return;
+
+		StartCoroutine(reset());
+		_animation.Play("enemyDie");
 	}
     void OnCollisionEnter(Collision other)
     {
