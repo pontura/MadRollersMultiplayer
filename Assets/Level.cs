@@ -236,7 +236,10 @@ public class Level : MonoBehaviour {
         if (areasLength==0)
        {
            createNextArea(areasManager.getStartingArea());
-       } else if (charactersManager.getDistance() > (areasLength - nextPlatformSpace)
+		} else   if (areasLength==1)
+		{
+			createNextArea(areasManager.getStartingArea());
+		} else if (charactersManager.getDistance() > (areasLength - nextPlatformSpace)
 		&&
         lastDistanceToLoadLevel != charactersManager.getDistance())
 		{

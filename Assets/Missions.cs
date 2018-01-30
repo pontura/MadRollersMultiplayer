@@ -6,6 +6,7 @@ public class Missions : MonoBehaviour {
 
 
 	public Area startingArea;
+	public Area[] relaxArea;
 	public Area startingAreaDuringGame;
 
     public Mission test_mission;

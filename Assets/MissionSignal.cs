@@ -7,6 +7,7 @@ public class MissionSignal : MonoBehaviour {
 	public GameObject panel;
     public Text[] fields;
     private bool isClosing;
+	public MissionIcon missionIcon;
 
 	// Use this for initialization
 	void Start () {
@@ -70,7 +71,9 @@ public class MissionSignal : MonoBehaviour {
     {
 		Missions missions = Data.Instance.GetComponent<Missions> ();
 		//print ("LL:" + missions.MissionActiveID + "    desc   " + missions.missions[ missions.MissionActiveID].description) ;
-		Open( missions.missions[ missions.MissionActiveID].description.ToUpper());
+		Mission mission = missions.missions[ missions.MissionActiveID];
+		Open( mission.description.ToUpper());
+		missionIcon.SetOn (mission);
         CloseAfter(3);
     }
     private void Open(string text)

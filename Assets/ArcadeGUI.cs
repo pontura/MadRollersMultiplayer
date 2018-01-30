@@ -68,9 +68,12 @@ public class ArcadeGUI : MonoBehaviour {
 			SetFields ("ABRAN PASO!");
 		else if (state == states.SHOOT_ONE)
 			SetFields ("TODOS DISPAREN!");
-		else if (state == states.SHOOTS_READY)
-			SetFields ("BIEN!...");
-		else if (state == states.WELLCOME) {
+		else if (state == states.SHOOTS_READY) {
+			if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
+				SetFields ("BIEN!...");
+			else
+				SetFields ("");
+		} else if (state == states.WELLCOME) {
 			if(Data.Instance.playMode ==Data.PlayModes.COMPETITION)
 				SetFields ("...AHORA ROMPAN TODO!");
 			else

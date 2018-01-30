@@ -102,11 +102,14 @@ public class AreasManager : MonoBehaviour {
 		Area area;
 
       //  print(areaSet + "areaSets.Length: " + areaSets.Count + "  activeAreaSetID: " + activeAreaSetID + " num: " + num + " areaSet.totalAreasInSet " + areaSet.totalAreasInSet);
-
+	
         if (startingArea)
 		{
 			area = getStartingArea();
 			num = 0;
+		} else 	if (showRelaxAreaBeforeStarting) {			
+			showRelaxAreaBeforeStarting = false;
+			return Data.Instance.missions.relaxArea[Random.Range(0,Data.Instance.missions.relaxArea.Length)];
 		} 
 		else
 		{
@@ -141,8 +144,10 @@ public class AreasManager : MonoBehaviour {
 		//area = skyAreas[Random.Range(0, skyAreas.Length)];
 		return area;
 	}
+	bool showRelaxAreaBeforeStarting;
 	public Area getStartingArea()
 	{
+		showRelaxAreaBeforeStarting = true;
 		float al = Game.Instance.level.areasLength;
 		if (al == 0) {
 			return Data.Instance.missions.startingArea;
