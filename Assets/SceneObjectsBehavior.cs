@@ -232,7 +232,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
                     clone = cilindro;
             else if (go.name == "palm")
                 {
-                    int ran = Random.Range(0, 100);
+                    int ran = Random.Range(0, 10);
                     if (ran < 20)
                         clone = palm;
                     else if (ran < 40)
