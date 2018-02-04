@@ -3,6 +3,7 @@ using System.Collections;
 
 public class GameCamera : MonoBehaviour 
 {
+	public Camera cam;
     public states state;
     public  enum states
     {
@@ -23,13 +24,13 @@ public class GameCamera : MonoBehaviour
 
     public Animation anim;
 
-    void Awake()
+    void Start()
     {
         state = states.START;
 		//state = states.PLAYING;
         startPosition.y -= 0.7f;
         transform.position = startPosition;
-        transform.localEulerAngles = startRotation;
+		cam.transform.localEulerAngles = startRotation;
 
         Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
         Data.Instance.events.OnAvatarDie += OnAvatarDie;
@@ -53,12 +54,14 @@ public class GameCamera : MonoBehaviour
         anim.Stop();
         Init();
         state = states.PLAYING;
+		cam.transform.localPosition = Vector3.zero;
     }
     void OnChangeMood(int id)
     {
+		return;
 		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {
-			Color cameraColor = Game.Instance.moodManager.GetMood (id).cameraColor;
-			GetComponent<Camera> ().backgroundColor = cameraColor;
+		//	Color cameraColor = Game.Instance.moodManager.GetMood (id).cameraColor;
+		//	GetComponent<Camera> ().backgroundColor = cameraColor;
 		}
     }
     public void Init() 
@@ -82,7 +85,7 @@ public class GameCamera : MonoBehaviour
         
 		//newCameraOrientationVector = cameraOrientationVector;
 
-        transform.localEulerAngles = new Vector3(rotationX, 0, 0);
+        cam.transform.localEulerAngles = new Vector3(rotationX, 0, 0);
        
 	}
 
@@ -90,7 +93,7 @@ public class GameCamera : MonoBehaviour
     public void setCameraRotationX(float _rotationX)
     {
         //rotationX = _rotationX;
-        transform.localEulerAngles = new Vector3(rotationX, 0, 0);
+        cam.transform.localEulerAngles = new Vector3(rotationX, 0, 0);
     }
 	public void explote(float explotionForce)
 	{
@@ -110,9 +113,9 @@ public class GameCamera : MonoBehaviour
 	}
 	private void rotateRandom(float explotionForce)
 	{
-        Vector3 v = transform.localEulerAngles;
+		Vector3 v = cam.transform.localEulerAngles;
         v.z = explotionForce;
-        transform.localEulerAngles = v;
+		cam.transform.localEulerAngles = v;
 	}
 
 	void LateUpdate () 
@@ -152,7 +155,7 @@ public class GameCamera : MonoBehaviour
         if (state == states.END) return;
         print("OnAvatarCrash");
         state = states.END;
-        iTween.MoveTo(gameObject, iTween.Hash(
+		iTween.MoveTo(cam.gameObject, iTween.Hash(
             "position", new Vector3(player.transform.localPosition.x, transform.localPosition.y - 1.3f, transform.localPosition.z - 4.1f),
             "time", 2f,
             "easetype", iTween.EaseType.easeOutCubic,
@@ -166,7 +169,7 @@ public class GameCamera : MonoBehaviour
         if (state == states.END) return;
 
         state = states.END;
-        iTween.MoveTo(gameObject, iTween.Hash(
+		iTween.MoveTo(cam.gameObject, iTween.Hash(
             "position", new Vector3(transform.localPosition.x, transform.localPosition.y+3f, transform.localPosition.z-3.5f),
             "time", 2f,
             "easetype", iTween.EaseType.easeOutCubic,

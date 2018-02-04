@@ -106,12 +106,12 @@ public class SceneObjectsBehavior : MonoBehaviour {
                 pos = mo.getPosition(pos);
             }
 
-            if (!nubesOn)
-            {
-                nubesOn = true;
-                addDecoration("Nubes_real", pos, new Vector3(0, Random.Range(0,2), 5));
+          //  if (!nubesOn)
+          //  {
+              //  nubesOn = true;
+             //   addDecoration("Nubes_real", pos, new Vector3(0, Random.Range(0,2), 5));
 
-            }
+          //  }
 
             switch (go.name)
             {
@@ -232,7 +232,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
                     clone = cilindro;
             else if (go.name == "palm")
                 {
-                    int ran = Random.Range(0, 10);
+                    int ran = Random.Range(0, 40);
                     if (ran < 20)
                         clone = palm;
                     else if (ran < 40)

@@ -19,7 +19,7 @@ public class SummaryMultiplayer : MonoBehaviour {
     public states state;
     public MeshRenderer rawimageRanking;
     public GameObject rankingScore;
-    public Light lightInScene;
+  //  public Light lightInScene;
 
     public enum states
     {
@@ -99,7 +99,7 @@ public class SummaryMultiplayer : MonoBehaviour {
         n++;
         if (n > 5)
         {
-            lightInScene.intensity = (float)Random.Range(70, 100) / 100;
+            //lightInScene.intensity = (float)Random.Range(70, 100) / 100;
             n = 0;
         }
                 

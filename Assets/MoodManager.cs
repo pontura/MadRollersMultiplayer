@@ -7,11 +7,11 @@ public class MoodManager : MonoBehaviour {
     [Serializable]
     public class Mood
     {
-        public int id;
-        public string floorTexture;
-        public string backgroundTexture;
-        public Color fogColor;
-        public Color cameraColor;
+       // public int id;
+      //  public string floorTexture;
+      //  public string backgroundTexture;
+     //   public Color fogColor;
+      //  public Color cameraColor;
     }
 
     public Mood[] moods;
@@ -20,13 +20,15 @@ public class MoodManager : MonoBehaviour {
     {
         foreach (Mood mood in moods)
         {
-            if (mood.id == id) return mood;
+           // if (mood.id == id) return mood;
         }
         return null;
 	}
 
     public void Changes(int id)
     {
+		return;
+
 		if(Data.Instance.playMode == Data.PlayModes.COMPETITION)
 			Data.Instance.events.OnChangeMood(id);
     }

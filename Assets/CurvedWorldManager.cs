@@ -22,7 +22,7 @@ public class CurvedWorldManager : MonoBehaviour {
 	}
     void OnChangeMood(int id)
     {
-        Color color = Game.Instance.moodManager.GetMood(id).fogColor;
+      //  Color color = Game.Instance.moodManager.GetMood(id).fogColor;
         //VacuumShaders.CurvedWorld.CurvedWorld_Controller.get._V_CW_Fog_Color_GLOBAL = color;
        // VacuumShaders.CurvedWorld.CurvedWorld_Controller.get.Get = color;
     }

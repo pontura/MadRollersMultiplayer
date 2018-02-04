@@ -30,15 +30,16 @@ public class GameBackground : MonoBehaviour {
             
             id++;
             if (id > materials.Length - 1) id = 0;
-            renderer.material = materials[id];
+          //  renderer.material = materials[id];
             print("moood id:  " + id);
         }
     }
     void OnChangeMood(int id)
     {
-        string texture = Game.Instance.moodManager.GetMood(id).backgroundTexture;
-        Material mat = Resources.Load("Materials/backgrounds/" + texture, typeof(Material)) as Material;
-        renderer.material = mat;
+		return;
+    //    string texture = Game.Instance.moodManager.GetMood(id).backgroundTexture;
+     //   Material mat = Resources.Load("Materials/backgrounds/" + texture, typeof(Material)) as Material;
+     //   renderer.material = mat;
     }
 	void Update () {
         Vector3 pos = charactersManager.getPosition();

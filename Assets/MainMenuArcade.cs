@@ -25,7 +25,7 @@ public class MainMenuArcade : MonoBehaviour {
     private bool done;
 
     public MeshRenderer winnersPicture;
-    public Light lightInScene;
+  //  public Light lightInScene;
     public Material[] backgrounds;
     public MeshRenderer backgruond;
 
@@ -89,7 +89,7 @@ public class MainMenuArcade : MonoBehaviour {
         n++;
         if (n > 5)
         {
-            lightInScene.intensity = (float)Random.Range(80, 150) / 100;
+         //   lightInScene.intensity = (float)Random.Range(80, 150) / 100;
             n = 0;
         }
         if (done) return;

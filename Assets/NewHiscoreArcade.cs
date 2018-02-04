@@ -11,7 +11,7 @@ public class NewHiscoreArcade : MonoBehaviour {
     public GameObject scoreField;
     public GameObject flash;
 
-    public Light lightInScene;
+   // public Light lightInScene;
 
     int newHiscore;
 
@@ -55,7 +55,7 @@ public class NewHiscoreArcade : MonoBehaviour {
         n++;
         if (n > 5)
         {
-            lightInScene.intensity = (float)Random.Range(70, 100) / 100;
+         //   lightInScene.intensity = (float)Random.Range(70, 100) / 100;
             n = 0;
         }
     }

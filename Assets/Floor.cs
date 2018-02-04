@@ -8,6 +8,7 @@ public class Floor : MonoBehaviour
     GameObject[] areas;
     public int z_length;
     private bool isMoving;
+	public float speed = 2;
 
     private CharactersManager charactersManager;
 
@@ -17,7 +18,7 @@ public class Floor : MonoBehaviour
         Data.Instance.events.OnGamePaused += OnGamePaused;
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
         Data.Instance.events.OnAvatarFall += OnAvatarCrash;
-        Data.Instance.events.OnChangeMood += OnChangeMood;
+      //  Data.Instance.events.OnChangeMood += OnChangeMood;
         this.charactersManager = charactersManager;
     }
     void OnDestroy()
@@ -25,7 +26,7 @@ public class Floor : MonoBehaviour
         Data.Instance.events.OnGamePaused -= OnGamePaused;
         Data.Instance.events.OnAvatarCrash -= OnAvatarCrash;
         Data.Instance.events.OnAvatarFall -= OnAvatarCrash;
-        Data.Instance.events.OnChangeMood -= OnChangeMood;
+      //  Data.Instance.events.OnChangeMood -= OnChangeMood;
     }
     void OnGamePaused(bool paused)
     {
@@ -33,12 +34,13 @@ public class Floor : MonoBehaviour
     }
     void OnChangeMood(int id)
     {
-        string texture = Game.Instance.moodManager.GetMood(id).floorTexture;
+		return;
+      //  string texture = Game.Instance.moodManager.GetMood(id).floorTexture;
         
         foreach (GameObject area in areas)
         {
-            Material mat = Resources.Load("Materials/Floors/" + texture, typeof(Material)) as Material;
-            area.GetComponent<MeshRenderer>().material = mat;
+       //     Material mat = Resources.Load("Materials/Floors/" + texture, typeof(Material)) as Material;
+        //    area.GetComponent<MeshRenderer>().material = mat;
         }
 
     }
@@ -46,26 +48,28 @@ public class Floor : MonoBehaviour
     {
         isMoving = false;
     }
+
+	float pos_z;
+	float lastCharactersDistance;
     void Update()
     {
         if (!isMoving) return;
         if (!charactersManager) return;
+		float charactersDistance = charactersManager.getDistance ();
+		if (charactersDistance == lastCharactersDistance)
+			return;
+		
+		lastCharactersDistance = charactersDistance;
 
-        //if (charactersManager.getDistance() > transform.localPosition.z+10)
-        //{
-        Vector3 pos = transform.localPosition;
-        pos.z = charactersManager.getDistance();
-        transform.localPosition = pos;
-        foreach (GameObject area in areas)
-        {
-            pos = area.transform.localPosition;
-            pos.z -= 0.05f;
+		pos_z += Time.deltaTime*speed;
 
-            if (pos.z < -z_length)
-                pos.z = z_length;
+		if (pos_z > z_length)
+			pos_z = 0;
 
-            area.transform.localPosition = pos;
-        }
+		Vector3 pos = transform.localPosition;
+		pos.z = charactersDistance - pos_z;
+
+		transform.localPosition = pos;
 
 
     }

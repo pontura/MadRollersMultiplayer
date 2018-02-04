@@ -16,6 +16,7 @@ public class Shadow : SceneObject {
     }
     public override void OnSceneObjectUpdate()
     {
+		return;
         if (target && target.isActive)
         {
             Vector3 pos = target.transform.position;
