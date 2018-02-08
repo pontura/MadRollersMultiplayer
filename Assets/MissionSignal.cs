@@ -46,6 +46,7 @@ public class MissionSignal : MonoBehaviour {
     void SetOn()
     {
 		panel.SetActive (true);
+		Time.timeScale = 0;	
     }
     private IEnumerator MissionComplete()
     {
@@ -74,27 +75,33 @@ public class MissionSignal : MonoBehaviour {
 		Mission mission = missions.missions[ missions.MissionActiveID];
 		Open( mission.description.ToUpper());
 		missionIcon.SetOn (mission);
-        CloseAfter(3);
+        CloseAfter(1.5f);
     }
     private void Open(string text)
     {
         SetOn();
-        GetComponent<Animation>().Play("missionOpen");
-        GetComponent<Animation>()["missionOpen"].normalizedTime = 0;
+       // GetComponent<Animation>().Play("missionOpen");
+       // GetComponent<Animation>()["missionOpen"].normalizedTime = 0;
 		foreach(Text f in fields)
        		f.text = text;		
 	}
     void CloseAfter(float delay)
     {
         isClosing = true;
-        Invoke("Close", delay);
+		StartCoroutine (Closing(delay));
+	}
+	IEnumerator Closing(float delay)
+	{
+		yield return StartCoroutine(Utils.CoroutineUtil.WaitForRealSeconds (delay));
+		Time.timeScale = 1;	
+		Close ();
 	}
     public void Close()
     {
         //if (!isClosing) return;
         //isClosing = false;
         SetOff();
-        GetComponent<Animation>().Play("missionClose");
-        GetComponent<Animation>()["missionClose"].normalizedTime = 0;
+       // GetComponent<Animation>().Play("missionClose");
+        //GetComponent<Animation>()["missionClose"].normalizedTime = 0;
     }
 }
