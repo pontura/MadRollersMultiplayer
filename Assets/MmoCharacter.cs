@@ -46,6 +46,9 @@ public class MmoCharacter : SceneObject
     private Color clothColor;
     void ResetMaterials()
     {
+		if (weaponContainer == null)
+			return;
+		
         if (!GetComponent<EnemyShooter>() && weaponContainer.GetComponentsInChildren<Transform>().Length>0)
             EmptyWeapons();
 

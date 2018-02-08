@@ -26,6 +26,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
     public SceneObject palm3;
     public SceneObject palm4;
     public SceneObject palm5;
+	public SceneObject enemyGhost;
     public SceneObject cilindro;
 
     public SceneObject GrabbableJetpack;
@@ -115,19 +116,21 @@ public class SceneObjectsBehavior : MonoBehaviour {
 
             switch (go.name)
             {
-                case "extralargeBlock1":
-                case "largeBlock1":
-                case "mediumBlock1":
-                case "smallBlock1":
-                case "extraSmallBlock1":
-                case "Coin":
-                case "bloodx1":
-                case "Yuyo":
-                case "enemyFrontal":
-                case "castle":
-                case "bonusEntrance":   
+			case "extralargeBlock1":
+			case "largeBlock1":
+			case "mediumBlock1":
+			case "smallBlock1":
+			case "extraSmallBlock1":
+			case "Coin":
+			case "bloodx1":
+			case "Yuyo":
+			case "enemyFrontal":   
+			case "castle":
+			case "bonusEntrance":   
+			          
 
-                    sceneObject = Pool.GetObjectForType(go.name + "_real", false);                   
+					sceneObject = Pool.GetObjectForType(go.name + "_real", false);    
+			
 
                     //HACK creo que esto arregla que desaparezca cada tanto un objeto, sino es asi borrame!
                     
@@ -230,6 +233,8 @@ public class SceneObjectsBehavior : MonoBehaviour {
                     clone = tunel2;
                 else if (go.name == "cilindro")
                     clone = cilindro;
+				else if (go.name == "enemyGhost")
+					clone = enemyGhost;
             else if (go.name == "palm")
                 {
                     int ran = Random.Range(0, 40);
