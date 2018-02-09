@@ -85,6 +85,8 @@ public class Events : MonoBehaviour {
     public System.Action<int> OnCurvedWorldIncreaseBend = delegate { };
     public System.Action<int> OnCurvedWorldTurn = delegate { };
 
+	public System.Action<int> OnShowTutorial = delegate { };
+
     public System.Action<int> OnSetNewAreaSet = delegate { };
     public System.Action<int> OnUseHearts = delegate { };
     

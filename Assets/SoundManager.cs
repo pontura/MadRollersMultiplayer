@@ -20,6 +20,9 @@ public class SoundManager : MonoBehaviour
 
         OnSoundsVolumeChanged(volume);
 
+		if (Data.Instance.turnOffSounds)
+			return;
+		
         Data.Instance.events.OnSoundFX += OnSoundFX;
        // Events.OnSoundFXLoop += OnSoundFXLoop;
        // Events.OnSoundsVolumeChanged += OnSoundsVolumeChanged;        

@@ -22,6 +22,10 @@ public class MusicManager : MonoBehaviour {
         GetComponent<AudioLowPassFilter>().enabled = false;
     }
 	public void Init () {
+		
+		if (Data.Instance.turnOffSounds)
+			return;
+		
         Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
         Data.Instance.events.OnMissionStart += OnMissionStart;
         Data.Instance.events.OnInterfacesStart += OnInterfacesStart;

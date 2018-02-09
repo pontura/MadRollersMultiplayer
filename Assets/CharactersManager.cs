@@ -282,4 +282,9 @@ public class CharactersManager : MonoBehaviour {
             cb.transform.localPosition = pos;
         }
     }
+	public void ResetJumps(){
+		foreach (CharacterBehavior cb in characters) {
+			cb.ResetJump ();
+		}
+	}
 }

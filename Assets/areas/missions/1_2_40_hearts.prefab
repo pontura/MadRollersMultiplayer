@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 11400000}
   - component: {fileID: 11400002}
   m_Layer: 0
-  m_Name: 1_0_40_hearts
+  m_Name: 1_2_40_hearts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,13 +41,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c52aa23c4c1909c45b1a2eeadb8f98cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  missionIcon: {fileID: 1089315483160192, guid: d7e089851d2ba4047a966a7cb1156a70,
+    type: 2}
   isCompetition: 0
   maxScore: 420
   Hiscore: 0
   avatarHiscore: 
   hearts: 40
   guys: 0
-  points: 0
+  points: 40
   listeners: 0
   planes: 0
   bombs: 0
@@ -66,7 +68,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   areaSets:
   - {fileID: 11400000, guid: a05b460428d9d8c4fa0d3239b4827bc7, type: 2}
-  activeAreaSetID: 0
+  activeAreaSetID: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

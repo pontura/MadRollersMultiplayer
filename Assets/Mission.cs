@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Mission: MonoBehaviour {
 
+	public GameObject missionIcon;
     public bool isCompetition;
     public int maxScore;
     public int Hiscore;

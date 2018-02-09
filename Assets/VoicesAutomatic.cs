@@ -11,7 +11,6 @@ public class VoicesAutomatic : MonoBehaviour {
         //Data.Instance.events.OnAvatarShoot += OnAvatarShoot;
         //Data.Instance.events.OnSoundFX += OnSoundFX;
 
-        if (Data.Instance.playingTutorial) return;
         Invoke("Loop", 4);
 	}
     void OnDestroy()

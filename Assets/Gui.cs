@@ -8,16 +8,21 @@ public class Gui : MonoBehaviour {
     LevelComplete levelComplete;
 
     public GameObject[] hideOnCompetitions;
-    public GameObject helpPanel;
 	private Data data;   
 
 	private int barWidth = 200;
     private bool MainMenuOpened = false;
 
     private Events events;
-	 
+	public MissionIcon missionIcon_to_instantiate;
+	[HideInInspector]
+	public MissionIcon missionIcon;
+
 	void Start()
 	{
+		missionIcon = Instantiate (missionIcon_to_instantiate);
+		missionIcon.transform.localPosition = new Vector3 (1000, 0, 0);
+
         if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
         {
             foreach (GameObject go in hideOnCompetitions)
