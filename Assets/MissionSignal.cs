@@ -111,7 +111,7 @@ public class MissionSignal : MonoBehaviour {
 		missionId += 1;
 		foreach(Text f in fields)
        		f.text = text;	
-		if (missionId == -1) {
+		if (missionId == 0) {
 			foreach(Text f in fieldsMissionNum)
 				f.text = "";		
 		} else {

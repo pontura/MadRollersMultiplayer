@@ -4,12 +4,13 @@ using System.Collections;
 
 public class LevelComplete : MonoBehaviour {
 
+	public GameObject panel;
 	public Stars stars;
     public Text[] fields;
 
 	void Start()
 	{
-		gameObject.SetActive(false);
+		panel.SetActive(false);
 	}
      void OnDestroy()
      {
@@ -18,22 +19,51 @@ public class LevelComplete : MonoBehaviour {
      }
     public void Init(int missionNum)
     {
+		Time.timeScale = 0.2f;	
+		panel.SetActive (true);
         int maxScore = Data.Instance.GetComponent<Missions>().MissionActive.maxScore;
         int missionScore = Data.Instance.userData.missionScore;
         int quarter = maxScore / 4;
 
+		string titleText ="";
+
         int starsQty;
-        if (missionScore >= quarter*4) starsQty = 3;
-        else if (missionScore >= quarter*2) starsQty = 2;
-        else if (missionScore >= quarter) starsQty = 1;
-        else  starsQty = 0;
+		if (missionScore >= quarter * 4) {
+			titleText = "EXCELENT";
+			starsQty = 3;
+		} else if (missionScore >= quarter * 2) {
+			titleText = "WELL DONE";
+			starsQty = 2;
+		} else if (missionScore >= quarter) {
+			titleText = "OK...";
+			starsQty = 1;
+		} else {
+			titleText = "POOR...";
+			starsQty = 0;
+		}
 
         stars.Init(starsQty);
-        gameObject.SetActive(true);
 
-		foreach(Text label in fields)
-        	label.text = "SCORE " + missionScore;
+		foreach (Text label in fields)
+			label.text = titleText; //"SCORE " + missionScore;
       
         Data.Instance.events.OnSetStarsToMission(missionNum, starsQty);
+
+		CloseAfter (3);
     }
+	void CloseAfter(float delay)
+	{
+		StartCoroutine (Closing(delay));
+	}
+	IEnumerator Closing(float delay)
+	{
+		yield return StartCoroutine(Utils.CoroutineUtil.WaitForRealSeconds (delay));
+		Time.timeScale = 1;	
+		Close ();
+	}
+	public void Close()
+	{
+		panel.SetActive (false);
+		Game.Instance.level.charactersManager.ResetJumps ();
+	}
 }

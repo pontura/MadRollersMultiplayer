@@ -32,8 +32,6 @@ public class Gui : MonoBehaviour {
             return;
         }
         events = Data.Instance.events;
-        levelComplete.gameObject.SetActive(false);
-      //  Data.Instance.events.OnSetFinalScore += OnSetFinalScore;
         Data.Instance.events.OnMissionComplete += OnMissionComplete;
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
@@ -41,7 +39,6 @@ public class Gui : MonoBehaviour {
     }
     void OnDestroy()
     {
-       // Data.Instance.events.OnSetFinalScore -= OnSetFinalScore;
         Data.Instance.events.OnMissionComplete -= OnMissionComplete;
         Data.Instance.events.OnAvatarCrash -= OnAvatarCrash;
         Data.Instance.events.OnAvatarFall -= OnAvatarCrash;
