@@ -50,7 +50,7 @@ public class Events : MonoBehaviour {
     public void AddExplotion(Vector3 position, Color color) { OnAddExplotion(position, color); }
 
     public System.Action<Vector3, int> OnAddObjectExplotion = delegate { };
-    public System.Action<Vector3, int, int> OnAddHeartsByBreaking = delegate { };
+	public System.Action<Vector3, Material[], Vector3[]> OnAddHeartsByBreaking = delegate { };
     
     public System.Action<Vector3, string, string> OnAddTumba = delegate { };  
 

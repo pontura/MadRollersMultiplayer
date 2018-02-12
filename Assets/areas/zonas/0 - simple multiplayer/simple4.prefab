@@ -146,23 +146,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &108204
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 498256}
-  - component: {fileID: 3345656}
-  - component: {fileID: 11433934}
-  m_Layer: 0
-  m_Name: enemyFrontal
-  m_TagString: sceneObject
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &108258
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,24 +353,6 @@ GameObject:
   m_Layer: 0
   m_Name: cuore
   m_TagString: grabbable
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &119124
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 474356}
-  - component: {fileID: 3308918}
-  - component: {fileID: 6547188}
-  - component: {fileID: 2302942}
-  m_Layer: 0
-  m_Name: Cube
-  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2690,7 +2655,6 @@ Transform:
   - {fileID: 478690}
   - {fileID: 486488}
   - {fileID: 403086}
-  - {fileID: 498256}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2962,19 +2926,6 @@ Transform:
   - {fileID: 413404}
   m_Father: {fileID: 455234}
   m_RootOrder: 39
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &474356
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 119124}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.0833333, z: 0}
-  m_LocalScale: {x: 1.6666666, y: 1.6666666, z: 1.6666666}
-  m_Children: []
-  m_Father: {fileID: 498256}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &474734
 Transform:
@@ -3325,20 +3276,6 @@ Transform:
   m_Father: {fileID: 455234}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &498256
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 108204}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.8, y: 0.5, z: -10.1}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
-  m_Children:
-  - {fileID: 474356}
-  m_Father: {fileID: 455234}
-  m_RootOrder: 45
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &499140
 Transform:
   m_ObjectHideFlags: 1
@@ -3414,40 +3351,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: c2ce44e1e8834bf428c12bd72b8eaeef, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!23 &2302942
-MeshRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 119124}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5351,13 +5254,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107094}
   m_Mesh: {fileID: 4300000, guid: 71c75448eec39a740a1db37f6ec6a6a1, type: 3}
---- !u!33 &3308918
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 119124}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &3310162
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -5483,13 +5379,6 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193374}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!33 &3345656
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 108204}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &3346150
 MeshFilter:
@@ -6518,18 +6407,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.52, y: 0.75, z: 0.8}
   m_Center: {x: -0.45, y: 0, z: 0}
---- !u!65 &6547188
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 119124}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6550012
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -6961,6 +6838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -6968,6 +6846,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0
@@ -6985,6 +6864,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -6992,6 +6872,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0
@@ -7009,6 +6890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7016,6 +6898,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0
@@ -7033,6 +6916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7040,6 +6924,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0
@@ -7069,6 +6954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7076,6 +6962,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0
@@ -7105,6 +6992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7112,6 +7000,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0
@@ -7129,6 +7018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7136,6 +7026,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0
@@ -7165,6 +7056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d3d555793ff3d849aa8b31c6db5b487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7172,6 +7064,7 @@ MonoBehaviour:
   score: 20
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!114 &11417796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7201,6 +7094,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7208,6 +7102,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0
@@ -7249,6 +7144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7256,6 +7152,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0
@@ -7285,6 +7182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7292,6 +7190,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0
@@ -7351,6 +7250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7358,6 +7258,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0
@@ -7411,6 +7312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7418,6 +7320,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0
@@ -7447,6 +7350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7454,6 +7358,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0
@@ -7471,6 +7376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7478,6 +7384,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0
@@ -7495,6 +7402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7502,6 +7410,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0
@@ -7520,20 +7429,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentSceneObject: {fileID: 0}
---- !u!114 &11433934
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 108204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d66db0dc0b1de3543bb2a9cad1f2faaf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 4
-  randomSpeedDiff: 0
-  runToCharacter: 0
 --- !u!114 &11434124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7565,6 +7460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7572,6 +7468,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0
@@ -7589,6 +7486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7596,6 +7494,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0
@@ -7703,6 +7602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7710,6 +7610,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0
@@ -7727,6 +7628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7734,6 +7636,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0
@@ -7763,6 +7666,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7770,6 +7674,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0
@@ -7787,6 +7692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7794,6 +7700,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0
@@ -7871,6 +7778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7878,6 +7786,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0
@@ -7895,6 +7804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d3d555793ff3d849aa8b31c6db5b487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7902,6 +7812,7 @@ MonoBehaviour:
   score: 20
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!114 &11462824
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7913,6 +7824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7920,6 +7832,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0
@@ -7937,6 +7850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7944,6 +7858,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0
@@ -7961,6 +7876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d3d555793ff3d849aa8b31c6db5b487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7968,6 +7884,7 @@ MonoBehaviour:
   score: 20
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!114 &11468242
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7991,6 +7908,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d3d555793ff3d849aa8b31c6db5b487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7998,6 +7916,7 @@ MonoBehaviour:
   score: 20
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!114 &11473304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8021,6 +7940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -8028,6 +7948,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0
@@ -8089,6 +8010,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -8096,6 +8018,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0
@@ -8125,6 +8048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -8132,6 +8056,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0
@@ -8173,6 +8098,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -8180,6 +8106,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0
@@ -8247,6 +8174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -8254,6 +8182,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0
@@ -8271,6 +8200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -8278,6 +8208,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0
@@ -8295,6 +8226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -8302,6 +8234,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0
@@ -8319,6 +8252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -8326,6 +8260,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   energy: 1
   hitted: 0
   sec: 0

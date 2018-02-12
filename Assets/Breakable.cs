@@ -90,6 +90,15 @@ public class Breakable : MonoBehaviour {
 	}
 	
 	private void breaker(){
-         Data.Instance.events.OnAddHeartsByBreaking(transform.position, (int)NumOfParticles, 400);
+		MeshRenderer[] all = GetComponentsInChildren<MeshRenderer> ();
+		Material[] materials = new Material[all.Length];
+		Vector3[] pos = new Vector3[all.Length];
+		int id = 0;
+		foreach (MeshRenderer mr in all) {
+			materials [id] = mr.material;
+			pos [id] = mr.transform.position;
+			id++;
+		}
+		Data.Instance.events.OnAddHeartsByBreaking(transform.position, materials, pos);
 	}
 }

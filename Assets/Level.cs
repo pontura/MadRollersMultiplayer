@@ -195,14 +195,33 @@ public class Level : MonoBehaviour {
             || Random.Range(0, 100) > 50
             || charactersManager.getDistance()<300
             )
-            OnAddHeartsByBreaking(position, 8, 450);
+            AddHeartsByBreaking(position, 12, 450);
         else
             Data.Instance.events.OnAddPowerUp(position);
 	}
-    void OnAddHeartsByBreaking(Vector3 position, int NumOfParticles, int force = 400)
+	void OnAddHeartsByBreaking(Vector3 position, Material[] mat, Vector3[] pos)
+	{
+		int force = 400;
+		position.y += 0.7f;
+		int NumOfParticles = mat.Length;
+		for (int a = 0; a < NumOfParticles; a++)
+		{
+			SceneObject newSO = ObjectPool.instance.GetObjectForType(explotionGift.name, true);
+			if (newSO)
+			{
+				newSO.Restart(pos[a]);
+				newSO.transform.localEulerAngles = new Vector3(0, a * (360 / NumOfParticles), 0);
+				Vector3 direction = ((newSO.transform.forward * force) + (Vector3.up * (force*3)));
+				newSO.GetComponent<Rigidbody>().AddForce(direction, ForceMode.Impulse);
+				GrabbableItem gi = newSO.GetComponent<GrabbableItem> ();
+				gi.SetMaterial (mat[a]);
+			}
+		}
+	}
+    void AddHeartsByBreaking(Vector3 position, int NumOfParticles, int force = 400)
     {
         position.y += 0.7f;
-        if (NumOfParticles > 10) NumOfParticles = 10;
+        if (NumOfParticles > 20) NumOfParticles = 20;
         for (int a = 0; a < NumOfParticles; a++)
         {
             SceneObject newSO = ObjectPool.instance.GetObjectForType(explotionGift.name, true);
@@ -212,6 +231,8 @@ public class Level : MonoBehaviour {
                 newSO.transform.localEulerAngles = new Vector3(0, a * (360 / NumOfParticles), 0);
                 Vector3 direction = ((newSO.transform.forward * force) + (Vector3.up * (force*3)));
                 newSO.GetComponent<Rigidbody>().AddForce(direction, ForceMode.Impulse);
+				GrabbableItem gi = newSO.GetComponent<GrabbableItem> ();
+				gi.SetGroundMaterial ();
             }
         }
     }

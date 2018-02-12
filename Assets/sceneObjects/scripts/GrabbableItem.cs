@@ -3,7 +3,8 @@ using System.Collections;
 
 public class GrabbableItem : SceneObject
 {
-
+	public Material groundMaterial;
+	public MeshRenderer meshRenderer;
 	public int energy = 1;
     //[HideInInspector]
     public bool hitted;
@@ -19,12 +20,14 @@ public class GrabbableItem : SceneObject
     public Player player;
    // public AudioClip heartClip;
 
+	public Color[] titila;
+
     public override void OnRestart(Vector3 pos)
     {
         player = null;
 
-        if (gameObject.GetComponent<TrailRenderer>())
-            gameObject.GetComponent<TrailRenderer>().enabled = true;
+      //  if (gameObject.GetComponent<TrailRenderer>())
+       //     gameObject.GetComponent<TrailRenderer>().enabled = true;
 
         TriggerCollider = gameObject.GetComponent<SphereCollider>();
         FloorCollider = gameObject.GetComponent<BoxCollider>();
@@ -41,12 +44,28 @@ public class GrabbableItem : SceneObject
 
         sec = 0;
     }
+	bool isGround;
+	public void SetMaterial(Material mat)
+	{
+		isGround = false;
+		meshRenderer.material = mat;
+	}
+	public void SetGroundMaterial()
+	{
+		if (isGround)
+			return;
+		isGround = true;
+		meshRenderer.material = groundMaterial;
+	}
     public override void OnPool()
     {
         player = null;
     }
     public override void OnSceneObjectUpdate()
     {
+		if (titila.Length > 0) {
+			//meshRenderer.material.color = titila[0];
+		}
 		if(hitted)
 		{
             if (player == null) return;
@@ -80,8 +99,8 @@ public class GrabbableItem : SceneObject
 
             if (player.GetComponent<CharacterBehavior>().state == CharacterBehavior.states.DEAD) return;
 
-            if (gameObject.GetComponent<TrailRenderer>())
-                gameObject.GetComponent<TrailRenderer>().enabled = false;
+           // if (gameObject.GetComponent<TrailRenderer>())
+            //    gameObject.GetComponent<TrailRenderer>().enabled = false;
 			hitted = true;
             TriggerCollider.enabled = false;
             FloorCollider.enabled = false;
