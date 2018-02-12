@@ -4,6 +4,7 @@ using System.Collections;
 public class Data : MonoBehaviour {
 
 	public bool RESET;
+	public bool turnOffSounds;
     public bool musicOn = true;
     public bool switchPlayerInputs;
     public int competitionID = 1;
@@ -52,7 +53,6 @@ public class Data : MonoBehaviour {
         KEYBOARD,
         JOYSTICK
     }
-    public bool playingTutorial;
     public bool hasContinueOnce;
 
     public static Data Instance

@@ -231,16 +231,39 @@ public class Level : MonoBehaviour {
         print("__________________victory!");
         showVictory = true;
     }
+	int tutorialID;
 	private void Update () {
+	
+		float dist = charactersManager.getDistance ();
 
+		////TUTORIAL
+		//print (tutorialID + "   " + missions.MissionActiveID + "   " + charactersManager.getDistance ());
+		if(missions.MissionActiveID == 0)
+		{
+			if (dist>160 && tutorialID < 1)
+			{
+				Data.Instance.events.OnShowTutorial(1);
+				tutorialID = 1;
+			} else if(missions.MissionActiveID == 0 && dist>210 && tutorialID < 2)
+			{
+				Data.Instance.events.OnShowTutorial(2);
+				tutorialID = 2;
+			} else if(missions.MissionActiveID == 0 && dist>250 && tutorialID < 3)
+			{
+				Data.Instance.events.OnShowTutorial(3);
+				tutorialID = 3;
+			}
+		}
+		////////////////
+		/// 
         if (areasLength==0)
        {
            createNextArea(areasManager.getStartingArea());
-		} else if (charactersManager.getDistance() > (areasLength - nextPlatformSpace)
+		} else if (dist > (areasLength - nextPlatformSpace)
 		&&
-        lastDistanceToLoadLevel != charactersManager.getDistance())
+			lastDistanceToLoadLevel != dist)
 		{
-            lastDistanceToLoadLevel = charactersManager.getDistance();
+			lastDistanceToLoadLevel = dist;
 
             Area newArea;
             if(showVictory == true)

@@ -8,16 +8,21 @@ public class Gui : MonoBehaviour {
     LevelComplete levelComplete;
 
     public GameObject[] hideOnCompetitions;
-    public GameObject helpPanel;
 	private Data data;   
 
 	private int barWidth = 200;
     private bool MainMenuOpened = false;
 
     private Events events;
-	 
+	public MissionIcon missionIcon_to_instantiate;
+	[HideInInspector]
+	public MissionIcon missionIcon;
+
 	void Start()
 	{
+		missionIcon = Instantiate (missionIcon_to_instantiate);
+		missionIcon.transform.localPosition = new Vector3 (1000, 0, 0);
+
         if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
         {
             foreach (GameObject go in hideOnCompetitions)
@@ -27,8 +32,6 @@ public class Gui : MonoBehaviour {
             return;
         }
         events = Data.Instance.events;
-        levelComplete.gameObject.SetActive(false);
-      //  Data.Instance.events.OnSetFinalScore += OnSetFinalScore;
         Data.Instance.events.OnMissionComplete += OnMissionComplete;
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
@@ -36,7 +39,6 @@ public class Gui : MonoBehaviour {
     }
     void OnDestroy()
     {
-       // Data.Instance.events.OnSetFinalScore -= OnSetFinalScore;
         Data.Instance.events.OnMissionComplete -= OnMissionComplete;
         Data.Instance.events.OnAvatarCrash -= OnAvatarCrash;
         Data.Instance.events.OnAvatarFall -= OnAvatarCrash;

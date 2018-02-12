@@ -3,29 +3,29 @@ using System.Collections;
 
 public class Jump : MonoBehaviour {
 
-    private int distanceFromAvatar = 20;
-    public float jumpHeight = 15;
+    public float delayToJump;
+	Animation anim;
 
-   // private float sec = 0;
-    private MmoCharacter mmoCharacter;
-
-    public void Start()
+    void OnEnable()
     {
-        mmoCharacter = GetComponent<MmoCharacter>();
-        mmoCharacter.waitToJump();
+		Invoke ("Hack_wait", 0.1f);       
     }
+	void Hack_wait()
+	{
+		anim = GetComponentInChildren<Animation> ();
+		anim.Stop ();
+		Invoke ("Delayed", delayToJump);       
+	}
     void OnDisable()
     {
-        Destroy(gameObject.GetComponent("Jump"));
+		if(anim != null)
+			anim.Stop ();
     }
-    public void OnSceneObjectUpdated()
+	void Delayed()
 	{
-        if (mmoCharacter.state != MmoCharacter.states.JUMP && mmoCharacter.distanceFromCharacter < distanceFromAvatar)
-        {
-            mmoCharacter.jump();
-            jumpHeight = 14;
-            GetComponent<Rigidbody>().AddForce(new Vector3(0, jumpHeight * 200, 0), ForceMode.Impulse);
-        }
-        
+		if (anim != null) {
+			anim.Rewind ();
+			anim.Play ();
+		}
 	}
 }

@@ -5,26 +5,94 @@ using UnityEngine;
 public class MissionIcon : MonoBehaviour {
 
 	public GameObject panel;
-	public GameObject icon_bomb;
-	public GameObject icon_heart;
-	public GameObject icon_enemy;
+	public Transform container;
+	GameObject icon;
 
 	void Start()
 	{
 		panel.SetActive (false);
 	}
-	public void SetOn(Mission mission)
+	public void SetOn(Mission mission, GameObject specialIcon = null)
 	{
 		panel.SetActive (true);
-		icon_enemy.SetActive (false);
-		icon_heart.SetActive (false);
-		icon_bomb.SetActive (false);
-		if(mission.hearts>0)
-			icon_heart.SetActive (true);
-		else if(mission.bombs>0)
-			icon_bomb.SetActive (true);
-		else if(mission.guys>0)
-			icon_enemy.SetActive (true);
-		
+		if (icon != null) {
+			StopAllCoroutines ();
+			Destroy (icon);
+			icon = null;
+		}
+		if (specialIcon != null) {
+			icon = Instantiate (specialIcon);
+		} else if (mission.missionIcon != null) {
+			icon = Instantiate (mission.missionIcon);
+		}
+		if (icon == null)
+			return;
+		icon.transform.SetParent (container);
+		icon.transform.localPosition = Vector3.zero;
+		Animation anim = icon.GetComponentInChildren<Animation> ();
+		if (anim != null) {
+			print (anim.clip.name);
+			StartCoroutine( PlayAnim (anim, anim.clip.name, false) );
+		}
+	}
+
+	public static IEnumerator PlayAnim( Animation animation, string clipName, bool useTimeScales)
+	{
+		print ("clipName " + clipName);
+		if(useTimeScales == false)
+		{
+			
+			AnimationState _currState = animation[clipName];
+			bool isPlaying = true;
+			float _startTime = 0F;
+			float _progressTime = 0F;
+			float _timeAtLastFrame = 0F;
+			float _timeAtCurrentFrame = 0F;
+			float deltaTime = 0F;
+
+
+			animation.Play(clipName);
+
+			_timeAtLastFrame = Time.realtimeSinceStartup;
+			while (isPlaying) 
+			{
+				_timeAtCurrentFrame = Time.realtimeSinceStartup;
+				deltaTime = _timeAtCurrentFrame - _timeAtLastFrame;
+				_timeAtLastFrame = _timeAtCurrentFrame; 
+
+				_progressTime += deltaTime;
+				_currState.normalizedTime = _progressTime / _currState.length; 
+				animation.Sample ();
+
+				//Debug.Log(_progressTime);
+
+				if (_progressTime >= _currState.length) 
+				{
+					//Debug.Log(&quot;Bam! Done animating&quot;);
+					if(_currState.wrapMode != WrapMode.Loop)
+					{
+						//Debug.Log(&quot;Animation is not a loop anim, kill it.&quot;);
+						//_currState.enabled = false;
+						isPlaying = false;
+					}
+					else
+					{
+						//Debug.Log(&quot;Loop anim, continue.&quot;);
+						_progressTime = 0.0f;
+					}
+				}
+
+				yield return new WaitForEndOfFrame();
+			}
+			yield return null;
+			//if(onComplete != null)
+			//{
+				//onComplete();
+			//} 
+		}
+		else
+		{
+			animation.Play(clipName);
+		}
 	}
 }
