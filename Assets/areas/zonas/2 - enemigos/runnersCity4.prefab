@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3373940}
   - component: {fileID: 11458106}
   m_Layer: 0
-  m_Name: enemyFrontal
+  m_Name: enemySide
   m_TagString: sceneObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -451,7 +451,7 @@ GameObject:
   - component: {fileID: 3340498}
   - component: {fileID: 11440496}
   m_Layer: 0
-  m_Name: enemyFrontal
+  m_Name: enemySide
   m_TagString: sceneObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -468,7 +468,7 @@ GameObject:
   - component: {fileID: 3340502}
   - component: {fileID: 11440498}
   m_Layer: 0
-  m_Name: enemyFrontal
+  m_Name: enemySide
   m_TagString: sceneObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -485,7 +485,7 @@ GameObject:
   - component: {fileID: 3340506}
   - component: {fileID: 11440500}
   m_Layer: 0
-  m_Name: enemyFrontal
+  m_Name: enemySide
   m_TagString: sceneObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -502,7 +502,7 @@ GameObject:
   - component: {fileID: 3340510}
   - component: {fileID: 11440502}
   m_Layer: 0
-  m_Name: enemyFrontal
+  m_Name: enemySide
   m_TagString: sceneObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -703,7 +703,7 @@ GameObject:
   - component: {fileID: 3305036}
   - component: {fileID: 11430226}
   m_Layer: 0
-  m_Name: enemyFrontal
+  m_Name: enemySide
   m_TagString: sceneObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2772,6 +2772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f58422460639248b129b8b5a318a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -2779,6 +2780,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   to: {fileID: 0}
   materialName: pasto
 --- !u!114 &11440508
@@ -2792,6 +2794,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f58422460639248b129b8b5a318a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -2799,6 +2802,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   to: {fileID: 0}
   materialName: pasto
 --- !u!114 &11440510
@@ -2812,6 +2816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f58422460639248b129b8b5a318a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -2819,6 +2824,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   to: {fileID: 0}
   materialName: pasto
 --- !u!114 &11440512
@@ -2832,6 +2838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f58422460639248b129b8b5a318a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -2839,6 +2846,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   to: {fileID: 0}
   materialName: pasto
 --- !u!114 &11440514
@@ -2852,6 +2860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f58422460639248b129b8b5a318a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -2859,6 +2868,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   to: {fileID: 0}
   materialName: pasto
 --- !u!114 &11440516
@@ -2872,6 +2882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f58422460639248b129b8b5a318a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -2879,6 +2890,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   to: {fileID: 0}
   materialName: pasto
 --- !u!114 &11440518
@@ -2892,6 +2904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f58422460639248b129b8b5a318a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -2899,6 +2912,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   to: {fileID: 0}
   materialName: pasto
 --- !u!114 &11440520
@@ -2912,6 +2926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f58422460639248b129b8b5a318a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -2919,6 +2934,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   to: {fileID: 0}
   materialName: pasto
 --- !u!114 &11440522
@@ -2932,6 +2948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f58422460639248b129b8b5a318a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -2939,6 +2956,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   to: {fileID: 0}
   materialName: pasto
 --- !u!114 &11440524

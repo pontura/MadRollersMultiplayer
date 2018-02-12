@@ -2154,7 +2154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7884f4fab5e41f4ca5c2e35847c755b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particle: {fileID: 100000, guid: 610c14e46dbcb8546b89886dd8b7e565, type: 2}
+  explotionType: 0
   isOn: 0
   NumOfParticles: 1
   childs:
@@ -2184,11 +2184,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7884f4fab5e41f4ca5c2e35847c755b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particle: {fileID: 100000, guid: 610c14e46dbcb8546b89886dd8b7e565, type: 2}
+  explotionType: 0
   isOn: 0
   NumOfParticles: 1
   childs:
   - {fileID: 11400006}
+  - {fileID: 11400000}
   dontKillPlayers: 0
   dontDieOnHit: 0
   score: 0
@@ -2203,11 +2204,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7884f4fab5e41f4ca5c2e35847c755b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particle: {fileID: 100000, guid: 610c14e46dbcb8546b89886dd8b7e565, type: 2}
+  explotionType: 0
   isOn: 0
   NumOfParticles: 1
   childs:
   - {fileID: 11400008}
+  - {fileID: 11400004}
   dontKillPlayers: 0
   dontDieOnHit: 0
   score: 0
@@ -2222,10 +2224,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7884f4fab5e41f4ca5c2e35847c755b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particle: {fileID: 100000, guid: 610c14e46dbcb8546b89886dd8b7e565, type: 2}
+  explotionType: 0
   isOn: 0
   NumOfParticles: 1
-  childs: []
+  childs:
+  - {fileID: 11400006}
+  - {fileID: 11400022}
   dontKillPlayers: 0
   dontDieOnHit: 0
   score: 0
@@ -2306,10 +2310,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7884f4fab5e41f4ca5c2e35847c755b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particle: {fileID: 100000, guid: 610c14e46dbcb8546b89886dd8b7e565, type: 2}
+  explotionType: 0
   isOn: 0
   NumOfParticles: 1
-  childs: []
+  childs:
+  - {fileID: 11400024}
+  - {fileID: 11400008}
   dontKillPlayers: 0
   dontDieOnHit: 0
   score: 0
@@ -2324,11 +2330,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7884f4fab5e41f4ca5c2e35847c755b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particle: {fileID: 100000, guid: 610c14e46dbcb8546b89886dd8b7e565, type: 2}
+  explotionType: 0
   isOn: 0
   NumOfParticles: 1
   childs:
   - {fileID: 11400022}
+  - {fileID: 11400026}
   dontKillPlayers: 0
   dontDieOnHit: 0
   score: 0
@@ -2343,11 +2350,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7884f4fab5e41f4ca5c2e35847c755b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particle: {fileID: 100000, guid: 610c14e46dbcb8546b89886dd8b7e565, type: 2}
+  explotionType: 0
   isOn: 0
   NumOfParticles: 1
   childs:
   - {fileID: 11400024}
+  - {fileID: 11400030}
   dontKillPlayers: 0
   dontDieOnHit: 0
   score: 0
@@ -2373,7 +2381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7884f4fab5e41f4ca5c2e35847c755b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particle: {fileID: 100000, guid: 610c14e46dbcb8546b89886dd8b7e565, type: 2}
+  explotionType: 0
   isOn: 0
   NumOfParticles: 1
   childs:
@@ -2394,6 +2402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 10
   animationClip: {fileID: 0}
+  backwardJump: 0
 --- !u!114 &11400050
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2405,7 +2414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7884f4fab5e41f4ca5c2e35847c755b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particle: {fileID: 100000, guid: 610c14e46dbcb8546b89886dd8b7e565, type: 2}
+  explotionType: 0
   isOn: 0
   NumOfParticles: 1
   childs: []
@@ -2423,7 +2432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7884f4fab5e41f4ca5c2e35847c755b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particle: {fileID: 100000, guid: 610c14e46dbcb8546b89886dd8b7e565, type: 2}
+  explotionType: 0
   isOn: 0
   NumOfParticles: 1
   childs: []
@@ -2443,6 +2452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 10
   animationClip: {fileID: 0}
+  backwardJump: 0
 --- !u!114 &11400066
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2454,13 +2464,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d3d555793ff3d849aa8b31c6db5b487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shadow: {fileID: 0}
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
   isActive: 0
   score: 125
   charactersMmanager: {fileID: 0}
+  distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

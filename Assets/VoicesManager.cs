@@ -31,15 +31,19 @@ public class VoicesManager : MonoBehaviour
     public void Init()
     {
         audioSource = GetComponent<AudioSource>();
+		Data.Instance.events.OnGameStart += OnGameStart;
         Data.Instance.events.OnMissionComplete += OnMissionComplete;
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
         Data.Instance.events.OnAvatarFall += OnAvatarFall;
         Data.Instance.events.OnAvatarChangeFX += OnAvatarChangeFX;
         Data.Instance.events.SetVolume += SetVolume;
-        Data.Instance.events.VoiceFromResources += VoiceFromResources;
-        
+        Data.Instance.events.VoiceFromResources += VoiceFromResources;        
     }
+	void OnGameStart()
+	{
+		PlayRandom(firstMissionStart);
+	}
     void SetVolume(float vol)
     {
         audioSource.volume = vol;
@@ -50,10 +54,9 @@ public class VoicesManager : MonoBehaviour
     }
     private void OnAvatarCrash(CharacterBehavior cb)
     {
-        print("Game.Instance.level.charactersManager.getDistance() " + Game.Instance.level.charactersManager.getDistance());
-        if (Game.Instance && Game.Instance.level.charactersManager.getDistance() < 100)
-            VoiceFromResources("eres_muy _principiante");
-        else
+      //  if (Game.Instance && Game.Instance.level.charactersManager.getDistance() < 100)
+            //VoiceFromResources("eres_muy _principiante");
+      //  else
             PlayRandom(avatarCrash);
     }
     private void OnAvatarFall(CharacterBehavior cb)
@@ -112,7 +115,7 @@ public class VoicesManager : MonoBehaviour
     void PlayRandom(AudioClip[] clips)
     {
         int rand = Random.Range(0, clips.Length);
-      //  PlayClipInLibrary(clips[rand].name, clips); 
+        PlayClipInLibrary(clips[rand].name, clips); 
     }
     private void PlayClipInLibrary(string clip_name, AudioClip[] clipLibrary)
     {

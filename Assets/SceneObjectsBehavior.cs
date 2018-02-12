@@ -125,6 +125,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			case "bloodx1":
 			case "Yuyo":
 			case "enemyFrontal":   
+			case "enemySide":  
 			case "castle":
 			case "bonusEntrance":   
 			          

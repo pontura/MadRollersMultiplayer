@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33790593505258174}
   - component: {fileID: 114539617772764224}
   m_Layer: 0
-  m_Name: enemyFrontal
+  m_Name: enemySide
   m_TagString: sceneObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 33074236065266264}
   - component: {fileID: 114069503651496574}
   m_Layer: 0
-  m_Name: enemyFrontal
+  m_Name: enemySide
   m_TagString: sceneObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -432,7 +432,7 @@ GameObject:
   - component: {fileID: 33522046956375938}
   - component: {fileID: 114700571022931242}
   m_Layer: 0
-  m_Name: enemyFrontal
+  m_Name: enemySide
   m_TagString: sceneObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -663,7 +663,7 @@ GameObject:
   - component: {fileID: 33726890809955390}
   - component: {fileID: 114165809202545468}
   m_Layer: 0
-  m_Name: enemyFrontal
+  m_Name: enemySide
   m_TagString: sceneObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -793,7 +793,7 @@ GameObject:
   - component: {fileID: 33010624498514002}
   - component: {fileID: 114853098652080898}
   m_Layer: 0
-  m_Name: enemyFrontal
+  m_Name: enemySide
   m_TagString: sceneObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -810,7 +810,7 @@ GameObject:
   - component: {fileID: 33764063228572830}
   - component: {fileID: 114911701131435850}
   m_Layer: 0
-  m_Name: enemyFrontal
+  m_Name: enemySide
   m_TagString: sceneObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1056,7 +1056,7 @@ GameObject:
   - component: {fileID: 33325669756543846}
   - component: {fileID: 114474661690836524}
   m_Layer: 0
-  m_Name: enemyFrontal
+  m_Name: enemySide
   m_TagString: sceneObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1161,7 +1161,7 @@ GameObject:
   - component: {fileID: 33528694436919152}
   - component: {fileID: 114448200298996202}
   m_Layer: 0
-  m_Name: enemyFrontal
+  m_Name: enemySide
   m_TagString: sceneObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1290,7 +1290,7 @@ GameObject:
   - component: {fileID: 33411714207684038}
   - component: {fileID: 114450381829365462}
   m_Layer: 0
-  m_Name: enemyFrontal
+  m_Name: enemySide
   m_TagString: sceneObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7236,12 +7236,15 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &114307300164591226
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7758,12 +7761,15 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &114853098652080898
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7895,12 +7901,15 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &114996428750789516
 MonoBehaviour:
   m_ObjectHideFlags: 1

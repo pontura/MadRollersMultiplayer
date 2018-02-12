@@ -103,36 +103,36 @@ public class MmoCharacter : SceneObject
         Pool();
 	}
 	public void run() {
-        _animation.Play("enemyRun");
+       // _animation.Play("enemyRun");
         state = states.RUN;
 	}
     public void fly()
     {
-        _animation.Play("enemyFly");
+       // _animation.Play("enemyFly");
         state = states.FLY;
     }
     public void walk()
     {
-        _animation.Play("enemyWalk");
+      //  _animation.Play("enemyWalk");
         state = states.WALK;
     }
 	public void idle() {
-        _animation.Play("enemyIdle");
+       // _animation.Play("enemyIdle");
         state = states.IDLE;
 	}
     public void Shoot()
     {
-        _animation.Play("enemyShoot");
+        //_animation.Play("enemyShoot");
         state = states.IDLE;
     }
     public void waitToJump()
     {
-        _animation.Play("enemyIdle");
+       // _animation.Play("enemyIdle");
         state = states.WAIT_TO_JUMP;
     }
 	public void jump() {
         Data.Instance.events.OnSoundFX("FX malo00", -1);
-        _animation.Play("enemyJump");
+       // _animation.Play("enemyJump");
         state = states.JUMP;
 	}
     public void reachFloor()

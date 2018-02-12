@@ -22,10 +22,10 @@ public class EnemyPathRunnerBehavior : MonoBehaviour {
 
         changeDirection();
 
-        if (Mathf.Abs(realSpeed) > 3)
-            mmoCharacter.run();
-        else
-            mmoCharacter.walk();        
+        //if (Mathf.Abs(realSpeed) > 3)
+          //  mmoCharacter.run();
+      //  else
+         //   mmoCharacter.walk();        
 	}
     void OnDisable()
     {

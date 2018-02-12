@@ -186,7 +186,7 @@ GameObject:
   - component: {fileID: 3300014}
   - component: {fileID: 11400010}
   m_Layer: 0
-  m_Name: enemyFrontal
+  m_Name: enemySide
   m_TagString: sceneObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5227,7 +5227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b990d083aa6ca84090fc9d1373b4352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpHeight: 15
+  delayToJump: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5239,7 +5239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b990d083aa6ca84090fc9d1373b4352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpHeight: 15
+  delayToJump: 0
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5251,7 +5251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b990d083aa6ca84090fc9d1373b4352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpHeight: 15
+  delayToJump: 0
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5263,7 +5263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b990d083aa6ca84090fc9d1373b4352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpHeight: 15
+  delayToJump: 0
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5299,6 +5299,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   to: {fileID: 0}
   materialName: pasto
 --- !u!114 &11400060
@@ -5320,6 +5321,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   to: {fileID: 0}
   materialName: pasto
 --- !u!114 &11400062
@@ -5341,6 +5343,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   to: {fileID: 0}
   materialName: pasto
 --- !u!114 &11400068
@@ -5362,6 +5365,7 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   to: {fileID: 0}
   materialName: pasto
 --- !u!114 &11400070
@@ -5452,6 +5456,7 @@ MonoBehaviour:
   score: 20
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!114 &11425974
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5527,6 +5532,7 @@ MonoBehaviour:
   score: 20
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!114 &11425982
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5546,6 +5552,7 @@ MonoBehaviour:
   score: 20
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!114 &11425984
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5677,6 +5684,7 @@ MonoBehaviour:
   score: 20
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!114 &11425998
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5696,6 +5704,7 @@ MonoBehaviour:
   score: 20
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!114 &11426000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5790,6 +5799,7 @@ MonoBehaviour:
   score: 20
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!114 &11455090
 MonoBehaviour:
   m_ObjectHideFlags: 1
