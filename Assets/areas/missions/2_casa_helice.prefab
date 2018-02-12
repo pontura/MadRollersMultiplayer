@@ -41,17 +41,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c52aa23c4c1909c45b1a2eeadb8f98cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  missionIcon: {fileID: 1225809019879528, guid: c27c44f5bb565894b8594ad2b503850f,
+    type: 2}
   isCompetition: 0
   maxScore: 460
   Hiscore: 0
   avatarHiscore: 
   hearts: 0
   guys: 0
-  points: 0
+  ghost: 0
+  points: 337
   listeners: 0
   planes: 0
   bombs: 0
-  distance: 270
+  distance: 360
   description: BE CAREFULL.. HELICES!
 --- !u!114 &11442014
 MonoBehaviour:
@@ -69,7 +72,7 @@ MonoBehaviour:
   - {fileID: 11460980, guid: fb59ba29ce72bb44f89d8e9953205c44, type: 2}
   - {fileID: 11445142, guid: a563221b8c02f4b43a00079ab60be1f2, type: 2}
   - {fileID: 11400000, guid: 1ae6239c73f864e4aac71f5a8c41206e, type: 2}
-  activeAreaSetID: 0
+  activeAreaSetID: 4
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

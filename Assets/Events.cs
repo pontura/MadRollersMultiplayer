@@ -22,6 +22,8 @@ public class Events : MonoBehaviour {
     public System.Action OnGameStart = delegate { };
     public System.Action<bool> OnGamePaused = delegate { };
     public System.Action<bool> SetSettingsButtonStatus = delegate { };
+	public System.Action<string> OnDestroySceneObject = delegate { };
+
 
     public System.Action<int, int> OnSetStarsToMission = delegate { };
     

@@ -42,11 +42,13 @@ public class Missions : MonoBehaviour {
         Data.Instance.events.OnScoreOn += OnScoreOn;
         Data.Instance.events.OnGrabHeart += OnGrabHeart;
 		Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
+		Data.Instance.events.OnDestroySceneObject += OnDestroySceneObject;
     }
     void OnDestroy()
     {
         Data.Instance.events.OnScoreOn -= OnScoreOn;
         Data.Instance.events.OnGrabHeart -= OnGrabHeart;
+		Data.Instance.events.OnDestroySceneObject -= OnDestroySceneObject;
     }
 
     public void OnDisable()
@@ -198,13 +200,26 @@ public class Missions : MonoBehaviour {
 			setMissionStatus(MissionActive.planes);
 		}
 	}
-	public void killBomb(int qty) {
-		if(MissionActive.bombs > 0)
+	public void OnDestroySceneObject(string name)
+	{
+		print ("name: " + name);
+		if(name == "bomb" && MissionActive.bombs > 0)
 		{
-            addPoints(qty);
+			addPoints(1);
 			setMissionStatus(MissionActive.bombs);
+		} else if(name == "ghost" && MissionActive.ghost > 0)
+		{
+			addPoints(1);
+			setMissionStatus(MissionActive.ghost);
 		}
 	}
+	//public void killBomb(int qty) {
+	//	if(MissionActive.bombs > 0)
+	//	{
+    //        addPoints(qty);
+	//		setMissionStatus(MissionActive.bombs);
+	//	}
+	//}
 
     void OnGrabHeart()
     {

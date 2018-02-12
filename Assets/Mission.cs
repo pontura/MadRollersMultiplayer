@@ -11,6 +11,7 @@ public class Mission: MonoBehaviour {
 
 	public int hearts = 0;
 	public int guys = 0;
+	public int ghost = 0;
 	public int points = 0;
 	public int listeners = 0;
 	public int planes = 0;

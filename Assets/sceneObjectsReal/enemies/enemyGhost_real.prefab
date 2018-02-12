@@ -90,8 +90,9 @@ GameObject:
   - component: {fileID: 65882776094537080}
   - component: {fileID: 114781369744890546}
   - component: {fileID: 111808468974232348}
+  - component: {fileID: 114392007926917794}
   m_Layer: 10
-  m_Name: asset
+  m_Name: enemy
   m_TagString: destroyable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3989,6 +3990,18 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &114392007926917794
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1072415639833616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f46bfa0b78d4847458e847e037dd80fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missionName: ghost
 --- !u!114 &114735849372780768
 MonoBehaviour:
   m_ObjectHideFlags: 1

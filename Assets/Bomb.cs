@@ -25,8 +25,8 @@ public class Bomb : SceneObject {
     {
         GetComponent<AudioSource>().Stop();
        // setScore();
-        Missions missions = Data.Instance.GetComponent<Missions>();
-        missions.SendMessage("killBomb", 1);
+		Data.Instance.events.OnDestroySceneObject("bomb");
+
         alive = false;        
 
         if(isActive)
