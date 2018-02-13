@@ -89,6 +89,11 @@ public class Projectil : SceneObject {
 				other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);
                 Destroy();
 				break;
+			case "boss":
+				SetScore(120);
+				other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);
+				Destroy();
+				break;
 		}
 	}
     void SetScore(int score)

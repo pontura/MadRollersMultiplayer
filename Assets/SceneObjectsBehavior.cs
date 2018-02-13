@@ -8,6 +8,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
     [HideInInspector]
     public Area area;
 
+	public SceneObject Boss1;
     public SceneObject Starting;
     public SceneObject Calecita;
     public SceneObject FloorSlider;
@@ -222,6 +223,8 @@ public class SceneObjectsBehavior : MonoBehaviour {
                     clone = wallSuperSmall;
                 else if (go.name == "jumper")
                     clone = jumper;
+				else if (go.name == "Boss1")
+					clone = Boss1;
                 else if (go.name == "Calecita")
                     clone = Calecita;
                 else if (go.name == "Starting")

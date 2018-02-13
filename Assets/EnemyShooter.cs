@@ -42,7 +42,7 @@ public class EnemyShooter : MonoBehaviour {
         transform.localPosition += new Vector3(0, 0, -2);
 
         projectil.Restart(pos);
-        Vector3 rot = transform.localEulerAngles;
+		Vector3 rot = new Vector3(0,0,0);
         rot.x -= 7;
         projectil.transform.localEulerAngles = rot;
         

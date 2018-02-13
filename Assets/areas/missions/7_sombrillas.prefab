@@ -41,14 +41,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aab087fa44cc671439e1b50508ce4d75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingArea: {fileID: 11400258, guid: 3ba8407d2d50f0b41b9bdc4873fea123, type: 2}
-  num: 7
-  testingAreas: []
-  testingAreaSet: {fileID: 0}
   areaSets:
   - {fileID: 11400000, guid: eaf7a45e3d35ce14aa7bb74b52620eaf, type: 2}
-  skyAreas:
-  - {fileID: 11400028, guid: 4e1fb688f3878b84abf0e92e91c95448, type: 2}
   activeAreaSetID: 1
 --- !u!114 &11400002
 MonoBehaviour:
@@ -61,17 +55,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c52aa23c4c1909c45b1a2eeadb8f98cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  missionIcon: {fileID: 1138362766969914, guid: 959c3d51a9604bf4aa183cb81b5a3601,
+    type: 2}
+  isCompetition: 0
   maxScore: 0
   Hiscore: 0
   avatarHiscore: 
   hearts: 0
   guys: 0
+  ghost: 0
   points: 0
   listeners: 0
   planes: 0
   bombs: 0
   distance: 260
-  description: Sombrillas!
+  description: JUMP OVER MUSHROOMS
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

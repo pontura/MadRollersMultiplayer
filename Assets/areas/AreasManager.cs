@@ -37,15 +37,20 @@ public class AreasManager : MonoBehaviour {
             int randomIndex = Random.Range(i, toRandom.Count);
             toRandom[i] = toRandom[randomIndex];
             toRandom[randomIndex] = temp;
+			temp.Restart ();
         }
         return toRandom;
     }
 	public void Init(int _activeAreaSetID)
 	{
+		print ("INININININII");
         activeAreaSetID = 1;
 
 //#if UNITY_EDITOR
-        if (Data.Instance.DEBUG && Data.Instance.missions.test_mission) return;
+		if (Data.Instance.DEBUG && Data.Instance.missions.test_mission) {
+			setNewAreaSet ();
+			return;
+		}
         if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
         {
             areaSets.Clear();
@@ -81,7 +86,7 @@ public class AreasManager : MonoBehaviour {
         areaSet = areaSets[activeAreaSetID];
       //  Debug.Log("NEW AREA: " + areaSet.name + " activeAreaSetID: " + activeAreaSetID);
 		//changeCameraOrientation();
-        areaSet.id = 0;
+		areaSet.Restart();
 
         
        
@@ -97,7 +102,7 @@ public class AreasManager : MonoBehaviour {
         if (!areaSet)
         {
             areaSet = areaSets[0];
-            areaSet.id = 0;
+			areaSet.Restart ();
         }
 		Area area;
 

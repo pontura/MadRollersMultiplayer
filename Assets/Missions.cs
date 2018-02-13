@@ -211,7 +211,11 @@ public class Missions : MonoBehaviour {
 		{
 			addPoints(1);
 			setMissionStatus(MissionActive.ghost);
-		}
+		} else if(name == "boss1" && MissionActive.boss1 > 0)
+		{
+			addPoints(1);
+			setMissionStatus(MissionActive.boss1);
+		} 
 	}
 	//public void killBomb(int qty) {
 	//	if(MissionActive.bombs > 0)

@@ -36,8 +36,13 @@ public class EnemyPathRunnerBehavior : MonoBehaviour {
         if (pathID == paths.Length)
             pathID = 0;
 
-        if (paths[pathID].x < transform.localPosition.x) mmoCharacter.setRotation(new Vector3(0, 90, 0));
-        else  mmoCharacter.setRotation(new Vector3(0, -90, 0));
+		if (mmoCharacter == null)
+			return;
+		
+        if (paths[pathID].x < transform.localPosition.x) 
+			mmoCharacter.setRotation(new Vector3(0, 90, 0));		
+        else  
+			mmoCharacter.setRotation(new Vector3(0, -90, 0));
         
     }
 

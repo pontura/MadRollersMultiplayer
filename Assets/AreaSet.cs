@@ -9,9 +9,14 @@ public class AreaSet : MonoBehaviour {
 	public int totalAreasInSet;
 	public Vector3 cameraOrientation;
 
-    [HideInInspector]
-    public int id = 0;
+    //[HideInInspector]
+    int id = 0;
 
+	public void Restart()
+	{
+		this.id = 0;
+		Debug.Log ("Restart " + id);
+	}
 	public Vector3 getCameraOrientation ()  {
 		if(cameraOrientation.x != 0 || cameraOrientation.y != 0 || cameraOrientation.z != 0)
 			return cameraOrientation;
@@ -26,10 +31,9 @@ public class AreaSet : MonoBehaviour {
 
         if (randomize)
             area = areas[Random.Range(0, areas.Length)];
-        else
-            area = areas[id];
+		else
+			area = areas[id];
 
-        //Debug.Log(randomize + " area name: " + area.name + " id : " + num + " areas length: " + areas.Length);
 
         if (id < areas.Length - 1)
             id++;

@@ -15,6 +15,7 @@ public class WeakPlatform : SceneObject {
     }
     public override void changeMaterial(string materialName)
     {
+		return;
        // TO DO: arreglar que no cambie siempre la textura:
         //this.materialName = materialName;
         //print(renderer.material.mainTexture.name);

@@ -9,6 +9,7 @@ public class Mission: MonoBehaviour {
     public int Hiscore;
     public string avatarHiscore;
 
+	public int boss1 = 0;
 	public int hearts = 0;
 	public int guys = 0;
 	public int ghost = 0;
