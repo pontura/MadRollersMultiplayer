@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 11400002}
   - component: {fileID: 11400000}
   m_Layer: 0
-  m_Name: 1_2_kill_guy
+  m_Name: 1_3_kill_guy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
   areaSets:
   - {fileID: 11400000, guid: ae5373021f0466940b3eb7076fa530ab, type: 2}
   - {fileID: 11400000, guid: 01922e35ba4d6ee478b522e455ebe22a, type: 2}
-  activeAreaSetID: 3
+  activeAreaSetID: 2
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -62,14 +62,16 @@ MonoBehaviour:
   maxScore: 150
   Hiscore: 0
   avatarHiscore: 
+  boss1: 0
   hearts: 0
-  guys: 3
-  points: 1
+  guys: 5
+  ghost: 0
+  points: 3
   listeners: 0
   planes: 0
   bombs: 0
   distance: 0
-  description: KILL THREE BALL-MAN
+  description: KILL 5 !
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

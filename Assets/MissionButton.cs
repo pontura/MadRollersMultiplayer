@@ -10,6 +10,8 @@ public class MissionButton : MonoBehaviour {
 	public Text[] overs;
 
 	public Stars stars;
+	public Animation anim;
+	public GameObject thumbPanel;
 
     public Image background;
 	public GameObject lockImage;
@@ -18,6 +20,7 @@ public class MissionButton : MonoBehaviour {
 
 	// Use this for initialization
 	public void Init (int id, string desc) {
+		thumbPanel.SetActive (false);
         this.id = id;
 
 		foreach (Text m in missionFields.GetComponentsInChildren<Text>())
@@ -38,9 +41,12 @@ public class MissionButton : MonoBehaviour {
 	public void SetOn(bool isOn)
 	{
 		if (isOn) {
+			thumbPanel.SetActive (true);
+			anim.Play ("MissionButtonOn");
 			foreach (Text m in overs)
 				m.color = Color.yellow;
 		} else {
+			anim.Play ("MissionButtonOff");
 			foreach (Text m in overs)
 			{
 				if (isLocked) {

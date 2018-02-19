@@ -7,6 +7,7 @@ public class LevelSelector : MonoBehaviour {
 
     public int levelUnlockedID;
     public MissionButton uiButton;
+	public MissionIcon missionIcon;
 
     [SerializeField]
     GameObject container;
@@ -116,6 +117,8 @@ public class LevelSelector : MonoBehaviour {
 			lastButtonSelected.SetOn (false);
 		lastButtonSelected = all [missionActiveID];
 		lastButtonSelected.SetOn (true);
+
+		missionIcon.SetOn (missions.missions [missionActiveID]);
 	}
 	public void OnJoystickBack()
     {

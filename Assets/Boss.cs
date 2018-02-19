@@ -8,6 +8,7 @@ public class Boss : SceneObject {
 	float timeToCreateEnemy = 1.5f;
 	float actualTime = 0;
 	public BossBar bossBar;
+	public float numberOfHits;
 
 	public override void OnRestart(Vector3 pos)
 	{
@@ -35,7 +36,7 @@ public class Boss : SceneObject {
 	public void breakOut()
 	{
 		print ("BREAK");
-		bossBar.Resta (0.2f);
+		bossBar.Resta ((10/numberOfHits)/10);
 	}
 	public void Killed()
 	{
