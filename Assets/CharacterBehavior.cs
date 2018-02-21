@@ -149,7 +149,7 @@ public class CharacterBehavior : MonoBehaviour {
     }
 	public void CheckFire()
 	{
-		//if(!player.canShoot) return;
+		if(Time.timeScale<0.2f) return;
 
         if (_animation_hero)
             _animation_hero.Play("shoot");

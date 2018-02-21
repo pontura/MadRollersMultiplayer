@@ -4,7 +4,7 @@ using System.Collections;
 
 public class Missions : MonoBehaviour {
 
-
+	public int lastMissionSignalShowed;
 	public Area startingArea;
 	public Area[] relaxArea;
 	public Area startingAreaDuringGame;
@@ -38,6 +38,7 @@ public class Missions : MonoBehaviour {
 
     public void Init()
     {
+		lastMissionSignalShowed = -1;
         data = Data.Instance;
         Data.Instance.events.OnScoreOn += OnScoreOn;
         Data.Instance.events.OnGrabHeart += OnGrabHeart;
@@ -268,5 +269,19 @@ public class Missions : MonoBehaviour {
 	public Mission GetMissionActive()
 	{
 		return missions[MissionActiveID];
+	}
+	public void ResetLastMissionID()
+	{
+		lastMissionSignalShowed = -1;
+	}
+	public void SetLastMissionID(int lastMissionSignalShowed)
+	{
+		this.lastMissionSignalShowed = lastMissionSignalShowed;
+	}
+	public bool HasBeenShowed(int title)
+	{
+		if (lastMissionSignalShowed == title)
+			return true;
+		return false;
 	}
 }

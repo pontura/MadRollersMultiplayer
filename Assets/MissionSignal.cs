@@ -53,6 +53,13 @@ public class MissionSignal : MonoBehaviour {
     }
     void SetOn()
     {
+		int missionID = Data.Instance.GetComponent<Missions> ().MissionActiveID;
+		
+		if (missionID>0 && Data.Instance.missions.HasBeenShowed (missionID))
+			return;
+
+		Data.Instance.missions.SetLastMissionID (missionID);
+		
 		panel.SetActive (true);
 		Time.timeScale = 0.01f;	
     }
@@ -73,7 +80,7 @@ public class MissionSignal : MonoBehaviour {
     }
     private void MissionSignalOn()
     {
-		Open("MISIóN " +  Data.Instance.GetComponent<Missions>().MissionActiveID, -1);
+		Open("MISIóN " +  Data.Instance.GetComponent<Missions> ().MissionActiveID, -1);
         CloseAfter(2f);
     }
 	void OnShowTutorial(int id)
@@ -92,7 +99,7 @@ public class MissionSignal : MonoBehaviour {
 			gui.missionIcon.SetOn (mission, specialIcon_Tutorial3);
 		}
 		
-		CloseAfter(2f);
+		CloseAfter(3f);
 	}
     private void ShowMissionName()
     {
@@ -101,7 +108,7 @@ public class MissionSignal : MonoBehaviour {
 		Mission mission = missions.missions[ missions.MissionActiveID];
 		Open( mission.description.ToUpper(), missions.MissionActiveID);
 		gui.missionIcon.SetOn (mission);
-        CloseAfter(2f);
+        CloseAfter(3f);
     }
 	private void Open(string text, int missionId)
     {

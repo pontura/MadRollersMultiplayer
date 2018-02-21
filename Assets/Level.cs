@@ -211,7 +211,7 @@ public class Level : MonoBehaviour {
 			{
 				newSO.Restart(pos[a]);
 				newSO.transform.localEulerAngles = new Vector3(0, a * (360 / NumOfParticles), 0);
-				Vector3 direction = ((newSO.transform.forward * force) + (Vector3.up * (force*3)));
+				Vector3 direction = ((newSO.transform.forward * force) + (Vector3.up * (force*2)));
 				newSO.GetComponent<Rigidbody>().AddForce(direction, ForceMode.Impulse);
 				GrabbableItem gi = newSO.GetComponent<GrabbableItem> ();
 				gi.SetMaterial (mat[a]);
