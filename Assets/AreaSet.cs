@@ -15,7 +15,6 @@ public class AreaSet : MonoBehaviour {
 	public void Restart()
 	{
 		this.id = 0;
-		Debug.Log ("Restart " + id);
 	}
 	public Vector3 getCameraOrientation ()  {
 		if(cameraOrientation.x != 0 || cameraOrientation.y != 0 || cameraOrientation.z != 0)

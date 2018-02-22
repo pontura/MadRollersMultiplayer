@@ -43,7 +43,6 @@ public class AreasManager : MonoBehaviour {
     }
 	public void Init(int _activeAreaSetID)
 	{
-		print ("INININININII");
         activeAreaSetID = 1;
 
 //#if UNITY_EDITOR

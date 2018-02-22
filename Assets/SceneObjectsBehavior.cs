@@ -128,6 +128,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			case "enemyFrontal":   
 			case "enemySide":  
 			case "castle":
+			case "SideMountain":
 			case "bonusEntrance":   
 			          
 

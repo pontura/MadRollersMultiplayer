@@ -32,7 +32,6 @@ public class MissionIcon : MonoBehaviour {
 		icon.transform.localPosition = Vector3.zero;
 		Animation anim = icon.GetComponentInChildren<Animation> ();
 		if (anim != null) {
-			print (anim.clip.name);
 			StartCoroutine( PlayAnim (anim, anim.clip.name, false) );
 		}
 	}
