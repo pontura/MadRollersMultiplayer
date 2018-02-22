@@ -14,6 +14,7 @@ public class MissionIcon : MonoBehaviour {
 	}
 	public void SetOn(Mission mission, GameObject specialIcon = null)
 	{
+		GetComponent<Animator> ().Play ("missionIconOn",0,0);
 		panel.SetActive (true);
 		if (icon != null) {
 			StopAllCoroutines ();
@@ -38,7 +39,6 @@ public class MissionIcon : MonoBehaviour {
 
 	public static IEnumerator PlayAnim( Animation animation, string clipName, bool useTimeScales)
 	{
-		print ("clipName " + clipName);
 		if(useTimeScales == false)
 		{
 			

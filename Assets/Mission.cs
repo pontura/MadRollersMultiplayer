@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class Mission: MonoBehaviour {
+	
+	public BackgroundSideData[] backgroundSides;
 
 	public GameObject missionIcon;
     public bool isCompetition;
@@ -21,6 +23,12 @@ public class Mission: MonoBehaviour {
 
 	public string description;
 
+	public void Init()
+	{
+		print ("Init Mission ___________________" + missionIcon.name);
+		if(backgroundSides.Length>0)
+			Data.Instance.events.OnChangeBackgroundSide (backgroundSides[0]);
+	}
 	public void addPoints (float qty) {
         setPoints(points + (int)qty);
 	}

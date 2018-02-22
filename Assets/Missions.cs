@@ -67,6 +67,7 @@ public class Missions : MonoBehaviour {
 
 		MissionActiveID = _MissionActiveID;
 		MissionActive = missions [MissionActiveID];
+		MissionActive.Init ();
 
 		this.missionCompletedPercent = 0;
 
@@ -134,6 +135,7 @@ public class Missions : MonoBehaviour {
         }
 		MissionActiveID++;
         MissionActive = GetActualMissions()[MissionActiveID];
+		MissionActive.Init ();
 		MissionActive.reset();
 
 	}

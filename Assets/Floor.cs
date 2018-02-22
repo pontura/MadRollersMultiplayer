@@ -1,15 +1,17 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Floor : MonoBehaviour
 {
-
-    [SerializeField]
-    GameObject[] areas;
+	float offset = 40;
+	public Transform container;
     public int z_length;
+	int new_z_length;
     private bool isMoving;
 	public float speed = 2;
-
+	public List<BackgroundSideData> all;
+	string lastBackgroundSideName;
     private CharactersManager charactersManager;
 
     public void Init(CharactersManager charactersManager)
@@ -20,12 +22,14 @@ public class Floor : MonoBehaviour
         Data.Instance.events.OnAvatarFall += OnAvatarCrash;
       //  Data.Instance.events.OnChangeMood += OnChangeMood;
         this.charactersManager = charactersManager;
+		Data.Instance.events.OnChangeBackgroundSide += OnChangeBackgroundSide;
     }
     void OnDestroy()
     {
         Data.Instance.events.OnGamePaused -= OnGamePaused;
         Data.Instance.events.OnAvatarCrash -= OnAvatarCrash;
         Data.Instance.events.OnAvatarFall -= OnAvatarCrash;
+		Data.Instance.events.OnChangeBackgroundSide -= OnChangeBackgroundSide;
       //  Data.Instance.events.OnChangeMood -= OnChangeMood;
     }
     void OnGamePaused(bool paused)
@@ -35,21 +39,13 @@ public class Floor : MonoBehaviour
     void OnChangeMood(int id)
     {
 		return;
-      //  string texture = Game.Instance.moodManager.GetMood(id).floorTexture;
-        
-        foreach (GameObject area in areas)
-        {
-       //     Material mat = Resources.Load("Materials/Floors/" + texture, typeof(Material)) as Material;
-        //    area.GetComponent<MeshRenderer>().material = mat;
-        }
-
     }
     void OnAvatarCrash(CharacterBehavior cb)
     {
         isMoving = false;
     }
 
-	float pos_z;
+	float pos_z = 0;
 	float lastCharactersDistance;
     void Update()
     {
@@ -60,17 +56,50 @@ public class Floor : MonoBehaviour
 			return;
 		
 		lastCharactersDistance = charactersDistance;
+		pos_z += (Time.deltaTime*speed);
+		BackgroundSideData toDelete = null;
+		foreach (BackgroundSideData go in all) {
 
-		pos_z += Time.deltaTime*speed;
+			Vector3 pos = go.transform.localPosition;
+			
+			if (pos.z < charactersDistance - offset) {
+				if (go.backgroundSideName != lastBackgroundSideName)
+					toDelete = go;
+				else
+					go.offset += z_length;
+			}
+			
+			pos.z = charactersDistance + go.offset - pos_z;
+			go.transform.localPosition = pos;
 
-		if (pos_z > z_length)
-			pos_z = 0;
-
-		Vector3 pos = transform.localPosition;
-		pos.z = charactersDistance - pos_z;
-
-		transform.localPosition = pos;
-
+		}
+		if(toDelete != null)
+		{
+			all.Remove (toDelete);
+			Destroy (toDelete.gameObject);
+		}
 
     }
+	void OnChangeBackgroundSide(BackgroundSideData data)
+	{
+		data.backgroundSideName = data.gameObject.name;
+		//print("OnChangeBackgroundSide to " + data.backgroundSideName + "   from: " + lastBackgroundSideName);
+		if (lastBackgroundSideName == data.backgroundSideName)
+			return;
+		lastBackgroundSideName = data.backgroundSideName;
+		z_length = 0;
+		for (int a = 0; a < 3; a++) {
+			z_length += data.z_length;
+			data.offset = z_length;
+			AddNewBgSide (data);
+		}
+	}
+	void AddNewBgSide(BackgroundSideData newGO)
+	{
+		BackgroundSideData go = Instantiate (newGO);
+		go.transform.SetParent (container);
+		go.transform.localPosition = new Vector3(0,0,z_length);
+		go.transform.localScale = Vector3.one;
+		all.Add(go);
+	}
 }
