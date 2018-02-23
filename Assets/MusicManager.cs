@@ -104,6 +104,13 @@ public class MusicManager : MonoBehaviour {
     {
         //playSound(MainTheme);
 	}
+	public void BossMusic(bool isBoss)
+	{
+		if (!isBoss)
+			playSound(MainTheme);
+		else
+			playSound(IndestructibleFX);
+	}
     void OnAvatarChangeFX(Player.fxStates state)
     {
         if (state == Player.fxStates.NORMAL)

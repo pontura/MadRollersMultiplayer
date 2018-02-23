@@ -9,7 +9,8 @@ public class AreasManager : MonoBehaviour {
 
 	public List<AreaSet> areaSets;
     public int activeAreaSetID = 1;
-
+	[HideInInspector]
+	public bool showRelaxAreaBeforeStarting;
 	private AreaSet areaSet;
 
     void Start()
@@ -18,6 +19,10 @@ public class AreasManager : MonoBehaviour {
         activeAreaSetID = 1;
         
     }
+	public AreaSet GetActiveAreaSet()
+	{
+		return areaSets [activeAreaSetID];
+	}
     public void RandomizeAreaSetsByPriority()
     {
        // if (Data.Instance.isArcade) return;
@@ -109,6 +114,7 @@ public class AreasManager : MonoBehaviour {
 	
         if (startingArea)
 		{
+			//area = Game.Instance.level.victoryAreaLastLevel;
 			area = getStartingArea();
 			num = 0;
 		} else 	if (showRelaxAreaBeforeStarting) {			
@@ -148,7 +154,7 @@ public class AreasManager : MonoBehaviour {
 		//area = skyAreas[Random.Range(0, skyAreas.Length)];
 		return area;
 	}
-	bool showRelaxAreaBeforeStarting;
+
 	public Area getStartingArea()
 	{
 		showRelaxAreaBeforeStarting = true;

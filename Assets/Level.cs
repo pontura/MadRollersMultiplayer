@@ -35,6 +35,7 @@ public class Level : MonoBehaviour {
     //private float nextDistanceVictoryArea;
     //private int distanceVictoryArea = 550;
 
+	public Area victoryAreaLastLevel;
     public Area victoryArea;
     //////////////////////
 
@@ -52,6 +53,7 @@ public class Level : MonoBehaviour {
     private int areasX;
     public CharactersManager charactersManager;
     private PowerupsManager powerupsManager;
+	public bool isLastArea;
    
     public void SetDificultyByScore(int score)
     {
@@ -280,6 +282,7 @@ public class Level : MonoBehaviour {
         if (areasLength==0)
        {
            createNextArea(areasManager.getStartingArea());
+			isLastArea = areasManager.GetActiveAreaSet ().isLastArea;
 		} else if (dist > (areasLength - nextPlatformSpace)
 		&&
 			lastDistanceToLoadLevel != dist)
@@ -299,8 +302,14 @@ public class Level : MonoBehaviour {
           //  } else
 			if(showStartArea)
 			{
-				newArea = areasManager.getRandomArea(true);
-				showStartArea = false;
+				if (isLastArea) {
+					areasManager.showRelaxAreaBeforeStarting = true;
+					newArea = victoryAreaLastLevel;
+				}
+				else
+					newArea = areasManager.getRandomArea(true);					
+				showStartArea = false; 
+				isLastArea = areasManager.GetActiveAreaSet ().isLastArea;
 			} else 
 			{
 				newArea = areasManager.getRandomArea(false);

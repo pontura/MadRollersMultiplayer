@@ -16,8 +16,12 @@ public class BossBar : MonoBehaviour {
 
 	public void Resta (float qty) {
 		total -= qty;
-		asset.transform.localScale = new Vector3 (total, 1, 1);
-		if (total <= 0)
+		if (total <= 0) {
+			asset.transform.localScale = new Vector3 (0, 1, 1);
 			boss.Killed ();
+		}
+		else
+			asset.transform.localScale = new Vector3 (total, 1, 1);
+
 	}
 }

@@ -274,6 +274,7 @@ GameObject:
   - component: {fileID: 114585178873540222}
   - component: {fileID: 65470225440207678}
   - component: {fileID: 95559191119427510}
+  - component: {fileID: 114327495747415704}
   m_Layer: 22
   m_Name: Boss1_real
   m_TagString: boss
@@ -1455,8 +1456,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1267719545963350}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.58, y: 1.3, z: 5.79}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.56, y: 1.3, z: 17.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4080436027355546}
@@ -2994,8 +2995,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.17, y: 3.17, z: 3.17}
-  m_Center: {x: 0, y: 1.92, z: 0}
+  m_Size: {x: 3.17, y: 6.44, z: 3.17}
+  m_Center: {x: 0, y: 3.52, z: 0}
 --- !u!95 &95559191119427510
 Animator:
   serializedVersion: 3
@@ -3044,11 +3045,32 @@ MonoBehaviour:
   isActive: 0
   score: 0
   charactersMmanager: {fileID: 0}
-  distanceFromCharacter: 30
+  distanceFromCharacter: 20
   onlyMultiplayers: 0
-  distance_from_avatars: 30
+  distance_from_avatars: 27
   bossBar: {fileID: 114120810456480228}
-  numberOfHits: 5
+  numberOfHits: 3
+  timeToConvert: 8
+  timer: 0
+  state: 0
+  move: {fileID: 114585178873540222}
+  comeClose: {fileID: 114327495747415704}
+  anim: {fileID: 95559191119427510}
+--- !u!114 &114327495747415704
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1267719545963350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f49e9e7c4c6617145b18917fb1caab9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 20
+  howMuchClose: 0
+  state: 0
+  offset: 0
 --- !u!114 &114585178873540222
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9935,7 +9957,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1441941416
+  randomSeed: 1566937313
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -20120,7 +20142,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 553510310
+  randomSeed: -1038696075
   InitialModule:
     serializedVersion: 3
     enabled: 1

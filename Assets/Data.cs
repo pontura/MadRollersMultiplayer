@@ -134,7 +134,7 @@ public class Data : MonoBehaviour {
             if (num > levelUnlockedID)
             {
                 levelUnlockedID = num;
-                PlayerPrefs.SetInt("levelUnlocked", num - 1);
+                PlayerPrefs.SetInt("levelUnlocked", num);
             }
         }
 	}

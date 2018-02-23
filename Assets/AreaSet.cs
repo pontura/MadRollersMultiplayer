@@ -8,6 +8,7 @@ public class AreaSet : MonoBehaviour {
 	public Area[] areas;
 	public int totalAreasInSet;
 	public Vector3 cameraOrientation;
+	public bool isLastArea;
 
     //[HideInInspector]
     int id = 0;

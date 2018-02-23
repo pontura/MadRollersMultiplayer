@@ -46,12 +46,16 @@ public class ArcadeUILevelTransitions : MonoBehaviour {
 			SetOff ();
 	}
     void OnListenerDispatcher(string type)
-    {
-		       
+    {    
         if (type == "Ralenta")
         {
             StopAllCoroutines();
-            StartCoroutine(DoFade(0.2f));
+
+			if (Data.Instance.playMode == Data.PlayModes.STORY) 
+				StartCoroutine(DoFade(0f, 3f));
+			else
+           		 StartCoroutine(DoFade(0.2f, 0.25f));
+			
             panel.SetActive(true);
             foreach (Text field in texts.GetComponentsInChildren<Text>())
                 field.text = "Rock!";
@@ -94,24 +98,38 @@ public class ArcadeUILevelTransitions : MonoBehaviour {
 
         panel.SetActive(true);
         //  panel.GetComponent<Animation>().Play("levelTransition");
-
-       // StartCoroutine(DoFade());
-        foreach (Text field in texts.GetComponentsInChildren<Text>())
-            field.text = "Nivel " + (level+1).ToString();
-        foreach (Text field in texts2.GetComponentsInChildren<Text>())
-        {
-            switch( Game.Instance.level.Dificulty)
-            {
-                case Level.Dificult.EASY: field.text = "modo FáCIL"; break;
-                case Level.Dificult.MEDIUM: field.text = "dificultad MEDIA"; break;
-                case Level.Dificult.HARD: field.text = "modo EXTREMO!"; break;
-            }
-        }
+		if (Data.Instance.playMode == Data.PlayModes.STORY) {
+			SetTexts ("STAGE CLEAR!", "");
+		} else {
+			// StartCoroutine(DoFade());
+			foreach (Text field in texts.GetComponentsInChildren<Text>())
+				field.text = "Nivel " + (level + 1).ToString ();
+			foreach (Text field in texts2.GetComponentsInChildren<Text>()) {
+				switch (Game.Instance.level.Dificulty) {
+				case Level.Dificult.EASY:
+					field.text = "modo FáCIL";
+					break;
+				case Level.Dificult.MEDIUM:
+					field.text = "dificultad MEDIA";
+					break;
+				case Level.Dificult.HARD:
+					field.text = "modo EXTREMO!";
+					break;
+				}
+			}
+		}
 
         level++;
         ready = true;
         Invoke("Reset", 1);
     }
+	void SetTexts(string title, string subtitle)
+	{
+		foreach (Text field in texts.GetComponentsInChildren<Text>())
+			field.text = title;
+		foreach (Text field in texts2.GetComponentsInChildren<Text>())
+			field.text = subtitle;
+	}
     void Reset()
     {
         percent = 0;
@@ -123,7 +141,7 @@ public class ArcadeUILevelTransitions : MonoBehaviour {
         blackMask.enabled = false;
     }
 
-    public IEnumerator DoFade(float delay)
+	public IEnumerator DoFade(float delay, float waitInBlack)
     {
         yield return new WaitForSeconds(delay);
         blackMask.enabled = true;
@@ -136,7 +154,7 @@ public class ArcadeUILevelTransitions : MonoBehaviour {
             color.a = t;
             blackMask.color = color;
         }
-        yield return new WaitForSeconds(0.25f);
+		yield return new WaitForSeconds(waitInBlack);
         Data.Instance.events.OnAlignAllCharacters();
         while (t > 0)
         {

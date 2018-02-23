@@ -50,15 +50,15 @@ MonoBehaviour:
   Hiscore: 0
   avatarHiscore: 
   boss1: 0
-  hearts: 40
+  hearts: 80
   guys: 0
   ghost: 0
-  points: 40
+  points: 0
   listeners: 0
   planes: 0
   bombs: 0
   distance: 0
-  description: GET 40 PIXELS
+  description: GET 80 PIXELS
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -72,7 +72,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   areaSets:
   - {fileID: 11400000, guid: a05b460428d9d8c4fa0d3239b4827bc7, type: 2}
-  activeAreaSetID: 1
+  - {fileID: 11400000, guid: ab15df124e6b9e048a8720268d03d8cb, type: 2}
+  activeAreaSetID: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

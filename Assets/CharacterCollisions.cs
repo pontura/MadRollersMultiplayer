@@ -13,7 +13,6 @@ public class CharacterCollisions : MonoBehaviour {
         player = gameObject.transform.parent.GetComponent<Player>();
 	}
 	void OnTriggerEnter(Collider other) {
-
         if (characterBehavior.state == CharacterBehavior.states.DEAD) return;
         if (characterBehavior.state == CharacterBehavior.states.CRASH) return;
         if (characterBehavior.state == CharacterBehavior.states.FALL) return;
@@ -36,7 +35,7 @@ public class CharacterCollisions : MonoBehaviour {
                 }
             }
         } else
-        if (other.tag == "wall") 
+		if (other.tag == "wall" || other.tag == "firewall") 
 		{
             if (characterBehavior.state == CharacterBehavior.states.SHOOT) return;
             if (player.fxState == Player.fxStates.NORMAL)

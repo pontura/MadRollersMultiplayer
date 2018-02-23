@@ -94,6 +94,13 @@ public class Projectil : SceneObject {
 				other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);
 				Destroy();
 				break;
+		case "firewall":
+				//SetScore(70);
+			//	other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);
+				Vector3 rot = transform.localEulerAngles;
+				rot.y += 180+other.gameObject.GetComponentInParent<SceneObject>().transform.localEulerAngles.y;
+				transform.localEulerAngles = rot;
+				break;
 		}
 	}
     void SetScore(int score)

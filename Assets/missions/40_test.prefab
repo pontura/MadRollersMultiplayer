@@ -41,10 +41,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aab087fa44cc671439e1b50508ce4d75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingArea: {fileID: 11400258, guid: 3ba8407d2d50f0b41b9bdc4873fea123, type: 2}
   areaSets:
-  - {fileID: 11413728, guid: 48ddf742a7c9ec04084fb1180d2731ce, type: 2}
-  activeAreaSetID: 1
+  - {fileID: 114004391671021460, guid: 4672d9073d2a236428465562a62b089f, type: 2}
+  activeAreaSetID: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -56,17 +55,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c52aa23c4c1909c45b1a2eeadb8f98cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backgroundSides: []
+  missionIcon: {fileID: 0}
   isCompetition: 0
   maxScore: 0
   Hiscore: 0
   avatarHiscore: 
+  boss1: 1
   hearts: 0
   guys: 0
-  points: 220
+  ghost: 0
+  points: 1
   listeners: 0
   planes: 0
   bombs: 0
-  distance: 2392
+  distance: 1000
   description: TEST
 --- !u!1001 &100100000
 Prefab:
