@@ -84,7 +84,7 @@ public class Level : MonoBehaviour {
 		missions.Init(data.missions.MissionActiveID, this);
         areasManager = missions.getAreasManager();
         areasManager.Init(1);
-
+		SetNewVideogameSettings ();
         areasLength = 0;
 
 		if (!Data.Instance.isArcadeMultiplayer && !waitingToStart) // nunevo && !waitingToStart)
@@ -124,7 +124,15 @@ public class Level : MonoBehaviour {
 		missions.StartNext();
 		areasManager = missions.getAreasManager();
 		areasManager.Init(0);
-		data.setMission(missions.MissionActiveID);        
+		data.setMission(missions.MissionActiveID);   
+		SetNewVideogameSettings ();
+	}
+	void SetNewVideogameSettings()
+	{
+
+		VideogameData videogameData = Data.Instance.videogamesData.GetActualVideogameData ();
+		RenderSettings.skybox = videogameData.skybox;
+		RenderSettings.fogColor = videogameData.fog;
 	}
 	private void  reset()
 	{
@@ -271,7 +279,7 @@ public class Level : MonoBehaviour {
 			{
 				Data.Instance.events.OnShowTutorial(2);
 				tutorialID = 2;
-			} else if(missions.MissionActiveID == 0 && dist>250 && tutorialID < 3)
+			} else if(missions.MissionActiveID == 0 && dist>270 && tutorialID < 3)
 			{
 				Data.Instance.events.OnShowTutorial(3);
 				tutorialID = 3;

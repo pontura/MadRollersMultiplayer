@@ -6,6 +6,7 @@ using System.Linq;
 public class AreasManager : MonoBehaviour { 
 
     private int num = 0;
+	public int videogameID;
 
 	public List<AreaSet> areaSets;
     public int activeAreaSetID = 1;
@@ -92,7 +93,6 @@ public class AreasManager : MonoBehaviour {
 		//changeCameraOrientation();
 		areaSet.Restart();
 
-        
        
 	}
 	private void changeCameraOrientation()

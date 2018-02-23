@@ -8,12 +8,8 @@ public class VideogameData {
 
 	public int id;
 	public string name;
-	public BackgroundOnSides[] backgroundOnSides;
-
-	[Serializable]
-	public class BackgroundOnSides
-	{
-		public string name;
-		public BackgroundSideData backgroundSide;
-	}
+	public Material floor_top;
+	public Material floor_border;
+	public Material skybox;
+	public Color fog;
 }

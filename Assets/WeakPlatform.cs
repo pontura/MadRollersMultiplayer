@@ -4,32 +4,32 @@ using System.Collections;
 public class WeakPlatform : SceneObject {
 	
 	public GameObject to;
-    private Renderer renderer;
-    public string materialName = "pasto";
+	int videoGameID;
+	public GameObject borders;
 
     public override void OnRestart(Vector3 pos)
     {
         base.OnRestart(pos);
         GetComponent<Collider>().enabled = true;
-        renderer = GetComponentInChildren<Renderer>();
+		Renderer renderer = GetComponentInChildren<Renderer>();
+		int newVideoGameID = Data.Instance.videogamesData.actualID;
+		if (newVideoGameID != videoGameID) {
+			videoGameID = newVideoGameID;
+			ChangeMaterials(renderer);
+		}
+		if (borders != null) {
+			foreach(Renderer r in borders.GetComponentsInChildren<Renderer>())
+				ChangeMaterials(r);
+		}
     }
-    public override void changeMaterial(string materialName)
-    {
-		return;
-       // TO DO: arreglar que no cambie siempre la textura:
-        //this.materialName = materialName;
-        //print(renderer.material.mainTexture.name);
-        //if (renderer.material.name == materialName + " (Instance)")
-        //{
-        //    return;
-        //}
-       // print(renderer.material.name + "__" + materialName);
-        this.materialName = materialName;
-        Material newMaterial = Resources.Load("Materials/" + materialName, typeof(Material)) as Material;
-
-        foreach (Material material in renderer.materials)
-            material.SetTexture(0, newMaterial.mainTexture);
-    }
+	void ChangeMaterials(Renderer renderer)
+	{
+		Material floor_top = Data.Instance.videogamesData.GetActualVideogameData ().floor_top;
+		Material floor_border = Data.Instance.videogamesData.GetActualVideogameData ().floor_border;
+		renderer.material = floor_top;
+		if(renderer.sharedMaterials.Length>1)
+			renderer.sharedMaterials[1] = floor_border;
+	}
    void OnTriggerEnter(Collider other) 
 	{
         if (!isActive) return;
@@ -91,8 +91,7 @@ public class WeakPlatform : SceneObject {
                     case 3: newPos = pos - transform.forward * MidZ + transform.right * MidX; break;
                 }
                     
-                newSO.Restart(newPos);
-                newSO.changeMaterial(materialName);                    
+                newSO.Restart(newPos);                  
                 newSO.transform.rotation = transform.rotation;
             }
         }
@@ -104,10 +103,6 @@ public class WeakPlatform : SceneObject {
     {
         Pool();
         //StartCoroutine(FallDown());
-    }
-    public override void OnPool()
-    {
-        materialName = "";
     }
     //IEnumerator FallDown()
     //{

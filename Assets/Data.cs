@@ -31,8 +31,8 @@ public class Data : MonoBehaviour {
     public Competitions competitions;
     [HideInInspector]
     public MultiplayerData multiplayerData;
-	//[HideInInspector]
-	//public VideogamesData videogamesData;
+	[HideInInspector]
+	public VideogamesData videogamesData;
 
     static Data mInstance = null;
 
@@ -87,7 +87,7 @@ public class Data : MonoBehaviour {
         missions = GetComponent<Missions>();
         competitions = GetComponent<Competitions>();
         multiplayerData = GetComponent<MultiplayerData>();
-		//videogamesData = GetComponent<VideogamesData> ();
+		videogamesData = GetComponent<VideogamesData> ();
 
         competitions.Init();
         if(userData)
