@@ -21,9 +21,11 @@ public class MissionButton : MonoBehaviour {
 	public Image logo;
 	public Image floppyCover;
 
+	public Mission mission;
+
 	// Use this for initialization
 	public void Init (Mission mission, int id) {
-	//	thumbPanel.SetActive (false);
+		this.mission = mission;
         this.id = id;
 		VideogameData data = Data.Instance.videogamesData.GetActualVideogameDataByID (mission.videoGameID);
 

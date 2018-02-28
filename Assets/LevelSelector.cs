@@ -23,6 +23,7 @@ public class LevelSelector : MonoBehaviour {
 	public GameObject cam;
 	float lastClickedTime;
 	List<MissionButton> all;
+	VideogamesUIManager videogameUI;
 
 	void Start()
 	{
@@ -31,8 +32,8 @@ public class LevelSelector : MonoBehaviour {
 		Data.Instance.events.OnJoystickClick += OnJoystickClick;
 		Data.Instance.events.OnJoystickDown += OnJoystickDown;
 		Data.Instance.events.OnJoystickUp += OnJoystickUp;
-		Data.Instance.events.OnJoystickLeft += OnJoystickDown;
-		Data.Instance.events.OnJoystickRight += OnJoystickUp;
+		Data.Instance.events.OnJoystickLeft += OnJoystickLeft;
+		Data.Instance.events.OnJoystickRight += OnJoystickRight;
 	}
 	void OnDestroy()
 	{
@@ -72,6 +73,14 @@ public class LevelSelector : MonoBehaviour {
 			missionActiveID--;
 		SetSelected ();
 	}
+	void OnJoystickLeft()
+	{
+		videogameUI.Left ();
+	}
+	void OnJoystickRight()
+	{
+		videogameUI.Right ();
+	}
 	void Init () {
 
 		Data.Instance.events.VoiceFromResources("juega_solo_asi_te_quedaras");
@@ -89,6 +98,8 @@ public class LevelSelector : MonoBehaviour {
 		//if (!showJoystickMenu)
 		//    GameObject.Find("ContainerJoystick").gameObject.SetActive(false);
 
+		int videogameID = 0;
+
 		all = new List<MissionButton> ();
 		foreach (Mission mission in missions.missions) {
 			MissionButton button = Instantiate (uiButton) as MissionButton;
@@ -98,7 +109,9 @@ public class LevelSelector : MonoBehaviour {
 			lastButton = button;
 
 			if (missionID > data.levelUnlockedID && !Data.Instance.DEBUG)
-				button.disableButton();
+				button.disableButton ();
+			else
+				videogameID = mission.videoGameID;
 
 			missionID++;
 
@@ -113,8 +126,14 @@ public class LevelSelector : MonoBehaviour {
 
 		}
 		levelUnlockedID = data.levelUnlockedID;   
+
+		videogameUI = GetComponent<VideogamesUIManager> ();
+		videogameUI.Init (videogameID);
+
 		all.Reverse ();
 		SetSelected ();
+
+
 	}
 	MissionButton lastButtonSelected;
 	void SetSelected()
@@ -123,12 +142,24 @@ public class LevelSelector : MonoBehaviour {
 			lastButtonSelected.SetOn (false);
 		lastButtonSelected = all [missionActiveID];
 		lastButtonSelected.SetOn (true);
-
+		videogameUI.Select (lastButtonSelected.mission.videoGameID);
 		//missionIcon.SetOn (missions.missions [missionActiveID]);
 	}
 	public void OnJoystickBack()
     {
         Data.Instance.LoadLevel("MainMenu");
     }
-
+	public void SelectFirstLevelOf(int videoGameID)
+	{
+		MissionButton firstButton = null;
+		foreach (MissionButton missionButton in all) {
+			if (missionButton.mission.videoGameID == videoGameID && firstButton == null)
+				firstButton = missionButton;
+		}
+		if (firstButton == null)
+			return;
+		missionActiveID = firstButton.id;
+		lastButtonSelected = firstButton;
+		SetSelected ();
+	}
 }
