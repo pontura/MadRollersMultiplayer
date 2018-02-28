@@ -20,6 +20,7 @@ public class WeakPlatform : SceneObject {
 		if (borders != null) {
 			foreach(Renderer r in borders.GetComponentsInChildren<Renderer>())
 				ChangeMaterials(r);
+		//	borders.transform.SetParent (transform.parent);
 		}
     }
 	void ChangeMaterials(Renderer renderer)
@@ -97,7 +98,7 @@ public class WeakPlatform : SceneObject {
         }
         
         Pool();
-       
+
 	}
     private void Fall()
     {

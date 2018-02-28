@@ -290,7 +290,7 @@ public class Level : MonoBehaviour {
         if (areasLength==0)
        {
            createNextArea(areasManager.getStartingArea());
-			isLastArea = areasManager.GetActiveAreaSet ().isLastArea;
+			NewMissionAreaStart ();
 		} else if (dist > (areasLength - nextPlatformSpace)
 		&&
 			lastDistanceToLoadLevel != dist)
@@ -317,7 +317,6 @@ public class Level : MonoBehaviour {
 				else
 					newArea = areasManager.getRandomArea(true);					
 				showStartArea = false; 
-				isLastArea = areasManager.GetActiveAreaSet ().isLastArea;
 			} else 
 			{
 				newArea = areasManager.getRandomArea(false);
@@ -325,6 +324,10 @@ public class Level : MonoBehaviour {
 			createNextArea(newArea);
             //print("new area " + newArea.name + " lastDistanceToLoadLevel: " + lastDistanceToLoadLevel);
 		}
+	}
+	public void NewMissionAreaStart()
+	{
+		isLastArea = areasManager.GetActiveAreaSet ().isLastArea;
 	}
     public void FallDown(int fallDownHeight)
     {

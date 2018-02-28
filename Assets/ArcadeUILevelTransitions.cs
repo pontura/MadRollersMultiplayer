@@ -47,6 +47,8 @@ public class ArcadeUILevelTransitions : MonoBehaviour {
 	}
     void OnListenerDispatcher(string type)
     {    
+		if (!Game.Instance.level.isLastArea)
+			return;
         if (type == "Ralenta")
         {
             StopAllCoroutines();

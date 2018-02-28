@@ -15,5 +15,9 @@ public class VideogamesData : MonoBehaviour {
 	{
 		return all [actualID];
 	}
+	public VideogameData GetActualVideogameDataByID(int id)
+	{
+		return all [id];
+	}
 
 }

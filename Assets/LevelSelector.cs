@@ -7,7 +7,7 @@ public class LevelSelector : MonoBehaviour {
 
     public int levelUnlockedID;
     public MissionButton uiButton;
-	public MissionIcon missionIcon;
+	//public MissionIcon missionIcon;
 
     [SerializeField]
     GameObject container;
@@ -51,6 +51,12 @@ public class LevelSelector : MonoBehaviour {
 	{
 		if (all [missionActiveID].isLocked)
 			return;
+		if(lastButtonSelected != null)
+			lastButtonSelected.OnClick ();
+		Invoke ("Delayed", 0.3f);
+	}
+	void Delayed()
+	{
 		data.missions.MissionActiveID = missionActiveID;
 		Data.Instance.LoadLevel("MainMenuStory");
 	}
@@ -86,7 +92,7 @@ public class LevelSelector : MonoBehaviour {
 		all = new List<MissionButton> ();
 		foreach (Mission mission in missions.missions) {
 			MissionButton button = Instantiate (uiButton) as MissionButton;
-			button.Init(missionID, mission.description.ToUpper());
+			button.Init(mission, missionID);
 
 
 			lastButton = button;
@@ -118,7 +124,7 @@ public class LevelSelector : MonoBehaviour {
 		lastButtonSelected = all [missionActiveID];
 		lastButtonSelected.SetOn (true);
 
-		missionIcon.SetOn (missions.missions [missionActiveID]);
+		//missionIcon.SetOn (missions.missions [missionActiveID]);
 	}
 	public void OnJoystickBack()
     {

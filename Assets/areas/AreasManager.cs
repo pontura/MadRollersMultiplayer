@@ -6,7 +6,6 @@ using System.Linq;
 public class AreasManager : MonoBehaviour { 
 
     private int num = 0;
-	public int videogameID;
 
 	public List<AreaSet> areaSets;
     public int activeAreaSetID = 1;
@@ -17,8 +16,7 @@ public class AreasManager : MonoBehaviour {
     void Start()
     {
         num = 0;
-        activeAreaSetID = 1;
-        
+        activeAreaSetID = 1;        
     }
 	public AreaSet GetActiveAreaSet()
 	{

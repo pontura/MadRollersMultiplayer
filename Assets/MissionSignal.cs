@@ -125,6 +125,7 @@ public class MissionSignal : MonoBehaviour {
 			foreach(Text f in fieldsMissionNum)
 				f.text = "MISSION " + missionId;		
 		}	
+		Game.Instance.level.NewMissionAreaStart ();
 	}
 
     void CloseAfter(float delay)

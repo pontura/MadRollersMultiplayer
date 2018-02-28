@@ -5,6 +5,7 @@ public class Mission: MonoBehaviour {
 	
 	public BackgroundSideData[] backgroundSides;
 
+	public int videoGameID;
 	public GameObject missionIcon;
     public bool isCompetition;
     public int maxScore;

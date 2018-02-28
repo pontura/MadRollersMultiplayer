@@ -11,37 +11,50 @@ public class MissionButton : MonoBehaviour {
 
 	public Stars stars;
 	public Animation anim;
-	public GameObject thumbPanel;
+	//public GameObject thumbPanel;
 
     public Image background;
 	public GameObject lockImage;
     public int id;
 	public bool isLocked;
 
+	public Image logo;
+	public Image floppyCover;
+
 	// Use this for initialization
-	public void Init (int id, string desc) {
-		thumbPanel.SetActive (false);
+	public void Init (Mission mission, int id) {
+	//	thumbPanel.SetActive (false);
         this.id = id;
+		VideogameData data = Data.Instance.videogamesData.GetActualVideogameDataByID (mission.videoGameID);
 
 		foreach (Text m in missionFields.GetComponentsInChildren<Text>())
-			m.text = "MISSION " + (id+1).ToString();
+			m.text = data.name + " " + ((int)id+1).ToString() + "/9";
 
 		foreach (Text m in missionNames.GetComponentsInChildren<Text>())
-			m.text =  desc.ToUpper();
+			m.text =  mission.description;
 		
         int starsQty = Data.Instance.userData.GetStars(id);
         stars.Init(starsQty);
 		background.transform.localEulerAngles = new Vector3 (30, 0, 0);
+
+		logo.sprite = data.logo;
+		floppyCover.sprite = data.floppyCover;
 	}
     public void OnClick()
     {
-		//if (isLocked) return;
-       // GameObject.Find("LevelSelector").GetComponent<LevelSelector>().loadLevel(id);
+		anim.Play ("MissionTopSetActive");
     }
-	public void SetOn(bool isOn)
+	bool isOn;
+	public void SetOn(bool _isOn)
 	{
-		if (isOn) {
-			thumbPanel.SetActive (true);
+		if (isOn && _isOn)
+			return;
+
+		this.isOn = _isOn;
+		
+		if (_isOn) {
+			
+			//thumbPanel.SetActive (true);
 			anim.Play ("MissionButtonOn");
 			foreach (Text m in overs)
 				m.color = Color.yellow;

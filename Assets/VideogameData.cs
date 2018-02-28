@@ -12,4 +12,6 @@ public class VideogameData {
 	public Material floor_border;
 	public Material skybox;
 	public Color fog;
+	public Sprite logo;
+	public Sprite floppyCover;
 }
