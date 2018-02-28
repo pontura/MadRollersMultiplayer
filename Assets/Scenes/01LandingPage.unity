@@ -141,6 +141,48 @@ Transform:
   m_Father: {fileID: 658228953}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &4651579
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4384852507931180, guid: 7d06c2bf2b4eff146a7828dde67f70ae, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384852507931180, guid: 7d06c2bf2b4eff146a7828dde67f70ae, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384852507931180, guid: 7d06c2bf2b4eff146a7828dde67f70ae, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384852507931180, guid: 7d06c2bf2b4eff146a7828dde67f70ae, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384852507931180, guid: 7d06c2bf2b4eff146a7828dde67f70ae, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384852507931180, guid: 7d06c2bf2b4eff146a7828dde67f70ae, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384852507931180, guid: 7d06c2bf2b4eff146a7828dde67f70ae, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4384852507931180, guid: 7d06c2bf2b4eff146a7828dde67f70ae, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 7d06c2bf2b4eff146a7828dde67f70ae, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &5790615
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,7 +815,7 @@ MonoBehaviour:
   - {fileID: 114000011041462772, guid: b3e3189962f06094dbb6aae1a0ef57fd, type: 2}
   startingAreaDuringGame: {fileID: 11400042, guid: 9ad972e8dea1bcd43a78b50365557013,
     type: 2}
-  test_mission: {fileID: 11400002, guid: e499fdf6405b4384c8887773ec68d24b, type: 2}
+  test_mission: {fileID: 11400002, guid: e9bdfb59e91cc0d438603987e4497c84, type: 2}
   missions:
   - {fileID: 11400002, guid: d0ae778cb5e3cfd449a8fe528c7d5266, type: 2}
   - {fileID: 11400000, guid: f7dcf32858b7f084eacf69cc87d6f4f1, type: 2}
@@ -824,7 +866,7 @@ MonoBehaviour:
   videogamesData: {fileID: 0}
   mode: 1
   voicesManager: {fileID: 1131599165}
-  DEBUG: 0
+  DEBUG: 1
   FORCE_LOCAL_SCORE: 0
   playMode: 0
   hasContinueOnce: 0
