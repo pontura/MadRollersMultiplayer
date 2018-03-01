@@ -20,6 +20,8 @@ public class AreasManager : MonoBehaviour {
     }
 	public AreaSet GetActiveAreaSet()
 	{
+		if(activeAreaSetID>areaSets.Count-1)
+			return areaSets [activeAreaSetID-1];
 		return areaSets [activeAreaSetID];
 	}
     public void RandomizeAreaSetsByPriority()
