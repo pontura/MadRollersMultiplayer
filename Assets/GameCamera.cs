@@ -42,6 +42,10 @@ public class GameCamera : MonoBehaviour
 			anim.Play ("intro");
 		//else
 			//anim.Play ("intro_notMultiplayer");
+
+		Vector3 newPos = transform.localPosition;
+		newPos.y = 4.5f;
+		transform.localPosition = newPos;
     }
     void OnDestroy()
     {
@@ -123,9 +127,6 @@ public class GameCamera : MonoBehaviour
          Vector3 newPos;
         if (state == states.START)
         {
-            newPos = transform.localPosition;
-            newPos.y += Time.deltaTime/4;
-            transform.localPosition = newPos;
             return;
         }
         if (state == states.END )

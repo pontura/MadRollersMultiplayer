@@ -15,7 +15,7 @@ public class VideogameButton : MonoBehaviour {
 	public void SetSelected(bool isOn)
 	{
 		if (isOn) {
-			bg.color = Color.white;
+			bg.color = Color.green;
 		} else {
 			bg.color = Color.black;
 		}
