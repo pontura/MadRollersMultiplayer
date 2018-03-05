@@ -1169,6 +1169,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastMissionSignalShowed: 0
+  startingAreaLevel1: {fileID: 114710416843263632, guid: 81219ce64cb7a274b92028c9064c6b0d,
+    type: 2}
   startingArea: {fileID: 11442682, guid: 6ce08d356ad2bc64e9e14e54ec0a107d, type: 2}
   relaxArea:
   - {fileID: 11482596, guid: 9d70ab401d0a4a14a97b46b9e165fb9e, type: 2}
@@ -1180,7 +1182,7 @@ MonoBehaviour:
   - {fileID: 114000011041462772, guid: b3e3189962f06094dbb6aae1a0ef57fd, type: 2}
   startingAreaDuringGame: {fileID: 11400042, guid: 9ad972e8dea1bcd43a78b50365557013,
     type: 2}
-  test_mission: {fileID: 11400002, guid: e499fdf6405b4384c8887773ec68d24b, type: 2}
+  test_mission: {fileID: 11400002, guid: e9bdfb59e91cc0d438603987e4497c84, type: 2}
   missions:
   - {fileID: 11400002, guid: d0ae778cb5e3cfd449a8fe528c7d5266, type: 2}
   - {fileID: 11400000, guid: f7dcf32858b7f084eacf69cc87d6f4f1, type: 2}
@@ -3817,6 +3819,7 @@ GameObject:
   - component: {fileID: 4111593575430514}
   - component: {fileID: 114459827702156594}
   - component: {fileID: 82701730430689286}
+  - component: {fileID: 114003889115716506}
   m_Layer: 0
   m_Name: voicesManager
   m_TagString: Untagged
@@ -3850,7 +3853,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -3941,6 +3944,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newHiscore: 0
   all: []
+--- !u!114 &114003889115716506
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1110029271378372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d072fda9e202444987806dc3b11e805, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 82701730430689286}
+  result: 0
 --- !u!114 &114459827702156594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3952,29 +3968,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2df3df154f7be6c4fb46777f98bff5b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missionComplete:
-  - {fileID: 8300000, guid: 6b4ae422778639c44821ac7f8c32f930, type: 3}
-  - {fileID: 8300000, guid: 4f98b2cedf295104690d9aa5d80bd7f6, type: 3}
-  firstMissionStart:
-  - {fileID: 8300000, guid: c52b95b5b5886a94bbbff220a5dcdac4, type: 3}
-  newMission:
-  - {fileID: 8300000, guid: bb60264098a06e740bdfb1aa7a349f7c, type: 3}
-  missions: []
-  avatarCrash:
-  - {fileID: 8300000, guid: 0be9f35719723b94fa21647efa9e89d2, type: 3}
-  avatarFall:
-  - {fileID: 8300000, guid: af8b9584126008447b30161f29a4e671, type: 3}
-  MissionHearts: {fileID: 0}
-  MissionDistance: {fileID: 0}
-  MissionKill1: {fileID: 0}
-  MissionKill: {fileID: 0}
-  MissionDestroy: {fileID: 0}
-  MissionJump: {fileID: 0}
-  MissionDoubleJump: {fileID: 0}
-  MissionBomb1: {fileID: 0}
-  MissionBombs: {fileID: 0}
-  invencibleOn: {fileID: 0}
-  invencibleOff: {fileID: 0}
+  intros:
+  - text: asasd
+    audioClip: {fileID: 8300000, guid: 572d42de3b4927346a176fcae9dd8695, type: 3}
+  audioSource: {fileID: 82701730430689286}
 --- !u!114 &114470505979592602
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4015,20 +4012,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2df3df154f7be6c4fb46777f98bff5b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missionComplete: []
-  firstMissionStart: []
-  newMission: []
-  missions: []
-  avatarCrash: []
-  avatarFall: []
-  MissionHearts: {fileID: 0}
-  MissionDistance: {fileID: 0}
-  MissionKill1: {fileID: 0}
-  MissionKill: {fileID: 0}
-  MissionDestroy: {fileID: 0}
-  MissionJump: {fileID: 0}
-  MissionDoubleJump: {fileID: 0}
-  MissionBomb1: {fileID: 0}
-  MissionBombs: {fileID: 0}
-  invencibleOn: {fileID: 0}
-  invencibleOff: {fileID: 0}
+  intros: []
+  audioSource: {fileID: 0}

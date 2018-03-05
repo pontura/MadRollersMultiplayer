@@ -5,6 +5,7 @@ using System.Collections;
 public class Missions : MonoBehaviour {
 
 	public int lastMissionSignalShowed;
+	public Area startingAreaLevel1;
 	public Area startingArea;
 	public Area[] relaxArea;
 	public Area startingAreaDuringGame;

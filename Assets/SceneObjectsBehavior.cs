@@ -131,7 +131,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			case "SideMountain":
 			case "bonusEntrance":   
 			case "firewall":        
-
+			case "Baranda1":  
 					sceneObject = Pool.GetObjectForType(go.name + "_real", false);    
 			
 

@@ -98,7 +98,8 @@ public class CharacterControls : MonoBehaviour {
 
     private void moveByKeyboard()
     {
-		
+		if (Game.Instance.level.charactersManager.distance<35)
+			return;
 		float _speed = InputManager.getHorizontal(player.id);
 		if (_speed < -0.5f || _speed > 0.5f) {
 			float newPosX = _speed*speedX;

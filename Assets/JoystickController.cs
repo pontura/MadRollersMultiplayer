@@ -13,6 +13,8 @@ public class JoystickController : MonoBehaviour {
 		if (lastClickedTime > 0.1f)
 			processAxis = true;
 		for (int a = 0; a < 4; a++) {
+			if (InputManager.getJump (a)) 
+				OnJoystickClick ();
 			if (InputManager.getFire (a)) 
 				OnJoystickClick ();
 			if (processAxis) {

@@ -111,7 +111,8 @@ public class AreasManager : MonoBehaviour {
 		Area area;
 
       //  print(areaSet + "areaSets.Length: " + areaSets.Count + "  activeAreaSetID: " + activeAreaSetID + " num: " + num + " areaSet.totalAreasInSet " + areaSet.totalAreasInSet);
-	
+		if (Data.Instance.missions.MissionActiveID == 0)
+			showRelaxAreaBeforeStarting = false;
         if (startingArea)
 		{
 			//area = Game.Instance.level.victoryAreaLastLevel;
@@ -159,8 +160,12 @@ public class AreasManager : MonoBehaviour {
 	{
 		showRelaxAreaBeforeStarting = true;
 		float al = Game.Instance.level.areasLength;
+
 		if (al == 0) {
-			return Data.Instance.missions.startingArea;
+			if (Data.Instance.missions.MissionActiveID == 0)
+				return Data.Instance.missions.startingAreaLevel1;
+			else
+				return Data.Instance.missions.startingArea;
 		}
 		else
 			return Data.Instance.missions.startingAreaDuringGame;

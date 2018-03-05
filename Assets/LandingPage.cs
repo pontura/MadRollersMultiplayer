@@ -3,16 +3,14 @@ using System.Collections;
 
 public class LandingPage : MonoBehaviour {
 
-    public GameMenu gm;
 
 	void Start () {
-       // if (gm && Input.anyKeyDown)
-      //  {
-          //  gm.SetOn();
-		Invoke("DoIt", 3);
-       //}
+		Data.Instance.events.OnJoystickClick += OnJoystickClick;
 	}
-	void DoIt () {
+	void OnDestroy () {
+		Data.Instance.events.OnJoystickClick -= OnJoystickClick;
+	}
+	void OnJoystickClick () {
 		Data.Instance.LoadLevel("MainMenu");
 	}
 }

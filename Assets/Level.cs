@@ -18,7 +18,7 @@ public class Level : MonoBehaviour {
 
     public SceneObject explotionEffect;
 	public SceneObject explotionGift;
-	public Area startingArea;
+
 	public GameObject limitObject;
     public ScoreSignal scoreSignal;
 
@@ -68,6 +68,7 @@ public class Level : MonoBehaviour {
     }
     public void Init()
 	{
+		Data.Instance.voicesManager.PlayRandom (Data.Instance.voicesManager.welcome);
        // nextDistanceVictoryArea = distanceVictoryArea;
         areasX = 0;
         playing = true;

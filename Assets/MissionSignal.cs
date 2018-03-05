@@ -53,6 +53,8 @@ public class MissionSignal : MonoBehaviour {
     }
     void SetOn()
     {
+		if (Data.Instance.missions.MissionActiveID == 0)
+			return;
 		int missionID = Data.Instance.GetComponent<Missions> ().MissionActiveID;
 		
 		if (missionID>0 && Data.Instance.missions.HasBeenShowed (missionID))
