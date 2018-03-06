@@ -24,7 +24,10 @@ public class MainMenu : MonoBehaviour {
 			playersField.text = "1 PLAYER";
 		else 
 			playersField.text = Data.Instance.totalJoysticks.ToString () + " PLAYERS";
-
+		
+		foreach (MainMenuButton m in buttons)
+			m.SetOn (false);
+		
 		activeButton = buttons [0];
 		activeButton.SetOn (true);
 	}

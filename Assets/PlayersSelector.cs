@@ -8,7 +8,7 @@ public class PlayersSelector : MonoBehaviour {
 	public PlayerMainMenuUI[] playersMainMenu;
 
 	void Start () {
-		Data.Instance.events.OnJoystickDown += OnJoystickDown;
+		Data.Instance.events.OnJoystickClick += OnJoystickClick;
 		int id = 0;
 		foreach (PlayerSelectorUI playerSelector in playerSelectors) {
 			if (id >= Data.Instance.totalJoysticks) {
@@ -21,11 +21,10 @@ public class PlayersSelector : MonoBehaviour {
 	}
 	void OnDestroy()
 	{
-		Data.Instance.events.OnJoystickDown -= OnJoystickDown;
+		Data.Instance.events.OnJoystickClick -= OnJoystickClick;
 	}
-	void OnJoystickDown()
+	void OnJoystickClick()
 	{
-		
 		Data.Instance.LoadLevel("MainMenu");
 	}
 	void Update()
@@ -41,6 +40,8 @@ public class PlayersSelector : MonoBehaviour {
 	void MoveLeft(int playerID)
 	{
 		PlayerSelectorUI playerSelector = playerSelectors [playerID];
+		if (playerSelector.moveing)
+			return;
 		PlayerMainMenuUI p = null;
 		if (playerSelector.uiID == 0)
 			playerSelector.uiID  = playersMainMenu.Length-1;
