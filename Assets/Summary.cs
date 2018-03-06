@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 using System.Collections;
 using System;
 using UnityEngine.SceneManagement;
@@ -7,26 +8,17 @@ using UnityEngine.SceneManagement;
 public class Summary : MonoBehaviour {
 
     public GameObject panel;
-    public GameObject panela;
-   // public Text meters;
-    //public Text heartsToRevive;
-    public Text[] Continue;
-   // public Button ContinueButton;
     private int countDown;
     public Animation anim;
-   // int totalHearts;
-   // int newHearts;
-   // private int heartsToReviveNum = 250;
-   // private bool cancelCountDown;
+
+	public List<MainMenuButton> buttons;
+	int optionSelected = 0;
     private bool isOn;
 
     void Start()
     {
         panel.SetActive(false);
-        panela.SetActive(false);
 		Data.Instance.events.OnGameOver += OnGameOver;
-        //Data.Instance.events.OnAvatarFall += Init;
-        //Data.Instance.events.OnAvatarCrash += Init; 
 		Data.Instance.events.OnFireUI += OnFireUI;
     }
 	void OnFireUI()
@@ -39,65 +31,107 @@ public class Summary : MonoBehaviour {
     void OnDestroy()
     {
 		Data.Instance.events.OnGameOver -= OnGameOver;
-       // Data.Instance.events.OnAvatarFall -= Init;
-       // Data.Instance.events.OnAvatarCrash -= Init;
 		Data.Instance.events.OnFireUI -= OnFireUI;
     }
 	void OnGameOver()
     {
         if (isOn) return;
 
-        countDown = 9;
-        isOn = true;
         Invoke("SetOn", 2F);
-       // meters.text = Game.Instance.GetComponent<CharactersManager>().distance + " mts";
     }
     void SetOn()
     {
-       // totalHearts = GetComponent<HearsManager>().total;
-       // if (Data.Instance.playMode == Data.PlayModes.STORY || heartsToReviveNum > totalHearts)
-      //  {
-           // Restart();
-           // return;
-      //  }
-	//
+		isOn = true;
         panel.SetActive(true);
-        panela.SetActive(true);
         
-      //  newHearts = GetComponent<HearsManager>().newHearts;
-      //  heartsToRevive.text = "x" + heartsToReviveNum.ToString();
-
-		CountDown ();
+		buttons [0].SetOn (true);
+		buttons [1].SetOn (false);
 
         StartCoroutine(Play(anim, "popupOpen", false, null));
-
 	}
-    void CountDown()
-    {
-		if (!isOn) return;
-        if (countDown < 1)
-        {
-			isOn = false;
-			Game.Instance.GotoLevelSelector ();
-            return;
-        }
-        countDown--;
+	public void Restart()
+	{
+		Game.Instance.ResetLevel();        
+	}
+	void Update()
+	{
+		if (!isOn)
+			return;
 
-		foreach(Text C in Continue)
-        	C.text = countDown.ToString();
-		
-        Invoke("CountDown", 0.5f);
-    }
+		lastClickedTime += Time.deltaTime;
+		if (lastClickedTime > 0.1f)
+			processAxis = true;
+		for (int a = 0; a < 4; a++) {
+			if (InputManager.getJump (a)) 
+				OnJoystickClick ();
+			if (InputManager.getFire (a)) 
+				OnJoystickClick ();
+			if (processAxis) {
+				float v = InputManager.getVertical (a);
+				if (v < -0.5f)
+					OnJoystickUp ();
+				else if (v > 0.5f)
+					OnJoystickDown ();
+			}
+		}
+	}
+
+
+	float lastClickedTime = 0;
+	bool processAxis;
+
+	void OnJoystickUp () {
+		buttons [0].SetOn (true);
+		buttons [1].SetOn (false);
+		optionSelected = 0;
+	}
+	void OnJoystickDown () {
+		buttons [1].SetOn (true);
+		buttons [0].SetOn (false);
+		optionSelected = 1;
+	}
+
+	void OnJoystickClick () {
+		if (optionSelected == 0)
+			Restart ();
+		else
+			Game.Instance.GotoLevelSelector ();	
+		isOn = false;
+	}
+	void OnJoystickBack () {
+		//Data.Instance.events.OnJoystickBack ();
+	}
+	void ResetMove()
+	{
+		processAxis = false;
+		lastClickedTime = 0;
+	}
+
+
+
+//    void CountDown()
+//    {
+//		if (!isOn) return;
+//        if (countDown < 1)
+//        {
+//			isOn = false;
+//			Game.Instance.GotoLevelSelector ();
+//            return;
+//        }
+//        countDown--;
+//
+//		foreach(Text C in Continue)
+//        	C.text = countDown.ToString();
+//		
+//        Invoke("CountDown", 0.5f);
+//    }
 	//public void Revive()
   //  {
 	//	isOn = false;
      //   cancelCountDown = true;
      //   ReviveConfirma();
    // }
-    public void Restart()
-    {
-        Game.Instance.ResetLevel();        
-    }
+  
    // public void ReviveConfirma()
   //  {
       //  Data.Instance.events.OnUseHearts(heartsToReviveNum);

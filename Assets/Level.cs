@@ -68,7 +68,6 @@ public class Level : MonoBehaviour {
     }
     public void Init()
 	{
-		Data.Instance.voicesManager.PlayRandom (Data.Instance.voicesManager.welcome);
        // nextDistanceVictoryArea = distanceVictoryArea;
         areasX = 0;
         playing = true;
@@ -100,7 +99,13 @@ public class Level : MonoBehaviour {
         data.events.OnAddTumba += OnAddTumba;
         data.events.StartMultiplayerRace += StartMultiplayerRace;
         data.events.SetVictoryArea += SetVictoryArea;
+
+		Invoke ("Delayed", 0.5f);
     }
+	void Delayed()
+	{
+		Data.Instance.voicesManager.PlayRandom (Data.Instance.voicesManager.welcome);
+	}
     
     public void OnDestroy()
     {
@@ -120,6 +125,7 @@ public class Level : MonoBehaviour {
     }
 	public void Complete()
 	{
+		Data.Instance.voicesManager.PlayRandom (Data.Instance.voicesManager.missionComplete);
 		showStartArea = true;
 		missions.Complete();
 		missions.StartNext();
@@ -269,20 +275,20 @@ public class Level : MonoBehaviour {
 		float dist = charactersManager.getDistance ();
 
 		////TUTORIAL
-		//print (tutorialID + "   " + missions.MissionActiveID + "   " + charactersManager.getDistance ());
+		print (tutorialID + "   " + missions.MissionActiveID + "   " + charactersManager.getDistance ());
 		if(missions.MissionActiveID == 0)
 		{
-			if (dist>160 && tutorialID < 1)
+			if (dist>92 && tutorialID < 1)
 			{
-				Data.Instance.events.OnShowTutorial(1);
+				Data.Instance.voicesManager.PlayClip (Data.Instance.voicesManager.tutorials [0].audioClip);
 				tutorialID = 1;
-			} else if(missions.MissionActiveID == 0 && dist>210 && tutorialID < 2)
+			} else if(missions.MissionActiveID == 0 && dist>130 && tutorialID < 2)
 			{
-				Data.Instance.events.OnShowTutorial(2);
+				Data.Instance.voicesManager.PlayClip (Data.Instance.voicesManager.tutorials [1].audioClip);
 				tutorialID = 2;
-			} else if(missions.MissionActiveID == 0 && dist>270 && tutorialID < 3)
+			} else if(missions.MissionActiveID == 0 && dist>240 && tutorialID < 3)
 			{
-				Data.Instance.events.OnShowTutorial(3);
+				Data.Instance.voicesManager.PlayClip (Data.Instance.voicesManager.tutorials [2].audioClip);
 				tutorialID = 3;
 			}
 		}

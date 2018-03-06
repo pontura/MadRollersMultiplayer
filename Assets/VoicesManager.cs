@@ -5,9 +5,15 @@ using System;
 
 public class VoicesManager : MonoBehaviour
 {
-	
+	public List<VoiceData> tutorials;
 	public List<VoiceData> intros;
 	public List<VoiceData> welcome;
+	public List<VoiceData> missionComplete;
+
+	public List<VoiceData> lose_bad;
+	public List<VoiceData> lose_good;
+	public List<VoiceData> lose_great;
+
 	public VoiceData selectMadRollers;
 
 	public AudioSpectrum audioSpectrum;
@@ -43,10 +49,23 @@ public class VoicesManager : MonoBehaviour
     }
     private void OnAvatarCrash(CharacterBehavior cb)
     {
+		Dead ();
     }
     private void OnAvatarFall(CharacterBehavior cb)
     {
+		Dead ();
     }
+	void Dead()
+	{
+		float distance = Game.Instance.level.charactersManager.distance;
+		print ("die in distance; " + distance);
+		if (distance < 100)
+			PlayRandom (lose_bad);
+		else if (distance < 1000)
+			PlayRandom (lose_good);
+		else
+			PlayRandom (lose_great);
+	}
     private void OnAvatarChangeFX(Player.fxStates state)
     {
     }
