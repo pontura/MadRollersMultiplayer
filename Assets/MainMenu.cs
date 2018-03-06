@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour {
 
 	public int activeID = 0;
 	public List<MainMenuButton> buttons; 
 	MainMenuButton activeButton;
+	public Text playersField;
+
 	void Start()
 	{
 		Init ();
@@ -15,7 +18,15 @@ public class MainMenu : MonoBehaviour {
 		Data.Instance.events.OnJoystickUp += OnJoystickUp;
 		Data.Instance.events.OnJoystickLeft += OnJoystickDown;
 		Data.Instance.events.OnJoystickRight += OnJoystickUp;
-		Data.Instance.GetComponent<Tracker>().TrackScreen("Main Menu");
+		Data.Instance.GetComponent<Tracker> ().TrackScreen ("Main Menu");
+
+		if (Data.Instance.totalJoysticks == 1)
+			playersField.text = "1 PLAYER";
+		else 
+			playersField.text = Data.Instance.totalJoysticks.ToString () + " PLAYERS";
+
+		activeButton = buttons [0];
+		activeButton.SetOn (true);
 	}
 	void OnDestroy()
 	{
@@ -33,23 +44,25 @@ public class MainMenu : MonoBehaviour {
 	{
 		if (activeID == 0)
 			MissionsScene ();
-		else
+		else if (activeID == 1)
 			Compite ();
+		else if (activeID == 2)
+			Data.Instance.LoadLevel("PlayersSelector");
 	}
 	void OnJoystickUp()
 	{
-//		if (activeID == 1)
-//			activeID = 0;
-//		else
-			activeID=0;
+		if (activeID == 0)
+			activeID = buttons.Count-1;
+		else
+			activeID--;
 		SetButtons ();
 	}
 	void OnJoystickDown()
 	{
-//		if (activeID == 0)
-//			activeID = 1;
-//		else
-			activeID=1;
+		if (activeID == buttons.Count-1)
+			activeID = 0;
+		else
+			activeID++;
 		SetButtons ();
 	}
 	void SetButtons ()

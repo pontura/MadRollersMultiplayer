@@ -7,17 +7,19 @@ public class MainMenuButton : MonoBehaviour {
 	
 	public Text[] overs;
 	public GameObject selected;
+	public Color onColor;
+	public Color offColor;
 
 	public void SetOn(bool isOn)
 	{
 		if (isOn) {
 			foreach (Text m in overs)
-				m.color = Color.yellow;
+				m.color = onColor;
 			selected.SetActive (true);
 		} else {
 			foreach (Text m in overs)
 			{
-				m.color = Color.white;
+				m.color = offColor;
 			}
 			selected.SetActive (false);
 		}

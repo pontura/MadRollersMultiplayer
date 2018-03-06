@@ -11,6 +11,6 @@ public class LandingPage : MonoBehaviour {
 		Data.Instance.events.OnJoystickClick -= OnJoystickClick;
 	}
 	void OnJoystickClick () {
-		Data.Instance.LoadLevel("MainMenu");
+		GetComponent<AudioWriter> ().Done ();
 	}
 }

@@ -5,8 +5,11 @@ using System;
 
 public class VoicesManager : MonoBehaviour
 {
-	public List<VoiceData> welcome;
+	
 	public List<VoiceData> intros;
+	public List<VoiceData> welcome;
+	public VoiceData selectMadRollers;
+
 	public AudioSpectrum audioSpectrum;
 	[Serializable]
 	public class VoiceData
@@ -88,7 +91,7 @@ public class VoicesManager : MonoBehaviour
 	{
 		if (!talking)
 			return;
-		print (timer + " " +  audioSource.isPlaying + " " + audioSource.time);
+		
 		timer += Time.deltaTime;
 		if (audioSource.clip != null && audioSource.clip.length>0 && timer > audioSource.clip.length && audioSource.isPlaying) {
 			talking = false;			

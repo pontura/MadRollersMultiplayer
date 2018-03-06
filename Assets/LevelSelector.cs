@@ -59,7 +59,7 @@ public class LevelSelector : MonoBehaviour {
 	void Delayed()
 	{
 		data.missions.MissionActiveID = missionActiveID;
-		Data.Instance.LoadLevel("MainMenuStory");
+		Data.Instance.LoadLevel("Game");
 	}
 	void OnJoystickUp()
 	{

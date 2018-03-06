@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Data : MonoBehaviour {
 
+	public int totalJoysticks;
 	public bool RESET;
 	public bool turnOffSounds;
     public bool musicOn = true;
@@ -88,6 +89,15 @@ public class Data : MonoBehaviour {
         competitions = GetComponent<Competitions>();
         multiplayerData = GetComponent<MultiplayerData>();
 		videogamesData = GetComponent<VideogamesData> ();
+
+		if (totalJoysticks > 0)
+			multiplayerData.player1 = true;
+		if (totalJoysticks > 1)
+			multiplayerData.player2 = true;
+		if (totalJoysticks > 2)
+			multiplayerData.player3 = true;
+		if (totalJoysticks > 3)
+			multiplayerData.player4 = true;
 
         competitions.Init();
         if(userData)
