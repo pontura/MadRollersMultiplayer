@@ -14,6 +14,7 @@ public class DataController : MonoBehaviour
 
     public void Init()
     {
+		return;
         SocialEvents.OnCompetitionHiscore += OnCompetitionHiscore;
         SocialEvents.OnGetHiscores += OnGetHiscores;
     }

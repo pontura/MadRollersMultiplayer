@@ -274,15 +274,13 @@ public class Level : MonoBehaviour {
 	
 		float dist = charactersManager.getDistance ();
 
-		////TUTORIAL
-		print (tutorialID + "   " + missions.MissionActiveID + "   " + charactersManager.getDistance ());
 		if(missions.MissionActiveID == 0)
 		{
 			if (dist>92 && tutorialID < 1)
 			{
 				Data.Instance.voicesManager.PlayClip (Data.Instance.voicesManager.tutorials [0].audioClip);
 				tutorialID = 1;
-			} else if(missions.MissionActiveID == 0 && dist>130 && tutorialID < 2)
+			} else if(missions.MissionActiveID == 0 && dist>140 && tutorialID < 2)
 			{
 				Data.Instance.voicesManager.PlayClip (Data.Instance.voicesManager.tutorials [1].audioClip);
 				tutorialID = 2;

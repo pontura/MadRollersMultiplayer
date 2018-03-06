@@ -31,11 +31,11 @@ public class Hiscores : MonoBehaviour {
 
     void Start()
     {
-        SocialEvents.OnHiscoresLoaded += OnHiscoresLoaded;
-        SocialEvents.OnFinalDistance += OnFinalDistance;
-        SocialEvents.OnFacebookImageLoaded += OnFacebookImageLoaded;
-        SocialEvents.LoadMyHiscoreIfNotExistesInRanking += LoadMyHiscoreIfNotExistesInRanking;
-        loadLocalSavedScores();
+//        
+//        SocialEvents.OnFinalDistance += OnFinalDistance;
+//        SocialEvents.OnFacebookImageLoaded += OnFacebookImageLoaded;
+//        SocialEvents.LoadMyHiscoreIfNotExistesInRanking += LoadMyHiscoreIfNotExistesInRanking;
+//        loadLocalSavedScores();
     }
     public Texture2D GetPicture(string facebookID)
     {
