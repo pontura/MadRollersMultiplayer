@@ -18,12 +18,11 @@ public class MainMenu : MonoBehaviour {
 		Data.Instance.events.OnJoystickUp += OnJoystickUp;
 		Data.Instance.events.OnJoystickLeft += OnJoystickDown;
 		Data.Instance.events.OnJoystickRight += OnJoystickUp;
-		Data.Instance.GetComponent<Tracker> ().TrackScreen ("Main Menu");
 
 		if (Data.Instance.totalJoysticks == 1)
-			playersField.text = "1 PLAYER";
+			playersField.text = "PLAYER (1)";
 		else 
-			playersField.text = Data.Instance.totalJoysticks.ToString () + " PLAYERS";
+			playersField.text = "PLAYERS (" + Data.Instance.totalJoysticks.ToString () + ")";
 		
 		foreach (MainMenuButton m in buttons)
 			m.SetOn (false);

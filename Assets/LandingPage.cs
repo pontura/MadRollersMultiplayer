@@ -3,7 +3,6 @@ using System.Collections;
 
 public class LandingPage : MonoBehaviour {
 
-
 	void Start () {
 		Data.Instance.events.OnJoystickClick += OnJoystickClick;
 	}

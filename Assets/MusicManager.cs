@@ -20,6 +20,8 @@ public class MusicManager : MonoBehaviour {
     {
         audioSource = GetComponent<AudioSource>();
         GetComponent<AudioLowPassFilter>().enabled = false;
+		Data.Instance.GetComponent<Tracker> ().TrackScreen ("Main Menu");
+		OnInterfacesStart ();
     }
 	public void Init () {
 		
