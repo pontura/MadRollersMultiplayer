@@ -14,6 +14,16 @@ public class VoicesManager : MonoBehaviour
 	public List<VoiceData> lose_good;
 	public List<VoiceData> lose_great;
 
+	public List<VoiceData> mission_1_2;
+	public List<VoiceData> mission_1_3;
+	public List<VoiceData> mission_1_4;
+	public List<VoiceData> mission_1_5;
+	public List<VoiceData> mission_1_6;
+	public List<VoiceData> mission_1_7;
+	public List<VoiceData> mission_1_8;
+	public List<VoiceData> mission_1_9;
+	public List<VoiceData> mission_1_10;
+
 	public VoiceData selectMadRollers;
 
 	public AudioSpectrum audioSpectrum;
@@ -71,16 +81,49 @@ public class VoicesManager : MonoBehaviour
     }
     private void OnListenerDispatcher(string message)
     {
+		print ("_______OnListenerDispatcher " + message + " "  + Data.Instance.missions.MissionActiveID);
         if (Data.Instance.playMode == Data.PlayModes.COMPETITION) return;
         if (message == "ShowMissionId")
         {
-         	//PlayRandom("");
+			
         }
-        else if (message == "ShowMissionName")
+		else if (message == "ShowMissionName" && Data.Instance.missions.MissionActiveID!=0)
 		{
-          //  PlayMission();
+			switch (Data.Instance.missions.MissionActiveID) {
+			case 1:
+				PlaySequence (mission_1_2);
+				break;
+			case 2:
+				PlaySequence (mission_1_3);
+				break;
+			}
 		}
     }
+	int sequenceID = 0;
+	bool onSequence = false;
+	List<VoiceData> sequenceSaying;
+	public void PlaySequence( List<VoiceData> clips)
+	{
+		sequenceID = 0;
+		talking = false;
+		audioSource.Stop ();
+		this.sequenceSaying = clips;
+		onSequence = true;
+		PlayNextSequencedClip ();
+	}
+	void PlayNextSequencedClip()
+	{
+		VoiceData newAudio = sequenceSaying[sequenceID];
+		print (onSequence + " " + newAudio.audioClip + " " + sequenceID + "    count: " + sequenceSaying.Count);
+		PlayClip(newAudio.audioClip); 
+		sequenceID++;
+		if (sequenceSaying.Count == sequenceID)
+		{
+			print ("SALE");
+			onSequence = false;
+			Done ();
+		}
+	}
 	public void PlayRandom( List<VoiceData> clips)
     {
 		int rand = UnityEngine.Random.Range(0, clips.Count);
@@ -100,7 +143,6 @@ public class VoicesManager : MonoBehaviour
     {
 		talking = true;
 		audioSpectrum.SetOn ();
-		timer = 0;
         audioSource.clip = audioClip;
         audioSource.Play();
 		Data.Instance.events.OnTalk (true);
@@ -111,8 +153,16 @@ public class VoicesManager : MonoBehaviour
 		if (!talking)
 			return;
 		
-		timer += Time.deltaTime;
-		if (audioSource.clip != null && audioSource.clip.length>0 && timer > audioSource.clip.length && audioSource.isPlaying) {
+		if (audioSource.clip != null && audioSource.clip.length>0.1f && audioSource.time >= (audioSource.clip.length-0.02f)) {
+			Done ();
+		}
+	}
+	void Done()
+	{
+		print ("DONE " + onSequence);
+		if (onSequence)
+			PlayNextSequencedClip ();
+		else {
 			talking = false;			
 			Data.Instance.events.OnTalk (false);
 		}

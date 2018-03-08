@@ -43,14 +43,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundSides:
   - {fileID: 114406897925718168, guid: d77188fe2cbab6e488b67faba85b7357, type: 2}
+  videoGameID: 0
   missionIcon: {fileID: 1089315483160192, guid: d7e089851d2ba4047a966a7cb1156a70,
     type: 2}
   isCompetition: 0
-  maxScore: 420
+  maxScore: 550
   Hiscore: 0
   avatarHiscore: 
   boss1: 0
-  hearts: 80
+  hearts: 128
   guys: 0
   ghost: 0
   points: 0
@@ -58,7 +59,7 @@ MonoBehaviour:
   planes: 0
   bombs: 0
   distance: 0
-  description: GET 80 PIXELS
+  description: GET 128 PIXELS
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -73,7 +74,8 @@ MonoBehaviour:
   areaSets:
   - {fileID: 11400000, guid: a05b460428d9d8c4fa0d3239b4827bc7, type: 2}
   - {fileID: 11400000, guid: ab15df124e6b9e048a8720268d03d8cb, type: 2}
-  activeAreaSetID: 0
+  activeAreaSetID: 2
+  showRelaxAreaBeforeStarting: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
