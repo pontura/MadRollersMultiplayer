@@ -7,7 +7,10 @@ public class AreaSet : MonoBehaviour {
     public bool randomize = true;
 	public Area[] areas;
 	public int totalAreasInSet;
+
 	public Vector3 cameraOrientation;
+	public float cameraRotationX;
+
 	public bool isLastArea;
 
     //[HideInInspector]
@@ -17,11 +20,8 @@ public class AreaSet : MonoBehaviour {
 	{
 		this.id = 0;
 	}
-	public Vector3 getCameraOrientation ()  {
-		if(cameraOrientation.x != 0 || cameraOrientation.y != 0 || cameraOrientation.z != 0)
-			return cameraOrientation;
-		else
-			return new Vector3(0,0,0);
+	public Vector4 getCameraOrientation ()  {
+		return new Vector4(cameraOrientation.x,cameraOrientation.y,cameraOrientation.z,cameraRotationX);
 	}
 
 	public Area getArea () {

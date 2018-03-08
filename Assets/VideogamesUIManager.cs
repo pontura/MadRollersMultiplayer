@@ -16,6 +16,7 @@ public class VideogamesUIManager : MonoBehaviour {
 			VideogameButton button = Instantiate (button_to_instantiate);
 			button.transform.SetParent (container);
 			button.transform.localPosition = new Vector3 (separation*_id, 0, 0);
+			button.transform.localScale = Vector3.one;
 			button.Init (data.logo);
 			_id++;
 			all.Add (button);

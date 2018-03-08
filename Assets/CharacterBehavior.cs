@@ -448,6 +448,7 @@ public class CharacterBehavior : MonoBehaviour {
     {
         Data.Instance.events.OnSoundFX("FX vox caida01", player.id);
         Data.Instance.events.OnAvatarFall(this);
+		Game.Instance.gameCamera.OnAvatarFall (this);
        // Die();
     }
 
@@ -473,6 +474,7 @@ public class CharacterBehavior : MonoBehaviour {
 
         if (Game.Instance.GetComponent<CharactersManager>().characters.Count >1) return;
         Invoke("CrashReal", 0.3f);
+		Game.Instance.gameCamera.OnAvatarCrash (this);
     }
     void CrashReal()
     {
@@ -500,7 +502,6 @@ public class CharacterBehavior : MonoBehaviour {
         SaveDistance();
 
 		state = states.DEAD;
-       // _animation.Play("FallDown");
 	}
 	
 	

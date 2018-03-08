@@ -17,8 +17,11 @@ public class GameCamera : MonoBehaviour
     public Vector3 startPosition = new Vector3(0, 0,0);
 
 	public Vector3 cameraOrientationVector = new Vector3 (0, 4.5f, -0.8f);
-    public float rotationX = 47;
-    public Vector3 newCameraOrientationVector;
+	public Vector3 newCameraOrientationVector;
+
+	public Vector3 defaultRotation =  new Vector3 (47,0,0);
+	public Vector3 newRotation;
+    
     public bool onExplotion;
 	float explotionForce = 0.25f;
 
@@ -26,15 +29,19 @@ public class GameCamera : MonoBehaviour
 
     void Start()
     {
+		//print ("Start");
+		//newCameraOrientationVector = cameraOrientationVector;
+		//newRotation = rotationX;
+
+		cam.transform.localEulerAngles = newRotation;
+
         state = states.START;
-		//state = states.PLAYING;
-        startPosition.y -= 0.7f;
         transform.position = startPosition;
 		cam.transform.localEulerAngles = startRotation;
 
         Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
-        Data.Instance.events.OnAvatarDie += OnAvatarDie;
         Data.Instance.events.OnChangeMood += OnChangeMood;
+
         if (Data.Instance.mode == Data.modes.ACCELEROMETER)
 			GetComponent<Camera>().rect = new Rect (0, 0, 1, 1);
 
@@ -50,7 +57,6 @@ public class GameCamera : MonoBehaviour
     void OnDestroy()
     {
         Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
-        Data.Instance.events.OnAvatarDie -= OnAvatarDie;
         Data.Instance.events.OnChangeMood -= OnChangeMood;
     }
     void StartMultiplayerRace()
@@ -85,27 +91,15 @@ public class GameCamera : MonoBehaviour
 
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
 
-        //state = states.PLAYING;
-        
-		//newCameraOrientationVector = cameraOrientationVector;
-
-        cam.transform.localEulerAngles = new Vector3(rotationX, 0, 0);
-       
 	}
-
-    // viene del multiplayer. despues programarlo bien...
-    public void setCameraRotationX(float _rotationX)
-    {
-        //rotationX = _rotationX;
-        cam.transform.localEulerAngles = new Vector3(rotationX, 0, 0);
-    }
 	public void explote(float explotionForce)
 	{
 		this.explotionForce = explotionForce*1.5f;
 		StartCoroutine (DoExplote ());
 	}
+	bool exploting;
 	public IEnumerator DoExplote () {	
-
+		this.exploting = true;
 		float delay = 0.03f;
         for (int a = 0; a < 6; a++)
         {
@@ -113,7 +107,7 @@ public class GameCamera : MonoBehaviour
             yield return new WaitForSeconds(delay);
         }
         rotateRandom(0);
-		
+		this.exploting = false;
 	}
 	private void rotateRandom(float explotionForce)
 	{
@@ -124,7 +118,6 @@ public class GameCamera : MonoBehaviour
 
 	void LateUpdate () 
 	{
-         Vector3 newPos;
         if (state == states.START)
         {
             return;
@@ -134,31 +127,29 @@ public class GameCamera : MonoBehaviour
             return;
         }
 
-        newPos  = charactersManager.getPosition();
+		Vector3 newPos  = charactersManager.getPosition();
+		newPos += newCameraOrientationVector;
 
-		newPos += cameraOrientationVector;
+		newPos.z = Mathf.Lerp (transform.position.z, newPos.z, 0.5f);
+		newPos.x = Mathf.Lerp (transform.position.x, newPos.x, Time.deltaTime*7);
+		newPos.y = Mathf.Lerp (transform.position.y, newPos.y, Time.deltaTime*10);
 
-        transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime*7);
+		//newPos = Vector3.Lerp (newPos, newCameraOrientationVector, 0.01f);
 
-       // if (charactersManager.getTotalCharacters() > 1) setCameraRotationX(45); else setCameraRotationX(40);
+		transform.position = newPos;
+
+		if(!exploting)
+			cam.transform.localEulerAngles = Vector3.Lerp(cam.transform.localEulerAngles, newRotation, 0.05f);
 	}
-    void OnAvatarDie(CharacterBehavior cb)
-    {
-        if (Game.Instance.GetComponent<CharactersManager>().getTotalCharacters() > 0) return;
-        if (cb.state == CharacterBehavior.states.CRASH)
-            OnAvatarCrash(cb);
-        else
-            OnAvatarFall(cb);
-    }
     public void OnAvatarCrash(CharacterBehavior player)
     {
-        if (Game.Instance.GetComponent<CharactersManager>().getTotalCharacters()>1) return;
+		if (Game.Instance.GetComponent<CharactersManager>().getTotalCharacters() > 0) return;
         if (state == states.END) return;
         print("OnAvatarCrash");
         state = states.END;
 		iTween.MoveTo(cam.gameObject, iTween.Hash(
-            "position", new Vector3(player.transform.localPosition.x, transform.localPosition.y - 1.3f, transform.localPosition.z - 4.1f),
-            "time", 2f,
+            "position", new Vector3(player.transform.localPosition.x, transform.localPosition.y - 3.75f, transform.localPosition.z - 2.1f),
+            "time", 3f,
             "easetype", iTween.EaseType.easeOutCubic,
             "looktarget", player.transform
            // "axis", "x"
@@ -166,8 +157,11 @@ public class GameCamera : MonoBehaviour
     }
     public void OnAvatarFall(CharacterBehavior player)
 	{
-        if (Game.Instance.GetComponent<CharactersManager>().getTotalCharacters() > 1) return;
+		
+		if (Game.Instance.GetComponent<CharactersManager>().getTotalCharacters() > 0) return;
         if (state == states.END) return;
+
+		print("OnAvatarFall");
 
         state = states.END;
 		iTween.MoveTo(cam.gameObject, iTween.Hash(
@@ -178,12 +172,11 @@ public class GameCamera : MonoBehaviour
             "axis", "x"
             ));
 	}
-    //public void OnAvatarFall(CharacterBehavior player)
-    //{
-    //    state = states.END;
-    //}
-	public void setOrientation(Vector3 vector, float rotation)
+	public void SetOrientation(Vector4 orientation)
 	{
+		print ("_______________________ " + orientation);
+		newCameraOrientationVector = cameraOrientationVector + new Vector3 (orientation.x, orientation.y, orientation.z);
+		newRotation = defaultRotation + new Vector3 (orientation.w, 0, 0);
 	}
     public void fallDown(int fallDownHeight)
     {

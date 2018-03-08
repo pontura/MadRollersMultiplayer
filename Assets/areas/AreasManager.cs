@@ -80,17 +80,13 @@ public class AreasManager : MonoBehaviour {
 	}
 	private void setNewAreaSet()
 	{
-        
-        //if (areaSet.competitionsPriority == 0)
-        //{
-        //    activeAreaSetID = Random.Range(2, areaSets.Count - 1);
-        //    activeAreaSetID++;
-        //}
-        if (activeAreaSetID >= areaSets.Count ) activeAreaSetID = areaSets.Count - 1;
+        if (activeAreaSetID >= areaSets.Count ) 
+			activeAreaSetID = areaSets.Count - 1;
         
         areaSet = areaSets[activeAreaSetID];
-      //  Debug.Log("NEW AREA: " + areaSet.name + " activeAreaSetID: " + activeAreaSetID);
-		//changeCameraOrientation();
+		print ("_______" + areaSet.name + " " + areaSet.getCameraOrientation ());
+		Game.Instance.gameCamera.SetOrientation (areaSet.getCameraOrientation ());
+
 		areaSet.Restart();
 
        

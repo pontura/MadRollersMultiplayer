@@ -7,12 +7,9 @@ Shader "VacuumShaders/Curved World/Projector/Multiply"
 
 
 		//Default Options
-		_ShadowTex ("Cookie", 2D) = "gray" {}
-		_FalloffTex ("FallOff", 2D) = "white" {}		
+		[CurvedWorldClampTextureDrawer] _ShadowTex ("Cookie", 2D) = "gray" {}
+		[CurvedWorldClampTextureDrawer] _FalloffTex ("FallOff", 2D) = "white" {}		
 
-		  
-		//CurvedWorld Options
-		[CurvedWorldLabel] V_CW_CW_OPTIONS("Curved World Options", float) = 0
 		
 		[HideInInspector] _V_CW_Y_Bend_Size("", float) = 0
 		[HideInInspector] _V_CW_X_Bend_Size("", float) = 0

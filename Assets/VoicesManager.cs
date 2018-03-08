@@ -96,6 +96,27 @@ public class VoicesManager : MonoBehaviour
 			case 2:
 				PlaySequence (mission_1_3);
 				break;
+			case 3:
+				PlaySequence (mission_1_4);
+				break;
+			case 4:
+				PlaySequence (mission_1_5);
+				break;
+			case 5:
+				PlaySequence (mission_1_6);
+				break;
+			case 6:
+				PlaySequence (mission_1_7);
+				break;
+			case 7:
+				PlaySequence (mission_1_8);
+				break;
+			case 8:
+				PlaySequence (mission_1_9);
+				break;
+			case 9:
+				PlaySequence (mission_1_10);
+				break;
 			}
 		}
     }
@@ -104,6 +125,8 @@ public class VoicesManager : MonoBehaviour
 	List<VoiceData> sequenceSaying;
 	public void PlaySequence( List<VoiceData> clips)
 	{
+		if (clips.Count == 0)
+			return;
 		sequenceID = 0;
 		talking = false;
 		audioSource.Stop ();

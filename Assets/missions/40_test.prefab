@@ -42,8 +42,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   areaSets:
-  - {fileID: 114004391671021460, guid: 4672d9073d2a236428465562a62b089f, type: 2}
+  - {fileID: 11413728, guid: 48ddf742a7c9ec04084fb1180d2731ce, type: 2}
   activeAreaSetID: 0
+  showRelaxAreaBeforeStarting: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -56,6 +57,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundSides: []
+  videoGameID: 0
   missionIcon: {fileID: 0}
   isCompetition: 0
   maxScore: 0
@@ -65,11 +67,11 @@ MonoBehaviour:
   hearts: 0
   guys: 0
   ghost: 0
-  points: 1
+  points: 1000
   listeners: 0
   planes: 0
   bombs: 0
-  distance: 1000
+  distance: 999000
   description: TEST
 --- !u!1001 &100100000
 Prefab:

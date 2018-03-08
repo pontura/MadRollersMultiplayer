@@ -8,13 +8,10 @@ Shader "VacuumShaders/Curved World/Projector/Light"
 
 		//Default Options
 		_Color ("Main Color", Color) = (1,1,1,1)
-		_ShadowTex ("Cookie", 2D) = "" {}
-		_FalloffTex ("FallOff", 2D) = "" {}		
+		[CurvedWorldClampTextureDrawer] _ShadowTex("Cookie", 2D) = ""{}
+		[CurvedWorldClampTextureDrawer] _FalloffTex ("FallOff", 2D) = "" {}		
 
-
-		//CurvedWorld Options
-		[CurvedWorldLabel] V_CW_CW_OPTIONS("Curved World Options", float) = 0
-		
+	
 		[HideInInspector] _V_CW_Y_Bend_Size("", float) = 0
 		[HideInInspector] _V_CW_X_Bend_Size("", float) = 0
 		[HideInInspector] _V_CW_Z_Bend_Size("", float) = 0
