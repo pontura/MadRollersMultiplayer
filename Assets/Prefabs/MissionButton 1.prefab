@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 114159789568400356}
   - component: {fileID: 114333136468285758}
   - component: {fileID: 111039201507087284}
+  - component: {fileID: 225418577720478882}
   m_Layer: 5
   m_Name: MissionButton 1
   m_TagString: Untagged
@@ -692,6 +693,8 @@ MonoBehaviour:
   background: {fileID: 114484944020726878}
   lockImage: {fileID: 1778686409846064}
   id: 0
+  id_in_videogame: 0
+  videoGameID: 0
   isLocked: 0
   logo: {fileID: 114012297630781114}
   floppyCover: {fileID: 114196749123205134}
@@ -1656,3 +1659,14 @@ RectTransform:
   m_AnchoredPosition: {x: 3.9, y: 6.5380917}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &225418577720478882
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1330247215387472}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0

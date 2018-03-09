@@ -2,16 +2,16 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class LevelSelector : MonoBehaviour {
 
     public int levelUnlockedID;
     public MissionButton uiButton;
-	//public MissionIcon missionIcon;
-
+	public Transform container;
     [SerializeField]
-    GameObject container;
 
+	public float separation_in_x = 115;
 	private Data data;
 	public int missionActiveID;
 	private Missions missions;
@@ -46,7 +46,9 @@ public class LevelSelector : MonoBehaviour {
 	}
 	void Update()
 	{
-		cam.transform.localPosition = Vector3.Lerp (cam.transform.localPosition, new Vector3(0, 0, missionActiveID * separation), 0.1f);
+		//cam.transform.localPosition = Vector3.Lerp (cam.transform.localPosition, new Vector3(0, 0, missionActiveID * separation), 0.1f);
+		MissionButton missionButton = all[missionActiveID];
+		cam.transform.localPosition = Vector3.Lerp (cam.transform.localPosition, new Vector3(missionButton.videoGameID*separation_in_x, 0, missionButton.id_in_videogame * separation), 0.1f);
 	}
 	void OnJoystickClick()
 	{
@@ -90,40 +92,58 @@ public class LevelSelector : MonoBehaviour {
 		missions = data.missions;
 
 		missionActiveID = data.levelUnlockedID;
-		// GameObject container = GameObject.Find("Container") as GameObject;
 
 		missionID = 0;
-
-		//si jugas con joystick
-		//if (!showJoystickMenu)
-		//    GameObject.Find("ContainerJoystick").gameObject.SetActive(false);
-
 		int videogameID = 0;
+		int lastVideoGameID = -1;
 
 		all = new List<MissionButton> ();
+		int id_in_videogame = 0;
 		foreach (Mission mission in missions.missions) {
+			
 			MissionButton button = Instantiate (uiButton) as MissionButton;
+
 			button.Init(mission, missionID);
 
+			if (lastVideoGameID != mission.videoGameID) {
+				lastVideoGameID = mission.videoGameID;
+				id_in_videogame = 0;
+			} else
+				id_in_videogame++;
 
+
+
+			button.id_in_videogame = id_in_videogame;
 			lastButton = button;
+			button.videoGameID = mission.videoGameID;
 
 			if (missionID > data.levelUnlockedID && !Data.Instance.DEBUG)
 				button.disableButton ();
-			else
-				videogameID = mission.videoGameID;
+		//	else
+			//	videogameID = mission.videoGameID;
 
 			missionID++;
 
 			all.Add (button);
 		}
+		all.Sort(GetIdByVideogame);
 		all.Reverse ();
+
 		foreach (MissionButton mission in all) {
 
-			mission.transform.SetParent(container.transform) ;
+			mission.transform.SetParent (container);
+//
+//			switch (mission.videoGameID) {
+//			case 0:
+//				mission.transform.SetParent (videogamesContainer0.transform);
+//				break;
+//			case 1:
+//				mission.transform.SetParent (videogamesContainer1.transform);
+//				break;
+//			}
+//
 			mission.transform.localScale = new Vector3(1,1,1);
-			mission.transform.localPosition = new Vector3 (0, 0, mission.id * separation);           
-
+			mission.transform.localPosition = new Vector3 (mission.videoGameID * separation_in_x, 0, mission.id_in_videogame * separation);
 		}
 		levelUnlockedID = data.levelUnlockedID;   
 
@@ -134,6 +154,10 @@ public class LevelSelector : MonoBehaviour {
 		SetSelected ();
 
 
+	}
+	int GetIdByVideogame(MissionButton button1, MissionButton button2)
+	{
+		return button1.id_in_videogame.CompareTo (button2.id_in_videogame);
 	}
 	MissionButton lastButtonSelected;
 	void SetSelected()

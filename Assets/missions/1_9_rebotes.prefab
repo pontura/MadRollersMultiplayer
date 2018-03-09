@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 11400002}
   - component: {fileID: 11400000}
   m_Layer: 0
-  m_Name: 1_9_sombrillas
+  m_Name: 1_9_rebotes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,6 +44,7 @@ MonoBehaviour:
   areaSets:
   - {fileID: 11400000, guid: eaf7a45e3d35ce14aa7bb74b52620eaf, type: 2}
   activeAreaSetID: 1
+  showRelaxAreaBeforeStarting: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -57,6 +58,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundSides:
   - {fileID: 114406897925718168, guid: d77188fe2cbab6e488b67faba85b7357, type: 2}
+  videoGameID: 0
   missionIcon: {fileID: 1138362766969914, guid: 959c3d51a9604bf4aa183cb81b5a3601,
     type: 2}
   isCompetition: 0

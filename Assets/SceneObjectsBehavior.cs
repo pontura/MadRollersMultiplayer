@@ -26,7 +26,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
     public SceneObject palm2;
     public SceneObject palm3;
     public SceneObject palm4;
-    public SceneObject palm5;
+    public SceneObject palm_tall;
 	public SceneObject enemyGhost;
     public SceneObject cilindro;
 
@@ -240,19 +240,16 @@ public class SceneObjectsBehavior : MonoBehaviour {
                     clone = cilindro;
 				else if (go.name == "enemyGhost")
 					clone = enemyGhost;
+			else if (go.name == "palmTall")
+				clone = palm_tall;
             else if (go.name == "palm")
                 {
+					
                     int ran = Random.Range(0, 40);
                     if (ran < 20)
                         clone = palm;
                     else if (ran < 40)
                         clone = palm2;
-                    else if (ran < 60)
-                        clone = palm3;
-                    else if (ran < 80)
-                        clone = palm4;
-                    else
-                        clone = palm5;
 
                     //Vector3 pos2 = go.transform.localEulerAngles;
                     //pos2.y = Random.Range(0, 360);

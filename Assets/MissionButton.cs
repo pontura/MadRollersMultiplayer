@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
+
 public class MissionButton : MonoBehaviour {
 
 	public GameObject missionFields;
@@ -16,6 +17,8 @@ public class MissionButton : MonoBehaviour {
     public Image background;
 	public GameObject lockImage;
     public int id;
+	public int id_in_videogame;
+	public int videoGameID;
 	public bool isLocked;
 
 	public Image logo;
