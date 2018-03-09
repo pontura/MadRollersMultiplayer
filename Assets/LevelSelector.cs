@@ -41,8 +41,8 @@ public class LevelSelector : MonoBehaviour {
 		Data.Instance.events.OnJoystickClick -= OnJoystickClick;
 		Data.Instance.events.OnJoystickDown -= OnJoystickDown;
 		Data.Instance.events.OnJoystickUp -= OnJoystickUp;
-		Data.Instance.events.OnJoystickLeft -= OnJoystickDown;
-		Data.Instance.events.OnJoystickRight -= OnJoystickUp;
+		Data.Instance.events.OnJoystickLeft -= OnJoystickLeft;
+		Data.Instance.events.OnJoystickRight -= OnJoystickRight;
 	}
 	void Update()
 	{

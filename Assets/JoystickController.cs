@@ -14,7 +14,7 @@ public class JoystickController : MonoBehaviour {
 			processAxis = true;
 		for (int a = 0; a < 4; a++) {
 			if (InputManager.getJump (a)) 
-				OnJoystickClick ();
+				OnJoystickBack ();
 			if (InputManager.getFire (a)) 
 				OnJoystickClick ();
 			if (processAxis) {
