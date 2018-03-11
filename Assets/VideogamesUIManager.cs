@@ -33,19 +33,15 @@ public class VideogamesUIManager : MonoBehaviour {
 		foreach (VideogameButton v in all)
 			v.SetSelected (false);
 	}
-	public void Left()
+	public void Right()
 	{
-		if (id == all.Count-1)
-			return;
 		id++;
 		ResetAll ();
 		all [id].SetSelected (true);
 		SelectFirstLevel ();
 	}
-	public void Right()
+	public void Left()
 	{
-		if (id == 0)
-			return;
 		id--;
 		ResetAll ();
 		all [id].SetSelected (true);

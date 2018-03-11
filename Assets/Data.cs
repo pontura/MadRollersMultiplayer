@@ -12,7 +12,9 @@ public class Data : MonoBehaviour {
     public bool isArcade;
     public bool isArcadeMultiplayer;
 
-    public int levelUnlockedID = 0;
+    public int levelUnlocked_level_1 = 0;
+	public int levelUnlocked_level_2 = 0;
+
     public int totalReplays = 3;
     public int replays = 0;
     public float volume;
@@ -110,7 +112,8 @@ public class Data : MonoBehaviour {
         GetComponent<CurvedWorldManager>().Init();
 
         //GetComponent<DataController>().Init();
-        levelUnlockedID = PlayerPrefs.GetInt("levelUnlocked");
+		levelUnlocked_level_1 = PlayerPrefs.GetInt("levelUnlocked_level_1");
+		levelUnlocked_level_2 = PlayerPrefs.GetInt("levelUnlocked_level_2");
 
         if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
         {
@@ -141,17 +144,22 @@ public class Data : MonoBehaviour {
         }
         else
         {
-            if (num > levelUnlockedID)
+			if (videogamesData.GetActualVideogameData().id==0 &&  num > levelUnlocked_level_1)
             {
-                levelUnlockedID = num;
-                PlayerPrefs.SetInt("levelUnlocked", num);
-            }
+				levelUnlocked_level_1 = num;
+				PlayerPrefs.SetInt("levelUnlocked_level_1", num);
+			} else if (videogamesData.GetActualVideogameData().id==1 &&  num > levelUnlocked_level_2)
+			{
+				levelUnlocked_level_2 = num;
+				PlayerPrefs.SetInt("levelUnlocked_level_2", num);
+			}
         }
 	}
     public void resetProgress()
     {
         PlayerPrefs.DeleteAll();
-        levelUnlockedID = 0;
+		levelUnlocked_level_1 = 0;
+		levelUnlocked_level_2 = 0;
 
         if (isArcade) return;
         SocialEvents.OnCompetitionHiscore(1, 0, false);

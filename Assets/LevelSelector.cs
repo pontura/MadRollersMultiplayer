@@ -6,14 +6,16 @@ using System.Linq;
 
 public class LevelSelector : MonoBehaviour {
 
-    public int levelUnlockedID;
+	public int missionActiveID;
+	public int videogameActiveID;
+
     public MissionButton uiButton;
 	public Transform container;
     [SerializeField]
 
 	public float separation_in_x = 115;
 	private Data data;
-	public int missionActiveID;
+
 	private Missions missions;
 	private int missionID;
     private float StartScrollPosition;
@@ -23,10 +25,22 @@ public class LevelSelector : MonoBehaviour {
 	public GameObject cam;
 	float lastClickedTime;
 	List<MissionButton> all;
+	public MissionButton lastButtonSelected;
+
+	public List<MissionsByVideogame> allMissionsByVideogame;
+
+	[Serializable]
+	public class MissionsByVideogame
+	{
+		public List<Mission> missions;
+	}
+
 	VideogamesUIManager videogameUI;
 
 	void Start()
 	{
+		videogameActiveID = 0;
+		missionActiveID = 0;
 		Init ();
 		Data.Instance.events.OnJoystickBack += OnJoystickBack;
 		Data.Instance.events.OnJoystickClick += OnJoystickClick;
@@ -46,26 +60,27 @@ public class LevelSelector : MonoBehaviour {
 	}
 	void Update()
 	{
+		if (lastButtonSelected == null)
+			return;
 		//cam.transform.localPosition = Vector3.Lerp (cam.transform.localPosition, new Vector3(0, 0, missionActiveID * separation), 0.1f);
-		MissionButton missionButton = all[missionActiveID];
-		cam.transform.localPosition = Vector3.Lerp (cam.transform.localPosition, new Vector3(missionButton.videoGameID*separation_in_x, 0, missionButton.id_in_videogame * separation), 0.1f);
+		MissionButton missionButton = lastButtonSelected;
+		cam.transform.localPosition = Vector3.Lerp (cam.transform.localPosition, new Vector3(videogameActiveID*separation_in_x, 0, missionButton.id_in_videogame * separation), 0.1f);
 	}
 	void OnJoystickClick()
 	{
-		if (all [missionActiveID].isLocked)
+		if (lastButtonSelected == null || lastButtonSelected.isLocked)
 			return;
-		if(lastButtonSelected != null)
-			lastButtonSelected.OnClick ();
+		lastButtonSelected.OnClick ();
 		Invoke ("Delayed", 0.3f);
 	}
 	void Delayed()
 	{
-		data.missions.MissionActiveID = missionActiveID;
+		data.missions.MissionActiveID =lastButtonSelected.id;
 		Data.Instance.LoadLevel("Game");
 	}
 	void OnJoystickUp()
 	{
-		if(missionActiveID<missions.missions.Length-1)
+		if(missionActiveID<allMissionsByVideogame[videogameActiveID].missions.Count-1)
 			missionActiveID++;
 		SetSelected ();
 	}
@@ -76,22 +91,27 @@ public class LevelSelector : MonoBehaviour {
 		SetSelected ();
 	}
 	void OnJoystickLeft()
-	{
-		videogameUI.Left ();
+	{		
+		if(videogameActiveID == (Data.Instance.videogamesData.all.Length-1))
+			return;
+		missionActiveID = 0;
+		videogameActiveID++;
+		videogameUI.Right ();
 	}
 	void OnJoystickRight()
 	{
-		videogameUI.Right ();
+		if(videogameActiveID==0)
+			return;
+		missionActiveID = 0;
+		videogameActiveID--;
+		videogameUI.Left ();
 	}
 	void Init () {
 
-		Data.Instance.events.VoiceFromResources("juega_solo_asi_te_quedaras");
 		Data.Instance.events.OnInterfacesStart();
 
 		data = Data.Instance;		
 		missions = data.missions;
-
-		missionActiveID = data.levelUnlockedID;
 
 		missionID = 0;
 		int videogameID = 0;
@@ -108,6 +128,11 @@ public class LevelSelector : MonoBehaviour {
 			if (lastVideoGameID != mission.videoGameID) {
 				lastVideoGameID = mission.videoGameID;
 				id_in_videogame = 0;
+
+				MissionsByVideogame mbv = new MissionsByVideogame ();
+				allMissionsByVideogame.Add (mbv);
+				mbv.missions = new List<Mission> ();
+
 			} else
 				id_in_videogame++;
 
@@ -117,38 +142,31 @@ public class LevelSelector : MonoBehaviour {
 			lastButton = button;
 			button.videoGameID = mission.videoGameID;
 
-			if (missionID > data.levelUnlockedID && !Data.Instance.DEBUG)
+			if (videogameID==0 && missionID > data.levelUnlocked_level_1 && !Data.Instance.DEBUG)
 				button.disableButton ();
-		//	else
-			//	videogameID = mission.videoGameID;
+			else if (videogameID==1 && missionID > data.levelUnlocked_level_2 && !Data.Instance.DEBUG)
+				button.disableButton ();
+
+
+			videogameID = mission.videoGameID;
 
 			missionID++;
 
 			all.Add (button);
+			allMissionsByVideogame [videogameID].missions.Add (mission);
+
 		}
 		all.Sort(GetIdByVideogame);
 		all.Reverse ();
 
 		foreach (MissionButton mission in all) {
-
 			mission.transform.SetParent (container);
-//
-//			switch (mission.videoGameID) {
-//			case 0:
-//				mission.transform.SetParent (videogamesContainer0.transform);
-//				break;
-//			case 1:
-//				mission.transform.SetParent (videogamesContainer1.transform);
-//				break;
-//			}
-//
 			mission.transform.localScale = new Vector3(1,1,1);
 			mission.transform.localPosition = new Vector3 (mission.videoGameID * separation_in_x, 0, mission.id_in_videogame * separation);
 		}
-		levelUnlockedID = data.levelUnlockedID;   
 
 		videogameUI = GetComponent<VideogamesUIManager> ();
-		videogameUI.Init (videogameID);
+		videogameUI.Init (0);
 
 		all.Reverse ();
 		SetSelected ();
@@ -159,15 +177,15 @@ public class LevelSelector : MonoBehaviour {
 	{
 		return button1.id_in_videogame.CompareTo (button2.id_in_videogame);
 	}
-	MissionButton lastButtonSelected;
+
 	void SetSelected()
 	{
 		if(lastButtonSelected!=null)
 			lastButtonSelected.SetOn (false);
-		lastButtonSelected = all [missionActiveID];
+		Mission missionActive = allMissionsByVideogame [videogameActiveID].missions [missionActiveID];
+		lastButtonSelected = GetButtonByMission(missionActive);
 		lastButtonSelected.SetOn (true);
 		videogameUI.Select (lastButtonSelected.mission.videoGameID);
-		//missionIcon.SetOn (missions.missions [missionActiveID]);
 	}
 	public void OnJoystickBack()
     {
@@ -175,15 +193,15 @@ public class LevelSelector : MonoBehaviour {
     }
 	public void SelectFirstLevelOf(int videoGameID)
 	{
-		MissionButton firstButton = null;
-		foreach (MissionButton missionButton in all) {
-			if (missionButton.mission.videoGameID == videoGameID && firstButton == null)
-				firstButton = missionButton;
-		}
-		if (firstButton == null)
-			return;
-		missionActiveID = firstButton.id;
-		lastButtonSelected = firstButton;
+		missionActiveID = 0;
 		SetSelected ();
+	}
+	MissionButton GetButtonByMission(Mission mission)
+	{
+		foreach (MissionButton missionButton in all) {
+			if (missionButton.mission == mission)
+				return missionButton;			
+		}
+		return null;
 	}
 }
