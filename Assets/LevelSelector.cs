@@ -70,6 +70,7 @@ public class LevelSelector : MonoBehaviour {
 	{
 		if (lastButtonSelected == null || lastButtonSelected.isLocked)
 			return;
+		Data.Instance.videogamesData.ChangeID (videogameActiveID);
 		lastButtonSelected.OnClick ();
 		Invoke ("Delayed", 0.3f);
 	}
@@ -113,7 +114,6 @@ public class LevelSelector : MonoBehaviour {
 		data = Data.Instance;		
 		missions = data.missions;
 
-		missionID = 0;
 		int videogameID = 0;
 		int lastVideoGameID = -1;
 
@@ -142,9 +142,9 @@ public class LevelSelector : MonoBehaviour {
 			lastButton = button;
 			button.videoGameID = mission.videoGameID;
 
-			if (videogameID==0 && missionID > data.levelUnlocked_level_1 && !Data.Instance.DEBUG)
+			if (videogameID==0 && id_in_videogame > data.levelUnlocked_level_1 && !Data.Instance.DEBUG)
 				button.disableButton ();
-			else if (videogameID==1 && missionID > data.levelUnlocked_level_2 && !Data.Instance.DEBUG)
+			else if (videogameID==1 && id_in_videogame > data.levelUnlocked_level_2 && !Data.Instance.DEBUG)
 				button.disableButton ();
 
 

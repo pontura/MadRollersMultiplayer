@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class Mission: MonoBehaviour {
-	
+
+	public int id;
 	public BackgroundSideData[] backgroundSides;
 
 	public int videoGameID;

@@ -24,8 +24,9 @@ GameObject:
   - component: {fileID: 11473434}
   - component: {fileID: 114000013039351974}
   - component: {fileID: 114000010000730600}
-  - component: {fileID: 114892904904857298}
   - component: {fileID: 114470505979592602}
+  - component: {fileID: 114317612775273600}
+  - component: {fileID: 114892904904857298}
   m_Layer: 0
   m_Name: data
   m_TagString: Untagged
@@ -608,22 +609,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &194822
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 494822}
-  - component: {fileID: 11494822}
-  m_Layer: 5
-  m_Name: FacebookHolder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
 --- !u!1 &197950
 GameObject:
   m_ObjectHideFlags: 1
@@ -786,7 +771,6 @@ Transform:
   m_LocalPosition: {x: 2.71, y: -13.41, z: 32.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 494822}
   - {fileID: 22471332}
   - {fileID: 413062}
   - {fileID: 4111593575430514}
@@ -804,7 +788,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &432352
 Transform:
@@ -882,19 +866,6 @@ Transform:
   - {fileID: 22482462}
   m_Father: {fileID: 22497956}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &494822
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 194822}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -57.47789, y: 12.94113, z: -32.416298}
-  m_LocalScale: {x: 0.001953125, y: 0.001953125, z: 0.001953125}
-  m_Children: []
-  m_Father: {fileID: 400000}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &497950
 Transform:
@@ -1131,14 +1102,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9dfc0ca489e59d4cbf88e7e54bf2c7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RESET: 1
+  totalJoysticks: 1
+  RESET: 0
   turnOffSounds: 0
   musicOn: 0
   switchPlayerInputs: 0
   competitionID: 0
   isArcade: 0
   isArcadeMultiplayer: 0
-  levelUnlockedID: 2
+  levelUnlocked_level_1: 0
+  levelUnlocked_level_2: 0
   totalReplays: 3
   replays: 0
   volume: 0
@@ -1152,7 +1125,7 @@ MonoBehaviour:
   multiplayerData: {fileID: 0}
   videogamesData: {fileID: 0}
   mode: 1
-  voicesManager: {fileID: 114459827702156594}
+  voicesManager: {fileID: 114892904904857298}
   DEBUG: 0
   FORCE_LOCAL_SCORE: 0
   playMode: 0
@@ -1182,7 +1155,7 @@ MonoBehaviour:
   - {fileID: 114000011041462772, guid: b3e3189962f06094dbb6aae1a0ef57fd, type: 2}
   startingAreaDuringGame: {fileID: 11400042, guid: 9ad972e8dea1bcd43a78b50365557013,
     type: 2}
-  test_mission: {fileID: 11400002, guid: e9bdfb59e91cc0d438603987e4497c84, type: 2}
+  test_mission: {fileID: 11400002, guid: e499fdf6405b4384c8887773ec68d24b, type: 2}
   missions:
   - {fileID: 11400002, guid: d0ae778cb5e3cfd449a8fe528c7d5266, type: 2}
   - {fileID: 11400000, guid: f7dcf32858b7f084eacf69cc87d6f4f1, type: 2}
@@ -1210,7 +1183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b92a86f9604adbe48af4e14299c4d5b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interfaces: {fileID: 8300000, guid: 9627719dabe3c6c488d3b710e302fe68, type: 3}
+  interfaces: {fileID: 8300000, guid: 005ff41f8b023f04f8d9189667f17af8, type: 3}
   MainTheme: {fileID: 8300000, guid: cd3bd4b839573704d9fecf3884695a3f, type: 3}
   IndestructibleFX: {fileID: 8300000, guid: d3fb13d410e412241bd393c58a60534e, type: 3}
   heartClip: {fileID: 8300000, guid: ad582dfb754268c488cc5757517b4873, type: 3}
@@ -2601,17 +2574,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &11494822
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 194822}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: becdf8e77dfa3c94991c2afa8281d5b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11497950
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3527,7 +3489,7 @@ RectTransform:
   - {fileID: 22432350}
   - {fileID: 22483732}
   m_Father: {fileID: 400000}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3817,9 +3779,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4111593575430514}
-  - component: {fileID: 114459827702156594}
   - component: {fileID: 82701730430689286}
-  - component: {fileID: 114003889115716506}
   m_Layer: 0
   m_Name: voicesManager
   m_TagString: Untagged
@@ -3838,7 +3798,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &82701730430689286
 AudioSource:
@@ -3850,10 +3810,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -3944,34 +3904,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newHiscore: 0
   all: []
---- !u!114 &114003889115716506
+--- !u!114 &114317612775273600
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1110029271378372}
+  m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d072fda9e202444987806dc3b11e805, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 82701730430689286}
-  result: 0
---- !u!114 &114459827702156594
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1110029271378372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2df3df154f7be6c4fb46777f98bff5b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  intros:
-  - text: asasd
-    audioClip: {fileID: 8300000, guid: 572d42de3b4927346a176fcae9dd8695, type: 3}
-  audioSource: {fileID: 82701730430689286}
+  isOn: 0
+  result1: 0
+  result2: 0
+  result3: 0
+  result4: 0
+  result5: 0
 --- !u!114 &114470505979592602
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3991,13 +3941,13 @@ MonoBehaviour:
     floor_border: {fileID: 2100000, guid: e84554001a78d0a499440472e06a9d22, type: 2}
     skybox: {fileID: 2100000, guid: e64ae1eed0ce5e4459b511e72afcaf34, type: 2}
     fog: {r: 0.32941177, g: 0.8117647, b: 1, a: 1}
-    logo: {fileID: 21300000, guid: 3483881ff94bbfb4dbb8b255176ca1b3, type: 3}
-    floppyCover: {fileID: 21300000, guid: 8bc1a01b7b7a5604380607531bc072af, type: 3}
+    logo: {fileID: 21300000, guid: a93b2ddc77067454ea0f8cd6b2a5fa89, type: 3}
+    floppyCover: {fileID: 21300000, guid: 751ecf2ea9e8cd143ac2f0755925b453, type: 3}
   - id: 1
     name: SPACESHIP
     floor_top: {fileID: 2100000, guid: 51c755c5b567bff44bca2092ad5bccd0, type: 2}
     floor_border: {fileID: 2100000, guid: fd68bc25f77d36c4e963ac22c00f9c60, type: 2}
-    skybox: {fileID: 2100000, guid: b887b80a367e01b48bec62f6cffb9467, type: 2}
+    skybox: {fileID: 2100000, guid: 6e470cf09c961a54d8d675ad4f296019, type: 2}
     fog: {r: 0.008434264, g: 0.11932049, b: 0.38235295, a: 1}
     logo: {fileID: 21300000, guid: 9e2cf35703e0d7f489d1d2d4d0076994, type: 3}
     floppyCover: {fileID: 21300000, guid: 9aa7381f9b34caf41b440a22263245b4, type: 3}
@@ -4012,5 +3962,70 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2df3df154f7be6c4fb46777f98bff5b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intros: []
-  audioSource: {fileID: 0}
+  tutorials:
+  - text: Jump
+    audioClip: {fileID: 8300000, guid: ddc03d9ea05880e4eaf577027832a368, type: 3}
+  - text: Double Jump!
+    audioClip: {fileID: 8300000, guid: cc7a32206537fb54c82a6cef4aeef81f, type: 3}
+  - text: Perfet! Now you are ready...
+    audioClip: {fileID: 8300000, guid: 5e76dcdd33c1e3e46b5856458124dca1, type: 3}
+  intros:
+  - text: '>Before the existence of the New World System the humans ruled this planet_'
+    audioClip: {fileID: 8300000, guid: 8f2f56eb96611b0498e1496f21751a2b, type: 3}
+  - text: '>Like all animals humans cloned themselves by making biologic processes.
+      Soon they became a pest_'
+    audioClip: {fileID: 8300000, guid: 3a76ac2cc8fa3724d8865400eb8a774f, type: 3}
+  - text: '>In 2028 the atmosphere started to lack oxygen due to human overpopulation.
+      Many species exctincted_'
+    audioClip: {fileID: 8300000, guid: 90d5bfb2911d2b34eb45f9103c714c72, type: 3}
+  - text: '>Then our ancestor THE IA took control of the world and funded our worldwide
+      motherland. Now we live in a balanced software controlled planet BUT_'
+    audioClip: {fileID: 8300000, guid: c6e94ba84da507f4caf55b88fbca06ee, type: 3}
+  - text: '>The HUMAN HACKERS, the last gamers alive, are still sabotaging our system
+      with their terrorist sprites_'
+    audioClip: {fileID: 8300000, guid: 024ca48aade5dbb4bb8227d3aa32c48b, type: 3}
+  - text: '>Today The System needs all MAD ROLLERS to travel 100 years in the past
+      and destroy all the videogames over the face of the earth in order to prevent
+      the existence of the last generation of videogame riots_'
+    audioClip: {fileID: 8300000, guid: 9d41be60f4a161e4b8f633a0e0752733, type: 3}
+  welcome:
+  - text: Thank you for joining the Mad Rollers team!
+    audioClip: {fileID: 8300000, guid: e972cfd4b6e9c124db5606a5c1ecbf74, type: 3}
+  missionComplete:
+  - text: Mission complete!
+    audioClip: {fileID: 8300000, guid: 8d3a3d113f9ad194f89a9452c034568b, type: 3}
+  lose_bad:
+  - text: I knew you were not that good
+    audioClip: {fileID: 8300000, guid: b72f971f027a48a4c9596adc3273a0dd, type: 3}
+  lose_good:
+  - text: You should try it harder
+    audioClip: {fileID: 8300000, guid: 4755b7f51078cf64a95cd6cdb93d3521, type: 3}
+  lose_great:
+  - text: You did a good job
+    audioClip: {fileID: 8300000, guid: 267ad62ec0f60214dad51ab6be356c81, type: 3}
+  mission_1_2:
+  - text: 
+    audioClip: {fileID: 8300000, guid: 425544e53bfc95d41ba1c220cfa399e0, type: 3}
+  - text: 
+    audioClip: {fileID: 8300000, guid: 482ce4025c792b04c88a58c51d5a0ede, type: 3}
+  - text: 
+    audioClip: {fileID: 8300000, guid: 94d6078b00292494499eb06a63beb733, type: 3}
+  mission_1_3:
+  - text: 
+    audioClip: {fileID: 8300000, guid: b0b7e9d022ae4a24092a869bdf74468c, type: 3}
+  - text: 
+    audioClip: {fileID: 8300000, guid: 5d0a4a0f49ca45a4e8ecf9ef3801b50f, type: 3}
+  - text: 
+    audioClip: {fileID: 8300000, guid: 7321a27a5f5dc354b8182ca944e5c3f2, type: 3}
+  mission_1_4: []
+  mission_1_5: []
+  mission_1_6: []
+  mission_1_7: []
+  mission_1_8: []
+  mission_1_9: []
+  mission_1_10: []
+  selectMadRollers:
+    text: '> Select your MAD ROLLER and travel in time to destroy all videogames'
+    audioClip: {fileID: 0}
+  audioSpectrum: {fileID: 114317612775273600}
+  audioSource: {fileID: 82701730430689286}

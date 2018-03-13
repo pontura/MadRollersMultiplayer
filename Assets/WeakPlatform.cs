@@ -6,9 +6,14 @@ public class WeakPlatform : SceneObject {
 	public GameObject to;
 	int videoGameID;
 	public GameObject borders;
+	Material floor_top;
+	Material floor_border ;
 
     public override void OnRestart(Vector3 pos)
     {
+		floor_top = Data.Instance.videogamesData.GetActualVideogameData ().floor_top;
+		floor_border = Data.Instance.videogamesData.GetActualVideogameData ().floor_border;
+
         base.OnRestart(pos);
         GetComponent<Collider>().enabled = true;
 		Renderer renderer = GetComponentInChildren<Renderer>();
@@ -25,11 +30,10 @@ public class WeakPlatform : SceneObject {
     }
 	void ChangeMaterials(Renderer renderer)
 	{
-		Material floor_top = Data.Instance.videogamesData.GetActualVideogameData ().floor_top;
-		Material floor_border = Data.Instance.videogamesData.GetActualVideogameData ().floor_border;
+		
 		renderer.material = floor_top;
 		if(renderer.sharedMaterials.Length>1)
-			renderer.sharedMaterials[1] = floor_border;
+			renderer.sharedMaterials[0] = floor_border;
 	}
    void OnTriggerEnter(Collider other) 
 	{

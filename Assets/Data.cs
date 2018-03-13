@@ -138,20 +138,24 @@ public class Data : MonoBehaviour {
 
 		missions.MissionActiveID = num;
 
+		int idByVideogame = missions.GetActualMissionByVideogame ();
+
         if (playMode == PlayModes.COMPETITION)
         {
             SocialEvents.OnMissionReady(num);
         }
         else
         {
-			if (videogamesData.GetActualVideogameData().id==0 &&  num > levelUnlocked_level_1)
+			VideogameData vdata = videogamesData.GetActualVideogameData ();
+			Mission mission = Data.Instance.missions.missions [num];
+			if (vdata.id==0 &&  num > levelUnlocked_level_1)
             {
-				levelUnlocked_level_1 = num;
-				PlayerPrefs.SetInt("levelUnlocked_level_1", num);
-			} else if (videogamesData.GetActualVideogameData().id==1 &&  num > levelUnlocked_level_2)
+				levelUnlocked_level_1 = idByVideogame;
+				PlayerPrefs.SetInt("levelUnlocked_level_1", idByVideogame);
+			} else if (vdata.id==1 &&  num > levelUnlocked_level_2)
 			{
-				levelUnlocked_level_2 = num;
-				PlayerPrefs.SetInt("levelUnlocked_level_2", num);
+				levelUnlocked_level_2 = idByVideogame;
+				PlayerPrefs.SetInt("levelUnlocked_level_2", idByVideogame);
 			}
         }
 	}

@@ -1,6 +1,7 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using System;
+using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Missions : MonoBehaviour {
 
@@ -13,6 +14,13 @@ public class Missions : MonoBehaviour {
     public Mission test_mission;
 
 	public Mission[] missions;
+	public List<MissionsByVideogame> allMissionsByVideogame;
+
+	[Serializable]
+	public class MissionsByVideogame
+	{
+		public List<Mission> missions;
+	}
     public Competitions competitions;
 	public int MissionActiveID = 0;
 
@@ -45,6 +53,29 @@ public class Missions : MonoBehaviour {
         Data.Instance.events.OnGrabHeart += OnGrabHeart;
 		Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
 		Data.Instance.events.OnDestroySceneObject += OnDestroySceneObject;
+
+		int videogameID = 0;
+		int lastVideoGameID = -1;
+			
+		List<MissionButton> all = new List<MissionButton> ();
+		int id = 0;
+		foreach (Mission mission in missions) {
+			mission.id = id;
+			if (lastVideoGameID != mission.videoGameID) {
+				lastVideoGameID = mission.videoGameID;
+
+
+				Missions.MissionsByVideogame mbv = new Missions.MissionsByVideogame ();
+				allMissionsByVideogame.Add (mbv);
+				mbv.missions = new List<Mission> ();
+
+			} 
+
+			videogameID = mission.videoGameID;
+			allMissionsByVideogame [videogameID].missions.Add (mission);
+			id++;
+		}
+
     }
     void OnDestroy()
     {
@@ -131,7 +162,7 @@ public class Missions : MonoBehaviour {
             else
             if (MissionActiveID == GetActualMissions().Length)
             {
-                MissionActiveID = Random.Range(2, GetActualMissions().Length - 1);
+					MissionActiveID = UnityEngine.Random.Range(2, GetActualMissions().Length - 1);
             }
         }
 		MissionActiveID++;
@@ -161,8 +192,8 @@ public class Missions : MonoBehaviour {
 				text = MissionActive.description.ToUpper();
         }
 
-		foreach (Text t in Game.Instance.level.missionDesc.GetComponentsInChildren<Text>())
-			t.text = text;
+		//foreach (Text t in Game.Instance.level.missionDesc.GetComponentsInChildren<Text>())
+		//	t.text = text;
 
         MissionActive.points = 0;
         lastDistance = (int)Game.Instance.GetComponent<CharactersManager>().distance;
@@ -221,13 +252,17 @@ public class Missions : MonoBehaviour {
 			setMissionStatus(MissionActive.boss1);
 		} 
 	}
-	//public void killBomb(int qty) {
-	//	if(MissionActive.bombs > 0)
-	//	{
-    //        addPoints(qty);
-	//		setMissionStatus(MissionActive.bombs);
-	//	}
-	//}
+	public int GetActualMissionByVideogame()
+	{
+		int viedogameActive = Data.Instance.videogamesData.actualID;
+		int id = 0;
+		foreach (Mission mission in allMissionsByVideogame[viedogameActive].missions) {
+			if (mission.id == MissionActive.id)
+				return id;
+			id++;
+		}
+		return 0;
+	}
 
     void OnGrabHeart()
     {
