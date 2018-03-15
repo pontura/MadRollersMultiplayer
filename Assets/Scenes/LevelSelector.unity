@@ -2090,13 +2090,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8d43bbfc3a546548b863a5764f5a077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelUnlockedID: 0
+  missionActiveID: 0
+  videogameActiveID: 0
   uiButton: {fileID: 114333136468285758, guid: 15791d517e83e0a44ab8f7bcb98feae0, type: 2}
   container: {fileID: 26093890}
   separation_in_x: 115
-  missionActiveID: 0
   showJoystickMenu: 0
   cam: {fileID: 853100262}
+  lastButtonSelected: {fileID: 0}
+  allMissionsByVideogame: []
 --- !u!114 &2109113960
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -30,8 +30,11 @@ public class AudioSpectrumView : MonoBehaviour {
 		this.isTalking = isTalking;
 	}
 	void Update () {
-		if (!isTalking)
+		if (!isTalking) {
+			if(panel.activeSelf)
+				panel.SetActive (false);
 			return;
+		}
 		SetSize (image1, audioSpectrum.result1);
 		SetSize (image2, audioSpectrum.result2);
 		SetSize (image3, audioSpectrum.result3);

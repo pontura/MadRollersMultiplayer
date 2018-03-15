@@ -170,7 +170,7 @@ public class CharactersManager : MonoBehaviour {
     {
 	//	if (Data.Instance.isArcadeMultiplayer && Game.Instance.level.waitingToStart)
      //   {
-            pos = new Vector3((3.5f * id) - (4.5f), 1);
+            pos = new Vector3((3.5f * id) - (5.25f), 1);
      //   }
       //  else
       //  {
