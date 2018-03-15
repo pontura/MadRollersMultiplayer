@@ -13,7 +13,7 @@ public class StartingPlatform : SceneObject {
 		Data.Instance.events.OnAvatarShoot += OnAvatarShoot;
 		foreach (GameObject go in platforms) {
 			Vector3 pos = go.transform.localPosition;
-			pos.y = 1f;
+			pos.y = 0.7f;
 			go.transform.localPosition = pos;
 		}
 		logo.sprite = Data.Instance.videogamesData.GetActualVideogameData ().floppyCover;
@@ -25,12 +25,14 @@ public class StartingPlatform : SceneObject {
 
 	void OnAvatarShoot(int _avatarID)
 	{
-		if (avatarID == _avatarID) {
-			foreach (GameObject go in platforms) {
+		int id = 0;
+		foreach (GameObject go in platforms) {
+			if (_avatarID == id) {
 				Vector3 pos = go.transform.localPosition;
-				pos.y = 0f;
+				pos.y = -0.4f;
 				go.transform.localPosition = pos;
 			}
+			id++;
 		}
 	}
 }
