@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class AudioSpectrumView : MonoBehaviour {
 
 	public float multiplier = 6;
+	public GameObject panel;
 
 	public Image image1;
 	public Image image2;
@@ -17,6 +18,7 @@ public class AudioSpectrumView : MonoBehaviour {
 	void Start () {
 		audioSpectrum = Data.Instance.voicesManager.audioSpectrum;
 		Data.Instance.events.OnTalk += OnTalk;
+		panel.SetActive (false);
 	}
 	void OnDestroy () {
 		Data.Instance.events.OnTalk -= OnTalk;
@@ -24,6 +26,7 @@ public class AudioSpectrumView : MonoBehaviour {
 	bool isTalking;
 	void OnTalk(bool isTalking)
 	{
+		panel.SetActive (isTalking);
 		this.isTalking = isTalking;
 	}
 	void Update () {
