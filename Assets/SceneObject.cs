@@ -87,7 +87,6 @@ public class SceneObject : MonoBehaviour {
         gameObject.SetActive(true);
         transform.position = pos;
         isActive = true;
-        SendMessage("OnSceneObjectRestarted", SendMessageOptions.DontRequireReceiver);
     }
     public virtual void changeMaterial(string materialName)
     {

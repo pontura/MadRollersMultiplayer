@@ -132,6 +132,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			case "bonusEntrance":   
 			case "firewall":        
 			case "Baranda1":  
+			case "enemyNaveSimple":  
 					sceneObject = Pool.GetObjectForType(go.name + "_real", false);    
 			
 
@@ -345,6 +346,12 @@ public class SceneObjectsBehavior : MonoBehaviour {
                     Jump mo = go.GetComponent<Jump>();
                     CopyComponent(mo, sceneObject.gameObject);
                 }
+				if (go.GetComponent<EnemyPathsMultiples>())
+				{
+					EnemyPathsMultiples mo = go.GetComponent<EnemyPathsMultiples>();
+					CopyComponent(mo, sceneObject.gameObject);
+				}
+
 
 
                 if (go.GetComponent<Subibaja>())
