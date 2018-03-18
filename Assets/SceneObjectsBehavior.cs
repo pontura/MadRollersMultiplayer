@@ -27,6 +27,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
     public SceneObject palm3;
     public SceneObject palm4;
     public SceneObject palm_tall;
+	public SceneObject palm_space1;
 	public SceneObject enemyGhost;
     public SceneObject cilindro;
 
@@ -245,16 +246,15 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				clone = palm_tall;
             else if (go.name == "palm")
                 {
-					
-                    int ran = Random.Range(0, 40);
-                    if (ran < 20)
-                        clone = palm;
-                    else if (ran < 40)
-                        clone = palm2;
-
-                    //Vector3 pos2 = go.transform.localEulerAngles;
-                    //pos2.y = Random.Range(0, 360);
-                    //go.transform.localEulerAngles = pos2;   
+					if (Data.Instance.videogamesData.actualID == 1) {
+						clone = palm_space1;
+					}else {
+						int ran = Random.Range (0, 40);
+						if (ran < 20)
+							clone = palm;
+						else if (ran < 40)
+							clone = palm2;
+					}
                 }
                 else if (go.name == "streetFloor")
                     clone = streetFloor;

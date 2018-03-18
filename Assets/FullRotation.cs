@@ -18,6 +18,7 @@ public class FullRotation : MonoBehaviour {
 	private float rotationY;
 	private float rotationZ;
 
+	public bool frameByFrame;
     
 
 
@@ -39,10 +40,22 @@ public class FullRotation : MonoBehaviour {
 
 		if(inverse)
 			speed *=-1;
-	}
-	
-	void Update () {
 
+		if (frameByFrame) {
+			Loop ();
+		}
+	}
+	void Loop()
+	{
+		Vector3 rot = transform.localEulerAngles;
+		rot.y += 90;
+		transform.localEulerAngles = rot;
+		Invoke ("Loop", 0.1f);
+	}
+	void Update () {
+		if (frameByFrame) {
+			return;
+		}
 		if(rotateX)
 			rotationX+=speed*Time.deltaTime;
         else rotationX = transform.localRotation.x;
