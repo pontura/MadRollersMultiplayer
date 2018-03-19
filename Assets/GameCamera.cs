@@ -1,8 +1,10 @@
 using UnityEngine;
 using System.Collections;
+using AlpacaSound.RetroPixelPro;
 
 public class GameCamera : MonoBehaviour 
 {
+	public RetroPixelPro retroPixelPro;
 	public Camera cam;
     public states state;
     public  enum states
@@ -26,12 +28,38 @@ public class GameCamera : MonoBehaviour
 	float explotionForce = 0.25f;
 
     public Animation anim;
+	public Vector2 defaultResolution = new Vector2(600,400);
+	public int newH;
+	public int newV;
+
+	void ChangeResolution()
+	{
+		defaultResolution = new Vector2 (Random.Range (300, 600), Random.Range (200, 400));
+		retroPixelPro.horizontalResolution =(int) defaultResolution.x;
+		retroPixelPro.horizontalResolution =(int) defaultResolution.y;
+	}
+	void SetPizelPro()
+	{
+		if (newH == defaultResolution.x && newV == defaultResolution.y)
+			return;
+
+		if (newH < defaultResolution.x)
+			newH++;
+		if (newV < defaultResolution.y)
+			newV++;
+		retroPixelPro.horizontalResolution = newH;
+		retroPixelPro.verticalResolution = newV;
+	}
 
     void Start()
     {
 		//print ("Start");
 		//newCameraOrientationVector = cameraOrientationVector;
 		//newRotation = rotationX;
+
+
+		newH = retroPixelPro.horizontalResolution;
+		newV = retroPixelPro.verticalResolution;
 
 		cam.transform.localEulerAngles = newRotation;
 
@@ -96,6 +124,8 @@ public class GameCamera : MonoBehaviour
 	{
 		this.explotionForce = explotionForce*1.5f;
 		StartCoroutine (DoExplote ());
+		newH = 100;
+		newV = 100;
 	}
 	bool exploting;
 	public IEnumerator DoExplote () {	
@@ -115,7 +145,8 @@ public class GameCamera : MonoBehaviour
         v.z = explotionForce;
 		cam.transform.localEulerAngles = v;
 	}
-
+	int secondsToJump = 5;
+	float sec;
 	void LateUpdate () 
 	{
         if (state == states.START)
@@ -126,6 +157,13 @@ public class GameCamera : MonoBehaviour
         {
             return;
         }
+		sec += Time.deltaTime;
+		if (sec > secondsToJump) {
+			sec = 0;
+			ChangeResolution ();
+		}
+		
+		SetPizelPro ();
 
 		Vector3 newPos  = charactersManager.getPosition();
 		newPos += newCameraOrientationVector;
