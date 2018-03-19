@@ -15,6 +15,7 @@ public class WeakPlatform : SceneObject {
 		floor_border = Data.Instance.videogamesData.GetActualVideogameData ().floor_border;
 
         base.OnRestart(pos);
+
         GetComponent<Collider>().enabled = true;
 		Renderer renderer = GetComponentInChildren<Renderer>();
 		int newVideoGameID = Data.Instance.videogamesData.actualID;
@@ -25,12 +26,10 @@ public class WeakPlatform : SceneObject {
 		if (borders != null) {
 			foreach(Renderer r in borders.GetComponentsInChildren<Renderer>())
 				ChangeMaterials(r);
-		//	borders.transform.SetParent (transform.parent);
 		}
     }
 	void ChangeMaterials(Renderer renderer)
 	{
-		
 		renderer.material = floor_top;
 		if(renderer.sharedMaterials.Length>1)
 			renderer.sharedMaterials[0] = floor_border;
