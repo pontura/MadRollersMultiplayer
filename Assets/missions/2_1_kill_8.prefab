@@ -1,62 +1,47 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &100000
+--- !u!1 &195616
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 400000}
-  - component: {fileID: 11400002}
-  - component: {fileID: 11400000}
+  - component: {fileID: 495616}
+  - component: {fileID: 11495614}
+  - component: {fileID: 11495616}
   m_Layer: 0
-  m_Name: 40_test
+  m_Name: 2_1_kill_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!4 &400000
+--- !u!4 &495616
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
+  m_GameObject: {fileID: 195616}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0025587082, y: -0.0018539429, z: -0.0011138916}
+  m_LocalPosition: {x: 6.0593038, y: -96.47865, z: 122.63338}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &11400000
+--- !u!114 &11495614
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aab087fa44cc671439e1b50508ce4d75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  areaSets:
-  - {fileID: 11413728, guid: 48ddf742a7c9ec04084fb1180d2731ce, type: 2}
-  activeAreaSetID: 0
-  showRelaxAreaBeforeStarting: 0
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
+  m_GameObject: {fileID: 195616}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c52aa23c4c1909c45b1a2eeadb8f98cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
+  id: 10
   backgroundSides: []
   videoGameID: 1
   missionIcon: {fileID: 0}
@@ -64,16 +49,33 @@ MonoBehaviour:
   maxScore: 0
   Hiscore: 0
   avatarHiscore: 
-  boss1: 1
+  boss1: 0
   hearts: 0
-  guys: 0
+  guys: 16
   ghost: 0
-  points: 916
+  points: 16
   listeners: 0
   planes: 0
   bombs: 0
-  distance: 999000
-  description: TEST
+  distance: 0
+  description: Kill 16 spaceship
+--- !u!114 &11495616
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 195616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aab087fa44cc671439e1b50508ce4d75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  areaSets:
+  - {fileID: 11417044, guid: 966d6ccd39a80ce48ad1033e71bbe5c3, type: 2}
+  - {fileID: 11417044, guid: 7a2d442076ccfe34291dfe7a0b03edab, type: 2}
+  - {fileID: 11417044, guid: 2ecd0810d04ff3340a03d104a146d5f1, type: 2}
+  activeAreaSetID: 3
+  showRelaxAreaBeforeStarting: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -83,5 +85,5 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 100000}
+  m_RootGameObject: {fileID: 195616}
   m_IsPrefabParent: 1

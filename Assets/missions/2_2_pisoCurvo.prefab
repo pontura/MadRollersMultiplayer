@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 11495614}
   - component: {fileID: 11495616}
   m_Layer: 0
-  m_Name: 2_1_plantaAlta
+  m_Name: 2_2_pisoCurvo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c52aa23c4c1909c45b1a2eeadb8f98cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
+  id: 11
   backgroundSides: []
   videoGameID: 1
   missionIcon: {fileID: 0}
@@ -50,15 +50,15 @@ MonoBehaviour:
   Hiscore: 0
   avatarHiscore: 
   boss1: 0
-  hearts: 0
+  hearts: 124
   guys: 0
   ghost: 0
-  points: 0
+  points: 70
   listeners: 0
   planes: 0
   bombs: 0
-  distance: 700
-  description: Planta Alta
+  distance: 0
+  description: Get 124 pixels
 --- !u!114 &11495616
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -71,8 +71,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   areaSets:
-  - {fileID: 11417044, guid: b6daa28eadd44ae469fb89418065f479, type: 2}
-  activeAreaSetID: 1
+  - {fileID: 11413728, guid: 1f12e9a923c409d40978c98c881ca7cc, type: 2}
+  activeAreaSetID: 0
   showRelaxAreaBeforeStarting: 0
 --- !u!1001 &100100000
 Prefab:
