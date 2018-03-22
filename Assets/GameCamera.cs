@@ -28,13 +28,16 @@ public class GameCamera : MonoBehaviour
 	float explotionForce = 0.25f;
 
     public Animation anim;
-	public Vector2 defaultResolution = new Vector2(600,400);
+	public Vector2 defaultResolution = new Vector2(1920,1080);
 	public int newH;
 	public int newV;
+	int pixel_speed_recovery = 3;
+	private GameObject flow_target;
+
 
 	void ChangeResolution()
 	{
-		defaultResolution = new Vector2 (Random.Range (300, 600), Random.Range (200, 400));
+		//defaultResolution = new Vector2 (Random.Range (300, 600), Random.Range (200, 400));
 		retroPixelPro.horizontalResolution =(int) defaultResolution.x;
 		retroPixelPro.horizontalResolution =(int) defaultResolution.y;
 	}
@@ -44,9 +47,9 @@ public class GameCamera : MonoBehaviour
 			return;
 
 		if (newH < defaultResolution.x)
-			newH++;
+			newH+=pixel_speed_recovery;
 		if (newV < defaultResolution.y)
-			newV++;
+			newV+=pixel_speed_recovery;
 		retroPixelPro.horizontalResolution = newH;
 		retroPixelPro.verticalResolution = newV;
 	}
@@ -56,7 +59,7 @@ public class GameCamera : MonoBehaviour
 		//print ("Start");
 		//newCameraOrientationVector = cameraOrientationVector;
 		//newRotation = rotationX;
-
+	
 
 		newH = retroPixelPro.horizontalResolution;
 		newV = retroPixelPro.verticalResolution;
@@ -81,6 +84,8 @@ public class GameCamera : MonoBehaviour
 		Vector3 newPos = transform.localPosition;
 		newPos.y = 4.5f;
 		transform.localPosition = newPos;
+
+
     }
     void OnDestroy()
     {
@@ -117,8 +122,14 @@ public class GameCamera : MonoBehaviour
         pos.y = 0;
         transform.position = pos;
 
-        charactersManager = Game.Instance.GetComponent<CharactersManager>();
 
+
+        charactersManager = Game.Instance.GetComponent<CharactersManager>();
+		if (flow_target == null) {
+			flow_target = new GameObject ();
+			flow_target.name = "Camera_TARGET";
+			//flow_target.transform.SetParent (transform);
+		}
 	}
 	public void explote(float explotionForce)
 	{
@@ -166,18 +177,25 @@ public class GameCamera : MonoBehaviour
 		SetPizelPro ();
 
 		Vector3 newPos  = charactersManager.getPosition();
-		newPos += newCameraOrientationVector;
+		Vector3 newPosTarget = flow_target.transform.localPosition;
+		newPosTarget.x = Mathf.Lerp(flow_target.transform.localPosition.x, newPos.x, Time.deltaTime*4.5f);
+		newPosTarget.z = transform.localPosition.z+7;
+		newPosTarget.y = -1;
+		flow_target.transform.localPosition = newPosTarget;
+		cam.transform.LookAt ( flow_target.transform, Vector3.up );
 
-		newPos.z = Mathf.Lerp (transform.position.z, newPos.z, 0.5f);
-		newPos.x = Mathf.Lerp (transform.position.x, newPos.x, Time.deltaTime*7);
+		newPos += newCameraOrientationVector;
+		newPos.z = Mathf.Lerp (transform.position.z, newPos.z, 0.3f);
+		newPos.x = Mathf.Lerp (transform.position.x, newPos.x, Time.deltaTime*10);
+		//newPos.x = 0;
 		newPos.y = Mathf.Lerp (transform.position.y, newPos.y, Time.deltaTime*10);
 
 		//newPos = Vector3.Lerp (newPos, newCameraOrientationVector, 0.01f);
 
 		transform.position = newPos;
 
-		if(!exploting)
-			cam.transform.localEulerAngles = Vector3.Lerp(cam.transform.localEulerAngles, newRotation, 0.05f);
+		//if(!exploting)
+		//	cam.transform.localEulerAngles = Vector3.Lerp(cam.transform.localEulerAngles, newRotation, 0.05f);
 	}
     public void OnAvatarCrash(CharacterBehavior player)
     {

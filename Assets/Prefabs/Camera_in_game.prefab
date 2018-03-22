@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 111644279116869078}
   - component: {fileID: 114497419527107178}
   - component: {fileID: 114437328844667136}
+  - component: {fileID: 114089265648518732}
   m_Layer: 0
   m_Name: camera
   m_TagString: Untagged
@@ -542,6 +543,26 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &114089265648518732
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1642443556537470}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab2fd0b11cfb2fb4ca4ed47adfcc3b26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Shader: {fileID: 4800000, guid: 9d7e8f87435780644abb4acdfd72a2f0, type: 3}
+  LookupTexture: {fileID: 0}
+  Amount: 1
+  TintColor: {r: 1, g: 1, b: 1, a: 1}
+  Hue: 0
+  Saturation: 0
+  Brightness: 0
+  Contrast: 0
+  Sharpness: 0
 --- !u!114 &114297646402590362
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -564,9 +585,9 @@ MonoBehaviour:
   newRotation: {x: 0, y: 0, z: 0}
   onExplotion: 0
   anim: {fileID: 111644279116869078}
-  defaultResolution: {x: 400, y: 300}
-  newH: 0
-  newV: 0
+  defaultResolution: {x: 1920, y: 1080}
+  newH: 1920
+  newV: 1080
 --- !u!114 &114437328844667136
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -592,10 +613,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78eb003e1eaf343d887cc29f4e64d210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalResolution: 300
-  verticalResolution: 200
-  strength: 0.514
-  numberOfColors: 24
+  horizontalResolution: 1920
+  verticalResolution: 1080
+  strength: 0.501
+  numberOfColors: 64
   preset: 12
   palette:
   - {r: 0, g: 0, b: 0, a: 1}
@@ -613,7 +634,7 @@ MonoBehaviour:
   - {r: 0.641, g: 0.15322727, b: 0.02356616, a: 1}
   - {r: 0.26662943, g: 0.521, b: 0.012258823, a: 1}
   - {r: 0.72794116, g: 0, b: 0, a: 1}
-  - {r: 0.99215686, g: 0.49019608, b: 0.023529412, a: 1}
+  - {r: 1, g: 0.44, b: 0.5906208, a: 1}
   - {r: 1, g: 0.751468, b: 0.16600001, a: 1}
   - {r: 0.35618824, g: 0.696, b: 0.01637647, a: 1}
   - {r: 0.79, g: 0.9244, b: 1, a: 1}
@@ -854,9 +875,9 @@ MonoBehaviour:
   - {r: 0, g: 0, b: 0, a: 0}
   - {r: 0, g: 0, b: 0, a: 0}
   - {r: 0, g: 0, b: 0, a: 0}
-  usedColors: 01010101010101010101010001010100010101000101010001010100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  colormapPrecision: 1
+  usedColors: 01010101010101010101010001010101010101000101010001010100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  colormapPrecision: 4
   colormap: {fileID: 0}
   paletteTexture: {fileID: 0}
-  autoUpdateColormap: 0
+  autoUpdateColormap: 1
   isUpdatingColormap: 0
