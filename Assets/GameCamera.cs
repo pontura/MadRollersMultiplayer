@@ -31,7 +31,7 @@ public class GameCamera : MonoBehaviour
 	public Vector2 defaultResolution = new Vector2(1920,1080);
 	public int newH;
 	public int newV;
-	int pixel_speed_recovery = 3;
+	int pixel_speed_recovery = 8;
 	private GameObject flow_target;
 
 
@@ -135,8 +135,8 @@ public class GameCamera : MonoBehaviour
 	{
 		this.explotionForce = explotionForce*1.5f;
 		StartCoroutine (DoExplote ());
-		newH = 100;
-		newV = 100;
+		newH = 1;
+		newV = 1;
 	}
 	bool exploting;
 	public IEnumerator DoExplote () {	
@@ -155,6 +155,27 @@ public class GameCamera : MonoBehaviour
 		Vector3 v = cam.transform.localEulerAngles;
         v.z = explotionForce;
 		cam.transform.localEulerAngles = v;
+	}
+	Vector3 newPos;
+	void Update () 
+	{
+		if (state == states.START)
+		{
+			return;
+		}
+		if (state == states.END )
+		{
+			return;
+		}
+
+		newPos  = charactersManager.getPosition();
+		Vector3 newPosTarget = flow_target.transform.localPosition;
+		newPosTarget.x = Mathf.Lerp(newPosTarget.x, newPos.x, Time.deltaTime*4.5f);
+		newPosTarget.z = transform.localPosition.z+7;
+		newPosTarget.y = -1;
+		flow_target.transform.localPosition = newPosTarget;
+		cam.transform.LookAt ( flow_target.transform, Vector3.up );
+
 	}
 	int secondsToJump = 5;
 	float sec;
@@ -176,23 +197,17 @@ public class GameCamera : MonoBehaviour
 		
 		SetPizelPro ();
 
-		Vector3 newPos  = charactersManager.getPosition();
-		Vector3 newPosTarget = flow_target.transform.localPosition;
-		newPosTarget.x = Mathf.Lerp(flow_target.transform.localPosition.x, newPos.x, Time.deltaTime*4.5f);
-		newPosTarget.z = transform.localPosition.z+7;
-		newPosTarget.y = -1;
-		flow_target.transform.localPosition = newPosTarget;
-		cam.transform.LookAt ( flow_target.transform, Vector3.up );
+		Vector3 _newPos  = newPos;
 
-		newPos += newCameraOrientationVector;
-		newPos.z = Mathf.Lerp (transform.position.z, newPos.z, 0.3f);
-		newPos.x = Mathf.Lerp (transform.position.x, newPos.x, Time.deltaTime*10);
+		_newPos += newCameraOrientationVector;
+		_newPos.z = Mathf.Lerp (transform.position.z, _newPos.z, 0.3f);
+		_newPos.x = Mathf.Lerp (transform.position.x, _newPos.x, Time.deltaTime*10);
 		//newPos.x = 0;
-		newPos.y = Mathf.Lerp (transform.position.y, newPos.y, Time.deltaTime*10);
+		_newPos.y = Mathf.Lerp (transform.position.y, _newPos.y, Time.deltaTime*10);
 
 		//newPos = Vector3.Lerp (newPos, newCameraOrientationVector, 0.01f);
 
-		transform.position = newPos;
+		transform.position = _newPos;
 
 		//if(!exploting)
 		//	cam.transform.localEulerAngles = Vector3.Lerp(cam.transform.localEulerAngles, newRotation, 0.05f);
