@@ -74,22 +74,10 @@ public class Game : MonoBehaviour {
     }
     //pierdo y arranca de ni
     public void ResetLevel()
-	{
+	{		
 		
         Data.Instance.events.OnResetLevel();
-        Data.Instance.replays++;
-
-        if (Data.Instance.userData.hiscore < Data.Instance.userData.score)
-        {
-           // Data.Instance.userData.OnHiscore(Data.Instance.userData.score);            
-           // Application.LoadLevel("NewHiscore");
-            Data.Instance.replays = 0;
-            Data.Instance.LoadLevel("Game");
-        } 
-        //else if (Data.Instance.replays == Data.Instance.totalReplays)
-        //    GotoContinue();
-        else
-            Data.Instance.LoadLevel("Game");
+        Data.Instance.LoadLevel("Game");
 	}
     //IEnumerator  restart()
     //{
