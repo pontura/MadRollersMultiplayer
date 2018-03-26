@@ -8,6 +8,8 @@ public class SceneObjectsBehavior : MonoBehaviour {
     [HideInInspector]
     public Area area;
 
+	public SceneObject Border_videogame_1;
+
 	public SceneObject Boss1;
     public SceneObject Starting;
     public SceneObject Calecita;
@@ -157,6 +159,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
                             sceneObject.changeMaterial("pasto");
                             if (go.name == "extralargeBlock1")
                             {
+								AddBorder (Border_videogame_1, sceneObject.transform.position, sceneObject.transform.rotation);
                                 int num = Random.Range(1, 4);
                                 string decorationName = "";
                                 if (num == 1)
@@ -411,6 +414,13 @@ public class SceneObjectsBehavior : MonoBehaviour {
         }
         return copy;
     }
+	public void AddBorder(SceneObject go, Vector3 pos, Quaternion rotation)
+	{
+		SceneObject sceneObject = Instantiate(go, pos, Quaternion.identity) as SceneObject;
+		sceneObject.transform.parent = Pool.Scene.transform;
+		sceneObject.transform.rotation = rotation;
+		sceneObject.Restart(pos);
+	}
     public void addDecoration(string name, Vector3 pos, Vector3 offset)
     {
         SceneObject newSceneObject = Pool.GetObjectForType(name, false);

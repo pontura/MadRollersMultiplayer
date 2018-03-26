@@ -62,7 +62,11 @@ public class ObjectPool : MonoBehaviour
 
             for (int n = 0; n < objectPrefab.Count; n++)
             {
+				print (objectPrefab);
                 SceneObject newObj = Instantiate(objectPrefab.Prefab) as SceneObject;
+
+
+
                 newObj.name = objectPrefab.Prefab.name;
                 SceneObject ro = newObj.GetComponent<SceneObject>();
                 PoolObject(ro);
@@ -145,6 +149,7 @@ public class ObjectPool : MonoBehaviour
         {
             Debug.LogError("rompe un extralarge block_________________________________");
         }
+		print ("____________" + obj.gameObject.name);
         Destroy(obj.gameObject);
     }
 

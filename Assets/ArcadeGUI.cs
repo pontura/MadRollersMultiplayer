@@ -30,15 +30,22 @@ public class ArcadeGUI : MonoBehaviour {
         Data.Instance.events.OnGameOver += OnGameOver;
         Data.Instance.events.OnAddNewPlayer += OnAddNewPlayer;
         Data.Instance.events.OnAvatarDie += OnAvatarDie;
-        Data.Instance.events.OnAvatarShoot += OnAvatarShoot;
+       
         StartMultiplayerStatus();
         SetIntroFields();
-        Invoke("SecondAdvise", 3);
-	}
-    void SecondAdvise()
-    {
 
-    }
+		if (Data.Instance.isReplay) {
+			Invoke ("Delayed", 0.1f);
+		} else {
+			Data.Instance.events.OnAvatarShoot += OnAvatarShoot;
+		}
+	}
+	void Delayed()
+	{
+		Data.Instance.events.StartMultiplayerRace ();
+		state = states.SHOOTS_READY;
+		SetFields ("");
+	}
     void OnAvatarShoot(int playerID)
     {
         

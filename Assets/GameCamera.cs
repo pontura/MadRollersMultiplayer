@@ -31,7 +31,7 @@ public class GameCamera : MonoBehaviour
 	public Vector2 defaultResolution = new Vector2(1920,1080);
 	public int newH;
 	public int newV;
-	int pixel_speed_recovery = 8;
+	int pixel_speed_recovery = 14;
 	private GameObject flow_target;
 
 

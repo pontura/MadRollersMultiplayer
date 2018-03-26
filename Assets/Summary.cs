@@ -41,6 +41,7 @@ public class Summary : MonoBehaviour {
     }
     void SetOn()
     {
+		Data.Instance.isReplay = false;
 		isOn = true;
         panel.SetActive(true);
         
@@ -51,6 +52,7 @@ public class Summary : MonoBehaviour {
 	}
 	public void Restart()
 	{
+		Data.Instance.isReplay = true;
 		Game.Instance.ResetLevel();        
 	}
 	void Update()

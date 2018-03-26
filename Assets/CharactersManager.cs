@@ -30,10 +30,13 @@ public class CharactersManager : MonoBehaviour {
     {
         missions = Data.Instance.GetComponent<Missions>();
         isArcadeMultiplayer = Data.Instance.isArcadeMultiplayer;
-		//if (!isArcadeMultiplayer) {
+		//if (!isArcadeMultiplayer) {			
+			//StartCoroutine (RalentaCoroutine);
+		//}
+		if (!Data.Instance.isReplay) {
 			RalentaCoroutine = DoRalentaCoroutine (0.5f, 0, 0.1f);
 			StartCoroutine (RalentaCoroutine);
-		//}
+		}
     }
     void OnListenerDispatcher(string type)
     {
@@ -54,8 +57,12 @@ public class CharactersManager : MonoBehaviour {
     }
     void StartMultiplayerRace()
     {
-        RalentaCoroutine = DoRalentaCoroutine(2, 0, 0.05f);
-        StartCoroutine(RalentaCoroutine);
+		if (Data.Instance.isReplay) {
+			// no hace nada:
+		} else {
+			RalentaCoroutine = DoRalentaCoroutine (2, 0, 0.05f);
+			StartCoroutine (RalentaCoroutine);
+		}
     }
     IEnumerator DoRalentaCoroutine(float _speedRun, float delay, float speedTeRecover)
     {
@@ -113,7 +120,13 @@ public class CharactersManager : MonoBehaviour {
         Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
 
         Vector3 pos;
-        pos = new Vector3(1, 10, 1);
+
+		float _y = 1;
+
+		if (Data.Instance.isReplay)
+			_y = 15;
+		
+		pos = new Vector3(1, _y, 1);
 
 		//if (Data.Instance.playMode == Data.PlayModes.STORY) {
 		//	addCharacter(pos, 0); playerPositions.Add(0);
@@ -168,9 +181,7 @@ public class CharactersManager : MonoBehaviour {
     }
     public void addCharacter(Vector3 pos, int id)
     {
-	//	if (Data.Instance.isArcadeMultiplayer && Game.Instance.level.waitingToStart)
-     //   {
-            pos = new Vector3((3.5f * id) - (5.25f), 1);
+		pos = new Vector3((3.5f * id) - (5.3f),pos.y);
      //   }
       //  else
       //  {

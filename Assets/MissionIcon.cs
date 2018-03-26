@@ -14,7 +14,6 @@ public class MissionIcon : MonoBehaviour {
 	}
 	public void SetOn(Mission mission, GameObject specialIcon = null)
 	{
-		GetComponent<Animator> ().Play ("missionIconOn",0,0);
 		panel.SetActive (true);
 		if (icon != null) {
 			StopAllCoroutines ();

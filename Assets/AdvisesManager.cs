@@ -9,9 +9,9 @@ public class AdvisesManager : MonoBehaviour {
     public Text field;
 
 	void Start () {
-        if (Data.Instance.isArcade) return;
-        panel.SetActive(false);
-        Data.Instance.events.AdvisesOn += AdvisesOn;
+      //  if (Data.Instance.isArcade) return;
+      //  panel.SetActive(false);
+      //  Data.Instance.events.AdvisesOn += AdvisesOn;
 	}
     void OnDestroy()
     {

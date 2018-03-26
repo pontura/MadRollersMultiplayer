@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Data : MonoBehaviour {
 
+	public bool isReplay;
 	public int totalJoysticks;
 	public bool RESET;
 	public bool turnOffSounds;
@@ -15,8 +16,6 @@ public class Data : MonoBehaviour {
     public int levelUnlocked_level_1 = 0;
 	public int levelUnlocked_level_2 = 0;
 
-    public int totalReplays = 3;
-    public int replays = 0;
     public float volume;
     public int scoreForArcade;
 
@@ -133,8 +132,6 @@ public class Data : MonoBehaviour {
     }
 	public void setMission(int num)
 	{
-        //print("MODE: " + playMode + " Set NEW mission " + num + "   levelUnlockedID: " + levelUnlockedID);
-        replays = 0;
 
 		missions.MissionActiveID = num;
 

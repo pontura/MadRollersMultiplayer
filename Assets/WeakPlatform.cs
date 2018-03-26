@@ -5,7 +5,6 @@ public class WeakPlatform : SceneObject {
 	
 	public GameObject to;
 	int videoGameID;
-	public GameObject borders;
 	Material floor_top;
 	Material floor_border ;
 
@@ -22,10 +21,6 @@ public class WeakPlatform : SceneObject {
 		if (newVideoGameID != videoGameID) {
 			videoGameID = newVideoGameID;
 			ChangeMaterials(renderer);
-		}
-		if (borders != null) {
-			foreach(Renderer r in borders.GetComponentsInChildren<Renderer>())
-				ChangeMaterials(r);
 		}
     }
 	void ChangeMaterials(Renderer renderer)
@@ -63,7 +58,6 @@ public class WeakPlatform : SceneObject {
         
 	}
 	public void breakOut(Vector3 impactPosition) {
-
 
         GetComponent<Collider>().enabled = false;
         if (!to)
