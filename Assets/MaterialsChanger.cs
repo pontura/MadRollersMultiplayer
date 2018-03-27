@@ -9,7 +9,7 @@ public class MaterialsChanger : MonoBehaviour {
 
     public void changeMaterial(Material materialActive, Material materialNew)
     {
-        skinnedMeshRenderer.material.SetTexture(0, materialNew.mainTexture);           
+      //  skinnedMeshRenderer.material.SetTexture(0, materialNew.mainTexture);           
     }
     public void Init()
     {

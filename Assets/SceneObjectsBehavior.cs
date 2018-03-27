@@ -150,17 +150,17 @@ public class SceneObjectsBehavior : MonoBehaviour {
                         sceneObject.transform.rotation = go.transform.rotation;
 
 
-                        if (go.GetComponent<MaterialsChanger>())
-                        {
-                            MaterialsChanger mo = go.GetComponent<MaterialsChanger>();
-                            sceneObject.changeMaterial(mo.materialName);
-                        }
-                        else
-                        {
+                     //   if (go.GetComponent<MaterialsChanger>())
+//                        {
+//                            MaterialsChanger mo = go.GetComponent<MaterialsChanger>();
+//                            sceneObject.changeMaterial(mo.materialName);
+//                        }
+//                        else
+//                        {
                             sceneObject.changeMaterial("pasto");
                             if (go.name == "extralargeBlock1")
                             {
-								AddBorder (Border_videogame_1, sceneObject.transform.position, sceneObject.transform.rotation);
+								AddBorder (Border_videogame_1, sceneObject.transform.position, sceneObject.transform.localEulerAngles);
                                 int num = Random.Range(1, 4);
                                 string decorationName = "";
                                 if (num == 1)
@@ -174,7 +174,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
                                     addDecoration(decorationName, pos, Vector3.zero);
 
                             }
-                        }
+                      //  }
                         if (go.GetComponent<DecorationManager>())
                         {
                             addDecoration("Baranda1_real", pos, new Vector3(5.5f, 0, 3));
@@ -415,12 +415,18 @@ public class SceneObjectsBehavior : MonoBehaviour {
         }
         return copy;
     }
-	public void AddBorder(SceneObject go, Vector3 pos, Quaternion rotation)
+	public void AddBorder(SceneObject go, Vector3 pos, Vector3 rotation)
 	{
-		SceneObject sceneObject = Instantiate(go, pos, Quaternion.identity) as SceneObject;
-		sceneObject.transform.parent = Pool.Scene.transform;
-		sceneObject.transform.rotation = rotation;
-		sceneObject.Restart(pos);
+		foreach (Transform wp in go.GetComponentsInChildren<Transform>()) {
+			if (wp.gameObject.name == "extraSmallBlock1_real") {
+				SceneObject sceneObject = Pool.GetObjectForType ("extraSmallBlock1_real", false);  
+				sceneObject.transform.parent = Pool.Scene.transform;
+				Vector3 rot = wp.transform.localEulerAngles + rotation;
+				sceneObject.transform.localEulerAngles = rot;
+				sceneObject.transform.localScale = wp.transform.localScale;
+				sceneObject.Restart (pos + wp.transform.position);
+			}
+		}
 	}
     public void addDecoration(string name, Vector3 pos, Vector3 offset)
     {
