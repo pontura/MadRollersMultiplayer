@@ -26,10 +26,10 @@ public class Breakable : MonoBehaviour {
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "explotion")
-        {
-            breakOut(transform.position);
-        }
+	        if (other.tag == "explotion")
+	        {
+	            breakOut(transform.position);
+	        }
     }
 	public void breakOut (Vector3 position) {
         if (!isOn) return;

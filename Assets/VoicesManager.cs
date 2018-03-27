@@ -182,7 +182,6 @@ public class VoicesManager : MonoBehaviour
 	}
 	void Done()
 	{
-		print ("DONE " + onSequence);
 		if (onSequence)
 			PlayNextSequencedClip ();
 		else {

@@ -11,6 +11,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	public SceneObject Border_videogame_1;
 
 	public SceneObject Boss1;
+	public SceneObject Boss2;
     public SceneObject Starting;
     public SceneObject Calecita;
     public SceneObject FloorSlider;
@@ -22,7 +23,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
     public SceneObject PisoPinche;
     public SceneObject rampa;
     public SceneObject rampaHuge;
-    public SceneObject flyer;
 	public SceneObject bomb1;
     public SceneObject palm;
     public SceneObject palm2;
@@ -121,6 +121,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
             switch (go.name)
             {
 			case "extralargeBlock1":
+			case "flyer":
 			case "largeBlock1":
 			case "mediumBlock1":
 			case "smallBlock1":
@@ -214,8 +215,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
                     clone = rampa;
                 else if (go.name == "rampaHuge")
                     clone = rampaHuge;
-                else if (go.name == "flyer")
-                    clone = flyer;
                 else if (go.name == "wallBig")
                 {
                     //  addDecorationWithRotation("Graffiti_Real", pos, go.transform.localEulerAngles);
@@ -231,6 +230,8 @@ public class SceneObjectsBehavior : MonoBehaviour {
                     clone = jumper;
 				else if (go.name == "Boss1")
 					clone = Boss1;
+				else if (go.name == "Boss2")
+					clone = Boss2;
                 else if (go.name == "Calecita")
                     clone = Calecita;
                 else if (go.name == "Starting")

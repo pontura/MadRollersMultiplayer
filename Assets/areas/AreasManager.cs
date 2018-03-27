@@ -84,7 +84,6 @@ public class AreasManager : MonoBehaviour {
 			activeAreaSetID = areaSets.Count - 1;
         
         areaSet = areaSets[activeAreaSetID];
-		print ("_______" + areaSet.name + " " + areaSet.getCameraOrientation ());
 		Game.Instance.gameCamera.SetOrientation (areaSet.getCameraOrientation ());
 
 		areaSet.Restart();
