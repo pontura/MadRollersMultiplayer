@@ -1103,6 +1103,7 @@ GameObject:
   - component: {fileID: 1015960756}
   - component: {fileID: 1015960755}
   - component: {fileID: 1015960754}
+  - component: {fileID: 1015960764}
   m_Layer: 0
   m_Name: data
   m_TagString: Untagged
@@ -1303,7 +1304,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newHiscore: 0
-  all: []
+  all:
+  - score: 1000
+    texture: {fileID: 2800000, guid: c05481920a6644247b9ab50d5509fb34, type: 3}
 --- !u!114 &1015960759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1396,6 +1399,20 @@ MonoBehaviour:
   Bending_Start: -6
   newBending: -6
   newTurn: 0
+--- !u!114 &1015960764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1015960753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e864c3247b22584ebfa3af565131340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actualCompetition: LOCAL
+  competitions:
+  - LOCAL COMPETITION
 --- !u!114 &1015960765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1619,7 +1636,7 @@ MonoBehaviour:
   turnOffSounds: 0
   musicOn: 0
   switchPlayerInputs: 0
-  competitionID: 0
+  competitionID: 1
   isArcade: 0
   isArcadeMultiplayer: 0
   levelUnlocked_level_1: 0
@@ -2384,6 +2401,10 @@ Prefab:
     - target: {fileID: 4837109231976320, guid: 296b79a2282efe74fb57344ce388069a, type: 2}
       propertyPath: m_RootOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1407823501858472, guid: 296b79a2282efe74fb57344ce388069a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 296b79a2282efe74fb57344ce388069a, type: 2}

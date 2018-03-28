@@ -7,7 +7,7 @@ public class HearsManager : MonoBehaviour {
 	public Text[] labels;
     public int total;
     public int newHearts = 0;
-    public Animation anim;
+  // public Animation anim;
     public ParticleSystem particles;
 
 	void Start () {
@@ -42,19 +42,19 @@ public class HearsManager : MonoBehaviour {
     void OnAvatarDie(CharacterBehavior cb)
     {
         //print("GRABA__________totalHearts" + total);
-        PlayerPrefs.SetInt("totalHearts", total);
+      //  PlayerPrefs.SetInt("totalHearts", total);
     }
     void OnGrabHeart()
     {
-        anim["UIHeartAnim"].normalizedTime = 0;
-        anim.Play("UIHeartAnim");
+        //anim["UIHeartAnim"].normalizedTime = 0;
+       // anim.Play("UIHeartAnim");
         newHearts++;
         total++;
         SetHearts();
     }
     void SetHearts()
     {
-		foreach(Text label in labels)
-       		label.text = total.ToString();
+		//foreach(Text label in labels)
+       	//	label.text = total.ToString();
     }
 }

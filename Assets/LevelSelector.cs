@@ -41,7 +41,11 @@ public class LevelSelector : MonoBehaviour {
 	{
 		videogameActiveID = 0;
 		missionActiveID = 0;
-		Init ();
+		if (Data.Instance.playMode == Data.PlayModes.STORY)
+			InitStoryMode ();
+		else
+			InitComtetitionMode ();
+		
 		Data.Instance.events.OnJoystickBack += OnJoystickBack;
 		Data.Instance.events.OnJoystickClick += OnJoystickClick;
 		Data.Instance.events.OnJoystickDown += OnJoystickDown;
@@ -107,7 +111,78 @@ public class LevelSelector : MonoBehaviour {
 		videogameActiveID--;
 		videogameUI.Left ();
 	}
-	void Init () {
+
+	void InitComtetitionMode()
+	{
+		Data.Instance.events.OnInterfacesStart();
+
+		data = Data.Instance;		
+		missions = data.missions;
+
+		int videogameID = 0;
+		int lastVideoGameID = -1;
+
+		all = new List<MissionButton> ();
+		int id_in_videogame = 0;
+		foreach (Mission mission in missions.missions) {
+
+			MissionButton button = Instantiate (uiButton) as MissionButton;
+
+			button.Init(mission, missionID);
+
+			if (lastVideoGameID != mission.videoGameID) {
+				lastVideoGameID = mission.videoGameID;
+				id_in_videogame = 0;
+
+				MissionsByVideogame mbv = new MissionsByVideogame ();
+				allMissionsByVideogame.Add (mbv);
+				mbv.missions = new List<Mission> ();
+
+			} else
+				id_in_videogame++;
+
+
+
+			button.id_in_videogame = id_in_videogame;
+			lastButton = button;
+			button.videoGameID = mission.videoGameID;
+
+			if (videogameID==0 && id_in_videogame > data.levelUnlocked_level_1 && !Data.Instance.DEBUG)
+				button.disableButton ();
+			else if (videogameID==1 && id_in_videogame > data.levelUnlocked_level_2 && !Data.Instance.DEBUG)
+				button.disableButton ();
+
+
+			videogameID = mission.videoGameID;
+
+			missionID++;
+
+			all.Add (button);
+			allMissionsByVideogame [videogameID].missions.Add (mission);
+
+		}
+		all.Sort(GetIdByVideogame);
+		all.Reverse ();
+
+		int lasAddedVideoGameButtonID = -1;
+		foreach (MissionButton mission in all) {
+			if (mission.videoGameID != lasAddedVideoGameButtonID) {
+				lasAddedVideoGameButtonID = mission.videoGameID;
+				mission.transform.SetParent (container);
+				mission.transform.localScale = new Vector3 (1, 1, 1);
+				mission.transform.localPosition = new Vector3 (0, 0, mission.videoGameID * separation);
+			}
+		}
+		videogameUI = GetComponent<VideogamesUIManager> ();
+		videogameUI.Init (0);
+		all.Reverse ();
+		SetSelected ();
+	}
+
+
+
+
+	void InitStoryMode () {
 
 		Data.Instance.events.OnInterfacesStart();
 

@@ -87,7 +87,7 @@ public class NewHiscoreArcade : MonoBehaviour {
 
     void Reset()
     {
-        Data.Instance.LoadLevel("MainMenuArcade");
+        Data.Instance.LoadLevel("MainMenu");
     }
 
     void SetTexts(GameObject container, string _text)

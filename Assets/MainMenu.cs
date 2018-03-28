@@ -81,6 +81,8 @@ public class MainMenu : MonoBehaviour {
 	}
 	void Compite()
 	{
+		Data.Instance.playMode = Data.PlayModes.COMPETITION;
+		Data.Instance.LoadLevel("LevelSelector");
 //		Data.Instance.playMode = Data.PlayModes.COMPETITION;
 //		Data.Instance.LoadLevel("Competitions");
 	}
