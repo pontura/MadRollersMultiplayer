@@ -37,7 +37,6 @@ public class GameCamera : MonoBehaviour
 
 	void ChangeResolution()
 	{
-		//defaultResolution = new Vector2 (Random.Range (300, 600), Random.Range (200, 400));
 		retroPixelPro.horizontalResolution =(int) defaultResolution.x;
 		retroPixelPro.horizontalResolution =(int) defaultResolution.y;
 	}
@@ -56,10 +55,6 @@ public class GameCamera : MonoBehaviour
 
     void Start()
     {
-		//print ("Start");
-		//newCameraOrientationVector = cameraOrientationVector;
-		//newRotation = rotationX;
-	
 
 		newH = retroPixelPro.horizontalResolution;
 		newV = retroPixelPro.verticalResolution;
@@ -171,8 +166,8 @@ public class GameCamera : MonoBehaviour
 		newPos  = charactersManager.getPosition();
 		Vector3 newPosTarget = flow_target.transform.localPosition;
 		newPosTarget.x = Mathf.Lerp(newPosTarget.x, newPos.x, Time.deltaTime*4.5f);
-		newPosTarget.z = transform.localPosition.z+7;
-		newPosTarget.y = -1;
+		newPosTarget.z = transform.localPosition.z+6;
+		newPosTarget.y = 1;
 		flow_target.transform.localPosition = newPosTarget;
 		cam.transform.LookAt ( flow_target.transform, Vector3.up );
 
@@ -202,15 +197,9 @@ public class GameCamera : MonoBehaviour
 		_newPos += newCameraOrientationVector;
 		_newPos.z = Mathf.Lerp (transform.position.z, _newPos.z, 0.3f);
 		_newPos.x = Mathf.Lerp (transform.position.x, _newPos.x, Time.deltaTime*10);
-		//newPos.x = 0;
-		_newPos.y = Mathf.Lerp (transform.position.y, _newPos.y, Time.deltaTime*10);
-
-		//newPos = Vector3.Lerp (newPos, newCameraOrientationVector, 0.01f);
+		_newPos.y = Mathf.Lerp (transform.position.y, _newPos.y, Time.deltaTime*2);
 
 		transform.position = _newPos;
-
-		//if(!exploting)
-		//	cam.transform.localEulerAngles = Vector3.Lerp(cam.transform.localEulerAngles, newRotation, 0.05f);
 	}
     public void OnAvatarCrash(CharacterBehavior player)
     {

@@ -265,7 +265,7 @@ public class CharactersManager : MonoBehaviour {
 
             normalPosition /= characters.Count;
             normalPosition.y += 0.15f + (MaxDistance / 4f );
-            normalPosition.z -= 1.6f + (MaxDistance/17);
+            normalPosition.z -= 0.2f + (MaxDistance/26);
 
             return normalPosition;
         }

@@ -160,7 +160,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
                             sceneObject.changeMaterial("pasto");
                             if (go.name == "extralargeBlock1")
                             {
-								AddBorder (Border_videogame_1, sceneObject.transform.position, sceneObject.transform.localEulerAngles);
+								AddBorder (Border_videogame_1, sceneObject.transform.position, go.transform.rotation);
                                 int num = Random.Range(1, 4);
                                 string decorationName = "";
                                 if (num == 1)
@@ -401,13 +401,11 @@ public class SceneObjectsBehavior : MonoBehaviour {
             if(sceneObject.isActive)
                  sceneObject.Pool();
         }
-        //Debug.Log("PoolSceneObjectsInScene qty = " + sceneObjects.Length);
     }
     Component CopyComponent(Component original, GameObject destination)
     {
         System.Type type = original.GetType();
         Component copy = destination.AddComponent(type);
-        // Copied fields can be restricted with BindingFlags
         System.Reflection.FieldInfo[] fields = type.GetFields();
         foreach (System.Reflection.FieldInfo field in fields)
         {
@@ -415,18 +413,18 @@ public class SceneObjectsBehavior : MonoBehaviour {
         }
         return copy;
     }
-	public void AddBorder(SceneObject go, Vector3 pos, Vector3 rotation)
+	public void AddBorder(SceneObject go, Vector3 pos, Quaternion rotation)
 	{
-		foreach (Transform wp in go.GetComponentsInChildren<Transform>()) {
-			if (wp.gameObject.name == "extraSmallBlock1_real") {
-				SceneObject sceneObject = Pool.GetObjectForType ("extraSmallBlock1_real", false);  
-				sceneObject.transform.parent = Pool.Scene.transform;
-				Vector3 rot = wp.transform.localEulerAngles + rotation;
-				sceneObject.transform.localEulerAngles = rot;
-				sceneObject.transform.localScale = wp.transform.localScale;
-				sceneObject.Restart (pos + wp.transform.position);
-			}
+		SceneObject sceneObject = Instantiate(go, pos, Quaternion.identity) as SceneObject;
+		sceneObject.transform.parent = Pool.Scene.transform;
+		sceneObject.transform.rotation = rotation;
+		sceneObject.Restart(pos);
+
+		foreach (WeakPlatform wp in sceneObject.GetComponentsInChildren<WeakPlatform>()) {
+			wp.OnRestart (wp.transform.position);
+			wp.transform.SetParent (sceneObject.transform.parent);
 		}
+		sceneObject.Pool ();
 	}
     public void addDecoration(string name, Vector3 pos, Vector3 offset)
     {
