@@ -31,16 +31,23 @@ public class MissionButton : MonoBehaviour {
 		this.mission = mission;
         this.id = id;
 		VideogameData data = Data.Instance.videogamesData.GetActualVideogameDataByID (mission.videoGameID);
+		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {
+			foreach (Text m in missionFields.GetComponentsInChildren<Text>())
+				m.text = Data.Instance.videogamesData.GetActualVideogameDataByID (mission.videoGameID).name;
+			foreach (Text m in missionNames.GetComponentsInChildren<Text>())
+				m.text = "COMPETITION-MODE";
+			
+		} else {
+			foreach (Text m in missionFields.GetComponentsInChildren<Text>())
+				m.text = data.name + " " + ((int)id + 1).ToString () + "/9";
 
-		foreach (Text m in missionFields.GetComponentsInChildren<Text>())
-			m.text = data.name + " " + ((int)id+1).ToString() + "/9";
-
-		foreach (Text m in missionNames.GetComponentsInChildren<Text>())
-			m.text =  mission.description;
+			foreach (Text m in missionNames.GetComponentsInChildren<Text>())
+				m.text = mission.description;
 		
-        int starsQty = Data.Instance.userData.GetStars(id);
-        stars.Init(starsQty);
-		background.transform.localEulerAngles = new Vector3 (30, 0, 0);
+			int starsQty = Data.Instance.userData.GetStars (id);
+			stars.Init (starsQty);
+			background.transform.localEulerAngles = new Vector3 (30, 0, 0);
+		}
 
 		logo.sprite = data.logo;
 		floppyCover.sprite = data.floppyCover;

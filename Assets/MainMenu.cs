@@ -27,7 +27,11 @@ public class MainMenu : MonoBehaviour {
 		foreach (MainMenuButton m in buttons)
 			m.SetOn (false);
 		
-		activeButton = buttons [0];
+		if(Data.Instance.playMode == Data.PlayModes.COMPETITION)
+			activeButton = buttons [1];
+		else
+			activeButton = buttons [0];
+		
 		activeButton.SetOn (true);
 	}
 	void OnDestroy()

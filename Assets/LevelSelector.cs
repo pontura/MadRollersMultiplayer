@@ -43,8 +43,10 @@ public class LevelSelector : MonoBehaviour {
 		missionActiveID = 0;
 		if (Data.Instance.playMode == Data.PlayModes.STORY)
 			InitStoryMode ();
-		else
+		else {
+			separation *= 2;
 			InitComtetitionMode ();
+		}
 		
 		Data.Instance.events.OnJoystickBack += OnJoystickBack;
 		Data.Instance.events.OnJoystickClick += OnJoystickClick;
@@ -68,7 +70,15 @@ public class LevelSelector : MonoBehaviour {
 			return;
 		//cam.transform.localPosition = Vector3.Lerp (cam.transform.localPosition, new Vector3(0, 0, missionActiveID * separation), 0.1f);
 		MissionButton missionButton = lastButtonSelected;
-		cam.transform.localPosition = Vector3.Lerp (cam.transform.localPosition, new Vector3(videogameActiveID*separation_in_x, 0, missionButton.id_in_videogame * separation), 0.1f);
+		float _x = 0;
+		float _z = 0;
+		if (Data.Instance.playMode == Data.PlayModes.STORY) {
+			_x = videogameActiveID * separation_in_x;
+			_z = missionButton.id_in_videogame * separation;
+		} else {
+			_z = videogameActiveID * separation;
+		}
+		cam.transform.localPosition = Vector3.Lerp (cam.transform.localPosition, new Vector3(_x, 0, _z), 0.1f);
 	}
 	void OnJoystickClick()
 	{
@@ -85,12 +95,20 @@ public class LevelSelector : MonoBehaviour {
 	}
 	void OnJoystickUp()
 	{
+		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {
+			OnJoystickRight ();
+			return;
+		} else
 		if(missionActiveID<allMissionsByVideogame[videogameActiveID].missions.Count-1)
 			missionActiveID++;
 		SetSelected ();
 	}
 	void OnJoystickDown()
 	{
+		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {
+			OnJoystickLeft ();
+			return;
+		} else
 		if(missionActiveID>0)
 			missionActiveID--;
 		SetSelected ();
@@ -126,11 +144,12 @@ public class LevelSelector : MonoBehaviour {
 		int id_in_videogame = 0;
 		foreach (Mission mission in missions.missions) {
 
-			MissionButton button = Instantiate (uiButton) as MissionButton;
 
-			button.Init(mission, missionID);
 
 			if (lastVideoGameID != mission.videoGameID) {
+				MissionButton button = Instantiate (uiButton) as MissionButton;
+
+				button.Init(mission, missionID);
 				lastVideoGameID = mission.videoGameID;
 				id_in_videogame = 0;
 
@@ -138,31 +157,28 @@ public class LevelSelector : MonoBehaviour {
 				allMissionsByVideogame.Add (mbv);
 				mbv.missions = new List<Mission> ();
 
+				button.id_in_videogame = id_in_videogame;
+				lastButton = button;
+				button.videoGameID = mission.videoGameID;
+
+				if (videogameID==0 && id_in_videogame > data.levelUnlocked_level_1 && !Data.Instance.DEBUG)
+					button.disableButton ();
+				else if (videogameID==1 && id_in_videogame > data.levelUnlocked_level_2 && !Data.Instance.DEBUG)
+					button.disableButton ();
+
+
+				videogameID = mission.videoGameID;
+
+				missionID++;
+
+				all.Add (button);
+				allMissionsByVideogame [videogameID].missions.Add (mission);
+
 			} else
 				id_in_videogame++;
-
-
-
-			button.id_in_videogame = id_in_videogame;
-			lastButton = button;
-			button.videoGameID = mission.videoGameID;
-
-			if (videogameID==0 && id_in_videogame > data.levelUnlocked_level_1 && !Data.Instance.DEBUG)
-				button.disableButton ();
-			else if (videogameID==1 && id_in_videogame > data.levelUnlocked_level_2 && !Data.Instance.DEBUG)
-				button.disableButton ();
-
-
-			videogameID = mission.videoGameID;
-
-			missionID++;
-
-			all.Add (button);
-			allMissionsByVideogame [videogameID].missions.Add (mission);
-
 		}
 		all.Sort(GetIdByVideogame);
-		all.Reverse ();
+		//all.Reverse ();
 
 		int lasAddedVideoGameButtonID = -1;
 		foreach (MissionButton mission in all) {

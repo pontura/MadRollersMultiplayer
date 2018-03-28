@@ -67,7 +67,7 @@ public class SummaryMultiplayer : MonoBehaviour {
         string title_4 = texts.GetText(4, score4);
         totalScore = 1+ score1 + score2 + score3 + score4;
         
-        if (Data.Instance.GetComponent<ArcadeRanking>().CheckIfEnterHiscore(totalScore))
+		if (totalScore>1000 && Data.Instance.GetComponent<ArcadeRanking>().CheckIfEnterHiscore(totalScore))
         {
             Data.Instance.GetComponent<ArcadeRanking>().newHiscore = totalScore;
             SceneManager.LoadScene("NewHiscoreMultiplayer");
@@ -134,7 +134,7 @@ public class SummaryMultiplayer : MonoBehaviour {
     }
     void Ready()
     {
-        Data.Instance.LoadLevel("MainMenuArcade");
+        Data.Instance.LoadLevel("MainMenu");
     }
     //si no está registrado lo agrega a la lista:
     private int GetPosition(int _playerID)
