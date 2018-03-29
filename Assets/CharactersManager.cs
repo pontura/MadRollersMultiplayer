@@ -298,4 +298,11 @@ public class CharactersManager : MonoBehaviour {
 			cb.ResetJump ();
 		}
 	}
+	public void OnLevelComplete()
+	{
+		foreach (CharacterBehavior cb in characters) {
+			cb.SuperJump (1200);
+			cb.player.SetInvensible ();
+		}
+	}
 }

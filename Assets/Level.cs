@@ -125,6 +125,7 @@ public class Level : MonoBehaviour {
     }
 	public void Complete()
 	{
+		charactersManager.OnLevelComplete ();
 		Data.Instance.voicesManager.PlayRandom (Data.Instance.voicesManager.missionComplete);
 		showStartArea = true;
 		missions.Complete();

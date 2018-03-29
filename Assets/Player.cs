@@ -178,16 +178,19 @@ public class Player : MonoBehaviour {
             print("INVENSIBLE player id: " + id);
             if (gameObject == null) return;
             if (characterBehavior.state == CharacterBehavior.states.JETPACK) return;
-
-            if (fxState == fxStates.SUPER) return;
-            setSuperState();
-            Data.Instance.events.AdvisesOn("INVENSIBLE!");
-            OnAvatarProgressBarStart(Color.blue);
-         //   progressBar.SetTimer(0.2f);
-            progressBarCoroutine = StartProgressBarCoroutine();
-            StartCoroutine(progressBarCoroutine);            
+			SetInvensible ();                   
         }
     }
+	public void SetInvensible()
+	{
+		if (fxState == fxStates.SUPER) return;
+		setSuperState();
+		Data.Instance.events.AdvisesOn("INVENSIBLE!");
+		OnAvatarProgressBarStart(Color.blue);
+		//   progressBar.SetTimer(0.2f);
+		progressBarCoroutine = StartProgressBarCoroutine();
+		StartCoroutine(progressBarCoroutine);    
+	}
     IEnumerator StartProgressBarCoroutine()
     {
         yield return new WaitForSeconds(12);
