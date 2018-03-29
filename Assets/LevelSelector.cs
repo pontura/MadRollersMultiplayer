@@ -78,7 +78,7 @@ public class LevelSelector : MonoBehaviour {
 		} else {
 			_z = videogameActiveID * separation;
 		}
-		cam.transform.localPosition = Vector3.Lerp (cam.transform.localPosition, new Vector3(_x, 0, _z), 0.1f);
+		cam.transform.localPosition = Vector3.Lerp (cam.transform.localPosition, new Vector3(_x, 0, _z), Time.deltaTime*10);
 	}
 	void OnJoystickClick()
 	{
