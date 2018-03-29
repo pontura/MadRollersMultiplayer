@@ -28,7 +28,7 @@ public class Boss : SceneObject {
 		Data.Instance.GetComponent<MusicManager> ().BossMusic (true);
 		bossBar.enabled = true;
 		base.OnRestart (pos);
-		//bossBar.Init (this);
+		bossBar.Init (this);
 	}
 	public void OnSceneObjectUpdated()
 	{

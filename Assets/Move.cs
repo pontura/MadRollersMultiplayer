@@ -11,6 +11,7 @@ public class Move : MonoBehaviour {
 	private float realSpeed;  
 	int direction;
 	public bool randomInitial;
+	public bool dontDestroyOnDisable;
 
 	public void Start()
 	{
@@ -31,7 +32,8 @@ public class Move : MonoBehaviour {
 	}
 	void OnDisable()
 	{
-		Destroy (this);
+		if(!dontDestroyOnDisable)
+			Destroy (this);
 	}
 	void Update()
 	{
