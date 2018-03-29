@@ -16,11 +16,12 @@ public class WeakPlatform : SceneObject {
         base.OnRestart(pos);
 
         GetComponent<Collider>().enabled = true;
-		Renderer renderer = GetComponentInChildren<Renderer>();
+		Renderer[] renderers = GetComponentsInChildren<Renderer>();
 		int newVideoGameID = Data.Instance.videogamesData.actualID;
 		if (newVideoGameID != videoGameID) {
 			videoGameID = newVideoGameID;
-			ChangeMaterials(renderer);
+			foreach(Renderer r in renderers)
+				ChangeMaterials(r);
 		}
     }
 	void ChangeMaterials(Renderer renderer)

@@ -10,6 +10,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 
 	public SceneObject Border_videogame_1;
 
+	public SceneObject Lava;
 	public SceneObject Boss1;
 	public SceneObject Boss2;
     public SceneObject Starting;
@@ -228,6 +229,8 @@ public class SceneObjectsBehavior : MonoBehaviour {
                     clone = wallSuperSmall;
                 else if (go.name == "jumper")
                     clone = jumper;
+				else if (go.name == "Lava")
+					clone = Lava;
 				else if (go.name == "Boss1")
 					clone = Boss1;
 				else if (go.name == "Boss2")
@@ -319,6 +322,11 @@ public class SceneObjectsBehavior : MonoBehaviour {
                     sceneObject.transform.rotation = go.transform.rotation;
                     sceneObject.Restart(pos);
                 }
+			if (go.GetComponent<Move>() && sceneObject.GetComponent<Move>() == null)
+				{
+					Move mo = go.GetComponent<Move>();
+					CopyComponent(mo, sceneObject.gameObject);
+				}
                 if (go.GetComponent<MoveObject>())
                 {
                     MoveObject mo = go.GetComponent<MoveObject>();
