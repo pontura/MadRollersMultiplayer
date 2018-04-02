@@ -24,6 +24,9 @@ public class VoicesManager : MonoBehaviour
 	public List<VoiceData> mission_1_9;
 	public List<VoiceData> mission_1_10;
 
+	public List<VoiceData> mission_2_1;
+	public List<VoiceData> mission_2_2;
+
 	public VoiceData selectMadRollers;
 
 	public AudioSpectrum audioSpectrum;
@@ -87,7 +90,7 @@ public class VoicesManager : MonoBehaviour
         {
 			
         }
-		else if (message == "ShowMissionName" && Data.Instance.missions.MissionActiveID!=0)
+		else if (message == "ShowMissionName")
 		{
 			switch (Data.Instance.missions.MissionActiveID) {
 			case 1:
@@ -116,6 +119,15 @@ public class VoicesManager : MonoBehaviour
 				break;
 			case 9:
 				PlaySequence (mission_1_10);
+				break;
+			case 10:
+				PlaySequence (mission_1_10);
+				break;
+			case 11:
+				PlaySequence (mission_2_1);
+				break;
+			case 12:
+				PlaySequence (mission_2_2);
 				break;
 			}
 		}
