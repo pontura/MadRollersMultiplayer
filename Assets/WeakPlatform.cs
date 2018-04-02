@@ -7,9 +7,12 @@ public class WeakPlatform : SceneObject {
 	int videoGameID;
 	Material floor_top;
 	Material floor_border ;
-
+	Rigidbody rb;
     public override void OnRestart(Vector3 pos)
     {
+		rb = GetComponent<Rigidbody> ();
+		if (rb != null)
+			rb.useGravity = false;
 		floor_top = Data.Instance.videogamesData.GetActualVideogameData ().floor_top;
 		floor_border = Data.Instance.videogamesData.GetActualVideogameData ().floor_border;
 
@@ -100,7 +103,17 @@ public class WeakPlatform : SceneObject {
 	}
     private void Fall()
     {
-        Pool();
+		
+		if (GetComponent<Rigidbody> () == null)
+			rb = gameObject.AddComponent<Rigidbody>();
+		
+		rb.useGravity = true;
+		rb.mass = 20;
+		rb.velocity = Vector3.zero;
+		Vector3 dir = (Vector3.up * Random.Range(160,310));
+		dir += new Vector3 (Random.Range (-5, 5), Random.Range (-5, 5), Random.Range (-5, 5));
+		rb.AddForce(dir, ForceMode.Impulse);
+       // Pool();
         //StartCoroutine(FallDown());
     }
     //IEnumerator FallDown()
