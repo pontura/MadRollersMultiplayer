@@ -270,11 +270,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4823740229555492}
-  - component: {fileID: 114161048847062090}
   - component: {fileID: 114585178873540222}
   - component: {fileID: 65470225440207678}
   - component: {fileID: 95559191119427510}
   - component: {fileID: 114327495747415704}
+  - component: {fileID: 114256118280471490}
   m_Layer: 10
   m_Name: Boss1_real
   m_TagString: boss
@@ -3027,7 +3027,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   asset: {fileID: 1919709153620004}
   total: 1
---- !u!114 &114161048847062090
+--- !u!114 &114256118280471490
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -3035,7 +3035,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1267719545963350}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d16e57ef4b89c6f4f9188ece2f443d19, type: 3}
+  m_Script: {fileID: 11500000, guid: 5cfdfa2a587bfd24b8662af109957862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Dificult: 0
@@ -3045,17 +3045,18 @@ MonoBehaviour:
   isActive: 0
   score: 0
   charactersMmanager: {fileID: 0}
-  distanceFromCharacter: 20
+  distanceFromCharacter: 0
   onlyMultiplayers: 0
-  distance_from_avatars: 27
+  distance_from_avatars: 0
   bossBar: {fileID: 114120810456480228}
-  numberOfHits: 5
-  timeToConvert: 8
+  numberOfHits: 0
   timer: 0
-  state: 0
-  move: {fileID: 114585178873540222}
-  comeClose: {fileID: 114327495747415704}
+  timeToConvert: 0
+  timer: 0
   anim: {fileID: 95559191119427510}
+  state: 0
+  comeClose: {fileID: 114327495747415704}
+  move: {fileID: 114585178873540222}
 --- !u!114 &114327495747415704
 MonoBehaviour:
   m_ObjectHideFlags: 1

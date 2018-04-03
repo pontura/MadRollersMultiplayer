@@ -46,7 +46,7 @@ public class ComeClose : MonoBehaviour {
 			if (offset < 0)
 				offset += Time.deltaTime * (speed/4);
 			else {				
-				GetComponent<Boss> ().ConvertToMove ();
+				GetComponent<BossCruzader> ().ConvertToMove ();
 			}
 		}
 		transform.localPosition = pos;

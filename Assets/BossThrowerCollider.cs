@@ -15,6 +15,7 @@ public class BossThrowerCollider : MonoBehaviour {
 		print (other);
 		BossPart part = other.gameObject.GetComponent<BossPart> ();
 		if (part != null) {
+			part.OnActive ();
 			boss.AddEnemy (transform.position);
 		}
 	}

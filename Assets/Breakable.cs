@@ -59,11 +59,10 @@ public class Breakable : MonoBehaviour {
 	public void hasGravity() {
         isOn = false;
 		dontKillPlayers = true;
-
+				
 		if(!gameObject.GetComponent<Rigidbody>())
-		{
 			gameObject.AddComponent<Rigidbody>();
-		}
+		
 		gameObject.GetComponent<Rigidbody>().isKinematic = false;
 		gameObject.GetComponent<Rigidbody>().useGravity = true;
 
@@ -72,8 +71,9 @@ public class Breakable : MonoBehaviour {
 
         Vector3 rot = new Vector3(Random.Range(-20, 20), Random.Range(-20, 20), Random.Range(-20, 20));
         gameObject.transform.localEulerAngles += rot;
-		
-		StartCoroutine(makeItTrigger());
+
+		GetComponent<Collider>().isTrigger = true;
+		//StartCoroutine(makeItTrigger());
 		
 		if(childs.Length>0)
 		{
