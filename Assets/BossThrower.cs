@@ -4,19 +4,24 @@ using UnityEngine;
 
 public class BossThrower : Boss {
 
+	bool canAddEnemies;
 	public override void OnSceneObjectUpdated()
 	{
 		float avatarsDistance = Game.Instance.level.charactersManager.getDistance ();
 		if (avatarsDistance + distance_from_avatars < transform.localPosition.z)
 			return;
+		if (!canAddEnemies)
+			canAddEnemies = true;
 		float _z = avatarsDistance + distance_from_avatars;
 
 		Vector3 pos = transform.localPosition;
 		pos.z = _z;
 		transform.localPosition = pos;
 	} 
-	public void AddEnemy(Vector3 pos)
+	public void AddEnemy(Vector3 pos)	
 	{
+		if (!canAddEnemies)
+			return;
 		pos.x = 0;
 		pos.z -= 0;
 		pos.y += 0.35f;
@@ -25,6 +30,11 @@ public class BossThrower : Boss {
 			sceneObject.isActive = false;
 			sceneObject.Restart(pos);
 		}
+	}
+	public override void OnPartBroken(BossPart part)
+	{
+		print ("___ breakOut()");
+		breakOut ();
 	}
 
 }

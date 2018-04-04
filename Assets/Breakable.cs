@@ -26,10 +26,10 @@ public class Breakable : MonoBehaviour {
     }
     void OnTriggerEnter(Collider other)
     {
-	        if (other.tag == "explotion")
-	        {
-	            breakOut(transform.position);
-	        }
+        if (other.tag == "explotion")
+        {
+            breakOut(transform.position);
+        }
     }
 	public void breakOut (Vector3 position) {
         if (!isOn) return;
@@ -74,7 +74,9 @@ public class Breakable : MonoBehaviour {
 
 		GetComponent<Collider>().isTrigger = true;
 		//StartCoroutine(makeItTrigger());
-		
+
+		SendMessage("OnActivate", SendMessageOptions.DontRequireReceiver);
+
 		if(childs.Length>0)
 		{
 			foreach (Breakable breakable  in childs)

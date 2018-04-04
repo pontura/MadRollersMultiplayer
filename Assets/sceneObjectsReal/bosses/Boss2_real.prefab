@@ -886,7 +886,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1141813636373802
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -6255,7 +6255,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4601137819059308}
-  - {fileID: 4203327667686486}
   - {fileID: 4836236283763682}
   - {fileID: 4550263887810548}
   - {fileID: 4435018226080970}
@@ -6439,11 +6438,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1141813636373802}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.5, y: 9.17, z: 0}
+  m_LocalPosition: {x: -1.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4816509563509960}
-  m_Father: {fileID: 4160395698464240}
+  m_Father: {fileID: 4601137819059308}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4207184644069936
@@ -7360,7 +7359,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 4160395698464240}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4438362136036312
 Transform:
@@ -8001,7 +8000,7 @@ Transform:
   - {fileID: 4439852796464638}
   - {fileID: 4496959893547528}
   m_Father: {fileID: 4160395698464240}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4556205077872104
 Transform:
@@ -8235,6 +8234,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4632527465034788}
+  - {fileID: 4203327667686486}
   m_Father: {fileID: 4160395698464240}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8727,7 +8727,7 @@ Transform:
   - {fileID: 4249394666154280}
   - {fileID: 4425807622041074}
   m_Father: {fileID: 4160395698464240}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4691061052135594
 Transform:
@@ -9252,7 +9252,7 @@ Transform:
   m_Children:
   - {fileID: 4466727964437506}
   m_Father: {fileID: 4160395698464240}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4838279214356294
 Transform:
@@ -22840,7 +22840,8 @@ MonoBehaviour:
   explotionType: 0
   isOn: 0
   NumOfParticles: 30
-  childs: []
+  childs:
+  - {fileID: 114945400416146466}
   dontKillPlayers: 0
   dontDieOnHit: 0
   score: 0
@@ -22858,7 +22859,8 @@ MonoBehaviour:
   explotionType: 0
   isOn: 0
   NumOfParticles: 30
-  childs: []
+  childs:
+  - {fileID: 114319381822791348}
   dontKillPlayers: 0
   dontDieOnHit: 0
   score: 0
@@ -22935,7 +22937,8 @@ MonoBehaviour:
   explotionType: 0
   isOn: 0
   NumOfParticles: 30
-  childs: []
+  childs:
+  - {fileID: 114676005833179832}
   dontKillPlayers: 0
   dontDieOnHit: 0
   score: 0
@@ -23028,7 +23031,8 @@ MonoBehaviour:
   explotionType: 0
   isOn: 0
   NumOfParticles: 30
-  childs: []
+  childs:
+  - {fileID: 114478298032460068}
   dontKillPlayers: 0
   dontDieOnHit: 0
   score: 0
@@ -23046,7 +23050,8 @@ MonoBehaviour:
   explotionType: 0
   isOn: 0
   NumOfParticles: 30
-  childs: []
+  childs:
+  - {fileID: 114017349045588270}
   dontKillPlayers: 0
   dontDieOnHit: 0
   score: 0
@@ -23183,7 +23188,8 @@ MonoBehaviour:
   explotionType: 0
   isOn: 0
   NumOfParticles: 30
-  childs: []
+  childs:
+  - {fileID: 114645839445917626}
   dontKillPlayers: 0
   dontDieOnHit: 0
   score: 0
@@ -23392,11 +23398,11 @@ MonoBehaviour:
   isActive: 0
   score: 0
   charactersMmanager: {fileID: 0}
-  distanceFromCharacter: 20
+  distanceFromCharacter: 22
   onlyMultiplayers: 0
   distance_from_avatars: 16
   bossBar: {fileID: 114988540010591382}
-  numberOfHits: 0
+  numberOfHits: 8
 --- !u!114 &114598293830355148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23553,7 +23559,8 @@ MonoBehaviour:
   explotionType: 0
   isOn: 0
   NumOfParticles: 30
-  childs: []
+  childs:
+  - {fileID: 114003407518609142}
   dontKillPlayers: 0
   dontDieOnHit: 0
   score: 0
@@ -23842,7 +23849,8 @@ MonoBehaviour:
   explotionType: 0
   isOn: 0
   NumOfParticles: 30
-  childs: []
+  childs:
+  - {fileID: 114443034149681578}
   dontKillPlayers: 0
   dontDieOnHit: 0
   score: 0

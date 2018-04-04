@@ -12,7 +12,6 @@ public class BossThrowerCollider : MonoBehaviour {
 	}
 	void OnTriggerEnter(Collider other)
 	{
-		print (other);
 		BossPart part = other.gameObject.GetComponent<BossPart> ();
 		if (part != null) {
 			part.OnActive ();

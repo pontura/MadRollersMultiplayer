@@ -11,8 +11,9 @@ public class BossPart : MonoBehaviour {
 	{
 		this.boss = _boss;
 	}
-	public void Die()
+	public void OnActivate()
 	{
+		print ("OnActivate");
 		CancelInvoke ();
 		boss.OnPartBroken (this);
 	}

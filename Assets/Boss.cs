@@ -45,8 +45,5 @@ public class Boss : SceneObject {
 	{
 		bossBar.enabled = false;
 	}
-	public virtual void OnPartBroken(BossPart part)
-	{
-		print ("Broken");
-	}
+	public virtual void OnPartBroken(BossPart part) { }
 }
