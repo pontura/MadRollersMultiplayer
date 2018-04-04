@@ -181,12 +181,14 @@ public class CharactersManager : MonoBehaviour {
     }
     public void addCharacter(Vector3 pos, int id)
     {
-		pos = new Vector3((3.5f * id) - (5.3f),pos.y);
-     //   }
-      //  else
-      //  {
-      //      pos.x *= separationX;
-     //   }
+		float _x;
+		if (Data.Instance.isReplay)
+			_x = 0;
+		else
+			_x = (3.5f * id) - (5.3f);
+			
+		pos = new Vector3(_x,pos.y);
+
         CharacterBehavior newCharacter = null;
         foreach (CharacterBehavior cb in deadCharacters)
         {

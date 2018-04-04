@@ -157,8 +157,10 @@ public class AreasManager : MonoBehaviour {
 		float al = Game.Instance.level.areasLength;
 
 		if (al == 0) {
-			if (Data.Instance.isReplay) 
-				return Data.Instance.missions.startingAreaDuringGame;
+			if (Data.Instance.isReplay) {
+				Data.Instance.isReplay = false;
+				return Data.Instance.missions.startingAreaAfterDying;
+			}
 			else if (Data.Instance.missions.MissionActiveID == 0)
 				return Data.Instance.missions.startingAreaLevel1;
 			else

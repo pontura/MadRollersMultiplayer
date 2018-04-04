@@ -193,7 +193,7 @@ public class Player : MonoBehaviour {
 	}
     IEnumerator StartProgressBarCoroutine()
     {
-        yield return new WaitForSeconds(12);
+        yield return new WaitForSeconds(6);
         OnAvatarProgressBarEmpty();
     }
    private void OnListenerDispatcher(string message)

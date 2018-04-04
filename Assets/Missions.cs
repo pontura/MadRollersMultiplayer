@@ -9,6 +9,8 @@ public class Missions : MonoBehaviour {
 	public Area startingAreaLevel1;
 	public Area startingArea;
 	public Area[] relaxArea;
+
+	public Area startingAreaAfterDying;
 	public Area startingAreaDuringGame;
 
     public Mission test_mission;

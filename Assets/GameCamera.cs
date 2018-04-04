@@ -128,6 +128,7 @@ public class GameCamera : MonoBehaviour
 	}
 	public void explote(float explotionForce)
 	{
+		return;
 		this.explotionForce = explotionForce*1.5f;
 		StartCoroutine (DoExplote ());
 		newH = 1;
@@ -169,8 +170,8 @@ public class GameCamera : MonoBehaviour
 		newPosTarget.z = transform.localPosition.z+6;
 		newPosTarget.y = 1;
 		flow_target.transform.localPosition = newPosTarget;
-		cam.transform.LookAt ( flow_target.transform, Vector3.up );
 
+	
 	}
 	int secondsToJump = 5;
 	float sec;
@@ -184,11 +185,15 @@ public class GameCamera : MonoBehaviour
         {
             return;
         }
-		sec += Time.deltaTime;
-		if (sec > secondsToJump) {
-			sec = 0;
-			ChangeResolution ();
-		}
+		Vector3 pos = flow_target.transform.localPosition - transform.position;
+		var newRot = Quaternion.LookRotation(pos);
+		transform.rotation = Quaternion.Lerp(transform.rotation, newRot, 0.5f);
+		//cam.transform.LookAt ( flow_target.transform, Vector3.up );
+//		sec += Time.deltaTime;
+//		if (sec > secondsToJump) {
+//			sec = 0;
+//			ChangeResolution ();
+//		}
 		
 		SetPizelPro ();
 

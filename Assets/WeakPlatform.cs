@@ -11,8 +11,10 @@ public class WeakPlatform : SceneObject {
     public override void OnRestart(Vector3 pos)
     {
 		rb = GetComponent<Rigidbody> ();
-		if (rb != null)
+		if (rb != null) {
 			rb.useGravity = false;
+			rb.isKinematic = true;
+		}
 		floor_top = Data.Instance.videogamesData.GetActualVideogameData ().floor_top;
 		floor_border = Data.Instance.videogamesData.GetActualVideogameData ().floor_border;
 
@@ -106,7 +108,7 @@ public class WeakPlatform : SceneObject {
 		
 		if (GetComponent<Rigidbody> () == null)
 			rb = gameObject.AddComponent<Rigidbody>();
-		
+		rb.isKinematic = false;
 		rb.useGravity = true;
 		rb.mass = 20;
 		rb.velocity = Vector3.zero;
@@ -116,6 +118,13 @@ public class WeakPlatform : SceneObject {
        // Pool();
         //StartCoroutine(FallDown());
     }
+	public override void OnPool()
+	{
+		if (rb == null)
+			return;
+		rb.useGravity = false;
+		rb.isKinematic = true;
+	}
     //IEnumerator FallDown()
     //{
     //    hasGravity();

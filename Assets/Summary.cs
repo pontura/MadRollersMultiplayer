@@ -41,7 +41,6 @@ public class Summary : MonoBehaviour {
     }
     void SetOn()
     {
-		Data.Instance.isReplay = false;
 		isOn = true;
         panel.SetActive(true);
         
