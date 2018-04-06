@@ -102,4 +102,22 @@ public class SceneObject : MonoBehaviour {
     public virtual void setScore()
     {
     }    
+
+	Material mat;
+	int videoGameID = -1;
+	public void SetMaterialByVideoGame()
+	{
+		mat = Data.Instance.videogamesData.GetActualVideogameData ().floor_top;
+		Renderer[] renderers = GetComponentsInChildren<Renderer>();
+		int newVideoGameID = Data.Instance.videogamesData.actualID;
+		if (newVideoGameID != videoGameID) {
+			videoGameID = newVideoGameID;
+			foreach(Renderer r in renderers)
+				ChangeMaterials(r);
+		}
+	}
+	void ChangeMaterials(Renderer renderer)
+	{
+		renderer.material = mat;
+	}
 }

@@ -10,4 +10,5 @@ public class Decoration : SceneObject {
             Pool();
         }
     }
+
 }

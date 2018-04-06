@@ -41,7 +41,7 @@ public class Level : MonoBehaviour {
 
 	static Area areaActive;
 	public float areasLength = 0;
-	private int nextPlatformSpace = 30;
+	private int nextPlatformSpace = 50;
 	public SceneObjectsBehavior sceneObjects;
 	Game game;
 
@@ -281,11 +281,11 @@ public class Level : MonoBehaviour {
 			{
 				Data.Instance.voicesManager.PlayClip (Data.Instance.voicesManager.tutorials [0].audioClip);
 				tutorialID = 1;
-			} else if(missions.MissionActiveID == 0 && dist>140 && tutorialID < 2)
+			} else if(missions.MissionActiveID == 0 && dist>150 && tutorialID < 2)
 			{
 				Data.Instance.voicesManager.PlayClip (Data.Instance.voicesManager.tutorials [1].audioClip);
 				tutorialID = 2;
-			} else if(missions.MissionActiveID == 0 && dist>240 && tutorialID < 3)
+			} else if(missions.MissionActiveID == 0 && dist>250 && tutorialID < 3)
 			{
 				Data.Instance.voicesManager.PlayClip (Data.Instance.voicesManager.tutorials [2].audioClip);
 				tutorialID = 3;

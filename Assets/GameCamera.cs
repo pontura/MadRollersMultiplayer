@@ -168,7 +168,7 @@ public class GameCamera : MonoBehaviour
 		Vector3 newPosTarget = flow_target.transform.localPosition;
 		newPosTarget.x = Mathf.Lerp(newPosTarget.x, newPos.x, Time.deltaTime*4.5f);
 		newPosTarget.z = transform.localPosition.z+6;
-		newPosTarget.y = 1;
+		newPosTarget.y = 2;
 		flow_target.transform.localPosition = newPosTarget;
 
 	
@@ -202,7 +202,7 @@ public class GameCamera : MonoBehaviour
 		_newPos += newCameraOrientationVector;
 		_newPos.z = Mathf.Lerp (transform.position.z, _newPos.z, 0.3f);
 		_newPos.x = Mathf.Lerp (transform.position.x, _newPos.x, Time.deltaTime*10);
-		_newPos.y = Mathf.Lerp (transform.position.y, _newPos.y, Time.deltaTime*2);
+		_newPos.y = Mathf.Lerp (transform.position.y, _newPos.y, Time.deltaTime*1);
 
 		transform.position = _newPos;
 	}

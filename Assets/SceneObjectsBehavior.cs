@@ -150,7 +150,9 @@ public class SceneObjectsBehavior : MonoBehaviour {
                         sceneObject.Restart(pos);
                         sceneObject.transform.rotation = go.transform.rotation;
 
-
+					if (go.name == "Yuyo")
+						sceneObject.SetMaterialByVideoGame ();
+					
                      //   if (go.GetComponent<MaterialsChanger>())
 //                        {
 //                            MaterialsChanger mo = go.GetComponent<MaterialsChanger>();
@@ -440,6 +442,8 @@ public class SceneObjectsBehavior : MonoBehaviour {
         pos.z += offset.z;
         pos.x += offset.x;
         newSceneObject.Restart(pos);
+		newSceneObject.SetMaterialByVideoGame ();
+
     }
     public void addDecorationWithRotation(string name, Vector3 pos, Vector3 rotation)
     {

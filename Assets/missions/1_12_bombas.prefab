@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 11400002}
   - component: {fileID: 11400000}
   m_Layer: 0
-  m_Name: 3_1_firewalls
+  m_Name: 1_12_bombas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,8 +42,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   areaSets:
-  - {fileID: 114362803886450100, guid: ba4bb97522efc834b80f501adf033b09, type: 2}
-  activeAreaSetID: 4
+  - {fileID: 11400000, guid: 0a3745d02ff7068429d1e9ae664749ce, type: 2}
+  - {fileID: 11400000, guid: e7df4500f43291949953530bc02f87fa, type: 2}
+  - {fileID: 11400000, guid: 0a3745d02ff7068429d1e9ae664749ce, type: 2}
+  activeAreaSetID: 3
   showRelaxAreaBeforeStarting: 0
 --- !u!114 &11400002
 MonoBehaviour:
@@ -56,26 +58,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c52aa23c4c1909c45b1a2eeadb8f98cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
+  id: 11
   backgroundSides:
-  - {fileID: 114142866667346430, guid: 30d818904e5c5b940946e9a90b41bcd6, type: 2}
-  videoGameID: 1
-  missionIcon: {fileID: 1658010390819498, guid: cb79261e7aecb064c82d4c67c2d7af25,
+  - {fileID: 114406897925718168, guid: d77188fe2cbab6e488b67faba85b7357, type: 2}
+  videoGameID: 0
+  missionIcon: {fileID: 1211333911257150, guid: 9ace9b78c9bd5bf439e6fe98d5e6f1b8,
     type: 2}
   isCompetition: 0
-  maxScore: 2500
+  maxScore: 2000
   Hiscore: 0
   avatarHiscore: 
   boss1: 0
   hearts: 0
-  guys: 10
+  guys: 0
   ghost: 0
-  points: 10
+  points: 0
   listeners: 0
   planes: 0
-  bombs: 0
-  distance: 300
-  description: Undestructable firewalls
+  bombs: 1
+  distance: 0
+  description: DESTROY MISSIL
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

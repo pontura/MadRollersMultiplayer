@@ -54,7 +54,7 @@ public class HearsManager : MonoBehaviour {
     }
     void SetHearts()
     {
-		//foreach(Text label in labels)
-       	//	label.text = total.ToString();
+		foreach(Text label in labels)
+       		label.text = total.ToString();
     }
 }
