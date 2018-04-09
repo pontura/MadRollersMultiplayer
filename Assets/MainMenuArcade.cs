@@ -165,7 +165,8 @@ public class MainMenuArcade : MonoBehaviour {
             {
                 done = true;
 				if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {
-					Data.Instance.LoadLevel ("GameMultiplayer");
+					//Data.Instance.LoadLevel ("GameMultiplayer");
+					Data.Instance.LoadLevel ("Game");
 				} else {
 					Data.Instance.LoadLevel ("Game");
 				}

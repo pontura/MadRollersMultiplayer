@@ -39,7 +39,7 @@ public class Intro : MonoBehaviour {
 	}
     void Loop()
     {
-            Data.Instance.LoadLevel("GameMultiplayer");
+            Data.Instance.LoadLevel("Game");
     }
 
 }

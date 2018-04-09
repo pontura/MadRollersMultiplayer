@@ -8,7 +8,7 @@ public class PowerupsManager : MonoBehaviour {
     private bool powerUpOn;
     private Player player;
 
-    void Start()
+	public  void Init()
     {
         Data.Instance.events.OnAddPowerUp += OnAddPowerUp;
         player = Game.Instance.level.charactersManager.character.GetComponent<Player>();

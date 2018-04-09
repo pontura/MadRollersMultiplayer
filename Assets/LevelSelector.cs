@@ -91,12 +91,15 @@ public class LevelSelector : MonoBehaviour {
 	void Delayed()
 	{
 		data.missions.MissionActiveID =lastButtonSelected.id;
-		Data.Instance.LoadLevel("Game");
+		if (Data.Instance.playMode == Data.PlayModes.STORY)
+			Data.Instance.LoadLevel("MainMenuArcade");
+		else
+			Data.Instance.LoadLevel("MainMenuArcade");
 	}
 	void OnJoystickUp()
 	{
 		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {
-			OnJoystickRight ();
+			OnJoystickLeft ();
 			return;
 		} else
 		if(missionActiveID<allMissionsByVideogame[videogameActiveID].missions.Count-1)
@@ -106,7 +109,7 @@ public class LevelSelector : MonoBehaviour {
 	void OnJoystickDown()
 	{
 		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {
-			OnJoystickLeft ();
+			OnJoystickRight ();
 			return;
 		} else
 		if(missionActiveID>0)

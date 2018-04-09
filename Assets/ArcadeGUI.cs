@@ -14,6 +14,8 @@ public class ArcadeGUI : MonoBehaviour {
     public GameObject singleSignalTexts;
     public List<int> avatarsThatShoot;
     public states state;
+	public GameObject panel;
+
     public enum states
     {
         INTRO,

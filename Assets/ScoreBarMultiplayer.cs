@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ScoreBarMultiplayer : MonoBehaviour {
 
+	public GameObject panel;
 	public GameObject hiscoreFields;
 	public GameObject myScoreFields;
 	public Image bar;
@@ -17,6 +18,12 @@ public class ScoreBarMultiplayer : MonoBehaviour {
     
 
     void Start () {
+		if (Data.Instance.playMode == Data.PlayModes.STORY) {
+			panel.SetActive (false);
+			return;
+		} else {
+			panel.SetActive (true);
+		}
 		hiscoreWinned = false;
         newVictoryAreaScore = Data.Instance.multiplayerData.newVictoryAreaScore;
 
@@ -45,8 +52,10 @@ public class ScoreBarMultiplayer : MonoBehaviour {
 		UpdateScore ();
         if(score>newVictoryAreaScore)
         {
+			print ("__newVictoryAreaScore " + newVictoryAreaScore + "  newVictoryAreaScore" + Data.Instance.multiplayerData.newVictoryAreaScore);
             Data.Instance.events.SetVictoryArea();
-            newVictoryAreaScore += Data.Instance.multiplayerData.newVictoryAreaScore;
+			Data.Instance.multiplayerData.newVictoryAreaScore *= 1.5f;
+            this.newVictoryAreaScore += Data.Instance.multiplayerData.newVictoryAreaScore;
         }
 	}
 	void UpdateScore()

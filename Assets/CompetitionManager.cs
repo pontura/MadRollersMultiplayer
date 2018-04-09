@@ -12,7 +12,7 @@ public class CompetitionManager : MonoBehaviour {
     public int nextGoalDistance;
     private CharactersManager charactersManager;
 
-    void Start()
+    public void Init()
     {
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
         if (Data.Instance.isArcade) return;

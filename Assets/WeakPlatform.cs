@@ -4,7 +4,7 @@ using System.Collections;
 public class WeakPlatform : SceneObject {
 	
 	public GameObject to;
-	int videoGameID;
+	public int videoGame_ID;
 	Material floor_top;
 	Material floor_border ;
 	Rigidbody rb;
@@ -23,8 +23,8 @@ public class WeakPlatform : SceneObject {
         GetComponent<Collider>().enabled = true;
 		Renderer[] renderers = GetComponentsInChildren<Renderer>();
 		int newVideoGameID = Data.Instance.videogamesData.actualID;
-		if (newVideoGameID != videoGameID) {
-			videoGameID = newVideoGameID;
+		if (newVideoGameID != videoGame_ID) {
+			videoGame_ID = newVideoGameID;
 			foreach(Renderer r in renderers)
 				ChangeMaterials(r);
 		}

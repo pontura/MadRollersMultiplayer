@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Lava : SceneObject {
 
-	public GameObject[] all;
+	public Move[] all;
 
 	void Start () {
 		

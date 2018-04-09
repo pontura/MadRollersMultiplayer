@@ -13,13 +13,13 @@ public class PlayerMainMenuUI : MonoBehaviour {
 
     public void Init()
     {
-       // anim = GetComponent<Animator>();
-       // Color color = Data.Instance.multiplayerData.colors[id];
-       // background.color = color;
-        //color.a = 0.5f;
-       // masker.color = Data.Instance.multiplayerData.colors[id];
+        anim = GetComponent<Animator>();
+        Color color = Data.Instance.multiplayerData.colors[id];
+        background.color = color;
+        color.a = 0.5f;
+        masker.color = Data.Instance.multiplayerData.colors[id];
 
-      //  Invoke("SetInActive", (float)id/2.5f);
+        Invoke("SetInActive", (float)id/2.5f);
     }
     public void Toogle()
     {

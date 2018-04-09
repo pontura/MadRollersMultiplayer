@@ -32,8 +32,8 @@ public class Level : MonoBehaviour {
 	private float lastDistanceToLoadLevel;
 
     /// para arcade
-    //private float nextDistanceVictoryArea;
-    //private int distanceVictoryArea = 550;
+	public float nextDistanceVictoryArea;
+    private int distanceVictoryArea = 550;
 
 	public Area victoryAreaLastLevel;
     public Area victoryArea;
@@ -68,7 +68,10 @@ public class Level : MonoBehaviour {
     }
     public void Init()
 	{
-       // nextDistanceVictoryArea = distanceVictoryArea;
+		
+		if (Data.Instance.playMode == Data.PlayModes.COMPETITION )
+       		 nextDistanceVictoryArea = distanceVictoryArea;
+
         areasX = 0;
         playing = true;
         areaActive = null;
@@ -81,6 +84,7 @@ public class Level : MonoBehaviour {
         powerupsManager = GetComponent<PowerupsManager>();
         floorManager.Init(charactersManager);
 
+		powerupsManager.Init ();
 		missions.Init(data.missions.MissionActiveID, this);
         areasManager = missions.getAreasManager();
         areasManager.Init(1);
@@ -267,8 +271,8 @@ public class Level : MonoBehaviour {
     bool showVictory;
 	void SetVictoryArea()
     {
-        print("__________________victory!");
-        showVictory = true;
+		print("__________________victory!");
+        	showVictory = true;
     }
 	int tutorialID;
 	private void Update () {
@@ -309,11 +313,11 @@ public class Level : MonoBehaviour {
                 newArea = victoryArea;
                 showVictory = false;
             } else
-          //  if (lastDistanceToLoadLevel > nextDistanceVictoryArea)
-         //   {
-           //     nextDistanceVictoryArea = lastDistanceToLoadLevel + distanceVictoryArea;
-           //     newArea = victoryArea;
-          //  } else
+//			if (Data.Instance.playMode == Data.PlayModes.COMPETITION && lastDistanceToLoadLevel > nextDistanceVictoryArea)
+//   	        {
+//                nextDistanceVictoryArea = lastDistanceToLoadLevel + distanceVictoryArea;
+//                newArea = victoryArea;
+//            } else
 			if(showStartArea)
 			{
 				if (isLastArea) {

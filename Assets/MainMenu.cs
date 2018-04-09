@@ -28,10 +28,10 @@ public class MainMenu : MonoBehaviour {
 			m.SetOn (false);
 		
 		if(Data.Instance.playMode == Data.PlayModes.COMPETITION)
-			activeButton = buttons [1];
+			activeID = 1;
 		else
-			activeButton = buttons [0];
-		
+			activeID = 0;
+		SetButtons ();
 		activeButton.SetOn (true);
 	}
 	void OnDestroy()
@@ -52,8 +52,8 @@ public class MainMenu : MonoBehaviour {
 			MissionsScene ();
 		else if (activeID == 1)
 			Compite ();
-		else if (activeID == 2)
-			Data.Instance.LoadLevel("PlayersSelector");
+		//else if (activeID == 2)
+		//	Data.Instance.LoadLevel("PlayersSelector");
 	}
 	void OnJoystickUp()
 	{

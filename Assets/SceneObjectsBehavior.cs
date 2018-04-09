@@ -9,7 +9,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
     public Area area;
 
 	public SceneObject Border_videogame_1;
-
+	public SceneObject Water;
 	public SceneObject Lava;
 	public SceneObject Boss1;
 	public SceneObject Boss2;
@@ -64,12 +64,11 @@ public class SceneObjectsBehavior : MonoBehaviour {
     public SceneObject sombrilla;
     public SceneObject GrabbableMissile;
 
-	private Game game;
+	public Game game;
     private ObjectPool Pool;
 
     private void Start()
     {
-        game = Game.Instance;
         Pool = Data.Instance.sceneObjectsPool;
     }
 	public void Add(GameObject go)
@@ -233,6 +232,8 @@ public class SceneObjectsBehavior : MonoBehaviour {
                     clone = jumper;
 				else if (go.name == "Lava")
 					clone = Lava;
+				else if (go.name == "Water")
+					clone = Water;
 				else if (go.name == "Boss1")
 					clone = Boss1;
 				else if (go.name == "Boss2")

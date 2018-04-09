@@ -11,6 +11,7 @@ public class Move : MonoBehaviour {
 	private float realSpeed;  
 	int direction;
 	public bool randomInitial;
+	public float randomOffset;
 	public bool dontDestroyOnDisable;
 
 	public void Start()
@@ -21,7 +22,12 @@ public class Move : MonoBehaviour {
 			pos.x += (float)Random.Range(move_left_right.x*10, move_left_right.y*10)/10;
 			transform.localPosition = pos;
 		}
+		if (randomOffset > 0) {
+			float rand = Random.Range (0, randomOffset * 100) / 100;
+			move_left_right = new Vector2 (move_left_right.x, rand);
+		}
 	}
+
 	public void changeDirection()
 	{		
 		if (!moveingLeft) {

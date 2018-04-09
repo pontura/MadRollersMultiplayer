@@ -12,7 +12,7 @@ public class RainManager : MonoBehaviour {
     private float min_offset = 20; //150;
     private float distanceToAdd = 50; //700;
 
-    void Start()
+ 	  public void Init()
     {
         if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
         {

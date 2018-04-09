@@ -31,16 +31,16 @@ public class Game : MonoBehaviour {
     }
     void Awake()
     {
-        mInstance = this;
-
-        GetComponent<CharactersManager>().Init();
-
-        level.Init();
-        gameCamera.Init();
-        
+        mInstance = this;        
     }
     void Start()
     {
+		GetComponent<CompetitionManager> ().Init ();
+		GetComponent<CharactersManager>().Init();
+		GetComponent<RainManager> ().Init ();
+		level.Init();
+		gameCamera.Init();
+
         Data.Instance.events.OnGamePaused += OnGamePaused;
         
         Init();

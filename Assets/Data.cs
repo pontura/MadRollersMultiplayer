@@ -72,7 +72,7 @@ public class Data : MonoBehaviour {
     }
 	void Awake () {
 
-		if (RESET)
+		//if (RESET)
 			PlayerPrefs.DeleteAll ();
       //  Cursor.visible = false;
 
@@ -100,7 +100,7 @@ public class Data : MonoBehaviour {
 		if (totalJoysticks > 3)
 			multiplayerData.player4 = true;
 
-        competitions.Init();
+       // competitions.Init();
         if(userData)
             userData.Init();
         
@@ -110,21 +110,25 @@ public class Data : MonoBehaviour {
         GetComponent<Missions>().Init();
         GetComponent<CurvedWorldManager>().Init();
 
-        //GetComponent<DataController>().Init();
+       // GetComponent<DataController>().Init();
 		levelUnlocked_level_1 = PlayerPrefs.GetInt("levelUnlocked_level_1");
 		levelUnlocked_level_2 = PlayerPrefs.GetInt("levelUnlocked_level_2");
 
-        if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
-        {
-            DEBUG = false;
-            mode = modes.ACCELEROMETER;            
-        }
+//        if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+//        {
+//            DEBUG = false;
+//            mode = modes.ACCELEROMETER;            
+//        }
         voicesManager.Init();
 
        // if (Application.isWebPlayer)
         //    Application.ExternalCall("OnUnityReady");
 
         events.SetVolume += SetVolume;
+	}
+	void Start()
+	{
+		GetComponent<PhotosManager>().LoadPhotos();
 	}
     void SetVolume(float vol)
     {

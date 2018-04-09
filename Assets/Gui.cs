@@ -23,14 +23,14 @@ public class Gui : MonoBehaviour {
 		missionIcon = Instantiate (missionIcon_to_instantiate);
 		missionIcon.transform.localPosition = new Vector3 (1000, 0, 0);
 
-        if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
-        {
-            foreach (GameObject go in hideOnCompetitions)
-            {
-                Destroy(go);
-            }
-            return;
-        }
+//        if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
+//        {
+//            foreach (GameObject go in hideOnCompetitions)
+//            {
+//                Destroy(go);
+//            }
+//            return;
+//        }
         events = Data.Instance.events;
         Data.Instance.events.OnMissionComplete += OnMissionComplete;
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;

@@ -16,7 +16,7 @@ public class MissionsTopPanel : MonoBehaviour
             Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
            // anim.Play("MissionTopOff");
         } else
-            anim.Play("MissionTopOpen");
+			anim.Play("MissionTopOff");
     }
     void OnDisable()
     {

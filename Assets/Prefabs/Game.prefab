@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 11471626}
   - component: {fileID: 11439632}
   - component: {fileID: 11484942}
-  - component: {fileID: 11417726}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -63,7 +62,8 @@ MonoBehaviour:
   character: {fileID: 11414192, guid: db836a5a6ffc4dd4a9fa3b9d8ef991f3, type: 2}
   characters: []
   deadCharacters: []
-  colors: []
+  distance: 0
+  playerPositions: 
 --- !u!114 &11415832
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -80,17 +80,6 @@ MonoBehaviour:
   avatar2: {fileID: 0}
   distance: 0
   nextGoalDistance: 0
---- !u!114 &11417726
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c584bbb6849396749943b4fc1cf6da8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11439632
 MonoBehaviour:
   m_ObjectHideFlags: 1

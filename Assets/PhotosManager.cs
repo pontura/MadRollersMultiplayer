@@ -34,6 +34,7 @@ public class PhotosManager : MonoBehaviour {
 	}
 	public void SavePhoto(Texture2D photo, int score)
     {
+		FOLDER = MultiplayerCompetitionManager.FOLDER;
         byte[] bytes = photo.EncodeToPNG();
         string path = score.ToString();
 		string url = GetFullPathByFolder(FOLDER + "/" + actualCompetition, path + ".png");

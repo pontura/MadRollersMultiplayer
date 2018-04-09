@@ -15,7 +15,7 @@ public class AdvisesManager : MonoBehaviour {
 	}
     void OnDestroy()
     {
-        Data.Instance.events.AdvisesOn -= AdvisesOn;
+       // Data.Instance.events.AdvisesOn -= AdvisesOn;
     }
 	
     void AdvisesOn(string name)
