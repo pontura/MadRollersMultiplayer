@@ -148,6 +148,7 @@ public class GameCamera : MonoBehaviour
 	}
 	private void rotateRandom(float explotionForce)
 	{
+		return;
 		Vector3 v = cam.transform.localEulerAngles;
         v.z = explotionForce;
 		cam.transform.localEulerAngles = v;
@@ -159,22 +160,24 @@ public class GameCamera : MonoBehaviour
 		{
 			return;
 		}
-		if (state == states.END )
-		{
+		if (state == states.END) {
 			return;
-		}
-
-		newPos  = charactersManager.getPosition();
+		}	
+	}
+	int secondsToJump = 5;
+	float sec;
+	void LookAtFlow()
+	{
 		Vector3 newPosTarget = flow_target.transform.localPosition;
 		newPosTarget.x = Mathf.Lerp(newPosTarget.x, newPos.x, Time.deltaTime*4.5f);
 		newPosTarget.z = transform.localPosition.z+6;
 		newPosTarget.y = 2;
 		flow_target.transform.localPosition = newPosTarget;
 
-	
+		Vector3 pos = flow_target.transform.localPosition - transform.position;
+		var newRot = Quaternion.LookRotation(pos);
+		cam.transform.rotation = Quaternion.Lerp(cam.transform.rotation, newRot, Time.deltaTime*10);
 	}
-	int secondsToJump = 5;
-	float sec;
 	void LateUpdate () 
 	{
         if (state == states.START)
@@ -185,9 +188,7 @@ public class GameCamera : MonoBehaviour
         {
             return;
         }
-		Vector3 pos = flow_target.transform.localPosition - transform.position;
-		var newRot = Quaternion.LookRotation(pos);
-		transform.rotation = Quaternion.Lerp(transform.rotation, newRot, 0.5f);
+		newPos  = charactersManager.getPosition();
 		//cam.transform.LookAt ( flow_target.transform, Vector3.up );
 //		sec += Time.deltaTime;
 //		if (sec > secondsToJump) {
@@ -195,16 +196,17 @@ public class GameCamera : MonoBehaviour
 //			ChangeResolution ();
 //		}
 		
-		SetPizelPro ();
+		//SetPizelPro ();
 
 		Vector3 _newPos  = newPos;
 
 		_newPos += newCameraOrientationVector;
-		_newPos.z = Mathf.Lerp (transform.position.z, _newPos.z, 0.3f);
+		_newPos.z = Mathf.Lerp (transform.position.z, _newPos.z, Time.deltaTime*20);
 		_newPos.x = Mathf.Lerp (transform.position.x, _newPos.x, Time.deltaTime*10);
 		_newPos.y = Mathf.Lerp (transform.position.y, _newPos.y, Time.deltaTime*1);
 
 		transform.position = _newPos;
+		LookAtFlow ();
 	}
     public void OnAvatarCrash(CharacterBehavior player)
     {

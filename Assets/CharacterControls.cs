@@ -98,19 +98,20 @@ public class CharacterControls : MonoBehaviour {
 
     private void moveByKeyboard()
     {
-		if (Game.Instance.level.charactersManager.distance<35)
+		if (Game.Instance.level.charactersManager.distance<20)
 			return;
 		float _speed = InputManager.getHorizontal(player.id);
 		if (_speed < -0.5f || _speed > 0.5f) {
 			float newPosX = _speed*speedX;
+			float newRot = turnSpeed * ( Time.deltaTime * 35);
 			if (newPosX > 0)
-				rotationY += turnSpeed;
+				rotationY += newRot;
 			else if (newPosX < 0)
-				rotationY -= turnSpeed;
+				rotationY -= newRot;
 			else if (rotationY > 0)
-				rotationY -= turnSpeed;
+				rotationY -= newRot;
 			else if (rotationY < 0)
-				rotationY += turnSpeed;
+				rotationY += newRot;
 		} else{
 			rotationY = 0;
 		}
@@ -119,6 +120,7 @@ public class CharacterControls : MonoBehaviour {
         else if (rotationY < -30) rotationY = -30;
 
         if (Time.deltaTime == 0) return;
+
         transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, rotationY, rotationZ);
 
 
