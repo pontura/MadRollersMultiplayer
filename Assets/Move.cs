@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Move : MonoBehaviour {
 
+	public bool isVertical;
 	public float speed = 2;
 	public Vector2 move_left_right;
 	public bool moveingLeft;
@@ -19,7 +20,10 @@ public class Move : MonoBehaviour {
 		changeDirection ();
 		if (randomInitial) {
 			Vector3 pos = transform.localPosition;
-			pos.x += (float)Random.Range(move_left_right.x*10, move_left_right.y*10)/10;
+			if(isVertical)
+				pos.y += (float)Random.Range(move_left_right.x*10, move_left_right.y*10)/10;
+			else
+				pos.x += (float)Random.Range(move_left_right.x*10, move_left_right.y*10)/10;
 			transform.localPosition = pos;
 		}
 		if (randomOffset > 0) {
@@ -44,11 +48,19 @@ public class Move : MonoBehaviour {
 	void Update()
 	{
 		Vector3 pos = transform.localPosition;
-		if (pos.x < move_left_right.x && moveingLeft)
-			changeDirection ();
-		else if (pos.x > move_left_right.y && !moveingLeft)
-			changeDirection ();
-		pos.x += speed * Time.deltaTime * direction;
+		if (isVertical) {
+			if (pos.y < move_left_right.x && moveingLeft)
+				changeDirection ();
+			else if (pos.y > move_left_right.y && !moveingLeft)
+				changeDirection ();
+			pos.y += speed * Time.deltaTime * direction;
+		} else {
+			if (pos.x < move_left_right.x && moveingLeft)
+				changeDirection ();
+			else if (pos.x > move_left_right.y && !moveingLeft)
+				changeDirection ();
+			pos.x += speed * Time.deltaTime * direction;
+		}
 		transform.localPosition = pos;
 	}
 

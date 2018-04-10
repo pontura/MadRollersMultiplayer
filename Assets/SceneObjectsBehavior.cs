@@ -36,7 +36,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
 
     public SceneObject GrabbableJetpack;
     public SceneObject borde1;
-   // public SceneObject enemyFrontal1;
     
     public SceneObject fences;
     public SceneObject rainbow;
@@ -130,6 +129,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			case "bloodx1":
 			case "Yuyo":
 			case "enemyFrontal":   
+			case "enemyWater":   
 			case "enemySide":  
 			case "castle":
 			case "SideMountain":
@@ -278,16 +278,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
                     clone = borde1;
                 else if (go.name == "fences")
                     clone = fences;
-                else if (go.name == "enemyFrontal")
-                {
-                    // int random = Random.Range(1, 4);
-                    //if (random < 2)
-                    // clone = enemyFrontal1;
-                    //else if (random < 3)
-                    //    clone = enemyFrontal2;
-                    //else
-                    //    clone = enemyFrontal3;
-                }
                 else if (go.name == "rainbow")
                     clone = rainbow;
                 else if (go.name == "Listener")
