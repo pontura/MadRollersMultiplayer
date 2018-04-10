@@ -45,12 +45,19 @@ public class MissionSignal : MonoBehaviour {
     }
     private void OnMissionComplete(int levelID)
     {
-        SetOff();
+        Invoke("SetOff", 0.1f);
     }
     void SetOff()
     {
 		panel.SetActive (false);
     }
+	Mission mission;
+	void RefreshMissionIcon()
+	{
+		Missions missions = Data.Instance.GetComponent<Missions> ();
+		mission = missions.missions[ missions.MissionActiveID];
+		gui.missionIcon.SetOn (mission);
+	}
     void SetOn()
     {
 		if (Data.Instance.missions.MissionActiveID == 0)
@@ -105,11 +112,8 @@ public class MissionSignal : MonoBehaviour {
 	}
     private void ShowMissionName()
     {
-		Missions missions = Data.Instance.GetComponent<Missions> ();
-		//print ("LL:" + missions.MissionActiveID + "    desc   " + missions.missions[ missions.MissionActiveID].description) ;
-		Mission mission = missions.missions[ missions.MissionActiveID];
-		Open( mission.description.ToUpper(), missions.MissionActiveID);
-		gui.missionIcon.SetOn (mission);
+		RefreshMissionIcon ();
+		Open( mission.description.ToUpper(), mission.id);
         CloseAfter(3f);
     }
 	private void Open(string text, int missionId)

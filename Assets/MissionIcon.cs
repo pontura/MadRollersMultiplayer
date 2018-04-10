@@ -10,7 +10,19 @@ public class MissionIcon : MonoBehaviour {
 
 	void Start()
 	{
-		panel.SetActive (false);
+		Data.Instance.events.NewMissionStart += NewMissionStart;
+		panel.SetActive (true);
+		NewMissionStart ();
+	}
+	void OnDestroy()
+	{
+		Data.Instance.events.NewMissionStart -= NewMissionStart;
+	}
+	void NewMissionStart()
+	{
+		Missions missions = Data.Instance.GetComponent<Missions> ();
+		Mission mission = missions.missions[ missions.MissionActiveID];
+		SetOn (mission);
 	}
 	public void SetOn(Mission mission, GameObject specialIcon = null)
 	{

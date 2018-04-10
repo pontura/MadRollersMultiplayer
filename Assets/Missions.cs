@@ -171,7 +171,7 @@ public class Missions : MonoBehaviour {
         MissionActive = GetActualMissions()[MissionActiveID];
 		MissionActive.Init ();
 		MissionActive.reset();
-
+		data.events.NewMissionStart ();
 	}
     private void activateMissionByListener()
     {
