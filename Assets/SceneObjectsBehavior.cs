@@ -131,6 +131,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			case "enemyFrontal":   
 			case "enemyWater":   
 			case "enemySide":  
+			case "enemyBack":  
 			case "castle":
 			case "SideMountain":
 			case "bonusEntrance":   
@@ -368,11 +369,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
                 if (go.GetComponent<ListenerDispatcher>())
                 {
                     ListenerDispatcher mo = go.GetComponent<ListenerDispatcher>();
-                    CopyComponent(mo, sceneObject.gameObject);
-                }
-                if (go.GetComponent<FollowCharacter>())
-                {
-                    FollowCharacter mo = go.GetComponent<FollowCharacter>();
                     CopyComponent(mo, sceneObject.gameObject);
                 }
                 if (go.GetComponent<FlyingBehavior>())

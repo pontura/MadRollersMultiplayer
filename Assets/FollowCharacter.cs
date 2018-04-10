@@ -1,22 +1,41 @@
 using UnityEngine;
 using System.Collections;
 
-public class FollowCharacter : MonoBehaviour {
+public class FollowCharacter : MmoCharacter {
 
-	public float speed = 2;
-	//private Transform characterTransform;
+	float activaTionDistance = 8;
+	float speed = 3;
+	CharacterBehavior characterBehavior;
+	float realPositionZ = 0;
 
-    public void restarted()
-    {
-		//characterTransform = GameObject.FindGameObjectWithTag("Player").transform;
+	public override void OnRestart(Vector3 pos)
+	{
+		transform.localEulerAngles = Vector3.zero;
+		realPositionZ = 0;
+		base.OnRestart(pos);
+		Repositionate ();
 	}
+	void Repositionate()
+	{
+		CharacterBehavior ch = charactersMmanager.getMainCharacter ();
+		Vector3 myPos = transform.position;
+		myPos.z = ch.transform.position.z - activaTionDistance;
+		transform.position = myPos;
+	}
+	public void OnSceneObjectUpdated()
+    {		
+		CharacterBehavior cb = charactersMmanager.getMainCharacter ();
+		if (cb == null)
+			return;
+		
+		realPositionZ +=  (speed * Time.deltaTime);
 
-   //public void OnSceneObjectUpdate()
-   // {
-   //     Vector3 pos = transform.position;
-   //     pos.x = characterTransform.position.x;
+        Vector3 pos = transform.position;
+		pos.z = Mathf.Lerp(transform.position.z,  cb.transform.position.z - activaTionDistance + realPositionZ, 0.1f);
+		transform.position = pos;
 
-   //     transform.position = Vector3.Lerp(transform.position, pos, Time.deltaTime*speed	);
-   // }
+		if (transform.position.z > cb.transform.position.z + 40)
+			Pool ();
+    }
 }
 

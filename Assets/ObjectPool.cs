@@ -94,6 +94,7 @@ public class ObjectPool : MonoBehaviour
 
     public SceneObject GetObjectForType(string objectType, bool onlyPooled)
     {
+		print ("objectType " + objectType);
         for (int i = 0; i < Entries.Length; i++)
         {
             var prefab = Entries[i].Prefab;

@@ -42,7 +42,7 @@ public class SceneObject : MonoBehaviour {
 
         if (transform.localPosition.y < -14)
             Pool();
-        else if (distance > transform.position.z + size_z + 12)
+        else if (distance > transform.position.z + size_z + 22)
             Pool();
         else if (distance > transform.position.z - 45)
             OnSceneObjectUpdate();
