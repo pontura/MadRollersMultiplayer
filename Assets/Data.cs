@@ -72,7 +72,7 @@ public class Data : MonoBehaviour {
     }
 	void Awake () {
 
-		//if (RESET)
+		if (RESET)
 			PlayerPrefs.DeleteAll ();
       //  Cursor.visible = false;
 
