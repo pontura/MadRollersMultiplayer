@@ -16,6 +16,10 @@ public class WebCamPhotoCamera : MonoBehaviour
 
     void Start()
     {
+		if (WebCamTexture.devices.Length == 0) {
+			Data.Instance.LoadLevel("MainMenu");
+			return;
+		}
         lastPhotoTexture = null;
         webCamTexture = new WebCamTexture(WebCamTexture.devices[Data.Instance.WebcamID].name, 800, 600, 12);
 
@@ -41,10 +45,15 @@ public class WebCamPhotoCamera : MonoBehaviour
     }
     void OnDestroy()
     {
-        webCamTexture.Stop();
+		if(webCamTexture != null)
+       		 webCamTexture.Stop();
     }
     public void TakePhoto(int score)
     {
+		if (WebCamTexture.devices.Length == 0) {
+			Data.Instance.LoadLevel("MainMenu");
+			return;
+		}
         photoTaken = true;
         lastPhotoTexture = new Texture2D(webCamTexture.width, webCamTexture.height);
         lastPhotoTexture.SetPixels(webCamTexture.GetPixels());

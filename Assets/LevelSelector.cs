@@ -91,11 +91,10 @@ public class LevelSelector : MonoBehaviour {
 	void Delayed()
 	{
 		data.missions.MissionActiveID =lastButtonSelected.id;
-		Data.Instance.LoadLevel("Game");
-		return;
+
 
 		if (Data.Instance.playMode == Data.PlayModes.STORY)
-			Data.Instance.LoadLevel("MainMenuArcade");
+			Data.Instance.LoadLevel("Game");
 		else
 			Data.Instance.LoadLevel("MainMenuArcade");
 	}

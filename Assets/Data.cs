@@ -111,18 +111,13 @@ public class Data : MonoBehaviour {
         GetComponent<CurvedWorldManager>().Init();
 
        // GetComponent<DataController>().Init();
-		levelUnlocked_level_1 = PlayerPrefs.GetInt("levelUnlocked_level_1");
-		levelUnlocked_level_2 = PlayerPrefs.GetInt("levelUnlocked_level_2");
+		//levelUnlocked_level_1 = PlayerPrefs.GetInt("levelUnlocked_level_1");
+		//levelUnlocked_level_2 = PlayerPrefs.GetInt("levelUnlocked_level_2");
 
-//        if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
-//        {
-//            DEBUG = false;
-//            mode = modes.ACCELEROMETER;            
-//        }
+		levelUnlocked_level_1 = 100;
+		levelUnlocked_level_2 = 100;
+
         voicesManager.Init();
-
-       // if (Application.isWebPlayer)
-        //    Application.ExternalCall("OnUnityReady");
 
         events.SetVolume += SetVolume;
 	}
