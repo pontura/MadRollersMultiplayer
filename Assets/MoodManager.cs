@@ -29,7 +29,7 @@ public class MoodManager : MonoBehaviour {
     {
 		return;
 
-		if(Data.Instance.playMode == Data.PlayModes.COMPETITION)
+		if(Data.Instance.playMode == Data.PlayModes.COMPETITION )
 			Data.Instance.events.OnChangeMood(id);
     }
 }

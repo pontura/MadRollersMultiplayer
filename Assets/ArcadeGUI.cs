@@ -56,7 +56,7 @@ public class ArcadeGUI : MonoBehaviour {
 
         avatarsThatShoot.Add(playerID);
         
-        if (avatarsThatShoot.Count >= characterManager.getTotalCharacters())
+		if (avatarsThatShoot.Count >= characterManager.getTotalCharacters())
         {
             Data.Instance.events.OnAvatarShoot -= OnAvatarShoot;
             Data.Instance.events.StartMultiplayerRace();
@@ -78,12 +78,14 @@ public class ArcadeGUI : MonoBehaviour {
 		else if (state == states.SHOOT_ONE)
 			SetFields ("TODOS DISPAREN!");
 		else if (state == states.SHOOTS_READY) {
-			if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
+			if (Data.Instance.playMode == Data.PlayModes.COMPETITION
+				|| Data.Instance.playMode == Data.PlayModes.GHOSTMODE)
 				SetFields ("BIEN!...");
 			else
 				SetFields ("");
 		} else if (state == states.WELLCOME) {
-			if(Data.Instance.playMode ==Data.PlayModes.COMPETITION)
+			if(Data.Instance.playMode ==Data.PlayModes.COMPETITION 
+				|| Data.Instance.playMode == Data.PlayModes.GHOSTMODE)
 				SetFields ("...AHORA ROMPAN TODO!");
 			else
 				SetFields ("");

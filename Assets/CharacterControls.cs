@@ -3,6 +3,7 @@ using System.Collections;
 
 public class CharacterControls : MonoBehaviour {
 
+	public bool isAutomata;
     CharacterBehavior characterBehavior;
     Player player;
     private float rotationY;
@@ -29,17 +30,19 @@ public class CharacterControls : MonoBehaviour {
     }
 	// Update is called once per frame
 	void LateUpdate () {
+		
+		if (characterBehavior.state == CharacterBehavior.states.CRASH || characterBehavior.state == CharacterBehavior.states.DEAD) 
+			return;
+		if (Time.deltaTime == 0) return;
 
-		if (InputManager.getFire(player.id))
-		{
-			Data.Instance.events.OnFireUI();
-		}
+		//if (InputManager.getFire(player.id))
+		//{
+		//	Data.Instance.events.OnFireUI();
+		//}
 
-        if (characterBehavior.state == CharacterBehavior.states.CRASH || characterBehavior.state == CharacterBehavior.states.DEAD) return;
-
-        if (mobileController)
-            moveByAccelerometer();
-        else
+		if (mobileController) {
+			moveByAccelerometer ();
+		} else if(!isAutomata)
         {
             if (InputManager.getFire(player.id))
             {
@@ -57,13 +60,10 @@ public class CharacterControls : MonoBehaviour {
             {
                 characterBehavior.AllButtonsReleased();
             }
-           
-            moveByKeyboard();
+			moveByKeyboard();
         }
 
-        if (Time.deltaTime == 0) return;
-        characterBehavior.UpdateByController(rotationY);
-       // player.UpdateByController();
+		characterBehavior.UpdateByController(rotationY); 
 	}
 
     private void moveByAccelerometer()
@@ -95,12 +95,20 @@ public class CharacterControls : MonoBehaviour {
        // transform.Translate(0, 0, Time.deltaTime * characterBehavior.speed);
 
     }
-
+	float lastHorizontalKeyPressed;
     private void moveByKeyboard()
     {
-		if (Game.Instance.level.charactersManager.distance<20)
+		if (!Data.Instance.isReplay && Game.Instance.level.charactersManager.distance<40)
 			return;
 		float _speed = InputManager.getHorizontal(player.id);
+		if (lastHorizontalKeyPressed != _speed) {
+			lastHorizontalKeyPressed = _speed;
+			Data.Instance.inputSaver.MoveInX (lastHorizontalKeyPressed, transform.position);
+		}
+		MoveInX (_speed);
+    }
+	public void MoveInX(float _speed)
+	{
 		if (_speed < -0.5f || _speed > 0.5f) {
 			float newPosX = _speed*speedX;
 			float newRot = turnSpeed * ( Time.deltaTime * 35);
@@ -116,13 +124,12 @@ public class CharacterControls : MonoBehaviour {
 			rotationY = 0;
 		}
 
-        if (rotationY > 30) rotationY = 30;
-        else if (rotationY < -30) rotationY = -30;
+		if (rotationY > 30) rotationY = 30;
+		else if (rotationY < -30) rotationY = -30;
 
-        if (Time.deltaTime == 0) return;
+		if (Time.deltaTime == 0) return;
 
-        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, rotationY, rotationZ);
+		transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, rotationY, rotationZ);
 
-
-    }
+	}
 }

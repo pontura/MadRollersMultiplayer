@@ -20,7 +20,7 @@ public class CompetitionManager : MonoBehaviour {
         if (Data.Instance.userData.facebookId != "0")
             avatar1.SetPicture(Data.Instance.userData.facebookId);
 
-        if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
+		if (Data.Instance.playMode == Data.PlayModes.COMPETITION || Data.Instance.playMode == Data.PlayModes.GHOSTMODE)
         {
             isCompetition = true;
             Data.Instance.events.OnCompetitionMissionComplete += OnCompetitionMissionComplete;

@@ -69,7 +69,7 @@ public class Player : MonoBehaviour {
     public void Init(int id)
     {
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
-		color = Data.Instance.GetComponent<MultiplayerData>().colors[id];
+		color = Data.Instance.GetComponent<MultiplayerData>().colors[Mathf.Abs(id)];
 
        // if (Data.Instance.isArcadeMultiplayer)
 		switch (id) {
@@ -204,7 +204,9 @@ public class Player : MonoBehaviour {
    public void OnMissionStart(int missionID)
    {
 
-       if (Data.Instance.DEBUG || Data.Instance.playMode == Data.PlayModes.COMPETITION)
+       if (Data.Instance.DEBUG 
+			|| Data.Instance.playMode == Data.PlayModes.COMPETITION
+			|| Data.Instance.playMode == Data.PlayModes.GHOSTMODE)
        {
            canJump = true;
        }

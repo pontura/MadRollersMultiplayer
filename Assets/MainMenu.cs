@@ -18,11 +18,11 @@ public class MainMenu : MonoBehaviour {
 		Data.Instance.events.OnJoystickUp += OnJoystickUp;
 		Data.Instance.events.OnJoystickLeft += OnJoystickDown;
 		Data.Instance.events.OnJoystickRight += OnJoystickUp;
-
-		if (Data.Instance.totalJoysticks == 1)
-			playersField.text = "PLAYER (1)";
-		else 
-			playersField.text = "PLAYERS (" + Data.Instance.totalJoysticks.ToString () + ")";
+//
+//		if (Data.Instance.totalJoysticks == 1)
+//			playersField.text = "PLAYER (1)";
+//		else 
+//			playersField.text = "PLAYERS (" + Data.Instance.totalJoysticks.ToString () + ")";
 		
 		foreach (MainMenuButton m in buttons)
 			m.SetOn (false);
@@ -51,9 +51,12 @@ public class MainMenu : MonoBehaviour {
 		if (activeID == 0)
 			MissionsScene ();
 		else if (activeID == 1)
-			Compite ();
-		//else if (activeID == 2)
+			Ghost();
 		//	Data.Instance.LoadLevel("PlayersSelector");
+		else if (activeID == 2) {			
+			Compite ();
+		}
+
 	}
 	void OnJoystickUp()
 	{
@@ -89,6 +92,13 @@ public class MainMenu : MonoBehaviour {
 		Data.Instance.LoadLevel("LevelSelector");
 //		Data.Instance.playMode = Data.PlayModes.COMPETITION;
 //		Data.Instance.LoadLevel("Competitions");
+	}
+	void Ghost()
+	{
+		Data.Instance.playMode = Data.PlayModes.GHOSTMODE;
+		Data.Instance.LoadLevel("LevelSelector");
+		//		Data.Instance.playMode = Data.PlayModes.COMPETITION;
+		//		Data.Instance.LoadLevel("Competitions");
 	}
 //	public void Compite()
 //	{

@@ -35,6 +35,10 @@ public class Data : MonoBehaviour {
     public MultiplayerData multiplayerData;
 	[HideInInspector]
 	public VideogamesData videogamesData;
+	[HideInInspector]
+	public InputSaver inputSaver;
+	[HideInInspector]
+	public InputSavedAutomaticPlay inputSavedAutomaticPlay;
 
     static Data mInstance = null;
 
@@ -49,7 +53,8 @@ public class Data : MonoBehaviour {
     public enum PlayModes
     {
         STORY,
-        COMPETITION
+        COMPETITION,
+		GHOSTMODE
     }
     public enum modes
     {
@@ -90,7 +95,8 @@ public class Data : MonoBehaviour {
         competitions = GetComponent<Competitions>();
         multiplayerData = GetComponent<MultiplayerData>();
 		videogamesData = GetComponent<VideogamesData> ();
-
+		inputSaver = GetComponent<InputSaver> ();
+		inputSavedAutomaticPlay = GetComponent<InputSavedAutomaticPlay> ();
 		if (totalJoysticks > 0)
 			multiplayerData.player1 = true;
 		if (totalJoysticks > 1)
@@ -136,7 +142,7 @@ public class Data : MonoBehaviour {
 
 		int idByVideogame = missions.GetActualMissionByVideogame ();
 
-        if (playMode == PlayModes.COMPETITION)
+		if (playMode == PlayModes.COMPETITION || Data.Instance.playMode == Data.PlayModes.GHOSTMODE)
         {
             SocialEvents.OnMissionReady(num);
         }

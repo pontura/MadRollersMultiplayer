@@ -37,8 +37,6 @@ public class LandingForArcade : MonoBehaviour {
     }
     void Next()
     {
-        
-        print("Data.Instance.isArcadeMultiplayer " + Data.Instance.isArcadeMultiplayer);
         Data.Instance.playMode = Data.PlayModes.COMPETITION;
         if (Data.Instance.isArcadeMultiplayer)
             LoopUntilCompetitionsReady(); // Data.Instance.LoadLevel("MainMenuArcade");

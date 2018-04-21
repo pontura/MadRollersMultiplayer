@@ -85,7 +85,7 @@ public class VoicesManager : MonoBehaviour
     private void OnListenerDispatcher(string message)
     {
 		print ("_______OnListenerDispatcher " + message + " "  + Data.Instance.missions.MissionActiveID);
-        if (Data.Instance.playMode == Data.PlayModes.COMPETITION) return;
+		if (Data.Instance.playMode == Data.PlayModes.COMPETITION || Data.Instance.playMode == Data.PlayModes.GHOSTMODE) return;
         if (message == "ShowMissionId")
         {
 			

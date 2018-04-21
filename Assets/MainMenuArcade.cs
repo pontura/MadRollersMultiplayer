@@ -46,7 +46,7 @@ public class MainMenuArcade : MonoBehaviour {
             id++;
             pm.Init();
         }
-		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {
+		if (Data.Instance.playMode == Data.PlayModes.COMPETITION  || Data.Instance.playMode == Data.PlayModes.GHOSTMODE) {
 			LoopWinners ();
 			SetFields (0);
 		}
@@ -164,7 +164,7 @@ public class MainMenuArcade : MonoBehaviour {
             if (totalPlayers > 0)
             {
                 done = true;
-				if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {
+				if (Data.Instance.playMode == Data.PlayModes.COMPETITION ) {
 					//Data.Instance.LoadLevel ("GameMultiplayer");
 					Data.Instance.LoadLevel ("Game");
 				} else {

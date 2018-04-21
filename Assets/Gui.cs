@@ -23,14 +23,6 @@ public class Gui : MonoBehaviour {
 		missionIcon = Instantiate (missionIcon_to_instantiate);
 		missionIcon.transform.localPosition = new Vector3 (1000, 0, 0);
 
-//        if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
-//        {
-//            foreach (GameObject go in hideOnCompetitions)
-//            {
-//                Destroy(go);
-//            }
-//            return;
-//        }
         events = Data.Instance.events;
         Data.Instance.events.OnMissionComplete += OnMissionComplete;
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
@@ -57,7 +49,7 @@ public class Gui : MonoBehaviour {
     }
     void OnMissionComplete(int num)
     {
-        if (Data.Instance.playMode == Data.PlayModes.COMPETITION) return;
+		if (Data.Instance.playMode == Data.PlayModes.COMPETITION  || Data.Instance.playMode == Data.PlayModes.GHOSTMODE) return;
         levelComplete.gameObject.SetActive(true);
         levelComplete.Init(num);
     }

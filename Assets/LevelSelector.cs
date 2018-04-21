@@ -95,12 +95,14 @@ public class LevelSelector : MonoBehaviour {
 
 		if (Data.Instance.playMode == Data.PlayModes.STORY)
 			Data.Instance.LoadLevel("Game");
+		else if(Data.Instance.playMode == Data.PlayModes.GHOSTMODE)
+			Data.Instance.LoadLevel("Game");
 		else
 			Data.Instance.LoadLevel("MainMenuArcade");
 	}
 	void OnJoystickUp()
 	{
-		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {
+		if (Data.Instance.playMode == Data.PlayModes.GHOSTMODE || Data.Instance.playMode == Data.PlayModes.COMPETITION) {
 			OnJoystickLeft ();
 			return;
 		} else
@@ -110,7 +112,7 @@ public class LevelSelector : MonoBehaviour {
 	}
 	void OnJoystickDown()
 	{
-		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {
+		if (Data.Instance.playMode == Data.PlayModes.GHOSTMODE || Data.Instance.playMode == Data.PlayModes.COMPETITION) {
 			OnJoystickRight ();
 			return;
 		} else

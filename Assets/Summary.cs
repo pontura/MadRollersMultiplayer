@@ -51,7 +51,8 @@ public class Summary : MonoBehaviour {
 	}
 	public void Restart()
 	{
-		Data.Instance.isReplay = true;
+		if(Data.Instance.playMode == Data.PlayModes.STORY)
+			Data.Instance.isReplay = true;
 		Game.Instance.ResetLevel();        
 	}
 	void Update()
@@ -107,47 +108,6 @@ public class Summary : MonoBehaviour {
 		processAxis = false;
 		lastClickedTime = 0;
 	}
-
-
-
-//    void CountDown()
-//    {
-//		if (!isOn) return;
-//        if (countDown < 1)
-//        {
-//			isOn = false;
-//			Game.Instance.GotoLevelSelector ();
-//            return;
-//        }
-//        countDown--;
-//
-//		foreach(Text C in Continue)
-//        	C.text = countDown.ToString();
-//		
-//        Invoke("CountDown", 0.5f);
-//    }
-	//public void Revive()
-  //  {
-	//	isOn = false;
-     //   cancelCountDown = true;
-     //   ReviveConfirma();
-   // }
-  
-   // public void ReviveConfirma()
-  //  {
-      //  Data.Instance.events.OnUseHearts(heartsToReviveNum);
-     //   Data.Instance.events.OnSoundFX("consumeHearts", -1);
-        
-      //  panela.SetActive(false);
-      //  panel.SetActive(false);
-
-      //  Invoke("ReviveTimeOut", 1);
-   // }
-  //  void ReviveTimeOut()
-   // {
-    //    Reset();
-    //    Game.Instance.Revive();
-  //  }
     IEnumerator Play(Animation animation, string clipName, bool useTimeScale, Action onComplete)
     {
 

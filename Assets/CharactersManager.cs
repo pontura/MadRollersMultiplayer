@@ -121,7 +121,7 @@ public class CharactersManager : MonoBehaviour {
 
         Vector3 pos;
 
-		float _y = 1;
+		float _y = 2;
 
 		if (Data.Instance.isReplay)
 			_y = 15;
@@ -131,10 +131,17 @@ public class CharactersManager : MonoBehaviour {
 		//if (Data.Instance.playMode == Data.PlayModes.STORY) {
 		//	addCharacter(pos, 0); playerPositions.Add(0);
 		//}
-        if (Data.Instance.multiplayerData.player1) { addCharacter(pos, 0); playerPositions.Add(0); };
-        if (Data.Instance.multiplayerData.player2) { addCharacter(pos, 1); playerPositions.Add(1); };
-        if (Data.Instance.multiplayerData.player3) { addCharacter(pos, 2); playerPositions.Add(2); };
-        if (Data.Instance.multiplayerData.player4) { addCharacter(pos, 3); playerPositions.Add(3); };
+		int positionID = 0;
+		if (Data.Instance.playMode == Data.PlayModes.GHOSTMODE) {
+			InputSavedAutomaticPlay savedAutomaticPlay = Data.Instance.inputSavedAutomaticPlay;
+			savedAutomaticPlay.Init (this);
+			positionID = savedAutomaticPlay.allPlayersSavedData.Count;
+		}		 
+		
+		if (Data.Instance.multiplayerData.player1) { addCharacter(CalculateInitialPosition(pos, positionID), 0); playerPositions.Add(0); };
+		if (Data.Instance.multiplayerData.player2) { addCharacter(CalculateInitialPosition(pos, positionID++), 1); playerPositions.Add(1); };
+		if (Data.Instance.multiplayerData.player3) { addCharacter(CalculateInitialPosition(pos, positionID++), 2); playerPositions.Add(2); };
+		if (Data.Instance.multiplayerData.player4) { addCharacter(CalculateInitialPosition(pos, positionID++), 3); playerPositions.Add(3); };
     }
     void OnDestroy()
     {
@@ -179,16 +186,26 @@ public class CharactersManager : MonoBehaviour {
         pos.x = 0;
         addCharacter(pos, id);
     }
-    public void addCharacter(Vector3 pos, int id)
-    {
+	int automaticIdPosition = 0;
+	public CharacterBehavior AddAutomaticPlayer(int id)
+	{
+		CharacterBehavior newCharacter = addCharacter(CalculateInitialPosition(new Vector3(1,1,1), automaticIdPosition), id);
+		newCharacter.controls.isAutomata = true;
+		automaticIdPosition++;
+		return newCharacter;
+	}
+	Vector3 CalculateInitialPosition(Vector3 pos, int positionID)
+	{
 		float _x;
 		if (Data.Instance.isReplay)
 			_x = 0;
 		else
-			_x = (3.5f * id) - (5.3f);
-			
-		pos = new Vector3(_x,pos.y);
+			_x = (3.5f * positionID) - (5.3f);
 
+		return new Vector3(_x,pos.y);
+	}
+	public CharacterBehavior addCharacter(Vector3 pos, int id)
+    {
         CharacterBehavior newCharacter = null;
         foreach (CharacterBehavior cb in deadCharacters)
         {
@@ -210,6 +227,8 @@ public class CharactersManager : MonoBehaviour {
 
         characters.Add(newCharacter);
         newCharacter.transform.position = pos;
+
+		return newCharacter;
     }
     public void killCharacter(CharacterBehavior characterBehavior)
     {

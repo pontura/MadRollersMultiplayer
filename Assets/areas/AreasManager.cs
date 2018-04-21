@@ -35,7 +35,7 @@ public class AreasManager : MonoBehaviour {
     {
         SocialEvents.OnCompetitionHiscore(1, 0, false);
 
-        if (!Data.Instance.isArcade && Data.Instance.playMode == Data.PlayModes.COMPETITION)
+		if (!Data.Instance.isArcade && Data.Instance.playMode == Data.PlayModes.COMPETITION || Data.Instance.playMode == Data.PlayModes.GHOSTMODE)
             Random.seed = Social.Instance.hiscores.GetMyScore();
         for (int i = 0; i < toRandom.Count; i++)
         {
@@ -56,7 +56,7 @@ public class AreasManager : MonoBehaviour {
 			setNewAreaSet ();
 			return;
 		}
-        if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
+		if (Data.Instance.playMode == Data.PlayModes.COMPETITION || Data.Instance.playMode == Data.PlayModes.GHOSTMODE)
         {
             areaSets.Clear();
             GameObject[] thisAreaSets = Resources.LoadAll<GameObject>("competition_" + Data.Instance.competitionID);

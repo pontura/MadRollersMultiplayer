@@ -116,7 +116,7 @@ public class Missions : MonoBehaviour {
             return;
         }
 #endif
-        if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
+		if (Data.Instance.playMode == Data.PlayModes.COMPETITION  || Data.Instance.playMode == Data.PlayModes.GHOSTMODE)
         {
            // MissionActiveID = 0;
             MissionActive = Data.Instance.competitions.competitions[0].missions[0];
@@ -132,7 +132,7 @@ public class Missions : MonoBehaviour {
 	}
     public Mission[] GetActualMissions()
     {
-        if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
+		if (Data.Instance.playMode == Data.PlayModes.COMPETITION  || Data.Instance.playMode == Data.PlayModes.GHOSTMODE)
             return competitions.GetMissions();
         else return missions;
 
@@ -154,7 +154,7 @@ public class Missions : MonoBehaviour {
             MissionActive.reset();
         } else
         {
-            if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
+			if (Data.Instance.playMode == Data.PlayModes.COMPETITION  || Data.Instance.playMode == Data.PlayModes.GHOSTMODE)
             {
                 MissionActiveID = 0;
                 MissionActive.reset();
@@ -178,7 +178,7 @@ public class Missions : MonoBehaviour {
 
         state = states.ACTIVE;
 		string text = "";
-        if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
+		if (Data.Instance.playMode == Data.PlayModes.COMPETITION  || Data.Instance.playMode == Data.PlayModes.GHOSTMODE)
         {
             if(!Data.Instance.isArcade)
 				text = "CORRE " + MissionActive.distance + " METROS";
@@ -294,7 +294,7 @@ public class Missions : MonoBehaviour {
 		if(missionCompletedPercent >= 100)
 		{
             progressBar.reset();
-            if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
+			if (Data.Instance.playMode == Data.PlayModes.COMPETITION  || Data.Instance.playMode == Data.PlayModes.GHOSTMODE)
             {
                 Data.Instance.events.OnCompetitionMissionComplete();
             }

@@ -97,10 +97,6 @@ public class GameCamera : MonoBehaviour
     void OnChangeMood(int id)
     {
 		return;
-		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {
-		//	Color cameraColor = Game.Instance.moodManager.GetMood (id).cameraColor;
-		//	GetComponent<Camera> ().backgroundColor = cameraColor;
-		}
     }
     public void Init() 
 	{

@@ -4,6 +4,7 @@ using System.Collections;
 
 public class CharacterBehavior : MonoBehaviour {
 
+
     public Animation _animation_hero;
     public float speed;
 	private bool walking1;
@@ -30,6 +31,7 @@ public class CharacterBehavior : MonoBehaviour {
     }
     public CharacterBehavior hasSomeoneOver;
     public CharacterBehavior isOver;
+	public CharacterControls controls;
 
     private int MAX_JETPACK_HEIGHT = 25;
 

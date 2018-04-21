@@ -36,16 +36,8 @@ public class MainMenuActions : MonoBehaviour {
     }
     public void Compite()
     {
-       // if (Data.Instance.levelUnlockedID < 4)
-      //  {
-       //     Data.Instance.LoadLevel("TrainingSplash");
-      //  }
-      //  else
-      //  {
-          //  Data.Instance.levelUnlockedID = Data.Instance.competitions.GetUnlockedLevel();
-            Data.Instance.playMode = Data.PlayModes.COMPETITION;
-            Data.Instance.LoadLevel("Competitions");
-      //  }
+        Data.Instance.playMode = Data.PlayModes.COMPETITION;
+        Data.Instance.LoadLevel("Competitions");
     }
     public void MissionsScene()
     {

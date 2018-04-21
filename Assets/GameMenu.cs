@@ -69,6 +69,14 @@ public class GameMenu : MonoBehaviour {
         Data.Instance.LoadLevel("Competitions");
         Close();
     }
+	public void GhostMode()
+	{
+		Data.Instance.playMode = Data.PlayModes.GHOSTMODE;
+		Data.Instance.events.OnResetLevel();
+		SocialEvents.OnGetHiscores(1);
+		Data.Instance.LoadLevel("Competitions");
+		Close();
+	}
     public void Misiones()
     {
         Data.Instance.playMode = Data.PlayModes.STORY;

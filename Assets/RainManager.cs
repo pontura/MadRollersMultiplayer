@@ -14,7 +14,7 @@ public class RainManager : MonoBehaviour {
 
  	  public void Init()
     {
-        if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
+		if (Data.Instance.playMode == Data.PlayModes.COMPETITION || Data.Instance.playMode == Data.PlayModes.GHOSTMODE)
         {
             isCompetition = true;
             charactersManager = GetComponent<CharactersManager>();
