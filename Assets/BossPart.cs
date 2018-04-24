@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class BossPart : MonoBehaviour {
 
-	public BossThrower boss;
+	public Boss boss;
 	public GameObject asset;
 
-	public void Init(BossThrower _boss)
+	public void Init(Boss _boss)
 	{
 		this.boss = _boss;
 	}

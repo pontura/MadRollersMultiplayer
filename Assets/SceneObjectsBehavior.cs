@@ -13,6 +13,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	public SceneObject Lava;
 	public SceneObject Boss1;
 	public SceneObject Boss2;
+	public SceneObject BossSpace1;
     public SceneObject Starting;
     public SceneObject Calecita;
     public SceneObject FloorSlider;
@@ -30,7 +31,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
     public SceneObject palm3;
     public SceneObject palm4;
     public SceneObject palm_tall;
-	public SceneObject palm_space1;
 	public SceneObject enemyGhost;
     public SceneObject cilindro;
 
@@ -240,6 +240,8 @@ public class SceneObjectsBehavior : MonoBehaviour {
 					clone = Boss1;
 				else if (go.name == "Boss2")
 					clone = Boss2;
+				else if (go.name == "BossSpace1")
+					clone = BossSpace1;			
                 else if (go.name == "Calecita")
                     clone = Calecita;
                 else if (go.name == "Starting")
@@ -258,15 +260,15 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				clone = palm_tall;
             else if (go.name == "palm")
                 {
-					if (Data.Instance.videogamesData.actualID == 1) {
-						clone = palm_space1;
-					}else {
+					//if (Data.Instance.videogamesData.actualID == 1) {
+					//	clone = palm_space1;
+					//}else {
 						int ran = Random.Range (0, 40);
 						if (ran < 20)
 							clone = palm;
 						else if (ran < 40)
 							clone = palm2;
-					}
+					//}
                 }
                 else if (go.name == "streetFloor")
                     clone = streetFloor;

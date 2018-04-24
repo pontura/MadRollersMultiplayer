@@ -52,7 +52,7 @@ public class Breakable : MonoBehaviour {
             Destroy(gameObject);
 
         isOn = false;
-
+		SendMessage("OnActivate", SendMessageOptions.DontRequireReceiver);
         SendMessage("Die", SendMessageOptions.DontRequireReceiver);
         
 	}
