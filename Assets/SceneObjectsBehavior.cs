@@ -135,6 +135,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			case "castle":
 			case "SideMountain":
 			case "bonusEntrance":   
+			case "Cascade": 
 			case "firewall":        
 			case "Baranda1":  
 			case "enemyNaveSimple":  

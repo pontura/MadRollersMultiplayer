@@ -80,7 +80,14 @@ public class CharacterCollisions : MonoBehaviour {
             if (player.fxState == Player.fxStates.NORMAL && characterBehavior.state != CharacterBehavior.states.JETPACK)
                 characterBehavior.Hit();
             other.GetComponent<MmoCharacter>().Die();
-        }
+		} else if (
+			other.tag == "fallingObject"
+			&& characterBehavior.state != CharacterBehavior.states.FALL
+		)
+		{
+			if (player.fxState == Player.fxStates.NORMAL && characterBehavior.state != CharacterBehavior.states.JETPACK)
+				characterBehavior.Hit();
+		}
     }
     void resetHits()
     {

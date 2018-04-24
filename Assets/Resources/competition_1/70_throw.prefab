@@ -10,7 +10,7 @@ GameObject:
   - component: {fileID: 413728}
   - component: {fileID: 11413728}
   m_Layer: 0
-  m_Name: test
+  m_Name: 70_throw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,13 +40,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 772be226d7eee534998f146178bc9df9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  competitionsPriority: 0
-  randomize: 1
+  competitionsPriority: 70
+  randomize: 0
   areas:
+  - {fileID: 114380901353386640, guid: 2026d0a895b84d24aa98d92215513f3b, type: 2}
+  - {fileID: 114784659898383368, guid: c76d5e901b704a4488f2cf6f27904705, type: 2}
+  - {fileID: 114643483579303398, guid: 1f3fcab3e2eadf0479ab272457aff6ec, type: 2}
+  - {fileID: 114784659898383368, guid: c76d5e901b704a4488f2cf6f27904705, type: 2}
+  - {fileID: 114643483579303398, guid: 1f3fcab3e2eadf0479ab272457aff6ec, type: 2}
   - {fileID: 11400042, guid: 7280e0960c1b27a419ba18d6c66d9346, type: 2}
-  - {fileID: 114663833273364278, guid: b99ad69bebfddc14ca168aab9ef65839, type: 2}
-  totalAreasInSet: 10000
-  cameraOrientation: {x: 0, y: 1.5, z: -4}
+  - {fileID: 114380901353386640, guid: 2026d0a895b84d24aa98d92215513f3b, type: 2}
+  - {fileID: 114784659898383368, guid: c76d5e901b704a4488f2cf6f27904705, type: 2}
+  - {fileID: 114643483579303398, guid: 1f3fcab3e2eadf0479ab272457aff6ec, type: 2}
+  - {fileID: 11400042, guid: 7280e0960c1b27a419ba18d6c66d9346, type: 2}
+  totalAreasInSet: 9
+  cameraOrientation: {x: 0, y: 1, z: -3}
   cameraRotationX: 0
   isLastArea: 0
 --- !u!1001 &100100000

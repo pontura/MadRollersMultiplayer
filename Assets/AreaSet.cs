@@ -27,7 +27,6 @@ public class AreaSet : MonoBehaviour {
 	public Area getArea () {
         Area area;
 
-        Random.seed = (int)System.DateTime.Now.Ticks;
 
         if (randomize)
             area = areas[Random.Range(0, areas.Length)];

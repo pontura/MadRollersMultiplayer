@@ -77,6 +77,8 @@ public class Data : MonoBehaviour {
     }
 	void Awake () {
 
+		Random.seed = 42;
+
 		if (RESET)
 			PlayerPrefs.DeleteAll ();
       //  Cursor.visible = false;
