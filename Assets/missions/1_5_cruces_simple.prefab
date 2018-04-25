@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 11476576}
   - component: {fileID: 11476574}
   m_Layer: 0
-  m_Name: 1_4_cruces_simple
+  m_Name: 1_5_cruces_simple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ae5373021f0466940b3eb7076fa530ab, type: 2}
   - {fileID: 11400000, guid: 6f84b1d1f5c9b6c4f846835efe5df0a8, type: 2}
   - {fileID: 11400000, guid: 2df957d36985a914f9c3a8d4f68fe2d3, type: 2}
-  activeAreaSetID: 6
+  activeAreaSetID: 1
   showRelaxAreaBeforeStarting: 0
 --- !u!114 &11476576
 MonoBehaviour:
@@ -61,9 +61,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c52aa23c4c1909c45b1a2eeadb8f98cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 3
+  id: 4
   backgroundSides:
   - {fileID: 114621687253337444, guid: 4f1d5121ab1bedc4682219f82ac00fd9, type: 2}
+  voices:
+  - text: 
+    audioClip: {fileID: 8300000, guid: 6134bbcf0580be241a59783ebaeab5ae, type: 3}
+  - text: 
+    audioClip: {fileID: 8300000, guid: 482ce4025c792b04c88a58c51d5a0ede, type: 3}
+  - text: 
+    audioClip: {fileID: 8300000, guid: 9d495e62fbf695a49aa63a304a50ce63, type: 3}
   videoGameID: 0
   missionIcon: {fileID: 1990816073027026, guid: e7089f9085069d644a195cd14303039b,
     type: 2}
@@ -75,7 +82,7 @@ MonoBehaviour:
   hearts: 0
   guys: 0
   ghost: 0
-  points: 512
+  points: 36
   listeners: 0
   planes: 0
   bombs: 0

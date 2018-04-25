@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Mission: MonoBehaviour {
 
 	public int id;
 	public BackgroundSideData[] backgroundSides;
+
+	public List<VoicesManager.VoiceData> voices;
 
 	public int videoGameID;
 	public GameObject missionIcon;
@@ -27,7 +30,6 @@ public class Mission: MonoBehaviour {
 
 	public void Init()
 	{
-		//print ("Init Mission ___________________" + missionIcon.name);
 		if(backgroundSides.Length>0)
 			Data.Instance.events.OnChangeBackgroundSide (backgroundSides);
 	}

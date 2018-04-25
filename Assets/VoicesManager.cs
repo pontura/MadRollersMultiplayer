@@ -14,19 +14,6 @@ public class VoicesManager : MonoBehaviour
 	public List<VoiceData> lose_good;
 	public List<VoiceData> lose_great;
 
-	public List<VoiceData> mission_1_2;
-	public List<VoiceData> mission_1_3;
-	public List<VoiceData> mission_1_4;
-	public List<VoiceData> mission_1_5;
-	public List<VoiceData> mission_1_6;
-	public List<VoiceData> mission_1_7;
-	public List<VoiceData> mission_1_8;
-	public List<VoiceData> mission_1_9;
-	public List<VoiceData> mission_1_10;
-
-	public List<VoiceData> mission_2_1;
-	public List<VoiceData> mission_2_2;
-
 	public VoiceData selectMadRollers;
 
 	public AudioSpectrum audioSpectrum;
@@ -92,44 +79,8 @@ public class VoicesManager : MonoBehaviour
         }
 		else if (message == "ShowMissionName")
 		{
-			switch (Data.Instance.missions.MissionActiveID) {
-			case 1:
-				PlaySequence (mission_1_2);
-				break;
-			case 2:
-				PlaySequence (mission_1_3);
-				break;
-			case 3:
-				PlaySequence (mission_1_4);
-				break;
-			case 4:
-				PlaySequence (mission_1_5);
-				break;
-			case 5:
-				PlaySequence (mission_1_6);
-				break;
-			case 6:
-				PlaySequence (mission_1_7);
-				break;
-			case 7:
-				PlaySequence (mission_1_8);
-				break;
-			case 8:
-				PlaySequence (mission_1_9);
-				break;
-			case 9:
-				PlaySequence (mission_1_10);
-				break;
-			case 10:
-				PlaySequence (mission_1_10);
-				break;
-			case 11:
-				PlaySequence (mission_2_1);
-				break;
-			case 12:
-				PlaySequence (mission_2_2);
-				break;
-			}
+			if(Data.Instance.missions.MissionActive.voices.Count > 0)
+				PlaySequence (Data.Instance.missions.MissionActive.voices);
 		}
     }
 	int sequenceID = 0;

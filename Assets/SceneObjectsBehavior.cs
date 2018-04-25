@@ -14,6 +14,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	public SceneObject Boss1;
 	public SceneObject Boss2;
 	public SceneObject BossSpace1;
+	public SceneObject BossPacmans;
     public SceneObject Starting;
     public SceneObject Calecita;
     public SceneObject FloorSlider;
@@ -205,57 +206,57 @@ public class SceneObjectsBehavior : MonoBehaviour {
 
                 if (go.name == "FloorSurface")
                     clone = FloorSurface;
-                if (go.name == "PisoPinche")
-                    clone = PisoPinche;
-                else if (go.name == "house1")
-                    clone = house1;
-                else if (go.name == "house2")
-                    clone = house2;
-                else if (go.name == "house3")
-                    clone = house3;
-                else if (go.name == "house4")
-                    clone = house4;
-                else if (go.name == "rampa")
-                    clone = rampa;
-                else if (go.name == "rampaHuge")
-                    clone = rampaHuge;
-                else if (go.name == "wallBig")
-                {
-                    //  addDecorationWithRotation("Graffiti_Real", pos, go.transform.localEulerAngles);
-                    clone = wallBig;
-                }
-                else if (go.name == "wallMedium")
-                    clone = wallMedium;
-                else if (go.name == "wallSmall")
-                    clone = wallSmall;
-                else if (go.name == "wallSuperSmall")
-                    clone = wallSuperSmall;
-                else if (go.name == "jumper")
-                    clone = jumper;
-				else if (go.name == "Lava")
-					clone = Lava;
-				else if (go.name == "Water")
-					clone = Water;
-				else if (go.name == "Boss1")
-					clone = Boss1;
-				else if (go.name == "Boss2")
-					clone = Boss2;
-				else if (go.name == "BossSpace1")
-					clone = BossSpace1;			
-                else if (go.name == "Calecita")
-                    clone = Calecita;
-                else if (go.name == "Starting")
-                    clone = Starting;                    
-                else if (go.name == "bomb1")
-                    clone = bomb1;
-                else if (go.name == "tunel1")
-                    clone = tunel1;
-                else if (go.name == "tunel2")
-                    clone = tunel2;
-                else if (go.name == "cilindro")
-                    clone = cilindro;
-				else if (go.name == "enemyGhost")
-					clone = enemyGhost;
+			if (go.name == "PisoPinche")
+				clone = PisoPinche;
+			else if (go.name == "house1")
+				clone = house1;
+			else if (go.name == "house2")
+				clone = house2;
+			else if (go.name == "house3")
+				clone = house3;
+			else if (go.name == "house4")
+				clone = house4;
+			else if (go.name == "rampa")
+				clone = rampa;
+			else if (go.name == "rampaHuge")
+				clone = rampaHuge;
+			else if (go.name == "wallBig") {
+				//  addDecorationWithRotation("Graffiti_Real", pos, go.transform.localEulerAngles);
+				clone = wallBig;
+			} else if (go.name == "wallMedium")
+				clone = wallMedium;
+			else if (go.name == "wallSmall")
+				clone = wallSmall;
+			else if (go.name == "wallSuperSmall")
+				clone = wallSuperSmall;
+			else if (go.name == "jumper")
+				clone = jumper;
+			else if (go.name == "Lava")
+				clone = Lava;
+			else if (go.name == "Water")
+				clone = Water;
+			else if (go.name == "Boss1")
+				clone = Boss1;
+			else if (go.name == "Boss2")
+				clone = Boss2;
+			else if (go.name == "BossSpace1")
+				clone = BossSpace1;
+			else if (go.name == "BossPacmans")
+				clone = BossPacmans;
+            else if (go.name == "Calecita")
+                clone = Calecita;
+            else if (go.name == "Starting")
+                clone = Starting;                    
+            else if (go.name == "bomb1")
+                clone = bomb1;
+            else if (go.name == "tunel1")
+                clone = tunel1;
+            else if (go.name == "tunel2")
+                clone = tunel2;
+            else if (go.name == "cilindro")
+                clone = cilindro;
+			else if (go.name == "enemyGhost")
+				clone = enemyGhost;
 			else if (go.name == "palmTall")
 				clone = palm_tall;
             else if (go.name == "palm")

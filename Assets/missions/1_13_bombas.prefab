@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 11400002}
   - component: {fileID: 11400000}
   m_Layer: 0
-  m_Name: 1_9_rebotes
+  m_Name: 1_13_bombas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,7 +24,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.0593038, y: -96.47865, z: 122.63338}
+  m_LocalPosition: {x: -0.0025587082, y: -0.0018539429, z: -0.0011138916}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -42,8 +42,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   areaSets:
-  - {fileID: 11400000, guid: eaf7a45e3d35ce14aa7bb74b52620eaf, type: 2}
-  activeAreaSetID: 1
+  - {fileID: 11400000, guid: 0a3745d02ff7068429d1e9ae664749ce, type: 2}
+  - {fileID: 11400000, guid: e7df4500f43291949953530bc02f87fa, type: 2}
+  - {fileID: 11400000, guid: 0a3745d02ff7068429d1e9ae664749ce, type: 2}
+  activeAreaSetID: 3
   showRelaxAreaBeforeStarting: 0
 --- !u!114 &11400002
 MonoBehaviour:
@@ -56,26 +58,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c52aa23c4c1909c45b1a2eeadb8f98cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 8
+  id: 12
   backgroundSides:
   - {fileID: 114406897925718168, guid: d77188fe2cbab6e488b67faba85b7357, type: 2}
+  voices:
+  - text: 
+    audioClip: {fileID: 8300000, guid: b0b7e9d022ae4a24092a869bdf74468c, type: 3}
   videoGameID: 0
-  missionIcon: {fileID: 1138362766969914, guid: 959c3d51a9604bf4aa183cb81b5a3601,
+  missionIcon: {fileID: 1211333911257150, guid: 9ace9b78c9bd5bf439e6fe98d5e6f1b8,
     type: 2}
   isCompetition: 0
-  maxScore: 0
+  maxScore: 2000
   Hiscore: 0
   avatarHiscore: 
   boss1: 0
   hearts: 0
   guys: 0
   ghost: 0
-  points: 440
+  points: 0
   listeners: 0
   planes: 0
-  bombs: 0
-  distance: 440
-  description: BOUNCING MUSHROOMS
+  bombs: 1
+  distance: 0
+  description: DESTROY MISSIL
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
