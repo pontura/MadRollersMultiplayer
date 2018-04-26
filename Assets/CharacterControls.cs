@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CharacterControls : MonoBehaviour {
 
 	public bool isAutomata;
     CharacterBehavior characterBehavior;
+	public List<CharacterBehavior> childs;
     Player player;
     private float rotationY;
     private float rotationZ = 0;
@@ -17,29 +19,27 @@ public class CharacterControls : MonoBehaviour {
 	void Start () {
         characterBehavior = GetComponent<CharacterBehavior>();
         player = GetComponent<Player>();
-        if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
-            mobileController = true;
-        StartCoroutine(enabledMovements());
-
+        Invoke("EnabledMovements", 0.5f);
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
 	}
-    IEnumerator enabledMovements()
+	void EnabledMovements()
     {
-        yield return new WaitForSeconds(0.5f);
         ControlsEnabled = true;
     }
+	public void AddNewChild(CharacterBehavior child)
+	{
+		childs.Add (child);
+	}
+	public void RemoveChild(CharacterBehavior child)
+	{
+		childs.Remove (child);
+	}
 	// Update is called once per frame
 	void LateUpdate () {
 		
 		if (characterBehavior.state == CharacterBehavior.states.CRASH || characterBehavior.state == CharacterBehavior.states.DEAD) 
 			return;
 		if (Time.deltaTime == 0) return;
-
-		//if (InputManager.getFire(player.id))
-		//{
-		//	Data.Instance.events.OnFireUI();
-		//}
-
 		if (mobileController) {
 			moveByAccelerometer ();
 		} else if(!isAutomata)
@@ -51,6 +51,8 @@ public class CharacterControls : MonoBehaviour {
             if (InputManager.getJump(player.id))
             {
                 characterBehavior.Jump();
+				if(childs.Count>0)
+					StartCoroutine ( ChildsJump ());
             } else
             if (Input.GetButton("Jump1"))
             {
@@ -66,35 +68,7 @@ public class CharacterControls : MonoBehaviour {
 		characterBehavior.UpdateByController(rotationY); 
 	}
 
-    private void moveByAccelerometer()
-    {
-        if (Input.touchCount > 0)
-        {
-            var touch = Input.touches[0];
-           if (touch.position.x < Screen.width / 2)
-            {
-                if (Input.GetTouch(0).phase == TouchPhase.Began)
-                    characterBehavior.Jump();
-                else
-                {
-                    characterBehavior.JumpPressed();
-                }
-            }
-            else if (touch.position.x > Screen.width / 2)
-            {
-                characterBehavior.CheckFire();
-            }
-        } else
-        {
-            characterBehavior.AllButtonsReleased();
-        } 
-
-
-        if (Time.deltaTime == 0) return;
-        transform.localRotation = Quaternion.Euler(transform.localRotation.x, Input.acceleration.x * 50, rotationZ);
-       // transform.Translate(0, 0, Time.deltaTime * characterBehavior.speed);
-
-    }
+  
 	float lastHorizontalKeyPressed;
     private void moveByKeyboard()
     {
@@ -103,7 +77,8 @@ public class CharacterControls : MonoBehaviour {
 		float _speed = InputManager.getHorizontal(player.id);
 		if (lastHorizontalKeyPressed != _speed) {
 			lastHorizontalKeyPressed = _speed;
-			Data.Instance.inputSaver.MoveInX (lastHorizontalKeyPressed, transform.position);
+			if(!isAutomata)
+				Data.Instance.inputSaver.MoveInX (lastHorizontalKeyPressed, transform.position);
 		}
 		MoveInX (_speed);
     }
@@ -130,6 +105,71 @@ public class CharacterControls : MonoBehaviour {
 		if (Time.deltaTime == 0) return;
 
 		transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, rotationY, rotationZ);
+
+		if (childs.Count > 0)
+			UpdateChilds ();
+	}
+
+	//childs:
+	IEnumerator ChildsJump()
+	{
+		foreach (CharacterBehavior cb in childs) {
+			yield return new WaitForSeconds (0.18f);
+			cb.Jump ();
+		}
+		yield return null;
+	}
+	void UpdateChilds()
+	{
+		foreach (CharacterBehavior cb in childs) {
+			cb.controls.rotationY = rotationY / 1.5f;
+			cb.transform.localRotation = transform.localRotation;
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/// <summary>
+	/// For mobile
+	/// </summary>
+	private void moveByAccelerometer()
+	{
+		if (Input.touchCount > 0)
+		{
+			var touch = Input.touches[0];
+			if (touch.position.x < Screen.width / 2)
+			{
+				if (Input.GetTouch(0).phase == TouchPhase.Began)
+					characterBehavior.Jump();
+				else
+				{
+					characterBehavior.JumpPressed();
+				}
+			}
+			else if (touch.position.x > Screen.width / 2)
+			{
+				characterBehavior.CheckFire();
+			}
+		} else
+		{
+			characterBehavior.AllButtonsReleased();
+		} 
+
+
+		if (Time.deltaTime == 0) return;
+		transform.localRotation = Quaternion.Euler(transform.localRotation.x, Input.acceleration.x * 50, rotationZ);
+
+		// transform.Translate(0, 0, Time.deltaTime * characterBehavior.speed);
 
 	}
 }

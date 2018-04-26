@@ -68,9 +68,9 @@ public class CharacterBehavior : MonoBehaviour {
 
         Invoke("RefreshPosition", 0.1f);
 		//if(Data.Instance.isArcadeMultiplayer)
-       		_animation_hero.Play("saluda");
+       		//_animation_hero.Play("saluda");
 
-		//state = states.RUN;
+		state = states.RUN;
 	}
     void OnDestroy ()
     {
@@ -251,20 +251,29 @@ public class CharacterBehavior : MonoBehaviour {
             GetComponent<Rigidbody>().useGravity = true;
         }
 
-        Vector3 goTo = transform.position;
 
-        if (isOver)
-        {
-            goTo.x = isOver.transform.localPosition.x;
-            goTo.y = isOver.transform.localPosition.y + 1;
-            goTo.z = isOver.transform.localPosition.z+0.2f;
-        }
-        else
-        {
-            goTo.x += (rotationY / 3) * Time.deltaTime;
-            goTo.z = player.charactersManager.distance - (position / 1);
-        }
-        transform.position = Vector3.Lerp(transform.position, goTo, 6);
+     //   if (isOver)
+     //   {
+     //       goTo.x = isOver.transform.localPosition.x;
+      //      goTo.y = isOver.transform.localPosition.y + 1;
+      //      goTo.z = isOver.transform.localPosition.z+0.2f;
+      //  }
+     //   else
+      //  {
+
+		if (!controls.isAutomata) {			
+			Vector3 goTo = transform.position;
+			goTo.x += (rotationY / 3) * Time.deltaTime; 
+	        goTo.z = player.charactersManager.distance - (position / 1);
+		    transform.position = goTo;		
+
+			foreach(CharacterBehavior cb in controls.childs)
+			{
+				float newZ = goTo.z - (1.7f*(cb.player.id-3));
+				goTo.x = Mathf.Lerp (cb.transform.position.x, goTo.x, 0.1f);
+				cb.transform.position = new Vector3(goTo.x, cb.transform.position.y, newZ);
+			}
+		}
 
         if (transform.position.y < heightToFall)
 		{
@@ -480,6 +489,10 @@ public class CharacterBehavior : MonoBehaviour {
     }
     void CrashReal()
     {
+		if (controls.isAutomata) {
+			data.events.OnAutomataCharacterDie (this);
+			return;
+		}
         if (player.charactersManager.getTotalCharacters() == 1) return;
         Time.timeScale = 0.02f;
         StartCoroutine(lowCamera());

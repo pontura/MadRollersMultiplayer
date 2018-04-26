@@ -87,6 +87,9 @@ public class CharactersManager : MonoBehaviour {
     void Update()
     {
 		
+		if(Input.GetKeyDown(KeyCode.M))
+			AddChildPlayer( getMainCharacter() );
+		
 		if (Data.Instance.isArcadeMultiplayer) return;
 		if (Game.Instance.level.waitingToStart) return;
         if (gameOver) return;
@@ -118,6 +121,7 @@ public class CharactersManager : MonoBehaviour {
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
         Data.Instance.events.OnAvatarFall += OnAvatarFall;
         Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
+		Data.Instance.events.OnAutomataCharacterDie += OnAutomataCharacterDie;
 
         Vector3 pos;
 
@@ -151,7 +155,27 @@ public class CharactersManager : MonoBehaviour {
         Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
         Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
         Data.Instance.events.OnAlignAllCharacters -= OnAlignAllCharacters;
+		Data.Instance.events.OnAutomataCharacterDie -= OnAutomataCharacterDie;
     }
+	void OnAutomataCharacterDie(CharacterBehavior automataCharacter)
+	{
+		CharacterBehavior parentCharacter = null;
+		CharacterBehavior childCharacter = null;
+		foreach (CharacterBehavior cb1 in characters) {
+			foreach (CharacterBehavior cb2 in cb1.controls.childs) {
+				if (cb2 == automataCharacter) {					
+					parentCharacter = cb1;
+					childCharacter = cb2; 
+					parentCharacter.controls.StopAllCoroutines ();
+					childCharacter.GetComponent<CharacterAutomata> ().Reset ();
+				}					
+			}
+		}
+		if(childCharacter != null)
+			parentCharacter.controls.RemoveChild (childCharacter);
+		
+		deadCharacters.Remove (automataCharacter);
+	}
     void OnReorderAvatarsByPosition(List<int> playerPositions)
     {
         this.playerPositions = playerPositions;
@@ -193,6 +217,14 @@ public class CharactersManager : MonoBehaviour {
 		newCharacter.controls.isAutomata = true;
 		automaticIdPosition++;
 		return newCharacter;
+	}
+	void AddChildPlayer(CharacterBehavior parentPlayer)
+	{
+		int id = parentPlayer.controls.childs.Count + 4;
+		CharacterBehavior newCharacter = addCharacter(parentPlayer.transform.position, id);
+		newCharacter.controls.isAutomata = true;
+		parentPlayer.controls.AddNewChild( newCharacter );
+		newCharacter.GetComponent<CharacterAutomata> ().Init ();
 	}
 	Vector3 CalculateInitialPosition(Vector3 pos, int positionID)
 	{

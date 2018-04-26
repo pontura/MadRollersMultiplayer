@@ -25,6 +25,8 @@ public class ArcadeGUI : MonoBehaviour {
     }
 
 	void Start () {
+		if (Data.Instance.playMode == Data.PlayModes.STORY)
+			panel.SetActive (false);
         singleSignal.SetActive(false);
         characterManager = Game.Instance.GetComponent<CharactersManager>();
         ended = false;
@@ -174,6 +176,8 @@ public class ArcadeGUI : MonoBehaviour {
     }
     void OnScoreOn(int playerID, Vector3 pos, int total)
     {
+		if (!isAnActivePlayer(playerID))
+			return;
         SetScoreToUI(playerID, total);
 	}
     void StartMultiplayerStatus()
@@ -249,8 +253,16 @@ public class ArcadeGUI : MonoBehaviour {
     }
     void OnAvatarDie(CharacterBehavior cb)
     {
+		if (!isAnActivePlayer(cb.player.id))
+			return;
         GetPlayerUI(cb.player.id).Dead();
     }
+	bool isAnActivePlayer(int playerID)
+	{
+		if (playerID > 3)
+			return false;
+		return true;
+	}
     private bool CanRevive(int playerID)
     {
         if (GetPlayerUI(playerID).state == MultiplayerUIStatus.states.DEAD)

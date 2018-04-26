@@ -36,7 +36,14 @@ public class Projectil : SceneObject {
         transform.position = pos;
 
 		MultiplayerData multiplayerData = Data.Instance.multiplayerData;
-		Color playerColor = multiplayerData.colors[playerID];
+
+		Color playerColor;
+
+		if(playerID<4)
+			playerColor = multiplayerData.colors[playerID];
+		else
+			playerColor = multiplayerData.colors[4];
+		
 		playerColor.a = 0.5f;
 
 		GetComponent<TrailRenderer> ().startColor = playerColor;

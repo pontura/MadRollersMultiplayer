@@ -10,6 +10,7 @@ public class Player : MonoBehaviour {
 	public Material Gorro2;
 	public Material Gorro3;
 	public Material Gorro4;
+	public Material Gorro5;
 
 	private Game game;
 	private Gui gui;
@@ -69,7 +70,9 @@ public class Player : MonoBehaviour {
     public void Init(int id)
     {
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
-		color = Data.Instance.GetComponent<MultiplayerData>().colors[Mathf.Abs(id)];
+
+		if(id>3)
+			color = Data.Instance.GetComponent<MultiplayerData>().colors[4];
 
        // if (Data.Instance.isArcadeMultiplayer)
 		switch (id) {
@@ -84,6 +87,9 @@ public class Player : MonoBehaviour {
 			break;
 		case 3:
 			GorroMaterial.material = Gorro4;
+			break;
+		default:
+			GorroMaterial.material = Gorro5;
 			break;
 		}
 

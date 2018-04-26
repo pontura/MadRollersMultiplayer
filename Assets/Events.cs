@@ -106,4 +106,5 @@ public class Events : MonoBehaviour {
 	public System.Action OnJoystickClick = delegate { };
 	public System.Action OnJoystickBack= delegate { };
 	public System.Action<bool> OnTalk = delegate { };
+	public System.Action<CharacterBehavior> OnAutomataCharacterDie = delegate { };
 }

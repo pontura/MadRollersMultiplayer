@@ -719,6 +719,7 @@ GameObject:
   - component: {fileID: 11414192}
   - component: {fileID: 11480918}
   - component: {fileID: 13658266}
+  - component: {fileID: 114015396242777176}
   m_Layer: 17
   m_Name: PlayerMultiplayer
   m_TagString: Untagged
@@ -1930,6 +1931,7 @@ MonoBehaviour:
   Gorro2: {fileID: 2100000, guid: 70f8716d2ab0f61478a12a0108b002f2, type: 2}
   Gorro3: {fileID: 2100000, guid: e8ee6efad7620e5469596782af0b4bc5, type: 2}
   Gorro4: {fileID: 2100000, guid: c452d8b10a8ce754c9cf84060b803e73, type: 2}
+  Gorro5: {fileID: 2100000, guid: 83430d28c1b10a24183e1a97684589df, type: 2}
   particles: {fileID: 194122}
   id: 0
   weapon: {fileID: 0}
@@ -1967,6 +1969,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAutomata: 0
+  childs: []
 --- !u!135 &13515790
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -5698,6 +5701,17 @@ Transform:
   m_Father: {fileID: 4151885515377334}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114015396242777176
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adea57c643d971e4e9b58845dcb424a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!119 &119253533208346674
 Projector:
   m_ObjectHideFlags: 1

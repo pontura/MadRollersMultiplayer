@@ -21,6 +21,8 @@ public class ScoreSignal : SceneObject
     }
     public void SetScore(int playerID, int qty)
     {
+		if (playerID > 3)
+			return;
 		field.color = Data.Instance.GetComponent<MultiplayerData>().colors[playerID];
         field.text = "+" + qty.ToString();
         field_outline.text = "+" + qty.ToString();
