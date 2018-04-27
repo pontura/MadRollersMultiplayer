@@ -69,9 +69,9 @@ public class Summary : MonoBehaviour {
 			if (processAxis) {
 				float v = InputManager.getVertical (a);
 				if (v < -0.5f)
-					OnJoystickUp ();
-				else if (v > 0.5f)
 					OnJoystickDown ();
+				else if (v > 0.5f)
+					OnJoystickUp ();
 			}
 		}
 	}
@@ -105,9 +105,10 @@ public class Summary : MonoBehaviour {
 			Restart ();
 		} else if (optionSelected == 1) {			
 			Restart ();
-		}
-		else if(optionSelected == 2)
+		} else if (optionSelected == 2) {
+			Data.Instance.inputSavedAutomaticPlay.RemoveAllData ();
 			Game.Instance.GotoLevelSelector ();	
+		}
 		isOn = false;
 	}
 	void OnJoystickBack () {

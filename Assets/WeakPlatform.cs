@@ -33,9 +33,10 @@ public class WeakPlatform : SceneObject {
     }
 	void ChangeMaterials(Renderer renderer)
 	{
-		renderer.material.color = floor_top;
-		if(renderer.sharedMaterials.Length>1)
-			renderer.sharedMaterials[0].color = floor_border;
+		if(renderer.gameObject.name == "top")
+			renderer.material.color = floor_top;
+		else
+			renderer.material.color = floor_border;
 	}
    void OnTriggerEnter(Collider other) 
 	{
