@@ -5,8 +5,10 @@ public class WeakPlatform : SceneObject {
 	
 	public GameObject to;
 	public int videoGame_ID;
-	Material floor_top;
-	Material floor_border ;
+
+	Color floor_top;
+	Color floor_border ;
+
 	Rigidbody rb;
     public override void OnRestart(Vector3 pos)
     {
@@ -31,9 +33,9 @@ public class WeakPlatform : SceneObject {
     }
 	void ChangeMaterials(Renderer renderer)
 	{
-		renderer.material = floor_top;
+		renderer.material.color = floor_top;
 		if(renderer.sharedMaterials.Length>1)
-			renderer.sharedMaterials[0] = floor_border;
+			renderer.sharedMaterials[0].color = floor_border;
 	}
    void OnTriggerEnter(Collider other) 
 	{

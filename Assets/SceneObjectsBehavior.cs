@@ -162,23 +162,24 @@ public class SceneObjectsBehavior : MonoBehaviour {
 //                        }
 //                        else
 //                        {
-                            sceneObject.changeMaterial("pasto");
-                            if (go.name == "extralargeBlock1")
-                            {
-								AddBorder (Border_videogame_1, sceneObject.transform.position, go.transform.rotation);
-                                int num = Random.Range(1, 4);
-                                string decorationName = "";
-                                if (num == 1)
-                                    decorationName = "flores1_real";
-                                if (num == 2)
-                                    decorationName = "flores2_real";
-                                else if (num == 3)
-                                    decorationName = "floorFlowers_real";
+	                    sceneObject.changeMaterial("pasto");
+	                    if (go.name == "extralargeBlock1")
+	                    {
 
-                                if (decorationName != "")
-                                    addDecoration(decorationName, pos, Vector3.zero);
+							AddBorder (Border_videogame_1, sceneObject.transform.position, go.transform.rotation);
+	                        int num = Random.Range(1, 4);
+	                        string decorationName = "";
+	                        if (num == 1)
+	                            decorationName = "flores1_real";
+	                        if (num == 2)
+	                            decorationName = "flores2_real";
+	                        else if (num == 3)
+	                            decorationName = "floorFlowers_real";
 
-                            }
+	                        if (decorationName != "")
+	                            addDecoration(decorationName, pos, Vector3.zero);
+
+	                    }
                       //  }
                         if (go.GetComponent<DecorationManager>())
                         {

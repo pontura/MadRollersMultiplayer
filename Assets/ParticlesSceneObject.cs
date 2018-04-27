@@ -21,7 +21,7 @@ public class ParticlesSceneObject : SceneObject {
         explotion.Play();
     }
     public void SetColor(Color color)
-    {        
+    {      
         color.a = 0.45f;
 
         foreach (ParticleSystem ps in explotions_to_colorize)
