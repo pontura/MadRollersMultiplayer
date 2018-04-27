@@ -113,6 +113,8 @@ public class CharacterControls : MonoBehaviour {
 	//childs:
 	IEnumerator ChildsJump()
 	{
+		if(childs == null || childs.Count>0)
+			yield return null;
 		foreach (CharacterBehavior cb in childs) {
 			yield return new WaitForSeconds (0.18f);
 			cb.Jump ();

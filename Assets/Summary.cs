@@ -12,7 +12,7 @@ public class Summary : MonoBehaviour {
     public Animation anim;
 
 	public List<MainMenuButton> buttons;
-	int optionSelected = 0;
+	public int optionSelected = 0;
     private bool isOn;
 
     void Start()
@@ -44,9 +44,7 @@ public class Summary : MonoBehaviour {
 		isOn = true;
         panel.SetActive(true);
         
-		buttons [0].SetOn (true);
-		buttons [1].SetOn (false);
-
+		SetSelected ();
         StartCoroutine(Play(anim, "popupOpen", false, null));
 	}
 	public void Restart()
@@ -83,20 +81,32 @@ public class Summary : MonoBehaviour {
 	bool processAxis;
 
 	void OnJoystickUp () {
-		buttons [0].SetOn (true);
-		buttons [1].SetOn (false);
-		optionSelected = 0;
+		if (optionSelected >= buttons.Count - 1)
+			return;
+		optionSelected++;
+		SetSelected ();
 	}
 	void OnJoystickDown () {
-		buttons [1].SetOn (true);
-		buttons [0].SetOn (false);
-		optionSelected = 1;
+		if (optionSelected <= 0)
+			return;
+		optionSelected--;
+		SetSelected ();
+	}
+	void SetSelected()
+	{
+		foreach(MainMenuButton b in buttons)
+			b.SetOn (false);
+		buttons [optionSelected].SetOn (true);
 	}
 
 	void OnJoystickClick () {
-		if (optionSelected == 0)
+		if (optionSelected == 0) {
+			Data.Instance.inputSavedAutomaticPlay.RemoveAllData ();
 			Restart ();
-		else
+		} else if (optionSelected == 1) {			
+			Restart ();
+		}
+		else if(optionSelected == 2)
 			Game.Instance.GotoLevelSelector ();	
 		isOn = false;
 	}
