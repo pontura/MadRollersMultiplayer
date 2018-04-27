@@ -50,10 +50,8 @@ public class MainMenu : MonoBehaviour {
 	{
 		if (activeID == 0)
 			MissionsScene ();
-		else if (activeID == 1)
-			Ghost();
 		//	Data.Instance.LoadLevel("PlayersSelector");
-		else if (activeID == 2) {			
+		else if (activeID == 1) {			
 			Compite ();
 		}
 
@@ -92,13 +90,6 @@ public class MainMenu : MonoBehaviour {
 		Data.Instance.LoadLevel("LevelSelector");
 //		Data.Instance.playMode = Data.PlayModes.COMPETITION;
 //		Data.Instance.LoadLevel("Competitions");
-	}
-	void Ghost()
-	{
-		Data.Instance.playMode = Data.PlayModes.GHOSTMODE;
-		Data.Instance.LoadLevel("LevelSelector");
-		//		Data.Instance.playMode = Data.PlayModes.COMPETITION;
-		//		Data.Instance.LoadLevel("Competitions");
 	}
 //	public void Compite()
 //	{

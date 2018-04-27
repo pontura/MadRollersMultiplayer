@@ -56,7 +56,7 @@ public class AreasManager : MonoBehaviour {
 			setNewAreaSet ();
 			return;
 		}
-		if (Data.Instance.playMode == Data.PlayModes.COMPETITION || Data.Instance.playMode == Data.PlayModes.GHOSTMODE)
+		if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
         {
             areaSets.Clear();
             GameObject[] thisAreaSets = Resources.LoadAll<GameObject>("competition_" + Data.Instance.competitionID);

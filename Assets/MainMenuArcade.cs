@@ -46,7 +46,7 @@ public class MainMenuArcade : MonoBehaviour {
             id++;
             pm.Init();
         }
-		if (Data.Instance.playMode == Data.PlayModes.COMPETITION  || Data.Instance.playMode == Data.PlayModes.GHOSTMODE) {
+		if (Data.Instance.playMode == Data.PlayModes.COMPETITION ) {
 			LoopWinners ();
 			SetFields (0);
 		}

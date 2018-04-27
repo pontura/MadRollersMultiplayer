@@ -92,17 +92,17 @@ public class LevelSelector : MonoBehaviour {
 	{
 		data.missions.MissionActiveID =lastButtonSelected.id;
 
-
-		if (Data.Instance.playMode == Data.PlayModes.STORY)
+		if (
+			(Data.Instance.playMode == Data.PlayModes.STORY
+			)) {
 			Data.Instance.LoadLevel("Game");
-		else if(Data.Instance.playMode == Data.PlayModes.GHOSTMODE)
-			Data.Instance.LoadLevel("Game");
-		else
+			Data.Instance.isReplay = true;
+		}	else 
 			Data.Instance.LoadLevel("MainMenuArcade");
 	}
 	void OnJoystickUp()
 	{
-		if (Data.Instance.playMode == Data.PlayModes.GHOSTMODE || Data.Instance.playMode == Data.PlayModes.COMPETITION) {
+		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {
 			OnJoystickLeft ();
 			return;
 		} else
@@ -112,7 +112,7 @@ public class LevelSelector : MonoBehaviour {
 	}
 	void OnJoystickDown()
 	{
-		if (Data.Instance.playMode == Data.PlayModes.GHOSTMODE || Data.Instance.playMode == Data.PlayModes.COMPETITION) {
+		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {
 			OnJoystickRight ();
 			return;
 		} else
@@ -287,6 +287,7 @@ public class LevelSelector : MonoBehaviour {
 	}
 	public void OnJoystickBack()
     {
+		
         Data.Instance.LoadLevel("MainMenu");
     }
 	public void SelectFirstLevelOf(int videoGameID)

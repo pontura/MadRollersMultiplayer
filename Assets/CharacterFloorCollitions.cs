@@ -78,7 +78,8 @@ public class CharacterFloorCollitions : MonoBehaviour {
     
 
 	void OnTriggerEnter(Collider other) {
-
+		if (characterBehavior == null)
+			return;
         if (state == states.ON_START_JUMPING) return;
         if (characterBehavior.state == CharacterBehavior.states.DEAD
             || characterBehavior.state == CharacterBehavior.states.CRASH

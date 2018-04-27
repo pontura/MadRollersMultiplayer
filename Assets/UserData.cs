@@ -105,7 +105,7 @@ public class UserData : MonoBehaviour {
 
     void OnSetStarsToMission(int missionId, int starsQty)
     {
-		if (Data.Instance.playMode == Data.PlayModes.COMPETITION || Data.Instance.playMode == Data.PlayModes.GHOSTMODE) return;
+		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) return;
 
         if (stars[missionId] < starsQty)
         {
