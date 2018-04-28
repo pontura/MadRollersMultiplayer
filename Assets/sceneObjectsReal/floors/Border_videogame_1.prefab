@@ -1933,7 +1933,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4535991220784200}
   m_Layer: 0
-  m_Name: left
+  m_Name: back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2715,7 +2715,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4493291882053434}
   m_Layer: 0
-  m_Name: right
+  m_Name: front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3813,7 +3813,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4006516697406396}
   m_Layer: 0
-  m_Name: bottom
+  m_Name: right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3879,6 +3879,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4361258929689144}
   - component: {fileID: 114104654263473944}
+  - component: {fileID: 114041224228660342}
   m_Layer: 0
   m_Name: Border_videogame_1
   m_TagString: Untagged
@@ -5209,7 +5210,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4040353962086098}
   m_Layer: 0
-  m_Name: front
+  m_Name: left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21524,7 +21525,7 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
-  to: {fileID: 0}
+  to: {fileID: 100000, guid: 37127403d24a07b4ea2ca03c46c30a3a, type: 2}
   videoGame_ID: 0
 --- !u!114 &114030885739751282
 MonoBehaviour:
@@ -21548,6 +21549,21 @@ MonoBehaviour:
   onlyMultiplayers: 0
   to: {fileID: 100000, guid: 37127403d24a07b4ea2ca03c46c30a3a, type: 2}
   videoGame_ID: 0
+--- !u!114 &114041224228660342
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1737630971808414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0458653378f8fa648bef748f3420253b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  front: {fileID: 1560147628746164}
+  back: {fileID: 1391786585198930}
+  right: {fileID: 1732835758209438}
+  left: {fileID: 1967711597555722}
 --- !u!114 &114053622086881998
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -21610,7 +21626,7 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
-  to: {fileID: 0}
+  to: {fileID: 100000, guid: 37127403d24a07b4ea2ca03c46c30a3a, type: 2}
   videoGame_ID: 0
 --- !u!114 &114148035938827320
 MonoBehaviour:
@@ -21676,7 +21692,7 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
-  to: {fileID: 0}
+  to: {fileID: 100000, guid: 37127403d24a07b4ea2ca03c46c30a3a, type: 2}
   videoGame_ID: 0
 --- !u!114 &114183097177749684
 MonoBehaviour:
@@ -21698,7 +21714,7 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
-  to: {fileID: 0}
+  to: {fileID: 100000, guid: 37127403d24a07b4ea2ca03c46c30a3a, type: 2}
   videoGame_ID: 0
 --- !u!114 &114184829023254140
 MonoBehaviour:
@@ -21742,7 +21758,7 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
-  to: {fileID: 0}
+  to: {fileID: 100000, guid: 37127403d24a07b4ea2ca03c46c30a3a, type: 2}
   videoGame_ID: 0
 --- !u!114 &114271727894004950
 MonoBehaviour:
@@ -21786,7 +21802,7 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
-  to: {fileID: 0}
+  to: {fileID: 100000, guid: 37127403d24a07b4ea2ca03c46c30a3a, type: 2}
   videoGame_ID: 0
 --- !u!114 &114348886869696626
 MonoBehaviour:
@@ -21852,7 +21868,7 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
-  to: {fileID: 0}
+  to: {fileID: 100000, guid: 37127403d24a07b4ea2ca03c46c30a3a, type: 2}
   videoGame_ID: 0
 --- !u!114 &114381107188505862
 MonoBehaviour:
@@ -21874,7 +21890,7 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
-  to: {fileID: 0}
+  to: {fileID: 100000, guid: 37127403d24a07b4ea2ca03c46c30a3a, type: 2}
   videoGame_ID: 0
 --- !u!114 &114383556733743798
 MonoBehaviour:
@@ -21896,7 +21912,7 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
-  to: {fileID: 0}
+  to: {fileID: 100000, guid: 37127403d24a07b4ea2ca03c46c30a3a, type: 2}
   videoGame_ID: 0
 --- !u!114 &114397258749566850
 MonoBehaviour:
@@ -21918,7 +21934,7 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
-  to: {fileID: 0}
+  to: {fileID: 100000, guid: 37127403d24a07b4ea2ca03c46c30a3a, type: 2}
   videoGame_ID: 0
 --- !u!114 &114409300299533678
 MonoBehaviour:
@@ -21940,7 +21956,7 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
-  to: {fileID: 0}
+  to: {fileID: 100000, guid: 37127403d24a07b4ea2ca03c46c30a3a, type: 2}
   videoGame_ID: 0
 --- !u!114 &114491880483687346
 MonoBehaviour:
@@ -21962,7 +21978,7 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
-  to: {fileID: 0}
+  to: {fileID: 100000, guid: 37127403d24a07b4ea2ca03c46c30a3a, type: 2}
   videoGame_ID: 0
 --- !u!114 &114497640691120852
 MonoBehaviour:
@@ -22006,7 +22022,7 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
-  to: {fileID: 0}
+  to: {fileID: 100000, guid: 37127403d24a07b4ea2ca03c46c30a3a, type: 2}
   videoGame_ID: 0
 --- !u!114 &114553725069832896
 MonoBehaviour:
@@ -22028,7 +22044,7 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
-  to: {fileID: 0}
+  to: {fileID: 100000, guid: 37127403d24a07b4ea2ca03c46c30a3a, type: 2}
   videoGame_ID: 0
 --- !u!114 &114578782436491566
 MonoBehaviour:
@@ -22050,7 +22066,7 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
-  to: {fileID: 0}
+  to: {fileID: 100000, guid: 37127403d24a07b4ea2ca03c46c30a3a, type: 2}
   videoGame_ID: 0
 --- !u!114 &114588458848083044
 MonoBehaviour:
@@ -22072,7 +22088,7 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
-  to: {fileID: 0}
+  to: {fileID: 100000, guid: 37127403d24a07b4ea2ca03c46c30a3a, type: 2}
   videoGame_ID: 0
 --- !u!114 &114608928926465202
 MonoBehaviour:
@@ -22116,7 +22132,7 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
-  to: {fileID: 0}
+  to: {fileID: 100000, guid: 37127403d24a07b4ea2ca03c46c30a3a, type: 2}
   videoGame_ID: 0
 --- !u!114 &114662356632600580
 MonoBehaviour:
@@ -22138,7 +22154,7 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
-  to: {fileID: 0}
+  to: {fileID: 100000, guid: 37127403d24a07b4ea2ca03c46c30a3a, type: 2}
   videoGame_ID: 0
 --- !u!114 &114684593066872538
 MonoBehaviour:
@@ -22160,7 +22176,7 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
-  to: {fileID: 0}
+  to: {fileID: 100000, guid: 37127403d24a07b4ea2ca03c46c30a3a, type: 2}
   videoGame_ID: 0
 --- !u!114 &114716499510271112
 MonoBehaviour:
@@ -22204,7 +22220,7 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
-  to: {fileID: 0}
+  to: {fileID: 100000, guid: 37127403d24a07b4ea2ca03c46c30a3a, type: 2}
   videoGame_ID: 0
 --- !u!114 &114735190496801788
 MonoBehaviour:
@@ -22226,7 +22242,7 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
-  to: {fileID: 0}
+  to: {fileID: 100000, guid: 37127403d24a07b4ea2ca03c46c30a3a, type: 2}
   videoGame_ID: 0
 --- !u!114 &114740316205620608
 MonoBehaviour:
@@ -22248,7 +22264,7 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
-  to: {fileID: 0}
+  to: {fileID: 100000, guid: 37127403d24a07b4ea2ca03c46c30a3a, type: 2}
   videoGame_ID: 0
 --- !u!114 &114762773383411052
 MonoBehaviour:
@@ -22270,7 +22286,7 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
-  to: {fileID: 0}
+  to: {fileID: 100000, guid: 37127403d24a07b4ea2ca03c46c30a3a, type: 2}
   videoGame_ID: 0
 --- !u!114 &114776499540098184
 MonoBehaviour:
@@ -22336,7 +22352,7 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
-  to: {fileID: 0}
+  to: {fileID: 100000, guid: 37127403d24a07b4ea2ca03c46c30a3a, type: 2}
   videoGame_ID: 0
 --- !u!114 &114822525833181418
 MonoBehaviour:
@@ -22380,7 +22396,7 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
-  to: {fileID: 0}
+  to: {fileID: 100000, guid: 37127403d24a07b4ea2ca03c46c30a3a, type: 2}
   videoGame_ID: 0
 --- !u!114 &114945894679494344
 MonoBehaviour:
@@ -22402,7 +22418,7 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
-  to: {fileID: 0}
+  to: {fileID: 100000, guid: 37127403d24a07b4ea2ca03c46c30a3a, type: 2}
   videoGame_ID: 0
 --- !u!114 &114951580923984320
 MonoBehaviour:
@@ -22468,7 +22484,7 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
-  to: {fileID: 0}
+  to: {fileID: 100000, guid: 37127403d24a07b4ea2ca03c46c30a3a, type: 2}
   videoGame_ID: 0
 --- !u!114 &114976677889829954
 MonoBehaviour:
@@ -22490,5 +22506,5 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
-  to: {fileID: 0}
+  to: {fileID: 100000, guid: 37127403d24a07b4ea2ca03c46c30a3a, type: 2}
   videoGame_ID: 0
