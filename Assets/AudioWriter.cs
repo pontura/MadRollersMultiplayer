@@ -36,7 +36,8 @@ public class AudioWriter : MonoBehaviour {
 	void Next()
 	{
 		if (sentenceID == Data.Instance.voicesManager.intros.Count) {		
-			done = true;	
+			done = true;
+			enrollButton.SetActive (true);
 			return;
 		}
 		SetText(Data.Instance.voicesManager.intros[sentenceID].text);
