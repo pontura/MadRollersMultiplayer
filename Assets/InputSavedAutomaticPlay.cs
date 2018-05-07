@@ -110,4 +110,10 @@ public class InputSavedAutomaticPlay : MonoBehaviour {
 		characters.Clear();
 		id = 1;
 	}
+	public void RemoveAllData()
+	{
+		Reset ();
+		allPlayersSavedData.Clear ();
+		id = 1;
+	}
 }

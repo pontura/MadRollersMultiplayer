@@ -53,8 +53,8 @@ public class Data : MonoBehaviour {
     public enum PlayModes
     {
         STORY,
-        COMPETITION,
-		GHOSTMODE
+        COMPETITION
+	//	GHOSTMODE
     }
     public enum modes
     {
@@ -144,7 +144,7 @@ public class Data : MonoBehaviour {
 
 		int idByVideogame = missions.GetActualMissionByVideogame ();
 
-		if (playMode == PlayModes.COMPETITION || Data.Instance.playMode == Data.PlayModes.GHOSTMODE)
+		if (playMode == PlayModes.COMPETITION)
         {
             SocialEvents.OnMissionReady(num);
         }

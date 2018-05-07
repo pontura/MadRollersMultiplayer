@@ -1334,7 +1334,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 120216}
-  m_LocalRotation: {x: 0.122245654, y: -0.61039376, z: 0.15368383, w: -0.7673701}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
   m_LocalPosition: {x: 5.25, y: 0.53, z: -12.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1420,7 +1420,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 120228}
-  m_LocalRotation: {x: 0.004376054, y: 0.26778802, z: -0.08704587, w: -0.95952773}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -4.96, y: 0.15, z: -8.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1434,7 +1434,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 120232}
-  m_LocalRotation: {x: 0, y: 0.9890159, z: 0, w: 0.14780948}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.9436417, y: -0.073215485, z: 3.5996113}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4038,12 +4038,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d3d555793ff3d849aa8b31c6db5b487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
   isActive: 0
   score: 20
   charactersMmanager: {fileID: 0}
+  distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!114 &11420164
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4056,7 +4059,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explotionType: 0
-  particle: {fileID: 100000, guid: 610c14e46dbcb8546b89886dd8b7e565, type: 2}
   isOn: 0
   NumOfParticles: 4
   childs: []
@@ -4075,7 +4077,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explotionType: 0
-  particle: {fileID: 100000, guid: 610c14e46dbcb8546b89886dd8b7e565, type: 2}
   isOn: 0
   NumOfParticles: 4
   childs: []
@@ -4094,7 +4095,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explotionType: 0
-  particle: {fileID: 100000, guid: 610c14e46dbcb8546b89886dd8b7e565, type: 2}
   isOn: 0
   NumOfParticles: 4
   childs:
@@ -4115,7 +4115,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explotionType: 0
-  particle: {fileID: 100000, guid: 610c14e46dbcb8546b89886dd8b7e565, type: 2}
   isOn: 0
   NumOfParticles: 4
   childs:
@@ -4136,7 +4135,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explotionType: 0
-  particle: {fileID: 100000, guid: 610c14e46dbcb8546b89886dd8b7e565, type: 2}
   isOn: 0
   NumOfParticles: 4
   childs: []
@@ -4155,7 +4153,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explotionType: 0
-  particle: {fileID: 100000, guid: 610c14e46dbcb8546b89886dd8b7e565, type: 2}
   isOn: 0
   NumOfParticles: 4
   childs: []
@@ -4173,12 +4170,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d3d555793ff3d849aa8b31c6db5b487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
   isActive: 0
   score: 20
   charactersMmanager: {fileID: 0}
+  distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!114 &11420178
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4191,7 +4191,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explotionType: 0
-  particle: {fileID: 100000, guid: 610c14e46dbcb8546b89886dd8b7e565, type: 2}
   isOn: 0
   NumOfParticles: 4
   childs:
@@ -4212,7 +4211,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explotionType: 0
-  particle: {fileID: 100000, guid: 610c14e46dbcb8546b89886dd8b7e565, type: 2}
   isOn: 0
   NumOfParticles: 4
   childs: []
@@ -4231,7 +4229,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explotionType: 0
-  particle: {fileID: 100000, guid: 610c14e46dbcb8546b89886dd8b7e565, type: 2}
   isOn: 0
   NumOfParticles: 4
   childs: []
@@ -4249,12 +4246,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d3d555793ff3d849aa8b31c6db5b487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
   isActive: 0
   score: 20
   charactersMmanager: {fileID: 0}
+  distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!114 &11420186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4266,18 +4266,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
   isActive: 0
   score: 0
   charactersMmanager: {fileID: 0}
+  distanceFromCharacter: 0
+  onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
-  _collider: {fileID: 0}
+  TriggerCollider: {fileID: 0}
+  FloorCollider: {fileID: 0}
   player: {fileID: 0}
-  heartClip: {fileID: 0}
+  titila: []
 --- !u!114 &11420188
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4301,18 +4307,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
   isActive: 0
   score: 0
   charactersMmanager: {fileID: 0}
+  distanceFromCharacter: 0
+  onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
-  _collider: {fileID: 0}
+  TriggerCollider: {fileID: 0}
+  FloorCollider: {fileID: 0}
   player: {fileID: 0}
-  heartClip: {fileID: 0}
+  titila: []
 --- !u!114 &11420192
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4336,18 +4348,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
   isActive: 0
   score: 0
   charactersMmanager: {fileID: 0}
+  distanceFromCharacter: 0
+  onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
-  _collider: {fileID: 0}
+  TriggerCollider: {fileID: 0}
+  FloorCollider: {fileID: 0}
   player: {fileID: 0}
-  heartClip: {fileID: 0}
+  titila: []
 --- !u!114 &11420196
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4371,18 +4389,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
   isActive: 0
   score: 0
   charactersMmanager: {fileID: 0}
+  distanceFromCharacter: 0
+  onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
-  _collider: {fileID: 0}
+  TriggerCollider: {fileID: 0}
+  FloorCollider: {fileID: 0}
   player: {fileID: 0}
-  heartClip: {fileID: 0}
+  titila: []
 --- !u!114 &11420200
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4406,14 +4430,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f58422460639248b129b8b5a318a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
   isActive: 0
   score: 0
   charactersMmanager: {fileID: 0}
+  distanceFromCharacter: 0
+  onlyMultiplayers: 0
   to: {fileID: 0}
-  materialName: pasto
+  videoGame_ID: 0
 --- !u!114 &11420204
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4425,14 +4452,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f58422460639248b129b8b5a318a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
   isActive: 0
   score: 0
   charactersMmanager: {fileID: 0}
+  distanceFromCharacter: 0
+  onlyMultiplayers: 0
   to: {fileID: 0}
-  materialName: pasto
+  videoGame_ID: 0
 --- !u!114 &11420206
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4444,14 +4474,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f58422460639248b129b8b5a318a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
   isActive: 0
   score: 0
   charactersMmanager: {fileID: 0}
+  distanceFromCharacter: 0
+  onlyMultiplayers: 0
   to: {fileID: 0}
-  materialName: pasto
+  videoGame_ID: 0
 --- !u!114 &11420208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4476,12 +4509,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d3d555793ff3d849aa8b31c6db5b487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
   isActive: 0
   score: 20
   charactersMmanager: {fileID: 0}
+  distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!114 &11461998
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4494,7 +4530,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explotionType: 0
-  particle: {fileID: 100000, guid: 610c14e46dbcb8546b89886dd8b7e565, type: 2}
   isOn: 0
   NumOfParticles: 4
   childs: []
@@ -4513,7 +4548,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explotionType: 0
-  particle: {fileID: 100000, guid: 610c14e46dbcb8546b89886dd8b7e565, type: 2}
   isOn: 0
   NumOfParticles: 4
   childs: []
@@ -4532,7 +4566,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explotionType: 0
-  particle: {fileID: 100000, guid: 610c14e46dbcb8546b89886dd8b7e565, type: 2}
   isOn: 0
   NumOfParticles: 4
   childs:

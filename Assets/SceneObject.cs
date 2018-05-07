@@ -103,11 +103,11 @@ public class SceneObject : MonoBehaviour {
     {
     }    
 
-	Material mat;
+	Color matColor;
 	int videoGameID = -1;
 	public void SetMaterialByVideoGame()
 	{
-		mat = Data.Instance.videogamesData.GetActualVideogameData ().floor_top;
+		matColor = Data.Instance.videogamesData.GetActualVideogameData ().floor_top;
 		Renderer[] renderers = GetComponentsInChildren<Renderer>();
 		int newVideoGameID = Data.Instance.videogamesData.actualID;
 		if (newVideoGameID != videoGameID) {
@@ -118,6 +118,6 @@ public class SceneObject : MonoBehaviour {
 	}
 	void ChangeMaterials(Renderer renderer)
 	{
-		renderer.material = mat;
+		renderer.material.color = matColor;
 	}
 }

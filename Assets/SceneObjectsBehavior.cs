@@ -1,12 +1,13 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 public class SceneObjectsBehavior : MonoBehaviour {
 
 	public ArrayList unused = new ArrayList();
-    [HideInInspector]
-    public Area area;
+	[HideInInspector]
+	public Area area;
 
 	public SceneObject Border_videogame_1;
 	public SceneObject Water;
@@ -15,62 +16,63 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	public SceneObject Boss2;
 	public SceneObject BossSpace1;
 	public SceneObject BossPacmans;
-    public SceneObject Starting;
-    public SceneObject Calecita;
-    public SceneObject FloorSlider;
-    public SceneObject FloorSurface;
-    public SceneObject house1;
-    public SceneObject house2;
-    public SceneObject house3;
-    public SceneObject house4;
-    public SceneObject PisoPinche;
-    public SceneObject rampa;
-    public SceneObject rampaHuge;
+	public SceneObject BossPacmansIntro;
+	public SceneObject Starting;
+	public SceneObject Calecita;
+	public SceneObject FloorSlider;
+	public SceneObject FloorSurface;
+	public SceneObject house1;
+	public SceneObject house2;
+	public SceneObject house3;
+	public SceneObject house4;
+	public SceneObject PisoPinche;
+	public SceneObject rampa;
+	public SceneObject rampaHuge;
 	public SceneObject bomb1;
-    public SceneObject palm;
-    public SceneObject palm2;
-    public SceneObject palm3;
-    public SceneObject palm4;
-    public SceneObject palm_tall;
+	public SceneObject palm;
+	public SceneObject palm2;
+	public SceneObject palm3;
+	public SceneObject palm4;
+	public SceneObject palm_tall;
 	public SceneObject enemyGhost;
-    public SceneObject cilindro;
+	public SceneObject cilindro;
 
-    public SceneObject GrabbableJetpack;
-    public SceneObject borde1;
-    
-    public SceneObject fences;
-    public SceneObject rainbow;
-    public SceneObject Listener;
-    
-    public SceneObject tunel1;
-    public SceneObject tunel2;
-    public SceneObject jumper;
+	public SceneObject GrabbableJetpack;
+	public SceneObject borde1;
 
-    public SceneObject cruz;
-    public SceneObject CruzGrande;
-    public SceneObject rueda1;
-    public SceneObject helice1;
-    public SceneObject helice2;
-    public SceneObject levelSignal;
-    public SceneObject streetFloor;
-    public SceneObject streetFloorSmall;
-    public SceneObject subibaja;
-    public SceneObject cepillo;
-    public SceneObject pisoRotatorio;
-    public SceneObject wallBig;
-    public SceneObject wallMedium;
-    public SceneObject wallSmall;
-    public SceneObject wallSuperSmall;
-    public SceneObject sombrilla;
-    public SceneObject GrabbableMissile;
+	public SceneObject fences;
+	public SceneObject rainbow;
+	public SceneObject Listener;
+
+	public SceneObject tunel1;
+	public SceneObject tunel2;
+	public SceneObject jumper;
+
+	public SceneObject cruz;
+	public SceneObject CruzGrande;
+	public SceneObject rueda1;
+	public SceneObject helice1;
+	public SceneObject helice2;
+	public SceneObject levelSignal;
+	public SceneObject streetFloor;
+	public SceneObject streetFloorSmall;
+	public SceneObject subibaja;
+	public SceneObject cepillo;
+	public SceneObject pisoRotatorio;
+	public SceneObject wallBig;
+	public SceneObject wallMedium;
+	public SceneObject wallSmall;
+	public SceneObject wallSuperSmall;
+	public SceneObject sombrilla;
+	public SceneObject GrabbableMissile;
 
 	public Game game;
-    private ObjectPool Pool;
+	private ObjectPool Pool;
 
-    private void Start()
-    {
-        Pool = Data.Instance.sceneObjectsPool;
-    }
+	private void Start()
+	{
+		Pool = Data.Instance.sceneObjectsPool;
+	}
 	public void Add(GameObject go)
 	{
 		go.transform.parent = transform;
@@ -91,35 +93,37 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	private void resetGO(GameObject go) {
 		go.GetComponentInChildren<Renderer>().enabled = true;
 	}
+
+	List<Transform> borderTransforms;
 	public void replaceSceneObject(Area area, float areasLength, int areasX)
 	{
-        
-        this.area = area;
-        GameObject[] gos = area.getSceneObjects();
-        bool nubesOn = false;
-  
-        foreach (GameObject go in gos)
-        {
-            SceneObject sceneObject = null;
-            Vector3 pos = go.transform.position;
-            pos.z += areasLength;
-            pos.x += areasX;
+		borderTransforms = new List<Transform> ();
+		this.area = area;
+		GameObject[] gos = area.getSceneObjects();
+		bool nubesOn = false;
 
-            if (go.GetComponent<RandomPosition>())
-            {
-                RandomPosition mo = go.GetComponent<RandomPosition>();
-                pos = mo.getPosition(pos);
-            }
+		foreach (GameObject go in gos)
+		{
+			SceneObject sceneObject = null;
+			Vector3 pos = go.transform.position;
+			pos.z += areasLength;
+			pos.x += areasX;
 
-          //  if (!nubesOn)
-          //  {
-              //  nubesOn = true;
-             //   addDecoration("Nubes_real", pos, new Vector3(0, Random.Range(0,2), 5));
+			if (go.GetComponent<RandomPosition>())
+			{
+				RandomPosition mo = go.GetComponent<RandomPosition>();
+				pos = mo.getPosition(pos);
+			}
 
-          //  }
+			//  if (!nubesOn)
+			//  {
+			//  nubesOn = true;
+			//   addDecoration("Nubes_real", pos, new Vector3(0, Random.Range(0,2), 5));
 
-            switch (go.name)
-            {
+			//  }
+
+			switch (go.name)
+			{
 			case "extralargeBlock1":
 			case "flyer":
 			case "largeBlock1":
@@ -140,72 +144,76 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			case "firewall":        
 			case "Baranda1":  
 			case "enemyNaveSimple":  
-					sceneObject = Pool.GetObjectForType(go.name + "_real", false);    
-			
+				sceneObject = Pool.GetObjectForType(go.name + "_real", false);    
 
-                    //HACK creo que esto arregla que desaparezca cada tanto un objeto, sino es asi borrame!
-                    
 
-                    if (sceneObject)
-                    {
-                        sceneObject.isActive = false;
-                        sceneObject.Restart(pos);
-                        sceneObject.transform.rotation = go.transform.rotation;
+				//HACK creo que esto arregla que desaparezca cada tanto un objeto, sino es asi borrame!
+
+
+				if (sceneObject)
+				{
+					sceneObject.isActive = false;
+					sceneObject.Restart(pos);
+					sceneObject.transform.rotation = go.transform.rotation;
 
 					if (go.name == "Yuyo")
 						sceneObject.SetMaterialByVideoGame ();
-					
-                     //   if (go.GetComponent<MaterialsChanger>())
-//                        {
-//                            MaterialsChanger mo = go.GetComponent<MaterialsChanger>();
-//                            sceneObject.changeMaterial(mo.materialName);
-//                        }
-//                        else
-//                        {
-                            sceneObject.changeMaterial("pasto");
-                            if (go.name == "extralargeBlock1")
-                            {
-								AddBorder (Border_videogame_1, sceneObject.transform.position, go.transform.rotation);
-                                int num = Random.Range(1, 4);
-                                string decorationName = "";
-                                if (num == 1)
-                                    decorationName = "flores1_real";
-                                if (num == 2)
-                                    decorationName = "flores2_real";
-                                else if (num == 3)
-                                    decorationName = "floorFlowers_real";
 
-                                if (decorationName != "")
-                                    addDecoration(decorationName, pos, Vector3.zero);
+					//   if (go.GetComponent<MaterialsChanger>())
+					//                        {
+					//                            MaterialsChanger mo = go.GetComponent<MaterialsChanger>();
+					//                            sceneObject.changeMaterial(mo.materialName);
+					//                        }
+					//                        else
+					//                        {
+					sceneObject.changeMaterial("pasto");
+					if (go.name == "extralargeBlock1")
+					{
+						GameObject goNew = new GameObject ();
+						goNew.transform.position = pos;
+						goNew.transform.rotation = go.transform.rotation;
+						borderTransforms.Add (goNew.transform);
 
-                            }
-                      //  }
-                        if (go.GetComponent<DecorationManager>())
-                        {
-                            addDecoration("Baranda1_real", pos, new Vector3(5.5f, 0, 3));
-                            addDecoration("Baranda1_real", pos, new Vector3(-5.5f, 0, 3));
-                            addDecoration("Baranda1_real", pos, new Vector3(5.5f, 0, -3));
-                            addDecoration("Baranda1_real", pos, new Vector3(-5.5f, 0, -3));
-                        }
+						int num = Random.Range(1, 4);
+						string decorationName = "";
+						if (num == 1)
+							decorationName = "flores1_real";
+						if (num == 2)
+							decorationName = "flores2_real";
+						else if (num == 3)
+							decorationName = "floorFlowers_real";
 
-                        
-                    }
-                    else
-                    {
-                        Debug.LogError("___________NO EXISTIO EL OBJETO: " + go.name);
-                        Time.timeScale = 0;
-                    }
-                    break;
-            }
-            
-            
+						if (decorationName != "")
+							addDecoration(decorationName, pos, Vector3.zero);
+
+					}
+					//  }
+					if (go.GetComponent<DecorationManager>())
+					{
+						addDecoration("Baranda1_real", pos, new Vector3(5.5f, 0, 3));
+						addDecoration("Baranda1_real", pos, new Vector3(-5.5f, 0, 3));
+						addDecoration("Baranda1_real", pos, new Vector3(5.5f, 0, -3));
+						addDecoration("Baranda1_real", pos, new Vector3(-5.5f, 0, -3));
+					}
 
 
-                SceneObject clone = null;
+				}
+				else
+				{
+					Debug.LogError("___________NO EXISTIO EL OBJETO: " + go.name);
+					Time.timeScale = 0;
+				}
+				break;
+			}
 
 
-                if (go.name == "FloorSurface")
-                    clone = FloorSurface;
+
+
+			SceneObject clone = null;
+
+
+			if (go.name == "FloorSurface")
+				clone = FloorSurface;
 			if (go.name == "PisoPinche")
 				clone = PisoPinche;
 			else if (go.name == "house1")
@@ -243,213 +251,286 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				clone = BossSpace1;
 			else if (go.name == "BossPacmans")
 				clone = BossPacmans;
-            else if (go.name == "Calecita")
-                clone = Calecita;
-            else if (go.name == "Starting")
-                clone = Starting;                    
-            else if (go.name == "bomb1")
-                clone = bomb1;
-            else if (go.name == "tunel1")
-                clone = tunel1;
-            else if (go.name == "tunel2")
-                clone = tunel2;
-            else if (go.name == "cilindro")
-                clone = cilindro;
+			else if (go.name == "BossPacmansIntro")
+				clone = BossPacmansIntro;			
+			else if (go.name == "Calecita")
+				clone = Calecita;
+			else if (go.name == "Starting")
+				clone = Starting;
+			else if (go.name == "bomb1")
+				clone = bomb1;
+			else if (go.name == "tunel1")
+				clone = tunel1;
+			else if (go.name == "tunel2")
+				clone = tunel2;
+			else if (go.name == "cilindro")
+				clone = cilindro;
 			else if (go.name == "enemyGhost")
 				clone = enemyGhost;
-			else if (go.name == "palmTall")
+			else if (go.name == "palmTall") {
 				clone = palm_tall;
-            else if (go.name == "palm")
-                {
-					//if (Data.Instance.videogamesData.actualID == 1) {
-					//	clone = palm_space1;
-					//}else {
-						int ran = Random.Range (0, 40);
-						if (ran < 20)
-							clone = palm;
-						else if (ran < 40)
-							clone = palm2;
-					//}
-                }
-                else if (go.name == "streetFloor")
-                    clone = streetFloor;
-                else if (go.name == "streetFloorSmall")
-                    clone = streetFloorSmall;
-                else if (go.name == "levelSignal")
-                    clone = levelSignal;
-                else if (go.name == "GrabbableJetpack")
-                    clone = GrabbableJetpack;
-                else if (go.name == "borde1")
-                    clone = borde1;
-                else if (go.name == "fences")
-                    clone = fences;
-                else if (go.name == "rainbow")
-                    clone = rainbow;
-                else if (go.name == "Listener")
-                {
-                    clone = Listener;
-                }
-                else if (go.name == "cruz")
-                    clone = cruz;
-                else if (go.name == "CruzGrande")
-                    clone = CruzGrande;
-                else if (go.name == "rueda1")
-                    clone = rueda1;
-                else if (go.name == "helice1")
-                    clone = helice1;
-                else if (go.name == "helice2")
-                    clone = helice2;
-                else if (go.name == "subibaja")
-                    clone = subibaja;
-                else if (go.name == "cepillo")
-                    clone = cepillo;
-                else if (go.name == "pisoRotatorio")
-                    clone = pisoRotatorio;
-                else if (go.name == "sombrilla")
-                    clone = sombrilla;
-                else if (go.name == "GrabbableMissile")
-                    clone = GrabbableMissile;
-                else if (go.name == "FloorSlider")
-                    clone = FloorSlider;
+				go.transform.localEulerAngles = new Vector3 (0, Random.Range (0, 4) * 90,  0);
+			}
+			else if (go.name == "palm")
+			{
+				//if (Data.Instance.videogamesData.actualID == 1) {
+				//	clone = palm_space1;
+				//}else {
+				int ran = Random.Range (0, 40);
+				if (ran < 20)
+					clone = palm;
+				else if (ran < 40)
+					clone = palm2;
+				go.transform.localEulerAngles = new Vector3 (0, Random.Range (0, 4) * 90,  0);
+				//}
+			}
+			else if (go.name == "streetFloor")
+				clone = streetFloor;
+			else if (go.name == "streetFloorSmall")
+				clone = streetFloorSmall;
+			else if (go.name == "levelSignal")
+				clone = levelSignal;
+			else if (go.name == "GrabbableJetpack")
+				clone = GrabbableJetpack;
+			else if (go.name == "borde1")
+				clone = borde1;
+			else if (go.name == "fences")
+				clone = fences;
+			else if (go.name == "rainbow")
+				clone = rainbow;
+			else if (go.name == "Listener")
+			{
+				clone = Listener;
+			}
+			else if (go.name == "cruz")
+				clone = cruz;
+			else if (go.name == "CruzGrande")
+				clone = CruzGrande;
+			else if (go.name == "rueda1")
+				clone = rueda1;
+			else if (go.name == "helice1")
+				clone = helice1;
+			else if (go.name == "helice2")
+				clone = helice2;
+			else if (go.name == "subibaja")
+				clone = subibaja;
+			else if (go.name == "cepillo")
+				clone = cepillo;
+			else if (go.name == "pisoRotatorio")
+				clone = pisoRotatorio;
+			else if (go.name == "sombrilla")
+				clone = sombrilla;
+			else if (go.name == "GrabbableMissile")
+				clone = GrabbableMissile;
+			else if (go.name == "FloorSlider")
+				clone = FloorSlider;
 
 
-                if (clone)
-                {
-                    sceneObject = Instantiate(clone, pos, Quaternion.identity) as SceneObject;
-                    sceneObject.transform.parent = Pool.Scene.transform;
-                    sceneObject.transform.rotation = go.transform.rotation;
-                    sceneObject.Restart(pos);
-                }
+			if (clone)
+			{
+				sceneObject = Instantiate(clone, pos, Quaternion.identity) as SceneObject;
+				sceneObject.transform.parent = Pool.Scene.transform;
+				sceneObject.transform.rotation = go.transform.rotation;
+				sceneObject.Restart(pos);
+			}
 			if (go.GetComponent<Move>() && sceneObject.GetComponent<Move>() == null)
-				{
-					Move mo = go.GetComponent<Move>();
-					CopyComponent(mo, sceneObject.gameObject);
-				}
-                if (go.GetComponent<MoveObject>())
-                {
-                    MoveObject mo = go.GetComponent<MoveObject>();
-                    CopyComponent(mo, sceneObject.gameObject);
-                }
-                if (go.GetComponent<Dropper>())
-                {
-                    Dropper mo = go.GetComponent<Dropper>();
-                    CopyComponent(mo, sceneObject.gameObject);
-                }
+			{
+				Move mo = go.GetComponent<Move>();
+				CopyComponent(mo, sceneObject.gameObject);
+			}
+			if (go.GetComponent<MoveObject>())
+			{
+				MoveObject mo = go.GetComponent<MoveObject>();
+				CopyComponent(mo, sceneObject.gameObject);
+			}
+			if (go.GetComponent<Dropper>())
+			{
+				Dropper mo = go.GetComponent<Dropper>();
+				CopyComponent(mo, sceneObject.gameObject);
+			}
 
-                if (go.GetComponent<EnemyPathRunnerBehavior>())
-                {
-                    EnemyPathRunnerBehavior mo = go.GetComponent<EnemyPathRunnerBehavior>();
-                    CopyComponent(mo, sceneObject.gameObject);
-                }
-                if (go.GetComponent<EnemyShooter>())
-                {
-                    EnemyShooter mo = go.GetComponent<EnemyShooter>();
-                    CopyComponent(mo, sceneObject.gameObject);
-                }
-                if (go.GetComponent<EnemyRunnerBehavior>())
-                {
-                    EnemyRunnerBehavior mo = go.GetComponent<EnemyRunnerBehavior>();
-                    CopyComponent(mo, sceneObject.gameObject);
-                }
-                if (go.GetComponent<Jump>())
-                {
-                    Jump mo = go.GetComponent<Jump>();
-                    CopyComponent(mo, sceneObject.gameObject);
-                }
-				if (go.GetComponent<EnemyPathsMultiples>())
-				{
-					EnemyPathsMultiples mo = go.GetComponent<EnemyPathsMultiples>();
-					CopyComponent(mo, sceneObject.gameObject);
-				}
+			if (go.GetComponent<EnemyPathRunnerBehavior>())
+			{
+				EnemyPathRunnerBehavior mo = go.GetComponent<EnemyPathRunnerBehavior>();
+				CopyComponent(mo, sceneObject.gameObject);
+			}
+			if (go.GetComponent<EnemyShooter>())
+			{
+				EnemyShooter mo = go.GetComponent<EnemyShooter>();
+				CopyComponent(mo, sceneObject.gameObject);
+			}
+			if (go.GetComponent<EnemyRunnerBehavior>())
+			{
+				EnemyRunnerBehavior mo = go.GetComponent<EnemyRunnerBehavior>();
+				CopyComponent(mo, sceneObject.gameObject);
+			}
+			if (go.GetComponent<Jump>())
+			{
+				Jump mo = go.GetComponent<Jump>();
+				CopyComponent(mo, sceneObject.gameObject);
+			}
+			if (go.GetComponent<EnemyPathsMultiples>())
+			{
+				EnemyPathsMultiples mo = go.GetComponent<EnemyPathsMultiples>();
+				CopyComponent(mo, sceneObject.gameObject);
+			}
 
 
 
-                if (go.GetComponent<Subibaja>())
-                {
-                    Subibaja mo = go.GetComponent<Subibaja>();
-                    CopyComponent(mo, sceneObject.gameObject);
-                }
+			if (go.GetComponent<Subibaja>())
+			{
+				Subibaja mo = go.GetComponent<Subibaja>();
+				CopyComponent(mo, sceneObject.gameObject);
+			}
 
-                if (go.GetComponent<ListenerDispatcher>())
-                {
-                    ListenerDispatcher mo = go.GetComponent<ListenerDispatcher>();
-                    CopyComponent(mo, sceneObject.gameObject);
-                }
-                if (go.GetComponent<FlyingBehavior>())
-                {
-                    FlyingBehavior mo = go.GetComponent<FlyingBehavior>();
-                    CopyComponent(mo, sceneObject.gameObject);
-                }
-                if (go.GetComponent<FullRotation>())
-                {
-                    FullRotation mo = go.GetComponent<FullRotation>();
-                    CopyComponent(mo, sceneObject.gameObject);
-                }
-                if (go.GetComponent<Bumper>())
-                {
-                    Bumper mo = go.GetComponent<Bumper>();
-                    CopyComponent(mo, sceneObject.gameObject);
-                }
-			
-	    }
-	}
-    public void PoolSceneObjectsInScene()
-    {
-        GameObject SceneObjectsContainer = Data.Instance.sceneObjectsPool.Scene;
-        SceneObject[] sceneObjects = SceneObjectsContainer.GetComponentsInChildren<SceneObject>();
-        foreach (SceneObject sceneObject in sceneObjects)
-        {
-            if(sceneObject.isActive)
-                 sceneObject.Pool();
-        }
-    }
-    Component CopyComponent(Component original, GameObject destination)
-    {
-        System.Type type = original.GetType();
-        Component copy = destination.AddComponent(type);
-        System.Reflection.FieldInfo[] fields = type.GetFields();
-        foreach (System.Reflection.FieldInfo field in fields)
-        {
-            field.SetValue(copy, field.GetValue(original));
-        }
-        return copy;
-    }
-	public void AddBorder(SceneObject go, Vector3 pos, Quaternion rotation)
-	{
-		SceneObject sceneObject = Instantiate(go, pos, Quaternion.identity) as SceneObject;
-		sceneObject.transform.parent = Pool.Scene.transform;
-		sceneObject.transform.rotation = rotation;
-		sceneObject.Restart(pos);
+			if (go.GetComponent<ListenerDispatcher>())
+			{
+				ListenerDispatcher mo = go.GetComponent<ListenerDispatcher>();
+				CopyComponent(mo, sceneObject.gameObject);
+			}
+			if (go.GetComponent<FlyingBehavior>())
+			{
+				FlyingBehavior mo = go.GetComponent<FlyingBehavior>();
+				CopyComponent(mo, sceneObject.gameObject);
+			}
+			if (go.GetComponent<FullRotation>())
+			{
+				FullRotation mo = go.GetComponent<FullRotation>();
+				CopyComponent(mo, sceneObject.gameObject);
+			}
+			if (go.GetComponent<Bumper>())
+			{
+				Bumper mo = go.GetComponent<Bumper>();
+				CopyComponent(mo, sceneObject.gameObject);
+			}
 
-		foreach (WeakPlatform wp in sceneObject.GetComponentsInChildren<WeakPlatform>()) {
-			wp.OnRestart (wp.transform.position);
-			wp.transform.SetParent (sceneObject.transform.parent);
 		}
-		sceneObject.Pool ();
+			AddBorders ();
 	}
-    public void addDecoration(string name, Vector3 pos, Vector3 offset)
-    {
-        SceneObject newSceneObject = Pool.GetObjectForType(name, false);
-        pos.z += offset.z;
-        pos.x += offset.x;
-        newSceneObject.Restart(pos);
+	public void PoolSceneObjectsInScene()
+	{
+		GameObject SceneObjectsContainer = Data.Instance.sceneObjectsPool.Scene;
+		SceneObject[] sceneObjects = SceneObjectsContainer.GetComponentsInChildren<SceneObject>();
+		foreach (SceneObject sceneObject in sceneObjects)
+		{
+			if(sceneObject.isActive)
+				sceneObject.Pool();
+		}
+	}
+	Component CopyComponent(Component original, GameObject destination)
+	{
+		System.Type type = original.GetType();
+		Component copy = destination.AddComponent(type);
+		System.Reflection.FieldInfo[] fields = type.GetFields();
+		foreach (System.Reflection.FieldInfo field in fields)
+		{
+			field.SetValue(copy, field.GetValue(original));
+		}
+		return copy;
+	}
+
+	public void addDecoration(string name, Vector3 pos, Vector3 offset)
+	{
+		SceneObject newSceneObject = Pool.GetObjectForType(name, false);
+		pos.z += offset.z;
+		pos.x += offset.x;
+		newSceneObject.Restart(pos);
 		newSceneObject.SetMaterialByVideoGame ();
 
-    }
-    public void addDecorationWithRotation(string name, Vector3 pos, Vector3 rotation)
-    {
-        SceneObject newSceneObject = Pool.GetObjectForType(name, false);
-        newSceneObject.Restart(pos);
-        newSceneObject.transform.localEulerAngles = rotation;
-    }
-	
+	}
+	public void addDecorationWithRotation(string name, Vector3 pos, Vector3 rotation)
+	{
+		SceneObject newSceneObject = Pool.GetObjectForType(name, false);
+		newSceneObject.Restart(pos);
+		newSceneObject.transform.localEulerAngles = rotation;
+	}
+
 	public void deleteAll()
 	{
 		GameObject[] objects = GameObject.FindGameObjectsWithTag("sceneObject");
-		 foreach (var go in objects)
+		foreach (var go in objects)
 		{
 			Destroy(go);
 		}
 	}	
+
+
+
+
+
+
+
+
+
+
+
+	public void AddBorders()
+	{
+		int id1 = 0;
+		foreach (Transform t in borderTransforms) {
+			int id2 = 0;
+			bool front = true;
+			bool back = true;
+			bool right = true;
+			bool left = true;
+			foreach (Transform t2 in borderTransforms) {				
+				if (id1 != id2) {	
+					Vector3 myPos = t.transform.position;
+					Vector3 otherPos = t2.transform.position;
+					if (ThereIsAnotherBorder (new Vector3 (myPos.x, myPos.y, myPos.z + 12), otherPos))
+						back = false;
+					if (ThereIsAnotherBorder (new Vector3 (myPos.x, myPos.y, myPos.z - 12), otherPos))
+						front = false;
+					if (ThereIsAnotherBorder (new Vector3 (myPos.x+12, myPos.y, myPos.z), otherPos))
+						right = false;
+					if (ThereIsAnotherBorder (new Vector3 (myPos.x-12, myPos.y, myPos.z), otherPos))
+						left = false;					
+				}	
+				id2++;
+			}
+			AddBorder (t, front, back, right, left);
+			id1++;
+		}
+		borderTransforms.Clear ();
+	}
+	bool ThereIsAnotherBorder(Vector3 pos, Vector3 otherPos)
+	{
+		if (Vector3.Distance (pos, otherPos) < 1)
+			return true;
+		return false;
+	}
+	public void AddBorder(Transform t, bool front, bool back, bool right, bool left)
+	{
+		SceneObject sceneObject = Instantiate(Border_videogame_1) as SceneObject;
+		sceneObject.transform.parent = Pool.Scene.transform;
+		sceneObject.transform.rotation = t.transform.rotation;
+		sceneObject.Restart( t.transform.position);
+		BordersManager bordersManager = sceneObject.GetComponent<BordersManager> ();
+		if (front) {
+			foreach (WeakPlatform wp in bordersManager.front.GetComponentsInChildren<WeakPlatform>()) {
+				wp.OnRestart (wp.transform.position);
+				wp.transform.SetParent (sceneObject.transform.parent);
+			}
+		}
+		if (back) {
+			foreach (WeakPlatform wp in bordersManager.back.GetComponentsInChildren<WeakPlatform>()) {
+				wp.OnRestart (wp.transform.position);
+				wp.transform.SetParent (sceneObject.transform.parent);
+			}
+		}
+		if (right) {
+			foreach (WeakPlatform wp in bordersManager.right.GetComponentsInChildren<WeakPlatform>()) {
+				wp.OnRestart (wp.transform.position);
+				wp.transform.SetParent (sceneObject.transform.parent);
+			}
+		}
+		if (left) {
+			foreach (WeakPlatform wp in bordersManager.left.GetComponentsInChildren<WeakPlatform>()) {
+				wp.OnRestart (wp.transform.position);
+				wp.transform.SetParent (sceneObject.transform.parent);
+			}
+		}
+		sceneObject.Pool ();
+	}
 
 }

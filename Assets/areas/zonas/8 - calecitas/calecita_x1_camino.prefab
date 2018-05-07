@@ -2562,7 +2562,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 124076}
-  m_LocalRotation: {x: 0.09335027, y: 0.7431154, z: -0.08258933, w: -0.6574528}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.2, y: 0, z: 16.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3345,7 +3345,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 196872}
-  m_LocalRotation: {x: 0, y: 0, z: -0.08715575, w: 0.9961947}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 4.9, y: 0, z: -15.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -8222,12 +8222,15 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &11420452
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8248,12 +8251,15 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &11423840
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8274,12 +8280,15 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &11425252
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8320,12 +8329,15 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &11426530
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8434,12 +8446,15 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &11445940
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8459,6 +8474,7 @@ MonoBehaviour:
   startRotation: 0
   speed: -100
   inverseRotation: 0
+  frameByFrame: 0
 --- !u!114 &11448868
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8479,12 +8495,15 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &11448890
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8543,12 +8562,15 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &11454206
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8624,6 +8646,7 @@ MonoBehaviour:
   startRotation: 0
   speed: -50
   inverseRotation: 0
+  frameByFrame: 0
 --- !u!114 &11468714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8644,12 +8667,15 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &11470312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8671,7 +8697,7 @@ MonoBehaviour:
   distanceFromCharacter: 0
   onlyMultiplayers: 0
   to: {fileID: 0}
-  materialName: 
+  videoGame_ID: 0
 --- !u!114 &11470664
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8713,7 +8739,7 @@ MonoBehaviour:
   distanceFromCharacter: 0
   onlyMultiplayers: 0
   to: {fileID: 0}
-  materialName: 
+  videoGame_ID: 0
 --- !u!114 &11478250
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8773,6 +8799,7 @@ MonoBehaviour:
   startRotation: 0
   speed: -70
   inverseRotation: 0
+  frameByFrame: 0
 --- !u!114 &11485540
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8842,12 +8869,15 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!135 &13522442
 SphereCollider:
   m_ObjectHideFlags: 1

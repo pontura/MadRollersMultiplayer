@@ -73,6 +73,8 @@ public class Player : MonoBehaviour {
 
 		if(id>3)
 			color = Data.Instance.GetComponent<MultiplayerData>().colors[4];
+		else
+			color = Data.Instance.GetComponent<MultiplayerData>().colors[id];
 
        // if (Data.Instance.isArcadeMultiplayer)
 		switch (id) {
@@ -211,8 +213,7 @@ public class Player : MonoBehaviour {
    {
 
        if (Data.Instance.DEBUG 
-			|| Data.Instance.playMode == Data.PlayModes.COMPETITION
-			|| Data.Instance.playMode == Data.PlayModes.GHOSTMODE)
+			|| Data.Instance.playMode == Data.PlayModes.COMPETITION)
        {
            canJump = true;
        }

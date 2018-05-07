@@ -136,7 +136,7 @@ public class CharactersManager : MonoBehaviour {
 		//	addCharacter(pos, 0); playerPositions.Add(0);
 		//}
 		int positionID = 0;
-		if (Data.Instance.playMode == Data.PlayModes.GHOSTMODE) {
+		if (Data.Instance.playMode == Data.PlayModes.STORY) {
 			InputSavedAutomaticPlay savedAutomaticPlay = Data.Instance.inputSavedAutomaticPlay;
 			savedAutomaticPlay.Init (this);
 			positionID = savedAutomaticPlay.allPlayersSavedData.Count;

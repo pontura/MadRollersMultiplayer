@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossPacmans : Boss {
 
 	public GameObject bossPartsContainer;
-
+	public float time_to_init_enemies = 0.25f;
 	[HideInInspector]
 	public BossPart[] parts;
 
@@ -37,7 +37,7 @@ public class BossPacmans : Boss {
 		if (id >= parts.Length)
 			return;
 		parts [id].gameObject.SetActive (true);
-		Invoke ("Init", 0.25f);
+		Invoke ("Init", time_to_init_enemies);
 		id++;
 	}
 	public override void OnPartBroken(BossPart part)
