@@ -150,6 +150,16 @@ public class GameCamera : MonoBehaviour
 		cam.transform.localEulerAngles = v;
 	}
 	Vector3 newPos;
+	void Update () 
+	{
+		if (state == states.START)
+		{
+			return;
+		}
+		if (state == states.END) {
+			return;
+		}	
+	}
 	int secondsToJump = 5;
 	float sec;
 	void LookAtFlow()
@@ -174,17 +184,19 @@ public class GameCamera : MonoBehaviour
         {
             return;
         }
-
 		newPos  = charactersManager.getPosition();
+		//cam.transform.LookAt ( flow_target.transform, Vector3.up );
+//		sec += Time.deltaTime;
+//		if (sec > secondsToJump) {
+//			sec = 0;
+//			ChangeResolution ();
+//		}
+		
+		//SetPizelPro ();
 
 		Vector3 _newPos  = newPos;
+
 		_newPos += newCameraOrientationVector;
-
-		if (_newPos.x < -15) _newPos.x = -15;
-		else if (_newPos.x > 15) _newPos.x = 15;
-
-		print (_newPos.x);
-
 		_newPos.z = Mathf.Lerp (transform.position.z, _newPos.z, Time.deltaTime*20);
 		_newPos.x = Mathf.Lerp (transform.position.x, _newPos.x, Time.deltaTime*10);
 		_newPos.y = Mathf.Lerp (transform.position.y, _newPos.y, Time.deltaTime*1);
