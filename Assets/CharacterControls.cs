@@ -72,7 +72,7 @@ public class CharacterControls : MonoBehaviour {
 	float lastHorizontalKeyPressed;
     private void moveByKeyboard()
     {
-		if (!Data.Instance.isReplay && Game.Instance.level.charactersManager.distance<40)
+		if (Data.Instance.playMode == Data.PlayModes.COMPETITION && Game.Instance.level.charactersManager.distance<40)
 			return;
 		float _speed = InputManager.getHorizontal(player.id);
 		if (lastHorizontalKeyPressed != _speed) {
