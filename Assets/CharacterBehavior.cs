@@ -206,9 +206,15 @@ public class CharacterBehavior : MonoBehaviour {
 			projectil.SetColor(player.color);
 
 			projectil.Restart(pos);
+			projectil.team_for_versus = team_for_versus;
 			Vector3 rot = transform.localEulerAngles;
 			rot.x -= 4;
-			rot.y = RotationY;
+
+			if (team_for_versus == 2)
+				rot.y = 180;
+			else
+				rot.y = RotationY;
+			
 			projectil.transform.localEulerAngles = rot;
 		}
 		else
@@ -262,10 +268,13 @@ public class CharacterBehavior : MonoBehaviour {
 		}
 		else
 		{
-			goTo.x += (rotationY / 3) * Time.deltaTime;
+			
 			float _z = player.charactersManager.distance - (position / 1);
-			if (team_for_versus == 2)
+			if (team_for_versus == 2) {
+				rotationY *= -1;
 				_z *= -1;
+			}
+			goTo.x += (rotationY / 3) * Time.deltaTime;
 			goTo.z = _z;
 		}
 		transform.position = Vector3.Lerp(transform.position, goTo, 6);
@@ -457,7 +466,9 @@ public class CharacterBehavior : MonoBehaviour {
 	{
 		Data.Instance.events.OnSoundFX("FX vox caida01", player.id);
 		Data.Instance.events.OnAvatarFall(this);
-		Game.Instance.gameCamera.OnAvatarFall (this);
+
+		if(team_for_versus == 0)
+			Game.Instance.gameCamera.OnAvatarFall (this);
 		// Die();
 	}
 
@@ -483,7 +494,9 @@ public class CharacterBehavior : MonoBehaviour {
 
 		if (Game.Instance.GetComponent<CharactersManager>().characters.Count >1) return;
 		Invoke("CrashReal", 0.3f);
-		Game.Instance.gameCamera.OnAvatarCrash (this);
+
+		if(team_for_versus == 0)
+			Game.Instance.gameCamera.OnAvatarCrash (this);
 	}
 	void CrashReal()
 	{

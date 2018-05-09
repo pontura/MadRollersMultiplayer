@@ -16,6 +16,7 @@ public class Projectil : SceneObject {
 
     private Color color;
     public MeshRenderer meshToColorize;
+	public int team_for_versus;
 	
 	void Start () {
 
@@ -26,14 +27,14 @@ public class Projectil : SceneObject {
         meshToColorize.material.color = color;
     }
     public override void OnRestart(Vector3 pos)
-    {
+    {		
         level = Game.Instance.level;
         base.OnRestart(pos);
-       // rotationX = -30;
+
         myDist = 0;
         exploted = false;
-        pos.z += 1;
-        transform.position = pos;
+		pos.z += 1;
+		transform.localPosition = pos;
 
 		MultiplayerData multiplayerData = Data.Instance.multiplayerData;
 
@@ -48,6 +49,8 @@ public class Projectil : SceneObject {
 
 		GetComponent<TrailRenderer> ().startColor = playerColor;
 		GetComponent<TrailRenderer> ().endColor = playerColor;
+
+
     }
     
     public override void OnSceneObjectUpdate()
@@ -64,6 +67,7 @@ public class Projectil : SceneObject {
             transform.localEulerAngles = rotation;
 		}
 		pos += transform.forward * 50  * Time.deltaTime;
+		
 		transform.position = pos;
 	}
 	void OnTriggerEnter(Collider other) 

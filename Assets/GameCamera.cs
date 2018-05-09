@@ -4,6 +4,7 @@ using AlpacaSound.RetroPixelPro;
 
 public class GameCamera : MonoBehaviour 
 {
+	public int team_id;
 	public RetroPixelPro retroPixelPro;
 	public Camera cam;
     public states state;
@@ -62,24 +63,19 @@ public class GameCamera : MonoBehaviour
 		cam.transform.localEulerAngles = newRotation;
 
         state = states.START;
-        transform.position = startPosition;
+		transform.localPosition = startPosition;
 		cam.transform.localEulerAngles = startRotation;
 
         Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
         Data.Instance.events.OnChangeMood += OnChangeMood;
 
-        if (Data.Instance.mode == Data.modes.ACCELEROMETER)
-			GetComponent<Camera>().rect = new Rect (0, 0, 1, 1);
-
-		//if (Data.Instance.isArcadeMultiplayer)
-			anim.Play ("intro");
-		//else
-			//anim.Play ("intro_notMultiplayer");
+		anim.Play ("intro");
 
 		Vector3 newPos = transform.localPosition;
 		newPos.y = 4.5f;
 		transform.localPosition = newPos;
-
+		if (team_id > 0)
+			Init ();
 
     }
     void OnDestroy()
@@ -108,19 +104,21 @@ public class GameCamera : MonoBehaviour
 
         }
 
-        Vector3 pos = transform.position;
+		Vector3 pos = transform.localPosition;
         pos.x = 0;
         pos.y = 0;
-        transform.position = pos;
+		transform.localPosition = pos;
 
 
 
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
 		if (flow_target == null) {
 			flow_target = new GameObject ();
+			flow_target.transform.SetParent (transform.parent);
 			flow_target.name = "Camera_TARGET";
-			//flow_target.transform.SetParent (transform);
 		}
+		if (team_id > 0)
+			SetOrientation ( new Vector4(0, 0, 0, 0) );
 	}
 	public void explote(float explotionForce)
 	{
@@ -157,12 +155,17 @@ public class GameCamera : MonoBehaviour
 		Vector3 newPosTarget = flow_target.transform.localPosition;
 		newPosTarget.x = Mathf.Lerp(newPosTarget.x, newPos.x, Time.deltaTime*4.5f);
 		newPosTarget.z = transform.localPosition.z+6;
+		
 		newPosTarget.y = 2;
 		flow_target.transform.localPosition = newPosTarget;
 
-		Vector3 pos = flow_target.transform.localPosition - transform.position;
+		Vector3 pos = flow_target.transform.localPosition - transform.localPosition;
 		var newRot = Quaternion.LookRotation(pos);
-		cam.transform.rotation = Quaternion.Lerp(cam.transform.rotation, newRot, Time.deltaTime*10);
+
+		//if (team_id == 2)
+		//	newRot.y -= 180;
+		
+		cam.transform.localRotation = Quaternion.Lerp(cam.transform.localRotation, newRot, Time.deltaTime*10);
 	}
 	void LateUpdate () 
 	{
@@ -175,7 +178,10 @@ public class GameCamera : MonoBehaviour
             return;
         }
 
-		newPos  = charactersManager.getPosition();
+		if (team_id == 0)
+			newPos = charactersManager.getPosition ();
+		else
+			newPos = charactersManager.getPositionByTeam (team_id);
 
 		Vector3 _newPos  = newPos;
 		_newPos += newCameraOrientationVector;
@@ -183,13 +189,11 @@ public class GameCamera : MonoBehaviour
 		if (_newPos.x < -15) _newPos.x = -15;
 		else if (_newPos.x > 15) _newPos.x = 15;
 
-		print (_newPos.x);
+		_newPos.z = Mathf.Lerp (transform.localPosition.z, _newPos.z, Time.deltaTime*20);
+		_newPos.x = Mathf.Lerp (transform.localPosition.x, _newPos.x, Time.deltaTime*10);
+		_newPos.y = Mathf.Lerp (transform.localPosition.y, _newPos.y, Time.deltaTime*1);
 
-		_newPos.z = Mathf.Lerp (transform.position.z, _newPos.z, Time.deltaTime*20);
-		_newPos.x = Mathf.Lerp (transform.position.x, _newPos.x, Time.deltaTime*10);
-		_newPos.y = Mathf.Lerp (transform.position.y, _newPos.y, Time.deltaTime*1);
-
-		transform.position = _newPos;
+		transform.localPosition = _newPos;
 		LookAtFlow ();
 	}
     public void OnAvatarCrash(CharacterBehavior player)
@@ -225,7 +229,7 @@ public class GameCamera : MonoBehaviour
 	}
 	public void SetOrientation(Vector4 orientation)
 	{
-		print ("_______________________ " + orientation);
+		print ("CAM SetOrientation_______________________ " + orientation);
 		newCameraOrientationVector = cameraOrientationVector + new Vector3 (orientation.x, orientation.y, orientation.z);
 		newRotation = defaultRotation + new Vector3 (orientation.w, 0, 0);
 	}

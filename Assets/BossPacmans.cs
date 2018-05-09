@@ -31,14 +31,14 @@ public class BossPacmans : Boss {
 		pos.z = _z;
 		transform.localPosition = pos;
 	} 
-	int id;
+	int partID;
 	void Init()	
 	{
-		if (id >= parts.Length)
+		if (partID >= parts.Length)
 			return;
-		parts [id].gameObject.SetActive (true);
+		parts [partID].gameObject.SetActive (true);
 		Invoke ("Init", time_to_init_enemies);
-		id++;
+		partID++;
 	}
 	public override void OnPartBroken(BossPart part)
 	{

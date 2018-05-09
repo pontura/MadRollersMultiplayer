@@ -14,7 +14,7 @@ public class BossNaves : Boss {
 			return;
 		if (!started) {
 			numberOfHits = all.Length;
-			id = 0;
+			partID = 0;
 			Init ();
 			started = true;
 		}
@@ -24,14 +24,14 @@ public class BossNaves : Boss {
 		pos.z = _z;
 		transform.localPosition = pos;
 	} 
-	int id;
+	int partID;
 	void Init()	
 	{
-		if (id >= all.Length)
+		if (partID >= all.Length)
 			return;
-		all [id].gameObject.SetActive (true);
+		all [partID].gameObject.SetActive (true);
 		Invoke ("Init", 0.5f);
-		id++;
+		partID++;
 	}
 	public override void OnPartBroken(BossPart part)
 	{

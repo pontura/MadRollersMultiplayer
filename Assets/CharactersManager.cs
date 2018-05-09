@@ -5,12 +5,13 @@ using System.Collections.Generic;
 
 public class CharactersManager : MonoBehaviour {
 
+
     public CharacterBehavior character;
   //  public EnergyBar energyBar;
     public List<CharacterBehavior> characters;
     public List<CharacterBehavior> deadCharacters;
 
-    private Vector3 characterPosition = new Vector3(0,0,0);
+	public Vector3 characterPosition = new Vector3(0,0,0);
 
     private float separationX  = 2;
 
@@ -86,7 +87,7 @@ public class CharactersManager : MonoBehaviour {
     }
     void Update()
     {
-		
+		OnUpdate ();
 		if(Input.GetKeyDown(KeyCode.M))
 			AddChildPlayer( getMainCharacter() );
 		
@@ -97,8 +98,9 @@ public class CharactersManager : MonoBehaviour {
 
 		if(Data.Instance.playMode == Data.PlayModes.STORY)
             missions.updateDistance(distance);
-
+		
     }
+	public virtual void OnUpdate(){ }
     public int GetPositionByID(int _playerID)
     {
 		if (distance < 100) return 0;
@@ -297,7 +299,7 @@ public class CharactersManager : MonoBehaviour {
     {
         return getMainCharacter().transform.position;
     }
-    public Vector3 getPosition()
+    public virtual Vector3 getPosition()
     {
         if (characters.Count > 1)
         {
@@ -356,5 +358,8 @@ public class CharactersManager : MonoBehaviour {
 			//cb.SuperJump (2200);
 			cb.player.SetInvensible ();
 		}
+	}
+	public virtual Vector3 getPositionByTeam(int id) {
+		return Vector3.zero;
 	}
 }
