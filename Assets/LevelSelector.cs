@@ -102,7 +102,7 @@ public class LevelSelector : MonoBehaviour {
 	}
 	void OnJoystickUp()
 	{
-		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {
+		if (Data.Instance.playMode == Data.PlayModes.COMPETITION || Data.Instance.playMode == Data.PlayModes.VERSUS) {
 			OnJoystickLeft ();
 			return;
 		} else
@@ -112,7 +112,7 @@ public class LevelSelector : MonoBehaviour {
 	}
 	void OnJoystickDown()
 	{
-		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {
+		if (Data.Instance.playMode == Data.PlayModes.COMPETITION || Data.Instance.playMode == Data.PlayModes.VERSUS) {
 			OnJoystickRight ();
 			return;
 		} else

@@ -53,6 +53,8 @@ public class MainMenu : MonoBehaviour {
 		//	Data.Instance.LoadLevel("PlayersSelector");
 		else if (activeID == 1) {			
 			Compite ();
+		} else if (activeID == 2) {			
+			Versus ();
 		}
 
 	}
@@ -90,6 +92,13 @@ public class MainMenu : MonoBehaviour {
 		Data.Instance.LoadLevel("LevelSelector");
 //		Data.Instance.playMode = Data.PlayModes.COMPETITION;
 //		Data.Instance.LoadLevel("Competitions");
+	}
+	void Versus()
+	{
+		Data.Instance.playMode = Data.PlayModes.VERSUS;
+		Data.Instance.LoadLevel("LevelSelector");
+		//		Data.Instance.playMode = Data.PlayModes.COMPETITION;
+		//		Data.Instance.LoadLevel("Competitions");
 	}
 //	public void Compite()
 //	{

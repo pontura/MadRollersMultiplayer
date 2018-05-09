@@ -76,6 +76,9 @@ public class Player : MonoBehaviour {
 		else
 			color = Data.Instance.GetComponent<MultiplayerData>().colors[id];
 
+		foreach (TrailRenderer tr in GetComponentsInChildren<TrailRenderer>())
+			tr.material.color = color; 
+
        // if (Data.Instance.isArcadeMultiplayer)
 		switch (id) {
 		case 0:

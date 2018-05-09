@@ -4,7 +4,7 @@ using System.Collections;
 
 public class CharacterBehavior : MonoBehaviour {
 
-
+	public int team_for_versus;
 	public Animation _animation_hero;
 	public float speed;
 	private bool walking1;
@@ -70,7 +70,8 @@ public class CharacterBehavior : MonoBehaviour {
 		//if(Data.Instance.isArcadeMultiplayer)
 		//_animation_hero.Play("saluda");
 
-		state = states.RUN;
+		state = states.JUMP;
+		Run ();
 	}
 	void OnDestroy ()
 	{
@@ -226,7 +227,6 @@ public class CharacterBehavior : MonoBehaviour {
 	}
 	public void UpdateByController(float rotationY)
 	{
-
 		if (state == states.JETPACK)
 		{
 			player.OnAvatarProgressBarUnFill(0.25f * Time.deltaTime);
@@ -263,7 +263,10 @@ public class CharacterBehavior : MonoBehaviour {
 		else
 		{
 			goTo.x += (rotationY / 3) * Time.deltaTime;
-			goTo.z = player.charactersManager.distance - (position / 1);
+			float _z = player.charactersManager.distance - (position / 1);
+			if (team_for_versus == 2)
+				_z *= -1;
+			goTo.z = _z;
 		}
 		transform.position = Vector3.Lerp(transform.position, goTo, 6);
 
@@ -276,6 +279,8 @@ public class CharacterBehavior : MonoBehaviour {
 
 	public void setRotation(Vector3 rot)
 	{
+		if (team_for_versus == 2)
+			rot.y += 180;
 		if (transform.localEulerAngles == rot) return;
 		transform.localEulerAngles = rot;
 	}

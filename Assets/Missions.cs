@@ -203,9 +203,16 @@ public class Missions : MonoBehaviour {
 
 
 
-
+	bool CanComputeMission()
+	{
+		if (Data.Instance.playMode == Data.PlayModes.STORY)
+			return true;
+		return false;
+	}
     private void OnScoreOn(int playerID, Vector3 pos, int qty)
     {
+		if (!CanComputeMission ())
+			return;
         if (MissionActive.Hiscore > 0)
         {
             addPoints(qty);
@@ -215,6 +222,8 @@ public class Missions : MonoBehaviour {
     //lo llama el player
     public void updateDistance(float qty)
     {
+		if (!CanComputeMission ())
+			return;
         if (state == states.INACTIVE) return;
         distance = (int)qty - lastDistance;
         if (MissionActive.distance > 0)
@@ -224,6 +233,8 @@ public class Missions : MonoBehaviour {
         }
     }
 	public void killGuy (int qty) {
+		if (!CanComputeMission ())
+			return;
 		if(MissionActive.guys > 0)
 		{
             addPoints(qty);		
@@ -231,6 +242,8 @@ public class Missions : MonoBehaviour {
 		}
 	}
 	public void killPlane() {
+		if (!CanComputeMission ())
+			return;
 		if(MissionActive.planes > 0)
 		{
             addPoints(1);		
@@ -239,6 +252,8 @@ public class Missions : MonoBehaviour {
 	}
 	public void OnDestroySceneObject(string name)
 	{
+		if (!CanComputeMission ())
+			return;
 		print ("name: " + name);
 		if(name == "bomb" && MissionActive.bombs > 0)
 		{
@@ -268,6 +283,8 @@ public class Missions : MonoBehaviour {
 
     void OnGrabHeart()
     {
+		if (!CanComputeMission ())
+			return;
 		if(MissionActive.hearts > 0)
 		{
             addPoints(1);
@@ -276,6 +293,8 @@ public class Missions : MonoBehaviour {
 	}
     void addPoints(float qty)
     {
+		if (!CanComputeMission ())
+			return;
         if (state == states.INACTIVE) return;
         MissionActive.addPoints(qty);
     }

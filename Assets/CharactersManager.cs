@@ -24,7 +24,7 @@ public class CharactersManager : MonoBehaviour {
 
     void Awake()
     {
-        distance = 20;
+		distance = 20;
     }
     void Start()
     {
@@ -95,10 +95,9 @@ public class CharactersManager : MonoBehaviour {
         if (gameOver) return;
         distance += speedRun * Time.deltaTime;
 
-        if(!isArcadeMultiplayer)
+		if(Data.Instance.playMode == Data.PlayModes.STORY)
             missions.updateDistance(distance);
 
-       // lastDistance = distance;
     }
     public int GetPositionByID(int _playerID)
     {
@@ -113,7 +112,7 @@ public class CharactersManager : MonoBehaviour {
         }
         return position;
     }
-    public void Init()
+    public virtual void Init()
     {
         Data.Instance.events.OnAlignAllCharacters += OnAlignAllCharacters;
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
@@ -180,11 +179,11 @@ public class CharactersManager : MonoBehaviour {
     {
         this.playerPositions = playerPositions;
     }
-    void OnAvatarFall(CharacterBehavior characterBehavior)
+	public void OnAvatarFall(CharacterBehavior characterBehavior)
     {
         killCharacter(characterBehavior);
     }
-    void OnAvatarCrash(CharacterBehavior characterBehavior)
+    public void OnAvatarCrash(CharacterBehavior characterBehavior)
     {
         killCharacter(characterBehavior);
     }
@@ -258,7 +257,7 @@ public class CharactersManager : MonoBehaviour {
         newCharacter.GetComponent<Player>().id = id;
 
         characters.Add(newCharacter);
-        newCharacter.transform.position = pos;
+       // newCharacter.transform.position = pos;
 
 		return newCharacter;
     }

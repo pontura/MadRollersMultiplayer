@@ -113,6 +113,9 @@ public class MainMenuArcade : MonoBehaviour {
     bool anyActive = false;
     void Clicked(int playerID)
     {
+		if (playerMainMenuUI [playerID].isActive)
+			return;
+		
         totalPlayers = 0;
         Data.Instance.events.OnSoundFX("coin", playerID);
 
@@ -121,15 +124,15 @@ public class MainMenuArcade : MonoBehaviour {
 
         GetTotalPlayers();        
 
-        if (!anyActive)
-        {
-            playing = false;
-        } else
-        if (anyActive && !playing)
-        {
+//        if (!anyActive)
+//        {
+//            playing = false;
+//        } else
+//        if (anyActive && !playing)
+//        {
             playing = true;
             Loop();
-        }
+      //  }
     }
     void GetTotalPlayers()
     {
@@ -161,14 +164,16 @@ public class MainMenuArcade : MonoBehaviour {
         if (sec < 1)
         {
             GetTotalPlayers();
-            if (totalPlayers > 0)
+			if (
+				(Data.Instance.playMode== Data.PlayModes.COMPETITION && totalPlayers > 0)
+				||  (Data.Instance.playMode== Data.PlayModes.VERSUS && totalPlayers > 1)
+			)
             {
                 done = true;
 				if (Data.Instance.playMode == Data.PlayModes.COMPETITION ) {
-					//Data.Instance.LoadLevel ("GameMultiplayer");
 					Data.Instance.LoadLevel ("Game");
 				} else {
-					Data.Instance.LoadLevel ("Game");
+					Data.Instance.LoadLevel ("GameVersus");
 				}
                 return;
             }

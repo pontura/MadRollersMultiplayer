@@ -45,6 +45,7 @@ public class Data : MonoBehaviour {
     public modes mode;
 
     public VoicesManager voicesManager;
+	public VersusManager versusManager;
 
     public bool DEBUG;
     public int FORCE_LOCAL_SCORE;
@@ -53,7 +54,8 @@ public class Data : MonoBehaviour {
     public enum PlayModes
     {
         STORY,
-        COMPETITION
+        COMPETITION,
+		VERSUS
 	//	GHOSTMODE
     }
     public enum modes
@@ -99,6 +101,8 @@ public class Data : MonoBehaviour {
 		videogamesData = GetComponent<VideogamesData> ();
 		inputSaver = GetComponent<InputSaver> ();
 		inputSavedAutomaticPlay = GetComponent<InputSavedAutomaticPlay> ();
+		versusManager = GetComponent<VersusManager> ();
+
 		if (totalJoysticks > 0)
 			multiplayerData.player1 = true;
 		if (totalJoysticks > 1)

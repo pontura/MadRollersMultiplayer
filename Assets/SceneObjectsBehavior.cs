@@ -69,7 +69,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	public Game game;
 	private ObjectPool Pool;
 
-	private void Start()
+	private void Awake()
 	{
 		Pool = Data.Instance.sceneObjectsPool;
 	}

@@ -68,21 +68,36 @@ public class Level : MonoBehaviour {
     }
     public void Init()
 	{
-		
-		if (Data.Instance.playMode == Data.PlayModes.COMPETITION )
+		data = Data.Instance;
+		game = Game.Instance;
+
+		data.events.OnResetLevel += reset;
+		data.events.OnSetFinalScore += OnSetFinalScore;
+		data.events.OnAddExplotion += OnAddExplotion;
+		data.events.OnAddWallExplotion += OnAddWallExplotion;
+		data.events.OnAddObjectExplotion += OnAddObjectExplotion;
+		data.events.OnAddHeartsByBreaking += OnAddHeartsByBreaking;
+		data.events.StartMultiplayerRace += StartMultiplayerRace;
+		data.events.SetVictoryArea += SetVictoryArea;
+
+		charactersManager = game.GetComponent<CharactersManager>();
+		powerupsManager = GetComponent<PowerupsManager>();
+		floorManager = GetComponent<FloorManager>();
+		floorManager.Init(charactersManager);
+		playing = true;
+
+		if (Data.Instance.playMode == Data.PlayModes.VERSUS) {
+			sceneObjects.replaceSceneObject(Data.Instance.versusManager.area, 0, 0);
+			return;
+		}
+		else if (Data.Instance.playMode == Data.PlayModes.COMPETITION )
        		 nextDistanceVictoryArea = distanceVictoryArea;
 
         areasX = 0;
-        playing = true;
-        areaActive = null;
         
-		data = Data.Instance;
-        game = Game.Instance;
-        missions = data.GetComponent<Missions>(); 		
-        charactersManager = game.GetComponent<CharactersManager>();
-        floorManager = GetComponent<FloorManager>();
-        powerupsManager = GetComponent<PowerupsManager>();
-        floorManager.Init(charactersManager);
+        areaActive = null;        
+
+        missions = data.GetComponent<Missions>();      
 
 		powerupsManager.Init ();
 		missions.Init(data.missions.MissionActiveID, this);
@@ -93,16 +108,6 @@ public class Level : MonoBehaviour {
 
 		if (!Data.Instance.isArcadeMultiplayer && !waitingToStart) // nunevo && !waitingToStart)
             missions.StartNext();
-
-        data.events.OnResetLevel += reset;
-        data.events.OnSetFinalScore += OnSetFinalScore;
-        data.events.OnAddExplotion += OnAddExplotion;
-        data.events.OnAddWallExplotion += OnAddWallExplotion;
-        data.events.OnAddObjectExplotion += OnAddObjectExplotion;
-        data.events.OnAddHeartsByBreaking += OnAddHeartsByBreaking;
-        data.events.OnAddTumba += OnAddTumba;
-        data.events.StartMultiplayerRace += StartMultiplayerRace;
-        data.events.SetVictoryArea += SetVictoryArea;
 
 		Invoke ("Delayed", 0.5f);
     }
@@ -118,7 +123,6 @@ public class Level : MonoBehaviour {
         data.events.OnAddExplotion -= OnAddExplotion;
         data.events.OnAddWallExplotion -= OnAddWallExplotion;
         data.events.OnAddObjectExplotion -= OnAddObjectExplotion;
-        data.events.OnAddTumba -= OnAddTumba;
         data.events.StartMultiplayerRace -= StartMultiplayerRace;
         data.events.SetVictoryArea -= SetVictoryArea;
         data.events.OnAddHeartsByBreaking -= OnAddHeartsByBreaking;
@@ -271,12 +275,13 @@ public class Level : MonoBehaviour {
     bool showVictory;
 	void SetVictoryArea()
     {
-		print("__________________victory!");
-        	showVictory = true;
+		showVictory = true;
     }
 	int tutorialID;
 	private void Update () {
 	
+		if (Data.Instance.playMode == Data.PlayModes.VERSUS )
+			return;
 		float dist = charactersManager.getDistance ();
 
 		if(missions.MissionActiveID == 0)
@@ -359,33 +364,5 @@ public class Level : MonoBehaviour {
     }
 
 
-    private bool onLeft;
-    public void OnAddTumba(Vector3 position, string username, string facebookID)
-    {
-        onLeft = !onLeft;
-
-        Vector3 newPos = position;
-        newPos.y += 0f;
-
-        if (onLeft)
-        {
-            newPos.x = -8;
-        }
-        else
-        {
-            newPos.x = 8;
-        }
-
-        SceneObject obj = ObjectPool.instance.GetObjectForType("Tumba_real", true);
-        if (obj)
-        {
-            obj.Restart(newPos);
-            obj.GetComponent<TumbaAvatar>().SetPicture(facebookID);
-            obj.GetComponent<TumbaAvatar>().SetField(username);
-            if (onLeft)
-                obj.transform.localEulerAngles = new Vector3(0, 0, 0);
-            else
-                obj.transform.localEulerAngles = new Vector3(0, 90, 0);
-        }
-    }
+   
 }

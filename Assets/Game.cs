@@ -5,7 +5,7 @@ public class Game : MonoBehaviour {
 
     const string PREFAB_PATH = "Prefabs/Game";
     public GameCamera gameCamera;
-
+	public GameCamera gameCamera2;
     static Game mInstance = null;
 
 	private float pausedSpeed = 0.005f;
@@ -40,6 +40,8 @@ public class Game : MonoBehaviour {
 		GetComponent<RainManager> ().Init ();
 		level.Init();
 		gameCamera.Init();
+		if (gameCamera2 != null)
+			gameCamera2.Init ();
 
         Data.Instance.events.OnGamePaused += OnGamePaused;
         
@@ -62,6 +64,8 @@ public class Game : MonoBehaviour {
     {
         Data.Instance.events.OnGamePaused(false);
         gameCamera.Init();
+		if (gameCamera2 != null)
+			gameCamera2.Init ();
         
         CharacterBehavior cb = level.charactersManager.character;
         
