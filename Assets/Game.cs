@@ -93,11 +93,11 @@ public class Game : MonoBehaviour {
     {
         if (paused)
         {
-            Time.timeScale = 0;
+			Data.Instance.events.ForceFrameRate (0);
         }
         else
         {
-            Time.timeScale = 1;
+			Data.Instance.events.ForceFrameRate (1);
         }
     }
     public void GotoLevelSelector()
@@ -105,14 +105,14 @@ public class Game : MonoBehaviour {
        // Pause();
         Data.Instance.events.OnResetLevel();
        // Application.LoadLevel("LevelSelector");
-        Time.timeScale = 1;
+		Data.Instance.events.ForceFrameRate (1);
         Data.Instance.LoadLevel("LevelSelector");
     }
     public void GotoMainMenu()
     {
       //  Pause();
         Data.Instance.events.OnResetLevel();
-        Time.timeScale = 1;
+		Data.Instance.events.ForceFrameRate (1);
         Data.Instance.LoadLevel("MainMenu");
     }
     public void GotoContinue()

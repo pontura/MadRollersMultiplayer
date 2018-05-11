@@ -33,7 +33,6 @@ public class GameMenu : MonoBehaviour {
     public void Init()
     {
         Data.Instance.events.OnFadeALittle(true);
-        //Time.timeScale = 0;
         Data.Instance.events.OnGamePaused(true);
         popup.SetActive(true);
         StartCoroutine(Play(anim, "GameMenuOpen", false, null));
@@ -103,8 +102,7 @@ public class GameMenu : MonoBehaviour {
     }
     private void Reset()
     {
-        
-        Time.timeScale = 1;
+		Data.Instance.events.ForceFrameRate (1);
         popup.SetActive(false);
        // Game.Instance.UnPause();
         Data.Instance.events.OnCloseMainmenu();

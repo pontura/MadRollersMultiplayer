@@ -152,7 +152,6 @@ public class CharacterBehavior : MonoBehaviour {
 	}
 	public void CheckFire()
 	{
-		if(Time.timeScale<0.2f) return;
 
 		if (_animation_hero)
 			_animation_hero.Play("shoot");
@@ -501,16 +500,7 @@ public class CharacterBehavior : MonoBehaviour {
 	void CrashReal()
 	{
 		if (player.charactersManager.getTotalCharacters() == 1) return;
-		Time.timeScale = 0.02f;
-		StartCoroutine(lowCamera());
-	}
-	IEnumerator lowCamera()
-	{
-		while (Time.timeScale < 1)
-		{
-			Time.timeScale += 0.001f + Time.deltaTime;
-			yield return null;
-		}
+		Data.Instance.events.RalentaTo (0.2f, 0.05f);
 	}
 	void SaveDistance()
 	{

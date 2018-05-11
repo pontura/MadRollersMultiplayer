@@ -19,7 +19,7 @@ public class LevelComplete : MonoBehaviour {
      }
     public void Init(int missionNum)
     {
-		Time.timeScale = 0.2f;	
+		Data.Instance.events.RalentaTo (0.2f, 0.05f);
 		panel.SetActive (true);
         int maxScore = Data.Instance.GetComponent<Missions>().MissionActive.maxScore;
         int missionScore = Data.Instance.userData.missionScore;
@@ -58,7 +58,7 @@ public class LevelComplete : MonoBehaviour {
 	IEnumerator Closing(float delay)
 	{
 		yield return StartCoroutine(Utils.CoroutineUtil.WaitForRealSeconds (delay));
-		Time.timeScale = 1;	
+		Data.Instance.events.RalentaTo (1, 0.05f);
 		Close ();
 	}
 	public void Close()

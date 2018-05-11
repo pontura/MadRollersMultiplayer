@@ -41,6 +41,7 @@ public class Summary : MonoBehaviour {
     }
     void SetOn()
     {
+		Data.Instance.events.RalentaTo (1, 0.05f);
 		isOn = true;
         panel.SetActive(true);
         

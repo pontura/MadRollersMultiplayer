@@ -30,6 +30,7 @@ GameObject:
   - component: {fileID: 114082184793671734}
   - component: {fileID: 114767696684100036}
   - component: {fileID: 114317075688720918}
+  - component: {fileID: 114770109075638300}
   m_Layer: 0
   m_Name: data
   m_TagString: Untagged
@@ -466,6 +467,7 @@ MonoBehaviour:
   inputSavedAutomaticPlay: {fileID: 0}
   mode: 2
   voicesManager: {fileID: 114892904904857298}
+  versusManager: {fileID: 0}
   DEBUG: 0
   FORCE_LOCAL_SCORE: 0
   playMode: 0
@@ -1714,6 +1716,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allPlayersSavedData: []
   characters: []
+--- !u!114 &114770109075638300
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c7608d98c5bf744bf756de067b39ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114808822593191732
 MonoBehaviour:
   m_ObjectHideFlags: 1

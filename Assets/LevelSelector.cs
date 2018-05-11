@@ -95,10 +95,12 @@ public class LevelSelector : MonoBehaviour {
 		if (
 			(Data.Instance.playMode == Data.PlayModes.STORY
 			)) {
-			Data.Instance.LoadLevel("Game");
+			Data.Instance.LoadLevel ("Game");
 			Data.Instance.isReplay = true;
-		}	else 
-			Data.Instance.LoadLevel("MainMenuArcade");
+		} else {
+			Data.Instance.multiplayerData.SelectAllPlayers ();
+			Data.Instance.LoadLevel ("GameVersus");
+		}
 	}
 	void OnJoystickUp()
 	{

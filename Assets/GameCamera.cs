@@ -60,22 +60,22 @@ public class GameCamera : MonoBehaviour
 		newH = retroPixelPro.horizontalResolution;
 		newV = retroPixelPro.verticalResolution;
 
-		cam.transform.localEulerAngles = newRotation;
-
         state = states.START;
-		transform.localPosition = startPosition;
+
 		cam.transform.localEulerAngles = startRotation;
 
         Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
-        Data.Instance.events.OnChangeMood += OnChangeMood;
+		Data.Instance.events.OnChangeMood += OnChangeMood;
 
-		anim.Play ("intro");
-
-		Vector3 newPos = transform.localPosition;
-		newPos.y = 4.5f;
-		transform.localPosition = newPos;
 		if (team_id > 0)
 			Init ();
+		else {
+			transform.localPosition = startPosition;
+			Vector3 newPos = transform.localPosition;
+			newPos.y = 4.5f;
+			transform.localPosition = newPos;
+			anim.Play ("intro");
+		}
 
     }
     void OnDestroy()

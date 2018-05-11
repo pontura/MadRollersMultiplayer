@@ -30,6 +30,13 @@ public class MultiplayerData : MonoBehaviour
     {
         players = _players;
     }
+	public void SelectAllPlayers()
+	{
+		player1 = true;
+		player2 = true;
+		player3 = true;
+		player4 = true;
+	}
     public int GetScore(int playerID)
     {
         switch (playerID)

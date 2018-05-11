@@ -10,10 +10,18 @@ public class CharactersManagerVersus : CharactersManager {
 	public Transform team2Container;
 	public float totalDistance;
 
+	public states state;
+	public enum states
+	{
+		FIRST_PART,
+		CENTER,
+		LAST_PART
+	}
+
 	public override void Init()
 	{
-		totalDistance = ( Data.Instance.versusManager.area.z_length) - 2;
-		distance = (totalDistance/2) * -1;
+		totalDistance = 2*( Data.Instance.versusManager.area.z_length) - 2;
+		distance = (Data.Instance.versusManager.area.z_length) * -1;
 		//Data.Instance.events.OnAlignAllCharacters += OnAlignAllCharacters;
 		//Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
 		//Data.Instance.events.OnReorderAvatarsByPosition += OnReorderAvatarsByPosition;
@@ -30,25 +38,38 @@ public class CharactersManagerVersus : CharactersManager {
 		if (Data.Instance.isReplay)
 			_y = 15;
 
-		Vector3 posTeam1 = new Vector3(1, _y, distance);	 
-		Vector3 posTeam2 = new Vector3(1, _y, distance*-1);	
+		Vector3 posTeam1 = new Vector3(0, _y, distance);	 
+		Vector3 posTeam2 = new Vector3(0, _y, distance*-1);	
 
-		if (Data.Instance.multiplayerData.player1) { 
-			CharacterBehavior cb = addCharacter(posTeam1, 0); 
+		CharacterBehavior cb;
+		//if (Data.Instance.multiplayerData.player1) { 
+			cb = addCharacter(posTeam1, 0); 
 			cb.team_for_versus = 1;
 			cb.transform.SetParent (team1Container);
-			cb.transform.localPosition = posTeam1;
+			cb.transform.localPosition = new Vector3(-1, _y, distance);
 			charactersTeam1.Add (cb);
 			playerPositions.Add(0); 
-		};
-		if (Data.Instance.multiplayerData.player2) { 
-			CharacterBehavior cb = addCharacter(posTeam2, 1); 
+	//	};
+			cb = addCharacter(posTeam1, 1); 
+			cb.team_for_versus = 1;
+			cb.transform.SetParent (team1Container);
+			cb.transform.localPosition = new Vector3(1, _y, distance);
+			charactersTeam1.Add (cb);
+			playerPositions.Add(1); 
+
+			cb = addCharacter(posTeam2, 2); 
 			cb.team_for_versus = 2;
 			cb.transform.SetParent (team2Container);
-			cb.transform.localPosition = posTeam1;
+			cb.transform.localPosition = new Vector3(-1, _y, distance);
 			charactersTeam2.Add (cb);
-			playerPositions.Add(1); 
-		};
+			playerPositions.Add(2);
+
+			cb = addCharacter(posTeam2, 3); 
+			cb.team_for_versus = 2;
+			cb.transform.SetParent (team2Container);
+			cb.transform.localPosition = new Vector3(1, _y, distance);
+			charactersTeam2.Add (cb);
+			playerPositions.Add(3);
 
 	}
 	void OnDestroy()
@@ -107,8 +128,14 @@ public class CharactersManagerVersus : CharactersManager {
 	}
 	public override void OnUpdate()
 	{
-		print (distance + " totalDistance" + totalDistance);
-		if (distance > totalDistance - 24) {			
+		if (distance > -36 && state == states.FIRST_PART) {
+			Data.Instance.events.RalentaTo (0.2f,0.04f);
+			state = states.CENTER;
+		} else if (distance > -5 && state == states.CENTER) {
+			Data.Instance.events.RalentaTo (1,0.02f);
+			state = states.LAST_PART;
+		}
+		if (distance > totalDistance - 28) {			
 			Finish ();
 		}
 	}

@@ -72,7 +72,7 @@ public class Projectil : SceneObject {
 	}
 	void OnTriggerEnter(Collider other) 
 	{
-
+		print ("_________________" + other.tag);
         if (!isActive) return;
 		if(exploted) return;
 
@@ -112,6 +112,23 @@ public class Projectil : SceneObject {
 				rot.y += 180+other.gameObject.GetComponentInParent<SceneObject>().transform.localEulerAngles.y;
 				transform.localEulerAngles = rot;
 				break;
+		case "Player":
+			if (Data.Instance.playMode != Data.PlayModes.VERSUS)
+				return;
+			CharacterBehavior cb = other.gameObject.GetComponentInParent<CharacterBehavior> ();
+			if (cb == null 
+				|| cb.player.id == playerID 
+				|| cb.state == CharacterBehavior.states.CRASH
+				|| cb.state == CharacterBehavior.states.FALL
+				|| cb.state == CharacterBehavior.states.DEAD)
+				return;
+
+			//chequea si el projectil es del otro team ( a mejorar)
+			if (playerID <2 && cb.player.id<2 || playerID >1 && cb.player.id>2)
+				return;
+			cb.Hit ();
+			Destroy();
+			break;
 		}
 	}
     void SetScore(int score)

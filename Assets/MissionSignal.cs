@@ -70,7 +70,7 @@ public class MissionSignal : MonoBehaviour {
 		Data.Instance.missions.SetLastMissionID (missionID);
 		
 		panel.SetActive (true);
-		Time.timeScale = 0.01f;	
+		Data.Instance.events.RalentaTo (0.05f, 0.2f);
     }
     private IEnumerator MissionComplete()
     {
@@ -90,7 +90,7 @@ public class MissionSignal : MonoBehaviour {
     private void MissionSignalOn()
     {
 		Open("MISIóN " +  Data.Instance.GetComponent<Missions> ().MissionActiveID, -1);
-        CloseAfter(2f);
+        CloseAfter(1.5f);
     }
 	void OnShowTutorial(int id)
 	{
@@ -108,13 +108,13 @@ public class MissionSignal : MonoBehaviour {
 			gui.missionIcon.SetOn (mission, specialIcon_Tutorial3);
 		}
 		
-		CloseAfter(3f);
+		CloseAfter(2f);
 	}
     private void ShowMissionName()
     {
 		RefreshMissionIcon ();
 		Open( mission.description.ToUpper(), mission.id);
-        CloseAfter(3f);
+        CloseAfter(2f);
     }
 	private void Open(string text, int missionId)
     {
@@ -142,7 +142,7 @@ public class MissionSignal : MonoBehaviour {
 	IEnumerator Closing(float delay)
 	{
 		yield return StartCoroutine(Utils.CoroutineUtil.WaitForRealSeconds (delay));
-		Time.timeScale = 1;	
+		Data.Instance.events.RalentaTo (1, 0.05f);
 		Close ();
 	}
     public void Close()
