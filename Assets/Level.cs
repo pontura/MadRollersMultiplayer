@@ -88,9 +88,9 @@ public class Level : MonoBehaviour {
 
 		if (Data.Instance.playMode == Data.PlayModes.VERSUS) {
 			Area a = Data.Instance.versusManager.area;
-			sceneObjects.replaceSceneObject(a, -a.z_length/2, 0);
-			a.transform.localEulerAngles = new Vector3 (0, 180, 0);
-			sceneObjects.replaceSceneObject(a, a.z_length/2, 0);
+			sceneObjects.replaceSceneObject(a, a.z_length/2, 0, false);
+			Area b = Data.Instance.versusManager.area;
+			sceneObjects.replaceSceneObject(b, b.z_length/2, 0, true);
 			return;
 		}
 		else if (Data.Instance.playMode == Data.PlayModes.COMPETITION )

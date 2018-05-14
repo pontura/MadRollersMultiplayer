@@ -92,14 +92,13 @@ public class LevelSelector : MonoBehaviour {
 	{
 		data.missions.MissionActiveID =lastButtonSelected.id;
 
-		if (
-			(Data.Instance.playMode == Data.PlayModes.STORY
-			)) {
+		if (Data.Instance.playMode == Data.PlayModes.STORY ) {
 			Data.Instance.LoadLevel ("Game");
 			Data.Instance.isReplay = true;
-		} else {
-			Data.Instance.multiplayerData.SelectAllPlayers ();
-			Data.Instance.LoadLevel ("GameVersus");
+		} else if ( Data.Instance.playMode == Data.PlayModes.COMPETITION ) {
+			Data.Instance.LoadLevel ("MainMenuArcade");
+		} else  {
+			Data.Instance.LoadLevel ("MainMenuArcadeVersus");
 		}
 	}
 	void OnJoystickUp()

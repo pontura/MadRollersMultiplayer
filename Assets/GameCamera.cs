@@ -10,6 +10,7 @@ public class GameCamera : MonoBehaviour
     public states state;
     public  enum states
     {
+		WAITING_TO_TRAVEL,
         START,
         PLAYING,
         END
@@ -35,7 +36,6 @@ public class GameCamera : MonoBehaviour
 	int pixel_speed_recovery = 14;
 	private GameObject flow_target;
 
-
 	void ChangeResolution()
 	{
 		retroPixelPro.horizontalResolution =(int) defaultResolution.x;
@@ -60,16 +60,23 @@ public class GameCamera : MonoBehaviour
 		newH = retroPixelPro.horizontalResolution;
 		newV = retroPixelPro.verticalResolution;
 
-        state = states.START;
+		charactersManager = Game.Instance.GetComponent<CharactersManager>();
+       
 
 		cam.transform.localEulerAngles = startRotation;
 
         Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
 		Data.Instance.events.OnChangeMood += OnChangeMood;
 
-		if (team_id > 0)
-			Init ();
+		if (team_id > 0) {
+			state = states.WAITING_TO_TRAVEL;
+			Invoke ("Start_Traveling", 2);
+			SetOrientation (new Vector4 (0, 0, 0, 0));
+			transform.localPosition = new Vector3 (0, 4, Data.Instance.versusManager.area.z_length-3);
+			cam.transform.localEulerAngles = new Vector3 (25, 0, 0);
+		}
 		else {
+			state = states.START;
 			transform.localPosition = startPosition;
 			Vector3 newPos = transform.localPosition;
 			newPos.y = 4.5f;
@@ -78,6 +85,10 @@ public class GameCamera : MonoBehaviour
 		}
 
     }
+	void Start_Traveling()
+	{
+		state = states.START;
+	}
     void OnDestroy()
     {
         Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
@@ -104,22 +115,21 @@ public class GameCamera : MonoBehaviour
 
         }
 
-		Vector3 pos = transform.localPosition;
-        pos.x = 0;
-        pos.y = 0;
-		transform.localPosition = pos;
-
-
-
-        charactersManager = Game.Instance.GetComponent<CharactersManager>();
+        
 		if (flow_target == null) {
 			flow_target = new GameObject ();
 			flow_target.transform.SetParent (transform.parent);
 			flow_target.name = "Camera_TARGET";
 		}
-		if (team_id > 0)
-			SetOrientation ( new Vector4(0, 0, 0, 0) );
+		if (team_id > 0) {
+			//SetOrientation (new Vector4 (0, 0, 0, 0));
+		//	transform.localPosition = new Vector3 (0, 4, Data.Instance.versusManager.area.z_length);
+			//cam.transform.localEulerAngles = new Vector3 (25, 0, 0);
+		} else {
+			transform.localPosition =  new Vector3 (0, 0,transform.localPosition.z);
+		}
 	}
+
 	public void explote(float explotionForce)
 	{
 		return;
@@ -162,18 +172,24 @@ public class GameCamera : MonoBehaviour
 		Vector3 pos = flow_target.transform.localPosition - transform.localPosition;
 		var newRot = Quaternion.LookRotation(pos);
 
-		//if (team_id == 2)
-		//	newRot.y -= 180;
-		
 		cam.transform.localRotation = Quaternion.Lerp(cam.transform.localRotation, newRot, Time.deltaTime*10);
 	}
+
+
+
 	void LateUpdate () 
 	{
         if (state == states.START)
-        {
-            return;
+        {           
+			if(Data.Instance.playMode == Data.PlayModes.VERSUS)
+			{
+				Vector3 myPos = transform.localPosition;
+				Vector3 destPos = new Vector3 (0, 4, -Data.Instance.versusManager.area.z_length-2);
+				transform.localPosition = Vector3.Lerp (myPos, destPos, 0.04f);					
+			}
+			return;
         }
-        if (state == states.END )
+		if (state == states.END || state == states.WAITING_TO_TRAVEL)
         {
             return;
         }

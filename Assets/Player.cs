@@ -246,17 +246,13 @@ public class Player : MonoBehaviour {
    }
     private void setNormalState()
     {
-        print("____setNormalState_setNormalState_setNormalState_setNormalState");
-       // Data.Instance.events.OnChangeMood(1);
         Data.Instance.events.OnAvatarChangeFX(Player.fxStates.NORMAL);
         fxState = fxStates.NORMAL;
         gameObject.layer = LayerMask.NameToLayer("Character");
         particles.SetActive(false);        
     }
     private void setSuperState()
-    {
-       // Data.Instance.events.OnChangeMood(2);
-        
+    {        
         Data.Instance.events.OnAvatarChangeFX(Player.fxStates.SUPER);
         fxState = fxStates.SUPER;
         

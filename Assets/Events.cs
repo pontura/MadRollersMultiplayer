@@ -109,5 +109,5 @@ public class Events : MonoBehaviour {
 	public System.Action<CharacterBehavior> OnAutomataCharacterDie = delegate { };
 	public System.Action<float, float> RalentaTo = delegate { };
 	public System.Action<float> ForceFrameRate = delegate { };
-
+	public System.Action<int> OnVersusTeamWon= delegate { };
 }

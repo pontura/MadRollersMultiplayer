@@ -12,15 +12,18 @@ public class FramesController : MonoBehaviour {
 		Data.Instance.events.RalentaTo += RalentaTo;
 		Data.Instance.events.ForceFrameRate += ForceFrameRate;
 	}
-	void ForceFrameRate(float newFrameRate)
+	public void ForceFrameRate(float newFrameRate)
 	{
+		print("ForceFrameRate");
 		this.frameRate = newFrameRate;
 		Time.timeScale = frameRate;
 	}
 	void RalentaTo (float newFrameRate, float speedEveryFrame = 0.01f) {
+		print("RalentaTo");
 		this.speedEveryFrame = speedEveryFrame;
-		if(ralentaCoroutine!=null)
-			StopCoroutine (OnChangingSpeed(newFrameRate));
+
+		if (ralentaCoroutine != null)
+			StopAllCoroutines ();
 		
 		ralentaCoroutine = OnChangingSpeed (newFrameRate);
 		StartCoroutine ( ralentaCoroutine );
@@ -34,14 +37,18 @@ public class FramesController : MonoBehaviour {
 			Resto = speedEveryFrame;
 		while (Mathf.Abs (frameRate - newFrameRate) > 0.05f) {
 			frameRate += Resto;
-			if (frameRate > 1)
-				frameRate = 1;
-			else if (newFrameRate < 0)
-				frameRate = 0;
-			Time.timeScale = frameRate;
+			SetNewTimeScale (frameRate);
 			yield return new WaitForSecondsRealtime(speedEveryFrame);
 		}
-		Time.timeScale = newFrameRate;
+		SetNewTimeScale (newFrameRate);
 		yield return null;
+	}
+	void SetNewTimeScale(float newFrameRate)
+	{
+		if (newFrameRate > 1)
+			newFrameRate = 1;
+		else if (newFrameRate < 0)
+			newFrameRate = 0;
+		Time.timeScale = newFrameRate;
 	}
 }

@@ -72,6 +72,9 @@ public class CharacterBehavior : MonoBehaviour {
 
 		state = states.JUMP;
 		Run ();
+
+		if (Data.Instance.playMode == Data.PlayModes.VERSUS)
+			_animation_hero.gameObject.transform.localEulerAngles = Vector3.zero;
 	}
 	void OnDestroy ()
 	{
@@ -209,8 +212,10 @@ public class CharacterBehavior : MonoBehaviour {
 			Vector3 rot = transform.localEulerAngles;
 			rot.x -= 4;
 
-			if (team_for_versus == 2)
+			if (team_for_versus > 1) {
+				print(team_for_versus + "  ___________ rota projl");
 				rot.y = 180;
+			}
 			else
 				rot.y = RotationY;
 			
@@ -500,7 +505,8 @@ public class CharacterBehavior : MonoBehaviour {
 	void CrashReal()
 	{
 		if (player.charactersManager.getTotalCharacters() == 1) return;
-		Data.Instance.events.RalentaTo (0.2f, 0.05f);
+		Data.Instance.GetComponent<FramesController> ().ForceFrameRate (0.1f);
+		Data.Instance.events.RalentaTo (1, 0.2f);
 	}
 	void SaveDistance()
 	{

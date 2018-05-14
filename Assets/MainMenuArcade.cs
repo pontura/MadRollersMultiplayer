@@ -153,6 +153,15 @@ public class MainMenuArcade : MonoBehaviour {
     void Loop()
     {
         if (!playing) return;
+		if (Data.Instance.playMode == Data.PlayModes.VERSUS)
+		if (
+			(Data.Instance.multiplayerData.player1 || Data.Instance.multiplayerData.player2)
+			&&
+			(Data.Instance.multiplayerData.player3 || Data.Instance.multiplayerData.player4)) {
+			//sigue
+		} else
+			return;
+		
         sec--;
 
         CountDown1.text = "0" + sec;

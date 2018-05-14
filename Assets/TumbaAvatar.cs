@@ -6,6 +6,19 @@ public class TumbaAvatar : SceneObject {
     public TextMesh field;
     public Renderer renderer;
 
+	public void OnTriggerEnter(Collider other)
+	{
+		if (other.tag == "Player") {
+			Game.Instance.level.charactersManager.distance = -Data.Instance.versusManager.area.z_length;
+			CharacterBehavior cb = other.GetComponentInParent<CharacterBehavior> ();
+			Vector3 pos = cb.gameObject.transform.localPosition;
+			pos.z *= -1;
+			pos.y += 2;
+			cb.gameObject.transform.localPosition = pos;
+			Game.Instance.level.charactersManager.GetComponent<CharactersManagerVersus> ().ResetPositions ();
+		}			
+	}
+
     public void SetField(string content)
     {
        // field.text = content;

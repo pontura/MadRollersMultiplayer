@@ -44,7 +44,7 @@ public class SceneObject : MonoBehaviour {
             Pool();
 		else if (distance > transform.position.z + size_z + 22 && Data.Instance.playMode != Data.PlayModes.VERSUS)
             Pool();
-        else if (distance > transform.position.z - 45)
+		else if (distance > transform.position.z - 45 || Data.Instance.playMode == Data.PlayModes.VERSUS)
             OnSceneObjectUpdate();
     }
     public void Restart(Vector3 pos)

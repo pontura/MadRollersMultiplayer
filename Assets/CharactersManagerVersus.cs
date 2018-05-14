@@ -15,20 +15,16 @@ public class CharactersManagerVersus : CharactersManager {
 	{
 		FIRST_PART,
 		CENTER,
-		LAST_PART
+		LAST_PART,
+		DONE
 	}
 
 	public override void Init()
 	{
 		totalDistance = 2*( Data.Instance.versusManager.area.z_length) - 2;
 		distance = (Data.Instance.versusManager.area.z_length) * -1;
-		//Data.Instance.events.OnAlignAllCharacters += OnAlignAllCharacters;
-		//Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
-		//Data.Instance.events.OnReorderAvatarsByPosition += OnReorderAvatarsByPosition;
 		Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
 		Data.Instance.events.OnAvatarFall += OnAvatarFall;
-		//Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
-		//Data.Instance.events.OnAutomataCharacterDie += OnAutomataCharacterDie;
 		Data.Instance.events.OnAvatarDie += OnAvatarDie;
 
 		Vector3 pos;
@@ -42,35 +38,38 @@ public class CharactersManagerVersus : CharactersManager {
 		Vector3 posTeam2 = new Vector3(0, _y, distance*-1);	
 
 		CharacterBehavior cb;
-		//if (Data.Instance.multiplayerData.player1) { 
-			cb = addCharacter(posTeam1, 0); 
+		if (Data.Instance.multiplayerData.player1) { 
+			cb = addCharacter (posTeam1, 0); 
 			cb.team_for_versus = 1;
 			cb.transform.SetParent (team1Container);
-			cb.transform.localPosition = new Vector3(-1, _y, distance);
+			cb.transform.localPosition = new Vector3 (-1, _y, distance);
 			charactersTeam1.Add (cb);
-			playerPositions.Add(0); 
-	//	};
-			cb = addCharacter(posTeam1, 1); 
+			playerPositions.Add (0); 
+		} 
+		if (Data.Instance.multiplayerData.player2) { 
+			cb = addCharacter (posTeam1, 1); 
 			cb.team_for_versus = 1;
 			cb.transform.SetParent (team1Container);
-			cb.transform.localPosition = new Vector3(1, _y, distance);
+			cb.transform.localPosition = new Vector3 (1, _y, distance);
 			charactersTeam1.Add (cb);
-			playerPositions.Add(1); 
-
-			cb = addCharacter(posTeam2, 2); 
+			playerPositions.Add (1); 
+		} 
+		if (Data.Instance.multiplayerData.player3) { 
+			cb = addCharacter (posTeam2, 2); 
 			cb.team_for_versus = 2;
 			cb.transform.SetParent (team2Container);
-			cb.transform.localPosition = new Vector3(-1, _y, distance);
+			cb.transform.localPosition = new Vector3 (-1, _y, distance);
 			charactersTeam2.Add (cb);
-			playerPositions.Add(2);
-
-			cb = addCharacter(posTeam2, 3); 
+			playerPositions.Add (2);	
+		} 
+		if (Data.Instance.multiplayerData.player4) { 
+			cb = addCharacter (posTeam2, 3); 
 			cb.team_for_versus = 2;
 			cb.transform.SetParent (team2Container);
-			cb.transform.localPosition = new Vector3(1, _y, distance);
+			cb.transform.localPosition = new Vector3 (1, _y, distance);
 			charactersTeam2.Add (cb);
-			playerPositions.Add(3);
-
+			playerPositions.Add (3);
+		}
 	}
 	void OnDestroy()
 	{
@@ -80,13 +79,21 @@ public class CharactersManagerVersus : CharactersManager {
 	}
 	void OnAvatarDie(CharacterBehavior cb)
 	{
+		if (gameOver)
+			return;
 		if (cb.team_for_versus == 1)
 			charactersTeam1.Remove (cb);
 		else if (cb.team_for_versus == 2)
 			charactersTeam2.Remove (cb);
 
-		if (charactersTeam1.Count == 0 && charactersTeam2.Count == 0)
-			Finish ();
+		if (charactersTeam1.Count == 0) {			
+			Data.Instance.events.OnVersusTeamWon (2);
+			gameOver = true;
+		} else if (charactersTeam2.Count == 0) {
+			Data.Instance.events.OnVersusTeamWon (1);
+			gameOver = true;
+		}
+		
 	}
 	public override Vector3 getPositionByTeam(int teamId)
 	{
@@ -128,20 +135,18 @@ public class CharactersManagerVersus : CharactersManager {
 	}
 	public override void OnUpdate()
 	{
+		print (Time.timeScale);
 		if (distance > -36 && state == states.FIRST_PART) {
-			Data.Instance.events.RalentaTo (0.2f,0.04f);
+			Data.Instance.events.RalentaTo (0.3f,0.04f);
 			state = states.CENTER;
-		} else if (distance > -5 && state == states.CENTER) {
+		} else if (distance > -7 && state == states.CENTER) {
 			Data.Instance.events.RalentaTo (1,0.02f);
 			state = states.LAST_PART;
 		}
-		if (distance > totalDistance - 28) {			
-			Finish ();
-		}
 	}
-	void Finish()
+	public void ResetPositions()
 	{
-		Data.Instance.events.OnGameOver ();
-		return;
+		distance = -Data.Instance.versusManager.area.z_length;
+		state = states.FIRST_PART;
 	}
 }

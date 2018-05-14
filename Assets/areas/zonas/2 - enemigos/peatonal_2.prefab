@@ -1852,7 +1852,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1298662225599092}
-  m_LocalRotation: {x: -0, y: -0, z: 0.12464057, w: 0.992202}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.54, y: -0.35, z: -15.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1921,7 +1921,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1977770200360006}
-  m_LocalRotation: {x: 0, y: 0, z: 0.038823802, w: 0.99924606}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
   m_LocalPosition: {x: -11.16, y: -1.14, z: 4.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1974,7 +1974,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1892192664066834}
-  m_LocalRotation: {x: 0, y: 0, z: 0.12464057, w: 0.992202}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: -0.7071068}
   m_LocalPosition: {x: -5, y: -0.9, z: -27.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2468,7 +2468,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1012343585960688}
-  m_LocalRotation: {x: 0, y: 0, z: -0.10635084, w: 0.9943287}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
   m_LocalPosition: {x: 5.05, y: -0.4, z: -27.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2552,7 +2552,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1419022208434142}
-  m_LocalRotation: {x: -0, y: -0, z: 0.038823802, w: 0.99924606}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.84, y: -0.97, z: -2.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -7387,7 +7387,7 @@ MonoBehaviour:
   distanceFromCharacter: 0
   onlyMultiplayers: 0
   to: {fileID: 0}
-  materialName: pasto
+  videoGame_ID: 0
 --- !u!114 &114694013015705966
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7622,7 +7622,7 @@ MonoBehaviour:
   distanceFromCharacter: 0
   onlyMultiplayers: 0
   to: {fileID: 0}
-  materialName: pasto
+  videoGame_ID: 0
 --- !u!114 &114868055943821552
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7642,6 +7642,7 @@ MonoBehaviour:
   startRotation: 0
   speed: 50
   inverseRotation: 0
+  frameByFrame: 0
 --- !u!114 &114891285597963954
 MonoBehaviour:
   m_ObjectHideFlags: 1

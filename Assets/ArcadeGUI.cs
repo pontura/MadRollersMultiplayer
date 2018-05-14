@@ -41,7 +41,7 @@ public class ArcadeGUI : MonoBehaviour {
 		if (Data.Instance.isReplay) {
 			Invoke ("Delayed", 0.1f);
 		} else {
-			Data.Instance.events.OnAvatarShoot += OnAvatarShoot;
+			//Data.Instance.events.OnAvatarShoot += OnAvatarShoot;
 		}
 	}
 	void Delayed()
@@ -52,25 +52,25 @@ public class ArcadeGUI : MonoBehaviour {
 	}
     void OnAvatarShoot(int playerID)
     {
-        
-        foreach (int id in avatarsThatShoot)
-            if (id == playerID) return;
-
-        avatarsThatShoot.Add(playerID);
-        
-		if (avatarsThatShoot.Count >= characterManager.getTotalCharacters())
-        {
-            Data.Instance.events.OnAvatarShoot -= OnAvatarShoot;
-            Data.Instance.events.StartMultiplayerRace();
-            state = states.SHOOTS_READY;
-            SetIntroFields();
-            Invoke("ResetFields", 3);
-        }
-        else
-        {
-            state = states.SHOOT_ONE;
-            SetIntroFields();
-        }
+		return;
+//        foreach (int id in avatarsThatShoot)
+//            if (id == playerID) return;
+//
+//        avatarsThatShoot.Add(playerID);
+//        
+//		if (avatarsThatShoot.Count >= characterManager.getTotalCharacters())
+//        {
+//            Data.Instance.events.OnAvatarShoot -= OnAvatarShoot;
+//            Data.Instance.events.StartMultiplayerRace();
+//            state = states.SHOOTS_READY;
+//            SetIntroFields();
+//            Invoke("ResetFields", 3);
+//        }
+//        else
+//        {
+//            state = states.SHOOT_ONE;
+//            SetIntroFields();
+//        }
         
     }
     void SetIntroFields()
@@ -132,7 +132,7 @@ public class ArcadeGUI : MonoBehaviour {
         Data.Instance.events.OnGameOver -= OnGameOver;
         Data.Instance.events.OnAddNewPlayer -= OnAddNewPlayer;
         Data.Instance.events.OnAvatarDie -= OnAvatarDie;
-        Data.Instance.events.OnAvatarShoot -= OnAvatarShoot;
+       // Data.Instance.events.OnAvatarShoot -= OnAvatarShoot;
     }
     void SetFields(string _text)
     {

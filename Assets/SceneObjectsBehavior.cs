@@ -95,7 +95,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	}
 
 	List<Transform> borderTransforms;
-	public void replaceSceneObject(Area area, float areasLength, int areasX)
+	public void replaceSceneObject(Area area, float areasLength, int areasX, bool oposite = false)
 	{
 		borderTransforms = new List<Transform> ();
 		this.area = area;
@@ -108,6 +108,9 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			Vector3 pos = go.transform.position;
 			pos.z += areasLength;
 			pos.x += areasX;
+			if (oposite) {
+				pos.z *= -1;
+			}
 
 			if (go.GetComponent<RandomPosition>())
 			{
@@ -143,6 +146,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			case "Cascade": 
 			case "firewall":        
 			case "Baranda1":  
+			case "Tumba":  
 			case "enemyNaveSimple":  
 				sceneObject = Pool.GetObjectForType(go.name + "_real", false);    
 

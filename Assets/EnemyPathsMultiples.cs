@@ -38,7 +38,6 @@ public class EnemyPathsMultiples : MonoBehaviour {
 	}
 	public void SetNewPath()
 	{
-		print (originalPath + "   SetNewPath: " + pathID);
 		pathID++;
 
 		if (pathID == paths.Length)

@@ -5,9 +5,7 @@ using System.Collections.Generic;
 
 public class CharactersManager : MonoBehaviour {
 
-
     public CharacterBehavior character;
-  //  public EnergyBar energyBar;
     public List<CharacterBehavior> characters;
     public List<CharacterBehavior> deadCharacters;
 
@@ -19,7 +17,7 @@ public class CharactersManager : MonoBehaviour {
     private float speedRun = 19;
     private Missions missions;
     public List<int> playerPositions;
-    private bool gameOver;
+	public bool gameOver;
     private IEnumerator RalentaCoroutine;
     bool isArcadeMultiplayer;
 
@@ -31,25 +29,22 @@ public class CharactersManager : MonoBehaviour {
     {
         missions = Data.Instance.GetComponent<Missions>();
         isArcadeMultiplayer = Data.Instance.isArcadeMultiplayer;
-		//if (!isArcadeMultiplayer) {			
-			//StartCoroutine (RalentaCoroutine);
-		//}
 		if (!Data.Instance.isReplay) {
-			RalentaCoroutine = DoRalentaCoroutine (0.5f, 0, 0.1f);
-			StartCoroutine (RalentaCoroutine);
+		//	RalentaCoroutine = DoRalentaCoroutine (0.5f, 0, 0.1f);
+		//	StartCoroutine (RalentaCoroutine);
 		}
     }
     void OnListenerDispatcher(string type)
     {
         if (type == "Ralenta")
         {
-            RalentaCoroutine = DoRalentaCoroutine(4, 1f, 0.05f);
-            StartCoroutine(RalentaCoroutine);
+         //   RalentaCoroutine = DoRalentaCoroutine(4, 1f, 0.05f);
+          //  StartCoroutine(RalentaCoroutine);
         }
         if (type == "BonusEntrande")
         {
-            RalentaCoroutine = DoRalentaCoroutine(11, 0, 0.05f);
-            StartCoroutine(RalentaCoroutine);
+          //  RalentaCoroutine = DoRalentaCoroutine(11, 0, 0.05f);
+          //  StartCoroutine(RalentaCoroutine);
 
             Data.Instance.events.OnCreateBonusArea();
             foreach (CharacterBehavior cb in characters)
@@ -61,30 +56,31 @@ public class CharactersManager : MonoBehaviour {
 		if (Data.Instance.isReplay) {
 			// no hace nada:
 		} else {
-			RalentaCoroutine = DoRalentaCoroutine (2, 0, 0.05f);
-			StartCoroutine (RalentaCoroutine);
+			speedRun = 19;
+			//RalentaCoroutine = DoRalentaCoroutine (2, 0, 0.05f);
+			//StartCoroutine (RalentaCoroutine);
 		}
     }
-    IEnumerator DoRalentaCoroutine(float _speedRun, float delay, float speedTeRecover)
-    {
-        yield return new WaitForSeconds(delay);
-        if (delay > 0)
-        {
-            while (speedRun > _speedRun)
-            {
-                yield return new WaitForEndOfFrame();
-                speedRun -= Time.deltaTime + speedTeRecover;
-            }
-        }
-        speedRun = _speedRun;
-        while (speedRun < 19)
-        {
-            yield return new WaitForEndOfFrame();
-            speedRun += Time.deltaTime + speedTeRecover;
-        }
-        speedRun = 19;
-        yield return null;
-    }
+//    IEnumerator DoRalentaCoroutine(float _speedRun, float delay, float speedTeRecover)
+//    {
+//        yield return new WaitForSeconds(delay);
+//        if (delay > 0)
+//        {
+//            while (speedRun > _speedRun)
+//            {
+//                yield return new WaitForEndOfFrame();
+//                speedRun -= Time.deltaTime + speedTeRecover;
+//            }
+//        }
+//        speedRun = _speedRun;
+//        while (speedRun < 19)
+//        {
+//            yield return new WaitForEndOfFrame();
+//            speedRun += Time.deltaTime + speedTeRecover;
+//        }
+//        speedRun = 19;
+//        yield return null;
+//    }
     void Update()
     {
 		OnUpdate ();
@@ -94,6 +90,7 @@ public class CharactersManager : MonoBehaviour {
 		if (Data.Instance.isArcadeMultiplayer) return;
 		if (Game.Instance.level.waitingToStart) return;
         if (gameOver) return;
+
         distance += speedRun * Time.deltaTime;
 
 		if(Data.Instance.playMode == Data.PlayModes.STORY)
@@ -144,9 +141,9 @@ public class CharactersManager : MonoBehaviour {
 		}		 
 		
 		if (Data.Instance.multiplayerData.player1) { addCharacter(CalculateInitialPosition(pos, positionID), 0); playerPositions.Add(0); };
-		if (Data.Instance.multiplayerData.player2) { addCharacter(CalculateInitialPosition(pos, positionID++), 1); playerPositions.Add(1); };
-		if (Data.Instance.multiplayerData.player3) { addCharacter(CalculateInitialPosition(pos, positionID++), 2); playerPositions.Add(2); };
-		if (Data.Instance.multiplayerData.player4) { addCharacter(CalculateInitialPosition(pos, positionID++), 3); playerPositions.Add(3); };
+		if (Data.Instance.multiplayerData.player2) { addCharacter(CalculateInitialPosition(pos, positionID+1), 1); playerPositions.Add(1); };
+		if (Data.Instance.multiplayerData.player3) { addCharacter(CalculateInitialPosition(pos, positionID+2), 2); playerPositions.Add(2); };
+		if (Data.Instance.multiplayerData.player4) { addCharacter(CalculateInitialPosition(pos, positionID+3), 3); playerPositions.Add(3); };
     }
     void OnDestroy()
     {
@@ -233,7 +230,7 @@ public class CharactersManager : MonoBehaviour {
 		if (Data.Instance.isReplay)
 			_x = 0;
 		else
-			_x = (3.5f * positionID) - (5.3f);
+			_x = (3.5f * positionID+1) - (5.3f);
 
 		return new Vector3(_x,pos.y);
 	}
@@ -259,12 +256,15 @@ public class CharactersManager : MonoBehaviour {
         newCharacter.GetComponent<Player>().id = id;
 
         characters.Add(newCharacter);
-       // newCharacter.transform.position = pos;
+        newCharacter.transform.position = pos;
 
+		print ("pos" + pos);
 		return newCharacter;
     }
     public void killCharacter(CharacterBehavior characterBehavior)
     {
+		if (gameOver)
+			return;
         characters.ForEach((cb) =>
         {
             if (cb.player.id == characterBehavior.player.id)
