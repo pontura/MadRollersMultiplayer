@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
+	public GameObject versusSignal;
     public Color color;
     public MeshRenderer GorroMaterial;
 
@@ -57,6 +58,11 @@ public class Player : MonoBehaviour {
 		Data.Instance.events.OnAvatarGetItem += OnAvatarGetItem;
 		Data.Instance.events.OnAvatarProgressBarEmpty += OnAvatarProgressBarEmpty;
 		Data.Instance.events.OnChangeWeapon += OnChangeWeapon;
+
+		if (Data.Instance.playMode == Data.PlayModes.VERSUS)
+			versusSignal.SetActive (true);
+		else
+			versusSignal.SetActive (false);
 	}
     void OnDestroy()
     {

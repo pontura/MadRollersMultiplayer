@@ -44,16 +44,18 @@ public class UIVersus : MonoBehaviour {
 	public void OnGameOver()
 	{
 		if (state == states.READY)
-			return;
-		
+			return;		
+		Data.Instance.events.ForceFrameRate (1);
 		state = states.READY;
 		StartCoroutine (Restart ());
 	}
 	IEnumerator Restart ()
 	{
-		yield return new WaitForSeconds (4);
+		yield return new WaitForSeconds (3);
+		Data.Instance.GetComponent<Fade> ().FadeToBlack ();
+		yield return new WaitForSeconds (1);
 		Data.Instance.events.OnResetLevel ();
 		yield return new WaitForSeconds (0.2f);
-		Data.Instance.LoadLevel ("GameVersus");
+		Data.Instance.LoadLevelNotFading ("GameVersus");
 	}
 }

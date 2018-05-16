@@ -180,6 +180,12 @@ public class Data : MonoBehaviour {
     }
     public void LoadLevel(string levelName)
     {
+		Data.Instance.events.ForceFrameRate (1);
         GetComponent<Fade>().LoadLevel(levelName, 0.6f, Color.black);
     }
+	public void LoadLevelNotFading(string levelName)
+	{
+		Data.Instance.events.ForceFrameRate (1);
+		GetComponent<Fade>().LoadSceneNotFading (levelName);
+	}
 }

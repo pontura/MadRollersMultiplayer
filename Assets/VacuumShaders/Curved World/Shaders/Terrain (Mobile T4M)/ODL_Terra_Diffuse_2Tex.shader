@@ -76,7 +76,7 @@ Shader "VacuumShaders/Curved World/Terrain/Mobile (T4M)/One Directional Light"
 						       
 
 /*DO NOT DELETE - CURVED WORLD ODL LIGHT TYPE*/ 
-/*DO NOT DELETE - CURVED WORLD ODL INCLUDE POINT LIGHTS*/ #define V_CW_INCLUDE_PER_VERTEX_POINT_LIGHTS
+/*DO NOT DELETE - CURVED WORLD ODL INCLUDE POINT LIGHTS*/ 
 			#pragma shader_feature V_CW_REFLECTIVE_OFF V_CW_REFLECTIVE V_CW_REFLECTIVE_FRESNEL
 			#pragma shader_feature V_CW_VERTEX_COLOR_OFF V_CW_VERTEX_COLOR 
 			#pragma shader_feature V_CW_IBL_OFF V_CW_IBL
