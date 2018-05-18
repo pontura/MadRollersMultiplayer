@@ -85,7 +85,7 @@ public class Level : MonoBehaviour {
 		floorManager = GetComponent<FloorManager>();
 		floorManager.Init(charactersManager);
 		playing = true;
-
+		powerupsManager.Init ();
 		if (Data.Instance.playMode == Data.PlayModes.VERSUS) {
 			Area a = Data.Instance.versusManager.area;
 			sceneObjects.replaceSceneObject(a, a.z_length/2, 0, false);
@@ -102,7 +102,7 @@ public class Level : MonoBehaviour {
 
         missions = data.GetComponent<Missions>();      
 
-		powerupsManager.Init ();
+
 		missions.Init(data.missions.MissionActiveID, this);
         areasManager = missions.getAreasManager();
         areasManager.Init(1);

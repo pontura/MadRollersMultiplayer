@@ -1,29 +1,63 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PowerupsManager : MonoBehaviour {
 
     public SceneObject Invencible;
     public SceneObject Missile;
     private bool powerUpOn;
-    private Player player;
+	public List<SceneObject> all;
+   // private Player player;
 
 	public  void Init()
     {
         Data.Instance.events.OnAddPowerUp += OnAddPowerUp;
-        player = Game.Instance.level.charactersManager.character.GetComponent<Player>();
+		Data.Instance.events.OnAddSpecificPowerUp += OnAddSpecificPowerUp;
+       // player = Game.Instance.level.charactersManager.character.GetComponent<Player>();
     }    
     public void OnDestroy()
     {
         Data.Instance.events.OnAddPowerUp -= OnAddPowerUp;
+		CancelInvoke ();
     }
     public bool CanBeThrown()
     {
         if (powerUpOn) return false;
-        if (player && player.fxState == Player.fxStates.SUPER) return false;
+        //if (player && player.fxState == Player.fxStates.SUPER) return false;
 
         return true;
     }
+	public void ResetVersusPowerups()
+	{
+		if (all.Count == 0)
+			return;
+		foreach (SceneObject so in all) {
+			if (so != null)
+				so.Pool ();
+		}
+		all.Clear ();
+	}
+	void OnAddSpecificPowerUp(string POName, Vector3 pos)
+	{
+		
+		powerUpOn = true;
+		SceneObject newSO = null;
+
+		if(POName == "Missile")
+			newSO = ObjectPool.instance.GetObjectForType("GrabbableMissile_real", false);
+		else if(POName == "Invencible")
+			newSO = ObjectPool.instance.GetObjectForType("GrabbableInvensible_real", false);
+
+		if (newSO)
+		{
+			newSO.Restart(pos);
+			newSO.transform.localEulerAngles = Vector3.zero;
+			all.Add (newSO);
+		}
+		print ("OnAddSpecificPowerUp " + POName + " " + pos + " " + newSO);
+		Invoke("Reset", 5);
+	}
     void OnAddPowerUp(Vector3 pos)
     {
         powerUpOn = true;

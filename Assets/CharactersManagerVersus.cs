@@ -10,6 +10,7 @@ public class CharactersManagerVersus : CharactersManager {
 	public Transform team2Container;
 	public float totalDistance;
 
+
 	public states state;
 	public enum states
 	{
@@ -70,6 +71,8 @@ public class CharactersManagerVersus : CharactersManager {
 			charactersTeam2.Add (cb);
 			playerPositions.Add (3);
 		}
+
+
 	}
 	void OnDestroy()
 	{
@@ -135,18 +138,30 @@ public class CharactersManagerVersus : CharactersManager {
 	}
 	public override void OnUpdate()
 	{
-		print (Time.timeScale);
 		if (distance > -36 && state == states.FIRST_PART) {
-			Data.Instance.events.RalentaTo (0.3f,0.04f);
+			Data.Instance.events.RalentaTo (0.3f,0.02f);
 			state = states.CENTER;
 		} else if (distance > -7 && state == states.CENTER) {
 			Data.Instance.events.RalentaTo (1,0.02f);
 			state = states.LAST_PART;
+			powerupsAdded = false;
 		}
 	}
 	public void ResetPositions()
-	{
+	{		
 		distance = -Data.Instance.versusManager.area.z_length;
 		state = states.FIRST_PART;
+		AddPowerUps ();
+	}
+	bool powerupsAdded;
+	void AddPowerUps()
+	{
+		if (powerupsAdded)
+			return;
+		
+		Game.Instance.level.GetComponent<PowerupsManager> ().ResetVersusPowerups ();
+		Data.Instance.events.OnAddSpecificPowerUp("Missile", new Vector3(15,10,0));
+		Data.Instance.events.OnAddSpecificPowerUp("Invencible", new Vector3(-15,10,0));
+		powerupsAdded = true;
 	}
 }

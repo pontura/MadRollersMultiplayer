@@ -45,6 +45,7 @@ public class Events : MonoBehaviour {
 
     public System.Action<int> OnAddNewPlayer = delegate { };
 
+	public System.Action<string, Vector3> OnAddSpecificPowerUp = delegate { };
     public System.Action<Vector3> OnAddPowerUp = delegate { };
     public System.Action OnCreateBonusArea = delegate { };
     public System.Action<Vector3, Color> OnAddExplotion = delegate { };

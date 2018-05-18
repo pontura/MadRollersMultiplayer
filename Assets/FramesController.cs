@@ -14,12 +14,10 @@ public class FramesController : MonoBehaviour {
 	}
 	public void ForceFrameRate(float newFrameRate)
 	{
-		print("ForceFrameRate");
 		this.frameRate = newFrameRate;
 		Time.timeScale = frameRate;
 	}
 	void RalentaTo (float newFrameRate, float speedEveryFrame = 0.01f) {
-		print("RalentaTo");
 		this.speedEveryFrame = speedEveryFrame;
 
 		if (ralentaCoroutine != null)
