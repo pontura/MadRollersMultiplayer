@@ -35,7 +35,7 @@ public class GameCamera : MonoBehaviour
 	public int newV;
 	int pixel_speed_recovery = 14;
 	private GameObject flow_target;
-
+	float _Y_correction;
 	void ChangeResolution()
 	{
 		retroPixelPro.horizontalResolution =(int) defaultResolution.x;
@@ -68,11 +68,13 @@ public class GameCamera : MonoBehaviour
         Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
 		Data.Instance.events.OnChangeMood += OnChangeMood;
 
+		_Y_correction = 1;
 		if (team_id > 0) {
+			_Y_correction = 2;
 			state = states.WAITING_TO_TRAVEL;
-			Invoke ("Start_Traveling", 2);
+			Invoke ("Start_Traveling", 0.7f);
 			SetOrientation (new Vector4 (0, 0, 0, 0));
-			transform.localPosition = new Vector3 (0, 4, Data.Instance.versusManager.area.z_length-3);
+			transform.localPosition = new Vector3 (0, 4, Data.Instance.versusManager.GetArea().z_length-3);
 			cam.transform.localEulerAngles = new Vector3 (25, 0, 0);
 		}
 		else {
@@ -184,8 +186,8 @@ public class GameCamera : MonoBehaviour
 			if(Data.Instance.playMode == Data.PlayModes.VERSUS)
 			{
 				Vector3 myPos = transform.localPosition;
-				Vector3 destPos = new Vector3 (0, 4, -Data.Instance.versusManager.area.z_length-2);
-				transform.localPosition = Vector3.Lerp (myPos, destPos, 0.04f);					
+				Vector3 destPos = new Vector3 (0, 4, -Data.Instance.versusManager.GetArea().z_length-4);
+				transform.localPosition = Vector3.Lerp (myPos, destPos, 0.07f);					
 			}
 			return;
         }
@@ -207,7 +209,7 @@ public class GameCamera : MonoBehaviour
 
 		_newPos.z = Mathf.Lerp (transform.localPosition.z, _newPos.z, Time.deltaTime*20);
 		_newPos.x = Mathf.Lerp (transform.localPosition.x, _newPos.x, Time.deltaTime*10);
-		_newPos.y = Mathf.Lerp (transform.localPosition.y, _newPos.y, Time.deltaTime*1);
+		_newPos.y = Mathf.Lerp (transform.localPosition.y, _newPos.y, Time.deltaTime*_Y_correction );
 
 		transform.localPosition = _newPos;
 		LookAtFlow ();

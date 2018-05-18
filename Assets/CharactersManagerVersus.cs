@@ -22,8 +22,8 @@ public class CharactersManagerVersus : CharactersManager {
 
 	public override void Init()
 	{
-		totalDistance = 2*( Data.Instance.versusManager.area.z_length) - 2;
-		distance = (Data.Instance.versusManager.area.z_length) * -1;
+		totalDistance = 2*( Data.Instance.versusManager.GetArea().z_length) - 2;
+		distance = (Data.Instance.versusManager.GetArea().z_length) * -1;
 		Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
 		Data.Instance.events.OnAvatarFall += OnAvatarFall;
 		Data.Instance.events.OnAvatarDie += OnAvatarDie;
@@ -72,8 +72,9 @@ public class CharactersManagerVersus : CharactersManager {
 			playerPositions.Add (3);
 		}
 
-
+		Invoke ("AddPowerUps", 0.5f);
 	}
+
 	void OnDestroy()
 	{
 		Data.Instance.events.OnAvatarCrash -= OnAvatarCrash;
@@ -149,7 +150,7 @@ public class CharactersManagerVersus : CharactersManager {
 	}
 	public void ResetPositions()
 	{		
-		distance = -Data.Instance.versusManager.area.z_length;
+		distance = -Data.Instance.versusManager.GetArea().z_length-5;
 		state = states.FIRST_PART;
 		AddPowerUps ();
 	}

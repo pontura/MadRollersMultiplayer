@@ -7,6 +7,9 @@ public class UIVersus : MonoBehaviour {
 
 	public GameObject gameOverPanel;
 
+	public GameObject bg_videogame1;
+	public GameObject bg_videogame2;
+
 	int score1;
 	int score2;
 
@@ -21,6 +24,13 @@ public class UIVersus : MonoBehaviour {
 	}
 
 	void Start () {
+		if (Data.Instance.videogamesData.actualID == 0) {
+			bg_videogame1.SetActive (true);
+			bg_videogame2.SetActive (false);
+		} else {
+			bg_videogame1.SetActive (false);
+			bg_videogame2.SetActive (true);
+		}
 		Data.Instance.events.OnScoreOn += OnScoreOn;
 		gameOverPanel.SetActive (false);
 		SetScores ();

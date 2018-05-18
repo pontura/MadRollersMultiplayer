@@ -4,5 +4,11 @@ using UnityEngine;
 
 public class VersusManager : MonoBehaviour {
 
-	public Area area;
+	public Area[] areas;
+	public int id = 0;
+
+	public Area GetArea()
+	{
+		return areas[id];
+	}
 }

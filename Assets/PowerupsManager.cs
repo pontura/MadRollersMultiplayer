@@ -14,18 +14,16 @@ public class PowerupsManager : MonoBehaviour {
     {
         Data.Instance.events.OnAddPowerUp += OnAddPowerUp;
 		Data.Instance.events.OnAddSpecificPowerUp += OnAddSpecificPowerUp;
-       // player = Game.Instance.level.charactersManager.character.GetComponent<Player>();
     }    
     public void OnDestroy()
     {
         Data.Instance.events.OnAddPowerUp -= OnAddPowerUp;
+		Data.Instance.events.OnAddSpecificPowerUp -= OnAddSpecificPowerUp;
 		CancelInvoke ();
     }
     public bool CanBeThrown()
     {
         if (powerUpOn) return false;
-        //if (player && player.fxState == Player.fxStates.SUPER) return false;
-
         return true;
     }
 	public void ResetVersusPowerups()
@@ -39,8 +37,7 @@ public class PowerupsManager : MonoBehaviour {
 		all.Clear ();
 	}
 	void OnAddSpecificPowerUp(string POName, Vector3 pos)
-	{
-		
+	{		
 		powerUpOn = true;
 		SceneObject newSO = null;
 
@@ -55,7 +52,6 @@ public class PowerupsManager : MonoBehaviour {
 			newSO.transform.localEulerAngles = Vector3.zero;
 			all.Add (newSO);
 		}
-		print ("OnAddSpecificPowerUp " + POName + " " + pos + " " + newSO);
 		Invoke("Reset", 5);
 	}
     void OnAddPowerUp(Vector3 pos)

@@ -86,10 +86,12 @@ public class Level : MonoBehaviour {
 		floorManager.Init(charactersManager);
 		playing = true;
 		powerupsManager.Init ();
+		SetNewVideogameSettings ();
+
 		if (Data.Instance.playMode == Data.PlayModes.VERSUS) {
-			Area a = Data.Instance.versusManager.area;
+			Area a = Data.Instance.versusManager.GetArea();
 			sceneObjects.replaceSceneObject(a, a.z_length/2, 0, false);
-			Area b = Data.Instance.versusManager.area;
+			Area b = Data.Instance.versusManager.GetArea();
 			sceneObjects.replaceSceneObject(b, b.z_length/2, 0, true);
 			return;
 		}
@@ -106,7 +108,7 @@ public class Level : MonoBehaviour {
 		missions.Init(data.missions.MissionActiveID, this);
         areasManager = missions.getAreasManager();
         areasManager.Init(1);
-		SetNewVideogameSettings ();
+
         areasLength = 0;
 
 		if (!Data.Instance.isArcadeMultiplayer && !waitingToStart) // nunevo && !waitingToStart)
@@ -321,11 +323,6 @@ public class Level : MonoBehaviour {
                 newArea = victoryArea;
                 showVictory = false;
             } else
-//			if (Data.Instance.playMode == Data.PlayModes.COMPETITION && lastDistanceToLoadLevel > nextDistanceVictoryArea)
-//   	        {
-//                nextDistanceVictoryArea = lastDistanceToLoadLevel + distanceVictoryArea;
-//                newArea = victoryArea;
-//            } else
 			if(showStartArea)
 			{
 				if (isLastArea) {
