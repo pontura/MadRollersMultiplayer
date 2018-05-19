@@ -161,8 +161,8 @@ public class CharactersManagerVersus : CharactersManager {
 			return;
 		
 		Game.Instance.level.GetComponent<PowerupsManager> ().ResetVersusPowerups ();
-		Data.Instance.events.OnAddSpecificPowerUp("Missile", new Vector3(15,10,0));
-		Data.Instance.events.OnAddSpecificPowerUp("Invencible", new Vector3(-15,10,0));
+		Data.Instance.events.OnAddSpecificPowerUp("Missile", new Vector3(12,10,0));
+		Data.Instance.events.OnAddSpecificPowerUp("Invencible", new Vector3(-12,10,0));
 		powerupsAdded = true;
 	}
 }

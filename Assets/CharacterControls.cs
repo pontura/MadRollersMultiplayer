@@ -13,7 +13,7 @@ public class CharacterControls : MonoBehaviour {
     private float turnSpeed = 2.8f;
     private float speedX = 9f;
     private bool mobileController;
-    private bool ControlsEnabled = false;
+    public bool ControlsEnabled = true;
     private CharactersManager charactersManager;
 
 	void Start () {
@@ -22,9 +22,9 @@ public class CharacterControls : MonoBehaviour {
         Invoke("EnabledMovements", 0.5f);
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
 	}
-	void EnabledMovements()
+	public void EnabledMovements(bool enabledControls)
     {
-        ControlsEnabled = true;
+		ControlsEnabled = enabledControls;
     }
 	public void AddNewChild(CharacterBehavior child)
 	{
@@ -84,6 +84,7 @@ public class CharacterControls : MonoBehaviour {
     }
 	public void MoveInX(float _speed)
 	{
+		
 		if (_speed < -0.5f || _speed > 0.5f) {
 			float newPosX = _speed*speedX;
 			float newRot = turnSpeed * ( Time.deltaTime * 35);

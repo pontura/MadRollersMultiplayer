@@ -27,7 +27,7 @@ public class MusicManager : MonoBehaviour {
 		
 		if (Data.Instance.turnOffSounds)
 			return;
-		
+		Data.Instance.events.OnVersusTeamWon += OnVersusTeamWon;
         Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
         Data.Instance.events.OnMissionStart += OnMissionStart;
         Data.Instance.events.OnInterfacesStart += OnInterfacesStart;
@@ -40,6 +40,10 @@ public class MusicManager : MonoBehaviour {
      //   Data.Instance.events.OnSoundFX += OnSoundFX;
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
     }
+	void OnVersusTeamWon(int teamID)
+	{
+		playSound( interfaces );
+	}
     public void TurnOff()
     {
         audioSource.volume = 0;

@@ -67,6 +67,7 @@ public class GameCamera : MonoBehaviour
 
         Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
 		Data.Instance.events.OnChangeMood += OnChangeMood;
+		Data.Instance.events.OnVersusTeamWon += OnVersusTeamWon;
 
 		_Y_correction = 1;
 		if (team_id > 0) {
@@ -95,7 +96,14 @@ public class GameCamera : MonoBehaviour
     {
         Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
         Data.Instance.events.OnChangeMood -= OnChangeMood;
+		Data.Instance.events.OnVersusTeamWon -= OnVersusTeamWon;
     }
+	void OnVersusTeamWon(int _team_id)
+	{
+		if (team_id == _team_id) {
+			state = states.END;
+		}
+	}
     void StartMultiplayerRace()
     {
         anim.Stop();
@@ -191,6 +199,13 @@ public class GameCamera : MonoBehaviour
 			}
 			return;
         }
+		else if (state == states.END && Data.Instance.playMode == Data.PlayModes.VERSUS) {
+			if (flow_target != null) {
+				cam.transform.LookAt (flow_target.transform);
+				cam.transform.RotateAround (Vector3.zero, cam.transform.up, 50 * Time.deltaTime);
+			}
+			return;
+		}
 		if (state == states.END || state == states.WAITING_TO_TRAVEL)
         {
             return;

@@ -61,6 +61,7 @@ public class CharacterBehavior : MonoBehaviour {
 
 		player = GetComponent<Player>();
 
+		data.events.OnVersusTeamWon += OnVersusTeamWon;
 		data.events.OnAvatarProgressBarEmpty += OnAvatarProgressBarEmpty;
 		data.events.OncharacterCheer += OncharacterCheer;
 		data.events.OnReorderAvatarsByPosition += OnReorderAvatarsByPosition;
@@ -73,17 +74,26 @@ public class CharacterBehavior : MonoBehaviour {
 		state = states.JUMP;
 		Run ();
 
-		if (Data.Instance.playMode == Data.PlayModes.VERSUS)
+		if (Data.Instance.playMode == Data.PlayModes.VERSUS) {
+			controls.EnabledMovements (false);
 			_animation_hero.gameObject.transform.localEulerAngles = Vector3.zero;
+		}
 	}
 	void OnDestroy ()
 	{
+		data.events.OnVersusTeamWon -= OnVersusTeamWon;
 		data.events.OnAvatarProgressBarEmpty -= OnAvatarProgressBarEmpty;
 		data.events.OncharacterCheer -= OncharacterCheer;
 		data.events.OnReorderAvatarsByPosition -= OnReorderAvatarsByPosition;
 		data.events.StartMultiplayerRace -= StartMultiplayerRace;
 	}
-
+	void OnVersusTeamWon(int _team_id)
+	{
+		if (_team_id == team_for_versus) {
+			GetComponent<Rigidbody> ().isKinematic = true;
+			state = states.DEAD;
+		}
+	}
 
 
 
@@ -124,16 +134,14 @@ public class CharacterBehavior : MonoBehaviour {
 		isOver = null;
 		hasSomeoneOver = null;
 	}
-	/// <summary>
-	/// /////////////////////////////over
-	/// </summary>
-	/// 
+
 
 
 
 
 	void StartMultiplayerRace()
 	{
+		controls.EnabledMovements (true);
 		state = states.JUMP;
 		Run();
 	}
@@ -228,6 +236,8 @@ public class CharacterBehavior : MonoBehaviour {
 	}
 	void ResetShoot()
 	{
+		if (state == states.DEAD)
+			return;
 		if (floorCollitions.state == CharacterFloorCollitions.states.ON_FLOOR)
 			Run();
 		else if(jumpsNumber<2)
@@ -237,6 +247,8 @@ public class CharacterBehavior : MonoBehaviour {
 	}
 	public void UpdateByController(float rotationY)
 	{
+		if (state == states.DEAD)
+			return;
 		if (state == states.JETPACK)
 		{
 			player.OnAvatarProgressBarUnFill(0.25f * Time.deltaTime);
@@ -281,7 +293,9 @@ public class CharacterBehavior : MonoBehaviour {
 			goTo.x += (rotationY / 3) * Time.deltaTime;
 			goTo.z = _z;
 		}
-		transform.position = Vector3.Lerp(transform.position, goTo, 6);
+
+		if(controls.ControlsEnabled)
+			transform.position = Vector3.Lerp(transform.position, goTo, 6);
 
 		if (transform.position.y < heightToFall)
 		{
@@ -318,6 +332,7 @@ public class CharacterBehavior : MonoBehaviour {
 	}
 	public void Run()
 	{
+		if (state == states.DEAD) return;
 		if (state == states.IDLE) return;
 		if(state == states.RUN) return;
 		jumpsNumber = 0;
@@ -372,11 +387,13 @@ public class CharacterBehavior : MonoBehaviour {
 	}
 	public void ResetJump()
 	{
+		if (state == states.DEAD) return;
 		state = states.JUMP;
 		jumpsNumber = 0;
 	}
 	public void Jump()
 	{
+		if (state == states.DEAD) return;
 		if (hasSomeoneOver != null)
 			OnGetRidOfOverAvatar();
 		else if (isOver != null)
@@ -468,6 +485,7 @@ public class CharacterBehavior : MonoBehaviour {
 	}
 	public void Fall()
 	{
+		if (state == states.DEAD) return;
 		Data.Instance.events.OnSoundFX("FX vox caida01", player.id);
 		Data.Instance.events.OnAvatarFall(this);
 
@@ -482,6 +500,7 @@ public class CharacterBehavior : MonoBehaviour {
 	}
 	public void Hit()
 	{
+		if (state == states.DEAD) return;
 		SaveDistance();
 
 		Data.Instance.events.OnSoundFX("FXCrash", player.id);
@@ -515,6 +534,7 @@ public class CharacterBehavior : MonoBehaviour {
 	}
 	public void Die()
 	{
+		
 		if(state == states.DEAD) return;
 
 		SaveDistance();
