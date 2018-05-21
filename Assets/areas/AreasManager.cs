@@ -56,7 +56,7 @@ public class AreasManager : MonoBehaviour {
 			setNewAreaSet ();
 			return;
 		}
-		if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
+		if (Data.Instance.playMode == Data.PlayModes.COMPETITION && 1==2)
         {
             areaSets.Clear();
             GameObject[] thisAreaSets = Resources.LoadAll<GameObject>("competition_" + Data.Instance.competitionID);
@@ -119,7 +119,7 @@ public class AreasManager : MonoBehaviour {
 		} 
 		else
 		{
-            if (Data.Instance.playMode == Data.PlayModes.STORY)
+			if (Data.Instance.playMode == Data.PlayModes.STORY || Data.Instance.playMode == Data.PlayModes.COMPETITION )
             {
                 if (activeAreaSetID < areaSets.Count && num >= areaSet.totalAreasInSet)
                 {

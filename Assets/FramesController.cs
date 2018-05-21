@@ -14,6 +14,9 @@ public class FramesController : MonoBehaviour {
 	}
 	public void ForceFrameRate(float newFrameRate)
 	{
+		if (ralentaCoroutine != null)
+			StopAllCoroutines ();
+		
 		this.frameRate = newFrameRate;
 		Time.timeScale = frameRate;
 	}

@@ -1,11 +1,13 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 public class LevelSelector : MonoBehaviour {
 
+	public Text title;
 	public int missionActiveID;
 	public int videogameActiveID;
 
@@ -41,11 +43,17 @@ public class LevelSelector : MonoBehaviour {
 	{
 		videogameActiveID = 0;
 		missionActiveID = 0;
-		if (Data.Instance.playMode == Data.PlayModes.STORY)
+		if (Data.Instance.playMode == Data.PlayModes.STORY) {
 			InitStoryMode ();
-		else {
+			title.text = "Select a videogame";
+		} else if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {
 			separation *= 2;
 			InitComtetitionMode ();
+			title.text = "Select a videogame (Story mode)";
+		} else {
+			separation *= 2;
+			InitComtetitionMode ();
+			title.text = "Select a videogame (Versus mode)";
 		}
 		
 		Data.Instance.events.OnJoystickBack += OnJoystickBack;

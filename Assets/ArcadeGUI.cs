@@ -25,8 +25,10 @@ public class ArcadeGUI : MonoBehaviour {
     }
 
 	void Start () {
+		
 		if (Data.Instance.playMode == Data.PlayModes.STORY)
 			panel.SetActive (false);
+		
         singleSignal.SetActive(false);
         characterManager = Game.Instance.GetComponent<CharactersManager>();
         ended = false;
@@ -35,6 +37,7 @@ public class ArcadeGUI : MonoBehaviour {
         Data.Instance.events.OnAddNewPlayer += OnAddNewPlayer;
         Data.Instance.events.OnAvatarDie += OnAvatarDie;
        
+		SetFields ("");
         StartMultiplayerStatus();
         SetIntroFields();
 
@@ -76,7 +79,7 @@ public class ArcadeGUI : MonoBehaviour {
     void SetIntroFields()
     {
 		if (state == states.INTRO)
-			SetFields ("ABRAN PASO!");
+			SetFields (""); //ABRAN PASO!");
 		else if (state == states.SHOOT_ONE)
 			SetFields ("TODOS DISPAREN!");
 		else if (state == states.SHOOTS_READY) {
@@ -99,8 +102,9 @@ public class ArcadeGUI : MonoBehaviour {
             SetFields("");return;
         }
         state = states.WELLCOME;
-        SetIntroFields();
+       // SetIntroFields();
         Invoke("ResetFields", 3);
+
     }
     void Update()
     {

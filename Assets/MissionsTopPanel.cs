@@ -10,7 +10,7 @@ public class MissionsTopPanel : MonoBehaviour
     void Start()
     {
         anim =  GetComponent<Animation>();
-        if (Data.Instance.playMode == Data.PlayModes.STORY)
+		if (Data.Instance.playMode == Data.PlayModes.STORY || Data.Instance.playMode == Data.PlayModes.COMPETITION)
         {
             Data.Instance.events.OnMissionComplete += OnMissionComplete;
             Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;

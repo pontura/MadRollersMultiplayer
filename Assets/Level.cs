@@ -95,8 +95,8 @@ public class Level : MonoBehaviour {
 			sceneObjects.replaceSceneObject(b, b.z_length/2, 0, true);
 			return;
 		}
-		else if (Data.Instance.playMode == Data.PlayModes.COMPETITION )
-       		 nextDistanceVictoryArea = distanceVictoryArea;
+		//else if (Data.Instance.playMode == Data.PlayModes.COMPETITION )
+       	//	 nextDistanceVictoryArea = distanceVictoryArea;
 
         areasX = 0;
         
@@ -280,7 +280,7 @@ public class Level : MonoBehaviour {
     bool showVictory;
 	void SetVictoryArea()
     {
-		showVictory = true;
+		//showVictory = true;
     }
 	int tutorialID;
 	private void Update () {

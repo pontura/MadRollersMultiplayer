@@ -52,7 +52,8 @@ public class MainMenu : MonoBehaviour {
 			MissionsScene ();
 		//	Data.Instance.LoadLevel("PlayersSelector");
 		else if (activeID == 1) {			
-			Compite ();
+			//Compite ();
+			Versus();
 		} else if (activeID == 2) {			
 			Versus ();
 		}
@@ -83,7 +84,8 @@ public class MainMenu : MonoBehaviour {
 	}
 	void MissionsScene()
 	{
-		Data.Instance.playMode = Data.PlayModes.STORY;
+		Data.Instance.playMode = Data.PlayModes.COMPETITION;
+		//Data.Instance.playMode = Data.PlayModes.STORY;
 		Data.Instance.LoadLevel("LevelSelector");
 	}
 	void Compite()

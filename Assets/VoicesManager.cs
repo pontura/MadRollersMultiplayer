@@ -58,7 +58,6 @@ public class VoicesManager : MonoBehaviour
 	void Dead()
 	{
 		float distance = Game.Instance.level.charactersManager.distance;
-		print ("die in distance; " + distance);
 		if (distance < 100)
 			PlayRandom (lose_bad);
 		else if (distance < 1000)
@@ -71,7 +70,6 @@ public class VoicesManager : MonoBehaviour
     }
     private void OnListenerDispatcher(string message)
     {
-		print ("_______OnListenerDispatcher " + message + " "  + Data.Instance.missions.MissionActiveID);
 		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) return;
         if (message == "ShowMissionId")
         {

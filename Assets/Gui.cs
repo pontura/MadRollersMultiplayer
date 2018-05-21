@@ -49,7 +49,7 @@ public class Gui : MonoBehaviour {
     }
     void OnMissionComplete(int num)
     {
-		if (Data.Instance.playMode == Data.PlayModes.COMPETITION ) return;
+		//pontura if (Data.Instance.playMode == Data.PlayModes.COMPETITION ) return;
         levelComplete.gameObject.SetActive(true);
         levelComplete.Init(num);
     }

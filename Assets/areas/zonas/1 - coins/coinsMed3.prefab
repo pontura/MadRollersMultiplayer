@@ -2036,7 +2036,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012838735738}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: -0.7071068}
   m_LocalPosition: {x: -15.2, y: -0.80607, z: 7.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2079,7 +2079,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013091213682}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
   m_LocalPosition: {x: 16.5, y: -0.80607, z: 7.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2372,7 +2372,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012223447868}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
   m_LocalPosition: {x: 7, y: -0.44, z: -12.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6204,7 +6204,7 @@ MonoBehaviour:
   distanceFromCharacter: 0
   onlyMultiplayers: 0
   to: {fileID: 0}
-  materialName: pasto
+  videoGame_ID: 0
 --- !u!114 &114000010417772300
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6256,6 +6256,7 @@ MonoBehaviour:
   startRotation: 0
   speed: 50
   inverseRotation: 0
+  frameByFrame: 0
 --- !u!114 &114000010602713008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6303,7 +6304,7 @@ MonoBehaviour:
   distanceFromCharacter: 0
   onlyMultiplayers: 0
   to: {fileID: 0}
-  materialName: pasto
+  videoGame_ID: 0
 --- !u!114 &114000010895621188
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6362,12 +6363,15 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &114000011036709988
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6494,12 +6498,15 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &114000011459306022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6594,12 +6601,15 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &114000011721057528
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6665,7 +6675,7 @@ MonoBehaviour:
   distanceFromCharacter: 0
   onlyMultiplayers: 0
   to: {fileID: 0}
-  materialName: pasto
+  videoGame_ID: 0
 --- !u!114 &114000011881293626
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6716,12 +6726,15 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &114000012076260604
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6803,7 +6816,7 @@ MonoBehaviour:
   distanceFromCharacter: 0
   onlyMultiplayers: 0
   to: {fileID: 0}
-  materialName: pasto
+  videoGame_ID: 0
 --- !u!114 &114000012490512312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6862,12 +6875,15 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &114000012727995704
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6901,7 +6917,7 @@ MonoBehaviour:
   distanceFromCharacter: 0
   onlyMultiplayers: 0
   to: {fileID: 0}
-  materialName: pasto
+  videoGame_ID: 0
 --- !u!114 &114000012822687834
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6922,12 +6938,15 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &114000012928207476
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6948,12 +6967,15 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &114000012935803886
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7014,12 +7036,15 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &114000013209090164
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7040,12 +7065,15 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &114000013235450172
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7066,12 +7094,15 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &114000013249778796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7106,12 +7137,15 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &114000013385463254
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7263,7 +7297,7 @@ MonoBehaviour:
   distanceFromCharacter: 0
   onlyMultiplayers: 0
   to: {fileID: 0}
-  materialName: pasto
+  videoGame_ID: 0
 --- !u!114 &114000013923718146
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7297,12 +7331,15 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &114000013982903688
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7341,12 +7378,15 @@ MonoBehaviour:
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &114000014009976990
 MonoBehaviour:
   m_ObjectHideFlags: 1

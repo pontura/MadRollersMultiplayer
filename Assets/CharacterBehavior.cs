@@ -77,7 +77,7 @@ public class CharacterBehavior : MonoBehaviour {
 		if (Data.Instance.playMode == Data.PlayModes.VERSUS) {
 			controls.EnabledMovements (false);
 			_animation_hero.gameObject.transform.localEulerAngles = Vector3.zero;
-		}
+		} 
 	}
 	void OnDestroy ()
 	{
@@ -276,14 +276,14 @@ public class CharacterBehavior : MonoBehaviour {
 
 		Vector3 goTo = transform.position;
 
-		if (isOver)
-		{
-			goTo.x = isOver.transform.localPosition.x;
-			goTo.y = isOver.transform.localPosition.y + 1;
-			goTo.z = isOver.transform.localPosition.z+0.2f;
-		}
-		else
-		{
+	//	if (isOver)
+	//	{
+	//		goTo.x = isOver.transform.localPosition.x;
+	//		goTo.y = isOver.transform.localPosition.y + 1;
+	//		goTo.z = isOver.transform.localPosition.z+0.2f;
+	//	}
+	//	else
+		//{
 			
 			float _z = player.charactersManager.distance - (position / 1);
 			if (team_for_versus == 2) {
@@ -292,9 +292,9 @@ public class CharacterBehavior : MonoBehaviour {
 			}
 			goTo.x += (rotationY / 3) * Time.deltaTime;
 			goTo.z = _z;
-		}
+	//	}
 
-		if(controls.ControlsEnabled)
+		//if(controls.ControlsEnabled)
 			transform.position = Vector3.Lerp(transform.position, goTo, 6);
 
 		if (transform.position.y < heightToFall)
@@ -328,6 +328,7 @@ public class CharacterBehavior : MonoBehaviour {
 		Reset();
 		GetComponent<Rigidbody>().velocity = Vector3.zero;
 		GetComponent<Rigidbody>().freezeRotation = true;
+		state = states.RUN;
 		Run();
 	}
 	public void Run()

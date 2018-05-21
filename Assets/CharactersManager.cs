@@ -93,7 +93,7 @@ public class CharactersManager : MonoBehaviour {
 
         distance += speedRun * Time.deltaTime;
 
-		if(Data.Instance.playMode == Data.PlayModes.STORY)
+		if(Data.Instance.playMode == Data.PlayModes.STORY || Data.Instance.playMode == Data.PlayModes.COMPETITION)
             missions.updateDistance(distance);
 		
     }
@@ -207,6 +207,8 @@ public class CharactersManager : MonoBehaviour {
         pos.y += 3;
         pos.x = 0;
         addCharacter(pos, id);
+
+		Data.Instance.events.ForceFrameRate(1);
     }
 	int automaticIdPosition = 0;
 	public CharacterBehavior AddAutomaticPlayer(int id)

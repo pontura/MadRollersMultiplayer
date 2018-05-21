@@ -66,9 +66,7 @@ public class Projectil : SceneObject {
             rotation.x += 30 * Time.deltaTime;
             transform.localEulerAngles = rotation;
 		}
-		print ("OnSceneObjectUpdate " + pos);
-		pos += transform.forward * 50  * Time.deltaTime;
-		
+		pos += transform.forward * 50  * Time.deltaTime;		
 		transform.localPosition = pos;
 	}
 	void OnTriggerEnter(Collider other) 
