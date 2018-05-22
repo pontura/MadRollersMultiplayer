@@ -290,11 +290,17 @@ public class CharacterBehavior : MonoBehaviour {
 				rotationY *= -1;
 				_z *= -1;
 			}
-			goTo.x += (rotationY / 3) * Time.deltaTime;
-			goTo.z = _z;
+		float speedRotation;
+		if (Data.Instance.playMode == Data.PlayModes.VERSUS) {
+			speedRotation = 2.2f;
+		} else {
+			speedRotation = 3;
+		}
+		goTo.x += (rotationY / speedRotation) * Time.deltaTime;
+		goTo.z = _z;
 	//	}
 
-		//if(controls.ControlsEnabled)
+		if(controls.isAutomata || controls.ControlsEnabled)
 			transform.position = Vector3.Lerp(transform.position, goTo, 6);
 
 		if (transform.position.y < heightToFall)

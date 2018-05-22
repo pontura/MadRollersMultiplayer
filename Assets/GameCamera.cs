@@ -13,6 +13,7 @@ public class GameCamera : MonoBehaviour
 		WAITING_TO_TRAVEL,
         START,
         PLAYING,
+		EXPLOTING,
         END
     }
     private CharactersManager charactersManager;
@@ -142,29 +143,29 @@ public class GameCamera : MonoBehaviour
 
 	public void explote(float explotionForce)
 	{
-		return;
-		this.explotionForce = explotionForce*1.5f;
+		if (state != states.PLAYING)
+			return;	
+		state = states.EXPLOTING;
+		this.explotionForce = explotionForce*2f;
 		StartCoroutine (DoExplote ());
 		newH = 1;
 		newV = 1;
 	}
-	bool exploting;
-	public IEnumerator DoExplote () {	
-		this.exploting = true;
+	public IEnumerator DoExplote () {
 		float delay = 0.03f;
         for (int a = 0; a < 6; a++)
         {
-            rotateRandom( Random.Range(-explotionForce, explotionForce) );
+			rotateRandom( Random.Range(-explotionForce, explotionForce) );
             yield return new WaitForSeconds(delay);
         }
         rotateRandom(0);
-		this.exploting = false;
+		if(state == states.EXPLOTING)
+			state = states.PLAYING;
 	}
 	private void rotateRandom(float explotionForce)
 	{
-		return;
 		Vector3 v = cam.transform.localEulerAngles;
-        v.z = explotionForce;
+		v.z = explotionForce;
 		cam.transform.localEulerAngles = v;
 	}
 	Vector3 newPos;
@@ -227,7 +228,8 @@ public class GameCamera : MonoBehaviour
 		_newPos.y = Mathf.Lerp (transform.localPosition.y, _newPos.y, Time.deltaTime*_Y_correction );
 
 		transform.localPosition = _newPos;
-		LookAtFlow ();
+		if(state != states.EXPLOTING)
+			LookAtFlow ();
 	}
     public void OnAvatarCrash(CharacterBehavior player)
     {
@@ -262,7 +264,6 @@ public class GameCamera : MonoBehaviour
 	}
 	public void SetOrientation(Vector4 orientation)
 	{
-		print ("CAM SetOrientation_______________________ " + orientation);
 		newCameraOrientationVector = cameraOrientationVector + new Vector3 (orientation.x, orientation.y, orientation.z);
 		newRotation = defaultRotation + new Vector3 (orientation.w, 0, 0);
 	}

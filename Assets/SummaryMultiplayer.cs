@@ -130,7 +130,7 @@ public class SummaryMultiplayer : MonoBehaviour {
     void ReadyRanking()
     {        
         state = states.READY_RANKING;
-        Invoke("Ready", 5);
+        Invoke("Ready", 2.5f);
     }
     void Ready()
     {

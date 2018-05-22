@@ -211,13 +211,14 @@ public class CharactersManager : MonoBehaviour {
 		automaticIdPosition++;
 		return newCharacter;
 	}
-	void AddChildPlayer(CharacterBehavior parentPlayer)
+	public CharacterBehavior AddChildPlayer(CharacterBehavior parentPlayer)
 	{
 		int id = parentPlayer.controls.childs.Count + 4;
 		CharacterBehavior newCharacter = addCharacter(parentPlayer.transform.position, id);
 		newCharacter.controls.isAutomata = true;
 		parentPlayer.controls.AddNewChild( newCharacter );
 		newCharacter.GetComponent<CharacterAutomata> ().Init ();
+		return newCharacter;
 	}
 	Vector3 CalculateInitialPosition(Vector3 pos, int positionID)
 	{

@@ -150,9 +150,26 @@ public class CharactersManagerVersus : CharactersManager {
 	}
 	public void ResetPositions()
 	{		
+		if (state == states.FIRST_PART)
+			return;
+		Invoke("AddAutomaticPlayersToAll", 0.5f);		
 		distance = -Data.Instance.versusManager.GetArea().z_length-5;
 		state = states.FIRST_PART;
 		AddPowerUps ();
+	}
+	void AddAutomaticPlayersToAll()
+	{
+		int totalAvatars = characters.Count;
+		for (int a = 0; a < totalAvatars; a++) {
+			if (!characters [a].controls.isAutomata) {
+				CharacterBehavior cb = AddChildPlayer (characters [a]);
+				cb.team_for_versus = characters [a].team_for_versus;
+				if(cb.team_for_versus == 1)
+					cb.transform.SetParent (team1Container);
+				else if(cb.team_for_versus == 2)
+					cb.transform.SetParent (team2Container);
+			}
+		}
 	}
 	bool powerupsAdded;
 	void AddPowerUps()

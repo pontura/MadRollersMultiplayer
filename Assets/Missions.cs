@@ -343,4 +343,8 @@ public class Missions : MonoBehaviour {
 			return true;
 		return false;
 	}
+	public void ActivateFirstGameByVideogame(int videoGameID)
+	{
+		MissionActiveID = allMissionsByVideogame[videoGameID].missions[0].id;
+	}
 }

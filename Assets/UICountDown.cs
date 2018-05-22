@@ -22,7 +22,7 @@ public class UICountDown : MonoBehaviour {
 	void CountDown()
 	{
 		countDownField.text = countDown.ToString ();
-		Invoke ("SetNextCountDown", 2f);
+		Invoke ("SetNextCountDown", 1.2f);
 	}
 	void SetNextCountDown()
 	{

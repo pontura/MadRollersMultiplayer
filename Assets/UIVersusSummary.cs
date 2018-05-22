@@ -18,6 +18,7 @@ public class UIVersusSummary : MonoBehaviour {
 	}
 	
 	public void OnVersusTeamWon(int TeamID) {
+		
 		panel.SetActive (true);
 		switch (TeamID) {
 		case 1:

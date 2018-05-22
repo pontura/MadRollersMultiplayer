@@ -28,9 +28,9 @@ public class MainMenu : MonoBehaviour {
 			m.SetOn (false);
 		
 		if(Data.Instance.playMode == Data.PlayModes.COMPETITION)
-			activeID = 1;
-		else
 			activeID = 0;
+		else
+			activeID = 1;
 		SetButtons ();
 		activeButton.SetOn (true);
 	}

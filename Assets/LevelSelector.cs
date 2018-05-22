@@ -98,12 +98,12 @@ public class LevelSelector : MonoBehaviour {
 	}
 	void Delayed()
 	{
-		data.missions.MissionActiveID =lastButtonSelected.id;
-
 		if (Data.Instance.playMode == Data.PlayModes.STORY ) {
+			data.missions.MissionActiveID =lastButtonSelected.id;
 			Data.Instance.LoadLevel ("Game");
 			Data.Instance.isReplay = true;
 		} else if ( Data.Instance.playMode == Data.PlayModes.COMPETITION ) {
+			data.missions.ActivateFirstGameByVideogame (lastButtonSelected.id);
 			Data.Instance.LoadLevel ("MainMenuArcade");
 		} else  {
 			Data.Instance.LoadLevel ("MainMenuArcadeVersus");

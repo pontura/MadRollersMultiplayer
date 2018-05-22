@@ -121,9 +121,10 @@ public class Projectil : SceneObject {
 			    || cb.state == CharacterBehavior.states.DEAD)
 				return;
 
-			//chequea si el projectil es del otro team ( a mejorar)
-			if (playerID < 2 && cb.player.id < 2 || playerID > 1 && cb.player.id > 2)
+			//chequea si el projectil es del otro team
+			if (team_for_versus == cb.team_for_versus)
 				return;
+			
 			Data.Instance.GetComponent<FramesController> ().ForceFrameRate (0.05f);
 			Data.Instance.events.RalentaTo (1, 0.05f);
 			cb.Hit ();

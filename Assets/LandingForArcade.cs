@@ -30,6 +30,8 @@ public class LandingForArcade : MonoBehaviour {
     }
     void UpdateWebCam()
     {
+		if (WebCamTexture.devices.Length == 0)
+			return;
         camerasField.text = "cam: " + Data.Instance.WebcamID + "/" + WebCamTexture.devices.Length;
         webCamTexture = new WebCamTexture(WebCamTexture.devices[Data.Instance.WebcamID].name, 800, 600, 12);
         webCamTexture.Play();
@@ -66,7 +68,9 @@ public class LandingForArcade : MonoBehaviour {
     }
     public void Selected(string competitionTitle)
     {
-        webCamTexture.Stop();
+		if(webCamTexture != null)
+      	  webCamTexture.Stop();
+		
         if (!musicOn.isOn)
             Data.Instance.GetComponent<MusicManager>().TurnOff();
 

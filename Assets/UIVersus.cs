@@ -31,12 +31,14 @@ public class UIVersus : MonoBehaviour {
 			bg_videogame1.SetActive (false);
 			bg_videogame2.SetActive (true);
 		}
-		Data.Instance.events.OnScoreOn += OnScoreOn;
+		//Data.Instance.events.OnScoreOn += OnScoreOn;
+		Data.Instance.events.OnVersusTeamWon += OnVersusTeamWon;
 		gameOverPanel.SetActive (false);
 		SetScores ();
 	}
 	void OnDestroy () {
-		Data.Instance.events.OnScoreOn -= OnScoreOn;
+		//Data.Instance.events.OnScoreOn -= OnScoreOn;
+		Data.Instance.events.OnVersusTeamWon -= OnVersusTeamWon;
 	}
 	void OnScoreOn(int playerID, Vector3 pos, int qty)
 	{
@@ -46,10 +48,14 @@ public class UIVersus : MonoBehaviour {
 			score2++;
 		SetScores ();
 	}
+	public void OnVersusTeamWon(int teamID)
+	{
+		Invoke ("SetScores", 0.5f);
+	}
 	void SetScores()
 	{
-		//score1Field.text = score1.ToString ();
-		//score2Field.text = score2.ToString ();
+		score1Field.text = Data.Instance.versusManager.team_1_score.ToString ();
+		score2Field.text = Data.Instance.versusManager.team_2_score.ToString ();
 	}
 	public void OnGameOver()
 	{
@@ -69,8 +75,10 @@ public class UIVersus : MonoBehaviour {
 		if (id == 1)
 			Data.Instance.LoadLevelNotFading ("GameVersus");
 		else if (id == 2) {			
+			Data.Instance.versusManager.ResetScores ();
 			Data.Instance.LoadLevelNotFading ("LevelSelector");
-		} else {			
+		} else {	
+			Data.Instance.versusManager.ResetScores ();
 			Data.Instance.playMode = Data.PlayModes.COMPETITION;
 			Data.Instance.LoadLevelNotFading ("LevelSelector");
 		}
