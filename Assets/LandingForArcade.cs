@@ -41,7 +41,7 @@ public class LandingForArcade : MonoBehaviour {
         if (Data.Instance.isArcadeMultiplayer)
             LoopUntilCompetitionsReady(); // Data.Instance.LoadLevel("MainMenuArcade");
         else
-            Data.Instance.LoadLevel("GameForArcade");
+            Data.Instance.LoadLevel("MainMenu");
     }
     void LoopUntilCompetitionsReady()
     {
@@ -74,7 +74,7 @@ public class LandingForArcade : MonoBehaviour {
         Cursor.visible = false;
         Data.Instance.GetComponent<MultiplayerCompetitionManager>().actualCompetition = competitionTitle;
         Data.Instance.GetComponent<PhotosManager>().LoadPhotos();
-        Data.Instance.LoadLevel("MainMenuArcade");
+        Data.Instance.LoadLevel("MainMenu");
     }
     
 }

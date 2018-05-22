@@ -21,11 +21,9 @@ public class Data : MonoBehaviour {
 
     public int WebcamID;
 
-    [HideInInspector]
     public UserData userData;
     [HideInInspector]
     public Events events;
-    [HideInInspector]
     public ObjectPool sceneObjectsPool;
     [HideInInspector]
     public Missions missions;

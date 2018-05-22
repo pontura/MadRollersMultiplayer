@@ -26,6 +26,7 @@ public class UICountDown : MonoBehaviour {
 	}
 	void SetNextCountDown()
 	{
+		panel.GetComponent<Animation>().Play("logo");
 		countDown--;
 		if (countDown == 0) {
 			Data.Instance.events.StartMultiplayerRace ();

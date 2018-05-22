@@ -19,7 +19,6 @@ public class CharactersManager : MonoBehaviour {
     public List<int> playerPositions;
 	public bool gameOver;
     private IEnumerator RalentaCoroutine;
-    bool isArcadeMultiplayer;
 
     void Awake()
     {
@@ -28,11 +27,6 @@ public class CharactersManager : MonoBehaviour {
     void Start()
     {
         missions = Data.Instance.GetComponent<Missions>();
-        isArcadeMultiplayer = Data.Instance.isArcadeMultiplayer;
-		if (!Data.Instance.isReplay) {
-		//	RalentaCoroutine = DoRalentaCoroutine (0.5f, 0, 0.1f);
-		//	StartCoroutine (RalentaCoroutine);
-		}
     }
     void OnListenerDispatcher(string type)
     {
@@ -87,7 +81,6 @@ public class CharactersManager : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.M))
 			AddChildPlayer( getMainCharacter() );
 		
-		if (Data.Instance.isArcadeMultiplayer) return;
 		if (Game.Instance.level.waitingToStart) return;
         if (gameOver) return;
 
@@ -101,7 +94,7 @@ public class CharactersManager : MonoBehaviour {
     public int GetPositionByID(int _playerID)
     {
 		if (distance < 100) return 0;
-		if (Data.Instance.isArcadeMultiplayer && Game.Instance.level.waitingToStart) return 0;
+		if (Game.Instance.level.waitingToStart) return 0;
         int position = 0;
         foreach(int playerID in playerPositions)
         {
