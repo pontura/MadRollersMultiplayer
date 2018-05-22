@@ -48,8 +48,8 @@ public class UIVersus : MonoBehaviour {
 	}
 	void SetScores()
 	{
-		score1Field.text = score1.ToString ();
-		score2Field.text = score2.ToString ();
+		//score1Field.text = score1.ToString ();
+		//score2Field.text = score2.ToString ();
 	}
 	public void OnGameOver()
 	{
@@ -57,15 +57,22 @@ public class UIVersus : MonoBehaviour {
 			return;		
 		Data.Instance.events.ForceFrameRate (1);
 		state = states.READY;
-		StartCoroutine (Restart ());
+		GetComponent<SummaryVersus> ().SetOn ();
 	}
-	IEnumerator Restart ()
+	public IEnumerator Reset (int id)
 	{
-		yield return new WaitForSeconds (3);
+		//yield return new WaitForSeconds (3);
 		Data.Instance.GetComponent<Fade> ().FadeToBlack ();
 		yield return new WaitForSeconds (1);
 		Data.Instance.events.OnResetLevel ();
 		yield return new WaitForSeconds (0.2f);
-		Data.Instance.LoadLevelNotFading ("GameVersus");
+		if (id == 1)
+			Data.Instance.LoadLevelNotFading ("GameVersus");
+		else if (id == 2) {			
+			Data.Instance.LoadLevelNotFading ("LevelSelector");
+		} else {			
+			Data.Instance.playMode = Data.PlayModes.COMPETITION;
+			Data.Instance.LoadLevelNotFading ("LevelSelector");
+		}
 	}
 }
