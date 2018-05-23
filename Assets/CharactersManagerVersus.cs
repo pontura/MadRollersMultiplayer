@@ -22,6 +22,7 @@ public class CharactersManagerVersus : CharactersManager {
 
 	public override void Init()
 	{
+		print ("INIT");
 		totalDistance = 2*( Data.Instance.versusManager.GetArea().z_length) - 2;
 		distance = (Data.Instance.versusManager.GetArea().z_length) * -1;
 		Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
@@ -139,6 +140,7 @@ public class CharactersManagerVersus : CharactersManager {
 	}
 	public override void OnUpdate()
 	{
+		print (distance);
 		if (distance > -36 && state == states.FIRST_PART) {
 			Data.Instance.events.RalentaTo (0.3f,0.02f);
 			state = states.CENTER;
@@ -148,13 +150,14 @@ public class CharactersManagerVersus : CharactersManager {
 			powerupsAdded = false;
 		}
 	}
-	public void ResetPositions()
+	public void ResetPositions(float offsetBack)
 	{		
 		if (state == states.FIRST_PART)
 			return;
-		Invoke("AddAutomaticPlayersToAll", 0.5f);		
-		distance = -Data.Instance.versusManager.GetArea().z_length-5;
 		state = states.FIRST_PART;
+		Invoke("AddAutomaticPlayersToAll", 0.5f);		
+		distance = -(Data.Instance.versusManager.GetArea().z_length+offsetBack);
+		print ("_____________ distance" + distance);
 		AddPowerUps ();
 	}
 	void AddAutomaticPlayersToAll()

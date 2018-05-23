@@ -18,21 +18,21 @@ public class Bumper : MonoBehaviour {
 	{
 		switch (other.tag)
 		{
-			case "Player":
-                CharacterBehavior ch = other.transform.parent.GetComponent<CharacterBehavior>();
+		case "Player":
+			CharacterBehavior ch = other.transform.parent.GetComponent<CharacterBehavior> ();
 
-                if (lastCharacterJumped == ch) return;
-                lastCharacterJumped = ch;
+			if (lastCharacterJumped == ch)
+				return;
+			lastCharacterJumped = ch;
 
-                ch.SuperJumpByBumped(force * 100, 0.5f, backwardJump);
+			ch.SuperJumpByBumped (force * 100, 0.5f, backwardJump);
 
-                //if (animationClip)
-                //{
-                //    Animation animation = gameObject.AddComponent<Animation>();
-                //    animation.clip = animationClip;
-                //    animation.Play();
-                //}
-				break;
+			Invoke ("Reset", 0.5f);
+			break;
 		}
+	}
+	void Reset()
+	{
+		lastCharacterJumped = null;
 	}
 }

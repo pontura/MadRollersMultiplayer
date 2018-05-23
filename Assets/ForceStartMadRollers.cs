@@ -6,6 +6,6 @@ using UnityEngine.SceneManagement;
 public class ForceStartMadRollers : MonoBehaviour {
 
 	void Start () {
-		SceneManager.LoadScene ("01LandingPage");
+		SceneManager.LoadScene ("00_Loading");
 	}
 }

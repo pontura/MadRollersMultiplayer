@@ -285,11 +285,13 @@ public class CharacterBehavior : MonoBehaviour {
 	//	else
 		//{
 			
-			float _z = player.charactersManager.distance - (position / 1);
-			if (team_for_versus == 2) {
-				rotationY *= -1;
-				_z *= -1;
-			}
+		float _z = Game.Instance.GetComponent<CharactersManager>().distance - (position / 1);
+		if (controls.isAutomata)
+			_z -= 2;
+		if (team_for_versus == 2) {
+			rotationY *= -1;
+			_z *= -1;
+		}
 		float speedRotation;
 		if (Data.Instance.playMode == Data.PlayModes.VERSUS) {
 			speedRotation = 2.2f;

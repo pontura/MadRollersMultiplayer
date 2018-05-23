@@ -9,13 +9,12 @@ public class TumbaAvatar : SceneObject {
 	public void OnTriggerEnter(Collider other)
 	{
 		if (other.tag == "Player") {
-			Game.Instance.level.charactersManager.distance = -Data.Instance.versusManager.GetArea().z_length;
 			CharacterBehavior cb = other.GetComponentInParent<CharacterBehavior> ();
 			Vector3 pos = cb.gameObject.transform.localPosition;
-			pos.z *= -1;
-			pos.y += 4;
+			float offsetBack = 30;
+			pos.z *= -(offsetBack);
 			cb.gameObject.transform.localPosition = pos;
-			Game.Instance.level.charactersManager.GetComponent<CharactersManagerVersus> ().ResetPositions ();
+			Game.Instance.level.charactersManager.GetComponent<CharactersManagerVersus> ().ResetPositions (offsetBack);
 		}			
 	}
 
