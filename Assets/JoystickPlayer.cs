@@ -108,7 +108,6 @@ public class JoystickPlayer : MonoBehaviour {
 		Vector3 pos = joystick.transform.localEulerAngles;
 		pos.z = value*-15;
 		joystick.transform.localEulerAngles = pos;
-
 	}
 	void PressButton(GameObject button)
 	{
@@ -132,7 +131,7 @@ public class JoystickPlayer : MonoBehaviour {
 	void FillDead()
 	{
 		deadFill.fillAmount = fillAmount;
-		fillAmount += Time.deltaTime / 10;
+		fillAmount += Time.deltaTime / 5;
 		if (fillAmount > 1)
 			SetState (states.INSERT_COIN);
 	}

@@ -22,6 +22,8 @@ public class MusicManager : MonoBehaviour {
         GetComponent<AudioLowPassFilter>().enabled = false;
 		Data.Instance.GetComponent<Tracker> ().TrackScreen ("Main Menu");
 		OnInterfacesStart ();
+		if (!Data.Instance.musicOn || Data.Instance.turnOffSounds)
+			audioSource.volume = 0;
     }
 	public void Init () {
 		
@@ -39,6 +41,8 @@ public class MusicManager : MonoBehaviour {
         Data.Instance.events.OnAvatarFall += OnAvatarCrash;
      //   Data.Instance.events.OnSoundFX += OnSoundFX;
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
+
+
     }
 	void OnVersusTeamWon(int teamID)
 	{
@@ -78,13 +82,13 @@ public class MusicManager : MonoBehaviour {
     }
     public void SetVolume(float vol)
     {
-        if (!Data.Instance.musicOn)
+		if (!Data.Instance.musicOn || Data.Instance.turnOffSounds)
             return;
         audioSource.volume = vol;
     }
     public void playSound(AudioClip _clip, bool looped = true)
     {        
-        if (audioSource.clip.name == _clip.name) return;
+		if (audioSource.clip!=null && audioSource.clip.name == _clip.name) return;
         stopAllSounds();
         audioSource.clip = _clip;
         audioSource.Play();
@@ -92,7 +96,6 @@ public class MusicManager : MonoBehaviour {
     }
     void OnGamePaused(bool paused)
     {
-        print("OnGamePaused" + paused);
         if(paused)
             audioSource.Stop();
         else

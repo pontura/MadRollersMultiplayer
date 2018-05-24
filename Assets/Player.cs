@@ -3,9 +3,12 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
+	public GameObject shadow;
 	public GameObject versusSignal;
     public Color color;
     public MeshRenderer GorroMaterial;
+
+	public MadRoller madRoller;
 
 	public Material Gorro1;
 	public Material Gorro2;
@@ -75,6 +78,14 @@ public class Player : MonoBehaviour {
     }
     public void Init(int id)
     {
+		shadow.SetActive (true);
+
+		//si es automata...
+		if(id>3)
+			madRoller.Init (3);
+		else
+			madRoller.Init (id);
+		
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
 
 		if(id>3)
@@ -126,6 +137,7 @@ public class Player : MonoBehaviour {
     }
     void OnAvatarDie(CharacterBehavior cb)
     {
+		shadow.SetActive (false);
         if (progressBarCoroutine != null)
         {
             try

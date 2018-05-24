@@ -10,10 +10,10 @@ public class TumbaAvatar : SceneObject {
 	{
 		if (other.tag == "Player") {
 			CharacterBehavior cb = other.GetComponentInParent<CharacterBehavior> ();
-			Vector3 pos = cb.gameObject.transform.localPosition;
+			//Vector3 pos = cb.gameObject.transform.localPosition;
 			float offsetBack = 30;
-			pos.z *= -(offsetBack);
-			cb.gameObject.transform.localPosition = pos;
+			//pos.z *= -(offsetBack);
+			//cb.gameObject.transform.localPosition = pos;
 			Game.Instance.level.charactersManager.GetComponent<CharactersManagerVersus> ().ResetPositions (offsetBack);
 		}			
 	}

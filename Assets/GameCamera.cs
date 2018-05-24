@@ -270,4 +270,10 @@ public class GameCamera : MonoBehaviour
     public void fallDown(int fallDownHeight)
     {
     }
+	public void ResetVersusPosition()
+	{
+		Vector3 pos = transform.localPosition;
+		pos.y = 0;
+		transform.localPosition = pos; 
+	}
 }

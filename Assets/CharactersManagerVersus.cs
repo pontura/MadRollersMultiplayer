@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CharactersManagerVersus : CharactersManager {
 
+	public GameCamera camera_team_1;
+	public GameCamera camera_team_2;
+
 	public List<CharacterBehavior> charactersTeam1;
 	public List<CharacterBehavior> charactersTeam2;
 	public Transform team1Container;
@@ -154,10 +157,19 @@ public class CharactersManagerVersus : CharactersManager {
 	{		
 		if (state == states.FIRST_PART)
 			return;
+		
+		foreach (CharacterBehavior cb in characters) {
+			cb.GetComponent<Rigidbody> ().velocity = Vector3.zero;
+			Vector3 pos = cb.transform.localPosition;
+			pos.y = 16;
+			cb.transform.localPosition = pos;
+		}
+		
 		state = states.FIRST_PART;
 		Invoke("AddAutomaticPlayersToAll", 0.5f);		
 		distance = -(Data.Instance.versusManager.GetArea().z_length+offsetBack);
-		print ("_____________ distance" + distance);
+		camera_team_1.ResetVersusPosition ();
+		camera_team_2.ResetVersusPosition ();
 		AddPowerUps ();
 	}
 	void AddAutomaticPlayersToAll()

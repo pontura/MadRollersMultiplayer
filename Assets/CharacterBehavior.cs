@@ -339,6 +339,22 @@ public class CharacterBehavior : MonoBehaviour {
 		state = states.RUN;
 		Run();
 	}
+	public void OnFloor()
+	{
+		if (state == states.DEAD) return;
+		if (state == states.IDLE) return;
+		if(state == states.RUN) return;
+
+		state = states.RUN;
+		_animation_hero.Play("floorHit");
+		Invoke ("OnFloorDone", 0.5f);
+		jumpsNumber = 0;
+	}
+	void OnFloorDone()
+	{
+		if (state == states.RUN)
+			_animation_hero.Play("run");
+	}
 	public void Run()
 	{
 		if (state == states.DEAD) return;
@@ -434,7 +450,13 @@ public class CharacterBehavior : MonoBehaviour {
 
 		GetComponent<Rigidbody>().AddForce(new Vector3(0, jumpHeight, 0), ForceMode.Impulse);
 
-		_animation_hero.Play("jump");
+		int rand = Random.Range (0, 10);
+		if(rand<6)
+			_animation_hero.Play("jump");
+		else if (rand<8)
+			_animation_hero.Play("jump_right");
+		else
+			_animation_hero.Play("jump_left");
 		state = states.JUMP;
 		ResetColliders();
 		return;

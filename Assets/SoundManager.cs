@@ -27,6 +27,11 @@ public class SoundManager : MonoBehaviour
        // Events.OnSoundFXLoop += OnSoundFXLoop;
        // Events.OnSoundsVolumeChanged += OnSoundsVolumeChanged;        
         //Events.OnHeroDie += OnHeroDie;
+
+		if (!Data.Instance.musicOn || Data.Instance.turnOffSounds) {
+			audioSource.volume = 0;
+			loopAudioSource.volume = 0;
+		}
     }
     void OnHeroDie()
     {
@@ -46,6 +51,9 @@ public class SoundManager : MonoBehaviour
     }
     void OnSoundsVolumeChanged(float value)
     {
+		if (!Data.Instance.musicOn || Data.Instance.turnOffSounds) {
+			return;
+		}
         audioSource.volume = value;
         volume = value;
 

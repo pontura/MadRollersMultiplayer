@@ -34,7 +34,11 @@ public class VoicesManager : MonoBehaviour
         Data.Instance.events.OnAvatarFall += OnAvatarFall;
         Data.Instance.events.OnAvatarChangeFX += OnAvatarChangeFX;
         Data.Instance.events.SetVolume += SetVolume;
-        Data.Instance.events.VoiceFromResources += VoiceFromResources;        
+        Data.Instance.events.VoiceFromResources += VoiceFromResources; 
+
+		if (!Data.Instance.musicOn || Data.Instance.turnOffSounds) {
+			audioSource.volume = 0;
+		}
     }
 	void OnGameStart()
 	{
@@ -42,6 +46,9 @@ public class VoicesManager : MonoBehaviour
 	}
     void SetVolume(float vol)
     {
+		if (!Data.Instance.musicOn || Data.Instance.turnOffSounds) {
+			return;
+		}
         audioSource.volume = vol;
     }
     private void OnMissionComplete(int id)

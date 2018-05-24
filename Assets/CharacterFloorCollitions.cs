@@ -61,18 +61,18 @@ public class CharacterFloorCollitions : MonoBehaviour {
             Vector3 pos = characterBehavior.transform.localPosition;
             RaycastHit hit;
 
-            if (Physics.Raycast(pos + offset, -Vector3.up, out hit, offset.y, skip))
-            {
-                rigidbody.velocity = Vector3.zero;
-                //float RotationY = characterBehavior.transform.localEulerAngles.y;
-                //float RotationZ = characterBehavior.transform.localEulerAngles.z;
-                //characterBehavior.transform.up = hit.normal;
-
-                if(characterBehavior.transform.up != hit.normal)
-                    rigidbody.transform.up = Vector3.Lerp(rigidbody.transform.up, hit.normal, 40 * Time.deltaTime);
-
-               // characterBehavior.transform.localEulerAngles = new Vector3(characterBehavior.transform.localEulerAngles.x, RotationY, RotationZ);
-            }
+//            if (Physics.Raycast(pos + offset, -Vector3.up, out hit, offset.y, skip))
+//            {
+//                rigidbody.velocity = Vector3.zero;
+//                //float RotationY = characterBehavior.transform.localEulerAngles.y;
+//                //float RotationZ = characterBehavior.transform.localEulerAngles.z;
+//                //characterBehavior.transform.up = hit.normal;
+//
+//                if(characterBehavior.transform.up != hit.normal)
+//                    rigidbody.transform.up = Vector3.Lerp(rigidbody.transform.up, hit.normal, 40 * Time.deltaTime);
+//
+//               // characterBehavior.transform.localEulerAngles = new Vector3(characterBehavior.transform.localEulerAngles.x, RotationY, RotationZ);
+//            }
         }
     }
     
@@ -100,7 +100,7 @@ public class CharacterFloorCollitions : MonoBehaviour {
         if (other.tag == "floor" && state != states.ON_FLOOR)
         {
             state = states.ON_FLOOR;
-            characterBehavior.Run();
+			characterBehavior.OnFloor();
         } else  if (other.tag == "floor" && !other.GetComponent<SliderFloor>())
         {
             if (transform.parent.gameObject.GetComponent<SliderEffect>())
