@@ -31,19 +31,22 @@ public class GameCamera : MonoBehaviour
 	float explotionForce = 0.25f;
 
     public Animation anim;
-	public Vector2 defaultResolution = new Vector2(1920,1080);
+	protected Vector2 defaultResolution = new Vector2(1280,720);
 	public int newH;
 	public int newV;
 	int pixel_speed_recovery = 14;
 	private GameObject flow_target;
 	float _Y_correction;
+
 	void ChangeResolution()
 	{
+		print ("ChangeResolution defaultResolution x : " + defaultResolution.x + "   defaultResolution Y " + defaultResolution.y);
 		retroPixelPro.horizontalResolution =(int) defaultResolution.x;
-		retroPixelPro.horizontalResolution =(int) defaultResolution.y;
+		retroPixelPro.verticalResolution =(int) defaultResolution.y;
 	}
 	void SetPizelPro()
 	{
+		print ("SetPizelPro");
 		if (newH == defaultResolution.x && newV == defaultResolution.y)
 			return;
 
@@ -156,9 +159,11 @@ public class GameCamera : MonoBehaviour
         for (int a = 0; a < 6; a++)
         {
 			rotateRandom( Random.Range(-explotionForce, explotionForce) );
+			SetPizelPro ();
             yield return new WaitForSeconds(delay);
         }
         rotateRandom(0);
+		ChangeResolution ();
 		if(state == states.EXPLOTING)
 			state = states.PLAYING;
 	}
