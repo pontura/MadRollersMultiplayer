@@ -481,7 +481,11 @@ public class CharacterBehavior : MonoBehaviour {
 
 		data.events.AvatarJump();
 
-		_animation_hero.Play("doubleJump");
+		int rand = Random.Range (0, 10);
+		if(rand<5)
+			_animation_hero.Play("doubleJump");
+		else
+			_animation_hero.Play("doubleJump2");
 
 		GetComponent<Rigidbody>().AddForce(new Vector3(0, (_superJumpHeight ) - (GetComponent<Rigidbody>().velocity.y * (jumpHeight / 10)), 0), ForceMode.Impulse);
 		state = states.DOUBLEJUMP;

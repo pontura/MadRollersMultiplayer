@@ -30,7 +30,6 @@ public class SoundManager : MonoBehaviour
 
 		if (!Data.Instance.musicOn || Data.Instance.turnOffSounds) {
 			audioSource.volume = 0;
-			loopAudioSource.volume = 0;
 		}
     }
     void OnHeroDie()
