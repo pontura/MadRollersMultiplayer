@@ -6,7 +6,7 @@ public class MainMenuCharacterActor : MonoBehaviour {
 
     public int id;
     public Animation anim;
-    public GameObject bg;
+  //  public GameObject bg;
 
 	public MeshRenderer GorroMaterial;
 
@@ -38,13 +38,13 @@ public class MainMenuCharacterActor : MonoBehaviour {
             {
                 anim.Play("run");
                 GetComponent<RetroPixelPro>().strength = 0;
-                bg.SetActive(true);
+               // bg.SetActive(true);
             }
             else
             {
                 anim.Play("saluda");
                 GetComponent<RetroPixelPro>().strength = 1;
-                bg.SetActive(false);
+             //   bg.SetActive(false);
             }
         }
     }

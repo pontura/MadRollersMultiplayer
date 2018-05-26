@@ -180,7 +180,7 @@ public class CharacterBehavior : MonoBehaviour {
 		if(!controls.isAutomata)
 			data.events.OnAvatarShoot(player.id);
 
-		if(lastShot+0.3f > Time.time) return;
+		if(lastShot+0.2f > Time.time) return;
 		lastShot = Time.time;
 
 		Vector3 pos = new Vector3(transform.position.x, transform.position.y+1.7f, transform.position.z+0.1f);

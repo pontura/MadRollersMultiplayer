@@ -19,10 +19,13 @@ public class PlayerMainMenuUI : MonoBehaviour {
         color.a = 0.5f;
         masker.color = Data.Instance.multiplayerData.colors[id];
 
-        Invoke("SetInActive", (float)id/2.5f);
+      //  Invoke("SetInActive", (float)id/2.5f);
     }
     public void Toogle()
     {
+		SetActive ();
+		isActive = true;
+		return;
         isActive = !isActive;
         if (isActive)
             SetActive();
