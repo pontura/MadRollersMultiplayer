@@ -70,7 +70,7 @@ public class MissionSignal : MonoBehaviour {
 		Data.Instance.missions.SetLastMissionID (missionID);
 		
 		panel.SetActive (true);
-		Data.Instance.events.RalentaTo (0.05f, 0.2f);
+		Data.Instance.events.RalentaTo (0.2f, 0.2f);
     }
     private IEnumerator MissionComplete()
     {

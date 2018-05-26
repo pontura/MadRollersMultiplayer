@@ -143,7 +143,6 @@ public class CharactersManagerVersus : CharactersManager {
 	}
 	public override void OnUpdate()
 	{
-		print (distance);
 		if (distance > -36 && state == states.FIRST_PART) {
 			Data.Instance.events.RalentaTo (0.3f,0.02f);
 			state = states.CENTER;

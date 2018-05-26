@@ -12,14 +12,25 @@ public class CascadeSceneObject : SceneObject {
 	}
 	public void OnSceneObjectUpdated()
 	{
+		SceneObject newSceneObject;
+		Vector3 f;
+		if (Data.Instance.playMode == Data.PlayModes.VERSUS && num%2==0) {
+			 newSceneObject = Data.Instance.sceneObjectsPool.GetObjectForType("ThrowableSceneObject_real", false);  
+			newSceneObject.OnRestart (transform.position);
+			newSceneObject.GetComponent<Rigidbody> ().velocity = Vector3.zero;
+			f = transform.forward * 100;
+			f.y = Random.Range (-5, 5);
+			newSceneObject.GetComponent<Rigidbody> ().AddForce (f,ForceMode.Impulse);
+			return;
+		}
+		num++;
 		if (num > 100)
 			return;
-		SceneObject newSceneObject = Data.Instance.sceneObjectsPool.GetObjectForType("ThrowableSceneObject_real", false);  
+		 newSceneObject = Data.Instance.sceneObjectsPool.GetObjectForType("ThrowableSceneObject_real", false);  
 		newSceneObject.OnRestart (transform.position);
 		newSceneObject.GetComponent<Rigidbody> ().velocity = Vector3.zero;
-		Vector3 f = transform.forward * 100;
+		f = transform.forward * 100;
 		f.y = Random.Range (-5, 5);
 		newSceneObject.GetComponent<Rigidbody> ().AddForce (f,ForceMode.Impulse);
-		num++;
 	}
 }
