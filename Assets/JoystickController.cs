@@ -10,7 +10,7 @@ public class JoystickController : MonoBehaviour {
 	void Update()
 	{
 		lastClickedTime += Time.deltaTime;
-		if (lastClickedTime > 0.1f)
+		if (lastClickedTime > 0.5f)
 			processAxis = true;
 		for (int a = 0; a < 4; a++) {
 			if (InputManager.getJump (a)) 
@@ -18,6 +18,7 @@ public class JoystickController : MonoBehaviour {
 			if (InputManager.getFire (a)) 
 				OnJoystickClick ();
 			if (processAxis) {
+				
 				float v = InputManager.getVertical (a);
 				if (v < -0.5f)
 					OnJoystickUp ();

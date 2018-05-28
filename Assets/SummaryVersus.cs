@@ -35,7 +35,7 @@ public class SummaryVersus : MonoBehaviour {
 			return;
 
 		lastClickedTime += Time.deltaTime;
-		if (lastClickedTime > 0.1f)
+		if (lastClickedTime > 0.2f)
 			processAxis = true;
 		for (int a = 0; a < 4; a++) {
 			if (InputManager.getJump (a)) 
@@ -44,10 +44,15 @@ public class SummaryVersus : MonoBehaviour {
 				OnJoystickClick ();
 			if (processAxis) {
 				float v = InputManager.getHorizontal (a) + InputManager.getVertical (a);
-				if (v < -0.5f)
+				if (v < -0.5f) {
+					lastClickedTime = 0;
+					processAxis = false;
 					OnJoystickDown ();
-				else if (v > 0.5f)
+				} else if (v > 0.5f) {
 					OnJoystickUp ();
+					lastClickedTime = 0;
+					processAxis = false;
+				}
 			}
 		}
 	}
