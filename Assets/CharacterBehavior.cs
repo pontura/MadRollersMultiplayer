@@ -161,35 +161,50 @@ public class CharacterBehavior : MonoBehaviour {
 			Data.Instance.events.OnSoundFX("FXCheer", player.id);
 		}
 	}
+	float timePressing;
+	public void StartPressingFire(){
+		timePressing = Time.time;
+	}
 	public void CheckFire()
 	{
+		float timePressed = Time.time - timePressing;
+		print("___________ timePressed : " + timePressed);
+
+		if(lastShot+0.2f > Time.time) return;
+
+		if(!controls.isAutomata)
+			data.events.OnAvatarShoot(player.id);
+
+		if (state != states.RUN && state != states.SHOOT && transform.localPosition.y<6)
+			GetComponent<Rigidbody>().AddForce(new Vector3(0, jumpHeight/3, 0), ForceMode.Impulse);
+
+		state = states.SHOOT;
 
 		if (_animation_hero)
 			_animation_hero.Play("shoot");
 
-		if (state != states.RUN && state != states.SHOOT && transform.localPosition.y<6)
-		{
-			GetComponent<Rigidbody>().AddForce(new Vector3(0, jumpHeight/3, 0), ForceMode.Impulse);
-		}
-
-		Data.Instance.events.OnSoundFX("fire", player.id);
-
-		state = states.SHOOT;
-
 		player.weapon.Shoot();
-		if(!controls.isAutomata)
-			data.events.OnAvatarShoot(player.id);
-
-		if(lastShot+0.2f > Time.time) return;
+		Data.Instance.events.OnSoundFX("fire", player.id);
 		lastShot = Time.time;
 
 		Vector3 pos = new Vector3(transform.position.x, transform.position.y+1.7f, transform.position.z+0.1f);
-		OnShoot(pos);
+		//OnShoot(pos, player.weapon.type);
+
+		Weapon.types weawponType;
+		if (timePressed < 0.5f)
+			weawponType= Weapon.types.SIMPLE;
+		else if (timePressed < 1f)
+			weawponType= Weapon.types.DOUBLE;
+		else
+			weawponType= Weapon.types.TRIPLE;
+
+		OnShoot (pos, weawponType);
+			
 		Invoke("ResetShoot", 0.3f);
 	}
-	void OnShoot(Vector3 pos)
+	void OnShoot(Vector3 pos, Weapon.types type)
 	{
-		switch (player.weapon.type)
+		switch (type)
 		{
 		case Weapon.types.SIMPLE:
 			Shoot(pos, 0);

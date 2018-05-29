@@ -65,7 +65,7 @@ public class Summary : MonoBehaviour {
 		for (int a = 0; a < 4; a++) {
 			if (InputManager.getJump (a)) 
 				OnJoystickClick ();
-			if (InputManager.getFire (a)) 
+			if (InputManager.getFireDown (a)) 
 				OnJoystickClick ();
 			if (processAxis) {
 				float v = InputManager.getVertical (a);

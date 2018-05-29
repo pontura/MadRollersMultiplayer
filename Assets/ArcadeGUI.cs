@@ -82,22 +82,22 @@ public class ArcadeGUI : MonoBehaviour {
     void Update()
     {
         if (ended) return;
-		if ((InputManager.getFire(0) || InputManager.getJump(0)) && joysticksCanvas.CanRevive(0))
+		if ((InputManager.getFireDown(0) || InputManager.getJump(0)) && joysticksCanvas.CanRevive(0))
         {
             if (!characterManager.existsPlayer(0))
                 characterManager.addNewCharacter(0);
         }
-		else if ((InputManager.getFire(1) || InputManager.getJump(1)) && joysticksCanvas.CanRevive(1))
+		else if ((InputManager.getFireDown(1) || InputManager.getJump(1)) && joysticksCanvas.CanRevive(1))
         {
             if (!characterManager.existsPlayer(1))
                 characterManager.addNewCharacter(1);
         }
-		else if ((InputManager.getFire(2) || InputManager.getJump(2)) && joysticksCanvas.CanRevive(2))
+		else if ((InputManager.getFireDown(2) || InputManager.getJump(2)) && joysticksCanvas.CanRevive(2))
         {
             if (!characterManager.existsPlayer(2))
                 characterManager.addNewCharacter(2);
         }
-		else if ((InputManager.getFire(3) || InputManager.getJump(3)) && joysticksCanvas.CanRevive(3))
+		else if ((InputManager.getFireDown(3) || InputManager.getJump(3)) && joysticksCanvas.CanRevive(3))
         {
             if (!characterManager.existsPlayer(3))
                 characterManager.addNewCharacter(3);

@@ -103,8 +103,8 @@ public class SummaryMultiplayer : MonoBehaviour {
             n = 0;
         }
                 
-        if (InputManager.getFire(0) || InputManager.getJump(0) || InputManager.getFire(1) || InputManager.getJump(1)
-            || InputManager.getFire(2) || InputManager.getJump(2) || InputManager.getFire(3) || InputManager.getJump(3))
+		if (InputManager.getFireDown(0) || InputManager.getJump(0) || InputManager.getFireDown(1) || InputManager.getJump(1)
+			|| InputManager.getFireDown(2) || InputManager.getJump(2) || InputManager.getFireDown(3) || InputManager.getJump(3))
         {
             if (state == states.READY)
             {

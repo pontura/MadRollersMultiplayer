@@ -25,10 +25,14 @@ public class InputKeyboard : InputType{
     {
         return Input.GetButtonDown("Start" + id);
     }
-    public override bool getFire()
+	public override bool getFireDown()
     {
         return Input.GetButtonDown("Fire" + id);
     }
+	public override bool getFireUp()
+	{
+		return Input.GetButtonUp("Fire" + id);
+	}
     public override bool getJump()
     {
        return Input.GetButtonDown("Jump" + id);

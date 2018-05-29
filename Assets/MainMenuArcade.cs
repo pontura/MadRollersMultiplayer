@@ -93,19 +93,19 @@ public class MainMenuArcade : MonoBehaviour {
             n = 0;
         }
         if (done) return;
-        if ((InputManager.getFire(0) || InputManager.getJump(0)))
+		if ((InputManager.getFireDown(0) || InputManager.getJump(0)))
         {
             Clicked(0);
         }
-        if ((InputManager.getFire(1) || InputManager.getJump(1)))
+		if ((InputManager.getFireDown(1) || InputManager.getJump(1)))
         {
             Clicked(1);
         }
-        if ((InputManager.getFire(2) || InputManager.getJump(2)))
+		if ((InputManager.getFireDown(2) || InputManager.getJump(2)))
         {
             Clicked(2);
         }
-        if ((InputManager.getFire(3) || InputManager.getJump(3)))
+		if ((InputManager.getFireDown(3) || InputManager.getJump(3)))
         {
             Clicked(3);
         }

@@ -40,13 +40,11 @@ public class GameCamera : MonoBehaviour
 
 	void ChangeResolution()
 	{
-		print ("ChangeResolution defaultResolution x : " + defaultResolution.x + "   defaultResolution Y " + defaultResolution.y);
 		retroPixelPro.horizontalResolution =(int) defaultResolution.x;
 		retroPixelPro.verticalResolution =(int) defaultResolution.y;
 	}
 	void SetPizelPro()
 	{
-		print ("SetPizelPro");
 		if (newH == defaultResolution.x && newV == defaultResolution.y)
 			return;
 
@@ -151,8 +149,8 @@ public class GameCamera : MonoBehaviour
 		state = states.EXPLOTING;
 		this.explotionForce = explotionForce*2f;
 		StartCoroutine (DoExplote ());
-		newH = 1;
-		newV = 1;
+		newH = 200;
+		newV = 200;
 	}
 	public IEnumerator DoExplote () {
 		float delay = 0.03f;

@@ -44,10 +44,14 @@ public class CharacterControls : MonoBehaviour {
 			moveByAccelerometer ();
 		} else if(!isAutomata)
         {
-            if (InputManager.getFire(player.id))
+			if (InputManager.getFireDown(player.id))
             {
-                characterBehavior.CheckFire();
-            }
+				characterBehavior.StartPressingFire();
+			} 
+			if (InputManager.getFireUp(player.id))
+			{
+				characterBehavior.CheckFire();
+			}
             if (InputManager.getJump(player.id))
             {
                 characterBehavior.Jump();

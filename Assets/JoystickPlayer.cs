@@ -86,7 +86,7 @@ public class JoystickPlayer : MonoBehaviour {
 	}
 
 	void Update () {
-		if (InputManager.getFire (playerID)) 
+		if (InputManager.getFireDown (playerID)) 
 			PressButton(button1);
 		else
 			ResetButton (button1);

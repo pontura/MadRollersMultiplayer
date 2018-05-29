@@ -25,10 +25,14 @@ public class InputMobile : InputType {
     {
         return Input.GetAxisRaw("Horizontal" + id );
     }
-    public override bool getFire()
+	public override bool getFireDown()
     {
-        return Input.GetButton("Fire" + id );
+        return Input.GetButtonDown("Fire" + id );
     }
+	public override bool getFireUp()
+	{
+		return Input.GetButtonUp("Fire" + id );
+	}
     public override bool getJump()
     {
         return Input.GetButton("Jump" + id );

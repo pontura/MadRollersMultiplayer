@@ -28,11 +28,16 @@ public class InputManager {
         if (!initialized) Init();
         return inputs[id].getOpenMenu();
     }
-    public static bool getFire(int id = 0)
+    public static bool getFireDown(int id = 0)
     {
          if (!initialized) Init();
-         return inputs[id].getFire();
+         return inputs[id].getFireDown();
     }
+	public static bool getFireUp(int id = 0)
+	{
+		if (!initialized) Init();
+		return inputs[id].getFireUp();
+	}
     public static bool getJump(int id = 0)
     {
         if (!initialized) Init();

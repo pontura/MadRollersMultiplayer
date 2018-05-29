@@ -6,16 +6,28 @@ public class JoystickController : MonoBehaviour {
 
 	float lastClickedTime = 0;
 	bool processAxis;
+	bool isOff;
+	float delayToReact = 0.3f;
 
+	public void SetOff()
+	{
+		isOff = true;
+	}
+	public void SetOn()
+	{
+		isOff = false;
+	}
 	void Update()
 	{
+		if (isOff)
+			return;
 		lastClickedTime += Time.deltaTime;
-		if (lastClickedTime > 0.5f)
+		if (lastClickedTime > delayToReact)
 			processAxis = true;
 		for (int a = 0; a < 4; a++) {
 			if (InputManager.getJump (a)) 
 				OnJoystickBack ();
-			if (InputManager.getFire (a)) 
+			if (InputManager.getFireDown (a)) 
 				OnJoystickClick ();
 			if (processAxis) {
 				
