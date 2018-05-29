@@ -6,15 +6,9 @@ public class Player : MonoBehaviour {
 	public GameObject shadow;
 	public GameObject versusSignal;
     public Color color;
-    public MeshRenderer GorroMaterial;
 
 	public MadRoller madRoller;
 
-	public Material Gorro1;
-	public Material Gorro2;
-	public Material Gorro3;
-	public Material Gorro4;
-	public Material Gorro5;
 
 	private Game game;
 	private Gui gui;
@@ -23,11 +17,6 @@ public class Player : MonoBehaviour {
 
     public int id; //numero de player;
    // public EnergyBar progressBar;
-
-  //  [HideInInspector]
-	public Weapon weapon;
-	public Weapon weaponToInstantiate;
-    public GameObject weaponContainer;
 
     [HideInInspector]
     public Transport transport;
@@ -60,7 +49,7 @@ public class Player : MonoBehaviour {
 		Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
 		Data.Instance.events.OnAvatarGetItem += OnAvatarGetItem;
 		Data.Instance.events.OnAvatarProgressBarEmpty += OnAvatarProgressBarEmpty;
-		Data.Instance.events.OnChangeWeapon += OnChangeWeapon;
+
 
 		if (Data.Instance.playMode == Data.PlayModes.VERSUS)
 			versusSignal.SetActive (true);
@@ -69,7 +58,6 @@ public class Player : MonoBehaviour {
 	}
     void OnDestroy()
     {
-        Data.Instance.events.OnChangeWeapon -= OnChangeWeapon;
         Data.Instance.events.OnAvatarDie -= OnAvatarDie;
         Data.Instance.events.OnMissionStart -= OnMissionStart;
         Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
@@ -96,24 +84,6 @@ public class Player : MonoBehaviour {
 		foreach (TrailRenderer tr in GetComponentsInChildren<TrailRenderer>())
 			tr.material.color = color; 
 
-       // if (Data.Instance.isArcadeMultiplayer)
-		switch (id) {
-		case 0:
-			GorroMaterial.material = Gorro1;
-			break;
-		case 1:
-			GorroMaterial.material = Gorro2;
-			break;
-		case 2:
-			GorroMaterial.material = Gorro3;
-			break;
-		case 3:
-			GorroMaterial.material = Gorro4;
-			break;
-		default:
-			GorroMaterial.material = Gorro5;
-			break;
-		}
 
         characterBehavior = GetComponent<CharacterBehavior>();
         if (id == 0)
@@ -127,11 +97,7 @@ public class Player : MonoBehaviour {
 
         this.id = id;
        // this.energyBar = energyBar;
-        weapon = Instantiate(weaponToInstantiate as Weapon, Vector3.zero, Quaternion.identity) as Weapon;
-        weapon.SetColor(color);
-        weapon.transform.parent = weaponContainer.transform;
-        weapon.transform.localPosition = Vector3.zero;
-        weapon.transform.localScale = Vector3.one*2;
+       
         particles.SetActive(false);
         OnAvatarProgressBarEmpty();
     }
@@ -170,7 +136,7 @@ public class Player : MonoBehaviour {
             return;
         }
 
-        foreach (Transform child in transportContainer.transform)  Destroy(child.gameObject);
+       // foreach (Transform child in transportContainer.transform)  Destroy(child.gameObject);
 
         transport = null;
     }
@@ -185,7 +151,7 @@ public class Player : MonoBehaviour {
 
         if (item == Powerup.types.MISSILE)
         {
-            weapon.setOn();
+			characterBehavior.shooter.weapon.setOn();
         }
         else if (item == Powerup.types.JETPACK)
         {
@@ -193,7 +159,7 @@ public class Player : MonoBehaviour {
             if (characterBehavior.state != CharacterBehavior.states.JETPACK)
             {
                 transport = Instantiate(transports[0] as Transport, Vector3.zero, Quaternion.identity) as Transport;
-                transport.transform.parent = transportContainer.transform;
+              //  transport.transform.parent = transportContainer.transform;
                 transport.transform.localPosition = Vector3.zero;
                 transport.transform.localEulerAngles = Vector3.zero;
                 transport.transform.localScale = Vector3.one;
@@ -243,13 +209,6 @@ public class Player : MonoBehaviour {
 
            if (missionID > 1)
                canJump = true;
-          // if (missionID > 4)
-             //  canShoot = true;
-
-           if (missionID < 5)
-               weapon.setOff();
-           else
-               weapon.setOn();
        }
    }
    private void setStartingState()
@@ -276,16 +235,5 @@ public class Player : MonoBehaviour {
         
         gameObject.layer = LayerMask.NameToLayer("SuperFX");
         particles.SetActive(true);
-    }
-    void OnChangeWeapon(int playerID, Weapon.types type)
-    {       
-        if (playerID != id) return;    
-
-        Missil missil =  weapon.GetComponent<Missil>();
-
-
-
-        if (missil)
-            missil.OnChangeWeapon(type);
     }
 }

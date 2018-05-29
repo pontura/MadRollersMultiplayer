@@ -12,7 +12,7 @@ public class Missil : Weapon {
         ResetAll();
         simpleShot.SetActive(true);
     }
-    void ResetAll()
+    public void ResetAll()
     {
         simpleShot.SetActive(false);
         doubleShot.SetActive(false);

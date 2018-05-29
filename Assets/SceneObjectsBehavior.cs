@@ -174,10 +174,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
 					sceneObject.changeMaterial("pasto");
 					if (go.name == "extralargeBlock1")
 					{
-						GameObject goNew = new GameObject ();
-						goNew.transform.position = pos;
-						goNew.transform.rotation = go.transform.rotation;
-						borderTransforms.Add (goNew.transform);
 
 						int num = Random.Range(1, 4);
 						string decorationName = "";
@@ -438,16 +434,19 @@ public class SceneObjectsBehavior : MonoBehaviour {
 
 	public void addDecoration(string name, Vector3 pos, Vector3 offset)
 	{
-		SceneObject newSceneObject = Pool.GetObjectForType(name, false);
+		SceneObject newSceneObject = Pool.GetObjectForType(name, true);
+		if (newSceneObject == null)
+			return;
 		pos.z += offset.z;
 		pos.x += offset.x;
-		newSceneObject.Restart(pos);
+		newSceneObject.Restart (pos);
 		newSceneObject.SetMaterialByVideoGame ();
-
 	}
 	public void addDecorationWithRotation(string name, Vector3 pos, Vector3 rotation)
 	{
-		SceneObject newSceneObject = Pool.GetObjectForType(name, false);
+		SceneObject newSceneObject = Pool.GetObjectForType(name, true);
+		if (newSceneObject == null)
+			return;
 		newSceneObject.Restart(pos);
 		newSceneObject.transform.localEulerAngles = rotation;
 	}

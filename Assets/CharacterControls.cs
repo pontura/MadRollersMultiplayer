@@ -46,11 +46,11 @@ public class CharacterControls : MonoBehaviour {
         {
 			if (InputManager.getFireDown(player.id))
             {
-				characterBehavior.StartPressingFire();
+				characterBehavior.shooter.StartPressingFire();
 			} 
 			if (InputManager.getFireUp(player.id))
 			{
-				characterBehavior.CheckFire();
+				characterBehavior.shooter.CheckFire();
 			}
             if (InputManager.getJump(player.id))
             {
@@ -165,7 +165,7 @@ public class CharacterControls : MonoBehaviour {
 			}
 			else if (touch.position.x > Screen.width / 2)
 			{
-				characterBehavior.CheckFire();
+				characterBehavior.shooter.CheckFire();
 			}
 		} else
 		{

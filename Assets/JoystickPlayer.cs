@@ -99,7 +99,7 @@ public class JoystickPlayer : MonoBehaviour {
 		float h = InputManager.getHorizontal (playerID);
 		SetHorizontal (h);
 
-		if (state == states.DEAD)
+		if (state == states.DEAD && Data.Instance.playMode != Data.PlayModes.VERSUS)
 			FillDead ();
 		
 	}

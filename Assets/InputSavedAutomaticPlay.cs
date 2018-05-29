@@ -70,7 +70,7 @@ public class InputSavedAutomaticPlay : MonoBehaviour {
 			savedData.lastIdDataUsed++;
 			if (isdata.shoot) {
 				//shoot
-				cb.CheckFire();
+				cb.shooter.CheckFire();
 			} else if (isdata.jump) {
 				//jump
 				cb.Jump();

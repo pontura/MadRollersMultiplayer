@@ -22,7 +22,7 @@ public class CharacterAutomata : MonoBehaviour {
 	void LoopShoot()
 	{
 		if (cb.state == CharacterBehavior.states.RUN)
-			cb.CheckFire ();
+			cb.shooter.CheckFire ();
 		Invoke("LoopShoot", Random.Range(1,8));
 	}
 	void LoopJump()

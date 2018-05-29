@@ -32,6 +32,7 @@ public class CharacterBehavior : MonoBehaviour {
 	public CharacterBehavior hasSomeoneOver;
 	public CharacterBehavior isOver;
 	public CharacterControls controls;
+	public CharacterShooter shooter;
 
 	private int MAX_JETPACK_HEIGHT = 25;
 
@@ -42,8 +43,6 @@ public class CharacterBehavior : MonoBehaviour {
 	private float hittedTime;
 	private float hittedSpeed;
 	private Vector3 hittedPosition;
-
-	public GameObject myProjectile;
 
 	public Player player;
 
@@ -135,10 +134,6 @@ public class CharacterBehavior : MonoBehaviour {
 		hasSomeoneOver = null;
 	}
 
-
-
-
-
 	void StartMultiplayerRace()
 	{
 		controls.EnabledMovements (true);
@@ -153,7 +148,6 @@ public class CharacterBehavior : MonoBehaviour {
 	{
 		this.position = Game.Instance.GetComponent<CharactersManager>().GetPositionByID(player.id);
 	}
-	private float lastShot;
 	public void OncharacterCheer()
 	{
 		if (Random.Range(0, 8) < 2)
@@ -161,105 +155,7 @@ public class CharacterBehavior : MonoBehaviour {
 			Data.Instance.events.OnSoundFX("FXCheer", player.id);
 		}
 	}
-	float timePressing;
-	public void StartPressingFire(){
-		timePressing = Time.time;
-	}
-	public void CheckFire()
-	{
-		float timePressed = Time.time - timePressing;
-		print("___________ timePressed : " + timePressed);
 
-		if(lastShot+0.2f > Time.time) return;
-
-		if(!controls.isAutomata)
-			data.events.OnAvatarShoot(player.id);
-
-		if (state != states.RUN && state != states.SHOOT && transform.localPosition.y<6)
-			GetComponent<Rigidbody>().AddForce(new Vector3(0, jumpHeight/3, 0), ForceMode.Impulse);
-
-		state = states.SHOOT;
-
-		if (_animation_hero)
-			_animation_hero.Play("shoot");
-
-		player.weapon.Shoot();
-		Data.Instance.events.OnSoundFX("fire", player.id);
-		lastShot = Time.time;
-
-		Vector3 pos = new Vector3(transform.position.x, transform.position.y+1.7f, transform.position.z+0.1f);
-		//OnShoot(pos, player.weapon.type);
-
-		Weapon.types weawponType;
-		if (timePressed < 0.5f)
-			weawponType= Weapon.types.SIMPLE;
-		else if (timePressed < 1f)
-			weawponType= Weapon.types.DOUBLE;
-		else
-			weawponType= Weapon.types.TRIPLE;
-
-		OnShoot (pos, weawponType);
-			
-		Invoke("ResetShoot", 0.3f);
-	}
-	void OnShoot(Vector3 pos, Weapon.types type)
-	{
-		switch (type)
-		{
-		case Weapon.types.SIMPLE:
-			Shoot(pos, 0);
-			break;
-		case Weapon.types.DOUBLE:
-			Shoot(new Vector3(pos.x+1, pos.y, pos.z), 0);
-			Shoot(new Vector3(pos.x-1, pos.y, pos.z), 0);
-			break;
-		case Weapon.types.TRIPLE:
-			Shoot(pos, 0);
-			Shoot(new Vector3(pos.x + 1, pos.y, pos.z), -10);
-			Shoot(new Vector3(pos.x - 1, pos.y, pos.z), 10);
-			break;
-		}
-
-	}
-	void Shoot(Vector3 pos, float RotationY)
-	{
-		Projectil projectil = ObjectPool.instance.GetObjectForType(myProjectile.name, true) as Projectil;
-
-		if (projectil)
-		{
-			projectil.playerID = player.id;
-			projectil.SetColor(player.color);
-
-			projectil.Restart(pos);
-			projectil.team_for_versus = team_for_versus;
-			Vector3 rot = transform.localEulerAngles;
-			rot.x -= 4;
-
-			if (team_for_versus > 1) {
-				print(team_for_versus + "  ___________ rota projl");
-				rot.y = 180;
-			}
-			else
-				rot.y = RotationY;
-			
-			projectil.transform.localEulerAngles = rot;
-		}
-		else
-		{
-			print("no hay projectil");
-		}
-	}
-	void ResetShoot()
-	{
-		if (state == states.DEAD)
-			return;
-		if (floorCollitions.state == CharacterFloorCollitions.states.ON_FLOOR)
-			Run();
-		else if(jumpsNumber<2)
-			state = states.JUMP;
-		else
-			state = states.DOUBLEJUMP;
-	}
 	public void UpdateByController(float rotationY)
 	{
 		if (state == states.DEAD)

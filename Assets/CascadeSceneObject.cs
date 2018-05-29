@@ -14,7 +14,7 @@ public class CascadeSceneObject : SceneObject {
 	{
 		SceneObject newSceneObject;
 		Vector3 f;
-		if (Data.Instance.playMode == Data.PlayModes.VERSUS && num%2==0) {
+		if (Data.Instance.playMode == Data.PlayModes.VERSUS && num%4==0) {
 			 newSceneObject = Data.Instance.sceneObjectsPool.GetObjectForType("ThrowableSceneObject_real", false);  
 			newSceneObject.OnRestart (transform.position);
 			newSceneObject.GetComponent<Rigidbody> ().velocity = Vector3.zero;
