@@ -18,6 +18,12 @@ public class Missil : Weapon {
         doubleShot.SetActive(false);
         tripleShot.SetActive(false);
     }    
+//	public void Turn(float _z)
+//	{
+//		Vector3 rot = transform.localEulerAngles;
+//		rot.z = _z;
+//		transform.localEulerAngles = rot;
+//	}
     public void OnChangeWeapon(Weapon.types type)
     {
         this.type = type;

@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Data : MonoBehaviour {
 
+	public bool isArcadeMultiplayer;
+
 	public bool isReplay;
 	public int totalJoysticks;
 	public bool RESET;
@@ -10,8 +12,8 @@ public class Data : MonoBehaviour {
     public bool musicOn = true;
     public bool switchPlayerInputs;
     public int competitionID = 1;
-    public bool isArcade;
-    public bool isArcadeMultiplayer;
+    //public bool isArcade;
+    
 
     public int levelUnlocked_level_1 = 0;
 	public int levelUnlocked_level_2 = 0;
@@ -19,6 +21,7 @@ public class Data : MonoBehaviour {
     public float volume;
     public int scoreForArcade;
 
+	public bool webcamOff;
     public int WebcamID;
 
     public UserData userData;
@@ -171,7 +174,6 @@ public class Data : MonoBehaviour {
 		levelUnlocked_level_1 = 0;
 		levelUnlocked_level_2 = 0;
 
-        if (isArcade) return;
         SocialEvents.OnCompetitionHiscore(1, 0, false);
         userData.resetProgress();
         Social.Instance.hiscores.Reset();  

@@ -8,8 +8,9 @@ public class CharacterShooter : MonoBehaviour {
 	public CharacterBehavior characterBehavior;
 	float lastShot = 0;
 	float timePressing;
-
+	Weapon.types weawponType;
 	public Missil weapon;
+	bool isLoadingGun;
 
 	void Start()
 	{
@@ -24,22 +25,37 @@ public class CharacterShooter : MonoBehaviour {
 	{
 		weapon.ResetAll ();
 	}
+	void Update()
+	{		
+		if (isLoadingGun) {
+			float timePressed = Time.time - timePressing;
+			Weapon.types newWeawponType;
+			if (timePressed < 0.5f )
+				newWeawponType= Weapon.types.SIMPLE;
+			else if (timePressed < 1f)
+				newWeawponType= Weapon.types.DOUBLE;
+			else
+				newWeawponType= Weapon.types.TRIPLE;
+			if (newWeawponType != weawponType) {
+				weawponType = newWeawponType;
+				weapon.OnChangeWeapon (newWeawponType);
+			}
+			//weapon.Turn (characterBehavior.transform.eulerAngles.y);
+		}
+	}
 	void OnChangeWeapon(int playerID, Weapon.types type)
 	{       
 		if (playerID != characterBehavior.player.id) return;    
-
-		Missil missil =  weapon.GetComponent<Missil>();
-
-		if (missil)
-			missil.OnChangeWeapon(type);
+		weapon.OnChangeWeapon(type);
 	}
 	public void StartPressingFire(){
+		isLoadingGun = true;
 		timePressing = Time.time;
 		weapon.OnChangeWeapon (Weapon.types.SIMPLE);
 	}
 	public void CheckFire()
 	{
-		float timePressed = Time.time - timePressing;
+		isLoadingGun = false;
 
 		if(lastShot+0.2f > Time.time) return;
 
@@ -62,33 +78,26 @@ public class CharacterShooter : MonoBehaviour {
 
 		Vector3 pos = new Vector3(transform.position.x, transform.position.y+1.7f, transform.position.z+0.1f);
 
-		Weapon.types weawponType;
-		if (timePressed < 0.5f)
-			weawponType= Weapon.types.SIMPLE;
-		else if (timePressed < 1f)
-			weawponType= Weapon.types.DOUBLE;
-		else
-			weawponType= Weapon.types.TRIPLE;
-
 		OnShoot (pos, weawponType);
 
 		Invoke("ResetShoot", 0.3f);
 	}
 	void OnShoot(Vector3 pos, Weapon.types type)
 	{
+		float offsetY = characterBehavior.transform.localEulerAngles.y;
 		switch (type)
 		{
 		case Weapon.types.SIMPLE:
-			Shoot(pos, 0);
+			Shoot(pos, offsetY);
 			break;
 		case Weapon.types.DOUBLE:
-			Shoot(new Vector3(pos.x+1, pos.y, pos.z), 0);
-			Shoot(new Vector3(pos.x-1, pos.y, pos.z), 0);
+			Shoot(new Vector3(pos.x+1, pos.y, pos.z), offsetY);
+			Shoot(new Vector3(pos.x-1, pos.y, pos.z), offsetY);
 			break;
 		case Weapon.types.TRIPLE:
 			Shoot(pos, 0);
-			Shoot(new Vector3(pos.x + 1, pos.y, pos.z), -10);
-			Shoot(new Vector3(pos.x - 1, pos.y, pos.z), 10);
+			Shoot(new Vector3(pos.x + 1, pos.y, pos.z), -10 + offsetY);
+			Shoot(new Vector3(pos.x - 1, pos.y, pos.z), 10 + offsetY);
 			break;
 		}
 
@@ -108,7 +117,7 @@ public class CharacterShooter : MonoBehaviour {
 			rot.x -= 4;
 
 			if (characterBehavior.team_for_versus > 1) {
-				rot.y = 180;
+				rot.y += 180;
 			}
 			else
 				rot.y = RotationY;

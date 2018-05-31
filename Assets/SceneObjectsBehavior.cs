@@ -98,6 +98,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	List<Transform> borderTransforms;
 	public void replaceSceneObject(Area area, float areasLength, int areasX, bool oposite = false)
 	{
+		print (area.name + " AREA");
 		borderTransforms = new List<Transform> ();
 		this.area = area;
 		GameObject[] gos = area.getSceneObjects();
@@ -136,7 +137,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			case "extraSmallBlock1":
 			case "Coin":
 			case "bloodx1":
-			case "Yuyo":
+			//case "Yuyo":
 			case "enemyFrontal":   
 			case "enemyWater":   
 			case "enemySide":  
@@ -151,41 +152,35 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			case "enemyNaveSimple":  
 				sceneObject = Pool.GetObjectForType(go.name + "_real", false);    
 
-
-				//HACK creo que esto arregla que desaparezca cada tanto un objeto, sino es asi borrame!
-
-
 				if (sceneObject)
 				{
 					sceneObject.isActive = false;
 					sceneObject.Restart(pos);
 					sceneObject.transform.rotation = go.transform.rotation;
 
-					if (go.name == "Yuyo")
-						sceneObject.SetMaterialByVideoGame ();
+					//if (go.name == "Yuyo")
+					//	sceneObject.SetMaterialByVideoGame ();
+					
+					//sceneObject.changeMaterial("pasto");
 
-					//   if (go.GetComponent<MaterialsChanger>())
-					//                        {
-					//                            MaterialsChanger mo = go.GetComponent<MaterialsChanger>();
-					//                            sceneObject.changeMaterial(mo.materialName);
-					//                        }
-					//                        else
-					//                        {
-					sceneObject.changeMaterial("pasto");
 					if (go.name == "extralargeBlock1")
 					{
+						GameObject goNew = new GameObject ();
+						goNew.transform.position = pos;
+						goNew.transform.rotation = go.transform.rotation;
+						borderTransforms.Add (goNew.transform);
 
-						int num = Random.Range(1, 4);
-						string decorationName = "";
-						if (num == 1)
-							decorationName = "flores1_real";
-						if (num == 2)
-							decorationName = "flores2_real";
-						else if (num == 3)
-							decorationName = "floorFlowers_real";
-
-						if (decorationName != "")
-							addDecoration(decorationName, pos, Vector3.zero);
+//						int num = Random.Range(1, 4);
+//						string decorationName = "";
+//						if (num == 1)
+//							decorationName = "flores1_real";
+//						if (num == 2)
+//							decorationName = "flores2_real";
+//						else if (num == 3)
+//							decorationName = "floorFlowers_real";
+//
+//						if (decorationName != "")
+//							addDecoration(decorationName, pos, Vector3.zero);
 
 					}
 					//  }
@@ -441,14 +436,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
 		pos.x += offset.x;
 		newSceneObject.Restart (pos);
 		newSceneObject.SetMaterialByVideoGame ();
-	}
-	public void addDecorationWithRotation(string name, Vector3 pos, Vector3 rotation)
-	{
-		SceneObject newSceneObject = Pool.GetObjectForType(name, true);
-		if (newSceneObject == null)
-			return;
-		newSceneObject.Restart(pos);
-		newSceneObject.transform.localEulerAngles = rotation;
 	}
 
 	public void deleteAll()

@@ -15,7 +15,6 @@ public class CompetitionManager : MonoBehaviour {
     public void Init()
     {
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
-        if (Data.Instance.isArcade) return;
 
         if (Data.Instance.userData.facebookId != "0")
             avatar1.SetPicture(Data.Instance.userData.facebookId);

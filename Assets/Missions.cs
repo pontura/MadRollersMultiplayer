@@ -148,12 +148,12 @@ public class Missions : MonoBehaviour {
 	}
 	public void StartNext()
 	{
-        if (Data.Instance.isArcade)
-        {
-            MissionActiveID = 0;
-            MissionActive.reset();
-        } else
-        {
+//        if (Data.Instance.isArcade)
+//        {
+//            MissionActiveID = 0;
+//            MissionActive.reset();
+//        } else
+//        {
 			if (Data.Instance.playMode == Data.PlayModes.COMPETITION  && 1==2)
             {
                 MissionActiveID = 0;
@@ -166,7 +166,7 @@ public class Missions : MonoBehaviour {
             {
 					MissionActiveID = UnityEngine.Random.Range(2, GetActualMissions().Length - 1);
             }
-        }
+      //  }
 		MissionActiveID++;
         MissionActive = GetActualMissions()[MissionActiveID];
 		MissionActive.Init ();
@@ -178,25 +178,12 @@ public class Missions : MonoBehaviour {
 
         state = states.ACTIVE;
 		string text = "";
-		if (Data.Instance.playMode == Data.PlayModes.COMPETITION  && 1==2)
-        {
-            if(!Data.Instance.isArcade)
-				text = "CORRE " + MissionActive.distance + " METROS";
-        } else 
+
         if (MissionActive.Hiscore > 0)
-        {
-				//text = MissionActive.avatarHiscore;
-				text = "SCORE: " + MissionActive.Hiscore; 
-        }
+			text = "SCORE: " + MissionActive.Hiscore; 
         else
-        {
-				//text = "MISSION " + MissionActiveID;
-				text = MissionActive.description.ToUpper();
-        }
-
-		//foreach (Text t in Game.Instance.level.missionDesc.GetComponentsInChildren<Text>())
-		//	t.text = text;
-
+			text = MissionActive.description.ToUpper();
+        
         MissionActive.points = 0;
         lastDistance = (int)Game.Instance.GetComponent<CharactersManager>().distance;
     }

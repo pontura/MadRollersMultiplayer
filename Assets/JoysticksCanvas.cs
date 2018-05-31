@@ -10,11 +10,24 @@ public class JoysticksCanvas : MonoBehaviour {
 	{
 		Data.Instance.events.OnAddNewPlayer += OnAddNewPlayer;
 		Data.Instance.events.OnAvatarDie += OnAvatarDie;
+		Data.Instance.events.OnGameOver += OnGameOver;
+		Data.Instance.events.OnVersusTeamWon += OnVersusTeamWon;
 	}
 	void OnDestroy()
 	{
 		Data.Instance.events.OnAddNewPlayer -= OnAddNewPlayer;
 		Data.Instance.events.OnAvatarDie -= OnAvatarDie;
+		Data.Instance.events.OnGameOver -= OnGameOver;
+		Data.Instance.events.OnVersusTeamWon -= OnVersusTeamWon;
+	}
+	void OnVersusTeamWon(int team_id)
+	{
+		OnGameOver ();
+	}
+	void OnGameOver()
+	{
+		foreach (JoystickPlayer jp in players)
+			jp.OnGameOver ();
 	}
 	public void RefreshStates() 
 	{

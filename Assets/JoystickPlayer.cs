@@ -19,12 +19,19 @@ public class JoystickPlayer : MonoBehaviour {
 	{
 		INSERT_COIN,
 		PLAYING,
-		DEAD
+		DEAD,
+		GAME_OVER
 	}
 	void Start()
 	{
 		RefreshStates ();
 		deadFill.color = Data.Instance.multiplayerData.colors [playerID];
+	}
+	public void OnGameOver()
+	{
+		state = states.GAME_OVER;
+		dead.SetActive (false);
+		insertCoin.SetActive (false);
 	}
 	public void RefreshStates() {	
 		if (Data.Instance.playMode == Data.PlayModes.VERSUS) {
@@ -86,6 +93,8 @@ public class JoystickPlayer : MonoBehaviour {
 	}
 
 	void Update () {
+		if (state == states.GAME_OVER)
+			return;
 		if (InputManager.getFireDown (playerID)) 
 			PressButton(button1);
 		else

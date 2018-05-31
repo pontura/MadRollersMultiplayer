@@ -16,7 +16,7 @@ public class WebCamPhotoCamera : MonoBehaviour
 
     void Start()
     {
-		if (WebCamTexture.devices.Length == 0) {
+		if (WebCamTexture.devices.Length == 0 || Data.Instance.webcamOff) {
 			Data.Instance.LoadLevel("MainMenu");
 			return;
 		}

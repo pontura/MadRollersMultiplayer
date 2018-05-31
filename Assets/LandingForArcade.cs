@@ -66,6 +66,13 @@ public class LandingForArcade : MonoBehaviour {
             newButton.transform.SetParent(container);
         }
     }
+	public void TurnOffCam()
+	{
+		Data.Instance.webcamOff = true;
+
+		if(webCamTexture != null)
+			webCamTexture.Stop();
+	}
     public void Selected(string competitionTitle)
     {
 		if(webCamTexture != null)

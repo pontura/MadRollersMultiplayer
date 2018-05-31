@@ -58,12 +58,25 @@ public class Projectil : SceneObject {
 
 		myDist += Time.deltaTime * speed;
         rotation = transform.localEulerAngles;
+
+		float multiplier = 150 * Time.deltaTime;
+		print(rotation.y + " multi  " + multiplier);
+		//RECTIFICA
+		float gotoRot = 0;
+		if(team_for_versus == 2)
+			gotoRot = 180;
+		else if (rotation.y > 180)
+			gotoRot = 360;
+		
+		rotation.y = Mathf.Lerp(rotation.y , gotoRot, Time.deltaTime*5);
+		
        // rotation.y = 0;
         if (pos.y < - 0.8) Destroy();
         else
 		if(myDist >= myRange)
 		{
-            rotation.x += 30 * Time.deltaTime;
+            rotation.x += 30 * Time.deltaTime;			
+				
             transform.localEulerAngles = rotation;
 		}
 		pos += transform.forward * 50  * Time.deltaTime;		

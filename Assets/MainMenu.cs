@@ -6,12 +6,27 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour {
 
 	public int activeID = 0;
-	public List<MainMenuButton> buttons; 
+	public GameObject standaloneButtons;
+	public GameObject partyGameButtons;
+
+	List<MainMenuButton> buttons; 
+	public List<MainMenuButton> buttonsStandalone; 
+	public List<MainMenuButton> buttonsArcade; 
 	MainMenuButton activeButton;
 	public Text playersField;
 
 	void Start()
-	{
+	{		
+		buttons = new List<MainMenuButton> ();
+		if (Data.Instance.isArcadeMultiplayer) {
+			partyGameButtons.SetActive (true);
+			standaloneButtons.SetActive (false);
+			buttons = buttonsArcade;
+		} else  {
+			partyGameButtons.SetActive (false);
+			standaloneButtons.SetActive (true);
+			buttons = buttonsStandalone;
+		}
 		Init ();
 		Data.Instance.events.OnJoystickClick += OnJoystickClick;
 		Data.Instance.events.OnJoystickDown += OnJoystickDown;
@@ -26,11 +41,21 @@ public class MainMenu : MonoBehaviour {
 		
 		foreach (MainMenuButton m in buttons)
 			m.SetOn (false);
-		
-		if(Data.Instance.playMode == Data.PlayModes.COMPETITION)
-			activeID = 0;
-		else
-			activeID = 1;
+
+		if(Data.Instance.isArcadeMultiplayer)
+		{
+			if(Data.Instance.playMode == Data.PlayModes.COMPETITION)
+				activeID = 0;
+			else
+				activeID = 1;			
+		} else{
+			if (Data.Instance.playMode == Data.PlayModes.STORY)
+				activeID = 0;
+			else if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
+				activeID = 1;
+			else
+				activeID = 2;
+		}
 		SetButtons ();
 		activeButton.SetOn (true);
 	}
@@ -48,14 +73,18 @@ public class MainMenu : MonoBehaviour {
 	}
 	void OnJoystickClick()
 	{
-		if (activeID == 0)
-			MissionsScene ();
-		//	Data.Instance.LoadLevel("PlayersSelector");
-		else if (activeID == 1) {			
-			//Compite ();
-			Versus();
-		} else if (activeID == 2) {			
-			Versus ();
+		if (Data.Instance.isArcadeMultiplayer) {
+			if (activeID == 0)
+				Compite ();
+			else if (activeID == 1) 
+				Versus ();
+		} else {
+			if (activeID == 0)
+				MissionsScene ();
+			else if (activeID == 1)			
+				Compite ();
+		 	else	
+				Versus ();
 		}
 
 	}
@@ -84,37 +113,19 @@ public class MainMenu : MonoBehaviour {
 	}
 	void MissionsScene()
 	{
-		Data.Instance.playMode = Data.PlayModes.COMPETITION;
-		//Data.Instance.playMode = Data.PlayModes.STORY;
+		Data.Instance.playMode = Data.PlayModes.STORY;
 		Data.Instance.LoadLevel("LevelSelector");
 	}
 	void Compite()
 	{
 		Data.Instance.playMode = Data.PlayModes.COMPETITION;
 		Data.Instance.LoadLevel("LevelSelector");
-//		Data.Instance.playMode = Data.PlayModes.COMPETITION;
-//		Data.Instance.LoadLevel("Competitions");
 	}
 	void Versus()
 	{
 		Data.Instance.playMode = Data.PlayModes.VERSUS;
 		Data.Instance.LoadLevel("LevelSelector");
-		//		Data.Instance.playMode = Data.PlayModes.COMPETITION;
-		//		Data.Instance.LoadLevel("Competitions");
 	}
-//	public void Compite()
-//	{
-//		if (Data.Instance.levelUnlockedID < 4)
-//		{
-//			Data.Instance.LoadLevel("TrainingSplash");
-//		}
-//		else
-//		{
-//			//  Data.Instance.levelUnlockedID = Data.Instance.competitions.GetUnlockedLevel();
-//			Data.Instance.playMode = Data.PlayModes.COMPETITION;
-//			Data.Instance.LoadLevel("Competitions");
-//		}
-//	}
 
 
 
