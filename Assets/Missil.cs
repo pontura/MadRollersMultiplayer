@@ -10,7 +10,6 @@ public class Missil : Weapon {
     void Start()
     {
         ResetAll();
-        simpleShot.SetActive(true);
     }
     public void ResetAll()
     {

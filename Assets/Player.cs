@@ -81,8 +81,12 @@ public class Player : MonoBehaviour {
 		else
 			color = Data.Instance.GetComponent<MultiplayerData>().colors[id];
 
-		foreach (TrailRenderer tr in GetComponentsInChildren<TrailRenderer>())
-			tr.material.color = color; 
+		foreach (TrailRenderer tr in GetComponentsInChildren<TrailRenderer>()) {
+			if (id == 0)
+				tr.enabled = false;
+			else
+				tr.material.color = color; 
+		}
 
 
         characterBehavior = GetComponent<CharacterBehavior>();

@@ -16,6 +16,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	public SceneObject Boss2;
 	public SceneObject BossSpace1;
 	public SceneObject BossPacmans;
+	public SceneObject BossGalaga;
 	public SceneObject BossPacmansIntro;
 	public SceneObject Starting;
 	public SceneObject Calecita;
@@ -247,6 +248,8 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				clone = BossSpace1;
 			else if (go.name == "BossPacmans")
 				clone = BossPacmans;
+			else if (go.name == "BossGalaga")
+				clone = BossGalaga;
 			else if (go.name == "BossPacmansIntro")
 				clone = BossPacmansIntro;			
 			else if (go.name == "Calecita")

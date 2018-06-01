@@ -342,7 +342,7 @@ public class CharacterBehavior : MonoBehaviour {
 
 		if (state == states.JUMP)
 		{
-			SuperJump(superJumpHeight);
+			SuperJump(superJumpHeight, true);
 			return;
 		}
 		else if(state != states.RUN && state != states.SHOOT)
@@ -381,10 +381,15 @@ public class CharacterBehavior : MonoBehaviour {
 	{
 		GetComponent<Collider>().enabled = true;
 	}
-	public void SuperJump(float _superJumpHeight)
+	public void SuperJump(float _superJumpHeight, bool isDoubleJump = false)
 	{
 		if (!player.canJump) return;
 
+		float velocityY = Mathf.Abs(GetComponent<Rigidbody>().velocity.y)/8;
+
+		if (velocityY < 1 || !isDoubleJump)
+			velocityY = 1;
+		
 		GetComponent<Rigidbody>().velocity = Vector3.zero;
 
 		floorCollitions.OnAvatarJump();
@@ -398,9 +403,8 @@ public class CharacterBehavior : MonoBehaviour {
 		else
 			_animation_hero.Play("doubleJump2");
 
-		GetComponent<Rigidbody>().AddForce(new Vector3(0, (_superJumpHeight ) - (GetComponent<Rigidbody>().velocity.y * (jumpHeight / 10)), 0), ForceMode.Impulse);
+		GetComponent<Rigidbody>().AddForce( new Vector3(0, (_superJumpHeight ) - (jumpHeight / 10), 0)*velocityY, ForceMode.Impulse);
 		state = states.DOUBLEJUMP;
-		return;
 	}
 
 	public void SuperJumpByBumped(int force , float offsetY, bool dir_forward)
