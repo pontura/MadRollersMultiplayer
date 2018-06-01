@@ -165,7 +165,7 @@ public class CharactersManagerVersus : CharactersManager {
 		}
 		
 		state = states.FIRST_PART;
-		Invoke("AddAutomaticPlayersToAll", 0.5f);		
+		/////////////////////Invoke("AddAutomaticPlayersToAll", 0.5f);		
 		distance = -(Data.Instance.versusManager.GetArea().z_length+offsetBack);
 		camera_team_1.ResetVersusPosition ();
 		camera_team_2.ResetVersusPosition ();
