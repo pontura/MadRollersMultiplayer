@@ -199,6 +199,10 @@ public class CharactersManager : MonoBehaviour {
         Vector3 pos = characters[0].transform.position;
         pos.y += 3;
         pos.x = 0;
+
+		if(Data.Instance.playMode == Data.PlayModes.COMPETITION && distance<40)
+			pos.x = (3.5f * id) - (5.3f);
+		
         addCharacter(pos, id);
 
 		Data.Instance.events.ForceFrameRate(1);
