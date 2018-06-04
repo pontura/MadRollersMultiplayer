@@ -20,9 +20,10 @@ public class Floor : MonoBehaviour
         Data.Instance.events.OnGamePaused += OnGamePaused;
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
         Data.Instance.events.OnAvatarFall += OnAvatarCrash;
-      //  Data.Instance.events.OnChangeMood += OnChangeMood;
-        this.charactersManager = charactersManager;
 		Data.Instance.events.OnChangeBackgroundSide += OnChangeBackgroundSide;
+
+        this.charactersManager = charactersManager;
+
     }
     void OnDestroy()
     {
