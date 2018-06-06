@@ -142,6 +142,8 @@ public class ArcadeGUI : MonoBehaviour {
     void Reset()
     {
 		SetFields("");
+
+		return;
 		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {
 			Data.Instance.events.OnResetLevel ();
 			Data.Instance.LoadLevel ("SummaryMultiplayer");  

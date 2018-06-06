@@ -18,8 +18,10 @@ public class Summary : MonoBehaviour {
     void Start()
     {
         panel.SetActive(false);
-		Data.Instance.events.OnGameOver += OnGameOver;
-		Data.Instance.events.OnFireUI += OnFireUI;
+		if (Data.Instance.playMode == Data.PlayModes.STORY) {		
+			Data.Instance.events.OnGameOver += OnGameOver;
+			Data.Instance.events.OnFireUI += OnFireUI;
+		}
     }
 	void OnFireUI()
 	{

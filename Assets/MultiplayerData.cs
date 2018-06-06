@@ -47,4 +47,30 @@ public class MultiplayerData : MonoBehaviour
             default: return score_player4;
         }
     }
+	public int GetTotalScore()
+	{
+		return score_player1 + score_player2 + score_player3 + score_player4;
+	}
+	public int GetPositionByScore(int _playerID)
+	{
+		int myScore = score_player1;
+		if (_playerID == 1)
+			myScore = score_player2;
+		else if (_playerID == 2)
+			myScore = score_player3;
+		else if (_playerID == 3)
+			myScore = score_player4;
+		
+		int puesto = 1;
+		if (myScore < score_player1)
+			puesto++;
+		if (myScore < score_player2)
+			puesto++;
+		if (myScore < score_player3)
+			puesto++;
+		if (myScore < score_player4)
+			puesto++;
+
+		return puesto;
+	}
 }

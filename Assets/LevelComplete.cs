@@ -19,7 +19,7 @@ public class LevelComplete : MonoBehaviour {
      }
     public void Init(int missionNum)
     {
-		Data.Instance.events.RalentaTo (0.2f, 0.05f);
+		Data.Instance.events.RalentaTo (0.6f, 0.05f);
 		panel.SetActive (true);
         int maxScore = Data.Instance.GetComponent<Missions>().MissionActive.maxScore;
         int missionScore = Data.Instance.userData.missionScore;

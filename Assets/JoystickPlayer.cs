@@ -12,7 +12,9 @@ public class JoystickPlayer : MonoBehaviour {
 	public GameObject insertCoin;
 	public GameObject dead;
 	public Image deadFill;
-
+	public Text puesto;
+	public Text field;
+	Animation anim;
 	public states state;
 
 	public enum states
@@ -24,14 +26,43 @@ public class JoystickPlayer : MonoBehaviour {
 	}
 	void Start()
 	{
+		anim = GetComponent<Animation> ();
 		RefreshStates ();
-		deadFill.color = Data.Instance.multiplayerData.colors [playerID];
+		Color color = Data.Instance.multiplayerData.colors [playerID];
+		deadFill.color = color;
+		puesto.color = color;
+		field.color = color;
+	}
+	public void SetFields(int scorePosition, string text)
+	{		
+		anim.Play ("on");
+		puesto.text = scorePosition.ToString();
+		field.text = text;
 	}
 	public void OnGameOver()
 	{
+		SetHorizontal (0);
 		state = states.GAME_OVER;
 		dead.SetActive (false);
 		insertCoin.SetActive (false);
+
+		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {
+			
+			int score_player = Data.Instance.multiplayerData.GetScore(playerID);
+
+			int total = Data.Instance.multiplayerData.GetTotalScore();
+
+			print (playerID +  "     score: " + score_player + " total " + total);
+
+			if (score_player > 0) {
+				Vector2 pos =  transform.localPosition;
+				int positionByScore = Data.Instance.multiplayerData.GetPositionByScore (playerID);
+				pos.y -= positionByScore * 2;
+				transform.localPosition = pos;
+				int perc = score_player * 100 / total;
+				SetFields (positionByScore, perc.ToString () + "%");
+			}
+		}
 	}
 	public void RefreshStates() {	
 		if (Data.Instance.playMode == Data.PlayModes.VERSUS) {
