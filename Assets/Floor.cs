@@ -92,7 +92,7 @@ public class Floor : MonoBehaviour
 	List<BackgroundSideData> allBackgroundSides;
 	void OnChangeBackgroundSide(BackgroundSideData[] all)
 	{
-		//print ("OnChangeBackgroundSide: " + all.Length);
+		print ("OnChangeBackgroundSide: " + all.Length);
 		if (all.Length == 0)
 			return;
 		allBackgroundSides = new List<BackgroundSideData> ();

@@ -220,7 +220,7 @@ namespace AlpacaSound.RetroPixelPro
 						
 						if (used.boolValue)
 						{
-							Color newColor = EditorGUILayout.ColorField (GUIContent.none, color.colorValue, false, false, false, null, GUILayout.Width(40), GUILayout.Height(25));
+							Color newColor = EditorGUILayout.ColorField (GUIContent.none, color.colorValue, false, false, false);
 							
 							if (newColor != color.colorValue)
 							{
@@ -233,7 +233,7 @@ namespace AlpacaSound.RetroPixelPro
 						else
 						{
 							EditorGUI.BeginDisabledGroup(true);
-							EditorGUILayout.ColorField (GUIContent.none, DisabledColor(color.colorValue), false, false, false, null, GUILayout.Width(40), GUILayout.Height(25));
+							EditorGUILayout.ColorField (GUIContent.none, DisabledColor(color.colorValue), false, false, false);
 							EditorGUI.EndDisabledGroup();
 						}
 					}

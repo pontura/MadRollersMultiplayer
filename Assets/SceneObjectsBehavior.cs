@@ -151,7 +151,11 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			case "Baranda1":  
 			case "Tumba":  
 			case "enemyNaveSimple":  
-				sceneObject = Pool.GetObjectForType(go.name + "_real", false);    
+				
+				if(go.name == "smallBlock1" || go.name == "extraSmallBlock1")
+					sceneObject = Pool.GetObjectForType(go.name + "_real", true);    
+				else
+					sceneObject = Pool.GetObjectForType(go.name + "_real", false);  
 
 				if (sceneObject)
 				{
@@ -406,7 +410,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			}
 
 		}
-			AddBorders ();
+			//AddBorders ();
 	}
 	public void PoolSceneObjectsInScene()
 	{
