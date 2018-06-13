@@ -62,6 +62,11 @@ public class LevelSelector : MonoBehaviour {
 		Data.Instance.events.OnJoystickUp += OnJoystickUp;
 		Data.Instance.events.OnJoystickLeft += OnJoystickLeft;
 		Data.Instance.events.OnJoystickRight += OnJoystickRight;
+		Invoke ("TimeOver", 15);
+	}
+	void TimeOver()
+	{
+		Data.Instance.LoadLevel("MainMenu");
 	}
 	void OnDestroy()
 	{

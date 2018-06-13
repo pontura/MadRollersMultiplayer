@@ -220,20 +220,20 @@ namespace AlpacaSound.RetroPixelPro
 						
 						if (used.boolValue)
 						{
-							Color newColor = EditorGUILayout.ColorField (GUIContent.none, color.colorValue, false, false, false);
-							
-							if (newColor != color.colorValue)
-							{
-								preset.enumValueIndex = (int) PalettePresets.PresetName.Custom;
-								colormapNeedsUpdating = true;
-							}
-							
-							color.colorValue = newColor;
+//							Color newColor = EditorGUILayout.ColorField (GUIContent.none, color.colorValue, false, false, false);
+//							
+//							if (newColor != color.colorValue)
+//							{
+//								preset.enumValueIndex = (int) PalettePresets.PresetName.Custom;
+//								colormapNeedsUpdating = true;
+//							}
+//							
+//							color.colorValue = newColor;
 						}
 						else
 						{
 							EditorGUI.BeginDisabledGroup(true);
-							EditorGUILayout.ColorField (GUIContent.none, DisabledColor(color.colorValue), false, false, false);
+							//EditorGUILayout.ColorField (GUIContent.none, DisabledColor(color.colorValue), false, false, false);
 							EditorGUI.EndDisabledGroup();
 						}
 					}

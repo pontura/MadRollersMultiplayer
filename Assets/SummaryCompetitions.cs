@@ -54,6 +54,13 @@ public class SummaryCompetitions : MonoBehaviour {
 			id++;
 		}
 		progressImage.fillAmount = (float)missionActive / (float)Data.Instance.missions.allMissionsByVideogame[0].missions.Count;
+
+		Invoke ("TimeOver", 15);
+	}
+	void TimeOver()
+	{
+		Data.Instance.inputSavedAutomaticPlay.RemoveAllData ();
+		Game.Instance.GotoMainMenu ();	
 	}
 	void Update()
 	{
@@ -111,7 +118,8 @@ public class SummaryCompetitions : MonoBehaviour {
 		if (optionSelected == 0) {
 			Data.Instance.inputSavedAutomaticPlay.RemoveAllData ();
 			Data.Instance.missions.MissionActiveID = 0;
-			Game.Instance.ResetLevel();    
+			//Game.Instance.ResetLevel();  
+			Game.Instance.GotoMainMenuArcade ();	
 		} else if (optionSelected == 1) {
 			Data.Instance.inputSavedAutomaticPlay.RemoveAllData ();
 			Game.Instance.GotoLevelSelector ();	

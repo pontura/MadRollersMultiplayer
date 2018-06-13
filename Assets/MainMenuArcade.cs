@@ -50,8 +50,12 @@ public class MainMenuArcade : MonoBehaviour {
 			LoopWinners ();
 			SetFields (0);
 		}
-        //LoopBG();
-    }
+		Invoke ("TimeOver", 15);
+	}
+	void TimeOver()
+	{
+		Data.Instance.LoadLevel("MainMenu");
+	}
     void LoopBG()
     {
        // backgruond.material = backgrounds[Random.Range(0, backgrounds.Length-1)];

@@ -108,6 +108,13 @@ public class Game : MonoBehaviour {
 		Data.Instance.events.ForceFrameRate (1);
         Data.Instance.LoadLevel("LevelSelector");
     }
+	public void GotoMainMenuArcade()
+	{
+		//  Pause();
+		Data.Instance.events.OnResetLevel();
+		Data.Instance.events.ForceFrameRate (1);
+		Data.Instance.LoadLevel("MainMenuArcade");
+	}
     public void GotoMainMenu()
     {
       //  Pause();
