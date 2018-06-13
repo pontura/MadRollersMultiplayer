@@ -37,6 +37,25 @@ public class MultiplayerData : MonoBehaviour
 		player3 = true;
 		player4 = true;
 	}
+	public int GetTotalCharacters()
+	{
+		int total = 0;
+		if (player1) total++;
+		if (player2) total++;
+		if (player3) total++;
+		if (player4) total++;
+		return total;
+	}
+	public void AddNewCharacter(int playerID)
+	{
+		switch (playerID)
+		{
+		case 0: player1 = true; break;
+		case 1: player2 = true; break;
+		case 2: player3 = true; break;
+		case 3: player4 = true; break;
+		}
+	}
     public int GetScore(int playerID)
     {
         switch (playerID)

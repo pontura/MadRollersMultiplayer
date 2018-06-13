@@ -1,47 +1,73 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-using System.Collections;
-
 public class Continue : MonoBehaviour {
 
-	delegate void DelayedMethod();
+	public GameObject panel;
 	private int num = 9;
 	public Text countdown_txt;
-	private float speed = 0.5f;
-    private bool clicked;
-	
-	IEnumerator WaitAndDo(float time, DelayedMethod method)
-	{
-		yield return new WaitForSeconds(time);
-		method();
-	}
+	private float speed = 0.3f;
+    private bool canClick;
 
-	public void DoStuff()
+	void Start () {
+		canClick = false;
+		panel.SetActive (false);
+		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {			
+			Data.Instance.events.OnGameOver += OnGameOver;
+		}
+	}
+	void Update()
 	{
+		if (canClick) {
+			for (int a = 0; a < 4; a++) {
+				if (InputManager.getJump (a))
+					OnJoystickClick ();
+				if (InputManager.getFireDown (a))
+					OnJoystickClick ();
+			}
+		}
+	}
+	void OnDestroy()
+	{
+		Data.Instance.events.OnGameOver -= OnGameOver;
+	}
+	public void OnGameOver()
+	{		
+		Invoke ("OnGameOverDelayed", 2);
+	}	
+	public void OnGameOverDelayed()
+	{		
+		panel.SetActive (true);
+		num = 9;
+		countdown_txt.text = num.ToString();
+		Invoke ("Loop", 1);
+	}	
+	public void Loop()
+	{
+		canClick = true;
 		num--;
-		if(num==0)
+		if(num<=0)
 		{
-            Data.Instance.LoadLevel("MainMenu");
-            clicked = true;
+			canClick = false;
+			panel.GetComponent<Animation> ().Play ("signalOff");
+			Invoke ("Done", 1f);
 			return;
 		}
 		countdown_txt.text = num.ToString();
-		StartCoroutine(WaitAndDo(speed, DoStuff));
+		Invoke ("Loop", speed);
 	}	
-
-	void Start () {
-        clicked = false;
-		StartCoroutine(WaitAndDo(speed, DoStuff));
+	void Done()
+	{
+		GetComponent<SummaryCompetitions> ().SetOn ();
+		panel.SetActive (false);
 	}
-
-	void Update () {
-        if (clicked) return;
-        if (Input.anyKeyDown)
-        {
-            clicked = true;
-            StopCoroutine("WaitAndDo");
-            Data.Instance.LoadLevel("Game");
+	void OnJoystickClick()
+	{
+		if (canClick) {
+			Data.Instance.inputSavedAutomaticPlay.RemoveAllData ();
+			Data.Instance.isReplay = true;
+			CancelInvoke ();
+			Game.Instance.ResetLevel();  
 		}
 	}
 

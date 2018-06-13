@@ -56,7 +56,7 @@ public class LevelSelector : MonoBehaviour {
 			title.text = "Select a videogame (Versus mode)";
 		}
 		
-		Data.Instance.events.OnJoystickBack += OnJoystickBack;
+		//Data.Instance.events.OnJoystickBack += OnJoystickBack;
 		Data.Instance.events.OnJoystickClick += OnJoystickClick;
 		Data.Instance.events.OnJoystickDown += OnJoystickDown;
 		Data.Instance.events.OnJoystickUp += OnJoystickUp;
@@ -65,7 +65,7 @@ public class LevelSelector : MonoBehaviour {
 	}
 	void OnDestroy()
 	{
-		Data.Instance.events.OnJoystickBack -= OnJoystickBack;
+		//Data.Instance.events.OnJoystickBack -= OnJoystickBack;
 		Data.Instance.events.OnJoystickClick -= OnJoystickClick;
 		Data.Instance.events.OnJoystickDown -= OnJoystickDown;
 		Data.Instance.events.OnJoystickUp -= OnJoystickUp;

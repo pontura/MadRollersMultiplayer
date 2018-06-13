@@ -286,21 +286,23 @@ public class CharacterBehavior : MonoBehaviour {
 	}
 	public void JumpPressed()
 	{
+		return;
 		if (player.transport != null)
 			Jetpack();
 	}
 	public void AllButtonsReleased()
 	{
-		if (player.transport != null)
-			JetpackOff();
+		//if (player.transport != null)
+		//	JetpackOff();
 	}
 	void OnAvatarProgressBarEmpty()
 	{
-		if(state == states.JETPACK)
-			JetpackOff();
+		//if(state == states.JETPACK)
+		//	JetpackOff();
 	}
 	public void Jetpack()
 	{
+		return;
 		if (state == states.JETPACK) return;
 
 		_animation_hero.transform.localEulerAngles = new Vector3(40, 0, 0);

@@ -36,7 +36,8 @@ public class CharacterControls : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void LateUpdate () {
-		
+		if (characterBehavior.player == null)
+			return;
 		if (characterBehavior.state == CharacterBehavior.states.CRASH || characterBehavior.state == CharacterBehavior.states.DEAD) 
 			return;
 		if (Time.deltaTime == 0) return;

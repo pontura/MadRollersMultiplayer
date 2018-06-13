@@ -19,6 +19,7 @@ public class CharactersManager : MonoBehaviour {
     public List<int> playerPositions;
 	public bool gameOver;
     private IEnumerator RalentaCoroutine;
+	int totalCharacters;
 
     void Awake()
     {
@@ -93,7 +94,7 @@ public class CharactersManager : MonoBehaviour {
 	public virtual void OnUpdate(){ }
     public int GetPositionByID(int _playerID)
     {
-		if (distance < 100) return 0;
+		//if (distance < 100) return 0;
 		if (Game.Instance.level.waitingToStart) return 0;
         int position = 0;
         foreach(int playerID in playerPositions)
@@ -114,30 +115,36 @@ public class CharactersManager : MonoBehaviour {
         Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
 		Data.Instance.events.OnAutomataCharacterDie += OnAutomataCharacterDie;
 
-        Vector3 pos;
+		StartCoroutine (AddCharactersInitials ());
+    }
+	IEnumerator AddCharactersInitials()
+	{
+		Vector3 pos;
 
-		float _y = 2;
+		float _y = 4;
 
 		if (Data.Instance.isReplay)
 			_y = 15;
-		
-		pos = new Vector3(1, _y, 1);
 
-		//if (Data.Instance.playMode == Data.PlayModes.STORY) {
-		//	addCharacter(pos, 0); playerPositions.Add(0);
-		//}
+		pos = new Vector3(0, _y, 0);
+
 		int positionID = 0;
 		if (Data.Instance.playMode == Data.PlayModes.STORY) {
 			InputSavedAutomaticPlay savedAutomaticPlay = Data.Instance.inputSavedAutomaticPlay;
 			savedAutomaticPlay.Init (this);
 			positionID = savedAutomaticPlay.allPlayersSavedData.Count;
 		}		 
-		
+		totalCharacters = Data.Instance.multiplayerData.GetTotalCharacters ();
 		if (Data.Instance.multiplayerData.player1) { addCharacter(CalculateInitialPosition(pos, positionID), 0); playerPositions.Add(0); };
+		float timeToAppear = 0.08f;
+		yield return new WaitForSeconds (timeToAppear);
 		if (Data.Instance.multiplayerData.player2) { addCharacter(CalculateInitialPosition(pos, positionID+1), 1); playerPositions.Add(1); };
+		yield return new WaitForSeconds (timeToAppear);
 		if (Data.Instance.multiplayerData.player3) { addCharacter(CalculateInitialPosition(pos, positionID+2), 2); playerPositions.Add(2); };
+		yield return new WaitForSeconds (timeToAppear);
 		if (Data.Instance.multiplayerData.player4) { addCharacter(CalculateInitialPosition(pos, positionID+3), 3); playerPositions.Add(3); };
-    }
+		Data.Instance.isReplay = false;
+	}
     void OnDestroy()
     {
         Data.Instance.events.OnAvatarCrash -= OnAvatarCrash;
@@ -192,6 +199,8 @@ public class CharactersManager : MonoBehaviour {
     {
 		if (characters.Count == 0)
 			return;
+
+		Data.Instance.multiplayerData.AddNewCharacter (id);
 		
         Data.Instance.events.OnSoundFX("coin", id);
         Data.Instance.events.OnAddNewPlayer(id);
@@ -224,13 +233,16 @@ public class CharactersManager : MonoBehaviour {
 		newCharacter.GetComponent<CharacterAutomata> ().Init ();
 		return newCharacter;
 	}
+	float separationOnReplay = 1f;
 	Vector3 CalculateInitialPosition(Vector3 pos, int positionID)
-	{
+	{		
 		float _x;
 		if (Data.Instance.isReplay)
-			_x = 0;
+			_x = ((float)positionID * separationOnReplay)  - (((((float)totalCharacters-1))/2)*separationOnReplay);
 		else
 			_x = (3.5f * positionID+1) - (5.3f);
+
+		print ("positionID : " + positionID + "   separationOnReplay: " + separationOnReplay  + "    CalculateInitialPosition " + _x + "  totalCharacters " + totalCharacters);
 
 		return new Vector3(_x,pos.y);
 	}

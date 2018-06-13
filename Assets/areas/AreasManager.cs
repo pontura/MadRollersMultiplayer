@@ -158,7 +158,7 @@ public class AreasManager : MonoBehaviour {
 
 		if (al == 0) {
 			if (Data.Instance.isReplay) {
-				Data.Instance.isReplay = false;
+				
 				return Data.Instance.missions.startingAreaAfterDying;
 			}
 			else if (Data.Instance.missions.MissionActiveID == 0)

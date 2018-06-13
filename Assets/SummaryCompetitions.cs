@@ -18,15 +18,16 @@ public class SummaryCompetitions : MonoBehaviour {
 	void Start()
 	{
 		panel.SetActive (false);
-		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {			
-			Data.Instance.events.OnGameOver += OnGameOver;
-		}
+//		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {			
+//			Data.Instance.events.OnGameOver += OnGameOver;
+//		}
 	}
 	void OnDestroy()
 	{
-		Data.Instance.events.OnGameOver -= OnGameOver;
+		//Data.Instance.events.OnGameOver -= OnGameOver;
 	}
-	void OnGameOver()
+	//void OnGameOver()
+	public void Init()
 	{
 		if (isOn) return;
 		Invoke("SetOn", 2F);
@@ -34,7 +35,7 @@ public class SummaryCompetitions : MonoBehaviour {
 		// Data.Instance.events.OnResetLevel ();
 		//	Data.Instance.LoadLevel ("SummaryMultiplayer");  
 	}
-	void SetOn()
+	public void SetOn()
 	{
 		Data.Instance.events.RalentaTo (1, 0.05f);
 		isOn = true;
@@ -72,6 +73,12 @@ public class SummaryCompetitions : MonoBehaviour {
 				if (v < -0.5f)
 					OnJoystickDown ();
 				else if (v > 0.5f)
+					OnJoystickUp ();
+
+				float h = InputManager.getHorizontal (a);
+				if (h < -0.5f)
+					OnJoystickDown ();
+				else if (h > 0.5f)
 					OnJoystickUp ();
 			}
 		}

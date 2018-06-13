@@ -11,7 +11,7 @@ public class UICountDown : MonoBehaviour {
 	int countDown = 3;
 
 	void Start () {
-		if (Data.Instance.playMode == Data.PlayModes.STORY) {
+		if (Data.Instance.playMode == Data.PlayModes.STORY || Data.Instance.isReplay) {
 			panel.SetActive (false);
 			return;
 		}
