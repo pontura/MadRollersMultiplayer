@@ -14,10 +14,11 @@ public class CompetitionManager : MonoBehaviour {
 
     public void Init()
     {
+		return;
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
 
-        if (Data.Instance.userData.facebookId != "0")
-            avatar1.SetPicture(Data.Instance.userData.facebookId);
+      //  if (Data.Instance.userData.facebookId != "0")
+       //     avatar1.SetPicture(Data.Instance.userData.facebookId);
 
 		if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
         {

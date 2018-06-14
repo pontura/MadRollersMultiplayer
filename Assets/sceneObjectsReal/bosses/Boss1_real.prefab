@@ -800,7 +800,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1930382823524574
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,7 +816,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1950264552148512
 GameObject:
   m_ObjectHideFlags: 1
@@ -3048,8 +3048,6 @@ MonoBehaviour:
   distanceFromCharacter: 24
   onlyMultiplayers: 0
   distance_from_avatars: 25
-  bossBar: {fileID: 114120810456480228}
-  numberOfHits: 4
   timeToConvert: 15
   timer: 0
   anim: {fileID: 95559191119427510}
@@ -3082,11 +3080,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 097010e420c8d4b4bb42e3a6720af272, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isVertical: 0
   speed: 2
   move_left_right: {x: -2, y: 2}
   moveingLeft: 0
   initialValue: 0
   randomInitial: 0
+  randomOffset: 0
   dontDestroyOnDisable: 1
 --- !u!198 &198112958975104114
 ParticleSystem:

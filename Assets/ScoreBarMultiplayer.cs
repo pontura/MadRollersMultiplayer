@@ -7,7 +7,7 @@ public class ScoreBarMultiplayer : MonoBehaviour {
 
 	public GameObject panel;
 	public GameObject hiscoreFields;
-	public GameObject myScoreFields;
+	public Text myScoreFields;
 	public Image bar;
 	public RawImage hiscoreImage;
 	public int score;
@@ -18,28 +18,28 @@ public class ScoreBarMultiplayer : MonoBehaviour {
     
 
     void Start () {
-		if (Data.Instance.playMode == Data.PlayModes.STORY) {
-			panel.SetActive (false);
-			return;
-		} else {
-			panel.SetActive (true);
-		}
-		hiscoreWinned = false;
-        newVictoryAreaScore = Data.Instance.multiplayerData.newVictoryAreaScore;
+//		if (Data.Instance.playMode == Data.PlayModes.STORY) {
+//			panel.SetActive (false);
+//			return;
+//		} else {
+//			panel.SetActive (true);
+//		}
+	//	hiscoreWinned = false;
+      //  newVictoryAreaScore = Data.Instance.multiplayerData.newVictoryAreaScore;
 
         Data.Instance.events.OnScoreOn += OnScoreOn;
 
 		score = 0;
-		bar.fillAmount = 0;
-
-		ArcadeRanking arcadeRanking = Data.Instance.GetComponent<ArcadeRanking> ();
-		if (arcadeRanking.all.Count > 0) {
-			hiscore = arcadeRanking.all [0].score;
-			foreach (Text textfield in hiscoreFields.GetComponentsInChildren<Text>())
-				textfield.text = hiscore.ToString ();
-
-			hiscoreImage.material.mainTexture = Data.Instance.GetComponent<ArcadeRanking>().all[0].texture;
-		}
+//		bar.fillAmount = 0;
+//
+//		ArcadeRanking arcadeRanking = Data.Instance.GetComponent<ArcadeRanking> ();
+//		if (arcadeRanking.all.Count > 0) {
+//			hiscore = arcadeRanking.all [0].score;
+//			foreach (Text textfield in hiscoreFields.GetComponentsInChildren<Text>())
+//				textfield.text = hiscore.ToString ();
+//
+//			hiscoreImage.material.mainTexture = Data.Instance.GetComponent<ArcadeRanking>().all[0].texture;
+//		}
 		UpdateScore ();
 	}
 	void OnDestroy()
@@ -60,9 +60,9 @@ public class ScoreBarMultiplayer : MonoBehaviour {
 	}
 	void UpdateScore()
 	{	
+		myScoreFields.text = score.ToString ("00000");
 
-		foreach (Text textfield in myScoreFields.GetComponentsInChildren<Text>())
-			textfield.text = score.ToString ();
+		return;
 
 		if(hiscoreWinned) return;
 		

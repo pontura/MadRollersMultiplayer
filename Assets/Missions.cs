@@ -146,7 +146,7 @@ public class Missions : MonoBehaviour {
         data.events.MissionComplete();
         state = states.INACTIVE;        
 	}
-	public void StartNext()
+	public bool StartNext()
 	{
 //        if (Data.Instance.isArcade)
 //        {
@@ -159,12 +159,14 @@ public class Missions : MonoBehaviour {
                 MissionActiveID = 0;
                 MissionActive.reset();
                //desc_txt.text = "CORRE ";
-                return;
+				return false;
             }
             else
-            if (MissionActiveID == GetActualMissions().Length)
+            if (MissionActiveID >= GetActualMissions().Length-1)
             {
-					MissionActiveID = UnityEngine.Random.Range(2, GetActualMissions().Length - 1);
+				Game.Instance.GotoVideogameComplete ();
+				return false;
+				MissionActiveID = UnityEngine.Random.Range(2, GetActualMissions().Length - 1);
             }
       //  }
 		MissionActiveID++;
@@ -172,6 +174,7 @@ public class Missions : MonoBehaviour {
 		MissionActive.Init ();
 		MissionActive.reset();
 		data.events.NewMissionStart ();
+		return true;
 	}
     private void activateMissionByListener()
     {
@@ -219,6 +222,17 @@ public class Missions : MonoBehaviour {
             setMissionStatus(MissionActive.distance);
         }
     }
+	public void hitBoss (int qty) {
+
+		print ("hitBoss " + qty + "   MissionActive.boss1 " + MissionActive.boss1);
+		if (!CanComputeMission ())
+			return;
+		if(MissionActive.boss1 > 0)
+		{
+			addPoints(qty);		
+			setMissionStatus(MissionActive.boss1);
+		}
+	}
 	public void killGuy (int qty) {
 		if (!CanComputeMission ())
 			return;
@@ -333,5 +347,9 @@ public class Missions : MonoBehaviour {
 	public void ActivateFirstGameByVideogame(int videoGameID)
 	{
 		MissionActiveID = allMissionsByVideogame[videoGameID].missions[0].id;
+	}
+	public void ForceBossPercent(int totalHits)
+	{
+		MissionActive.boss1 = totalHits;
 	}
 }

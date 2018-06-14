@@ -13,7 +13,7 @@ public class BossNaves : Boss {
 		if (avatarsDistance + distance_from_avatars < transform.localPosition.z)
 			return;
 		if (!started) {
-			numberOfHits = all.Length;
+			SetTotal( all.Length );
 			partID = 0;
 			Init ();
 			started = true;

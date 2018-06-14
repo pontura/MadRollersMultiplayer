@@ -6,10 +6,12 @@ public class ProfilePicture : MonoBehaviour {
 
    public void Init(Hiscores.Hiscore data)
     {
+		return;
         SetPicture(data.facebookID);
     }
    public void SetPicture(string facebookID)
    {
+		return;
        Texture2D texture2d = Social.Instance.hiscores.GetPicture(facebookID);
        if (texture2d)
            SetLoadedPicture(texture2d);
@@ -18,6 +20,7 @@ public class ProfilePicture : MonoBehaviour {
    }
    public void SetLoadedPicture(Texture2D texture2d)
    {
+		return;
        GetComponent<Image>().sprite = Sprite.Create(texture2d, new Rect(0, 0, 128, 128), Vector2.zero);
    }
    IEnumerator GetPicture(string facebookID)

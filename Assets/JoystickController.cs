@@ -29,15 +29,14 @@ public class JoystickController : MonoBehaviour {
 				OnJoystickBack ();
 			if (InputManager.getFireDown (a)) 
 				OnJoystickClick ();
-			if (processAxis) {
-				
+			if (processAxis) {				
 				float v = InputManager.getVertical (a);
 				if (v < -0.5f)
 					OnJoystickUp ();
 				else if (v > 0.5f)
 					OnJoystickDown ();
+				
 				float h = InputManager.getHorizontal (a);
-
 				if (h < -0.5f)
 					OnJoystickRight ();
 				else if (h > 0.5f)

@@ -5,24 +5,40 @@ using UnityEngine;
 public class Boss : SceneObject {
 
 	public float distance_from_avatars;
-	public BossBar bossBar;
-	public float numberOfHits;
+	int hits;
+	Missions missions;
+	int totalHits;
 
 	public override void OnRestart(Vector3 pos)
-	{
+	{		
+		missions = Game.Instance.level.missions;
 		Data.Instance.GetComponent<MusicManager> ().BossMusic (true);
-		bossBar.enabled = true;
+		//bossBar.enabled = true;
 		base.OnRestart (pos);
-		bossBar.Init (this);
+		//bossBar.Init (this);
+
+	}
+	public void SetTotal(int totalHits)
+	{		
+		missions.ForceBossPercent (totalHits);
+		this.totalHits = totalHits;
 	}
 	public virtual void OnSceneObjectUpdated()
 	{
+		
 	} 
 	public void breakOut()
 	{
 		Data.Instance.events.OnSoundFX("FX break", -1);
 		Hit ();
-		bossBar.Resta ((10/numberOfHits)/10);
+		hits++;
+		missions.hitBoss (1);
+
+		if (hits >= totalHits)
+			Killed ();
+		
+		print("hits:  " +  hits + "  totalHits: " + totalHits );
+		//bossBar.Resta ((10/numberOfHits)/10);
 	}
 	public void Killed()
 	{
@@ -43,7 +59,7 @@ public class Boss : SceneObject {
 	}
 	public virtual void Death()
 	{
-		bossBar.enabled = false;
+		//bossBar.enabled = false;
 	}
 	public virtual void OnPartBroken(BossPart part) { }
 }

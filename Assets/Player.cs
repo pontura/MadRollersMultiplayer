@@ -107,6 +107,9 @@ public class Player : MonoBehaviour {
     }
     void OnAvatarDie(CharacterBehavior cb)
     {
+		if (cb != characterBehavior)
+			return;
+		
 		shadow.SetActive (false);
         if (progressBarCoroutine != null)
         {

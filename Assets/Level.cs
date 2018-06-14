@@ -46,7 +46,9 @@ public class Level : MonoBehaviour {
 	Game game;
 
 	private Area skyArea;
-	private Missions missions;	
+
+	public Missions missions;	
+
 	private bool showStartArea;
 	private Data data;
     private bool playing;
@@ -139,10 +141,13 @@ public class Level : MonoBehaviour {
 	public void Complete()
 	{
 		charactersManager.OnLevelComplete ();
-		Data.Instance.voicesManager.PlayRandom (Data.Instance.voicesManager.missionComplete);
+
 		showStartArea = true;
 		missions.Complete();
-		missions.StartNext();
+		if (!missions.StartNext ())
+			return;
+
+		Data.Instance.voicesManager.PlayRandom (Data.Instance.voicesManager.missionComplete);
 		areasManager = missions.getAreasManager();
 		areasManager.Init(0);
 		data.setMission(missions.MissionActiveID);   

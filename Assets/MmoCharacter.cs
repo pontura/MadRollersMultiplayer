@@ -81,7 +81,7 @@ public class MmoCharacter : SceneObject
 		
 		Vector3 pos = transform.position;
 		pos.y+= 2.1f;
-		SendMessage("breakOut",pos);        
+		SendMessage("breakOut",pos,SendMessageOptions.DontRequireReceiver);        
         gameObject.GetComponent<Collider>().enabled = false;
 
 		//nuevo:

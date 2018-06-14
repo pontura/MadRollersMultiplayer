@@ -100,6 +100,14 @@ public class Game : MonoBehaviour {
 			Data.Instance.events.ForceFrameRate (1);
         }
     }
+	public void GotoVideogameComplete()
+	{
+		// Pause();
+		Data.Instance.events.OnResetLevel();
+		// Application.LoadLevel("LevelSelector");
+		Data.Instance.events.ForceFrameRate (1);
+		Data.Instance.LoadLevel("VideogameComplete");
+	}
     public void GotoLevelSelector()
     {
        // Pause();

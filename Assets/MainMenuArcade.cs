@@ -11,12 +11,11 @@ public class MainMenuArcade : MonoBehaviour {
     public AudioClip countdown_clip;
     private AudioSource audioSource;
 
-    public Text CountDown1;
-    public Text CountDown2;
+    public Text CountDownField;
 
 	public Text[] missionFields;
 
-    public GameObject players;
+	public Text playersField;
     public GameObject winnersText;
 
     public int sec = 10;
@@ -37,8 +36,7 @@ public class MainMenuArcade : MonoBehaviour {
         Data.Instance.events.OnInterfacesStart();
         audioSource = GetComponent<AudioSource>();
         multiplayerData = Data.Instance.multiplayerData;
-        CountDown1.text = "";
-        CountDown2.text = "";
+		CountDownField.text = "";
         int id = 0;
         foreach (PlayerMainMenuUI pm in playerMainMenuUI)
         {
@@ -51,6 +49,8 @@ public class MainMenuArcade : MonoBehaviour {
 			SetFields (0);
 		}
 		Invoke ("TimeOver", 15);
+		Loop ();
+		playersField.text = "0 PLAYERS";
 	}
 	void TimeOver()
 	{
@@ -135,7 +135,6 @@ public class MainMenuArcade : MonoBehaviour {
 //        if (anyActive && !playing)
 //        {
             playing = true;
-            Loop();
       //  }
     }
     void GetTotalPlayers()
@@ -156,6 +155,7 @@ public class MainMenuArcade : MonoBehaviour {
     }
     void Loop()
     {
+		Invoke("Loop", 0.5f);
         if (!playing) return;
 		if (Data.Instance.playMode == Data.PlayModes.VERSUS)
 		if (
@@ -166,15 +166,14 @@ public class MainMenuArcade : MonoBehaviour {
 		} else
 			return;
 		
-        sec--;
+		if(sec>=0)
+       	 sec--;
 
-        CountDown1.text = "0" + sec;
-        CountDown2.text = "0" + sec;
+		CountDownField.text = "0" + sec;
 
-        foreach (Text field in players.GetComponentsInChildren<Text>())
-            field.text = totalPlayers + " PLAYERS";
+        playersField.text = totalPlayers + " PLAYERS";
 
-        if (sec < 1)
+        if (sec <= 0)
         {
             GetTotalPlayers();
 			if (
@@ -190,8 +189,7 @@ public class MainMenuArcade : MonoBehaviour {
 				}
                 return;
             }
-            else sec = 1;
         }
-        Invoke("Loop", 0.3f);
+        
     }
 }

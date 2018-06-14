@@ -16,8 +16,8 @@ public class BossPacmans : Boss {
 
 		foreach( BossPart part in parts)
 			part.gameObject.SetActive (false);
-		
-		numberOfHits = parts.Length;
+
+		SetTotal (parts.Length);
 		Init ();
 	}
 	public override void OnSceneObjectUpdated()
