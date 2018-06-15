@@ -6,7 +6,7 @@ public class Continue : MonoBehaviour {
 	public GameObject panel;
 	private int num = 9;
 	public Text countdown_txt;
-	private float speed = 0.3f;
+	private float speed = 0.8f;
     private bool canClick;
 
 	void Start () {
@@ -40,7 +40,7 @@ public class Continue : MonoBehaviour {
 		panel.SetActive (true);
 		num = 9;
 		countdown_txt.text = num.ToString();
-		Invoke ("Loop", 1);
+		Invoke ("Loop", 0.5f);
 	}	
 	public void Loop()
 	{

@@ -243,7 +243,7 @@ public class CharacterBehavior : MonoBehaviour {
 
 	}
 	public void Revive()
-	{
+	{		
 		Reset();
 		GetComponent<Rigidbody>().velocity = Vector3.zero;
 		GetComponent<Rigidbody>().freezeRotation = true;
@@ -352,11 +352,11 @@ public class CharacterBehavior : MonoBehaviour {
 			return;
 		}
 		if (!player.canJump) return;
+		if(state == states.JUMP) return;
 
+		GetComponent<Rigidbody>().velocity = Vector3.zero;
 		floorCollitions.OnAvatarJump();
 		Data.Instance.events.OnSoundFX("FXJump", player.id);
-
-		if(state == states.JUMP) return;
 
 		if(!controls.isAutomata)
 			data.events.AvatarJump();
@@ -372,12 +372,11 @@ public class CharacterBehavior : MonoBehaviour {
 			_animation_hero.Play("jump_left");
 		state = states.JUMP;
 		ResetColliders();
-		return;
 	}
 	void ResetColliders()
 	{
 		GetComponent<Collider>().enabled = false;
-		Invoke("ResetCollidersBack", 0.5f);
+		Invoke("ResetCollidersBack", 0.25f);
 	}
 	void ResetCollidersBack()
 	{

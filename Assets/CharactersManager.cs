@@ -260,13 +260,12 @@ public class CharactersManager : MonoBehaviour {
             newCharacter = Instantiate(character, Vector3.zero, Quaternion.identity) as CharacterBehavior;
         else
             deadCharacters.Remove(newCharacter);
-
-        newCharacter.Revive();
-
-        newCharacter.GetComponent<Player>().Init(id);
-
-        newCharacter.GetComponent<Player>().id = id;
-
+		      
+		Player player = newCharacter.GetComponent<Player> ();
+		player.Init(id);
+		player.SetInvensible (3);
+		player.id = id;
+		newCharacter.Revive();
         characters.Add(newCharacter);
         newCharacter.transform.position = pos;
 
@@ -368,7 +367,7 @@ public class CharactersManager : MonoBehaviour {
 	{
 		foreach (CharacterBehavior cb in characters) {
 			//cb.SuperJump (2200);
-			cb.player.SetInvensible ();
+			cb.player.SetInvensible (6);
 		}
 	}
 	public virtual Vector3 getPositionByTeam(int id) {

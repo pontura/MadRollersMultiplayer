@@ -68,7 +68,7 @@ public class Player : MonoBehaviour {
     {
 		shadow.SetActive (true);
 
-		//si es automata...
+
 		if(id>3)
 			madRoller.Init (3);
 		else
@@ -180,22 +180,22 @@ public class Player : MonoBehaviour {
             print("INVENSIBLE player id: " + id);
             if (gameObject == null) return;
             if (characterBehavior.state == CharacterBehavior.states.JETPACK) return;
-			SetInvensible ();                   
+			SetInvensible (8);                   
         }
     }
-	public void SetInvensible()
+	public void SetInvensible(float timer)
 	{
 		if (fxState == fxStates.SUPER) return;
 		setSuperState();
 		Data.Instance.events.AdvisesOn("INVENSIBLE!");
-		OnAvatarProgressBarStart(Color.blue);
+		//OnAvatarProgressBarStart(Color.blue);
 		//   progressBar.SetTimer(0.2f);
-		progressBarCoroutine = StartProgressBarCoroutine();
+		progressBarCoroutine = StartProgressBarCoroutine(timer);
 		StartCoroutine(progressBarCoroutine);    
 	}
-    IEnumerator StartProgressBarCoroutine()
+	IEnumerator StartProgressBarCoroutine(float timer)
     {
-        yield return new WaitForSeconds(6);
+		yield return new WaitForSeconds(timer);
         OnAvatarProgressBarEmpty();
     }
    private void OnListenerDispatcher(string message)

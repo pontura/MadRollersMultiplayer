@@ -19,12 +19,7 @@ public class CharacterFloorCollitions : MonoBehaviour {
 	void Start () {        
         characterBehavior = gameObject.transform.parent.GetComponent<CharacterBehavior>();
         rigidbody = characterBehavior.GetComponent<Rigidbody>();
-        Data.Instance.events.OnAvatarJump += OnAvatarJump;
 	}
-    public void OnDestroy()
-    {
-        Data.Instance.events.OnAvatarJump -= OnAvatarJump;
-    }
     public void OnAvatarFly()
     {
         state = states.ON_FLY;
@@ -60,7 +55,6 @@ public class CharacterFloorCollitions : MonoBehaviour {
         {
             Vector3 pos = characterBehavior.transform.localPosition;
             RaycastHit hit;
-
 //            if (Physics.Raycast(pos + offset, -Vector3.up, out hit, offset.y, skip))
 //            {
 //                rigidbody.velocity = Vector3.zero;

@@ -57,7 +57,6 @@ public class CharacterCollisions : MonoBehaviour {
         }
         else if (other.tag == "floor" && !hitted)
         {
-           // print("CRASH  ____  CCCCCCCCCCCC________" + transform.position.y + "  other:   " +  other.transform.position.y);
             if (transform.position.y - other.transform.position.y < 0f)
             {
               //  characterBehavior.Hit();
