@@ -18,8 +18,7 @@ public class Floor : MonoBehaviour
     {
         isMoving = true;
         Data.Instance.events.OnGamePaused += OnGamePaused;
-        Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
-        Data.Instance.events.OnAvatarFall += OnAvatarCrash;
+		Data.Instance.events.OnGameOver += OnGameOver;
 		Data.Instance.events.OnChangeBackgroundSide += OnChangeBackgroundSide;
 
         this.charactersManager = charactersManager;
@@ -28,8 +27,7 @@ public class Floor : MonoBehaviour
     void OnDestroy()
     {
         Data.Instance.events.OnGamePaused -= OnGamePaused;
-        Data.Instance.events.OnAvatarCrash -= OnAvatarCrash;
-        Data.Instance.events.OnAvatarFall -= OnAvatarCrash;
+		Data.Instance.events.OnGameOver -= OnGameOver;
 		Data.Instance.events.OnChangeBackgroundSide -= OnChangeBackgroundSide;
       //  Data.Instance.events.OnChangeMood -= OnChangeMood;
     }
@@ -41,7 +39,7 @@ public class Floor : MonoBehaviour
     {
 		return;
     }
-    void OnAvatarCrash(CharacterBehavior cb)
+	void OnGameOver()
     {
         isMoving = false;
     }

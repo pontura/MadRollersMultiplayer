@@ -19,7 +19,7 @@ public class MainMenuArcade : MonoBehaviour {
     public GameObject winnersText;
 
     public int sec = 10;
-    bool playing;
+    bool isOn;
     public int totalPlayers = 0;
     private bool done;
 
@@ -45,7 +45,7 @@ public class MainMenuArcade : MonoBehaviour {
             pm.Init();
         }
 		if (Data.Instance.playMode == Data.PlayModes.COMPETITION ) {
-			LoopWinners ();
+			//LoopWinners ();
 			SetFields (0);
 		}
 		Invoke ("TimeOver", 15);
@@ -87,15 +87,8 @@ public class MainMenuArcade : MonoBehaviour {
               //  field.text = "PUESTO " + (int)(puesto + 1);
         }
     }
-    int n = 0;
     void Update()
     {
-        n++;
-        if (n > 5)
-        {
-         //   lightInScene.intensity = (float)Random.Range(80, 150) / 100;
-            n = 0;
-        }
         if (done) return;
 		if ((InputManager.getFireDown(0) || InputManager.getJump(0)))
         {
@@ -116,26 +109,15 @@ public class MainMenuArcade : MonoBehaviour {
     }
     bool anyActive = false;
     void Clicked(int playerID)
-    {
-		if (playerMainMenuUI [playerID].isActive)
-			return;
-		
+    {		
         totalPlayers = 0;
         Data.Instance.events.OnSoundFX("coin", playerID);
 
         playerMainMenuUI[playerID].Toogle();
         mainMenuCharacterActor[playerID].SetState(playerID, playerMainMenuUI[playerID].isActive);
 
-        GetTotalPlayers();        
-
-//        if (!anyActive)
-//        {
-//            playing = false;
-//        } else
-//        if (anyActive && !playing)
-//        {
-            playing = true;
-      //  }
+        GetTotalPlayers();
+		isOn = true;
     }
     void GetTotalPlayers()
     {
@@ -156,7 +138,7 @@ public class MainMenuArcade : MonoBehaviour {
     void Loop()
     {
 		Invoke("Loop", 0.5f);
-        if (!playing) return;
+		if (!isOn) return;
 		if (Data.Instance.playMode == Data.PlayModes.VERSUS)
 		if (
 			(Data.Instance.multiplayerData.player1 || Data.Instance.multiplayerData.player2)

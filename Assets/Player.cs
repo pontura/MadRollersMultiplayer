@@ -188,8 +188,6 @@ public class Player : MonoBehaviour {
 		if (fxState == fxStates.SUPER) return;
 		setSuperState();
 		Data.Instance.events.AdvisesOn("INVENSIBLE!");
-		//OnAvatarProgressBarStart(Color.blue);
-		//   progressBar.SetTimer(0.2f);
 		progressBarCoroutine = StartProgressBarCoroutine(timer);
 		StartCoroutine(progressBarCoroutine);    
 	}
@@ -237,9 +235,7 @@ public class Player : MonoBehaviour {
     }
     private void setSuperState()
     {        
-        Data.Instance.events.OnAvatarChangeFX(Player.fxStates.SUPER);
-        fxState = fxStates.SUPER;
-        
+        fxState = fxStates.SUPER;        
         gameObject.layer = LayerMask.NameToLayer("SuperFX");
         particles.SetActive(true);
     }

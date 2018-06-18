@@ -172,10 +172,10 @@ public class SceneObjectsBehavior : MonoBehaviour {
 
 					if (go.name == "extralargeBlock1")
 					{
-						GameObject goNew = new GameObject ();
-						goNew.transform.position = pos;
-						goNew.transform.rotation = go.transform.rotation;
-						borderTransforms.Add (goNew.transform);
+						//GameObject goNew = new GameObject ();
+						//goNew.transform.position = pos;
+						//goNew.transform.rotation = go.transform.rotation;
+						//borderTransforms.Add (goNew.transform);
 
 //						int num = Random.Range(1, 4);
 //						string decorationName = "";
