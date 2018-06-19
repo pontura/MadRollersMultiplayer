@@ -285,11 +285,14 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				//if (Data.Instance.videogamesData.actualID == 1) {
 				//	clone = palm_space1;
 				//}else {
-				int ran = Random.Range (0, 40);
+				int ran = Random.Range (0, 60);
 				if (ran < 20)
 					clone = palm;
 				else if (ran < 40)
 					clone = palm2;
+				else 
+					clone = palm3;
+				
 				go.transform.localEulerAngles = new Vector3 (0, Random.Range (0, 4) * 90,  0);
 				//}
 			}
