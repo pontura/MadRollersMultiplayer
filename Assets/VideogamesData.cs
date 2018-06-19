@@ -19,5 +19,11 @@ public class VideogamesData : MonoBehaviour {
 	{
 		return all [id];
 	}
+	public void SetOtherGameActive()
+	{
+		actualID++;
+		if (actualID > 1)
+			actualID = 0;
+	}
 
 }

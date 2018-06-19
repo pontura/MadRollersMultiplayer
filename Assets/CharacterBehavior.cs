@@ -460,7 +460,7 @@ public class CharacterBehavior : MonoBehaviour {
 
 		state = states.CRASH;
 		GetComponent<Rigidbody>().velocity = Vector3.zero;
-		GetComponent<Rigidbody>().AddForce(new Vector3(0, 1500, 0), ForceMode.Impulse);
+		GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(-500,500), 1500, Random.Range(0,-200)), ForceMode.Impulse);
 		GetComponent<Rigidbody>().freezeRotation = false;
 		//removeColliders();
 

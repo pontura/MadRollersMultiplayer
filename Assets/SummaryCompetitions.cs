@@ -122,6 +122,7 @@ public class SummaryCompetitions : MonoBehaviour {
 			Game.Instance.GotoMainMenuArcade ();	
 		} else if (optionSelected == 1) {
 			Data.Instance.inputSavedAutomaticPlay.RemoveAllData ();
+			Data.Instance.videogamesData.SetOtherGameActive ();
 			Game.Instance.GotoLevelSelector ();	
 		}
 		isOn = false;

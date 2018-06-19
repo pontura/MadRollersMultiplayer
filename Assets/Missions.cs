@@ -309,8 +309,14 @@ public class Missions : MonoBehaviour {
 		if (Data.Instance.playMode != Data.PlayModes.STORY && Data.Instance.playMode != Data.PlayModes.COMPETITION)
 			return;
         if (state == states.INACTIVE) return;
+
 		missionCompletedPercent = MissionActive.points * 100 / total;
+
 		progressBar.setProgression(missionCompletedPercent);
+
+		if (MissionActive.distance == 0)
+			Data.Instance.events.OnMissionProgres ();
+
 		if(missionCompletedPercent >= 100)
 		{
             progressBar.reset();
@@ -322,8 +328,7 @@ public class Missions : MonoBehaviour {
             {
                 lastDistance = distance;
                 level.Complete();
-            }
-            
+            }            
 		}
 	}
 	public Mission GetMissionActive()

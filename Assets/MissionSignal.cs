@@ -7,7 +7,7 @@ public class MissionSignal : MonoBehaviour {
 	public GameObject panel;
     public Text[] fields;
 	public Text[] fieldsMissionNum;
-    private bool isClosing;
+    bool isOn;
 
 	public GameObject specialIcon_Tutorial1;
 	public GameObject specialIcon_Tutorial2;
@@ -29,6 +29,7 @@ public class MissionSignal : MonoBehaviour {
         Data.Instance.events.OnAvatarFall += OnAvatarCrash;
         Data.Instance.events.OnMissionComplete += OnMissionComplete;
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
+		Data.Instance.events.OnAvatarShoot += OnAvatarShoot;
         SetOff();
 	}
     void OnDestroy()
@@ -38,6 +39,7 @@ public class MissionSignal : MonoBehaviour {
         Data.Instance.events.OnAvatarFall -= OnAvatarCrash;
         Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
         Data.Instance.events.OnMissionComplete -= OnMissionComplete;
+		Data.Instance.events.OnAvatarShoot -= OnAvatarShoot;
     }
     void OnAvatarCrash(CharacterBehavior cb)
     {
@@ -67,11 +69,21 @@ public class MissionSignal : MonoBehaviour {
 		if (missionID>0 && Data.Instance.missions.HasBeenShowed (missionID))
 			return;
 
+		isOn = true;
+
 		Data.Instance.missions.SetLastMissionID (missionID);
 		
 		panel.SetActive (true);
 		Data.Instance.events.RalentaTo (0.05f, 0.3f);
     }
+	void OnAvatarShoot(int id)
+	{
+		if (!isOn)
+			return;
+
+		Data.Instance.events.ForceFrameRate(1);
+		Close ();
+	}
     private IEnumerator MissionComplete()
     {
         Open("MISIóN COMPLETA!", -1);
@@ -81,7 +93,6 @@ public class MissionSignal : MonoBehaviour {
 	}
     private void OnListenerDispatcher(string message)
     {
-        isClosing = false;
         if (message == "ShowMissionId")
             MissionSignalOn();
         else if (message == "ShowMissionName")
@@ -136,7 +147,6 @@ public class MissionSignal : MonoBehaviour {
 
     void CloseAfter(float delay)
     {
-        isClosing = true;
 		StartCoroutine (Closing(delay));
 	}
 	IEnumerator Closing(float delay)
@@ -147,6 +157,7 @@ public class MissionSignal : MonoBehaviour {
 	}
     public void Close()
     {
+		isOn = false;
         SetOff();
 		Game.Instance.level.charactersManager.ResetJumps ();
     }

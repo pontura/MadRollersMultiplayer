@@ -19,7 +19,7 @@ public class MainMenu : MonoBehaviour {
 	{		
 		buttons = new List<MainMenuButton> ();
 		if (Data.Instance.isArcadeMultiplayer) {
-			partyGameButtons.SetActive (true);
+			partyGameButtons.SetActive (false);
 			standaloneButtons.SetActive (false);
 			buttons = buttonsArcade;
 		} else  {

@@ -14,6 +14,7 @@ public class MissionsTopPanel : MonoBehaviour
         {
             Data.Instance.events.OnMissionComplete += OnMissionComplete;
             Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
+			Data.Instance.events.OnMissionProgres += OnMissionProgres;
            // anim.Play("MissionTopOff");
         } else
 			anim.Play("MissionTopOff");
@@ -22,6 +23,7 @@ public class MissionsTopPanel : MonoBehaviour
     {
         Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
         Data.Instance.events.OnMissionComplete -= OnMissionComplete;
+		Data.Instance.events.OnMissionProgres -= OnMissionProgres;
     }
     private void OnMissionComplete(int levelID)
     {
@@ -34,4 +36,9 @@ public class MissionsTopPanel : MonoBehaviour
 			field.text = Data.Instance.missions.MissionActive.description;
 		}
     }
+	void OnMissionProgres()
+	{
+		print ("OnMissionProgres");
+		anim.Play ("MissionActive");
+	}
 }

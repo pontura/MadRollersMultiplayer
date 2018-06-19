@@ -47,6 +47,7 @@ public class LevelSelector : MonoBehaviour {
 			InitStoryMode ();
 			title.text = "Select a videogame";
 		} else if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {
+			videogameActiveID = Data.Instance.videogamesData.actualID;
 			separation *= 2;
 			InitComtetitionMode ();
 			title.text = "Select a videogame (Story mode)";

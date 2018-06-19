@@ -2162,7 +2162,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 137740}
-  m_LocalRotation: {x: 0, y: 0, z: 0.124641, w: 0.992202}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: -0.7071068}
   m_LocalPosition: {x: -5, y: -3.11, z: -13.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2461,7 +2461,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 137784}
-  m_LocalRotation: {x: 0, y: 0, z: -0.10635097, w: 0.9943287}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.05, y: -2.61, z: -13.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2803,7 +2803,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 137840}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: -0.7071068}
   m_LocalPosition: {x: 6.67, y: 0, z: 22.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2975,7 +2975,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 183936}
-  m_LocalRotation: {x: 0, y: 0, z: -0.10635097, w: 0.9943287}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.05, y: -2.61, z: -8.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3002,7 +3002,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 183940}
-  m_LocalRotation: {x: 0, y: 0, z: 0.124641, w: 0.992202}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: -0.7071068}
   m_LocalPosition: {x: -5, y: -3.11, z: -8.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3016,7 +3016,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 183942}
-  m_LocalRotation: {x: 0, y: 0, z: 0.124641, w: 0.992202}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -5, y: -3.11, z: -3.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3043,7 +3043,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 183946}
-  m_LocalRotation: {x: 0, y: 0, z: -0.10635097, w: 0.9943287}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 5.05, y: -2.61, z: -3.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3543,7 +3543,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 184018}
-  m_LocalRotation: {x: 0, y: 0, z: -0.10635084, w: 0.9943287}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: -0.7071068}
   m_LocalPosition: {x: 5.05, y: -0.4, z: -21.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3583,7 +3583,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 184024}
-  m_LocalRotation: {x: 0, y: 0, z: 0.12464057, w: 0.992202}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5, y: -0.9, z: -22.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -7760,12 +7760,16 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &11437772
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7805,12 +7809,16 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &11437776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7830,12 +7838,16 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &11437778
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7855,6 +7867,7 @@ MonoBehaviour:
   score: 20
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!114 &11437780
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7916,6 +7929,7 @@ MonoBehaviour:
   score: 20
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!114 &11437788
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7991,12 +8005,16 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &11437796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8016,12 +8034,16 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &11437798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8142,12 +8164,16 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &11437816
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8167,6 +8193,7 @@ MonoBehaviour:
   score: 20
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!114 &11437818
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8247,12 +8274,16 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &11437830
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8310,6 +8341,7 @@ MonoBehaviour:
   score: 20
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!114 &11437836
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8329,6 +8361,7 @@ MonoBehaviour:
   score: 125
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!114 &11437838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8348,6 +8381,7 @@ MonoBehaviour:
   score: 125
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!114 &11437840
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8367,6 +8401,7 @@ MonoBehaviour:
   score: 125
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!114 &11439238
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8386,8 +8421,9 @@ MonoBehaviour:
   score: 50
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   to: {fileID: 100000, guid: 2a4284bb573456342a00237da19e0f62, type: 2}
-  materialName: ladrillos
+  videoGame_ID: 0
 --- !u!114 &11470104
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8421,8 +8457,9 @@ MonoBehaviour:
   score: 50
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   to: {fileID: 100000, guid: b6e514238695f5a4dadb754160332d30, type: 2}
-  materialName: ladrillos
+  videoGame_ID: 0
 --- !u!114 &11471756
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8442,8 +8479,9 @@ MonoBehaviour:
   score: 50
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   to: {fileID: 100000, guid: b6e514238695f5a4dadb754160332d30, type: 2}
-  materialName: ladrillos
+  videoGame_ID: 0
 --- !u!114 &11486164
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8463,8 +8501,9 @@ MonoBehaviour:
   score: 50
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   to: {fileID: 100000, guid: 2a4284bb573456342a00237da19e0f62, type: 2}
-  materialName: ladrillos
+  videoGame_ID: 0
 --- !u!114 &11487842
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8484,8 +8523,9 @@ MonoBehaviour:
   score: 50
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   to: {fileID: 100000, guid: b6e514238695f5a4dadb754160332d30, type: 2}
-  materialName: ladrillos
+  videoGame_ID: 0
 --- !u!135 &13537828
 SphereCollider:
   m_ObjectHideFlags: 1

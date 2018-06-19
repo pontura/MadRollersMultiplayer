@@ -115,6 +115,7 @@ public class MusicManager : MonoBehaviour {
 	}
 	public void BossMusic(bool isBoss)
 	{
+		return;
 		if (!isBoss)
 			playSound(MainTheme);
 		else

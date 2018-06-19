@@ -1712,7 +1712,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 119630}
-  m_LocalRotation: {x: 0, y: 0, z: 0.12464057, w: 0.992202}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: -0.7071068}
   m_LocalPosition: {x: -5, y: -0.9, z: -22.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1789,7 +1789,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 119632}
-  m_LocalRotation: {x: 0, y: 0, z: -0.10635084, w: 0.9943287}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
   m_LocalPosition: {x: 5.05, y: -0.4, z: -21.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1803,7 +1803,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 119634}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
   m_LocalPosition: {x: -6.91, y: 1.93, z: 22.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2024,7 +2024,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 119666}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
   m_LocalPosition: {x: 6.67, y: 0, z: 22.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6148,6 +6148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d3d555793ff3d849aa8b31c6db5b487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -6155,6 +6156,7 @@ MonoBehaviour:
   score: 20
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!114 &11419692
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6222,6 +6224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d3d555793ff3d849aa8b31c6db5b487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -6229,6 +6232,7 @@ MonoBehaviour:
   score: 20
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!114 &11419700
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6296,6 +6300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d3d555793ff3d849aa8b31c6db5b487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -6303,6 +6308,7 @@ MonoBehaviour:
   score: 20
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!114 &11419708
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6370,6 +6376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d3d555793ff3d849aa8b31c6db5b487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -6377,6 +6384,7 @@ MonoBehaviour:
   score: 20
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!114 &11419716
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6456,6 +6464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -6463,12 +6472,16 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &11419726
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6492,6 +6505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -6499,12 +6513,16 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &11419730
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6528,6 +6546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -6535,12 +6554,16 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &11419734
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6564,6 +6587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -6571,12 +6595,16 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &11419738
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6600,6 +6628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -6607,12 +6636,16 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &11419742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6636,6 +6669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -6643,12 +6677,16 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &11419746
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6672,6 +6710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -6679,12 +6718,16 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &11419750
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6696,6 +6739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d3d555793ff3d849aa8b31c6db5b487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 18
   id: 0
   characterTransform: {fileID: 0}
@@ -6703,6 +6747,7 @@ MonoBehaviour:
   score: 125
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!114 &11419752
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6714,6 +6759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d3d555793ff3d849aa8b31c6db5b487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 18
   id: 0
   characterTransform: {fileID: 0}
@@ -6721,6 +6767,7 @@ MonoBehaviour:
   score: 125
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!114 &11419754
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6732,6 +6779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d3d555793ff3d849aa8b31c6db5b487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 18
   id: 0
   characterTransform: {fileID: 0}
@@ -6739,6 +6787,7 @@ MonoBehaviour:
   score: 125
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!114 &11419756
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6776,6 +6825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d3d555793ff3d849aa8b31c6db5b487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 18
   id: 0
   characterTransform: {fileID: 0}
@@ -6783,6 +6833,7 @@ MonoBehaviour:
   score: 125
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!114 &11419764
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6794,6 +6845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d3d555793ff3d849aa8b31c6db5b487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 18
   id: 0
   characterTransform: {fileID: 0}
@@ -6801,6 +6853,7 @@ MonoBehaviour:
   score: 125
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!114 &11419766
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6812,6 +6865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d3d555793ff3d849aa8b31c6db5b487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 18
   id: 0
   characterTransform: {fileID: 0}
@@ -6819,6 +6873,7 @@ MonoBehaviour:
   score: 125
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
 --- !u!114 &11419768
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6830,6 +6885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -6837,12 +6893,16 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &11419770
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6866,6 +6926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -6873,12 +6934,16 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &11419774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6902,6 +6967,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -6909,12 +6975,16 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &11419778
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6938,6 +7008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -6945,12 +7016,16 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &11419782
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6974,6 +7049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -6981,12 +7057,16 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &11419786
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7010,6 +7090,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7017,12 +7098,16 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &11419790
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7046,6 +7131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeaf00c410b2b0459e4da6cc4a18c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7053,12 +7139,16 @@ MonoBehaviour:
   score: 0
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
+  groundMaterial: {fileID: 0}
+  meshRenderer: {fileID: 0}
   energy: 1
   hitted: 0
   sec: 0
   TriggerCollider: {fileID: 0}
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
+  titila: []
 --- !u!114 &11419794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7082,6 +7172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f58422460639248b129b8b5a318a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7089,8 +7180,9 @@ MonoBehaviour:
   score: 50
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   to: {fileID: 100000, guid: 2a4284bb573456342a00237da19e0f62, type: 2}
-  materialName: ladrillos
+  videoGame_ID: 0
 --- !u!114 &11419798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7102,6 +7194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f58422460639248b129b8b5a318a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7109,8 +7202,9 @@ MonoBehaviour:
   score: 50
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   to: {fileID: 100000, guid: 2a4284bb573456342a00237da19e0f62, type: 2}
-  materialName: ladrillos
+  videoGame_ID: 0
 --- !u!114 &11419800
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7122,6 +7216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f58422460639248b129b8b5a318a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7129,8 +7224,9 @@ MonoBehaviour:
   score: 50
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   to: {fileID: 100000, guid: b6e514238695f5a4dadb754160332d30, type: 2}
-  materialName: ladrillos
+  videoGame_ID: 0
 --- !u!114 &11419802
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7142,6 +7238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f58422460639248b129b8b5a318a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7149,8 +7246,9 @@ MonoBehaviour:
   score: 50
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   to: {fileID: 100000, guid: b6e514238695f5a4dadb754160332d30, type: 2}
-  materialName: ladrillos
+  videoGame_ID: 0
 --- !u!114 &11419804
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7162,6 +7260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f58422460639248b129b8b5a318a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dificult: 0
   size_z: 0
   id: 0
   characterTransform: {fileID: 0}
@@ -7169,8 +7268,9 @@ MonoBehaviour:
   score: 50
   charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
+  onlyMultiplayers: 0
   to: {fileID: 100000, guid: b6e514238695f5a4dadb754160332d30, type: 2}
-  materialName: ladrillos
+  videoGame_ID: 0
 --- !u!135 &13519778
 SphereCollider:
   m_ObjectHideFlags: 1
