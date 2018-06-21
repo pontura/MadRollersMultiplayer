@@ -22,7 +22,7 @@ public class DestroyByTags : MonoBehaviour {
             case "enemy":
                 if (enemy)
                 {
-                    other.transform.SendMessage("Die");
+					other.transform.SendMessage("Die", transform.position, SendMessageOptions.DontRequireReceiver);
                     Die();
                 }
                 break;

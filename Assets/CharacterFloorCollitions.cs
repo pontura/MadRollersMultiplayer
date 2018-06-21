@@ -108,7 +108,12 @@ public class CharacterFloorCollitions : MonoBehaviour {
                     characterBehavior.state == CharacterBehavior.states.DOUBLEJUMP ||
                     characterBehavior.state == CharacterBehavior.states.SHOOT)
                 {
-                    other.GetComponent<MmoCharacter>().Die();
+					MmoCharacter mmoCharacter = other.GetComponent<MmoCharacter> ();
+					if(mmoCharacter !=null)
+                  		other.GetComponent<MmoCharacter>().Die();
+					else
+						other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);
+					
                     characterBehavior.SuperJumpByBumped(1200, 0.5f, false);
                 }
             }

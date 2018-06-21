@@ -99,11 +99,20 @@ public class Projectil : SceneObject {
                 SetScore(100);
 				Destroy();
 				break;
-			case "enemy":
-				MmoCharacter enemy= other.gameObject.GetComponent<MmoCharacter>();
-				if(enemy.state ==  MmoCharacter.states.DEAD) return;
-                SetScore(enemy.score);
-				enemy.Die ();
+		case "enemy":
+				MmoCharacter enemy = other.gameObject.GetComponent<MmoCharacter> ();
+
+			//esto funca para los bosses:-----------------------
+				if (enemy) {
+					if (enemy.state == MmoCharacter.states.DEAD)
+						return;
+					SetScore (enemy.score);
+					enemy.Die ();
+				} else {
+					other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);
+				}
+			//---------------------------------------------------
+
 				Destroy();
 				break;
 			case "destroyable":
