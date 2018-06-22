@@ -8,7 +8,7 @@ public class CharacterShooter : MonoBehaviour {
 	public CharacterBehavior characterBehavior;
 	float lastShot = 0;
 	float timePressing;
-	Weapon.types weawponType;
+	public Weapon.types weawponType;
 	public Missil weapon;
 	bool isLoadingGun;
 
@@ -26,7 +26,9 @@ public class CharacterShooter : MonoBehaviour {
 		weapon.ResetAll ();
 	}
 	void Update()
-	{		
+	{	
+		return;
+
 		if (isLoadingGun) {
 			float timePressed = Time.time - timePressing;
 			Weapon.types newWeawponType;
@@ -45,6 +47,7 @@ public class CharacterShooter : MonoBehaviour {
 	}
 	void OnChangeWeapon(int playerID, Weapon.types type)
 	{       
+		this.weawponType = type;
 		if (playerID != characterBehavior.player.id) return;    
 		weapon.OnChangeWeapon(type);
 	}
@@ -74,6 +77,7 @@ public class CharacterShooter : MonoBehaviour {
 
 		characterBehavior.shooter.weapon.Shoot();
 		Data.Instance.events.OnSoundFX("fire", characterBehavior.player.id);
+
 		lastShot = Time.time;
 
 		Vector3 pos = new Vector3(transform.position.x, transform.position.y+1.7f, transform.position.z+0.1f);
@@ -91,13 +95,13 @@ public class CharacterShooter : MonoBehaviour {
 			Shoot(pos, offsetY);
 			break;
 		case Weapon.types.DOUBLE:
-			Shoot(new Vector3(pos.x+1, pos.y, pos.z), offsetY);
-			Shoot(new Vector3(pos.x-1, pos.y, pos.z), offsetY);
+			Shoot(new Vector3(pos.x+1, pos.y, pos.z),-4 + offsetY);
+			Shoot(new Vector3(pos.x-1, pos.y, pos.z), 4 + offsetY);
 			break;
 		case Weapon.types.TRIPLE:
 			Shoot(pos, 0);
-			Shoot(new Vector3(pos.x + 1, pos.y, pos.z), -10 + offsetY);
-			Shoot(new Vector3(pos.x - 1, pos.y, pos.z), 10 + offsetY);
+			Shoot(new Vector3(pos.x + 1, pos.y, pos.z), -20 + offsetY);
+			Shoot(new Vector3(pos.x - 1, pos.y, pos.z), 20 + offsetY);
 			break;
 		}
 

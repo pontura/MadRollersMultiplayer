@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: negro
+  m_Name: Missil
   m_Shader: {fileID: 4800000, guid: 659dfd41c9b8f404390306092e32514c, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _EMISSION
   m_LightmapFlags: 1
@@ -43,7 +43,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 6bc13d61d3efe9044943ad1ab2dc18a0, type: 3}
+        m_Texture: {fileID: 2800000, guid: cd895235a201703448c77a2952188cd1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -62,11 +62,8 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _V_CW_Specular_Lookup:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Floats:
+    - PixelSnap: 0
     - V_CW_D_OPTIONS: 0
     - V_CW_TAG: 0
     - V_CW_W_OPTIONS: 0
@@ -77,9 +74,9 @@ Material:
     - _Dist: 20
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.5
+    - _Glossiness: 0.602
     - _GlossyReflections: 1
-    - _Metallic: 0
+    - _Metallic: 0.726
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
@@ -96,15 +93,14 @@ Material:
     - _V_CW_IBL_Intensity: 1
     - _V_CW_Rim_Bias: 0.2
     - _V_CW_Rim_Power: 3
-    - _V_CW_Specular_Intensity: 1
     - _V_CW_X_Bend_Size: 0
     - _V_CW_Y_Bend_Size: 0
     - _V_CW_Z_Bend_Bias: 0
     - _V_CW_Z_Bend_Size: 0
     - _ZWrite: 1
     m_Colors:
-    - _Ambient: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Ambient: {r: 0.3, g: 0.3, b: 0.3, a: 1}
+    - _Color: {r: 0.5955882, g: 0.5955882, b: 0.5955882, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _QOffset: {r: 0, g: 0, b: -9, a: 0}
     - _ReflectColor: {r: 1, g: 1, b: 1, a: 1}
