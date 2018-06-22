@@ -14,6 +14,8 @@ public class SliderFloor : MonoBehaviour {
     }
     void Update()
     {
+		if (rend == null)
+			return;
         float offset = Time.time * scrollSpeed * 3;
         rend.material.SetTextureOffset("_MainTex", new Vector2(0, offset));
     }

@@ -16,6 +16,7 @@ public class JoystickPlayer : MonoBehaviour {
 	public Text field;
 	Animation anim;
 	public states state;
+	public Image playerImageColor;
 
 	public enum states
 	{
@@ -32,6 +33,7 @@ public class JoystickPlayer : MonoBehaviour {
 		deadFill.color = color;
 		puesto.color = color;
 		field.color = color;
+		playerImageColor.color = color;
 	}
 	public void SetFields(int scorePosition, string text)
 	{		
@@ -126,25 +128,38 @@ public class JoystickPlayer : MonoBehaviour {
 	void Update () {
 		if (state == states.GAME_OVER)
 			return;
-		if (InputManager.getFireDown (playerID)) 
-			PressButton(button1);
-		else
-			ResetButton (button1);
+		if (InputManager.getFireDown (playerID))
+			PressButton (button1);
+		else if (button1.transform.localPosition.y < 0) {
+			print (button1.transform.localPosition.y);
+			Vector2 pos = button1.transform.localPosition;
+			pos.y += 0.1f;
+			button1.transform.localPosition = pos;
+		}
 		
 		if (InputManager.getJump(playerID))
 			PressButton(button2);
-		else
-			ResetButton (button2);
+		else if (button2.transform.localPosition.y < 0) {
+			Vector2 pos = button2.transform.localPosition;
+			pos.y += 0.1f;
+			button2.transform.localPosition = pos;
+		}
 
 		float h = InputManager.getHorizontal (playerID);
+
 		SetHorizontal (h);
 
 		if (state == states.DEAD && Data.Instance.playMode != Data.PlayModes.VERSUS)
 			FillDead ();
 		
 	}
+	float lastValue;
 	void SetHorizontal(float value)
 	{
+		if (value == lastValue)
+			return;
+		lastValue = value;
+		print ("J: " + value);
 		Vector3 pos = joystick.transform.localEulerAngles;
 		pos.z = value*-15;
 		joystick.transform.localEulerAngles = pos;
@@ -156,7 +171,6 @@ public class JoystickPlayer : MonoBehaviour {
 		Vector2 pos = button.transform.localPosition;
 		pos.y = -1.5f;
 		button.transform.localPosition = pos;
-
 	}
 	void ResetButton(GameObject button)
 	{

@@ -5,6 +5,8 @@ using UnityEngine;
 public class BossThrower : Boss {
 
 	bool canAddEnemies;
+	public int totalArms;
+
 	public override void OnSceneObjectUpdated()
 	{
 		float avatarsDistance = Game.Instance.level.charactersManager.getDistance ();
@@ -17,6 +19,7 @@ public class BossThrower : Boss {
 		Vector3 pos = transform.localPosition;
 		pos.z = _z;
 		transform.localPosition = pos;
+		SetTotal (totalArms);
 	} 
 	public void AddEnemy(Vector3 pos)	
 	{
@@ -33,7 +36,6 @@ public class BossThrower : Boss {
 	}
 	public override void OnPartBroken(BossPart part)
 	{
-		print ("___ breakOut()");
 		breakOut ();
 	}
 

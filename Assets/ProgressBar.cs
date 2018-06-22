@@ -21,8 +21,6 @@ public class ProgressBar : MonoBehaviour {
 		if(progression>100) progression = 100;
 		progress = progression/100.0f;
         sprite.fillAmount = progress;
-
-		print ("progress " + progress);
 	}
     public void reset()
     {

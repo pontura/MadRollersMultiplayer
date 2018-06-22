@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class VideogameComplete : MonoBehaviour {
 
 	public GameObject enrollButton;
-
+	bool canContinue;
 	public Text field;
 	public float speed = 0.1f;
 
@@ -22,6 +22,8 @@ public class VideogameComplete : MonoBehaviour {
 
 		enrollButton.SetActive (false);
 		SetText("Congratulations! This videogame is completely ruined!");
+
+		Invoke ("Done", 10);
 	}
 	void OnDestroy()
 	{
@@ -46,8 +48,16 @@ public class VideogameComplete : MonoBehaviour {
 		letterId++;
 		Invoke ("WriteLoop", speed);
 	}
+
+	void Done()
+	{
+		canContinue = true;
+	}
 	public void OnJoystickClick()
 	{
+		if (!canContinue)
+			return;
+		
 		if(Data.Instance.videogamesData.actualID == 0)
 			Data.Instance.videogamesData.actualID = 1;
 		else
