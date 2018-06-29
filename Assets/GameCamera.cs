@@ -149,8 +149,8 @@ public class GameCamera : MonoBehaviour
 		state = states.EXPLOTING;
 		this.explotionForce = explotionForce*2f;
 		StartCoroutine (DoExplote ());
-		newH = 200;
-		newV = 200;
+		newH = 10;
+		newV = 10;
 	}
 	public IEnumerator DoExplote () {
 		float delay = 0.03f;

@@ -117,6 +117,7 @@ public class LevelSelector : MonoBehaviour {
 	}
 	void OnJoystickUp()
 	{
+		return;
 		if (Data.Instance.playMode == Data.PlayModes.COMPETITION || Data.Instance.playMode == Data.PlayModes.VERSUS) {
 			OnJoystickLeft ();
 			return;
@@ -127,6 +128,7 @@ public class LevelSelector : MonoBehaviour {
 	}
 	void OnJoystickDown()
 	{
+		return;
 		if (Data.Instance.playMode == Data.PlayModes.COMPETITION || Data.Instance.playMode == Data.PlayModes.VERSUS) {
 			OnJoystickRight ();
 			return;
@@ -137,17 +139,19 @@ public class LevelSelector : MonoBehaviour {
 	}
 	void OnJoystickLeft()
 	{		
+		print(videogameActiveID + " " + Data.Instance.videogamesData.all.Length);
 		if(videogameActiveID == (Data.Instance.videogamesData.all.Length-1))
 			return;
-		missionActiveID = 0;
+		//missionActiveID = 0;
 		videogameActiveID++;
 		videogameUI.Right ();
 	}
 	void OnJoystickRight()
 	{
+		print(videogameActiveID + " " + Data.Instance.videogamesData.all.Length);
 		if(videogameActiveID==0)
 			return;
-		missionActiveID = 0;
+		//missionActiveID = 0;
 		videogameActiveID--;
 		videogameUI.Left ();
 	}
