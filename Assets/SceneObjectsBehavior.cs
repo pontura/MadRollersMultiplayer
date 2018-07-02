@@ -14,7 +14,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	public SceneObject Lava;
 	public SceneObject Boss1;
 	public SceneObject Boss2;
-	public SceneObject BossVienenLinea;
+	public SceneObject BossCreator;
 	public SceneObject BossSpace1;
 	public SceneObject BossCalecitas1;
 	public SceneObject BossPacmans;
@@ -117,12 +117,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				pos.z *= -1;
 			}
 
-			if (go.GetComponent<RandomPosition>())
-			{
-				RandomPosition mo = go.GetComponent<RandomPosition>();
-				pos = mo.getPosition(pos);
-			}
-
+		
 			//  if (!nubesOn)
 			//  {
 			//  nubesOn = true;
@@ -161,6 +156,9 @@ public class SceneObjectsBehavior : MonoBehaviour {
 
 				if (sceneObject)
 				{
+					
+
+
 					sceneObject.isActive = false;
 					sceneObject.Restart(pos);
 					sceneObject.transform.rotation = go.transform.rotation;
@@ -250,10 +248,10 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				clone = Boss1;
 			else if (go.name == "Boss2")
 				clone = Boss2;
-			else if (go.name == "BossVienenLinea")
-				clone = BossVienenLinea;
 			else if (go.name == "BossCalecitas1")
 				clone = BossCalecitas1;
+			else if (go.name == "BossCreator")
+				clone = BossCreator;
 			else if (go.name == "BossSpace1")
 				clone = BossSpace1;
 			else if (go.name == "BossPacmans")
@@ -345,6 +343,13 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				sceneObject = Instantiate(clone, pos, Quaternion.identity) as SceneObject;
 				sceneObject.transform.parent = Pool.Scene.transform;
 				sceneObject.transform.rotation = go.transform.rotation;
+
+				if (go.GetComponent<BossSettings>())
+				{
+					BossSettings mo = go.GetComponent<BossSettings>();
+					CopyComponent(mo, sceneObject.gameObject);
+				}
+
 				sceneObject.Restart(pos);
 			}
 			if (go.GetComponent<Move>() && sceneObject.GetComponent<Move>() == null)
@@ -417,6 +422,12 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				Bumper mo = go.GetComponent<Bumper>();
 				CopyComponent(mo, sceneObject.gameObject);
 			}
+			if (go.GetComponent<RandomPosition>())
+			{
+				RandomPosition mo = go.GetComponent<RandomPosition>();
+				pos = mo.getPosition(pos);
+			}
+
 
 		}
 			//AddBorders ();

@@ -64,6 +64,7 @@ public class Continue : MonoBehaviour {
 	void OnJoystickClick()
 	{
 		if (canClick) {
+			Data.Instance.multiplayerData.OnRefreshPlayersByActiveOnes ();
 			Data.Instance.inputSavedAutomaticPlay.RemoveAllData ();
 			Data.Instance.isReplay = true;
 			CancelInvoke ();

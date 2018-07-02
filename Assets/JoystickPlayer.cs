@@ -54,8 +54,6 @@ public class JoystickPlayer : MonoBehaviour {
 
 			int total = Data.Instance.multiplayerData.GetTotalScore();
 
-			print (playerID +  "     score: " + score_player + " total " + total);
-
 			if (score_player > 0) {
 				Vector2 pos =  transform.localPosition;
 				int positionByScore = Data.Instance.multiplayerData.GetPositionByScore (playerID);
@@ -159,7 +157,6 @@ public class JoystickPlayer : MonoBehaviour {
 		if (value == lastValue)
 			return;
 		lastValue = value;
-		print ("J: " + value);
 		Vector3 pos = joystick.transform.localEulerAngles;
 		pos.z = value*-15;
 		joystick.transform.localEulerAngles = pos;

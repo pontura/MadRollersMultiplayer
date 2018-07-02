@@ -87,10 +87,15 @@ public class CharacterControls : MonoBehaviour {
 		}
 		MoveInX (_speed);
     }
+	bool playerPlayed;
 	public void MoveInX(float _speed)
 	{
 		
 		if (_speed < -0.5f || _speed > 0.5f) {
+			if (!playerPlayed) {
+				playerPlayed = true;
+				Data.Instance.multiplayerData.PlayerPlayed (characterBehavior.player.id);
+			}
 			float newPosX = _speed*speedX;
 			float newRot = turnSpeed * ( Time.deltaTime * 35);
 			if (newPosX > 0)

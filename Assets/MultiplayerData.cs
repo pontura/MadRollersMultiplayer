@@ -22,6 +22,11 @@ public class MultiplayerData : MonoBehaviour
     public int score_player3;
     public int score_player4;
 
+	public bool player1_played;
+	public bool player2_played;
+	public bool player3_played;
+	public bool player4_played;
+
     void Start()
     {
         Data.Instance.events.OnReorderAvatarsByPosition += OnReorderAvatarsByPosition;
@@ -66,6 +71,16 @@ public class MultiplayerData : MonoBehaviour
             default: return score_player4;
         }
     }
+	public void PlayerPlayed(int playerID)
+	{
+		switch (playerID)
+		{
+		case 0: player1_played = true; break;
+		case 1: player2_played = true;break;
+		case 2: player3_played = true;break;
+		default: player4_played = true;break;
+		}
+	}
 	public int GetTotalScore()
 	{
 		return score_player1 + score_player2 + score_player3 + score_player4;
@@ -91,5 +106,25 @@ public class MultiplayerData : MonoBehaviour
 			puesto++;
 
 		return puesto;
+	}
+	public void OnRefreshPlayersByActiveOnes()
+	{
+		//pontura: para que nunca en un replay si nadie toco nada haya cero jugadores!
+		if (!player1_played && !player2_played && !player3_played && !player4_played)
+			return;
+		
+		if (player1 && !player1_played)
+			player1 = false;
+		if (player2 && !player2_played)
+			player2 = false;
+		if (player3 && !player3_played)
+			player3 = false;
+		if (player4 && !player4_played)
+			player4 = false;		
+
+		player1_played = false;
+		player2_played = false;
+		player3_played = false;
+		player4_played = false;
 	}
 }
