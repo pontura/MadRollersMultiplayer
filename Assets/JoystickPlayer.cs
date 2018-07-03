@@ -129,7 +129,6 @@ public class JoystickPlayer : MonoBehaviour {
 		if (InputManager.getFireDown (playerID))
 			PressButton (button1);
 		else if (button1.transform.localPosition.y < 0) {
-			print (button1.transform.localPosition.y);
 			Vector2 pos = button1.transform.localPosition;
 			pos.y += 0.1f;
 			button1.transform.localPosition = pos;

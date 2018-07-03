@@ -139,6 +139,7 @@ public class CharacterBehavior : MonoBehaviour {
 		controls.EnabledMovements (true);
 		state = states.JUMP;
 		Run();
+		Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.ENGINES, player.id);
 	}
 	void OnReorderAvatarsByPosition(List<int> players)
 	{
@@ -151,9 +152,8 @@ public class CharacterBehavior : MonoBehaviour {
 	public void OncharacterCheer()
 	{
 		if (Random.Range(0, 8) < 2)
-		{
-			Data.Instance.events.OnSoundFX("FXCheer", player.id);
-		}
+			Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.CHEER, player.id);
+		
 	}
 
 	public void UpdateByController(float rotationY)
@@ -255,7 +255,7 @@ public class CharacterBehavior : MonoBehaviour {
 		if (state == states.DEAD) return;
 		if (state == states.IDLE) return;
 		if(state == states.RUN) return;
-
+		Data.Instance.events.OnMadRollerFX (MadRollersSFX.types.TOUCH_GROUND, player.id);
 		state = states.RUN;
 		_animation_hero.Play("floorHit");
 		Invoke ("OnFloorDone", 0.5f);
@@ -265,12 +265,15 @@ public class CharacterBehavior : MonoBehaviour {
 	{
 		if (state == states.RUN)
 			_animation_hero.Play("run");
+
+		Data.Instance.events.OnMadRollerFX (MadRollersSFX.types.ENGINES, player.id);
 	}
 	public void Run()
 	{
 		if (state == states.DEAD) return;
 		if (state == states.IDLE) return;
 		if(state == states.RUN) return;
+
 		jumpsNumber = 0;
 		state = states.RUN;
 
@@ -356,7 +359,8 @@ public class CharacterBehavior : MonoBehaviour {
 
 		GetComponent<Rigidbody>().velocity = Vector3.zero;
 		floorCollitions.OnAvatarJump();
-		Data.Instance.events.OnSoundFX("FXJump", player.id);
+
+		Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.JUMP, player.id);
 
 		if(!controls.isAutomata)
 			data.events.AvatarJump();
@@ -454,7 +458,7 @@ public class CharacterBehavior : MonoBehaviour {
 		if (state == states.DEAD) return;
 		SaveDistance();
 
-		Data.Instance.events.OnSoundFX("FXCrash", player.id);
+		Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.CRASH, player.id);
 
 		Data.Instance.events.OnAvatarCrash(this);
 

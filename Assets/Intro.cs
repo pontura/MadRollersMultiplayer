@@ -21,7 +21,6 @@ public class Intro : MonoBehaviour {
 	void Start () {
 
         Data.Instance.GetComponent<MusicManager>().stopAllSounds();
-        Data.Instance.events.OnSoundFX("FXCheer", -1);
         MultiplayerData multiplayerData = Data.Instance.multiplayerData;
 
         gorro1.material.color = multiplayerData.colors[0];

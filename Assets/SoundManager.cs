@@ -7,16 +7,16 @@ public class SoundManager : MonoBehaviour
     public AudioSource audioSource;
     private AudioSource loopAudioSource;
     public float volume;
-    public string[] FXCheer;
-    public string[] FXJump;
-    public string[] FXCrash;
+//    public string[] FXCheer;
+//    public string[] FXJump;
+//    public string[] FXCrash;
     public string coin;
 
     void Start()
     {
-        FXCheer = new string[] { "FX vox iuju", "FX vox risa", "FX vox uoo", "FX vox uoo", "FX vox yepa" };
-        FXJump = new string[] { "FX jump00", "FX jump02" };
-        FXCrash = new string[] { "FX vox muerte01", "FX vox muerte02" };
+//        FXCheer = new string[] { "FX vox iuju", "FX vox risa", "FX vox uoo", "FX vox uoo", "FX vox yepa" };
+//        FXJump = new string[] { "FX jump00", "FX jump02" };
+//        FXCrash = new string[] { "FX vox muerte01", "FX vox muerte02" };
 
         OnSoundsVolumeChanged(volume);
 
@@ -84,12 +84,12 @@ public class SoundManager : MonoBehaviour
             audioSource.Stop();
             return;
         }
-        else if (soundName == "FXCheer")
-            soundName = GetRandomSound(FXCheer);
-        else if (soundName == "FXJump")
-            soundName = GetRandomSound(FXJump);
-        else if(soundName == "FXCrash")
-            soundName = GetRandomSound(FXCrash);
+//        else if (soundName == "FXCheer")
+//            soundName = GetRandomSound(FXCheer);
+//        else if (soundName == "FXJump")
+//            soundName = GetRandomSound(FXJump);
+//        else if(soundName == "FXCrash")
+//            soundName = GetRandomSound(FXCrash);
 
         if (volume == 0) return;
 
