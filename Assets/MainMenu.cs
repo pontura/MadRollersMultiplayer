@@ -73,6 +73,12 @@ public class MainMenu : MonoBehaviour {
 	}
 	void OnJoystickClick()
 	{
+		if (Data.Instance.DEBUG) {
+			Data.Instance.playMode = Data.PlayModes.COMPETITION;
+			Data.Instance.multiplayerData.player1 = true;
+			Data.Instance.LoadLevel("Game");
+			return;
+		}
 		if (Data.Instance.isArcadeMultiplayer) {
 			if (activeID == 0)
 				Compite ();
