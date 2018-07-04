@@ -155,6 +155,52 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 826365e9cd695a941aa683746782953e, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &86677049
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4502657173283402, guid: fe596fe8516db97409385fc7ec50b386, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502657173283402, guid: fe596fe8516db97409385fc7ec50b386, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502657173283402, guid: fe596fe8516db97409385fc7ec50b386, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502657173283402, guid: fe596fe8516db97409385fc7ec50b386, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502657173283402, guid: fe596fe8516db97409385fc7ec50b386, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502657173283402, guid: fe596fe8516db97409385fc7ec50b386, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502657173283402, guid: fe596fe8516db97409385fc7ec50b386, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502657173283402, guid: fe596fe8516db97409385fc7ec50b386, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1983818420023476, guid: fe596fe8516db97409385fc7ec50b386, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: fe596fe8516db97409385fc7ec50b386, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &331747211
 GameObject:
   m_ObjectHideFlags: 0
@@ -753,8 +799,8 @@ MonoBehaviour:
     floppyCover: {fileID: 21300000, guid: 9aa7381f9b34caf41b440a22263245b4, type: 3}
   - id: 1
     name: INFERNO
-    floor_top: {r: 0.49264705, g: 0.42094842, b: 0.36586288, a: 1}
-    floor_border: {r: 0.8897059, g: 0, b: 0, a: 1}
+    floor_top: {r: 1, g: 0, b: 0, a: 1}
+    floor_border: {r: 0.6544118, g: 0, b: 0, a: 1}
     skybox: {fileID: 2100000, guid: a329fcc5199f3944f80cb25968b21d1b, type: 2}
     fog: {r: 0.41176468, g: 0, b: 0, a: 1}
     logo: {fileID: 21300000, guid: 913e420929a17944b803f6b274b34211, type: 3}
@@ -1203,7 +1249,7 @@ MonoBehaviour:
   mode: 2
   voicesManager: {fileID: 525118742}
   versusManager: {fileID: 525118723}
-  DEBUG: 1
+  DEBUG: 0
   FORCE_LOCAL_SCORE: 0
   playMode: 1
   hasContinueOnce: 0
