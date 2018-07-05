@@ -280,9 +280,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			}
 			else if (go.name == "palm")
 			{
-				//if (Data.Instance.videogamesData.actualID == 1) {
-				//	clone = palm_space1;
-				//}else {
 				int ran = Random.Range (0, 60);
 				if (ran < 20)
 					clone = palm;

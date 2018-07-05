@@ -70,6 +70,7 @@ public class GameCamera : MonoBehaviour
         Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
 		Data.Instance.events.OnChangeMood += OnChangeMood;
 		Data.Instance.events.OnVersusTeamWon += OnVersusTeamWon;
+		Data.Instance.events.OncharacterCheer += OncharacterCheer;
 
 		_Y_correction = 1;
 		if (team_id > 0) {
@@ -99,6 +100,7 @@ public class GameCamera : MonoBehaviour
         Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
         Data.Instance.events.OnChangeMood -= OnChangeMood;
 		Data.Instance.events.OnVersusTeamWon -= OnVersusTeamWon;
+		Data.Instance.events.OncharacterCheer -= OncharacterCheer;
     }
 	void OnVersusTeamWon(int _team_id)
 	{
@@ -142,6 +144,15 @@ public class GameCamera : MonoBehaviour
 		}
 	}
 
+	void OncharacterCheer()
+	{
+		if (state != states.PLAYING)
+			return;	
+		state = states.EXPLOTING;
+		StartCoroutine (DoExplote ());
+		newH = 10;
+		newV = 10;
+	}
 	public void explote(float explotionForce)
 	{
 		if (state != states.PLAYING)
@@ -149,8 +160,8 @@ public class GameCamera : MonoBehaviour
 		state = states.EXPLOTING;
 		this.explotionForce = explotionForce*2f;
 		StartCoroutine (DoExplote ());
-		newH = 10;
-		newV = 10;
+		newH = 150;
+		newV = 200;
 	}
 	public IEnumerator DoExplote () {
 		float delay = 0.03f;

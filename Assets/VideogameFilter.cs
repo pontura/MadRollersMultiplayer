@@ -10,6 +10,7 @@ public class VideogameFilter : MonoBehaviour {
 
 	void OnEnable () {
 		int id = Data.Instance.videogamesData.GetActualVideogameData ().id;
+		print("_______________"+  id);
 		if (id == 0) {
 			SetEverythingIn (only_show_in_videogame_1, true);
 			SetEverythingIn (only_show_in_videogame_2, false);
