@@ -113,52 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &140145555
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 400002, guid: f8c058e4d6107a245a4ece8d88ab18b3, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: f8c058e4d6107a245a4ece8d88ab18b3, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: f8c058e4d6107a245a4ece8d88ab18b3, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: f8c058e4d6107a245a4ece8d88ab18b3, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: f8c058e4d6107a245a4ece8d88ab18b3, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: f8c058e4d6107a245a4ece8d88ab18b3, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: f8c058e4d6107a245a4ece8d88ab18b3, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: f8c058e4d6107a245a4ece8d88ab18b3, type: 2}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: f8c058e4d6107a245a4ece8d88ab18b3, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: f8c058e4d6107a245a4ece8d88ab18b3, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &331747211
 GameObject:
   m_ObjectHideFlags: 0
@@ -1232,48 +1186,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &723561906
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 400000, guid: 18b10362a545ef94f9fc92f9a8de0eb5, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -0.0025587082
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 18b10362a545ef94f9fc92f9a8de0eb5, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0.0018539429
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 18b10362a545ef94f9fc92f9a8de0eb5, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -0.0011138916
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 18b10362a545ef94f9fc92f9a8de0eb5, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 18b10362a545ef94f9fc92f9a8de0eb5, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 18b10362a545ef94f9fc92f9a8de0eb5, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 18b10362a545ef94f9fc92f9a8de0eb5, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 18b10362a545ef94f9fc92f9a8de0eb5, type: 2}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 18b10362a545ef94f9fc92f9a8de0eb5, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &842563087
 GameObject:
   m_ObjectHideFlags: 0
@@ -2217,29 +2129,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerClips:
   - engines: {fileID: 8300000, guid: 8e1e1e35e038b604f81652a7a961f220, type: 3}
-    jump: {fileID: 8300000, guid: c18c5a3ebcdf9ef49b6eaf540c96f09f, type: 3}
+    jump: {fileID: 8300000, guid: f6c1a06dd4c125848b9abb317e14c8b7, type: 3}
     crash: {fileID: 8300000, guid: 9a36f562d7827a047b8efc8bbe219c6f, type: 3}
     cheer: {fileID: 8300000, guid: 5ebefbc1add830b478494e20ccd96ddf, type: 3}
     touchGround: {fileID: 8300000, guid: 7e0d297c29c43e146b9ffdc9e5313a14, type: 3}
-    doubleJump: {fileID: 8300000, guid: ee32935bcd827474f96aed0a3204797f, type: 3}
+    doubleJump: {fileID: 8300000, guid: 7de627a1284fb2e4a8ec5992b0800f38, type: 3}
   - engines: {fileID: 8300000, guid: 3af798bddd0aa02498157b6648741d59, type: 3}
-    jump: {fileID: 8300000, guid: c18c5a3ebcdf9ef49b6eaf540c96f09f, type: 3}
+    jump: {fileID: 8300000, guid: f93fda4db11e9c94d8c369cb7796f84d, type: 3}
     crash: {fileID: 8300000, guid: 9a36f562d7827a047b8efc8bbe219c6f, type: 3}
     cheer: {fileID: 8300000, guid: 5ebefbc1add830b478494e20ccd96ddf, type: 3}
     touchGround: {fileID: 8300000, guid: de3998e1670248c4ea2300eb773f3d42, type: 3}
-    doubleJump: {fileID: 8300000, guid: ee32935bcd827474f96aed0a3204797f, type: 3}
+    doubleJump: {fileID: 8300000, guid: 7de627a1284fb2e4a8ec5992b0800f38, type: 3}
   - engines: {fileID: 8300000, guid: 3c7e36ed5122ac74ebe1bfdf0d667da6, type: 3}
-    jump: {fileID: 8300000, guid: c18c5a3ebcdf9ef49b6eaf540c96f09f, type: 3}
+    jump: {fileID: 8300000, guid: 4885a25f055740347b64525782cb92e3, type: 3}
     crash: {fileID: 8300000, guid: 9a36f562d7827a047b8efc8bbe219c6f, type: 3}
     cheer: {fileID: 8300000, guid: 5ebefbc1add830b478494e20ccd96ddf, type: 3}
     touchGround: {fileID: 8300000, guid: 1a2bd5ddaa4652e4bb32f59bfdb950c0, type: 3}
-    doubleJump: {fileID: 8300000, guid: ee32935bcd827474f96aed0a3204797f, type: 3}
+    doubleJump: {fileID: 8300000, guid: 7de627a1284fb2e4a8ec5992b0800f38, type: 3}
   - engines: {fileID: 8300000, guid: 7a581fa33760b0e458a02bd3fc85511e, type: 3}
-    jump: {fileID: 8300000, guid: c18c5a3ebcdf9ef49b6eaf540c96f09f, type: 3}
+    jump: {fileID: 8300000, guid: d5c0df7aeb10bc54b8b5b15782726c5d, type: 3}
     crash: {fileID: 8300000, guid: 9a36f562d7827a047b8efc8bbe219c6f, type: 3}
     cheer: {fileID: 8300000, guid: 5ebefbc1add830b478494e20ccd96ddf, type: 3}
     touchGround: {fileID: 8300000, guid: 6579586ea938c674e8c5361093cdd365, type: 3}
-    doubleJump: {fileID: 8300000, guid: ee32935bcd827474f96aed0a3204797f, type: 3}
+    doubleJump: {fileID: 8300000, guid: 7de627a1284fb2e4a8ec5992b0800f38, type: 3}
   player1: {fileID: 1776186408}
   player2: {fileID: 1776186407}
   player3: {fileID: 1776186406}
