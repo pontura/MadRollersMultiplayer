@@ -22,7 +22,7 @@ public class VideogamesData : MonoBehaviour {
 	public void SetOtherGameActive()
 	{
 		actualID++;
-		if (actualID > 1)
+		if (actualID > all.Length-1)
 			actualID = 0;
 	}
 

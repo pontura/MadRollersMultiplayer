@@ -34,6 +34,8 @@ public class Boss : SceneObject {
 		hits++;
 		missions.hitBoss (1);
 
+		Data.Instance.events.OncharacterCheer ();
+
 		if (hits >= totalHits)
 			Killed ();
 		

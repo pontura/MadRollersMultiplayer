@@ -39,8 +39,10 @@ public class LevelSelector : MonoBehaviour {
 
 	VideogamesUIManager videogameUI;
 
+	float timePassed;
 	void Start()
 	{
+		timePassed = 0;
 		videogameActiveID = 0;
 		missionActiveID = 0;
 		if (Data.Instance.playMode == Data.PlayModes.STORY) {
@@ -63,7 +65,7 @@ public class LevelSelector : MonoBehaviour {
 		Data.Instance.events.OnJoystickUp += OnJoystickUp;
 		Data.Instance.events.OnJoystickLeft += OnJoystickLeft;
 		Data.Instance.events.OnJoystickRight += OnJoystickRight;
-		Invoke ("TimeOver", 15);
+		Invoke ("TimeOver", 25);
 	}
 	void TimeOver()
 	{
@@ -80,6 +82,7 @@ public class LevelSelector : MonoBehaviour {
 	}
 	void Update()
 	{
+		timePassed += Time.deltaTime;
 		if (lastButtonSelected == null)
 			return;
 		//cam.transform.localPosition = Vector3.Lerp (cam.transform.localPosition, new Vector3(0, 0, missionActiveID * separation), 0.1f);
@@ -96,6 +99,8 @@ public class LevelSelector : MonoBehaviour {
 	}
 	void OnJoystickClick()
 	{
+		if (timePassed < 2)
+			return;
 		if (lastButtonSelected == null || lastButtonSelected.isLocked)
 			return;
 		Data.Instance.videogamesData.ChangeID (videogameActiveID);

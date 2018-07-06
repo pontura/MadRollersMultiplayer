@@ -35,6 +35,8 @@ public class VideogamesUIManager : MonoBehaviour {
 	}
 	public void Right()
 	{
+		if (id == all.Count-1)
+			return;
 		id++;
 		ResetAll ();
 		all [id].SetSelected (true);
@@ -42,6 +44,8 @@ public class VideogamesUIManager : MonoBehaviour {
 	}
 	public void Left()
 	{
+		if (id == 0)
+			return;
 		id--;
 		ResetAll ();
 		all [id].SetSelected (true);

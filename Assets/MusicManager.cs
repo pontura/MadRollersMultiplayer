@@ -22,13 +22,7 @@ public class MusicManager : MonoBehaviour {
         GetComponent<AudioLowPassFilter>().enabled = false;
 		Data.Instance.GetComponent<Tracker> ().TrackScreen ("Main Menu");
 		OnInterfacesStart ();
-		if (!Data.Instance.musicOn || Data.Instance.turnOffSounds)
-			audioSource.volume = 0;
-    }
-	public void Init () {
-		
-		if (Data.Instance.turnOffSounds)
-			return;
+
 		Data.Instance.events.OnVersusTeamWon += OnVersusTeamWon;
         Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
         Data.Instance.events.OnMissionStart += OnMissionStart;
@@ -41,17 +35,16 @@ public class MusicManager : MonoBehaviour {
         Data.Instance.events.OnAvatarFall += OnAvatarCrash;
      //   Data.Instance.events.OnSoundFX += OnSoundFX;
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
-
-
+		Data.Instance.events.OnMusicStatus += OnMusicStatus;
     }
+	void OnMusicStatus(bool isOn)
+	{
+		audioSource.enabled = isOn;
+	}
 	void OnVersusTeamWon(int teamID)
 	{
 		playSound( interfaces );
 	}
-    public void TurnOff()
-    {
-        audioSource.volume = 0;
-    }
     void OnListenerDispatcher(string type)
     {
         
@@ -82,8 +75,6 @@ public class MusicManager : MonoBehaviour {
     }
     public void SetVolume(float vol)
     {
-		if (!Data.Instance.musicOn || Data.Instance.turnOffSounds)
-            return;
         audioSource.volume = vol;
     }
     public void playSound(AudioClip _clip, bool looped = true)

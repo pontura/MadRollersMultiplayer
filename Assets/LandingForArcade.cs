@@ -14,7 +14,7 @@ public class LandingForArcade : MonoBehaviour {
     WebCamTexture webCamTexture;
 
     void Start () {
-        Data.Instance.WebcamID = WebCamTexture.devices.Length - 1;
+       // Data.Instance.WebcamID = WebCamTexture.devices.Length - 1;
         Invoke("Next", 1);
         UpdateWebCam();
         rawImage.material.mainTexture = webCamTexture;
@@ -22,20 +22,20 @@ public class LandingForArcade : MonoBehaviour {
     public void ToogleCam()
     {
         webCamTexture.Stop();
-        if (Data.Instance.WebcamID < WebCamTexture.devices.Length - 1)
-            Data.Instance.WebcamID++;
-        else
-            Data.Instance.WebcamID = 0;
+//        if (Data.Instance.WebcamID < WebCamTexture.devices.Length - 1)
+//            Data.Instance.WebcamID++;
+//        else
+//            Data.Instance.WebcamID = 0;
         Invoke("UpdateWebCam", 0.2f);
     }
     void UpdateWebCam()
     {
-		if (WebCamTexture.devices.Length == 0)
-			return;
-        camerasField.text = "cam: " + Data.Instance.WebcamID + "/" + WebCamTexture.devices.Length;
-        webCamTexture = new WebCamTexture(WebCamTexture.devices[Data.Instance.WebcamID].name, 800, 600, 12);
-        webCamTexture.Play();
-        Vector3 scale = rawImage.transform.localScale;
+//		if (WebCamTexture.devices.Length == 0)
+//			return;
+//        camerasField.text = "cam: " + Data.Instance.WebcamID + "/" + WebCamTexture.devices.Length;
+//        webCamTexture = new WebCamTexture(WebCamTexture.devices[Data.Instance.WebcamID].name, 800, 600, 12);
+//        webCamTexture.Play();
+//        Vector3 scale = rawImage.transform.localScale;
     }
     void Next()
     {
@@ -77,9 +77,6 @@ public class LandingForArcade : MonoBehaviour {
     {
 		if(webCamTexture != null)
       	  webCamTexture.Stop();
-		
-        if (!musicOn.isOn)
-            Data.Instance.GetComponent<MusicManager>().TurnOff();
 
         Data.Instance.switchPlayerInputs = switchPlayers.isOn;
         Cursor.visible = false;

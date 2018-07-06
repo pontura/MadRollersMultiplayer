@@ -13,7 +13,6 @@ public class BossPart : MonoBehaviour {
 	}
 	public void OnActivate()
 	{
-		print ("OnActivate");
 		CancelInvoke ();
 		boss.OnPartBroken (this);
 		asset.SetActive (false);

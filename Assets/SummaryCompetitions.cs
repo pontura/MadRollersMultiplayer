@@ -17,6 +17,7 @@ public class SummaryCompetitions : MonoBehaviour {
 
 	void Start()
 	{
+		optionSelected = 1;
 		panel.SetActive (false);
 //		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {			
 //			Data.Instance.events.OnGameOver += OnGameOver;

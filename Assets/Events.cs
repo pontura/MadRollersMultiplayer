@@ -113,4 +113,9 @@ public class Events : MonoBehaviour {
 	public System.Action<float, float> RalentaTo = delegate { };
 	public System.Action<float> ForceFrameRate = delegate { };
 	public System.Action<int> OnVersusTeamWon= delegate { };
+
+	public System.Action<bool> OnMusicStatus= delegate { };
+	public System.Action<bool> OnSFXStatus= delegate { };
+	public System.Action<bool> OnVoicesStatus= delegate { };
+	public System.Action<bool> OnMadRollersSFXStatus= delegate { };
 }

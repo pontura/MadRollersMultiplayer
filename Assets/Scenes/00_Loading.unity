@@ -1102,8 +1102,7 @@ MonoBehaviour:
     type: 2}
   startingAreaDuringGame: {fileID: 114628751800030858, guid: 67eaa1393fc1e3d48979f66ebb5d7848,
     type: 2}
-  test_mission: {fileID: 114391531281884098, guid: d2321c95f6ee5ae409a198dc90e66c67,
-    type: 2}
+  test_mission: {fileID: 11400002, guid: 18b10362a545ef94f9fc92f9a8de0eb5, type: 2}
   missions:
   - {fileID: 11400002, guid: d0ae778cb5e3cfd449a8fe528c7d5266, type: 2}
   - {fileID: 11400000, guid: 36be041a053ce8d4ab4e0daeda73977f, type: 2}
@@ -1132,6 +1131,7 @@ MonoBehaviour:
   - {fileID: 11495614, guid: 7a8b5c61062fbf34893c3e4fe4341bb4, type: 2}
   - {fileID: 114174197576344946, guid: 452dafceb124c8b45947058856ab5f28, type: 2}
   - {fileID: 11400002, guid: 34d705dfc50a8074483c94e7eb12d0ac, type: 2}
+  - {fileID: 11400002, guid: 18b10362a545ef94f9fc92f9a8de0eb5, type: 2}
   - {fileID: 11495614, guid: 6d827c73e12299646ac2b8457c170431, type: 2}
   - {fileID: 114391531281884098, guid: d2321c95f6ee5ae409a198dc90e66c67, type: 2}
   - {fileID: 11400002, guid: e499fdf6405b4384c8887773ec68d24b, type: 2}
@@ -1155,19 +1155,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isArcadeMultiplayer: 1
+  DEBUG: 0
+  voicesOn: 1
+  soundsFXOn: 1
+  madRollersSoundsOn: 1
+  musicOn: 1
+  switchPlayerInputs: 0
   isReplay: 0
   totalJoysticks: 1
   RESET: 0
-  turnOffSounds: 0
-  musicOn: 1
-  switchPlayerInputs: 0
   competitionID: 1
   levelUnlocked_level_1: 0
   levelUnlocked_level_2: 0
   volume: 0
   scoreForArcade: 0
   webcamOff: 0
-  WebcamID: 0
   userData: {fileID: 1225128911}
   events: {fileID: 525118741}
   sceneObjectsPool: {fileID: 1160979223}
@@ -1180,7 +1182,6 @@ MonoBehaviour:
   mode: 2
   voicesManager: {fileID: 525118742}
   versusManager: {fileID: 525118723}
-  DEBUG: 0
   FORCE_LOCAL_SCORE: 0
   playMode: 1
   hasContinueOnce: 0
@@ -1201,6 +1202,48 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &723561906
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 18b10362a545ef94f9fc92f9a8de0eb5, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.0025587082
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 18b10362a545ef94f9fc92f9a8de0eb5, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.0018539429
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 18b10362a545ef94f9fc92f9a8de0eb5, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.0011138916
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 18b10362a545ef94f9fc92f9a8de0eb5, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 18b10362a545ef94f9fc92f9a8de0eb5, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 18b10362a545ef94f9fc92f9a8de0eb5, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 18b10362a545ef94f9fc92f9a8de0eb5, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 18b10362a545ef94f9fc92f9a8de0eb5, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 18b10362a545ef94f9fc92f9a8de0eb5, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &842563087
 GameObject:
   m_ObjectHideFlags: 0
@@ -2234,7 +2277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerClips:
   - engines: {fileID: 8300000, guid: 8e1e1e35e038b604f81652a7a961f220, type: 3}
-    jump: {fileID: 8300000, guid: 391c28dc2086ba44494881d098c38d68, type: 3}
+    jump: {fileID: 8300000, guid: c18c5a3ebcdf9ef49b6eaf540c96f09f, type: 3}
     crash: {fileID: 8300000, guid: 9a36f562d7827a047b8efc8bbe219c6f, type: 3}
     cheer: {fileID: 8300000, guid: 5ebefbc1add830b478494e20ccd96ddf, type: 3}
     touchGround: {fileID: 8300000, guid: 7e0d297c29c43e146b9ffdc9e5313a14, type: 3}

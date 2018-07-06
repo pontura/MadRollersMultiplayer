@@ -4,13 +4,17 @@ using System.Collections;
 public class Data : MonoBehaviour {
 
 	public bool isArcadeMultiplayer;
+	public bool DEBUG;
+	public bool voicesOn;
+	public bool soundsFXOn;
+	public bool madRollersSoundsOn;
+    public bool musicOn;
+    public bool switchPlayerInputs;
 
 	public bool isReplay;
 	public int totalJoysticks;
 	public bool RESET;
-	public bool turnOffSounds;
-    public bool musicOn = true;
-    public bool switchPlayerInputs;
+
     public int competitionID = 1;
     //public bool isArcade;
     
@@ -22,7 +26,7 @@ public class Data : MonoBehaviour {
     public int scoreForArcade;
 
 	public bool webcamOff;
-    public int WebcamID;
+   // public int WebcamID;
 
     public UserData userData;
     [HideInInspector]
@@ -48,7 +52,7 @@ public class Data : MonoBehaviour {
     public VoicesManager voicesManager;
 	public VersusManager versusManager;
 
-    public bool DEBUG;
+   
     public int FORCE_LOCAL_SCORE;
 
     public PlayModes playMode;
@@ -116,9 +120,7 @@ public class Data : MonoBehaviour {
        // competitions.Init();
         if(userData)
             userData.Init();
-        
-
-        GetComponent<MusicManager>().Init();
+		
         GetComponent<Tracker>().Init();
         GetComponent<Missions>().Init();
         GetComponent<CurvedWorldManager>().Init();

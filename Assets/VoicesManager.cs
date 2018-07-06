@@ -27,6 +27,11 @@ public class VoicesManager : MonoBehaviour
 
     public void Init()
     {
+		audioSource.enabled = Data.Instance.voicesOn;
+
+		if (!Data.Instance.voicesOn)
+			return;
+		
 		Data.Instance.events.OnGameStart += OnGameStart;
         Data.Instance.events.OnMissionComplete += OnMissionComplete;
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
@@ -35,20 +40,18 @@ public class VoicesManager : MonoBehaviour
         Data.Instance.events.OnAvatarChangeFX += OnAvatarChangeFX;
         Data.Instance.events.SetVolume += SetVolume;
         Data.Instance.events.VoiceFromResources += VoiceFromResources; 
-
-		if (!Data.Instance.musicOn || Data.Instance.turnOffSounds) {
-			audioSource.volume = 0;
-		}
-    }
+		Data.Instance.events.OnVoicesStatus += OnVoicesStatus;
+	}
+	void OnVoicesStatus(bool isOn)
+	{
+		audioSource.enabled = isOn;
+	}
 	void OnGameStart()
 	{
 		
 	}
     void SetVolume(float vol)
     {
-		if (!Data.Instance.musicOn || Data.Instance.turnOffSounds) {
-			return;
-		}
         audioSource.volume = vol;
     }
     private void OnMissionComplete(int id)
@@ -110,7 +113,6 @@ public class VoicesManager : MonoBehaviour
 		sequenceID++;
 		if (sequenceSaying.Count == sequenceID)
 		{
-			print ("SALE");
 			onSequence = false;
 			Done ();
 		}

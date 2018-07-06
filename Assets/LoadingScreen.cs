@@ -8,10 +8,10 @@ public class LoadingScreen : MonoBehaviour {
 		Invoke("Next", 1);
 	}
 	void Next () {
-		//if(Data.Instance.isArcadeMultiplayer)
-		//	Data.Instance.LoadLevel("01LandingPageForArcade");
-	//	else
-		//	Data.Instance.LoadLevel("01LandingPage");
+		#if UNITY_EDITOR
 		Data.Instance.LoadLevel("MainMenu");
+		#else
+		Data.Instance.LoadLevel("Settings");
+		#endif
 	}
 }

@@ -16,29 +16,29 @@ public class WebCamPhotoCamera : MonoBehaviour
 
     void Start()
     {
-		if (WebCamTexture.devices.Length == 0 || Data.Instance.webcamOff) {
-			Data.Instance.LoadLevel("MainMenu");
-			return;
-		}
-        lastPhotoTexture = null;
-        webCamTexture = new WebCamTexture(WebCamTexture.devices[Data.Instance.WebcamID].name, 800, 600, 12);
-
-        print("CAntidad de camaras: " + WebCamTexture.devices.Length);
-
-        if (webCamTexture.isPlaying)
-            webCamTexture.Stop();
-        else
-            webCamTexture.Play();
-
-        Vector3 scale = rawImage.transform.localScale;
-
-        rawImage.transform.localScale = scale;
-        rawImage.material.mainTexture = webCamTexture;
+//		if (WebCamTexture.devices.Length == 0 || Data.Instance.webcamOff) {
+//			Data.Instance.LoadLevel("MainMenu");
+//			return;
+//		}
+//        lastPhotoTexture = null;
+//        webCamTexture = new WebCamTexture(WebCamTexture.devices[Data.Instance.WebcamID].name, 800, 600, 12);
+//
+//        print("CAntidad de camaras: " + WebCamTexture.devices.Length);
+//
+//        if (webCamTexture.isPlaying)
+//            webCamTexture.Stop();
+//        else
+//            webCamTexture.Play();
+//
+//        Vector3 scale = rawImage.transform.localScale;
+//
+//        rawImage.transform.localScale = scale;
+//        rawImage.material.mainTexture = webCamTexture;
     }
-    void Update()
-    {
-
-    }
+//    void Update()
+//    {
+//
+//    }
     void Ready()
     {
         ready = true;

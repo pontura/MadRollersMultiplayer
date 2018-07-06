@@ -32,11 +32,17 @@ public class MadRollersSFX : MonoBehaviour {
 	void Start () {
 		Data.Instance.events.OnMadRollerFX += OnMadRollerFX;	
 		Data.Instance.events.OnGameOver += OnGameOver;
+		Data.Instance.events.OnMadRollersSFXStatus += OnMadRollersSFXStatus;
 	}
-
+	void OnMadRollersSFXStatus(bool isOn)
+	{
+		player1.enabled = isOn;
+		player2.enabled = isOn;
+		player3.enabled = isOn;
+		player4.enabled = isOn;
+	}
 	void OnMadRollerFX(types type, int id)
 	{
-		print ("OnMadRollerFX " + type + "     id: " + id);
 		AudioSource audioSource;
 		switch(id)
 		{

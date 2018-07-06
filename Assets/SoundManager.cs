@@ -7,31 +7,18 @@ public class SoundManager : MonoBehaviour
     public AudioSource audioSource;
     private AudioSource loopAudioSource;
     public float volume;
-//    public string[] FXCheer;
-//    public string[] FXJump;
-//    public string[] FXCrash;
     public string coin;
 
     void Start()
     {
-//        FXCheer = new string[] { "FX vox iuju", "FX vox risa", "FX vox uoo", "FX vox uoo", "FX vox yepa" };
-//        FXJump = new string[] { "FX jump00", "FX jump02" };
-//        FXCrash = new string[] { "FX vox muerte01", "FX vox muerte02" };
-
-        OnSoundsVolumeChanged(volume);
-
-		if (Data.Instance.turnOffSounds)
-			return;
-		
+        OnSoundsVolumeChanged(volume);		
         Data.Instance.events.OnSoundFX += OnSoundFX;
-       // Events.OnSoundFXLoop += OnSoundFXLoop;
-       // Events.OnSoundsVolumeChanged += OnSoundsVolumeChanged;        
-        //Events.OnHeroDie += OnHeroDie;
-
-		if (!Data.Instance.musicOn || Data.Instance.turnOffSounds) {
-			audioSource.volume = 0;
-		}
-    }
+		Data.Instance.events.OnSFXStatus += OnSFXStatus;
+	}
+	void OnSFXStatus(bool isOn)
+	{
+		audioSource.enabled = isOn;
+	}
     void OnHeroDie()
     {
         OnSoundFXLoop("");
@@ -39,9 +26,6 @@ public class SoundManager : MonoBehaviour
     void OnDestroy()
     {
         Data.Instance.events.OnSoundFX -= OnSoundFX;
-       // Events.OnSoundFXLoop -= OnSoundFXLoop;
-       // Events.OnSoundsVolumeChanged -= OnSoundsVolumeChanged;
-       // Events.OnHeroDie -= OnHeroDie;
         if (loopAudioSource)
         {
             loopAudioSource = null;
@@ -50,9 +34,6 @@ public class SoundManager : MonoBehaviour
     }
     void OnSoundsVolumeChanged(float value)
     {
-		if (!Data.Instance.musicOn || Data.Instance.turnOffSounds) {
-			return;
-		}
         audioSource.volume = value;
         volume = value;
 
@@ -84,13 +65,6 @@ public class SoundManager : MonoBehaviour
             audioSource.Stop();
             return;
         }
-//        else if (soundName == "FXCheer")
-//            soundName = GetRandomSound(FXCheer);
-//        else if (soundName == "FXJump")
-//            soundName = GetRandomSound(FXJump);
-//        else if(soundName == "FXCrash")
-//            soundName = GetRandomSound(FXCrash);
-
         if (volume == 0) return;
 
         if (playerID == 0)
