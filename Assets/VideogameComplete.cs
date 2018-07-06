@@ -60,6 +60,8 @@ public class VideogameComplete : MonoBehaviour {
 		
 		if(Data.Instance.videogamesData.actualID == 0)
 			Data.Instance.videogamesData.actualID = 1;
+		else if(Data.Instance.videogamesData.actualID == 1)
+			Data.Instance.videogamesData.actualID = 2;
 		else
 			Data.Instance.videogamesData.actualID = 0;
 		Data.Instance.LoadLevel ("LevelSelector");

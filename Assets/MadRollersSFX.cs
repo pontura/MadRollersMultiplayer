@@ -11,7 +11,8 @@ public class MadRollersSFX : MonoBehaviour {
 		JUMP,
 		CHEER,
 		CRASH,
-		TOUCH_GROUND
+		TOUCH_GROUND,
+		DOUBLE_JUMP
 	}
 	public PlayerClips[] playerClips;
 	[Serializable]
@@ -22,6 +23,7 @@ public class MadRollersSFX : MonoBehaviour {
 		public AudioClip crash;
 		public AudioClip cheer;
 		public AudioClip touchGround;
+		public AudioClip doubleJump;
 	}
 
 	public AudioSource player1;
@@ -72,6 +74,10 @@ public class MadRollersSFX : MonoBehaviour {
 			break;
 		case types.TOUCH_GROUND: 
 			ac = playerClips[id].touchGround; 
+			audioSource.loop = false; 
+			break;
+		case types.DOUBLE_JUMP: 
+			ac = playerClips[id].doubleJump; 
 			audioSource.loop = false; 
 			break;
 		}

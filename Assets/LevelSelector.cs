@@ -147,6 +147,8 @@ public class LevelSelector : MonoBehaviour {
 		print(videogameActiveID + " " + Data.Instance.videogamesData.all.Length);
 		if(videogameActiveID == (Data.Instance.videogamesData.all.Length-1))
 			return;
+
+		Data.Instance.events.OnSoundFX ("UI_Cascade", -1);
 		//missionActiveID = 0;
 		videogameActiveID++;
 		videogameUI.Right ();

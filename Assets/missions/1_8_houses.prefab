@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 11445784}
   - component: {fileID: 11445786}
   m_Layer: 0
-  m_Name: 5_houses
+  m_Name: 1_8_houses
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,12 +41,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c52aa23c4c1909c45b1a2eeadb8f98cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 8
+  backgroundSides:
+  - {fileID: 114261747288639716, guid: de223848633682f44882b76d6adecc79, type: 2}
+  voices:
+  - text: survive
+    audioClip: {fileID: 8300000, guid: 6134bbcf0580be241a59783ebaeab5ae, type: 3}
+  videoGameID: 0
+  missionIcon: {fileID: 1500483267502380, guid: a816137bab5155d44aae12fae78075ad,
+    type: 2}
+  isCompetition: 0
   maxScore: 7500
   Hiscore: 0
   avatarHiscore: 
+  boss1: 0
   hearts: 0
   guys: 0
-  points: 330
+  ghost: 0
+  points: 0
   listeners: 0
   planes: 0
   bombs: 0
@@ -63,17 +75,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aab087fa44cc671439e1b50508ce4d75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingArea: {fileID: 11400258, guid: 3ba8407d2d50f0b41b9bdc4873fea123, type: 2}
-  num: 3
-  testingAreas: []
-  testingAreaSet: {fileID: 0}
   areaSets:
   - {fileID: 11405678, guid: 0a70758ff09459743bd45fa7a83cee61, type: 2}
   - {fileID: 11496950, guid: e726c77a462d13644a27e83030071154, type: 2}
   - {fileID: 11405678, guid: 0a70758ff09459743bd45fa7a83cee61, type: 2}
-  skyAreas:
-  - {fileID: 11400028, guid: 4e1fb688f3878b84abf0e92e91c95448, type: 2}
   activeAreaSetID: 3
+  showRelaxAreaBeforeStarting: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

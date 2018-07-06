@@ -263,10 +263,10 @@ public class CharacterBehavior : MonoBehaviour {
 	}
 	void OnFloorDone()
 	{
-		if (state == states.RUN)
-			_animation_hero.Play("run");
-
-		Data.Instance.events.OnMadRollerFX (MadRollersSFX.types.ENGINES, player.id);
+		if (state == states.RUN) {
+			_animation_hero.Play ("run");
+			Data.Instance.events.OnMadRollerFX (MadRollersSFX.types.ENGINES, player.id);
+		}
 	}
 	public void Run()
 	{
@@ -398,7 +398,7 @@ public class CharacterBehavior : MonoBehaviour {
 		GetComponent<Rigidbody>().velocity = Vector3.zero;
 
 		floorCollitions.OnAvatarJump();
-		Data.Instance.events.OnSoundFX("FX jump03 chicle", player.id);
+		Data.Instance.events.OnMadRollerFX (MadRollersSFX.types.DOUBLE_JUMP, player.id);
 
 		data.events.AvatarJump();
 
@@ -423,7 +423,7 @@ public class CharacterBehavior : MonoBehaviour {
 		transform.localPosition = pos;
 		SuperJump(force);
 
-		Data.Instance.events.OnSoundFX("FX jump03 chicle", player.id);
+		Data.Instance.events.OnMadRollerFX (MadRollersSFX.types.DOUBLE_JUMP, player.id);
 
 		if (!dir_forward)
 		{

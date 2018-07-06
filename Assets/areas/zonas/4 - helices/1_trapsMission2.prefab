@@ -8,10 +8,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 400000}
-  - component: {fileID: 11400002}
   - component: {fileID: 11400000}
   m_Layer: 0
-  m_Name: 5_traps
+  m_Name: 1_trapsMission2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,7 +23,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.0593038, y: -96.47865, z: 122.63338}
+  m_LocalPosition: {x: 21.463102, y: 18.326134, z: -34.05804}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -38,37 +37,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aab087fa44cc671439e1b50508ce4d75, type: 3}
+  m_Script: {fileID: 11500000, guid: 772be226d7eee534998f146178bc9df9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingArea: {fileID: 11400258, guid: 3ba8407d2d50f0b41b9bdc4873fea123, type: 2}
-  areaSets:
-  - {fileID: 11456222, guid: 89631d927402d994598ddbffc809af61, type: 2}
-  - {fileID: 11400000, guid: a69d6b336a6a8d24495a298ff9a6831d, type: 2}
-  activeAreaSetID: 2
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c52aa23c4c1909c45b1a2eeadb8f98cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCompetition: 0
-  maxScore: 5300
-  Hiscore: 0
-  avatarHiscore: 
-  hearts: 0
-  guys: 0
-  points: 300
-  listeners: 0
-  planes: 0
-  bombs: 0
-  distance: 300
-  description: TRAMPAS
+  competitionsPriority: 0
+  randomize: 1
+  areas:
+  - {fileID: 11400024, guid: aa05755252933514984d6ed578ac4470, type: 2}
+  - {fileID: 11400012, guid: 7fce41a5fdf98a04d9fc9ae37e5cd704, type: 2}
+  - {fileID: 11400006, guid: 9a0f65a3e0697604d9e604fba0d543e9, type: 2}
+  - {fileID: 11400012, guid: 7fce41a5fdf98a04d9fc9ae37e5cd704, type: 2}
+  totalAreasInSet: 3
+  cameraOrientation: {x: 0, y: 0, z: 0}
+  cameraRotationX: 0
+  isLastArea: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
