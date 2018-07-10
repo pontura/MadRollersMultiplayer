@@ -18,6 +18,7 @@ public class MusicManager : MonoBehaviour {
 
     void Start()
     {
+		
         audioSource = GetComponent<AudioSource>();
         GetComponent<AudioLowPassFilter>().enabled = false;
 		Data.Instance.GetComponent<Tracker> ().TrackScreen ("Main Menu");
@@ -36,6 +37,9 @@ public class MusicManager : MonoBehaviour {
      //   Data.Instance.events.OnSoundFX += OnSoundFX;
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
 		Data.Instance.events.OnMusicStatus += OnMusicStatus;
+
+		if (!Data.Instance.musicOn)
+			audioSource.enabled = false;
     }
 	void OnMusicStatus(bool isOn)
 	{

@@ -14,6 +14,9 @@ public class SoundManager : MonoBehaviour
         OnSoundsVolumeChanged(volume);		
         Data.Instance.events.OnSoundFX += OnSoundFX;
 		Data.Instance.events.OnSFXStatus += OnSFXStatus;
+
+		if (!Data.Instance.soundsFXOn)
+			audioSource.enabled = false;
 	}
 	void OnSFXStatus(bool isOn)
 	{

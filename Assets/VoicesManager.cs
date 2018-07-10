@@ -41,6 +41,9 @@ public class VoicesManager : MonoBehaviour
         Data.Instance.events.SetVolume += SetVolume;
         Data.Instance.events.VoiceFromResources += VoiceFromResources; 
 		Data.Instance.events.OnVoicesStatus += OnVoicesStatus;
+
+		if (!Data.Instance.voicesOn)
+			audioSource.enabled = false;
 	}
 	void OnVoicesStatus(bool isOn)
 	{

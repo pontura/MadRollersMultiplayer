@@ -35,6 +35,8 @@ public class MadRollersSFX : MonoBehaviour {
 		Data.Instance.events.OnMadRollerFX += OnMadRollerFX;	
 		Data.Instance.events.OnGameOver += OnGameOver;
 		Data.Instance.events.OnMadRollersSFXStatus += OnMadRollersSFXStatus;
+
+		OnMadRollersSFXStatus( Data.Instance.madRollersSoundsOn);
 	}
 	void OnMadRollersSFXStatus(bool isOn)
 	{
