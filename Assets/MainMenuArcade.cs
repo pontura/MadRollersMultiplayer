@@ -9,7 +9,6 @@ public class MainMenuArcade : MonoBehaviour {
     private MultiplayerData multiplayerData;
 
     public AudioClip countdown_clip;
-    private AudioSource audioSource;
 
     public Text CountDownField;
 
@@ -29,12 +28,12 @@ public class MainMenuArcade : MonoBehaviour {
     public MeshRenderer backgruond;
 
 	void Start () {
+		sec = 10;
 		string desc = Data.Instance.missions.GetMissionActive ().description;
 		foreach (Text t in missionFields) {
 			t.text = desc;
 		}
         Data.Instance.events.OnInterfacesStart();
-        audioSource = GetComponent<AudioSource>();
         multiplayerData = Data.Instance.multiplayerData;
 		CountDownField.text = "";
         int id = 0;
@@ -107,7 +106,6 @@ public class MainMenuArcade : MonoBehaviour {
             Clicked(3);
         }
     }
-    bool anyActive = false;
     void Clicked(int playerID)
     {		
         totalPlayers = 0;
@@ -130,7 +128,6 @@ public class MainMenuArcade : MonoBehaviour {
 
             if (pm.isActive)
             {
-                anyActive = true;
                 totalPlayers++;
             }
         }
@@ -139,14 +136,14 @@ public class MainMenuArcade : MonoBehaviour {
     {
 		Invoke("Loop", 0.5f);
 		if (!isOn) return;
-		if (Data.Instance.playMode == Data.PlayModes.VERSUS)
-		if (
-			(Data.Instance.multiplayerData.player1 || Data.Instance.multiplayerData.player2)
-			&&
-			(Data.Instance.multiplayerData.player3 || Data.Instance.multiplayerData.player4)) {
-			//sigue
-		} else
-			return;
+//		if (Data.Instance.playMode == Data.PlayModes.VERSUS)
+//		if (
+//			(Data.Instance.multiplayerData.player1 || Data.Instance.multiplayerData.player2)
+//			&&
+//			(Data.Instance.multiplayerData.player3 || Data.Instance.multiplayerData.player4)) {
+//			//sigue
+//		} else
+//			return;
 		
 		if(sec>=0)
        	 sec--;
