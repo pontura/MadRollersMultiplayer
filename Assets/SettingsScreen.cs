@@ -3,7 +3,8 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class SettingsScreen : MonoBehaviour {
-
+	
+	public Toggle canContinue;
 	public Toggle switchPlayers;
 	public Toggle musicToggle;
 	public Toggle soundFXToggle;
@@ -16,6 +17,7 @@ public class SettingsScreen : MonoBehaviour {
 	}
 	public void Done()
 	{
+		Data.Instance.canContinue = canContinue.isOn;
 		Data.Instance.musicOn = musicToggle.isOn;
 		Data.Instance.soundsFXOn = soundFXToggle.isOn;
 		Data.Instance.madRollersSoundsOn = madRollersToggle.isOn;

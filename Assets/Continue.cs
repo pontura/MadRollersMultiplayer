@@ -37,6 +37,17 @@ public class Continue : MonoBehaviour {
 	}	
 	public void OnGameOverDelayed()
 	{		
+		if (!Data.Instance.canContinue) {
+
+			Data.Instance.multiplayerData.OnRefreshPlayersByActiveOnes ();
+			Data.Instance.inputSavedAutomaticPlay.RemoveAllData ();
+			Data.Instance.isReplay = false;
+			CancelInvoke ();
+			Data.Instance.events.OnResetLevel();
+
+			Data.Instance.LoadLevel ("Hiscores");
+			return;
+		}
 		panel.SetActive (true);
 		num = 9;
 		countdown_txt.text = num.ToString();

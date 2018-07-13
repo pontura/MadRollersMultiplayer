@@ -5,6 +5,8 @@ public class Data : MonoBehaviour {
 
 	public bool isArcadeMultiplayer;
 	public bool DEBUG;
+
+	public bool canContinue;
 	public bool voicesOn;
 	public bool soundsFXOn;
 	public bool madRollersSoundsOn;

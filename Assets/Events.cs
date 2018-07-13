@@ -52,6 +52,7 @@ public class Events : MonoBehaviour {
     public System.Action OnCreateBonusArea = delegate { };
     public System.Action<Vector3, Color> OnAddExplotion = delegate { };
     public System.Action OnAlignAllCharacters = delegate { };
+	public System.Action OnResetScores = delegate { };
     public System.Action<List<int>> OnReorderAvatarsByPosition = delegate { };
     public void AddExplotion(Vector3 position, Color color) { OnAddExplotion(position, color); }
 

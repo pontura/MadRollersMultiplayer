@@ -30,7 +30,12 @@ public class MultiplayerData : MonoBehaviour
     void Start()
     {
         Data.Instance.events.OnReorderAvatarsByPosition += OnReorderAvatarsByPosition;
+		Data.Instance.events.OnResetScores += OnResetScores;
     }
+	void OnResetScores()
+	{
+		score_player1 = score_player2 = score_player3 = score_player4 = 0;
+	}
     void OnReorderAvatarsByPosition(List<int> _players)
     {
         players = _players;
@@ -81,6 +86,7 @@ public class MultiplayerData : MonoBehaviour
 		default: player4_played = true;break;
 		}
 	}
+
 	public int GetTotalScore()
 	{
 		return score_player1 + score_player2 + score_player3 + score_player4;
