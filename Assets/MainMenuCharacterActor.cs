@@ -37,13 +37,13 @@ public class MainMenuCharacterActor : MonoBehaviour {
             if (!isActive)
             {
                 anim.Play("run");
-                GetComponent<RetroPixelPro>().strength = 0;
+            //    GetComponent<RetroPixelPro>().strength = 0;
                // bg.SetActive(true);
             }
             else
             {
                 anim.Play("saluda");
-                GetComponent<RetroPixelPro>().strength = 1;
+              //  GetComponent<RetroPixelPro>().strength = 1;
              //   bg.SetActive(false);
             }
         }

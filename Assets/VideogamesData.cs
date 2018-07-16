@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class VideogamesData : MonoBehaviour {
 
 	public int actualID;
 	public VideogameData[] all;
+
 
 	public void ChangeID(int id)
 	{

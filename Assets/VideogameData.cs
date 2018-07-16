@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using AlpacaSound.RetroPixelPro;
 
 [Serializable]
 public class VideogameData {
@@ -14,4 +15,5 @@ public class VideogameData {
 	public Color fog;
 	public Sprite logo;
 	public Sprite floppyCover;
+	public RetroPixelPro retroPixelPro;
 }

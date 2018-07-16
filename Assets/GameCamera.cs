@@ -40,8 +40,8 @@ public class GameCamera : MonoBehaviour
 
 	void ChangeResolution()
 	{
-		retroPixelPro.horizontalResolution =(int) defaultResolution.x;
-		retroPixelPro.verticalResolution =(int) defaultResolution.y;
+		//retroPixelPro.horizontalResolution =(int) defaultResolution.x;
+	//	retroPixelPro.verticalResolution =(int) defaultResolution.y;
 	}
 	void SetPizelPro()
 	{
@@ -52,15 +52,28 @@ public class GameCamera : MonoBehaviour
 			newH+=pixel_speed_recovery;
 		if (newV < defaultResolution.y)
 			newV+=pixel_speed_recovery;
-		retroPixelPro.horizontalResolution = newH;
-		retroPixelPro.verticalResolution = newV;
+		//retroPixelPro.horizontalResolution = newH;
+		//retroPixelPro.verticalResolution = newV;
 	}
-
+	Component CopyComponent(Component original, GameObject destination)
+	{
+		System.Type type = original.GetType();
+		Component copy = destination.AddComponent(type);
+		System.Reflection.FieldInfo[] fields = type.GetFields();
+		foreach (System.Reflection.FieldInfo field in fields)
+		{
+			field.SetValue(copy, field.GetValue(original));
+		}
+		return copy;
+	}
     void Start()
     {
 
-		newH = retroPixelPro.horizontalResolution;
-		newV = retroPixelPro.verticalResolution;
+		//newH = retroPixelPro.horizontalResolution;
+		//newV = retroPixelPro.verticalResolution;
+
+		RetroPixelPro rtp = Data.Instance.videogamesData.GetActualVideogameData ().retroPixelPro;
+		CopyComponent (rtp, cam.gameObject);
 
 		charactersManager = Game.Instance.GetComponent<CharactersManager>();
        
