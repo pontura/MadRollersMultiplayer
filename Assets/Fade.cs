@@ -92,6 +92,7 @@ public class Fade : MonoBehaviour
       //  graphicRaycaster.enabled = false;
         fading = false;
         masker.gameObject.SetActive(false);
+		Data.Instance.LoadingReady ();
     }
 	void StartFade(float aFadeTime, Color aColor)
     {
@@ -126,6 +127,7 @@ public class Fade : MonoBehaviour
 		}
 		fading = false;
 		masker.gameObject.SetActive(false);
+
 	}
     
 }
