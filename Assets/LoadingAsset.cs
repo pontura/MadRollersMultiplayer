@@ -5,23 +5,37 @@ using UnityEngine.UI;
 
 public class LoadingAsset : MonoBehaviour {
 
+	public GameObject loadingPanel;
+	public GameObject videoPanel;
+
 	public GameObject panel;
 	public Sprite[] spritesToBG;
 	public GameObject bg;
 	public Image[] backgroundImages;
 	float speed;
 	bool isOn;
-
-	public void SetOn(bool _isOn)
-	{
-		this.isOn = _isOn;
-		panel.SetActive (_isOn);
-	}
-
 	void Start () {
-		panel.SetActive (false);
+		videoPanel.SetActive (false);
 		ChangeBG ();
 	}
+	public void SetOn(bool _isOn)
+	{
+		videoPanel.SetActive (true);
+		this.isOn = _isOn;
+		//panel.SetActive (_isOn);
+		loadingPanel.SetActive (_isOn);
+		Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
+		Data.Instance.events.OnGameOver += OnGameOver;
+	}
+	void StartMultiplayerRace()
+	{
+		videoPanel.SetActive (false);
+	}
+	void OnGameOver()
+	{
+		videoPanel.SetActive (true);
+	}
+
 
 	void Update () {
 		

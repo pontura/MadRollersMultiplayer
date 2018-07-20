@@ -10,7 +10,7 @@ public class VideogameFilter : MonoBehaviour {
 
 	void OnEnable () {
 		int id = Data.Instance.videogamesData.GetActualVideogameData ().id;
-		print("_______________"+  id);
+
 		if (id == 0) {
 			SetEverythingIn (only_show_in_videogame_1, true);
 			SetEverythingIn (only_show_in_videogame_2, false);
@@ -19,7 +19,7 @@ public class VideogameFilter : MonoBehaviour {
 			SetEverythingIn (only_show_in_videogame_2, true);
 			SetEverythingIn (only_show_in_videogame_1, false);
 			SetEverythingIn (only_show_in_videogame_3, false);
-		} else if (id == 2) {
+		} else {
 			SetEverythingIn (only_show_in_videogame_2, false);
 			SetEverythingIn (only_show_in_videogame_1, false);
 			SetEverythingIn (only_show_in_videogame_3, true);
