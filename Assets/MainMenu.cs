@@ -15,6 +15,9 @@ public class MainMenu : MonoBehaviour {
 	MainMenuButton activeButton;
 	public Text playersField;
 
+	public Transform container;
+	public Player player_to_instantiate;
+
 	void Start()
 	{		
 		buttons = new List<MainMenuButton> ();
@@ -58,6 +61,15 @@ public class MainMenu : MonoBehaviour {
 		}
 		SetButtons ();
 		activeButton.SetOn (true);
+		float _separation = 6;
+		for (int a = 0; a < 4; a++) {
+			Player p = Instantiate (player_to_instantiate);
+			p.transform.SetParent (container);
+			p.id = a;
+			p.transform.localPosition = new Vector3((-(_separation*3)/2)+(_separation*a),0,0);
+			p.transform.localScale = Vector3.one;
+			p.transform.localEulerAngles = Vector3.zero;
+		}
 	}
 	void OnDestroy()
 	{

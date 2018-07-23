@@ -43,7 +43,12 @@ public class Player : MonoBehaviour {
  //   public EnergyBar energyBar;
 
 	void Start()
-	{
+	{		
+		
+		if (UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name != "Game") {
+			SetSettings ();
+			return;
+		}
 		Data.Instance.events.OnAvatarDie += OnAvatarDie;
 		Data.Instance.events.OnMissionStart += OnMissionStart;
 		Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
@@ -64,8 +69,8 @@ public class Player : MonoBehaviour {
         Data.Instance.events.OnAvatarGetItem -= OnAvatarGetItem;
         Data.Instance.events.OnAvatarProgressBarEmpty -= OnAvatarProgressBarEmpty;
     }
-    public void Init(int id)
-    {
+	void SetSettings()
+	{
 		shadow.SetActive (true);
 
 
@@ -73,6 +78,23 @@ public class Player : MonoBehaviour {
 			madRoller.Init (3);
 		else
 			madRoller.Init (id);
+
+		if(id>3)
+			color = Data.Instance.GetComponent<MultiplayerData>().colors[4];
+		else
+			color = Data.Instance.GetComponent<MultiplayerData>().colors[id];
+
+		foreach (TrailRenderer tr in GetComponentsInChildren<TrailRenderer>()) {
+			if (id == 0)
+				tr.enabled = false;
+			else
+				tr.material.color = color; 
+		}
+	}
+    public void Init(int _id)
+    {
+		this.id = _id;
+		SetSettings ();
 		
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
 
@@ -90,17 +112,8 @@ public class Player : MonoBehaviour {
 
 
         characterBehavior = GetComponent<CharacterBehavior>();
-        if (id == 0)
-            originalMaterial = Resources.Load("Materials/BolaHead", typeof(Material)) as Material;
-        else
-            originalMaterial = Resources.Load("Materials/Piel2", typeof(Material)) as Material;
-
-       // setStartingState();
-      //  Invoke("setStartingState2", 1);
-        
 
         this.id = id;
-       // this.energyBar = energyBar;
        
         particles.SetActive(false);
         OnAvatarProgressBarEmpty();

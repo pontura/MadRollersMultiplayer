@@ -17,6 +17,8 @@ public class CharacterControls : MonoBehaviour {
     private CharactersManager charactersManager;
 
 	void Start () {
+		if (UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name != "Game")
+			return;
         characterBehavior = GetComponent<CharacterBehavior>();
         player = GetComponent<Player>();
         Invoke("EnabledMovements", 0.5f);
@@ -36,7 +38,7 @@ public class CharacterControls : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void LateUpdate () {
-		if (characterBehavior.player == null)
+		if (characterBehavior == null || characterBehavior.player == null)
 			return;
 		if (characterBehavior.state == CharacterBehavior.states.CRASH || characterBehavior.state == CharacterBehavior.states.DEAD) 
 			return;

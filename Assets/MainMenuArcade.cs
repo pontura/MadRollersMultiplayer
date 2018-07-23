@@ -112,7 +112,6 @@ public class MainMenuArcade : MonoBehaviour {
         Data.Instance.events.OnSoundFX("coin", playerID);
 
         playerMainMenuUI[playerID].Toogle();
-        mainMenuCharacterActor[playerID].SetState(playerID, playerMainMenuUI[playerID].isActive);
 
         GetTotalPlayers();
 		isOn = true;

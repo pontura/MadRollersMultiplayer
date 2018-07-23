@@ -56,7 +56,17 @@ public class CharacterBehavior : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		
 		data = Data.Instance;       
+
+		if (UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name != "Game") {
+			GetComponent<Collider>().enabled = false;
+			GetComponent<Rigidbody> ().useGravity = false;
+			GetComponent<Rigidbody> ().isKinematic = true;
+			return;
+		}
+		
+
 
 		player = GetComponent<Player>();
 
