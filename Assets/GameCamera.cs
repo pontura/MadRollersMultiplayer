@@ -73,6 +73,7 @@ public class GameCamera : MonoBehaviour
 		//newV = retroPixelPro.verticalResolution;
 
 		RetroPixelPro rtp = Data.Instance.videogamesData.GetActualVideogameData ().retroPixelPro;
+		rtp.dither = 0;
 		CopyComponent (rtp, cam.gameObject);
 
 		charactersManager = Game.Instance.GetComponent<CharactersManager>();
