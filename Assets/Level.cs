@@ -237,7 +237,7 @@ public class Level : MonoBehaviour {
 	}
 	void OnAddHeartsByBreaking(Vector3 position, Material[] mat, Vector3[] pos)
 	{
-		int force = 400;
+		int force = 700;
 		position.y += 0.7f;
 		int NumOfParticles = mat.Length;
 		for (int a = 0; a < NumOfParticles; a++)
@@ -254,10 +254,10 @@ public class Level : MonoBehaviour {
 			}
 		}
 	}
-    void AddHeartsByBreaking(Vector3 position, int NumOfParticles, int force = 400)
+    void AddHeartsByBreaking(Vector3 position, int NumOfParticles, int force = 700)
     {
         position.y += 0.7f;
-        if (NumOfParticles > 20) NumOfParticles = 20;
+		if (NumOfParticles > 25) NumOfParticles = 25;
         for (int a = 0; a < NumOfParticles; a++)
         {
             SceneObject newSO = ObjectPool.instance.GetObjectForType(explotionGift.name, true);

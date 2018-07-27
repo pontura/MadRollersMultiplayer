@@ -3,28 +3,21 @@ using System.Collections;
 
 public class FXExplotion : SceneObject {
 
-    public float _scale = 3;
-	public float _duration = 0.5f;	
+	public float _scale = 5;
+	float _duration = 0.3f;	
 	private bool isScaling = false;
 	private int floorDumps = 0;
 	private int floorTotalDumps = 0;
 
+	bool isOn;
+	float timer;
 
     public override void OnRestart(Vector3 position)
     {
+		isOn = true;
         position.y += 3;
 
-        transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-
-        iTween.ScaleTo(
-            gameObject, 
-            iTween.Hash(
-                "scale", Vector3.one * _scale,
-                "time", _duration,
-                "onComplete", "die",
-                "easeType", iTween.EaseType.linear
-            )
-        );
+		transform.localScale = Vector3.zero;
 
         GameCamera camera = Game.Instance.gameCamera;
 
@@ -44,10 +37,29 @@ public class FXExplotion : SceneObject {
 
         position.z -= 2;
         position.y += 2;
+		timer = 0.2f;
 	}
+	public override void OnSceneObjectUpdate()
+	{
+		base.OnSceneObjectUpdate ();
 
+		if (!isOn)
+			return;
+		
+		timer += Time.deltaTime;
+
+		Vector3 scale = transform.localScale;
+		float s = (timer * _scale) / _duration;
+		transform.localScale = new Vector3(s,s,s);
+
+		print (s);
+
+		if (scale.x > _scale)
+			Pool ();
+	}
     private void die()
     {
+		isOn = false;
         Pool();
 	}
 	

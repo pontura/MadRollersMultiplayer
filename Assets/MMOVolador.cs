@@ -2,25 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MMOVolador : MmoCharacter {
+public class MMOVolador : SceneObject {
 
 	public float Distance_to_react;
 	public Animation anim;
 	bool isOn;
+	bool isPreparing;
 	float initial_speed=2.5f;
 	float speed;
 	float acceleration = 10f;
 
 	public override void OnRestart(Vector3 pos)
 	{
+		anim.Play ("gargola_idle");
 		speed = initial_speed;
 		isOn = false;
+		isPreparing = false;
 		base.OnRestart (pos);
 		GetComponent<Rigidbody> ().useGravity = true;
 	}
 	public override void OnSceneObjectUpdate()
 	{
-		if ( distanceFromCharacter < Distance_to_react) {
+		if (!isPreparing && distanceFromCharacter < Distance_to_react + 15) {
+			anim.Play ("gargola_prepare");
+			isPreparing = true;
+		} else if ( distanceFromCharacter < Distance_to_react) {
 			
 			if(!isOn)
 			{
