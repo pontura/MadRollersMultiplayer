@@ -144,7 +144,7 @@ public class MmoCharacter : SceneObject
     public override void OnSceneObjectUpdate()
     {
         base.OnSceneObjectUpdate();
-        SendMessage("OnSceneObjectUpdated", SendMessageOptions.DontRequireReceiver);
+       // SendMessage("OnSceneObjectUpdated", SendMessageOptions.DontRequireReceiver);
 	}
     public void ChangeSkinMaterial(Material material)
     {

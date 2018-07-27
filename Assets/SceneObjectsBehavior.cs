@@ -146,8 +146,9 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			case "Cascade": 
 			case "firewall":        
 			case "Baranda1":  
-			case "Tumba":  
+			//case "Tumba":  
 			case "enemyNaveSimple":  
+			case "BichoVuela":
 				
 				if(go.name == "smallBlock1" || go.name == "extraSmallBlock1")
 					sceneObject = Pool.GetObjectForType(go.name + "_real", true);    
