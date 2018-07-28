@@ -235,22 +235,35 @@ public class Level : MonoBehaviour {
         else
             Data.Instance.events.OnAddPowerUp(position);
 	}
-	void OnAddHeartsByBreaking(Vector3 position, Material[] mat, Vector3[] pos)
+	public void OnAddHeartsByBreaking(Vector3 position, Material[] mat, Vector3[] pos)
 	{
-		int force = 700;
-		position.y += 0.7f;
+		int force = 400;
+		//position.y += 0.7f;
 		int NumOfParticles = mat.Length;
+		bool randomPixles = false;
+		if(NumOfParticles>40)
+			randomPixles = true;
+		bool dontAddThis = false;
 		for (int a = 0; a < NumOfParticles; a++)
 		{
-			SceneObject newSO = ObjectPool.instance.GetObjectForType(explotionGift.name, true);
-			if (newSO)
-			{
-				newSO.Restart(pos[a]);
-				newSO.transform.localEulerAngles = new Vector3(0, a * (360 / NumOfParticles), 0);
-				Vector3 direction = ((newSO.transform.forward * force) + (Vector3.up * (force*2)));
-				newSO.GetComponent<Rigidbody>().AddForce(direction, ForceMode.Impulse);
-				GrabbableItem gi = newSO.GetComponent<GrabbableItem> ();
-				gi.SetMaterial (mat[a]);
+			if (randomPixles) {
+				if (Random.Range (0, 10) < 6)
+					dontAddThis = true;
+				else
+					dontAddThis = false;
+			}
+			if (!dontAddThis) {
+				SceneObject newSO = ObjectPool.instance.GetObjectForType (explotionGift.name, true);
+				if (newSO) {
+					newSO.Restart (pos [a]);
+					newSO.transform.localEulerAngles = new Vector3 (0, a * (360 / NumOfParticles), 0);
+					Vector3 direction = ((newSO.transform.forward * force) + (Vector3.up * (force * 2)));
+					Rigidbody rb = newSO.GetComponent<Rigidbody> ();
+					rb.velocity = Vector3.zero;
+					rb.AddForce (direction, ForceMode.Impulse);
+					GrabbableItem gi = newSO.GetComponent<GrabbableItem> ();
+					gi.SetMaterial (mat [a]);
+				}
 			}
 		}
 	}

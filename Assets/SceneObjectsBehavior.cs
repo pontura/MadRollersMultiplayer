@@ -339,7 +339,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			if (clone)
 			{
 				sceneObject = Instantiate(clone, pos, Quaternion.identity) as SceneObject;
-				sceneObject.transform.parent = Pool.Scene.transform;
+				sceneObject.transform.SetParent(Pool.Scene.transform);
 				sceneObject.transform.rotation = go.transform.rotation;
 
 				if (go.GetComponent<BossSettings>())

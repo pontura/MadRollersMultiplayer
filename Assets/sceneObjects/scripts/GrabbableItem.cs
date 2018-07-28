@@ -24,10 +24,8 @@ public class GrabbableItem : SceneObject
 
     public override void OnRestart(Vector3 pos)
     {
+		base.OnRestart(pos);
         player = null;
-
-      //  if (gameObject.GetComponent<TrailRenderer>())
-       //     gameObject.GetComponent<TrailRenderer>().enabled = true;
 
         TriggerCollider = gameObject.GetComponent<SphereCollider>();
         FloorCollider = gameObject.GetComponent<BoxCollider>();
@@ -35,7 +33,7 @@ public class GrabbableItem : SceneObject
         TriggerCollider.enabled = true;
         FloorCollider.enabled = true;
 
-        base.OnRestart(pos);
+       
         hitted = false;
         transform.localEulerAngles = new Vector3(0, 0, 0);
 
@@ -63,6 +61,7 @@ public class GrabbableItem : SceneObject
     }
     public override void OnSceneObjectUpdate()
     {
+		return;
 		if (titila.Length > 0) {
 			//meshRenderer.material.color = titila[0];
 		}
@@ -88,6 +87,7 @@ public class GrabbableItem : SceneObject
     
     private void OnTriggerEnter(Collider other)
     {
+		return;
         if (!isActive) return;
 		if(other.gameObject.CompareTag("Player"))
 		{

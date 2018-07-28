@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &113728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 413728}
+  - component: {fileID: 11413728}
+  m_Layer: 0
+  m_Name: pisoCurvo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &413728
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 113728}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 64.046844, y: 108.22239, z: -239.56937}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &11413728
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 113728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 772be226d7eee534998f146178bc9df9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  competitionsPriority: 0
+  randomize: 1
+  areas:
+  - {fileID: 11478310, guid: 4fa9df5c9113a3b4bb697c5e637a5212, type: 2}
+  - {fileID: 114522146423775840, guid: 033bd380a55908b479ab470c99699fd9, type: 2}
+  - {fileID: 114482404903082506, guid: 641eb3d1b70128d4e81d2e96b6dda63c, type: 2}
+  - {fileID: 114604615144769710, guid: 4e8f8720cc1f7e44fabac3300a0a29ab, type: 2}
+  - {fileID: 114670342699842682, guid: 0d6079fc132877c4aad5b6bfca5351c2, type: 2}
+  - {fileID: 114491251877267720, guid: 79535e8ecbdc50d4587403da89f3a124, type: 2}
+  - {fileID: 114366709062825964, guid: 932d65fef1583db4e8bebbeb69d88f43, type: 2}
+  - {fileID: 114090806754108734, guid: bda09395a83e85d4ea69a64685914ce8, type: 2}
+  - {fileID: 114819562977923168, guid: c10cf3381078cf6498463e02268d79e4, type: 2}
+  - {fileID: 114689163769866376, guid: 1372ed08f858c204093480630302b76d, type: 2}
+  - {fileID: 114046770659955364, guid: 9a963da75c173b540b62d7f5c52a2284, type: 2}
+  - {fileID: 114508558283732320, guid: 5162ac076b8d5b148b50f2966bb289ad, type: 2}
+  totalAreasInSet: 10000
+  cameraOrientation: {x: 0, y: 0, z: 0}
+  cameraRotationX: 0
+  isLastArea: 0
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 113728}
+  m_IsPrefabParent: 1

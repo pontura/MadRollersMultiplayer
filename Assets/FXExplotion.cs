@@ -52,8 +52,6 @@ public class FXExplotion : SceneObject {
 		float s = (timer * _scale) / _duration;
 		transform.localScale = new Vector3(s,s,s);
 
-		print (s);
-
 		if (scale.x > _scale)
 			Pool ();
 	}

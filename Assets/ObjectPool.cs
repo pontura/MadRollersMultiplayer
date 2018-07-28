@@ -106,6 +106,9 @@ public class ObjectPool : MonoBehaviour
                 pooledObjects[i].RemoveAt(0);
                 if (pooledObject)
                 {
+					if (pooledObject.gameObject.name == "bloodx1_real" || pooledObject.gameObject.name == "bloodx1_real(Clone)") 
+						print ("pone en SCene: bloodx1_real");
+					
                     pooledObject.transform.parent = Scene.transform;
                     return pooledObject;
                 }
@@ -131,12 +134,20 @@ public class ObjectPool : MonoBehaviour
 
     public void PoolObject(SceneObject obj)
     {
+		if (obj.gameObject.name == "bloodx1_real" || obj.gameObject.name == "bloodx1_real(Clone)") {
+			print ("SI bloodx1_real");
+			obj.gameObject.SetActive (true);
+		}
+		
         for (int i = 0; i < Entries.Length; i++)
         {
             if (Entries[i].Prefab.name == obj.name || Entries[i].Prefab.name + "(Clone)" == obj.name)
-            {
-                obj.gameObject.SetActive(false);
-                obj.transform.parent = containerObject.transform;
+            {        
+				if (obj.gameObject.name == "bloodx1_real")
+					print ("????? bloox1_real");
+				
+				obj.transform.SetParent(containerObject.transform);
+				obj.gameObject.SetActive(false);
                 pooledObjects[i].Add(obj);
                 return;
             }
