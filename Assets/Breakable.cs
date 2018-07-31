@@ -126,15 +126,8 @@ public class Breakable : MonoBehaviour {
 		int id = 0;
 		foreach (MeshRenderer mr in all) {
 			materials [id] = mr.material;
-			mr.transform.SetParent (container);
-			pos [id] = mr.transform.localPosition;
+			pos [id] = mr.transform.position;
 			id++;
-		}
-		int i = all.Length;
-		while(i>0)
-		{
-			Destroy(all[i-1].gameObject);
-			i--;
 		}
 		Game.Instance.level.OnAddHeartsByBreaking(transform.position, materials, pos);
 	}
