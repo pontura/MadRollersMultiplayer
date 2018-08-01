@@ -5,7 +5,9 @@ using System.Collections.Generic;
 
 public class MultiplayerData : MonoBehaviour
 {
-    public float newVictoryAreaScore;
+	public int ScoreToWinCredit;
+	public int score;
+   	public int creditsWon;
     public float distance;
 
     public bool player1;
@@ -35,6 +37,9 @@ public class MultiplayerData : MonoBehaviour
 	void OnResetScores()
 	{
 		score_player1 = score_player2 = score_player3 = score_player4 = 0;
+		score = 0;
+		distance = 0;
+		creditsWon = 0;
 	}
     void OnReorderAvatarsByPosition(List<int> _players)
     {
@@ -89,7 +94,7 @@ public class MultiplayerData : MonoBehaviour
 
 	public int GetTotalScore()
 	{
-		return score_player1 + score_player2 + score_player3 + score_player4;
+		return score;
 	}
 	public int GetPositionByScore(int _playerID)
 	{

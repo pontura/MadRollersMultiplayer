@@ -7,6 +7,7 @@ public class Data : MonoBehaviour {
 	public bool DEBUG;
 
 	public bool canContinue;
+	public int credits;
 	public bool voicesOn;
 	public bool soundsFXOn;
 	public bool madRollersSoundsOn;
@@ -197,5 +198,15 @@ public class Data : MonoBehaviour {
 	{
 		Data.Instance.events.ForceFrameRate (1);
 		GetComponent<Fade>().LoadSceneNotFading (levelName);
+	}
+	public void LoseCredit()
+	{
+		credits--;
+		if (credits == 0)
+			credits = 0;
+	}
+	public void WinCredit()
+	{
+		credits++;
 	}
 }

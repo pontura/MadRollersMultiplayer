@@ -75,7 +75,6 @@ public class ArcadeGUI : MonoBehaviour {
             SetFields("");return;
         }
         state = states.WELLCOME;
-       // SetIntroFields();
         Invoke("ResetFields", 3);
 
     }
@@ -118,26 +117,25 @@ public class ArcadeGUI : MonoBehaviour {
     }
     void OnGameOver()
     {
+		Data.Instance.LoseCredit ();
         print("OnGameOver");
         Data.Instance.multiplayerData.distance = Game.Instance.GetComponent<CharactersManager>().distance;
         
-        SetFields("GAME OVER");
+		if (Data.Instance.credits > 0) {
+			GetComponent<CreditsUI> ().RemoveOne ();
+			if (Data.Instance.multiplayerData.GetTotalCharacters () == 1)
+				SetFields ("DEAD!");
+			else
+				SetFields ("ALL DEAD!");
+
+			Invoke("Reset", 2);
+		} else {
+			SetFields ("GAME OVER");
+			Invoke("Reset", 4);
+		}
         
         ended = true;
         Data.Instance.scoreForArcade = 0;
-        Invoke("Reset", 2);
-
-//        foreach (MultiplayerUIStatus muis in multiplayerUI)
-//        {
-//            switch (muis.id)
-//            {
-//                case 0: Data.Instance.multiplayerData.score_player1 = muis.score; break;
-//                case 1: Data.Instance.multiplayerData.score_player2 = muis.score; break;
-//                case 2: Data.Instance.multiplayerData.score_player3 = muis.score; break;
-//                case 3: Data.Instance.multiplayerData.score_player4 = muis.score; break;
-//            }
-//           // muis.gameObject.SetActive(false);
-//        }
     }
     void Reset()
     {
@@ -158,85 +156,6 @@ public class ArcadeGUI : MonoBehaviour {
 		case 2: Data.Instance.multiplayerData.score_player3+= total;  break;
 		case 3: Data.Instance.multiplayerData.score_player4 += total;  break;
 		}
-		return;
-
-//		if (!isAnActivePlayer(playerID))
-//			return;
-//        SetScoreToUI(playerID, total);
 	}
-//    void StartMultiplayerStatus()
-//    {
-//        int id = 0;        
-//        foreach (MultiplayerUIStatus muis in multiplayerUI)
-//        {
-//            multiplayerUI_Y.Add((int)muis.transform.localPosition.y);
-//            bool active = false;
-//			muis.Init(id, Data.Instance.GetComponent<MultiplayerData>().colors[id], active);
-//            id++;
-//        }
-//       // Loop();
-//    }
-    //bool startedSettingPositions;
-//    void Loop()
-//    {
-//
-//        //Re-order avatars for score:
-//        bool reorder = false;
-//        for (int a = 0; a<multiplayerUI.Length; a++)
-//        {
-//            if (a > 0)
-//            {
-//                if (multiplayerUI[a].score > multiplayerUI[a - 1].score)
-//                {
-//                    reorder = true;
-//                    MultiplayerUIStatus m_loser = multiplayerUI[a - 1];
-//                    multiplayerUI[a - 1] = multiplayerUI[a];
-//                    multiplayerUI[a] = m_loser;
-//                }
-//            }
-//        }
-//        if (reorder || !startedSettingPositions)
-//        {
-//            Data.Instance.events.OnSoundFX("FX upgrade004", -1);
-//
-//            List<int> positions = new List<int>();
-//            for (int a = 0; a < multiplayerUI.Length; a++)
-//            {
-//                if (multiplayerUI[a].score >0)
-//                positions.Add(multiplayerUI[a].id);
-//            }
-//            Data.Instance.events.OnReorderAvatarsByPosition(positions);
-//
-//            for (int a = 0; a < multiplayerUI.Length; a++)
-//            {
-//                if (multiplayerUI[a].transform.localPosition.y != multiplayerUI_Y[a])
-//                    multiplayerUI[a].MoveTo(multiplayerUI_Y[a]);
-//            }
-//        }
-//        startedSettingPositions = true;
-//        Invoke("Loop", 1f);
-//    }
-//    private MultiplayerUIStatus GetPlayerUI(int playerID)
-//    {
-//        for (int a = 0; a < multiplayerUI.Length; a++)
-//        {
-//            if (multiplayerUI[a].id == playerID)
-//            {
-//                return multiplayerUI[a];
-//            }
-//        }
-//        return null;
-//    }
-//    void SetScoreToUI(int id, int score)
-//    {
-//        GetPlayerUI(id).AddScore(score);
-//    }
 
-//	bool isAnActivePlayer(int playerID)
-//	{
-//		if (playerID > 3)
-//			return false;
-//		return true;
-//	}
-    
 }

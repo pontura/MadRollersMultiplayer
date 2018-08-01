@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 public class ScoreBarMultiplayer : MonoBehaviour {
 
+	int ScoreToWinCredit;
+	int NextScoreToWinCredit;
 	public GameObject panel;
 	public GameObject hiscoreFields;
 	public Text myScoreFields;
 	public Image bar;
 	public RawImage hiscoreImage;
-	public int score;
 	public int hiscore;
     float newVictoryAreaScore;
 
@@ -18,6 +19,8 @@ public class ScoreBarMultiplayer : MonoBehaviour {
     
 
     void Start () {
+		ScoreToWinCredit = Data.Instance.multiplayerData.ScoreToWinCredit;
+		SetNextScoreToWinCredit ();
 //		if (Data.Instance.playMode == Data.PlayModes.STORY) {
 //			panel.SetActive (false);
 //			return;
@@ -29,7 +32,6 @@ public class ScoreBarMultiplayer : MonoBehaviour {
 
         Data.Instance.events.OnScoreOn += OnScoreOn;
 
-		score = 0;
 //		bar.fillAmount = 0;
 //
 //		ArcadeRanking arcadeRanking = Data.Instance.GetComponent<ArcadeRanking> ();
@@ -42,36 +44,51 @@ public class ScoreBarMultiplayer : MonoBehaviour {
 //		}
 		UpdateScore ();
 	}
+	void SetNextScoreToWinCredit()
+	{
+		NextScoreToWinCredit = (Data.Instance.multiplayerData.creditsWon+1)*ScoreToWinCredit;
+		print ("NextScoreToWinCredit " + NextScoreToWinCredit);
+	}
 	void OnDestroy()
 	{
 		Data.Instance.events.OnScoreOn -= OnScoreOn;
 	}
 	void OnScoreOn(int playerID, Vector3 pos, int total)
 	{
-		score += total;
+		if (NextScoreToWinCredit < Data.Instance.multiplayerData.score) {
+			Data.Instance.multiplayerData.creditsWon ++;
+			SetNextScoreToWinCredit ();
+			GetComponent<CreditsUI> ().AddNewCredit ();
+		}
+		Data.Instance.multiplayerData.score += total;
 		UpdateScore ();
-        if(score>newVictoryAreaScore)
-        {
-			print ("__newVictoryAreaScore " + newVictoryAreaScore + "  newVictoryAreaScore" + Data.Instance.multiplayerData.newVictoryAreaScore);
-            Data.Instance.events.SetVictoryArea();
-			Data.Instance.multiplayerData.newVictoryAreaScore *= 1.5f;
-            this.newVictoryAreaScore += Data.Instance.multiplayerData.newVictoryAreaScore;
-        }
+//		if(Data.Instance.multiplayerData.score > newVictoryAreaScore)
+//        {
+//			print ("__newVictoryAreaScore " + newVictoryAreaScore + "  newVictoryAreaScore" + Data.Instance.multiplayerData.newVictoryAreaScore);
+//            Data.Instance.events.SetVictoryArea();
+//			Data.Instance.multiplayerData.newVictoryAreaScore *= 1.5f;
+//            this.newVictoryAreaScore += Data.Instance.multiplayerData.newVictoryAreaScore;
+//        }
 	}
 	void UpdateScore()
 	{	
-		myScoreFields.text = score.ToString ("00000");
+		if (Data.Instance.multiplayerData.score == 0)
+			myScoreFields.text = "000";
+		else
+			myScoreFields.text = string.Format ("{0:#,#}",  Data.Instance.multiplayerData.score);
 
-		return;
 
-		if(hiscoreWinned) return;
-		
-		float barValue = (float)score/(float)hiscore;
-		if (barValue >= 1) {
-			hiscoreWinned = true;
-			barValue = 1;
-			Data.Instance.events.ShowNotification ("NUEVO HISCORE!");
-		}
-		bar.fillAmount = barValue;
+
+//		return;
+//
+//		if(hiscoreWinned) return;
+//		
+//		float barValue = (float)score/(float)hiscore;
+//		if (barValue >= 1) {
+//			hiscoreWinned = true;
+//			barValue = 1;
+//			Data.Instance.events.ShowNotification ("NUEVO HISCORE!");
+//		}
+//		bar.fillAmount = barValue;
 	}
 }

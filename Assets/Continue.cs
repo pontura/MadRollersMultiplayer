@@ -6,6 +6,7 @@ public class Continue : MonoBehaviour {
 	public GameObject panel;
 	private int num = 9;
 	public Text countdown_txt;
+	public Text credits_txt;
 	private float speed = 0.8f;
     private bool canClick;
 
@@ -32,27 +33,30 @@ public class Continue : MonoBehaviour {
 		Data.Instance.events.OnGameOver -= OnGameOver;
 	}
 	public void OnGameOver()
-	{		
+	{	
 		Invoke ("OnGameOverDelayed", 2);
 	}	
 	public void OnGameOverDelayed()
-	{		
-		if (!Data.Instance.canContinue) {
-
-			Data.Instance.multiplayerData.OnRefreshPlayersByActiveOnes ();
-			Data.Instance.inputSavedAutomaticPlay.RemoveAllData ();
-			Data.Instance.isReplay = false;
-			CancelInvoke ();
-			Data.Instance.events.OnResetLevel();
-
-			Data.Instance.LoadLevel ("Hiscores");
+	{			
+		if (!Data.Instance.canContinue || Data.Instance.credits==0) {
+			Invoke ("ShowHiscores", 2);
 			return;
-		}
+		} 
+		credits_txt.text = Data.Instance.credits + " CREDITS"; 
 		panel.SetActive (true);
 		num = 9;
 		countdown_txt.text = num.ToString();
 		Invoke ("Loop", 0.5f);
 	}	
+	void ShowHiscores()
+	{
+		Data.Instance.multiplayerData.OnRefreshPlayersByActiveOnes ();
+		Data.Instance.inputSavedAutomaticPlay.RemoveAllData ();
+		Data.Instance.isReplay = false;
+		CancelInvoke ();
+		Data.Instance.events.OnResetLevel();
+		Data.Instance.LoadLevel ("Hiscores");
+	}
 	public void Loop()
 	{
 		canClick = true;

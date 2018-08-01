@@ -192,7 +192,7 @@ public class MainHiscores : MonoBehaviour {
     }
     void grabaEnd()
     {
-		Data.Instance.events.OnResetScores ();
+		
 		Data.Instance.LoadLevel("MainMenu");
     }
     List<Hiscore> OrderByHiscore(List<Hiscore> hs)

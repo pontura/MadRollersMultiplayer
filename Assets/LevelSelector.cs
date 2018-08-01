@@ -42,6 +42,7 @@ public class LevelSelector : MonoBehaviour {
 	float timePassed;
 	void Start()
 	{
+		Data.Instance.events.OnResetScores ();
 		timePassed = 0;
 		videogameActiveID = 0;
 		missionActiveID = 0;

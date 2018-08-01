@@ -10,7 +10,7 @@ public class MMOVolador : SceneObject {
 	bool isPreparing;
 	float initial_speed=2.5f;
 	float speed;
-	float acceleration = 10f;
+	float acceleration = 20f;
 
 	public override void OnRestart(Vector3 pos)
 	{
@@ -38,7 +38,7 @@ public class MMOVolador : SceneObject {
 
 			Vector3 pos = transform.localPosition;
 			pos += -transform.forward * Time.deltaTime * speed;
-			pos.y +=  Time.deltaTime * speed;
+			pos.y +=  Time.deltaTime * (speed/2);
 			transform.localPosition = pos;
 		}
 	}
