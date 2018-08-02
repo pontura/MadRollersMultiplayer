@@ -202,7 +202,7 @@ public class Data : MonoBehaviour {
 	public void LoseCredit()
 	{
 		credits--;
-		if (credits == 0)
+		if (credits < 1)
 			credits = 0;
 	}
 	public void WinCredit()

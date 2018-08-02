@@ -19,7 +19,14 @@ public class Breakable : MonoBehaviour {
     private Vector3 originalPosition;
     public System.Action OnBreak = delegate { };
     public int score;
+	SceneObject sceneObject;
+	void Start()
+	{
+		sceneObject = GetComponent<SceneObject> ();
+		if (sceneObject == null)
+			sceneObject = GetComponentInParent<SceneObject> ();
 
+	}
     public void OnEnable()
     {               
         isOn = true;
@@ -35,6 +42,8 @@ public class Breakable : MonoBehaviour {
         if (!isOn) return;
 
         OnBreak();
+
+		sceneObject.broken = true;
 
         Data.Instance.events.OnAddObjectExplotion(transform.position, (int)explotionType);
         
@@ -94,41 +103,41 @@ public class Breakable : MonoBehaviour {
 	private void breaker(){
 
 		Transform container = Data.Instance.sceneObjectsPool.Scene.transform;
-//		MeshRenderer[] all = GetComponentsInChildren<MeshRenderer> ();
-//		int id = 0;
-//		float force = 500;
-//
-//		foreach (MeshRenderer mr in all) {
-//			
-//			Rigidbody rb = mr.gameObject.AddComponent< Rigidbody >();
-//			if (rb == null) rb = mr.gameObject.GetComponent<Rigidbody> ();
-//			BreakedBlock bb = mr.gameObject.AddComponent< BreakedBlock >();
-//
-//			rb.mass = 100;
-//			rb.useGravity = true;
-//			rb.isKinematic = false;
-//
-//			bb.Init ();
-//			mr.transform.SetParent (container);
-//			mr.sortingLayerName = "Default";
-//			mr.gameObject.AddComponent<BoxCollider> ();
-//			mr.transform.localEulerAngles = new Vector3(0, id * (360 / all.Length), 0);
-//			Vector3 direction = ((mr.transform.forward * force) + (Vector3.up * (force*2)));
-//			mr.GetComponent<Rigidbody>().AddForce(direction, ForceMode.Impulse);
-//
-//			id++;
-//		}
-//		return;
-
 		MeshRenderer[] all = GetComponentsInChildren<MeshRenderer> ();
-		Material[] materials = new Material[all.Length];
-		Vector3[] pos = new Vector3[all.Length];
 		int id = 0;
+		float force = 500;
+
 		foreach (MeshRenderer mr in all) {
-			materials [id] = mr.material;
-			pos [id] = mr.transform.position;
+			
+			Rigidbody rb = mr.gameObject.AddComponent< Rigidbody >();
+			if (rb == null) rb = mr.gameObject.GetComponent<Rigidbody> ();
+			BreakedBlock bb = mr.gameObject.AddComponent< BreakedBlock >();
+
+			rb.mass = 100;
+			rb.useGravity = true;
+			rb.isKinematic = false;
+
+			bb.Init ();
+			mr.transform.SetParent (container);
+			mr.sortingLayerName = "Default";
+			mr.gameObject.AddComponent<BoxCollider> ();
+			mr.transform.localEulerAngles = new Vector3(0, id * (360 / all.Length), 0);
+			Vector3 direction = ((mr.transform.forward * force) + (Vector3.up * (force*2)));
+			mr.GetComponent<Rigidbody>().AddForce(direction, ForceMode.Impulse);
+
 			id++;
 		}
-		Game.Instance.level.OnAddHeartsByBreaking(transform.position, materials, pos);
+//		return;
+//
+//		MeshRenderer[] all = GetComponentsInChildren<MeshRenderer> ();
+//		Material[] materials = new Material[all.Length];
+//		Vector3[] pos = new Vector3[all.Length];
+//		int id = 0;
+//		foreach (MeshRenderer mr in all) {
+//			materials [id] = mr.material;
+//			pos [id] = mr.transform.position;
+//			id++;
+//		}
+//		Game.Instance.level.OnAddHeartsByBreaking(transform.position, materials, pos);
 	}
 }

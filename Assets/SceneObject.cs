@@ -7,6 +7,8 @@ public class SceneObject : MonoBehaviour {
 
     //sirve para quitar el objeto de pantalla màs tarde...
     public int size_z = 0;
+
+	public bool broken;
     public int id;
 
     [HideInInspector]

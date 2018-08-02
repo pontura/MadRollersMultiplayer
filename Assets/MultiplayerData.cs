@@ -40,6 +40,7 @@ public class MultiplayerData : MonoBehaviour
 		score = 0;
 		distance = 0;
 		creditsWon = 0;
+		Data.Instance.credits = 3;
 	}
     void OnReorderAvatarsByPosition(List<int> _players)
     {
