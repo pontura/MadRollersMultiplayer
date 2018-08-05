@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 public class ScoreBarMultiplayer : MonoBehaviour {
 
-	int ScoreToWinCredit;
-	int NextScoreToWinCredit;
+
 	public GameObject panel;
 	public GameObject hiscoreFields;
 	public Text myScoreFields;
-	public Image bar;
-	public RawImage hiscoreImage;
+	public Text scoreAdviseNum;
+	public Text scoreAdviseDesc;
+	//public Image bar;
+	//public RawImage hiscoreImage;
 	public int hiscore;
     float newVictoryAreaScore;
 
@@ -19,18 +20,8 @@ public class ScoreBarMultiplayer : MonoBehaviour {
     
 
     void Start () {
-		ScoreToWinCredit = Data.Instance.multiplayerData.ScoreToWinCredit;
-		SetNextScoreToWinCredit ();
-//		if (Data.Instance.playMode == Data.PlayModes.STORY) {
-//			panel.SetActive (false);
-//			return;
-//		} else {
-//			panel.SetActive (true);
-//		}
-	//	hiscoreWinned = false;
-      //  newVictoryAreaScore = Data.Instance.multiplayerData.newVictoryAreaScore;
 
-        Data.Instance.events.OnScoreOn += OnScoreOn;
+		Data.Instance.events.OnDrawScore += OnDrawScore;
 
 //		bar.fillAmount = 0;
 //
@@ -42,53 +33,48 @@ public class ScoreBarMultiplayer : MonoBehaviour {
 //
 //			hiscoreImage.material.mainTexture = Data.Instance.GetComponent<ArcadeRanking>().all[0].texture;
 //		}
-		UpdateScore ();
+		scoreAdviseNum.text = "";
+		scoreAdviseDesc.text = "";
 	}
-	void SetNextScoreToWinCredit()
-	{
-		NextScoreToWinCredit = (Data.Instance.multiplayerData.creditsWon+1)*ScoreToWinCredit;
-		print ("NextScoreToWinCredit " + NextScoreToWinCredit);
-	}
+
 	void OnDestroy()
 	{
-		Data.Instance.events.OnScoreOn -= OnScoreOn;
+		Data.Instance.events.OnDrawScore -= OnDrawScore;
 	}
-	void OnScoreOn(int playerID, Vector3 pos, int total)
-	{
-		if (NextScoreToWinCredit < Data.Instance.multiplayerData.score) {
-			Data.Instance.multiplayerData.creditsWon ++;
-			SetNextScoreToWinCredit ();
-			GetComponent<CreditsUI> ().AddNewCredit ();
-		}
-		Data.Instance.multiplayerData.score += total;
-		UpdateScore ();
-//		if(Data.Instance.multiplayerData.score > newVictoryAreaScore)
-//        {
-//			print ("__newVictoryAreaScore " + newVictoryAreaScore + "  newVictoryAreaScore" + Data.Instance.multiplayerData.newVictoryAreaScore);
-//            Data.Instance.events.SetVictoryArea();
-//			Data.Instance.multiplayerData.newVictoryAreaScore *= 1.5f;
-//            this.newVictoryAreaScore += Data.Instance.multiplayerData.newVictoryAreaScore;
-//        }
-	}
-	void UpdateScore()
+	float delayToReset = 1;
+	float ResetFieldsTimer;
+	int totalAdded;
+
+	void OnDrawScore(int score, string desc)
 	{	
 		if (Data.Instance.multiplayerData.score == 0)
 			myScoreFields.text = "000";
 		else
 			myScoreFields.text = string.Format ("{0:#,#}",  Data.Instance.multiplayerData.score);
 
-
-
-//		return;
-//
-//		if(hiscoreWinned) return;
-//		
-//		float barValue = (float)score/(float)hiscore;
-//		if (barValue >= 1) {
-//			hiscoreWinned = true;
-//			barValue = 1;
-//			Data.Instance.events.ShowNotification ("NUEVO HISCORE!");
-//		}
-//		bar.fillAmount = barValue;
+		ResetFieldsTimer = Time.time + delayToReset;
+		totalAdded += score;
+		scoreAdviseNum.text = "+" + totalAdded.ToString ();
+		SetDesc(desc);
+	}
+	void Update()
+	{
+		if (totalAdded == 0)
+			return;
+		if (Time.time > ResetFieldsTimer) {
+			totalAdded = 0;
+			scoreAdviseNum.text = "";
+			scoreAdviseDesc.text = "";
+			lastDesc = "";
+		}
+	}
+	string lastDesc = "";
+	void SetDesc(string text)
+	{
+		if (text == lastDesc)
+			return;
+		lastDesc = text;
+		string lastChars = scoreAdviseDesc.text;
+		scoreAdviseDesc.text = "\n" + text + lastChars;
 	}
 }

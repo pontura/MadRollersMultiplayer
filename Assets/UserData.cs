@@ -18,14 +18,15 @@ public class UserData : MonoBehaviour {
     public List<int> stars;
 
 	public void Init () {
-        data = Data.Instance;
-        SocialEvents.OnSetUserData += OnSetUserData;
-      //  data.events.OnHiscore += OnHiscore;
-        data.events.OnListenerDispatcher += OnListenerDispatcher;
-        data.events.OnScoreOn += OnScoreOn;
-        data.events.OnGameStart += OnGameStart;
-        data.events.OnSetStarsToMission += OnSetStarsToMission;
-        SocialEvents.OnFacebookUserLoaded += OnFacebookUserLoaded;
+		return;
+//        data = Data.Instance;
+//        SocialEvents.OnSetUserData += OnSetUserData;
+//      //  data.events.OnHiscore += OnHiscore;
+//        data.events.OnListenerDispatcher += OnListenerDispatcher;
+//       // data.events.OnScoreOn += OnScoreOn;
+//        data.events.OnGameStart += OnGameStart;
+//        data.events.OnSetStarsToMission += OnSetStarsToMission;
+//        SocialEvents.OnFacebookUserLoaded += OnFacebookUserLoaded;
 
         //  RESET ID:
         //  PlayerPrefs.SetInt("userId", 0);
@@ -33,16 +34,16 @@ public class UserData : MonoBehaviour {
        // PlayerPrefs.SetInt("hiscore", 0);
 
        // if (!Application.isWebPlayer)
-       if(3==2)
-        {
-            Debug.Log("CARGA DATOS de PlayerPrefs");
-            username = PlayerPrefs.GetString("username");
-            userId = PlayerPrefs.GetInt("userId");
-            hiscore = PlayerPrefs.GetInt("hiscore");
-            facebookId = PlayerPrefs.GetString("facebookId");
-        }
-
-        SetStars();
+//       if(3==2)
+//        {
+//            Debug.Log("CARGA DATOS de PlayerPrefs");
+//            username = PlayerPrefs.GetString("username");
+//            userId = PlayerPrefs.GetInt("userId");
+//            hiscore = PlayerPrefs.GetInt("hiscore");
+//            facebookId = PlayerPrefs.GetString("facebookId");
+//        }
+//
+//        SetStars();
 	}
     private int fromWebLogs = 0;
     public void ReceiveFacebookUserNameFromWeb(string _username)
@@ -128,9 +129,10 @@ public class UserData : MonoBehaviour {
     }
     private void OnScoreOn(int playerID, Vector3 pos, int _score)
     {
-		int newScore = _score + (data.missions.MissionActiveID * 2);
-        score += newScore;
-        missionScore += newScore;
+		
+//		int newScore = _score + (data.missions.MissionActiveID * 2);
+//        score += newScore;
+//        missionScore += newScore;
        // data.events.OnSetFinalScore(pos, score);
     }
     public void OnHiscore(int _hiscore)

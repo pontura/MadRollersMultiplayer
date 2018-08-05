@@ -11,12 +11,24 @@ public class SettingsScreen : MonoBehaviour {
 	public Toggle voicesFXToggle;
 	public Toggle madRollersToggle;
 
+	public InputField creditsField;
+	public InputField respawnTimeField;
+	public InputField scoreForCreditsField;
+
 	void Start () {
+		creditsField.text = Data.Instance.credits.ToString ();
+		respawnTimeField.text = Data.Instance.timeToRespawn.ToString ();
+		scoreForCreditsField.text =  Data.Instance.multiplayerData.ScoreToWinCredit.ToString ();
 		Cursor.visible = true;
 		Invoke("Next", 1);
 	}
 	public void Done()
 	{
+		Data.Instance.totalCredits = int.Parse (creditsField.text);
+		Data.Instance.RefreshCredits ();
+		Data.Instance.timeToRespawn = int.Parse (respawnTimeField.text);
+		Data.Instance.multiplayerData.ScoreToWinCredit = int.Parse (scoreForCreditsField.text);
+
 		Data.Instance.canContinue = canContinue.isOn;
 		Data.Instance.musicOn = musicToggle.isOn;
 		Data.Instance.soundsFXOn = soundFXToggle.isOn;

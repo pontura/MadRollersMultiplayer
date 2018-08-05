@@ -28,6 +28,7 @@ public class MainMenuArcade : MonoBehaviour {
     public MeshRenderer backgruond;
 
 	void Start () {
+		Data.Instance.events.OnResetScores ();
 		sec = 10;
 		string desc = Data.Instance.missions.GetMissionActive ().description;
 		foreach (Text t in missionFields) {
@@ -47,7 +48,7 @@ public class MainMenuArcade : MonoBehaviour {
 			//LoopWinners ();
 			SetFields (0);
 		}
-		Invoke ("TimeOver", 15);
+		Invoke ("TimeOver", 30);
 		Loop ();
 		playersField.text = "0 PLAYERS";
 	}

@@ -1,3 +1,5 @@
+// Upgrade NOTE: removed variant '__' where variant LOD_FADE_PERCENTAGE is used.
+
 // Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 
 Shader "VacuumShaders/Curved World/SpeedTree/SpeedTree"
@@ -32,7 +34,7 @@ Shader "VacuumShaders/Curved World/SpeedTree/SpeedTree"
 		CGPROGRAM
 			#pragma surface surf Lambert vertex:SpeedTreeVert nolightmap
 			#pragma target 3.0
-			#pragma multi_compile __ LOD_FADE_PERCENTAGE LOD_FADE_CROSSFADE
+			#pragma multi_compile  LOD_FADE_PERCENTAGE LOD_FADE_CROSSFADE
 			#pragma shader_feature GEOM_TYPE_BRANCH GEOM_TYPE_BRANCH_DETAIL GEOM_TYPE_BRANCH_BLEND GEOM_TYPE_FROND GEOM_TYPE_LEAF GEOM_TYPE_FACING_LEAF GEOM_TYPE_MESH
 			#pragma shader_feature EFFECT_BUMP
 			#pragma shader_feature EFFECT_HUE_VARIATION
@@ -58,7 +60,7 @@ Shader "VacuumShaders/Curved World/SpeedTree/SpeedTree"
 				#pragma vertex vert 
 				#pragma fragment frag
 				#pragma target 3.0
-				#pragma multi_compile __ LOD_FADE_PERCENTAGE LOD_FADE_CROSSFADE
+				#pragma multi_compile  LOD_FADE_PERCENTAGE LOD_FADE_CROSSFADE
 				#pragma shader_feature GEOM_TYPE_BRANCH GEOM_TYPE_BRANCH_DETAIL GEOM_TYPE_BRANCH_BLEND GEOM_TYPE_FROND GEOM_TYPE_LEAF GEOM_TYPE_FACING_LEAF GEOM_TYPE_MESH
 				#pragma multi_compile_shadowcaster
 				#define ENABLE_WIND
@@ -114,7 +116,7 @@ Shader "VacuumShaders/Curved World/SpeedTree/SpeedTree"
 				#pragma fragment frag
 				#pragma target 3.0
 				#pragma multi_compile_fog
-				#pragma multi_compile __ LOD_FADE_PERCENTAGE LOD_FADE_CROSSFADE
+				#pragma multi_compile  LOD_FADE_PERCENTAGE LOD_FADE_CROSSFADE
 				#pragma shader_feature GEOM_TYPE_BRANCH GEOM_TYPE_BRANCH_DETAIL GEOM_TYPE_BRANCH_BLEND GEOM_TYPE_FROND GEOM_TYPE_LEAF GEOM_TYPE_FACING_LEAF GEOM_TYPE_MESH
 				#pragma shader_feature EFFECT_HUE_VARIATION
 				#define ENABLE_WIND
@@ -167,7 +169,7 @@ Shader "VacuumShaders/Curved World/SpeedTree/SpeedTree"
 
 		CGPROGRAM
 			#pragma surface surf Lambert vertex:SpeedTreeVert nolightmap
-			#pragma multi_compile __ LOD_FADE_PERCENTAGE
+			#pragma multi_compile  LOD_FADE_PERCENTAGE
 			#pragma shader_feature GEOM_TYPE_BRANCH GEOM_TYPE_BRANCH_DETAIL GEOM_TYPE_BRANCH_BLEND GEOM_TYPE_FROND GEOM_TYPE_LEAF GEOM_TYPE_FACING_LEAF GEOM_TYPE_MESH
 			
 
@@ -188,7 +190,7 @@ Shader "VacuumShaders/Curved World/SpeedTree/SpeedTree"
 			CGPROGRAM
 				#pragma vertex vert
 				#pragma fragment frag
-				#pragma multi_compile __ LOD_FADE_PERCENTAGE
+				#pragma multi_compile  LOD_FADE_PERCENTAGE
 				#pragma shader_feature GEOM_TYPE_BRANCH GEOM_TYPE_BRANCH_DETAIL GEOM_TYPE_BRANCH_BLEND GEOM_TYPE_FROND GEOM_TYPE_LEAF GEOM_TYPE_FACING_LEAF GEOM_TYPE_MESH
 				#pragma multi_compile_shadowcaster
 				
@@ -237,7 +239,7 @@ Shader "VacuumShaders/Curved World/SpeedTree/SpeedTree"
 				#pragma vertex vert
 				#pragma fragment frag
 				#pragma multi_compile_fog
-				#pragma multi_compile __ LOD_FADE_PERCENTAGE
+				#pragma multi_compile  LOD_FADE_PERCENTAGE
 				#pragma shader_feature GEOM_TYPE_BRANCH GEOM_TYPE_BRANCH_DETAIL GEOM_TYPE_BRANCH_BLEND GEOM_TYPE_FROND GEOM_TYPE_LEAF GEOM_TYPE_FACING_LEAF GEOM_TYPE_MESH
 				
 

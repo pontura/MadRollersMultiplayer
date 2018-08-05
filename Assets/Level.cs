@@ -74,7 +74,7 @@ public class Level : MonoBehaviour {
 		game = Game.Instance;
 
 		data.events.OnResetLevel += reset;
-		data.events.OnSetFinalScore += OnSetFinalScore;
+		data.events.OnScoreOn += OnScoreOn;
 		data.events.OnAddExplotion += OnAddExplotion;
 		data.events.OnAddWallExplotion += OnAddWallExplotion;
 		data.events.OnAddObjectExplotion += OnAddObjectExplotion;
@@ -126,7 +126,7 @@ public class Level : MonoBehaviour {
     public void OnDestroy()
     {
         data.events.OnResetLevel -= reset;
-        data.events.OnSetFinalScore -= OnSetFinalScore;
+		data.events.OnScoreOn -= OnScoreOn;
         data.events.OnAddExplotion -= OnAddExplotion;
         data.events.OnAddWallExplotion -= OnAddWallExplotion;
         data.events.OnAddObjectExplotion -= OnAddObjectExplotion;
@@ -168,20 +168,23 @@ public class Level : MonoBehaviour {
         //Init();
 	}
     public void OnAddObjectExplotion(Vector3 position, int type)
-    {
-        Data.Instance.events.OnSoundFX("FX break", -1);
-        SceneObject explpotionEffect;
+    {      
+		Data.Instance.events.OnSoundFX("FX break", -1);
+		SceneObject explpotionEffect = null;
         switch (type)
         {
-            case 1:
+			case 1:
                 explpotionEffect = ObjectPool.instance.GetObjectForType("ExplotionEffectBomb", true); break;
             case 2:
-                explpotionEffect = ObjectPool.instance.GetObjectForType("ExplotionEffectEnemy", true); break;
+                explpotionEffect = ObjectPool.instance.GetObjectForType("ExplotionEffectEnemy", false); break;
             default:
-                explpotionEffect  = ObjectPool.instance.GetObjectForType("ExplotionEffectSimpleObject", true); break;
+				explpotionEffect  = ObjectPool.instance.GetObjectForType("ExplotionEffectSimpleObject", false); break;
         }
-        if (explpotionEffect)
-            explpotionEffect.Restart(position);
+		if (explpotionEffect == null)
+			return;
+		
+
+        explpotionEffect.Restart(position);
     }
     public void OnAddExplotion(Vector3 position, Color color)
     {
@@ -208,7 +211,7 @@ public class Level : MonoBehaviour {
             return;
         }
        
-        explotionNew.GetComponent<FXExplotion>()._scale = force;
+       // explotionNew.GetComponent<FXExplotion>()._scale = force;
 
         if (explotionNew)
             explotionNew.Restart(newPos);
@@ -367,13 +370,20 @@ public class Level : MonoBehaviour {
         GameCamera camera = game.gameCamera;
         camera.fallDown(fallDownHeight);
     }
-    public void OnSetFinalScore(int playerID, Vector3 position, int score)
+	public void OnScoreOn(int playerID, Vector3 position, int score, ScoresManager.types type)
     {
-        if (position == Vector3.zero) return;
-        SceneObject newSO = Instantiate(scoreSignal, position, Quaternion.identity) as SceneObject;
-        newSO.Restart(position);
-        newSO.GetComponent<ScoreSignal>().SetScore(playerID, score);
-        Data.Instance.events.OnScoreOn(playerID, position, score);
+		if (
+			type == ScoresManager.types.DESTROY_FLOOR || 
+			type == ScoresManager.types.DESTROY_WALL || 
+			type == ScoresManager.types.KILL || 
+			type == ScoresManager.types.BREAKING 
+		) {
+			if (position == Vector3.zero)
+				return;
+			SceneObject newSO = Instantiate (scoreSignal, position, Quaternion.identity) as SceneObject;
+			newSO.Restart (position);
+			newSO.GetComponent<ScoreSignal> ().SetScore (playerID, score);
+		}
     }
     public void addSceneObjectToScene(SceneObject _so, Vector3 position)
     {

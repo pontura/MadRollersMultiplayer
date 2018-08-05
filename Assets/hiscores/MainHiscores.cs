@@ -105,7 +105,7 @@ public class MainHiscores : MonoBehaviour {
         else lettersID--;
         if (lettersID < 0)
         {
-			//grabaEnd ();
+			lettersID = 0;
             return;
         }
         if (lettersID > letters.Length - 1)

@@ -3,8 +3,8 @@ using System.Collections;
 
 public class FXExplotion : SceneObject {
 
-	public float _scale = 5;
-	float _duration = 0.3f;	
+	public float finalScale = 5;
+	float _duration = 0.4f;	
 	private bool isScaling = false;
 	private int floorDumps = 0;
 	private int floorTotalDumps = 0;
@@ -49,11 +49,17 @@ public class FXExplotion : SceneObject {
 		timer += Time.deltaTime;
 
 		Vector3 scale = transform.localScale;
-		float s = (timer * _scale) / _duration;
+		float s = (timer * finalScale) / _duration;
+
+		if (scale.x < finalScale)
+			isOn = false;
+
 		transform.localScale = new Vector3(s,s,s);
 
-		if (scale.x > _scale)
-			Pool ();
+		print("timer " + timer +"    finalScale " + finalScale +  "       _duration " + _duration  + "       s" + s);
+
+//		if (scale.x > _scale)
+//			Pool ();
 	}
     private void die()
     {

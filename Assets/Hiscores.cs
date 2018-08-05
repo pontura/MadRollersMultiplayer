@@ -39,6 +39,7 @@ public class Hiscores : MonoBehaviour {
     }
     public Texture2D GetPicture(string facebookID)
     {
+		
         foreach (Hiscore hiscore in levels[0].hiscore)
         {
             if (facebookID == hiscore.facebookID && hiscore.profilePicture)
@@ -48,6 +49,7 @@ public class Hiscores : MonoBehaviour {
     }
     void OnFacebookImageLoaded(string facebookID, Texture2D texture2d)
     {
+		return;
         foreach(Hiscore hiscore in levels[0].hiscore)
         {
             if (facebookID == hiscore.facebookID)
@@ -56,6 +58,7 @@ public class Hiscores : MonoBehaviour {
     }
     void loadLocalSavedScores()
     {
+		return;
         for (int a = 1; a < levels.Count+1; a++)
         {
             int myScore = PlayerPrefs.GetInt("scoreLevel_" + a);
@@ -64,12 +67,14 @@ public class Hiscores : MonoBehaviour {
     }
     void OnFinalDistance(float score)
     {
+		return;
         if (Data.Instance.playMode == Data.PlayModes.STORY) return;
         int competitionID = Data.Instance.competitions.GetCurrentCompetition();
         checkToSaveHiscore(competitionID, score);
     }
     void checkToSaveHiscore(int competitionID, float score)
     {
+		return;
         Debug.Log("Check to save HISCORE: competitionID: " + competitionID + " oldScore: " + levels[competitionID - 1].myScore + " new score: " + score);
         if (levels[competitionID - 1].myScore >= score) return;
 
@@ -84,6 +89,7 @@ public class Hiscores : MonoBehaviour {
     }
     void OnHiscoresLoaded(string receivedData)
     {
+		return;
         levels[0].hiscore.Clear();
         Debug.Log("Sores Init: " + receivedData);
 
@@ -115,6 +121,7 @@ public class Hiscores : MonoBehaviour {
     }
     void LoadMyHiscoreIfNotExistesInRanking(string facebookID, int score)
     {
+		return;
         bool exists = false;
         foreach (Hiscore hiscore in levels[0].hiscore)
         {
@@ -134,6 +141,7 @@ public class Hiscores : MonoBehaviour {
     }
     public void ArrengeHiscoresByScore()
     {
+		return;
         levels[0].hiscore = levels[0].hiscore.OrderBy(x => x.score).ToList();
         levels[0].hiscore.Reverse();
     }
@@ -156,6 +164,7 @@ public class Hiscores : MonoBehaviour {
     //mientras corres le ganas a un contrincante y te graba tu score provisorio
     public void SetMyScoreWhenPlaying(int newScore)
     {
+		return;
         print("SetMyScoreWhenPlaying newScore: " + newScore + " oldScore: " + levels[0].myScore);
         foreach (Hiscore hiscore in levels[0].hiscore)
         {

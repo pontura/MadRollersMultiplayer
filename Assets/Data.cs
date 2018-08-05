@@ -7,13 +7,14 @@ public class Data : MonoBehaviour {
 	public bool DEBUG;
 
 	public bool canContinue;
+	public int totalCredits;
 	public int credits;
 	public bool voicesOn;
 	public bool soundsFXOn;
 	public bool madRollersSoundsOn;
     public bool musicOn;
     public bool switchPlayerInputs;
-
+	public int timeToRespawn;
 	public bool isReplay;
 	public int totalJoysticks;
 	public bool RESET;
@@ -198,6 +199,10 @@ public class Data : MonoBehaviour {
 	{
 		Data.Instance.events.ForceFrameRate (1);
 		GetComponent<Fade>().LoadSceneNotFading (levelName);
+	}
+	public void RefreshCredits()
+	{
+		credits = totalCredits;
 	}
 	public void LoseCredit()
 	{

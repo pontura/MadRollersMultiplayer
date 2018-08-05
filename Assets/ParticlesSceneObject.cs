@@ -11,7 +11,7 @@ public class ParticlesSceneObject : SceneObject {
     {
         base.OnRestart(pos);
 
-        if (_particleSystem)
+        if (_particleSystem != null)
         {
             _particleSystem.Clear();
             _particleSystem.Play();

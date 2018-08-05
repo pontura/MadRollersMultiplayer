@@ -33,7 +33,7 @@ public class ArcadeGUI : MonoBehaviour {
         singleSignal.SetActive(false);
         characterManager = Game.Instance.GetComponent<CharactersManager>();
         ended = false;
-        Data.Instance.events.OnScoreOn += OnScoreOn;
+        
         Data.Instance.events.OnGameOver += OnGameOver;
        
 		SetFields ("");
@@ -104,7 +104,6 @@ public class ArcadeGUI : MonoBehaviour {
     }
     void OnDestroy()
     {
-        Data.Instance.events.OnScoreOn -= OnScoreOn;
         Data.Instance.events.OnGameOver -= OnGameOver;
        // Data.Instance.events.OnAvatarShoot -= OnAvatarShoot;
     }
@@ -122,7 +121,7 @@ public class ArcadeGUI : MonoBehaviour {
         Data.Instance.multiplayerData.distance = Game.Instance.GetComponent<CharactersManager>().distance;
         
 		if (Data.Instance.credits > 0) {
-			GetComponent<CreditsUI> ().RemoveOne ();
+			
 			if (Data.Instance.multiplayerData.GetTotalCharacters () == 1)
 				SetFields ("DEAD!");
 			else
@@ -133,7 +132,7 @@ public class ArcadeGUI : MonoBehaviour {
 			SetFields ("GAME OVER");
 			Invoke("Reset", 4);
 		}
-        
+		GetComponent<CreditsUI> ().RemoveOne ();
         ended = true;
         Data.Instance.scoreForArcade = 0;
     }
@@ -147,15 +146,6 @@ public class ArcadeGUI : MonoBehaviour {
 			Data.Instance.LoadLevel ("SummaryMultiplayer");  
 		}
     }
-    void OnScoreOn(int playerID, Vector3 pos, int total)
-    {
-		switch (playerID)
-		{
-		case 0: Data.Instance.multiplayerData.score_player1 += total; break;
-		case 1: Data.Instance.multiplayerData.score_player2 += total;  break;
-		case 2: Data.Instance.multiplayerData.score_player3+= total;  break;
-		case 3: Data.Instance.multiplayerData.score_player4 += total;  break;
-		}
-	}
+    
 
 }

@@ -13,6 +13,8 @@ public class Events : MonoBehaviour {
 
     public System.Action<Texture2D, int> OnHiscore = delegate { };   
 
+	public System.Action AddNewCredit = delegate { }; 
+	public System.Action<int, string> OnDrawScore = delegate { };
     public System.Action OnGameOver = delegate { };
     public System.Action<string> VoiceFromResources = delegate { };
     public System.Action<string, int> OnSoundFX = delegate { };
@@ -40,8 +42,8 @@ public class Events : MonoBehaviour {
     public System.Action<string> OnListenerDispatcher = delegate { };
     public void ListenerDispatcher(string message) { OnListenerDispatcher(message); }
 
-    public System.Action<int, Vector3, int> OnSetFinalScore = delegate { };
-    public System.Action<int, Vector3, int> OnScoreOn = delegate { };
+   // public System.Action<int, Vector3, int> OnSetFinalScore = delegate { };
+	public System.Action<int, Vector3, int, ScoresManager.types> OnScoreOn = delegate { };
    // public void ScoreSignalOn(int playerID, Vector3 position, int score) { OnScoreOn(playerID, position, score); }
     public System.Action<int> OnChangeMood = delegate { };
 

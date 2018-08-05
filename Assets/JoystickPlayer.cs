@@ -27,6 +27,7 @@ public class JoystickPlayer : MonoBehaviour {
 	}
 	void Start()
 	{
+		timeToRespawn = Data.Instance.timeToRespawn;
 		anim = GetComponent<Animation> ();
 		RefreshStates ();
 		Color color = Data.Instance.multiplayerData.colors [playerID];
@@ -178,10 +179,11 @@ public class JoystickPlayer : MonoBehaviour {
 		button.transform.localPosition = pos;		
 	}
 	float fillAmount;
+	float timeToRespawn;
 	void FillDead()
 	{
 		deadFill.fillAmount = fillAmount;
-		fillAmount += Time.deltaTime / 5;
+		fillAmount += Time.deltaTime / timeToRespawn;
 		if (fillAmount > 1)
 			SetState (states.INSERT_COIN);
 	}

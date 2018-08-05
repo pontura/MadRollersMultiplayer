@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class MultiplayerData : MonoBehaviour
 {
+	public int NextScoreToWinCredit;
 	public int ScoreToWinCredit;
 	public int score;
    	public int creditsWon;
@@ -31,16 +32,24 @@ public class MultiplayerData : MonoBehaviour
 
     void Start()
     {
+		Data.Instance.events.OnGameStart += OnGameStart;
+		Data.Instance.events.OnMissionComplete += OnMissionComplete;
+		Data.Instance.events.OnScoreOn += OnScoreOn;
         Data.Instance.events.OnReorderAvatarsByPosition += OnReorderAvatarsByPosition;
 		Data.Instance.events.OnResetScores += OnResetScores;
     }
+	void OnGameStart()
+	{
+		SetNextScoreToWinCredit ();
+	}
 	void OnResetScores()
 	{
+		NextScoreToWinCredit = 0;
 		score_player1 = score_player2 = score_player3 = score_player4 = 0;
 		score = 0;
 		distance = 0;
 		creditsWon = 0;
-		Data.Instance.credits = 3;
+		Data.Instance.RefreshCredits ();
 	}
     void OnReorderAvatarsByPosition(List<int> _players)
     {
@@ -138,5 +147,39 @@ public class MultiplayerData : MonoBehaviour
 		player2_played = false;
 		player3_played = false;
 		player4_played = false;
+	}
+	void OnScoreOn(int playerID, Vector3 pos, int points, ScoresManager.types type)
+	{
+		if (NextScoreToWinCredit < score) {
+			creditsWon ++;
+			SetNextScoreToWinCredit ();
+			Data.Instance.events.AddNewCredit ();
+		}
+		score += points;
+
+		switch (playerID)
+		{
+		case 0: score_player1 += points; break;
+		case 1: score_player2 += points;  break;
+		case 2: score_player3+= points;  break;
+		case 3: score_player4 += points;  break;
+		}
+		string desc = type.ToString ().ToLower ();
+		Data.Instance.events.OnDrawScore (points, desc);
+	}
+	void OnMissionComplete(int id)
+	{
+		int scoreForWinningMission = 500;
+
+		if (player1) { OnScoreOn (0, Vector3.zero, scoreForWinningMission, ScoresManager.types.MISSION_COMPLETED);  }
+		if (player2) { OnScoreOn (1, Vector3.zero, scoreForWinningMission, ScoresManager.types.MISSION_COMPLETED);  }
+		if (player3) { OnScoreOn (2, Vector3.zero, scoreForWinningMission, ScoresManager.types.MISSION_COMPLETED);  }
+		if (player4) { OnScoreOn (3, Vector3.zero, scoreForWinningMission, ScoresManager.types.MISSION_COMPLETED);  }
+
+	}
+	void SetNextScoreToWinCredit()
+	{
+		NextScoreToWinCredit = (creditsWon+1)*ScoreToWinCredit;
+		print ("NextScoreToWinCredit " + NextScoreToWinCredit);
 	}
 }

@@ -61,7 +61,7 @@ public class GrabbableItem : SceneObject
     }
     public override void OnSceneObjectUpdate()
     {
-		return;
+		//return;
 		if (titila.Length > 0) {
 			//meshRenderer.material.color = titila[0];
 		}
@@ -76,7 +76,7 @@ public class GrabbableItem : SceneObject
 			transform.position = Vector3.MoveTowards(position, characterPosition, 18 * Time.deltaTime);
 			if(sec>20)
 			{
-                Data.Instance.events.OnScoreOn(player.id, Vector3.zero, 22);
+				Data.Instance.events.OnScoreOn(player.id, Vector3.zero, 5, ScoresManager.types.GRAB_PIXEL);
                 Data.Instance.events.OnGrabHeart();
                 Data.Instance.GetComponent<MusicManager>().addHeartSound();
                 player = null;
@@ -87,7 +87,6 @@ public class GrabbableItem : SceneObject
     
     private void OnTriggerEnter(Collider other)
     {
-		return;
         if (!isActive) return;
 		if(other.gameObject.CompareTag("Player"))
 		{

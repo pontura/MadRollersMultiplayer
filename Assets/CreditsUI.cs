@@ -4,17 +4,25 @@ using UnityEngine;
 
 public class CreditsUI : MonoBehaviour {
 
-	public GameObject creditIcon;
+	public CreditIcon creditIcon;
 	public Transform container;
 	public GameObject newCreditPanel;
 
 	void Start () {
+		Data.Instance.events.AddNewCredit += AddNewCredit;
 		newCreditPanel.SetActive (false);
-		for (int a = 0; a < Data.Instance.credits; a++) 
-			AddCredit ();
-		
+		int totalCredits = Data.Instance.credits;
+		for (int a = 0; a < totalCredits; a++) {
+			if (a < 6) {
+				AddCredit ();
+			}
+		}
 	}
-	public void AddNewCredit()
+	void OnDestroy()
+	{
+		Data.Instance.events.AddNewCredit -= AddNewCredit;
+	}
+	void AddNewCredit()
 	{
 		Data.Instance.credits++;
 		newCreditPanel.SetActive (true);
@@ -28,13 +36,14 @@ public class CreditsUI : MonoBehaviour {
 	}
 	void AddCredit()
 	{
-		GameObject go = Instantiate (creditIcon);
+		CreditIcon go = Instantiate (creditIcon);
 		go.transform.SetParent (container);
 		go.transform.localScale = Vector3.one;
 	}
 	public void RemoveOne()
 	{
-		Transform[] all = container.GetComponentsInChildren<Transform> ();
-		Destroy (all [all.Length - 1].gameObject);
+		CreditIcon[] all = container.GetComponentsInChildren<CreditIcon> ();
+		if(all.Length>0)
+			all [all.Length - 1].SetOff ();
 	}
 }

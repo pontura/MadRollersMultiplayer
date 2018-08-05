@@ -60,6 +60,7 @@ public class ObjectPool : MonoBehaviour
             for (int n = 0; n < objectPrefab.Count; n++)
             {
 				SceneObject newObj = CreateSceneObject (objectPrefab.Prefab);
+				print (newObj.name);
 //                SceneObject newObj = Instantiate(objectPrefab.Prefab) as SceneObject;
 //				pooledObjects.Add (newObj);
 //                newObj.name = objectPrefab.Prefab.name;

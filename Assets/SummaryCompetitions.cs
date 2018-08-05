@@ -14,6 +14,9 @@ public class SummaryCompetitions : MonoBehaviour {
 	public SummaryMissionPoint missionPoint;
 	public Transform container;
 	public Image progressImage;
+	public Text scoreField;
+	public Text missionsField;
+
 
 	void Start()
 	{
@@ -54,9 +57,25 @@ public class SummaryCompetitions : MonoBehaviour {
 				smp.Init (false);
 			id++;
 		}
-		progressImage.fillAmount = (float)missionActive / (float)Data.Instance.missions.allMissionsByVideogame[0].missions.Count;
-
+		Missions.MissionsByVideogame missionsInThisVideogame = Data.Instance.missions.allMissionsByVideogame [Data.Instance.videogamesData.actualID];
+		Mission mission;
+		int num = 0;
+		int numMission = -1;
+		foreach (Mission m in missionsInThisVideogame.missions) {
+			if (m.id == missionActive) {
+				numMission = num;
+			}
+			num++;
+		}
+		scoreField.text = "Score: " + Data.Instance.multiplayerData.score;
 		Invoke ("TimeOver", 15);
+		missionsField.text = "";
+		if (numMission < 0)
+			return;
+		int totalMissions = missionsInThisVideogame.missions.Count;
+		progressImage.fillAmount = (float)numMission / (float)totalMissions;
+		missionsField.text = "Mission: " + (numMission+1).ToString() + "/" + totalMissions.ToString();
+
 	}
 	void TimeOver()
 	{

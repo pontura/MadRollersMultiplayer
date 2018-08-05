@@ -91,12 +91,12 @@ public class Projectil : SceneObject {
 		{
             case "wall":
                 addExplotionWall();
-                SetScore(180);
+				SetScore( ScoresManager.score_for_destroying_wall, ScoresManager.types.DESTROY_WALL);
                 Destroy();
                 break;
 			case "floor":
 				addExplotion(0.2f);
-                SetScore(100);
+				SetScore( ScoresManager.score_for_destroying_floor, ScoresManager.types.DESTROY_FLOOR);
 				Destroy();
 				break;
 		case "enemy":
@@ -106,7 +106,7 @@ public class Projectil : SceneObject {
 				if (enemy) {
 					if (enemy.state == MmoCharacter.states.DEAD)
 						return;
-					SetScore (enemy.score);
+					SetScore( ScoresManager.score_for_killing, ScoresManager.types.KILL);
 					enemy.Die ();
 				} else {
 					other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);
@@ -116,12 +116,12 @@ public class Projectil : SceneObject {
 				Destroy();
 				break;
 			case "destroyable":
-                SetScore(70);
+				SetScore( ScoresManager.score_for_breaking, ScoresManager.types.BREAKING);
 				other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);
                 Destroy();
 				break;
 			case "boss":
-				SetScore(120);
+				SetScore( ScoresManager.score_for_boss, ScoresManager.types.BOSS);
 				other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);
 				Destroy();
 				break;
@@ -154,9 +154,9 @@ public class Projectil : SceneObject {
 			break;
 		}
 	}
-    void SetScore(int score)
+	void SetScore(int score, ScoresManager.types type)
     {
-        Data.Instance.events.OnSetFinalScore(playerID, transform.position, score);
+		Data.Instance.events.OnScoreOn(playerID, transform.position, score, type);
     }
 	void addExplotion(float _y)
 	{

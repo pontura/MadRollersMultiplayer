@@ -30,6 +30,6 @@ public class Social : MonoBehaviour {
         hiscores = GetComponent<Hiscores>();
         dataController.Init();
 
-        SocialEvents.OnGetHiscores(1);
+      //  SocialEvents.OnGetHiscores(1);
     }
 }

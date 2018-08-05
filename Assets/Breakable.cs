@@ -43,6 +43,9 @@ public class Breakable : MonoBehaviour {
 
         OnBreak();
 
+		if (sceneObject == null)
+			return;
+
 		sceneObject.broken = true;
 
         Data.Instance.events.OnAddObjectExplotion(transform.position, (int)explotionType);
@@ -101,14 +104,18 @@ public class Breakable : MonoBehaviour {
 	}
 	
 	private void breaker(){
-
+		BreakStandard ();
+		//BreakEveryBlock ();
+	}
+	void BreakEveryBlock()
+	{
 		Transform container = Data.Instance.sceneObjectsPool.Scene.transform;
 		MeshRenderer[] all = GetComponentsInChildren<MeshRenderer> ();
 		int id = 0;
 		float force = 500;
 
 		foreach (MeshRenderer mr in all) {
-			
+
 			Rigidbody rb = mr.gameObject.AddComponent< Rigidbody >();
 			if (rb == null) rb = mr.gameObject.GetComponent<Rigidbody> ();
 			BreakedBlock bb = mr.gameObject.AddComponent< BreakedBlock >();
@@ -127,17 +134,18 @@ public class Breakable : MonoBehaviour {
 
 			id++;
 		}
-//		return;
-//
-//		MeshRenderer[] all = GetComponentsInChildren<MeshRenderer> ();
-//		Material[] materials = new Material[all.Length];
-//		Vector3[] pos = new Vector3[all.Length];
-//		int id = 0;
-//		foreach (MeshRenderer mr in all) {
-//			materials [id] = mr.material;
-//			pos [id] = mr.transform.position;
-//			id++;
-//		}
-//		Game.Instance.level.OnAddHeartsByBreaking(transform.position, materials, pos);
+	}
+	void BreakStandard(){
+
+		MeshRenderer[] all = GetComponentsInChildren<MeshRenderer> ();
+		Material[] materials = new Material[all.Length];
+		Vector3[] pos = new Vector3[all.Length];
+		int id = 0;
+		foreach (MeshRenderer mr in all) {
+			materials [id] = mr.material;
+			pos [id] = mr.transform.position;
+			id++;
+		}
+		Game.Instance.level.OnAddHeartsByBreaking(transform.position, materials, pos);
 	}
 }

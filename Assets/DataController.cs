@@ -20,6 +20,7 @@ public class DataController : MonoBehaviour
     }
     void OnCompetitionHiscore(int levelID, int score, bool isNew)
     {
+		return;
         int userId = GetComponent<UserData>().userId;
         if (userId < 1)
         {
@@ -32,6 +33,7 @@ public class DataController : MonoBehaviour
     }
     public void CheckIfFacebookIdExists(string facebookId)
     {
+		return;
         StartCoroutine(CheckIfUserExistsOnLocalDB(facebookId));
     }
     //creo el user en la base local:
@@ -73,12 +75,14 @@ public class DataController : MonoBehaviour
     }
     public void CreateUserByFacebookID(string facebookId)
     {
+		return;
         UserData userData = GetComponent<UserData>();
         StartCoroutine(CreateUserRoutine(userData.username, facebookId, userData.hiscore, userData.email, userData.password));
     }
     //creo el user en la base local:
     public void CreateUser(string username, string facebookId, int hiscore, string email, string password)
     {
+		return;
         StartCoroutine(CreateUserRoutine(username, facebookId, hiscore, email, password));
     }
     IEnumerator CreateUserRoutine(string username, string facebookId, int hiscore, string email, string password)
@@ -101,6 +105,7 @@ public class DataController : MonoBehaviour
     
     void SetUserData(string userName, string facebookID, int userId, int hiscore, string email)
     {
+		return;
         SocialEvents.OnSetUserData(userName, userId, hiscore, true);
     }
 
@@ -133,6 +138,7 @@ public class DataController : MonoBehaviour
 
     public void AddFacebookIdToExistingAccount(int userId, string facebookId)
     {
+		return;
         print("AddFacebookIdToExistingAccount userId: " + userId + " facebookId " + facebookId);
 
         StartCoroutine(AddFacebookId(userId, facebookId));
@@ -154,6 +160,7 @@ public class DataController : MonoBehaviour
 
     void OnGetHiscores(int levelID)
     {
+		return;
         StartCoroutine(GetHiscoresRoutine(levelID));
     }
     IEnumerator GetHiscoresRoutine(int levelID)

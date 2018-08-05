@@ -199,7 +199,7 @@ public class Missions : MonoBehaviour {
 			return true;
 		return false;
 	}
-    private void OnScoreOn(int playerID, Vector3 pos, int qty)
+	private void OnScoreOn(int playerID, Vector3 pos, int qty, ScoresManager.types type)
     {
 		if (!CanComputeMission ())
 			return;
