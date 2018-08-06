@@ -134,7 +134,7 @@ public class ObjectPool : MonoBehaviour
     public void PoolObject(SceneObject obj)
     {
 		if (obj.broken) {
-			print ("____________broken " + obj.name);
+			//print ("____________broken " + obj.name);
 			Destroy (obj.gameObject);
 			return;
 		}

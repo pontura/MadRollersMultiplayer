@@ -161,11 +161,11 @@ public class MultiplayerData : MonoBehaviour
 		{
 		case 0: score_player1 += points; break;
 		case 1: score_player2 += points;  break;
-		case 2: score_player3+= points;  break;
+		case 2: score_player3 += points;  break;
 		case 3: score_player4 += points;  break;
 		}
-		string desc = type.ToString ().ToLower ();
-		Data.Instance.events.OnDrawScore (points, desc);
+		//string desc = type.ToString ().ToLower ();
+		//Data.Instance.events.OnDrawScore (points, desc);
 	}
 	void OnMissionComplete(int id)
 	{
