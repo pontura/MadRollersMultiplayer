@@ -10,19 +10,24 @@ public class WeakPlatform : SceneObject {
 	Color floor_border ;
 
 	Rigidbody rb;
+	bool isTheLastPiece;
     public override void OnRestart(Vector3 pos)
     {
+		
+		floor_top = Data.Instance.videogamesData.GetActualVideogameData ().floor_top;
+		floor_border = Data.Instance.videogamesData.GetActualVideogameData ().floor_border;
+
+        base.OnRestart(pos);
+		if (gameObject.name == "extraSmallBlock1_real")
+			isTheLastPiece = true;
+		
 		rb = GetComponent<Rigidbody> ();
 		if (rb != null) {
 			rb.useGravity = false;
 			rb.isKinematic = true;
 		}
-		floor_top = Data.Instance.videogamesData.GetActualVideogameData ().floor_top;
-		floor_border = Data.Instance.videogamesData.GetActualVideogameData ().floor_border;
+		GetComponent<Collider> ().enabled = true;
 
-        base.OnRestart(pos);
-
-        GetComponent<Collider>().enabled = true;
 		Renderer[] renderers = GetComponentsInChildren<Renderer>();
 		int newVideoGameID = Data.Instance.videogamesData.actualID;
 		if (newVideoGameID != videoGame_ID) {
@@ -67,7 +72,7 @@ public class WeakPlatform : SceneObject {
         
 	}
 	public void breakOut(Vector3 impactPosition) {
-
+		
         GetComponent<Collider>().enabled = false;
         if (!to)
         {
@@ -108,8 +113,7 @@ public class WeakPlatform : SceneObject {
 	}
     private void Fall()
     {
-		
-		if (GetComponent<Rigidbody> () == null)
+		if(rb==null)
 			rb = gameObject.AddComponent<Rigidbody>();
 		rb.isKinematic = false;
 		rb.useGravity = true;
@@ -129,28 +133,5 @@ public class WeakPlatform : SceneObject {
 		rb.useGravity = false;
 		rb.isKinematic = true;
 	}
-    //IEnumerator FallDown()
-    //{
-    //    hasGravity();
-    //    yield return new WaitForSeconds(1);
-    //    Pool();
-    //}
-
-    //public void hasGravity()
-    //{
-     
-    //    gameObject.GetComponent<Collider>().enabled = false;
-
-    //    if (!gameObject.GetComponent<Rigidbody>())
-    //    {
-    //        gameObject.AddComponent<Rigidbody>();
-    //    }
-
-    //    gameObject.rigidbody.isKinematic = false;
-    //    gameObject.rigidbody.useGravity = true;
-
-    //   // Vector3 newPosition = new Vector3(Random.Range(-0.05f, 0.05f), Random.Range(0f, 0.2f), Random.Range(0.05f, 0.05f));
-    //    //gameObject.rigidbody.AddForce((Time.deltaTime * newPosition) * 2000, ForceMode.Impulse);
-    //}
 
 }

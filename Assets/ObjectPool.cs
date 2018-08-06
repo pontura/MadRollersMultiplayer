@@ -124,7 +124,7 @@ public class ObjectPool : MonoBehaviour
 				}
 			}
 		} 
-		Debug.Log("_________________NO HAY: " + objectType + "  bool " + onlyPooled);
+	//	Debug.Log("_________________NO HAY: " + objectType + "  bool " + onlyPooled);
 		return null;
     }
 

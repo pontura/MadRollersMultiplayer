@@ -39,10 +39,8 @@ public class FXExplotion : SceneObject {
         position.y += 2;
 		timer = 0.2f;
 	}
-	public override void OnSceneObjectUpdate()
+	public void OnSceneObjectUpdated()
 	{
-		base.OnSceneObjectUpdate ();
-
 		if (!isOn)
 			return;
 		
@@ -56,10 +54,9 @@ public class FXExplotion : SceneObject {
 
 		transform.localScale = new Vector3(s,s,s);
 
-		print("timer " + timer +"    finalScale " + finalScale +  "       _duration " + _duration  + "       s" + s);
 
-//		if (scale.x > _scale)
-//			Pool ();
+		if (scale.x > finalScale)
+			Pool ();
 	}
     private void die()
     {
