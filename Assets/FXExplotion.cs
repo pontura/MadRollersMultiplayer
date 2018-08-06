@@ -5,9 +5,6 @@ public class FXExplotion : SceneObject {
 
 	public float finalScale = 5;
 	float _duration = 0.4f;	
-	private bool isScaling = false;
-	private int floorDumps = 0;
-	private int floorTotalDumps = 0;
 
 	bool isOn;
 	float timer;
@@ -35,9 +32,9 @@ public class FXExplotion : SceneObject {
 
         setScore();
 
-        position.z -= 2;
+        position.z += 0;
         position.y += 2;
-		timer = 0.2f;
+		timer = 0f;
 	}
 	public void OnSceneObjectUpdated()
 	{

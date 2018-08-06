@@ -122,7 +122,7 @@ public class WeakPlatform : SceneObject {
 		Vector3 dir = (Vector3.up * Random.Range(160,310));
 		dir += new Vector3 (Random.Range (-5, 5), Random.Range (-5, 5), Random.Range (-5, 5));
 		rb.AddForce(dir, ForceMode.Impulse);
-		rb.AddTorque (new Vector3 (0, Random.Range(-10,10), 0), ForceMode.Impulse);
+		//rb.AddTorque (new Vector3 (0, Random.Range(-10,10), 0), ForceMode.Impulse);
        // Pool();
         //StartCoroutine(FallDown());
     }

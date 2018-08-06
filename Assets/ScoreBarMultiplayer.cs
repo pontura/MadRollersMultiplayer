@@ -47,6 +47,7 @@ public class ScoreBarMultiplayer : MonoBehaviour {
 
 	void OnDrawScore(int score, string desc)
 	{	
+		
 		if (Data.Instance.multiplayerData.score == 0)
 			myScoreFields.text = "000";
 		else
