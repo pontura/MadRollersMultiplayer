@@ -63,20 +63,20 @@ public class CurvedWorldManager : MonoBehaviour {
     }
 	
 	void Update () {
-        if (newTurn > turn) turn += 0.05f;
-        else if (newTurn < turn) turn -= 0.05f;
-       // if(bending!=newBending)
-        try
-        {
-            VacuumShaders.CurvedWorld.CurvedWorld_Controller.get._V_CW_Bend_X = newBending;
-
-            if (turn != newTurn)
-                VacuumShaders.CurvedWorld.CurvedWorld_Controller.get._V_CW_Bend_Y = turn;
-        }
-        catch
-        {
-
-        }
+//        if (newTurn > turn) turn += 0.05f;
+//        else if (newTurn < turn) turn -= 0.05f;
+//       // if(bending!=newBending)
+//        try
+//        {
+//            VacuumShaders.CurvedWorld.CurvedWorld_Controller.get._V_CW_Bend_X = newBending;
+//
+//            if (turn != newTurn)
+//                VacuumShaders.CurvedWorld.CurvedWorld_Controller.get._V_CW_Bend_Y = turn;
+//        }
+//        catch
+//        {
+//
+//        }
        
 	}
 }

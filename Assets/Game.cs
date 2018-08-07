@@ -13,7 +13,7 @@ public class Game : MonoBehaviour {
 	private bool unpaused;
 
     public MoodManager moodManager;
-
+	public SceneObjectsManager sceneObjectsManager;
 
     public Level level;
 

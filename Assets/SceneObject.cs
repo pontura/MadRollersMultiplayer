@@ -18,8 +18,8 @@ public class SceneObject : MonoBehaviour {
     public bool isActive;
     public int score;
 
-    [HideInInspector]
-    public CharactersManager charactersMmanager;
+   // [HideInInspector]
+   // public CharactersManager charactersMmanager;
 
     public int distanceFromCharacter;
 
@@ -27,33 +27,41 @@ public class SceneObject : MonoBehaviour {
 
     //se dibuja solo si hay mas de un avatar vivo:
     public bool onlyMultiplayers;
+	SceneObjectsManager manager;
 
     void Start()
     {
         
     }
-    public void LateUpdate()
+	public void UpdateByManager(float distance)
     {
-        if (!isActive) return;
-        if (!charactersMmanager) return;
-        if (charactersMmanager.getDistance() == 0) return;
-        if (!characterTransform) characterTransform = charactersMmanager.character.transform;
+      //  if (!isActive) return;
+      //  if (!charactersMmanager) return;
+      //  if (charactersMmanager.getDistance() == 0) return;
+      //  if (!characterTransform) characterTransform = charactersMmanager.character.transform;
        
-        float distance = charactersMmanager.getDistance();
-        distanceFromCharacter = (int)transform.position.z - (int)distance;
+       // float distance = charactersMmanager.getDistance();
+       
 
-        if (transform.localPosition.y < -6)
-            Pool();
-		else if (distance > transform.position.z + size_z + 22 && Data.Instance.playMode != Data.PlayModes.VERSUS)
-            Pool();
-		else if (distance > transform.position.z - 45 || Data.Instance.playMode == Data.PlayModes.VERSUS)
-            OnSceneObjectUpdate();
+//        if (transform.localPosition.y < -6)
+//            Pool();
+//		else if (distance > transform.position.z + size_z + 22 && Data.Instance.playMode != Data.PlayModes.VERSUS)
+//            Pool();
+//		else if (distance > transform.position.z - 45 || Data.Instance.playMode == Data.PlayModes.VERSUS)
+//            OnSceneObjectUpdate();
     }
-    public void Restart(Vector3 pos)
+	public void Init(SceneObjectsManager manager, Vector3 pos)
+	{
+		this.manager = manager;
+		Restart(pos);
+	}
+	public void Restart(Vector3 pos)
     {
-        if (onlyMultiplayers && Game.Instance.level.charactersManager.getTotalCharacters() <= 1) 
-            Pool();
-        else
+		isActive = true;
+		gameObject.SetActive(true);
+//        if (onlyMultiplayers && Game.Instance.level.charactersManager.getTotalCharacters() <= 1) 
+//            Pool();
+//        else
             OnRestart(pos);
     }
     public void setRotation(Vector3 rot)
@@ -71,24 +79,32 @@ public class SceneObject : MonoBehaviour {
         Vector3 newPos = new Vector3(2000, 0, 2000);
         transform.position = newPos;       
         ObjectPool.instance.PoolObject(this);
+		if (manager == null)
+			Debug.LogError ("manager = null " + gameObject.name);
+		manager.RemoveSceneObject (this);
         OnPool();
     }
+	public void Updated(float distance)
+	{
+		distanceFromCharacter = (int)transform.position.z - (int)distance;
+		OnSceneObjectUpdate();
+	}
     public virtual void OnSceneObjectUpdate()
     {
         SendMessage("OnSceneObjectUpdated", SendMessageOptions.DontRequireReceiver);
     }
     public virtual void OnRestart(Vector3 pos)
     {
-        if (!Game.Instance)
-        {
-            Pool(); return;
-        }
-        if(!charactersMmanager)
-         charactersMmanager = Game.Instance.GetComponent<CharactersManager>();
+//        if (!Game.Instance)
+//        {
+//         //   Pool(); return;
+//        }
+     //   if(!charactersMmanager)
+      //   charactersMmanager = Game.Instance.GetComponent<CharactersManager>();
 
-        gameObject.SetActive(true);
+       // gameObject.SetActive(true);
         transform.position = pos;
-        isActive = true;
+        //isActive = true;
     }
     public virtual void changeMaterial(string materialName)
     {

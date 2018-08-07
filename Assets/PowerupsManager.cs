@@ -48,7 +48,8 @@ public class PowerupsManager : MonoBehaviour {
 
 		if (newSO)
 		{
-			newSO.Restart(pos);
+			Game.Instance.sceneObjectsManager.AddSceneObject(newSO, pos);
+			//newSO.Restart(pos);
 			newSO.transform.localEulerAngles = Vector3.zero;
 			all.Add (newSO);
 		}
@@ -69,7 +70,8 @@ public class PowerupsManager : MonoBehaviour {
         {
             int force = 600;
             pos.y += 1.2f;
-            newSO.Restart(pos);
+			Game.Instance.sceneObjectsManager.AddSceneObject(newSO, pos);
+           // newSO.Restart(pos);
             newSO.transform.localEulerAngles = Vector3.zero;
             Vector3 direction = ((newSO.transform.forward * force) + (Vector3.up * (force * 1.8f)));
             newSO.GetComponent<Rigidbody>().AddForce(direction, ForceMode.Acceleration);

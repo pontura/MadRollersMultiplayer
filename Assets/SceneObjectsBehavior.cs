@@ -5,6 +5,7 @@ using System.Linq;
 
 public class SceneObjectsBehavior : MonoBehaviour {
 
+	SceneObjectsManager manager;
 	public ArrayList unused = new ArrayList();
 
 	public SceneObject Border_videogame_1;
@@ -73,6 +74,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 
 	private void Awake()
 	{
+		manager = GetComponent<SceneObjectsManager> ();
 		Pool = Data.Instance.sceneObjectsPool;
 	}
 	public void Add(GameObject go)
@@ -163,7 +165,8 @@ public class SceneObjectsBehavior : MonoBehaviour {
 
 
 					sceneObject.isActive = false;
-					sceneObject.Restart(pos);
+					//sceneObject.Restart(pos);
+					sceneObject.transform.position = pos;
 					sceneObject.transform.rotation = go.transform.rotation;
 
 					//if (go.name == "Yuyo")
@@ -341,8 +344,10 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			if (clone)
 			{
 				sceneObject = Instantiate(clone, pos, Quaternion.identity) as SceneObject;
+				sceneObject.gameObject.SetActive (false);
 				sceneObject.transform.SetParent(Pool.Scene.transform);
 				sceneObject.transform.rotation = go.transform.rotation;
+				sceneObject.transform.position = pos;
 
 				if (go.GetComponent<BossSettings>())
 				{
@@ -350,7 +355,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 					CopyComponent(mo, sceneObject.gameObject);
 				}
 
-				sceneObject.Restart(pos);
+			//	sceneObject.Restart(pos);
 			}
 			if (go.GetComponent<Move>() && sceneObject.GetComponent<Move>() == null)
 			{
@@ -428,8 +433,10 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				pos = mo.getPosition(pos);
 			}
 
-
+			if(sceneObject!=null)
+				manager.AddSceneObject (sceneObject, pos);
 		}
+
 			//AddBorders ();
 	}
 	public void PoolSceneObjectsInScene()

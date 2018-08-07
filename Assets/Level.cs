@@ -183,8 +183,8 @@ public class Level : MonoBehaviour {
 		if (explpotionEffect == null)
 			return;
 		
-
-        explpotionEffect.Restart(position);
+		Game.Instance.sceneObjectsManager.AddSceneObject(explpotionEffect, position);
+      //  explpotionEffect.Restart(position);
     }
     public void OnAddExplotion(Vector3 position, Color color)
     {
@@ -213,15 +213,18 @@ public class Level : MonoBehaviour {
        
        // explotionNew.GetComponent<FXExplotion>()._scale = force;
 
-        if (explotionNew)
-            explotionNew.Restart(newPos);
+		if (explotionNew) {
+			Game.Instance.sceneObjectsManager.AddSceneObject(explotionNew, newPos);
+			//explotionNew.Restart (newPos);
+		}
 
         if (_explotionEffect != "")
         {
             SceneObject explpotionEffect = ObjectPool.instance.GetObjectForType(_explotionEffect, true);
             if (explpotionEffect)
             {
-                explpotionEffect.Restart(newPos);
+				Game.Instance.sceneObjectsManager.AddSceneObject(explpotionEffect, newPos);
+               // explpotionEffect.Restart(newPos);
                 ParticlesSceneObject ps = explpotionEffect.GetComponent<ParticlesSceneObject>();
                 if (ps != null)
                     ps.SetColor(color);
@@ -258,7 +261,8 @@ public class Level : MonoBehaviour {
 			if (!dontAddThis) {
 				SceneObject newSO = ObjectPool.instance.GetObjectForType (explotionGift.name, true);
 				if (newSO) {
-					newSO.Restart (pos [a]);
+					Game.Instance.sceneObjectsManager.AddSceneObject(newSO, pos [a]);
+					//newSO.Restart (pos [a]);
 					newSO.transform.localEulerAngles = new Vector3 (0, a * (360 / NumOfParticles), 0);
 					Vector3 direction = ((newSO.transform.forward * force) + (Vector3.up * (force * 2)));
 					Rigidbody rb = newSO.GetComponent<Rigidbody> ();
@@ -279,7 +283,8 @@ public class Level : MonoBehaviour {
             SceneObject newSO = ObjectPool.instance.GetObjectForType(explotionGift.name, true);
             if (newSO)
             {
-                newSO.Restart(position);
+				Game.Instance.sceneObjectsManager.AddSceneObject(newSO, position);
+               // newSO.Restart(position);
                 newSO.transform.localEulerAngles = new Vector3(0, a * (360 / NumOfParticles), 0);
                 Vector3 direction = ((newSO.transform.forward * force) + (Vector3.up * (force*3)));
                 newSO.GetComponent<Rigidbody>().AddForce(direction, ForceMode.Impulse);
@@ -381,14 +386,9 @@ public class Level : MonoBehaviour {
 			if (position == Vector3.zero)
 				return;
 			SceneObject newSO = Instantiate (scoreSignal, position, Quaternion.identity) as SceneObject;
-			newSO.Restart (position);
+			//newSO.Restart (position);
 			newSO.GetComponent<ScoreSignal> ().SetScore (playerID, score);
 		}
-    }
-    public void addSceneObjectToScene(SceneObject _so, Vector3 position)
-    {
-        SceneObject so = Instantiate(_so, position, Quaternion.identity) as SceneObject;
-        so.Restart(so.transform.position);
     }
 
 

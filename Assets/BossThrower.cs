@@ -31,7 +31,8 @@ public class BossThrower : Boss {
 		SceneObject sceneObject = Data.Instance.sceneObjectsPool.GetObjectForType( "flyer_real", false);  
 		if (sceneObject) {
 			sceneObject.isActive = false;
-			sceneObject.Restart(pos);
+			//sceneObject.Restart(pos);
+			Game.Instance.sceneObjectsManager.AddSceneObject(sceneObject, pos);
 		}
 	}
 	public override void OnPartBroken(BossPart part)

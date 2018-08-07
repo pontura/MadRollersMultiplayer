@@ -52,6 +52,6 @@ public class Shooter : MonoBehaviour {
 	{
 		nextFireTime = Time.time + reloadTime;
         SceneObject projectile = ObjectPool.instance.GetObjectForType(myProjectile.name, true);
-        projectile.Restart(transform.position);
+		Game.Instance.sceneObjectsManager.AddSceneObject(projectile, transform.position);
 	}
 }

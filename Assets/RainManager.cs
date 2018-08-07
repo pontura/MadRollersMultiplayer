@@ -49,7 +49,8 @@ public class RainManager : MonoBehaviour {
         SceneObject obj = ObjectPool.instance.GetObjectForType(sceneObjectName, true);
         if (obj)
         {
-            obj.Restart(newPos);
+			Game.Instance.sceneObjectsManager.AddSceneObject(obj, newPos);
+            //obj.Restart(newPos);
         }
     }
 }

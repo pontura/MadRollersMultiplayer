@@ -47,7 +47,7 @@ public class BombTeledirigida : Bomb {
 
         //if(alive)
         //{
-        
+		return;
         pos.z = characterTransform.transform.localPosition.z+20;
         if (right)
             pos.x -= 10 * Time.deltaTime;

@@ -16,7 +16,8 @@ public class CascadeSceneObject : SceneObject {
 		Vector3 f;
 		if (Data.Instance.playMode == Data.PlayModes.VERSUS && num%4==0) {
 			 newSceneObject = Data.Instance.sceneObjectsPool.GetObjectForType("ThrowableSceneObject_real", false);  
-			newSceneObject.OnRestart (transform.position);
+			//newSceneObject.OnRestart (transform.position);
+			Game.Instance.sceneObjectsManager.AddSceneObject(newSceneObject, transform.position);
 			newSceneObject.GetComponent<Rigidbody> ().velocity = Vector3.zero;
 			f = transform.forward * 100;
 			f.y = Random.Range (-5, 5);
@@ -27,7 +28,8 @@ public class CascadeSceneObject : SceneObject {
 		if (num > 100)
 			return;
 		 newSceneObject = Data.Instance.sceneObjectsPool.GetObjectForType("ThrowableSceneObject_real", false);  
-		newSceneObject.OnRestart (transform.position);
+		//newSceneObject.OnRestart (transform.position);
+		Game.Instance.sceneObjectsManager.AddSceneObject(newSceneObject, transform.position);
 		newSceneObject.GetComponent<Rigidbody> ().velocity = Vector3.zero;
 		f = transform.forward * 100;
 		f.y = Random.Range (-5, 5);

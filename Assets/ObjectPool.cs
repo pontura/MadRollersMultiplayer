@@ -24,7 +24,9 @@ public class ObjectPool : MonoBehaviour
     public GameObject Scene;
 
     public static ObjectPool instance;
-    public List<SceneObject> pooledObjects;
+    
+	List<SceneObject> pooledObjects;
+
     protected GameObject containerObject;
 
 
@@ -35,6 +37,8 @@ public class ObjectPool : MonoBehaviour
 
     void Start()
     {
+		pooledObjects = new List<SceneObject> ();
+
         DontDestroyOnLoad(this);
 
         containerObject = new GameObject("ObjectPool");
@@ -60,6 +64,7 @@ public class ObjectPool : MonoBehaviour
             for (int n = 0; n < objectPrefab.Count; n++)
             {
 				SceneObject newObj = CreateSceneObject (objectPrefab.Prefab);
+				newObj.gameObject.SetActive(false);
 //                SceneObject newObj = Instantiate(objectPrefab.Prefab) as SceneObject;
 //				pooledObjects.Add (newObj);
 //                newObj.name = objectPrefab.Prefab.name;
@@ -117,8 +122,8 @@ public class ObjectPool : MonoBehaviour
 			foreach (ObjectPoolEntry poe in Entries) {
 				if (poe.Prefab.name == objectType || poe.Prefab.name + "(Clone)" == objectType) {	
 					SceneObject newSceneObject = CreateSceneObject(poe.Prefab);
-					newSceneObject.transform.parent = Scene.transform;
-					pooledObjects.Remove(newSceneObject);	
+					newSceneObject.transform.SetParent( Scene.transform );
+					pooledObjects.Remove(newSceneObject);
 					return newSceneObject;
 				}
 			}

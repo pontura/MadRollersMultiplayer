@@ -41,7 +41,8 @@ public class EnemyShooter : MonoBehaviour {
         Vector3 pos = new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z + 4f);
         transform.localPosition += new Vector3(0, 0, -2);
 
-        projectil.Restart(pos);
+		Game.Instance.sceneObjectsManager.AddSceneObject(projectil, pos);
+      //  projectil.Restart(pos);
 		Vector3 rot = new Vector3(0,0,0);
         rot.x -= 7;
         projectil.transform.localEulerAngles = rot;

@@ -115,7 +115,7 @@ public class CharacterShooter : MonoBehaviour {
 			projectil.playerID = characterBehavior.player.id;
 			projectil.SetColor(characterBehavior.player.color);
 
-			projectil.Restart(pos);
+			Game.Instance.sceneObjectsManager.AddSceneObject(projectil, pos);
 			projectil.team_for_versus = characterBehavior.team_for_versus;
 			Vector3 rot = transform.localEulerAngles;
 			rot.x -= 4;
