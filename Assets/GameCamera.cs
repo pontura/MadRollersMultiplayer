@@ -5,7 +5,7 @@ using AlpacaSound.RetroPixelPro;
 public class GameCamera : MonoBehaviour 
 {
 	public int team_id;
-	public RetroPixelPro retroPixelPro;
+	RetroPixelPro retroPixelPro;
 	public Camera cam;
     public states state;
     public  enum states
@@ -41,7 +41,7 @@ public class GameCamera : MonoBehaviour
 	void ChangeResolution()
 	{
 		//retroPixelPro.horizontalResolution =(int) defaultResolution.x;
-	//	retroPixelPro.verticalResolution =(int) defaultResolution.y;
+		//	retroPixelPro.verticalResolution =(int) defaultResolution.y;
 	}
 	void SetPizelPro()
 	{
@@ -72,9 +72,9 @@ public class GameCamera : MonoBehaviour
 		//newH = retroPixelPro.horizontalResolution;
 		//newV = retroPixelPro.verticalResolution;
 
-		RetroPixelPro rtp = Data.Instance.videogamesData.GetActualVideogameData ().retroPixelPro;
-		rtp.dither = 0;
-		CopyComponent (rtp, cam.gameObject);
+		retroPixelPro = Data.Instance.videogamesData.GetActualVideogameData ().retroPixelPro;
+		retroPixelPro.dither = 0;
+		CopyComponent (retroPixelPro, cam.gameObject);
 
 		charactersManager = Game.Instance.GetComponent<CharactersManager>();
        

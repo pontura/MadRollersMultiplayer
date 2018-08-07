@@ -9,8 +9,8 @@ public class FramesController : MonoBehaviour {
 	float frameRate = 1;
 
 	void Start () {
-		//Data.Instance.events.RalentaTo += RalentaTo;
-		//Data.Instance.events.ForceFrameRate += ForceFrameRate;
+		Data.Instance.events.RalentaTo += RalentaTo;
+		Data.Instance.events.ForceFrameRate += ForceFrameRate;
 	}
 	public void ForceFrameRate(float newFrameRate)
 	{
