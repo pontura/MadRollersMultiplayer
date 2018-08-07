@@ -187,13 +187,13 @@ public class Data : MonoBehaviour {
     }
     public void LoadLevel(string levelName)
     {
-		loadingAsset.SetOn (true);
+		//loadingAsset.SetOn (true);
 		Data.Instance.events.ForceFrameRate (1);
         GetComponent<Fade>().LoadLevel(levelName, 0.6f, Color.black);
     }
 	public void LoadingReady()
 	{
-		loadingAsset.SetOn (false);
+		//loadingAsset.SetOn (false);
 	}
 	public void LoadLevelNotFading(string levelName)
 	{

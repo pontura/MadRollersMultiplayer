@@ -6,8 +6,6 @@ using System.Linq;
 public class SceneObjectsBehavior : MonoBehaviour {
 
 	public ArrayList unused = new ArrayList();
-	[HideInInspector]
-	public Area area;
 
 	public SceneObject Border_videogame_1;
 	public SceneObject Water;
@@ -103,7 +101,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	{
 		print (area.name + " AREA");
 		borderTransforms = new List<Transform> ();
-		this.area = area;
 		GameObject[] gos = area.getSceneObjects();
 		bool nubesOn = false;
 
@@ -149,6 +146,11 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			//case "Tumba":  
 			case "enemyNaveSimple":  
 			case "BichoVuela":
+			case "palm":
+			case "palm2":
+			case "palm3":
+			case "palm4":
+			case "palmTall":
 				
 				if(go.name == "smallBlock1" || go.name == "extraSmallBlock1")
 					sceneObject = Pool.GetObjectForType(go.name + "_real", true);    
@@ -275,23 +277,23 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				clone = cilindro;
 			else if (go.name == "enemyGhost")
 				clone = enemyGhost;
-			else if (go.name == "palmTall") {
-				clone = palm_tall;
-				go.transform.localEulerAngles = new Vector3 (0, Random.Range (0, 4) * 90,  0);
-			}
-			else if (go.name == "palm")
-			{
-				int ran = Random.Range (0, 60);
-				if (ran < 20)
-					clone = palm;
-				else if (ran < 40)
-					clone = palm2;
-				else 
-					clone = palm3;
-				
-				go.transform.localEulerAngles = new Vector3 (0, Random.Range (0, 4) * 90,  0);
-				//}
-			}
+//			else if (go.name == "palmTall") {
+//				clone = palm_tall;
+//				go.transform.localEulerAngles = new Vector3 (0, Random.Range (0, 4) * 90,  0);
+//			}
+//			else if (go.name == "palm")
+//			{
+//				int ran = Random.Range (0, 60);
+//				if (ran < 20)
+//					clone = palm;
+//				else if (ran < 40)
+//					clone = palm2;
+//				else 
+//					clone = palm3;
+//				
+//				go.transform.localEulerAngles = new Vector3 (0, Random.Range (0, 4) * 90,  0);
+//				//}
+//			}
 			else if (go.name == "streetFloor")
 				clone = streetFloor;
 			else if (go.name == "streetFloorSmall")

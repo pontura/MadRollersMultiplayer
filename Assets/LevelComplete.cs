@@ -22,25 +22,25 @@ public class LevelComplete : MonoBehaviour {
 		Data.Instance.events.RalentaTo (0.6f, 0.05f);
 		panel.SetActive (true);
         int maxScore = Data.Instance.GetComponent<Missions>().MissionActive.maxScore;
-        int missionScore = Data.Instance.userData.missionScore;
+      //  int missionScore = Data.Instance.userData.missionScore;
         int quarter = maxScore / 4;
 
 		string titleText ="";
 
         int starsQty;
-		if (missionScore >= quarter * 4) {
+		//if (missionScore >= quarter * 4) {
 			titleText = "EXCELENT";
 			starsQty = 3;
-		} else if (missionScore >= quarter * 2) {
-			titleText = "WELL DONE";
-			starsQty = 2;
-		} else if (missionScore >= quarter) {
-			titleText = "OK...";
-			starsQty = 1;
-		} else {
-			titleText = "POOR...";
-			starsQty = 0;
-		}
+//		//} else if (missionScore >= quarter * 2) {
+//			titleText = "WELL DONE";
+//			starsQty = 2;
+//		} else if (missionScore >= quarter) {
+//			titleText = "OK...";
+//			starsQty = 1;
+//		} else {
+//			titleText = "POOR...";
+//			starsQty = 0;
+//		}
 
         stars.Init(starsQty);
 

@@ -42,7 +42,7 @@ public class SceneObject : MonoBehaviour {
         float distance = charactersMmanager.getDistance();
         distanceFromCharacter = (int)transform.position.z - (int)distance;
 
-        if (transform.localPosition.y < -14)
+        if (transform.localPosition.y < -6)
             Pool();
 		else if (distance > transform.position.z + size_z + 22 && Data.Instance.playMode != Data.PlayModes.VERSUS)
             Pool();

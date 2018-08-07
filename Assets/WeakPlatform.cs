@@ -2,7 +2,8 @@ using UnityEngine;
 using System.Collections;
 
 public class WeakPlatform : SceneObject {
-	
+
+	Collider collider;
 	public GameObject to;
 	public int videoGame_ID;
 
@@ -10,23 +11,23 @@ public class WeakPlatform : SceneObject {
 	Color floor_border ;
 
 	Rigidbody rb;
-	bool isTheLastPiece;
+	bool falling;
+
     public override void OnRestart(Vector3 pos)
     {
-		
+		falling = false;
 		floor_top = Data.Instance.videogamesData.GetActualVideogameData ().floor_top;
 		floor_border = Data.Instance.videogamesData.GetActualVideogameData ().floor_border;
 
         base.OnRestart(pos);
-		if (gameObject.name == "extraSmallBlock1_real")
-			isTheLastPiece = true;
 		
 		rb = GetComponent<Rigidbody> ();
 		if (rb != null) {
 			rb.useGravity = false;
 			rb.isKinematic = true;
 		}
-		GetComponent<Collider> ().enabled = true;
+		collider = GetComponent<Collider> ();
+		collider.enabled = true;
 
 		Renderer[] renderers = GetComponentsInChildren<Renderer>();
 		int newVideoGameID = Data.Instance.videogamesData.actualID;
@@ -45,6 +46,8 @@ public class WeakPlatform : SceneObject {
 	}
    void OnTriggerEnter(Collider other) 
 	{
+		if (falling)
+			return;
         if (!isActive) return;
 		switch (other.tag)
 		{
@@ -73,7 +76,7 @@ public class WeakPlatform : SceneObject {
 	}
 	public void breakOut(Vector3 impactPosition) {
 		
-        GetComponent<Collider>().enabled = false;
+		collider.enabled = false;
         if (!to)
         {
             Fall();
@@ -113,6 +116,7 @@ public class WeakPlatform : SceneObject {
 	}
     private void Fall()
     {
+		falling = true;
 		if(rb==null)
 			rb = gameObject.AddComponent<Rigidbody>();
 		rb.isKinematic = false;

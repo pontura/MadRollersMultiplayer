@@ -20,7 +20,7 @@ public class InputSavedAutomaticPlay : MonoBehaviour {
 	bool isPlaying;
 	int id = 1;
 
-	public void Init (CharactersManager charactersManager) {
+	public void Init(CharactersManager charactersManager) {
 		this.charactersManager = charactersManager;
 		foreach (SavedData s in allPlayersSavedData) {
 			AddCharacter ();

@@ -104,8 +104,8 @@ public class Breakable : MonoBehaviour {
 	}
 	
 	private void breaker(){
-		BreakStandard ();
-		//BreakEveryBlock ();
+		//BreakStandard ();
+		BreakEveryBlock ();
 	}
 	void BreakEveryBlock()
 	{

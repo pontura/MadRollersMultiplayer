@@ -3,8 +3,8 @@ using System.Collections;
 
 public class FXExplotion : SceneObject {
 
-	public float finalScale = 5;
-	float _duration = 0.4f;	
+	float finalScale = 3;
+	float _duration = 0.2f;	
 
 	bool isOn;
 	float timer;
@@ -46,11 +46,7 @@ public class FXExplotion : SceneObject {
 		Vector3 scale = transform.localScale;
 		float s = (timer * finalScale) / _duration;
 
-		if (scale.x < finalScale)
-			isOn = false;
-
 		transform.localScale = new Vector3(s,s,s);
-
 
 		if (scale.x > finalScale)
 			Pool ();
