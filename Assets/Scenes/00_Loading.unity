@@ -154,7 +154,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 198492, guid: db836a5a6ffc4dd4a9fa3b9d8ef991f3, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db836a5a6ffc4dd4a9fa3b9d8ef991f3, type: 2}
@@ -429,6 +429,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 116ba71c62e94bc42bfb43185801bd59, type: 2}
+      propertyPath: Scene
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 116ba71c62e94bc42bfb43185801bd59, type: 2}
   m_IsPrefabAsset: 0
@@ -622,6 +626,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 50fdb467619881f4aa547e6b153134a9, type: 2}
       propertyPath: m_ReflectionProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 50fdb467619881f4aa547e6b153134a9, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1515,10 +1523,10 @@ MonoBehaviour:
   canContinue: 1
   totalCredits: 3
   credits: 3
-  voicesOn: 1
-  soundsFXOn: 1
-  madRollersSoundsOn: 1
-  musicOn: 1
+  voicesOn: 0
+  soundsFXOn: 0
+  madRollersSoundsOn: 0
+  musicOn: 0
   switchPlayerInputs: 0
   timeToRespawn: 5
   isReplay: 0

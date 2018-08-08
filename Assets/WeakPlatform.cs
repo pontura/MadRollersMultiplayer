@@ -52,21 +52,7 @@ public class WeakPlatform : SceneObject {
 		switch (other.tag)
 		{
 		case "explotion":
-
-
-            //achica la cantidad de pisos que rompe:
-            //if (other.transform.localScale.x < 1.5f && (gameObject.name == "mediumBlock1_real(Clone)" || gameObject.name == "mediumBlock1_real"))
-            //{
-            //    Fall();
-            //    return;
-            //} else
-            //if (other.transform.localScale.x < 2f && (gameObject.name == "smallBlock1_real(Clone)" || gameObject.name == "smallBlock1_real"))
-            //{
-            //    Fall();
-            //    return;
-            //} else  {
                 breakOut(other.transform.localPosition);
-           // }
 			break;
 		case "destroyable":
             breakOut(other.transform.localPosition);

@@ -105,25 +105,24 @@ public class ObjectPool : MonoBehaviour
     {
 
 		SceneObject pooledObject = null;
-		foreach (SceneObject soPooled in pooledObjects) {
+		int i = pooledObjects.Count;
+		while (i>0) {
+			SceneObject soPooled = pooledObjects [i - 1];
 			if (soPooled.name == objectType || soPooled.name + "(Clone)" == objectType) {
 				pooledObject = soPooled;
+				pooledObject.transform.SetParent( Scene.transform );
+				pooledObjects.Remove(pooledObject);	
+				return pooledObject;
 			}
-		}
-				
-        if (pooledObject != null)
-        {
-			pooledObject.transform.SetParent( Scene.transform );
-			pooledObjects.Remove(pooledObject);	
-            return pooledObject;
-		} 
+			i--;
+		}	
 		if (!onlyPooled)
 		{
 			foreach (ObjectPoolEntry poe in Entries) {
 				if (poe.Prefab.name == objectType || poe.Prefab.name + "(Clone)" == objectType) {	
 					SceneObject newSceneObject = CreateSceneObject(poe.Prefab);
 					newSceneObject.transform.SetParent( Scene.transform );
-					pooledObjects.Remove(newSceneObject);
+					//pooledObjects.Remove(newSceneObject);
 					return newSceneObject;
 				}
 			}

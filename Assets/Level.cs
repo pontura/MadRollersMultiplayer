@@ -164,8 +164,8 @@ public class Level : MonoBehaviour {
 	{
         if (!playing) return;
         playing = false;
-        sceneObjects.PoolSceneObjectsInScene();
-        //Init();
+		Game.Instance.sceneObjectsManager.PoolSceneObjectsInScene();
+		Debug.LogError ("DONE");
 	}
     public void OnAddObjectExplotion(Vector3 position, int type)
     {      
@@ -176,9 +176,9 @@ public class Level : MonoBehaviour {
 			case 1:
                 explpotionEffect = ObjectPool.instance.GetObjectForType("ExplotionEffectBomb", true); break;
             case 2:
-                explpotionEffect = ObjectPool.instance.GetObjectForType("ExplotionEffectEnemy", false); break;
+			explpotionEffect = ObjectPool.instance.GetObjectForType("ExplotionEffectEnemy", true); break;
             default:
-				explpotionEffect  = ObjectPool.instance.GetObjectForType("ExplotionEffectSimpleObject", false); break;
+			explpotionEffect  = ObjectPool.instance.GetObjectForType("ExplotionEffectSimpleObject", true); break;
         }
 		if (explpotionEffect == null)
 			return;
@@ -276,15 +276,14 @@ public class Level : MonoBehaviour {
 	}
     void AddHeartsByBreaking(Vector3 position, int NumOfParticles, int force = 700)
     {
-        position.y += 0.7f;
+        position.y += 1.7f;
 		if (NumOfParticles > 25) NumOfParticles = 25;
         for (int a = 0; a < NumOfParticles; a++)
         {
             SceneObject newSO = ObjectPool.instance.GetObjectForType(explotionGift.name, true);
             if (newSO)
             {
-				Game.Instance.sceneObjectsManager.AddSceneObject(newSO, position);
-               // newSO.Restart(position);
+				Game.Instance.sceneObjectsManager.AddSceneObjectAndInitIt(newSO, position);
                 newSO.transform.localEulerAngles = new Vector3(0, a * (360 / NumOfParticles), 0);
                 Vector3 direction = ((newSO.transform.forward * force) + (Vector3.up * (force*3)));
                 newSO.GetComponent<Rigidbody>().AddForce(direction, ForceMode.Impulse);
@@ -385,8 +384,10 @@ public class Level : MonoBehaviour {
 		) {
 			if (position == Vector3.zero)
 				return;
+
+
 			SceneObject newSO = Instantiate (scoreSignal, position, Quaternion.identity) as SceneObject;
-			//newSO.Restart (position);
+			Game.Instance.sceneObjectsManager.AddSceneObject(newSO, position);
 			newSO.GetComponent<ScoreSignal> ().SetScore (playerID, score);
 		}
     }

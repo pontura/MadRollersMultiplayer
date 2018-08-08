@@ -344,10 +344,8 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			if (clone)
 			{
 				sceneObject = Instantiate(clone, pos, Quaternion.identity) as SceneObject;
-				sceneObject.gameObject.SetActive (false);
-				sceneObject.transform.SetParent(Pool.Scene.transform);
+
 				sceneObject.transform.rotation = go.transform.rotation;
-				sceneObject.transform.position = pos;
 
 				if (go.GetComponent<BossSettings>())
 				{
@@ -439,16 +437,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 
 			//AddBorders ();
 	}
-	public void PoolSceneObjectsInScene()
-	{
-		GameObject SceneObjectsContainer = Data.Instance.sceneObjectsPool.Scene;
-		SceneObject[] sceneObjects = SceneObjectsContainer.GetComponentsInChildren<SceneObject>();
-		foreach (SceneObject sceneObject in sceneObjects)
-		{
-			if(sceneObject.isActive)
-				sceneObject.Pool();
-		}
-	}
+
 	Component CopyComponent(Component original, GameObject destination)
 	{
 		System.Type type = original.GetType();

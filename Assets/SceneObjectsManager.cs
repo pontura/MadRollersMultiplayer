@@ -6,18 +6,30 @@ public class SceneObjectsManager : MonoBehaviour {
 
 	public CharactersManager charactersManager;
 	List<SceneObject> sceneObjectsInScene;
+	private ObjectPool Pool;
 
-	void Start()
+	void Awake()
 	{
+		Pool = Data.Instance.sceneObjectsPool;
 		sceneObjectsInScene = new List<SceneObject>();
 	}
 	public void AddSceneObject(SceneObject so, Vector3 pos)
 	{
+		so.gameObject.SetActive (false);
 		so.isActive = false;
+		so.transform.SetParent(Pool.Scene.transform);
 		so.transform.localPosition = pos;
 		sceneObjectsInScene.Add (so);
-
-		print("added: " + so.name);
+		so.Init (this);
+	}
+	public void AddSceneObjectAndInitIt(SceneObject so, Vector3 pos)
+	{
+		so.gameObject.SetActive (false);
+		so.isActive = false;
+		so.transform.SetParent(Pool.Scene.transform);
+		so.transform.localPosition = pos;
+		sceneObjectsInScene.Add (so);
+		so.Init (this);
 	}
 	public void RemoveSceneObject(SceneObject so)
 	{
@@ -30,19 +42,30 @@ public class SceneObjectsManager : MonoBehaviour {
 		while (i>0) {
 			SceneObject so = sceneObjectsInScene [i-1];
 			i--;
-			if (so.transform.localPosition.y < -6)
-				so.Pool();
-			else if (distance > so.transform.position.z + so.size_z + 22 && Data.Instance.playMode != Data.PlayModes.VERSUS)
+			if (so == null) {
+				print ("Ya no existe: " + so.name);
+			} else if (so.transform.localPosition.y < -6) {
+				so.Pool ();
+			}else if (distance > so.transform.position.z + so.size_z + 22 && Data.Instance.playMode != Data.PlayModes.VERSUS)
 				so.Pool();
 			else if (distance > so.transform.position.z - 45 || Data.Instance.playMode == Data.PlayModes.VERSUS) {
 				
 				if (!so.isActive) {
-					so.Init (this, so.transform.position);
+					so.Restart (so.transform.position);
 				} else {				
 					so.Updated (distance);
 				}
 			}
 			
+		}
+	}
+	public void PoolSceneObjectsInScene()
+	{
+		int i = sceneObjectsInScene.Count;
+		while (i>0) {
+			SceneObject sceneObject = sceneObjectsInScene [i-1];
+			sceneObject.Pool();
+			i--;
 		}
 	}
 }

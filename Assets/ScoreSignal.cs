@@ -25,6 +25,6 @@ public class ScoreSignal : SceneObject
 			return;
 		field.color = Data.Instance.GetComponent<MultiplayerData>().colors[playerID];
         field.text = "+" + qty.ToString();
-        field_outline.text = "+" + qty.ToString();
+      //  field_outline.text = "+" + qty.ToString();
     }
 }

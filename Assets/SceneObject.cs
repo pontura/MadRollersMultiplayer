@@ -50,19 +50,15 @@ public class SceneObject : MonoBehaviour {
 //		else if (distance > transform.position.z - 45 || Data.Instance.playMode == Data.PlayModes.VERSUS)
 //            OnSceneObjectUpdate();
     }
-	public void Init(SceneObjectsManager manager, Vector3 pos)
+	public void Init(SceneObjectsManager manager)
 	{
 		this.manager = manager;
-		Restart(pos);
 	}
 	public void Restart(Vector3 pos)
     {
 		isActive = true;
 		gameObject.SetActive(true);
-//        if (onlyMultiplayers && Game.Instance.level.charactersManager.getTotalCharacters() <= 1) 
-//            Pool();
-//        else
-            OnRestart(pos);
+        OnRestart(pos);
     }
     public void setRotation(Vector3 rot)
     {
