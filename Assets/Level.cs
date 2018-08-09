@@ -165,7 +165,6 @@ public class Level : MonoBehaviour {
         if (!playing) return;
         playing = false;
 		Game.Instance.sceneObjectsManager.PoolSceneObjectsInScene();
-		Debug.LogError ("DONE");
 	}
     public void OnAddObjectExplotion(Vector3 position, int type)
     {      
@@ -214,7 +213,8 @@ public class Level : MonoBehaviour {
        // explotionNew.GetComponent<FXExplotion>()._scale = force;
 
 		if (explotionNew) {
-			Game.Instance.sceneObjectsManager.AddSceneObject(explotionNew, newPos);
+			Game.Instance.sceneObjectsManager.AddSceneObjectAndInitIt(explotionNew, newPos);
+			explotionNew.GetComponent<FXExplotion> ().SetColor (color);
 			//explotionNew.Restart (newPos);
 		}
 

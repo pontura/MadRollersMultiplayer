@@ -41,7 +41,11 @@ public class Player : MonoBehaviour {
     public CharactersManager charactersManager;
 
  //   public EnergyBar energyBar;
-
+	void Awake()
+	{
+		if (UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name == "Game")
+			charactersManager = Game.Instance.GetComponent<CharactersManager>();
+	}
 	void Start()
 	{		
 		
@@ -95,8 +99,6 @@ public class Player : MonoBehaviour {
     {
 		this.id = _id;
 		SetSettings ();
-		
-        charactersManager = Game.Instance.GetComponent<CharactersManager>();
 
 		if(id>3)
 			color = Data.Instance.GetComponent<MultiplayerData>().colors[4];
@@ -166,7 +168,6 @@ public class Player : MonoBehaviour {
     }
     private void OnAvatarGetItem(int playerID, Powerup.types item)
     {
-		print ("OnAvatarGetItem" + playerID + " item :" + item);
         if (playerID != id) return;
 
         if (item == Powerup.types.MISSILE)

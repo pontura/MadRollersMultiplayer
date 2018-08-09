@@ -73,7 +73,9 @@ public class Bomb : SceneObject {
     public override void OnPool()
     {
         GetComponent<AudioSource>().Stop();
-        trailRenderer.time = 0;
+
+		if(trailRenderer!=null)
+       		trailRenderer.time = 0;
     }
     private void startAudio()
     {

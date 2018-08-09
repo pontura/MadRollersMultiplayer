@@ -25,11 +25,12 @@ public class SceneObjectsManager : MonoBehaviour {
 	public void AddSceneObjectAndInitIt(SceneObject so, Vector3 pos)
 	{
 		so.gameObject.SetActive (false);
-		so.isActive = false;
+		so.isActive = true;
 		so.transform.SetParent(Pool.Scene.transform);
 		so.transform.localPosition = pos;
 		sceneObjectsInScene.Add (so);
 		so.Init (this);
+		so.Restart (pos);
 	}
 	public void RemoveSceneObject(SceneObject so)
 	{
@@ -43,20 +44,18 @@ public class SceneObjectsManager : MonoBehaviour {
 			SceneObject so = sceneObjectsInScene [i-1];
 			i--;
 			if (so == null) {
-				print ("Ya no existe: " + so.name);
-			} else if (so.transform.localPosition.y < -6) {
+				sceneObjectsInScene.RemoveAt (i);
+			} else if (so.transform.localPosition.y < -4) {
 				so.Pool ();
 			}else if (distance > so.transform.position.z + so.size_z + 22 && Data.Instance.playMode != Data.PlayModes.VERSUS)
 				so.Pool();
-			else if (distance > so.transform.position.z - 45 || Data.Instance.playMode == Data.PlayModes.VERSUS) {
-				
+			else if (distance > so.transform.position.z - 45 || Data.Instance.playMode == Data.PlayModes.VERSUS) {				
 				if (!so.isActive) {
 					so.Restart (so.transform.position);
 				} else {				
 					so.Updated (distance);
 				}
-			}
-			
+			}			
 		}
 	}
 	public void PoolSceneObjectsInScene()

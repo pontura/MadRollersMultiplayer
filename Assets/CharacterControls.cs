@@ -58,8 +58,8 @@ public class CharacterControls : MonoBehaviour {
             if (InputManager.getJump(player.id))
             {
                 characterBehavior.Jump();
-				if(childs.Count>0)
-					StartCoroutine ( ChildsJump ());
+			//	if(childs.Count>0)
+				//	StartCoroutine ( ChildsJump ());
             } else
             if (Input.GetButton("Jump1"))
             {
@@ -79,13 +79,13 @@ public class CharacterControls : MonoBehaviour {
 	float lastHorizontalKeyPressed;
     private void moveByKeyboard()
     {
-		if (Data.Instance.playMode == Data.PlayModes.COMPETITION && Game.Instance.level.charactersManager.distance<40)
+		if (Data.Instance.playMode == Data.PlayModes.COMPETITION && characterBehavior.player.charactersManager.distance<40)
 			return;
 		float _speed = InputManager.getHorizontal(player.id);
 		if (lastHorizontalKeyPressed != _speed) {
 			lastHorizontalKeyPressed = _speed;
-			if(!isAutomata)
-				Data.Instance.inputSaver.MoveInX (lastHorizontalKeyPressed, transform.position);
+			//if(!isAutomata)
+			//	Data.Instance.inputSaver.MoveInX (lastHorizontalKeyPressed, transform.position);
 		}
 		MoveInX (_speed);
     }
@@ -119,8 +119,8 @@ public class CharacterControls : MonoBehaviour {
 
 		transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, rotationY, rotationZ);
 
-		if (childs.Count > 0)
-			UpdateChilds ();
+		//if (childs.Count > 0)
+		//	UpdateChilds ();
 	}
 
 	//childs:

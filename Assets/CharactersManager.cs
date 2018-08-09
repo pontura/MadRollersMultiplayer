@@ -312,6 +312,7 @@ public class CharactersManager : MonoBehaviour {
     }
     public virtual Vector3 getPosition()
     {
+		///////retomar
         if (characters.Count > 1)
         {
             Vector3 normalPosition = Vector3.zero;
@@ -321,8 +322,8 @@ public class CharactersManager : MonoBehaviour {
             {
                 if(lastCharacterPosition != Vector3.zero)
                 {
-                    float dist = Vector3.Distance(cb.transform.localPosition, lastCharacterPosition);
-                    if(dist>MaxDistance) MaxDistance = dist;
+                  //  float dist = Vector3.Distance(cb.transform.localPosition, lastCharacterPosition);
+                  //  if(dist>MaxDistance) MaxDistance = dist;
                 }
                 lastCharacterPosition = cb.transform.localPosition;
                 normalPosition += lastCharacterPosition;
@@ -334,9 +335,8 @@ public class CharactersManager : MonoBehaviour {
 
             return normalPosition;
         }
-        else if (characters.Count == 0) return characterPosition;
-        else
-            characterPosition = characters[0].transform.position;
+        else  if (characters.Count == 0) return characterPosition;
+        else characterPosition = characters[0].transform.position;
 
         return characterPosition;
     }

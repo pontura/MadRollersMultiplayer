@@ -153,7 +153,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			case "palm3":
 			case "palm4":
 			case "palmTall":
-				
 				if(go.name == "smallBlock1" || go.name == "extraSmallBlock1")
 					sceneObject = Pool.GetObjectForType(go.name + "_real", true);    
 				else

@@ -3,18 +3,21 @@ using System.Collections;
 
 public class FXExplotion : SceneObject {
 
-	float finalScale = 3;
-	float _duration = 0.2f;	
+	public MeshRenderer meshRenderer;
+	float finalScale = 7;
+	float speed = 5;	
 
 	bool isOn;
 	float timer;
+	bool getBigger;
 
     public override void OnRestart(Vector3 position)
     {
+		getBigger = true;
 		isOn = true;
         position.y += 3;
 
-		transform.localScale = Vector3.zero;
+		transform.localScale = Vector3.one;
 
         GameCamera camera = Game.Instance.gameCamera;
 
@@ -36,20 +39,34 @@ public class FXExplotion : SceneObject {
         position.y += 2;
 		timer = 0f;
 	}
+	Color lastColor;
+	public void SetColor(Color color)
+	{
+		if (lastColor == color)
+			return;		
+		lastColor = color;
+		color.a = 0.075f;
+		meshRenderer.material.color = color;
+	}
 	public void OnSceneObjectUpdated()
 	{
 		if (!isOn)
 			return;
-		
-		timer += Time.deltaTime;
 
-		Vector3 scale = transform.localScale;
-		float s = (timer * finalScale) / _duration;
-
-		transform.localScale = new Vector3(s,s,s);
-
-		if (scale.x > finalScale)
+		if (transform.localScale.x <= 0.2f && !getBigger)
 			Pool ();
+	//	timer += Time.deltaTime;
+
+	//	Vector3 scale = transform.localScale;
+		//float s = (timer * finalScale) / _duration;
+
+		if(getBigger)
+			transform.localScale = Vector3.Lerp(transform.localScale , new Vector3(finalScale,finalScale,finalScale), Time.deltaTime*speed);
+		else
+			transform.localScale = Vector3.Lerp(transform.localScale , Vector3.zero, Time.deltaTime*(speed*2));
+
+		if (transform.localScale.x >= (finalScale - 0.5f))
+			getBigger = false;
 	}
     private void die()
     {

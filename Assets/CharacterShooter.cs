@@ -60,7 +60,7 @@ public class CharacterShooter : MonoBehaviour {
 	{
 		isLoadingGun = false;
 
-		if(lastShot+0.2f > Time.time) return;
+		if(lastShot+0.35f > Time.time) return;
 
 		ResetWeapons ();
 

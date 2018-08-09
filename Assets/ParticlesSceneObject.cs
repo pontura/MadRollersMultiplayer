@@ -20,8 +20,12 @@ public class ParticlesSceneObject : SceneObject {
         explotion.Clear();
         explotion.Play();
     }
+	Color lastColor;
     public void SetColor(Color color)
     {      
+		if (color == lastColor)
+			return;
+		lastColor = color;
         color.a = 0.45f;
 
         foreach (ParticleSystem ps in explotions_to_colorize)

@@ -21,9 +21,14 @@ public class Projectil : SceneObject {
 	void Start () {
 
 	}
+	Color lastColor;
     public void SetColor(Color color)
     {
+		if (lastColor == color)
+			return;
+		
         this.color = color;
+		lastColor = color;
         meshToColorize.material.color = color;
     }
     public override void OnRestart(Vector3 pos)
@@ -71,12 +76,11 @@ public class Projectil : SceneObject {
 		rotation.y = Mathf.Lerp(rotation.y , gotoRot, Time.deltaTime*7);
 		
        // rotation.y = 0;
-        if (pos.y < - 0.8) Destroy();
+		if (pos.y < - 0.8) Reset();
         else
 		if(myDist >= myRange)
 		{
-            rotation.x += 30 * Time.deltaTime;			
-				
+            rotation.x += 30 * Time.deltaTime;					
             transform.localEulerAngles = rotation;
 		}
 		pos += transform.forward * 50  * Time.deltaTime;		
@@ -92,12 +96,12 @@ public class Projectil : SceneObject {
             case "wall":
                 addExplotionWall();
 				SetScore( ScoresManager.score_for_destroying_wall, ScoresManager.types.DESTROY_WALL);
-                Destroy();
+                Reset();
                 break;
 			case "floor":
 				addExplotion(0.2f);
 				SetScore( ScoresManager.score_for_destroying_floor, ScoresManager.types.DESTROY_FLOOR);
-				Destroy();
+				Reset();
 				break;
 		case "enemy":
 				MmoCharacter enemy = other.gameObject.GetComponent<MmoCharacter> ();
@@ -113,17 +117,17 @@ public class Projectil : SceneObject {
 				}
 			//---------------------------------------------------
 
-				Destroy();
+				Reset();
 				break;
 			case "destroyable":
 				SetScore( ScoresManager.score_for_breaking, ScoresManager.types.BREAKING);
 				other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);
-                Destroy();
+				Reset();
 				break;
 			case "boss":
 				SetScore( ScoresManager.score_for_boss, ScoresManager.types.BOSS);
 				other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);
-				Destroy();
+				Reset();
 				break;
 		case "firewall":
 				//SetScore(70);
@@ -150,7 +154,7 @@ public class Projectil : SceneObject {
 			Data.Instance.GetComponent<FramesController> ().ForceFrameRate (0.05f);
 			Data.Instance.events.RalentaTo (1, 0.05f);
 			cb.Hit ();
-			Destroy();
+			Reset();
 			break;
 		}
 	}
@@ -170,7 +174,7 @@ public class Projectil : SceneObject {
         exploted = true;
         Data.Instance.events.AddWallExplotion(transform.position, color);
     }
-    void Destroy()
+	void Reset()
     {
         Pool();
     }

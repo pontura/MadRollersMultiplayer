@@ -53,17 +53,24 @@ public class CharacterBehavior : MonoBehaviour {
 
 	//en la carrera muktiplayer:
 	public int position;
+	Rigidbody rb;
 
 	// Use this for initialization
+	void Awake () {
+		rb = GetComponent<Rigidbody> ();
+	}
 	void Start () {
-		
 		data = Data.Instance;       
 
 		if (UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name != "Game") {
-			GetComponent<Collider>().enabled = false;
-			GetComponent<Rigidbody> ().useGravity = false;
-			GetComponent<Rigidbody> ().isKinematic = true;
+			GetComponent<Collider> ().enabled = false;
+			rb.useGravity = false;
+			rb.isKinematic = true;
 			return;
+		} else {
+			rb.useGravity = true;
+			rb.mass = 100;
+			rb.isKinematic = false;
 		}
 		
 
@@ -99,7 +106,7 @@ public class CharacterBehavior : MonoBehaviour {
 	void OnVersusTeamWon(int _team_id)
 	{
 		if (_team_id == team_for_versus) {
-			GetComponent<Rigidbody> ().isKinematic = true;
+			rb.isKinematic = true;
 			state = states.DEAD;
 		}
 	}
@@ -157,7 +164,8 @@ public class CharacterBehavior : MonoBehaviour {
 	}
 	void RefreshPosition()
 	{
-		this.position = Game.Instance.GetComponent<CharactersManager>().GetPositionByID(player.id);
+		print ("__RefreshPosition");
+		this.position = player.charactersManager.GetPositionByID(player.id);
 	}
 	public void OncharacterCheer()
 	{
@@ -173,8 +181,8 @@ public class CharacterBehavior : MonoBehaviour {
 		if (state == states.JETPACK)
 		{
 			player.OnAvatarProgressBarUnFill(0.25f * Time.deltaTime);
-			GetComponent<Rigidbody>().velocity = Vector3.zero;
-			GetComponent<Rigidbody>().useGravity = false;
+			rb.velocity = Vector3.zero;
+			rb.useGravity = false;
 
 			Vector3 pos = transform.position;
 
@@ -191,8 +199,8 @@ public class CharacterBehavior : MonoBehaviour {
 			//if (transform.position.y > 20 && Random.Range(0,10)<4)
 			//  Data.Instance.voicesManager.VoiceSecondaryFromResources("que_vertigo_no");
 
-			GetComponent<Rigidbody>().mass = 100;
-			GetComponent<Rigidbody>().useGravity = true;
+			//rb.mass = 100;
+			//rb.useGravity = true;
 		}
 
 		Vector3 goTo = transform.position;
@@ -206,7 +214,7 @@ public class CharacterBehavior : MonoBehaviour {
 	//	else
 		//{
 			
-		float _z = Game.Instance.GetComponent<CharactersManager>().distance - (position / 1);
+		float _z = player.charactersManager.distance - (position / 1);
 		if (controls.isAutomata)
 			_z -= 2;
 		if (team_for_versus == 2) {
@@ -255,8 +263,8 @@ public class CharacterBehavior : MonoBehaviour {
 	public void Revive()
 	{		
 		Reset();
-		GetComponent<Rigidbody>().velocity = Vector3.zero;
-		GetComponent<Rigidbody>().freezeRotation = true;
+		rb.velocity = Vector3.zero;
+		rb.freezeRotation = true;
 		state = states.RUN;
 		Run();
 	}
@@ -367,7 +375,7 @@ public class CharacterBehavior : MonoBehaviour {
 		if (!player.canJump) return;
 		if(state == states.JUMP) return;
 
-		GetComponent<Rigidbody>().velocity = Vector3.zero;
+		rb.velocity = Vector3.zero;
 		floorCollitions.OnAvatarJump();
 
 		Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.JUMP, player.id);
@@ -375,7 +383,7 @@ public class CharacterBehavior : MonoBehaviour {
 		if(!controls.isAutomata)
 			data.events.AvatarJump();
 
-		GetComponent<Rigidbody>().AddForce(new Vector3(0, jumpHeight, 0), ForceMode.Impulse);
+		rb.AddForce(new Vector3(0, jumpHeight, 0), ForceMode.Impulse);
 
 		int rand = Random.Range (0, 10);
 		if(rand<6)
@@ -400,12 +408,12 @@ public class CharacterBehavior : MonoBehaviour {
 	{
 		if (!player.canJump) return;
 
-		float velocityY = Mathf.Abs(GetComponent<Rigidbody>().velocity.y)/8;
+		float velocityY = Mathf.Abs(rb.velocity.y)/8;
 
 		if (velocityY < 1 || !isDoubleJump)
 			velocityY = 1;
 		
-		GetComponent<Rigidbody>().velocity = Vector3.zero;
+		rb.velocity = Vector3.zero;
 
 		floorCollitions.OnAvatarJump();
 		Data.Instance.events.OnMadRollerFX (MadRollersSFX.types.DOUBLE_JUMP, player.id);
@@ -418,7 +426,7 @@ public class CharacterBehavior : MonoBehaviour {
 		else
 			_animation_hero.Play("doubleJump2");
 
-		GetComponent<Rigidbody>().AddForce( new Vector3(0, (_superJumpHeight ) - (jumpHeight / 10), 0)*velocityY, ForceMode.Impulse);
+		rb.AddForce( new Vector3(0, (_superJumpHeight ) - (jumpHeight / 10), 0)*velocityY, ForceMode.Impulse);
 		state = states.DOUBLEJUMP;
 	}
 
@@ -451,6 +459,8 @@ public class CharacterBehavior : MonoBehaviour {
 	public void Fall()
 	{
 		if (state == states.DEAD) return;
+		if (state == states.FALL) return;
+		state = states.FALL;
 		Data.Instance.events.OnSoundFX("FX vox caida01", player.id);
 		Data.Instance.events.OnAvatarFall(this);
 
@@ -473,14 +483,14 @@ public class CharacterBehavior : MonoBehaviour {
 		Data.Instance.events.OnAvatarCrash(this);
 
 		state = states.CRASH;
-		GetComponent<Rigidbody>().velocity = Vector3.zero;
-		GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(-500,500), 1500, Random.Range(0,-200)), ForceMode.Impulse);
-		GetComponent<Rigidbody>().freezeRotation = false;
+		rb.velocity = Vector3.zero;
+		rb.AddForce(new Vector3(Random.Range(-500,500), 1500, Random.Range(0,-200)), ForceMode.Impulse);
+		rb.freezeRotation = false;
 		//removeColliders();
 
 		_animation_hero.Play("hit");
 
-		if (Game.Instance.GetComponent<CharactersManager>().characters.Count >1) return;
+		if (player.charactersManager.characters.Count >1) return;
 		Invoke("CrashReal", 0.3f);
 
 		if(team_for_versus == 0)

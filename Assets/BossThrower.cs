@@ -32,7 +32,7 @@ public class BossThrower : Boss {
 		if (sceneObject) {
 			sceneObject.isActive = false;
 			//sceneObject.Restart(pos);
-			Game.Instance.sceneObjectsManager.AddSceneObject(sceneObject, pos);
+			Game.Instance.sceneObjectsManager.AddSceneObjectAndInitIt(sceneObject, pos);
 		}
 	}
 	public override void OnPartBroken(BossPart part)

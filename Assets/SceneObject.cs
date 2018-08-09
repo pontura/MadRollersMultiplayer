@@ -76,7 +76,7 @@ public class SceneObject : MonoBehaviour {
         transform.position = newPos;       
         ObjectPool.instance.PoolObject(this);
 		if (manager == null)
-			Debug.LogError ("manager = null " + gameObject.name);
+			Debug.LogError ("manager null " + gameObject.name);
 		manager.RemoveSceneObject (this);
         OnPool();
     }
@@ -102,33 +102,31 @@ public class SceneObject : MonoBehaviour {
         transform.position = pos;
         //isActive = true;
     }
-    public virtual void changeMaterial(string materialName)
-    {
-
-    }
-    public virtual void OnPool()
-    {
-    }
-    public virtual void onDie()
-    {
-
-    }
-    public virtual void setScore()
-    {
-    }    
+	Color lastColor;
+	public virtual void ChangeColor(Color newColor)  { 
+		if (newColor == lastColor)
+			return;
+		lastColor = newColor;
+		MeshRenderer mr = GetComponent<MeshRenderer> ();
+		mr.material.color = newColor;
+	}
+    public virtual void changeMaterial(string materialName)  {   }
+    public virtual void OnPool()  {  }
+    public virtual void onDie()  { }
+    public virtual void setScore()   { }    
 
 	Color matColor;
 	int videoGameID = -1;
 	public void SetMaterialByVideoGame()
 	{
-		matColor = Data.Instance.videogamesData.GetActualVideogameData ().floor_top;
-		Renderer[] renderers = GetComponentsInChildren<Renderer>();
-		int newVideoGameID = Data.Instance.videogamesData.actualID;
-		if (newVideoGameID != videoGameID) {
-			videoGameID = newVideoGameID;
-			foreach(Renderer r in renderers)
-				ChangeMaterials(r);
-		}
+//		matColor = Data.Instance.videogamesData.GetActualVideogameData ().floor_top;
+//		Renderer[] renderers = GetComponentsInChildren<Renderer>();
+//		int newVideoGameID = Data.Instance.videogamesData.actualID;
+//		if (newVideoGameID != videoGameID) {
+//			videoGameID = newVideoGameID;
+//			foreach(Renderer r in renderers)
+//				ChangeMaterials(r);
+//		}
 	}
 	void ChangeMaterials(Renderer renderer)
 	{
