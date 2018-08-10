@@ -62,9 +62,9 @@ public class Floor : MonoBehaviour
 			Vector3 pos = go.transform.localPosition;
 			
 			if (pos.z < charactersDistance - offset) {
-				if (!IsAnActiveBackgroundSide(go))
-					toDelete = go;
-				else
+//				if (!IsAnActiveBackgroundSide(go))
+//					toDelete = go;
+//				else
 					go.offset += z_length;
 			}
 			
@@ -72,40 +72,56 @@ public class Floor : MonoBehaviour
 			go.transform.localPosition = pos;
 
 		}
-		if(toDelete != null)
-		{
-			all.Remove (toDelete);
-			Destroy (toDelete.gameObject);
-		}
+//		if(toDelete != null)
+//		{
+//			all.Remove (toDelete);
+//			Destroy (toDelete.gameObject);
+//		}
 
     }
-	bool IsAnActiveBackgroundSide(BackgroundSideData data)
+//	bool IsAnActiveBackgroundSide(BackgroundSideData data)
+//	{
+//		foreach (BackgroundSideData d in allBackgroundSides) {
+//			if (d.backgroundSideName == data.backgroundSideName)
+//				return true;
+//		}
+//		return false;
+//	}
+//	List<BackgroundSideData> allBackgroundSides;
+	void OnChangeBackgroundSide(BackgroundSideData[] newBgs)
 	{
-		foreach (BackgroundSideData d in allBackgroundSides) {
-			if (d.backgroundSideName == data.backgroundSideName)
-				return true;
-		}
-		return false;
-	}
-	List<BackgroundSideData> allBackgroundSides;
-	void OnChangeBackgroundSide(BackgroundSideData[] all)
-	{
-		print ("OnChangeBackgroundSide: " + all.Length);
-		if (all.Length == 0)
+		print ("__________OnChangeBackgroundSide: " + newBgs.Length);
+		if (newBgs.Length == 0)
 			return;
-		allBackgroundSides = new List<BackgroundSideData> ();
-		foreach (BackgroundSideData d in all) {
-			d.backgroundSideName = d.gameObject.name;
+		if (all.Count>0 && newBgs [0].backgroundSideName == all [0].backgroundSideName) {
+			print ("__________mismo backgrouond!");
+			return;
+		}
+		print ("RemoveAllChildsIn");
+		int i = container.childCount;
+		while (i > 0) {
+			print ("DESTROYYYYYY");
+			Destroy (container.GetChild(i-1).gameObject);
+			i--;
+		}
+		all.Clear ();
+
+		List<BackgroundSideData> allBackgroundSides = new List<BackgroundSideData> ();
+		foreach (BackgroundSideData d in newBgs) {
 			allBackgroundSides.Add (d);
 		}
-		int next = 0;
-		while(allBackgroundSides.Count<3)
-		{			
-			if (all.Length == next)
-				next = 0;
-			allBackgroundSides.Add (all [next]);	
-			next++;
-		}		
+		if(allBackgroundSides.Count<3) 
+		{
+			int next = 0;
+			while(allBackgroundSides.Count<3)
+			{			
+				if (newBgs.Length == next)
+					next = 0;
+				allBackgroundSides.Add (allBackgroundSides [next]);	
+				next++;
+			}	
+		}
+
 		z_length = 0;
 		foreach (BackgroundSideData data in allBackgroundSides) {
 			z_length += data.z_length;
@@ -115,6 +131,7 @@ public class Floor : MonoBehaviour
 	}
 	void AddNewBgSide(BackgroundSideData newGO)
 	{
+		print ("newGO____________" + newGO.backgroundSideName);
 		BackgroundSideData go = Instantiate (newGO);
 		go.transform.SetParent (container);
 		go.transform.localPosition = new Vector3(0,0,z_length);

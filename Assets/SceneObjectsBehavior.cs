@@ -101,7 +101,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	List<Transform> borderTransforms;
 	public void replaceSceneObject(Area area, float areasLength, int areasX, bool oposite = false)
 	{
-		print (area.name + " AREA");
+		//print (area.name + " AREA");
 		borderTransforms = new List<Transform> ();
 		GameObject[] gos = area.getSceneObjects();
 		bool nubesOn = false;

@@ -20,7 +20,6 @@ public class ParticlesSceneObject : SceneObject {
         explotion.Clear();
         explotion.Play();
     }
-	Color lastColor;
     public void SetColor(Color color)
     {      
 		if (color == lastColor)

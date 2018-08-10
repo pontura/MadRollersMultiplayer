@@ -54,10 +54,11 @@ public class AudioWriter : MonoBehaviour {
 	void WriteLoop()
 	{
 		if (letterId == totalWords) {
-			if (!done)
-			{
+			if (!done) {
 				field.text = field.text.Remove (field.text.Length - 1, 1);
 				ChangeSentence ();
+			} else {
+				field.text = "";
 			}
 			return;
 		}

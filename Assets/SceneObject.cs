@@ -5,7 +5,8 @@ public class SceneObject : MonoBehaviour {
 
     public Level.Dificult Dificult;
 
-    //sirve para quitar el objeto de pantalla màs tarde...
+	public Color lastColor;
+
     public int size_z = 0;
 
 	public bool broken;
@@ -102,7 +103,7 @@ public class SceneObject : MonoBehaviour {
         transform.position = pos;
         //isActive = true;
     }
-	Color lastColor;
+
 	public virtual void ChangeColor(Color newColor)  { 
 		if (newColor == lastColor)
 			return;

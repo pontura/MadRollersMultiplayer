@@ -10,6 +10,7 @@ public class PlayerMainMenuUI : MonoBehaviour {
     public RawImage rawimage;
     public bool isActive;
     public Animator anim;
+	public RenderTexture renderTexture;
 
     public void Init()
     {
@@ -21,6 +22,10 @@ public class PlayerMainMenuUI : MonoBehaviour {
 
       //  Invoke("SetInActive", (float)id/2.5f);
     }
+	void OnDestroy()
+	{
+		renderTexture.DiscardContents ();
+	}
     public void Toogle()
     {
 		SetActive ();

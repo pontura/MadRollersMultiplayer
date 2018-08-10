@@ -39,7 +39,6 @@ public class FXExplotion : SceneObject {
         position.y += 2;
 		timer = 0f;
 	}
-	Color lastColor;
 	public void SetColor(Color color)
 	{
 		if (lastColor == color)

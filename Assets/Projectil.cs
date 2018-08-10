@@ -21,7 +21,6 @@ public class Projectil : SceneObject {
 	void Start () {
 
 	}
-	Color lastColor;
     public void SetColor(Color color)
     {
 		if (lastColor == color)

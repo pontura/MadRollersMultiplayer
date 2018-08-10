@@ -52,8 +52,11 @@ public class CharacterCollisions : MonoBehaviour {
 		{
             if (characterBehavior.state == CharacterBehavior.states.SHOOT) return;
             if (player.fxState == Player.fxStates.NORMAL)
-                if (!other.GetComponent<Breakable>().dontKillPlayers) 
-                    characterBehavior.HitWithObject(other.transform.position);
+			{
+				Breakable breakable = other.GetComponent<Breakable> ();
+				if (breakable != null && !breakable.dontKillPlayers) 
+					characterBehavior.HitWithObject(other.transform.position);
+			}
         }
         else if (other.tag == "floor" && !hitted)
         {
