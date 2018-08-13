@@ -8,10 +8,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 400000}
-  - component: {fileID: 11400002}
   - component: {fileID: 11400000}
   m_Layer: 0
-  m_Name: 1_2_doble
+  m_Name: 1_helicesBoss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,7 +23,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.148207, y: 20.662792, z: -46.63002}
+  m_LocalPosition: {x: 21.463102, y: 18.326134, z: -34.05804}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -38,45 +37,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aab087fa44cc671439e1b50508ce4d75, type: 3}
+  m_Script: {fileID: 11500000, guid: 772be226d7eee534998f146178bc9df9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  areaSets:
-  - {fileID: 114941458092399480, guid: 63984a57c6b6de543a9b8820c128e28e, type: 2}
-  activeAreaSetID: 1
-  showRelaxAreaBeforeStarting: 0
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c52aa23c4c1909c45b1a2eeadb8f98cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 1
-  backgroundSides:
-  - {fileID: 114261747288639716, guid: de223848633682f44882b76d6adecc79, type: 2}
-  voices: []
-  videoGameID: 0
-  missionIcon: {fileID: 1500483267502380, guid: a816137bab5155d44aae12fae78075ad,
-    type: 2}
-  isCompetition: 0
-  maxScore: 3000
-  Hiscore: 0
-  avatarHiscore: 
-  boss1: 0
-  hearts: 0
-  guys: 0
-  ghost: 0
-  points: 450
-  listeners: 0
-  planes: 0
-  bombs: 0
-  distance: 450
-  description: Survive 5km!
+  competitionsPriority: 0
+  randomize: 1
+  areas:
+  - {fileID: 11400032, guid: be043eaba8e133842b261731d737556f, type: 2}
+  - {fileID: 11400006, guid: 9a0f65a3e0697604d9e604fba0d543e9, type: 2}
+  - {fileID: 11400024, guid: aa05755252933514984d6ed578ac4470, type: 2}
+  - {fileID: 11400012, guid: 7fce41a5fdf98a04d9fc9ae37e5cd704, type: 2}
+  - {fileID: 11400050, guid: be59359c8db684e498fd074085976d94, type: 2}
+  - {fileID: 11420208, guid: 1c90b298919ce0a4fa13a11704d4d84b, type: 2}
+  - {fileID: 11400102, guid: b1e5660917225cd4db34d01313ff8c36, type: 2}
+  - {fileID: 11400110, guid: da3061cadbcf88f44b9f82dc2d1752e0, type: 2}
+  - {fileID: 11400110, guid: 4508252c50e545d4c8270785d833cef1, type: 2}
+  totalAreasInSet: 6
+  cameraOrientation: {x: 0, y: 1, z: -1}
+  cameraRotationX: 0
+  isLastArea: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

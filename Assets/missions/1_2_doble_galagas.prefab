@@ -1,5 +1,84 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 400000}
+  - component: {fileID: 11400002}
+  - component: {fileID: 11400000}
+  m_Layer: 0
+  m_Name: 1_2_doble_galagas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 16.148207, y: 20.662792, z: -46.63002}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aab087fa44cc671439e1b50508ce4d75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  areaSets:
+  - {fileID: 114941458092399480, guid: 63984a57c6b6de543a9b8820c128e28e, type: 2}
+  - {fileID: 114004391671021460, guid: bc68e0b02bdb2e7419d8f95ec5baa949, type: 2}
+  - {fileID: 114393149578421074, guid: 8eb0046460522754a81b7c3735d1fa3d, type: 2}
+  activeAreaSetID: 3
+  showRelaxAreaBeforeStarting: 0
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c52aa23c4c1909c45b1a2eeadb8f98cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 1
+  backgroundSides:
+  - {fileID: 114261747288639716, guid: de223848633682f44882b76d6adecc79, type: 2}
+  voices: []
+  videoGameID: 0
+  missionIcon: {fileID: 1500483267502380, guid: a816137bab5155d44aae12fae78075ad,
+    type: 2}
+  isCompetition: 0
+  maxScore: 3000
+  Hiscore: 0
+  avatarHiscore: 
+  boss1: 8
+  hearts: 0
+  guys: 0
+  ghost: 0
+  points: 0
+  listeners: 0
+  planes: 0
+  bombs: 0
+  distance: 450
+  description: Survive 5km!
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -8,84 +87,6 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications: []
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1196030755053254}
-  m_IsPrefabParent: 1
---- !u!1 &1196030755053254
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4682003201999198}
-  - component: {fileID: 114650283109331760}
-  - component: {fileID: 114580063533798076}
-  m_Layer: 0
-  m_Name: 1_5_doble
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &4682003201999198
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1196030755053254}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0025587082, y: -0.0018539429, z: -0.0011138916}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114580063533798076
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1196030755053254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aab087fa44cc671439e1b50508ce4d75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  areaSets:
-  - {fileID: 114941458092399480, guid: 63984a57c6b6de543a9b8820c128e28e, type: 2}
-  activeAreaSetID: 1
-  showRelaxAreaBeforeStarting: 0
---- !u!114 &114650283109331760
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1196030755053254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c52aa23c4c1909c45b1a2eeadb8f98cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 3
-  backgroundSides:
-  - {fileID: 114420136736729756, guid: 4d0faa7303047444bb63b4d78578e87b, type: 2}
-  - {fileID: 114406897925718168, guid: d77188fe2cbab6e488b67faba85b7357, type: 2}
-  voices: []
-  videoGameID: 0
-  missionIcon: {fileID: 1500483267502380, guid: a816137bab5155d44aae12fae78075ad,
-    type: 2}
-  isCompetition: 0
-  maxScore: 0
-  Hiscore: 0
-  avatarHiscore: 
-  boss1: 0
-  hearts: 0
-  guys: 0
-  ghost: 0
-  points: 600
-  listeners: 0
-  planes: 0
-  bombs: 0
-  distance: 600
-  description: Survive 1km
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabAsset: 1
