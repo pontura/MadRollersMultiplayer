@@ -34,8 +34,8 @@ public class CompetitionManager : MonoBehaviour {
     }
     void OnCompetitionMissionComplete()
     {
-        Social.Instance.hiscores.SetMyScoreWhenPlaying((int)(distance));
-        SetGoal();
+       // Social.Instance.hiscores.SetMyScoreWhenPlaying((int)(distance));
+      //  SetGoal();
     }
     void SetGoal()
     {

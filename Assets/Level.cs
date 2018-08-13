@@ -27,7 +27,7 @@ public class Level : MonoBehaviour {
 	public GameObject missionDesc;
 
 	private AreasManager areasManager;
-	private FloorManager floorManager;
+	//private FloorManager floorManager;
 	
 	private float lastDistanceToLoadLevel;
 
@@ -84,8 +84,8 @@ public class Level : MonoBehaviour {
 
 		charactersManager = game.GetComponent<CharactersManager>();
 		powerupsManager = GetComponent<PowerupsManager>();
-		floorManager = GetComponent<FloorManager>();
-		floorManager.Init(charactersManager);
+//		floorManager = GetComponent<FloorManager>();
+//		floorManager.Init(charactersManager);
 		playing = true;
 		powerupsManager.Init ();
 		SetNewVideogameSettings ();
@@ -141,17 +141,18 @@ public class Level : MonoBehaviour {
 	public void Complete()
 	{
 		charactersManager.OnLevelComplete ();
-
 		showStartArea = true;
-		missions.Complete();
+
 		if (!missions.StartNext ())
 			return;
-
+		
+		data.events.MissionComplete ();
 		Data.Instance.voicesManager.PlayRandom (Data.Instance.voicesManager.missionComplete);
 		areasManager = missions.getAreasManager();
 		areasManager.Init(0);
 		data.setMission(missions.MissionActiveID);   
 		SetNewVideogameSettings ();
+
 	}
 	void SetNewVideogameSettings()
 	{

@@ -8,21 +8,19 @@ public class Floor : MonoBehaviour
 	public Transform container;
     public int z_length;
 	int new_z_length;
-    private bool isMoving;
+	public bool isMoving;
 	public float speed = 2;
 	public List<BackgroundSideData> all;
 	string lastBackgroundSideName;
-    private CharactersManager charactersManager;
+	public CharactersManager charactersManager;
+	public VideogameBossPanel videoGameBossPanel;
 
-    public void Init(CharactersManager charactersManager)
+	void Start()
     {
         isMoving = true;
         Data.Instance.events.OnGamePaused += OnGamePaused;
 		Data.Instance.events.OnGameOver += OnGameOver;
 		Data.Instance.events.OnChangeBackgroundSide += OnChangeBackgroundSide;
-
-        this.charactersManager = charactersManager;
-
     }
     void OnDestroy()
     {
@@ -51,6 +49,7 @@ public class Floor : MonoBehaviour
         if (!isMoving) return;
         if (!charactersManager) return;
 		float charactersDistance = charactersManager.getDistance ();
+		videoGameBossPanel.transform.localPosition = new Vector3 (0,0,charactersDistance);
 		if (charactersDistance == lastCharactersDistance)
 			return;
 		

@@ -49,7 +49,7 @@ public class SceneObjectsManager : MonoBehaviour {
 				so.Pool ();
 			}else if (distance > so.transform.position.z + so.size_z + 22 && Data.Instance.playMode != Data.PlayModes.VERSUS)
 				so.Pool();
-			else if (distance > so.transform.position.z - 45 || Data.Instance.playMode == Data.PlayModes.VERSUS) {				
+			else if (distance > so.transform.position.z - 48 || Data.Instance.playMode == Data.PlayModes.VERSUS) {				
 				if (!so.isActive) {
 					so.Restart (so.transform.position);
 				} else {				

@@ -87,8 +87,8 @@ public class CharactersManager : MonoBehaviour {
 
         distance += speedRun * Time.deltaTime;
 
-		if(Data.Instance.playMode == Data.PlayModes.STORY || Data.Instance.playMode == Data.PlayModes.COMPETITION)
-            missions.updateDistance(distance);
+//		if(Data.Instance.playMode == Data.PlayModes.STORY || Data.Instance.playMode == Data.PlayModes.COMPETITION)
+//            missions.updateDistance(distance);
 		
     }
 	public virtual void OnUpdate(){ }

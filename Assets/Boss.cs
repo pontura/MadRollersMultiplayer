@@ -32,7 +32,7 @@ public class Boss : SceneObject {
 		Data.Instance.events.OnSoundFX("FX break", -1);
 		Hit ();
 		hits++;
-		missions.hitBoss (1);
+		//missions.hitBoss (1);
 
 		Data.Instance.events.OncharacterCheer ();
 
@@ -52,7 +52,9 @@ public class Boss : SceneObject {
 	void Died()
 	{
 		Data.Instance.GetComponent<MusicManager> ().BossMusic (false);
-		Data.Instance.events.OnDestroySceneObject ("boss1");
+		//Data.Instance.events.OnDestroySceneObject ("boss1");
+		//Data.Instance.events.OnCompetitionMissionComplete();
+		Game.Instance.level.Complete ();
 		Pool ();
 	}
 	public virtual void Hit()

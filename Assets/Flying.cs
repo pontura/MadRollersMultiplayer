@@ -17,8 +17,8 @@ public class Flying : SceneObject {
     private void OnBreak()
     {
         setScore();
-        Missions missions = Data.Instance.GetComponent<Missions>();
-        missions.killPlane();
+      //  Missions missions = Data.Instance.GetComponent<Missions>();
+       // missions.killPlane();
         isActive = false;
     }
 }
