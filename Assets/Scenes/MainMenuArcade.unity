@@ -168,12 +168,12 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c50dda2b747aa3546b139681ed420257, type: 3}
+    m_Font: {fileID: 12800000, guid: 1745c5a8716c9f0468401c74b9c9e4c1, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 18
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -375,12 +375,12 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c50dda2b747aa3546b139681ed420257, type: 3}
+    m_Font: {fileID: 12800000, guid: 1745c5a8716c9f0468401c74b9c9e4c1, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 18
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1096,7 +1096,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c50dda2b747aa3546b139681ed420257, type: 3}
+    m_Font: {fileID: 12800000, guid: 1745c5a8716c9f0468401c74b9c9e4c1, type: 3}
     m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
@@ -1886,7 +1886,13 @@ Prefab:
       propertyPath: renderTexture
       value: 
       objectReference: {fileID: 8400000, guid: 89d50166e21de43439ff56ec4fc537a8, type: 2}
-    m_RemovedComponents: []
+    - target: {fileID: 11493402, guid: 8e58fc6793583ef4ba2e52b554ce088c, type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 1745c5a8716c9f0468401c74b9c9e4c1,
+        type: 3}
+    m_RemovedComponents:
+    - {fileID: 114835390196468406, guid: 8e58fc6793583ef4ba2e52b554ce088c, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 8e58fc6793583ef4ba2e52b554ce088c, type: 2}
   m_IsPrefabAsset: 0
 --- !u!224 &888259178 stripped
@@ -1900,6 +1906,25 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 888259177}
   m_Script: {fileID: 11500000, guid: 57d75d0e02e2b0e4d82d75d74a0914df, type: 3}
+--- !u!1 &888259180 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 186158, guid: 8e58fc6793583ef4ba2e52b554ce088c,
+    type: 2}
+  m_PrefabInternal: {fileID: 888259177}
+--- !u!114 &888259181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 888259180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.26666668}
+  m_EffectDistance: {x: 1, y: 1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &909667651
 GameObject:
   m_ObjectHideFlags: 0
@@ -2145,9 +2170,34 @@ Prefab:
       propertyPath: renderTexture
       value: 
       objectReference: {fileID: 8400000, guid: 84e69b19530c8994ea1bc4abd3715071, type: 2}
-    m_RemovedComponents: []
+    - target: {fileID: 11493402, guid: 8e58fc6793583ef4ba2e52b554ce088c, type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 1745c5a8716c9f0468401c74b9c9e4c1,
+        type: 3}
+    m_RemovedComponents:
+    - {fileID: 114835390196468406, guid: 8e58fc6793583ef4ba2e52b554ce088c, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 8e58fc6793583ef4ba2e52b554ce088c, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1081232101 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 186158, guid: 8e58fc6793583ef4ba2e52b554ce088c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1081232100}
+--- !u!114 &1081232102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1081232101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.26666668}
+  m_EffectDistance: {x: 1, y: 1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1095260140
 GameObject:
   m_ObjectHideFlags: 0
@@ -2445,12 +2495,12 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c50dda2b747aa3546b139681ed420257, type: 3}
+    m_Font: {fileID: 12800000, guid: 1745c5a8716c9f0468401c74b9c9e4c1, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 18
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -2871,12 +2921,12 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c50dda2b747aa3546b139681ed420257, type: 3}
+    m_Font: {fileID: 12800000, guid: 1745c5a8716c9f0468401c74b9c9e4c1, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 18
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -2949,7 +2999,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c50dda2b747aa3546b139681ed420257, type: 3}
+    m_Font: {fileID: 12800000, guid: 1745c5a8716c9f0468401c74b9c9e4c1, type: 3}
     m_FontSize: 28
     m_FontStyle: 0
     m_BestFit: 0
@@ -3391,7 +3441,13 @@ Prefab:
       propertyPath: renderTexture
       value: 
       objectReference: {fileID: 8400000, guid: 3a31f1392f4abfb4991a2ec1f6189b10, type: 2}
-    m_RemovedComponents: []
+    - target: {fileID: 11493402, guid: 8e58fc6793583ef4ba2e52b554ce088c, type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 1745c5a8716c9f0468401c74b9c9e4c1,
+        type: 3}
+    m_RemovedComponents:
+    - {fileID: 114835390196468406, guid: 8e58fc6793583ef4ba2e52b554ce088c, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 8e58fc6793583ef4ba2e52b554ce088c, type: 2}
   m_IsPrefabAsset: 0
 --- !u!224 &1685935818 stripped
@@ -3405,6 +3461,25 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1685935817}
   m_Script: {fileID: 11500000, guid: 57d75d0e02e2b0e4d82d75d74a0914df, type: 3}
+--- !u!1 &1685935820 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 186158, guid: 8e58fc6793583ef4ba2e52b554ce088c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1685935817}
+--- !u!114 &1685935821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1685935820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.26666668}
+  m_EffectDistance: {x: 1, y: 1}
+  m_UseGraphicAlpha: 1
 --- !u!4 &1698433751
 Transform:
   m_ObjectHideFlags: 0
@@ -4141,7 +4216,13 @@ Prefab:
       propertyPath: renderTexture
       value: 
       objectReference: {fileID: 8400000, guid: 2e4043f7b2c894044b771b7b8260ee3a, type: 2}
-    m_RemovedComponents: []
+    - target: {fileID: 11493402, guid: 8e58fc6793583ef4ba2e52b554ce088c, type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 1745c5a8716c9f0468401c74b9c9e4c1,
+        type: 3}
+    m_RemovedComponents:
+    - {fileID: 114835390196468406, guid: 8e58fc6793583ef4ba2e52b554ce088c, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 8e58fc6793583ef4ba2e52b554ce088c, type: 2}
   m_IsPrefabAsset: 0
 --- !u!224 &2065264088 stripped
@@ -4155,6 +4236,25 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 2065264087}
   m_Script: {fileID: 11500000, guid: 57d75d0e02e2b0e4d82d75d74a0914df, type: 3}
+--- !u!1 &2065264090 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 186158, guid: 8e58fc6793583ef4ba2e52b554ce088c,
+    type: 2}
+  m_PrefabInternal: {fileID: 2065264087}
+--- !u!114 &2065264091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2065264090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.26666668}
+  m_EffectDistance: {x: 1, y: 1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &2080620353
 GameObject:
   m_ObjectHideFlags: 0
