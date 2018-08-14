@@ -78,8 +78,7 @@ public class VideogameBossPanel : MonoBehaviour {
 		else
 			anim.Play ("pinskull_attack");
 		yield return new WaitForSeconds (2);
-		if (state == states.ATTACK)
-			Idle ();
+		Idle ();
 	}
 	IEnumerator IdleCoroutine ()
 	{
