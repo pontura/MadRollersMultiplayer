@@ -30,27 +30,6 @@ public class SceneObject : MonoBehaviour {
     public bool onlyMultiplayers;
 	SceneObjectsManager manager;
 
-    void Start()
-    {
-        
-    }
-	public void UpdateByManager(float distance)
-    {
-      //  if (!isActive) return;
-      //  if (!charactersMmanager) return;
-      //  if (charactersMmanager.getDistance() == 0) return;
-      //  if (!characterTransform) characterTransform = charactersMmanager.character.transform;
-       
-       // float distance = charactersMmanager.getDistance();
-       
-
-//        if (transform.localPosition.y < -6)
-//            Pool();
-//		else if (distance > transform.position.z + size_z + 22 && Data.Instance.playMode != Data.PlayModes.VERSUS)
-//            Pool();
-//		else if (distance > transform.position.z - 45 || Data.Instance.playMode == Data.PlayModes.VERSUS)
-//            OnSceneObjectUpdate();
-    }
 	public void Init(SceneObjectsManager manager)
 	{
 		this.manager = manager;

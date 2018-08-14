@@ -39,15 +39,15 @@ public class CompetitionManager : MonoBehaviour {
     }
     void SetGoal()
     {
-        Hiscores.Hiscore goalHiscore = Social.Instance.hiscores.GetMyNextGoal();
-        if (goalHiscore == null)
-        {
-            Debug.Log("__________ya no hay rivales!");
-            return;
-        }
-        nextGoalDistance = goalHiscore.score;
-        avatar2.SetPicture(goalHiscore.facebookID);
-        Data.Instance.missions.MissionActive.distance = nextGoalDistance;
+//        Hiscores.Hiscore goalHiscore = Social.Instance.hiscores.GetMyNextGoal();
+//        if (goalHiscore == null)
+//        {
+//            Debug.Log("__________ya no hay rivales!");
+//            return;
+//        }
+//        nextGoalDistance = goalHiscore.score;
+//        avatar2.SetPicture(goalHiscore.facebookID);
+//        Data.Instance.missions.MissionActive.distance = nextGoalDistance;
     }
     void Update()
     {

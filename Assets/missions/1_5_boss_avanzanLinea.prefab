@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1779510545178934}
+  m_IsPrefabAsset: 1
+--- !u!1 &1779510545178934
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4195816654742880}
+  - component: {fileID: 114144700556827404}
+  - component: {fileID: 114453998025836186}
+  m_Layer: 0
+  m_Name: 1_5_boss_avanzanLinea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4195816654742880
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1779510545178934}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0025587082, y: -0.0018539429, z: -0.0011138916}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114144700556827404
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1779510545178934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c52aa23c4c1909c45b1a2eeadb8f98cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 13
+  backgroundSides:
+  - {fileID: 114621687253337444, guid: 3c0d78bf6bd6f9a489b517c25d2067a3, type: 2}
+  voices:
+  - text: 
+    audioClip: {fileID: 8300000, guid: b0b7e9d022ae4a24092a869bdf74468c, type: 3}
+  - text: 
+    audioClip: {fileID: 8300000, guid: 7321a27a5f5dc354b8182ca944e5c3f2, type: 3}
+  videoGameID: 0
+  missionIcon: {fileID: 1968934687959024, guid: 5566bc767dbf7a14783eb0b2dba6db12,
+    type: 2}
+  isCompetition: 0
+  maxScore: 0
+  Hiscore: 0
+  avatarHiscore: 
+  description: 'Mad Rabbits '
+--- !u!114 &114453998025836186
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1779510545178934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aab087fa44cc671439e1b50508ce4d75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  areaSets:
+  - {fileID: 114373686509189878, guid: c4a477bf2ece0704bb6c88e2e181bdd7, type: 2}
+  - {fileID: 114373686509189878, guid: d5e5c48bc4e2a184bae4133515db3e10, type: 2}
+  - {fileID: 114004391671021460, guid: 1e7dfc282142644419e23dc80921c77d, type: 2}
+  activeAreaSetID: 3
+  showRelaxAreaBeforeStarting: 0

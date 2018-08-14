@@ -15,33 +15,22 @@ public class Mission: MonoBehaviour {
     public int maxScore;
     public int Hiscore;
     public string avatarHiscore;
-
-	public int boss1 = 0;
-	public int hearts = 0;
-	public int guys = 0;
-	public int ghost = 0;
-	public int points = 0;
-	public int listeners = 0;
-	public int planes = 0;
-	public int bombs = 0;
-    public int distance = 0;
-
 	public string description;
 
-	public void Init()
-	{
-		if(backgroundSides.Length>0)
-			Data.Instance.events.OnChangeBackgroundSide (backgroundSides);
-	}
+//	public void Init()
+//	{
+//		if(backgroundSides.Length>0)
+//			Data.Instance.events.OnChangeBackgroundSide (backgroundSides);
+//	}
 	public void addPoints (float qty) {
-        setPoints(points + (int)qty);
+       // setPoints(points + (int)qty);
 	}
     public void setPoints(int _points)
     {
-        this.points = _points;
+       // this.points = _points;
     }
 	public void reset()
 	{
-		points = 0;
+		//points = 0;
 	}
 }

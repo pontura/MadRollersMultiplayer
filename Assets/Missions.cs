@@ -101,7 +101,8 @@ public class Missions : MonoBehaviour {
 
 		MissionActiveID = _MissionActiveID;
 		MissionActive = missions [MissionActiveID];
-		MissionActive.Init ();
+
+		Data.Instance.events.OnChangeBackgroundSide (MissionActive.backgroundSides);
 
 		this.missionCompletedPercent = 0;
 
@@ -171,7 +172,7 @@ public class Missions : MonoBehaviour {
       //  }
 		MissionActiveID++;
         MissionActive = GetActualMissions()[MissionActiveID];
-		MissionActive.Init ();
+		Data.Instance.events.OnChangeBackgroundSide (MissionActive.backgroundSides);
 		MissionActive.reset();
 		data.events.NewMissionStart ();
 		return true;
@@ -187,7 +188,7 @@ public class Missions : MonoBehaviour {
         else
 			text = MissionActive.description.ToUpper();
         
-        MissionActive.points = 0;
+        //MissionActive.points = 0;
         lastDistance = (int)Game.Instance.GetComponent<CharactersManager>().distance;
     }
 
@@ -355,6 +356,6 @@ public class Missions : MonoBehaviour {
 	}
 	public void ForceBossPercent(int totalHits)
 	{
-		MissionActive.boss1 = totalHits;
+		//MissionActive.boss1 = totalHits;
 	}
 }

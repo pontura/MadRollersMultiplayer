@@ -11,12 +11,10 @@ public class Boss : SceneObject {
 
 	public override void OnRestart(Vector3 pos)
 	{		
+		Data.Instance.events.OnBossActive (true);
 		missions = Game.Instance.level.missions;
 		Data.Instance.GetComponent<MusicManager> ().BossMusic (true);
-		//bossBar.enabled = true;
 		base.OnRestart (pos);
-		//bossBar.Init (this);
-
 	}
 	public void SetTotal(int totalHits)
 	{		
@@ -32,15 +30,13 @@ public class Boss : SceneObject {
 		Data.Instance.events.OnSoundFX("FX break", -1);
 		Hit ();
 		hits++;
-		//missions.hitBoss (1);
 
 		Data.Instance.events.OncharacterCheer ();
 
 		if (hits >= totalHits)
 			Killed ();
 		
-		print("hits:  " +  hits + "  totalHits: " + totalHits );
-		//bossBar.Resta ((10/numberOfHits)/10);
+		//print("hits:  " +  hits + "  totalHits: " + totalHits );
 	}
 	public void Killed()
 	{
@@ -52,10 +48,9 @@ public class Boss : SceneObject {
 	void Died()
 	{
 		Data.Instance.GetComponent<MusicManager> ().BossMusic (false);
-		//Data.Instance.events.OnDestroySceneObject ("boss1");
-		//Data.Instance.events.OnCompetitionMissionComplete();
 		Game.Instance.level.Complete ();
 		Pool ();
+		Data.Instance.events.OnBossActive (false);
 	}
 	public virtual void Hit()
 	{

@@ -72,8 +72,8 @@ public class MmoCharacter : SceneObject
 
         setScore();
 
-		Missions missions = Data.Instance.GetComponent<Missions>();
-		missions.SendMessage ("killGuy", 1);
+//		Missions missions = Data.Instance.GetComponent<Missions>();
+//		missions.SendMessage ("killGuy", 1);
 		       
 		state = states.DEAD;
 

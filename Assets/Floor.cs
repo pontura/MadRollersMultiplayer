@@ -89,17 +89,14 @@ public class Floor : MonoBehaviour
 //	List<BackgroundSideData> allBackgroundSides;
 	void OnChangeBackgroundSide(BackgroundSideData[] newBgs)
 	{
-		print ("__________OnChangeBackgroundSide: " + newBgs.Length);
 		if (newBgs.Length == 0)
 			return;
 		if (all.Count>0 && newBgs [0].backgroundSideName == all [0].backgroundSideName) {
 			print ("__________mismo backgrouond!");
 			return;
 		}
-		print ("RemoveAllChildsIn");
 		int i = container.childCount;
 		while (i > 0) {
-			print ("DESTROYYYYYY");
 			Destroy (container.GetChild(i-1).gameObject);
 			i--;
 		}
@@ -130,7 +127,6 @@ public class Floor : MonoBehaviour
 	}
 	void AddNewBgSide(BackgroundSideData newGO)
 	{
-		print ("newGO____________" + newGO.backgroundSideName);
 		BackgroundSideData go = Instantiate (newGO);
 		go.transform.SetParent (container);
 		go.transform.localPosition = new Vector3(0,0,z_length);
