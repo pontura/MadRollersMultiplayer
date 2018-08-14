@@ -14,7 +14,6 @@ public class ArcadeGUI : MonoBehaviour {
     public GameObject singleSignalTexts;
     public List<int> avatarsThatShoot;
     public states state;
-	public GameObject panel;
 	public JoysticksCanvas joysticksCanvas;
 
     public enum states
@@ -26,9 +25,6 @@ public class ArcadeGUI : MonoBehaviour {
     }
 
 	void Start () {
-//		
-//		if (Data.Instance.playMode == Data.PlayModes.STORY)
-//			panel.SetActive (false);
 		
         singleSignal.SetActive(false);
         characterManager = Game.Instance.GetComponent<CharactersManager>();

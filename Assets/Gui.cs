@@ -4,8 +4,7 @@ using System.Collections;
 
 public class Gui : MonoBehaviour {
     
-    [SerializeField]
-    LevelComplete levelComplete;
+	public LevelComplete levelComplete;
 
     public GameObject[] hideOnCompetitions;
 	private Data data;   
@@ -13,50 +12,49 @@ public class Gui : MonoBehaviour {
 	private int barWidth = 200;
     private bool MainMenuOpened = false;
 
-    private Events events;
 	public MissionIcon missionIcon_to_instantiate;
 	[HideInInspector]
 	public MissionIcon missionIcon;
+	public GameObject killemAll;
 
 	void Start()
 	{
+		killemAll.SetActive (false);
 		missionIcon = Instantiate (missionIcon_to_instantiate);
 		missionIcon.transform.localPosition = new Vector3 (1000, 0, 0);
 
-        events = Data.Instance.events;
-        Data.Instance.events.OnMissionComplete += OnMissionComplete;
-        Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
         Data.Instance.events.OnAvatarFall += OnAvatarCrash;
+		Data.Instance.events.OnBossActive += OnBossActive;
     }
     void OnDestroy()
     {
-        Data.Instance.events.OnMissionComplete -= OnMissionComplete;
         Data.Instance.events.OnAvatarCrash -= OnAvatarCrash;
         Data.Instance.events.OnAvatarFall -= OnAvatarCrash;
-        Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
+		Data.Instance.events.OnBossActive -= OnBossActive;
 
-        events = null;
         levelComplete = null;
     }
+	void OnBossActive(bool isOn)
+	{
+		Reset ();
+		if (isOn) {
+			killemAll.SetActive (true);
+		} else {
+			levelComplete.gameObject.SetActive (true);
+			levelComplete.Init (Data.Instance.missions.MissionActive.id);
+		}
+		Invoke ("Reset", 2);
+	}
+	void Reset()
+	{
+		levelComplete.gameObject.SetActive(false); 
+		killemAll.SetActive (false);
+	}
     void OnAvatarCrash(CharacterBehavior cb)
     {
         levelComplete.gameObject.SetActive(false); 
     }
-    void OnListenerDispatcher(string message)
-    {
-        levelComplete.gameObject.SetActive(false);  
-    }
-    void OnMissionComplete(int num)
-    {
-		//pontura if (Data.Instance.playMode == Data.PlayModes.COMPETITION ) return;
-        levelComplete.gameObject.SetActive(true);
-        levelComplete.Init(num);
-    }
-    //void OnSetFinalScore(Vector3 pos, int _score)
-    //{
-    //    scoreLabel.text = _score.ToString();
-    //}
     public void Settings()
     {
         Data.Instance.GetComponent<GameMenu>().Init();
