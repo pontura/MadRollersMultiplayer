@@ -31,30 +31,12 @@ public class GameCamera : MonoBehaviour
 	float explotionForce = 0.25f;
 
     public Animation anim;
-	protected Vector2 defaultResolution = new Vector2(1280,720);
-	public int newH;
-	public int newV;
-	int pixel_speed_recovery = 14;
+
+	public float pixelSize;
+	float pixel_speed_recovery = 20;
 	private GameObject flow_target;
 	float _Y_correction;
 
-	void ChangeResolution()
-	{
-		//retroPixelPro.horizontalResolution =(int) defaultResolution.x;
-		//	retroPixelPro.verticalResolution =(int) defaultResolution.y;
-	}
-	void SetPizelPro()
-	{
-		if (newH == defaultResolution.x && newV == defaultResolution.y)
-			return;
-
-		if (newH < defaultResolution.x)
-			newH+=pixel_speed_recovery;
-		if (newV < defaultResolution.y)
-			newV+=pixel_speed_recovery;
-		//retroPixelPro.horizontalResolution = newH;
-		//retroPixelPro.verticalResolution = newV;
-	}
 	Component CopyComponent(Component original, GameObject destination)
 	{
 		System.Type type = original.GetType();
@@ -68,13 +50,11 @@ public class GameCamera : MonoBehaviour
 	}
     void Start()
     {
-
-		//newH = retroPixelPro.horizontalResolution;
-		//newV = retroPixelPro.verticalResolution;
-
-		retroPixelPro = Data.Instance.videogamesData.GetActualVideogameData ().retroPixelPro;
+		Component rpp = Data.Instance.videogamesData.GetActualVideogameData ().retroPixelPro;
+		retroPixelPro = CopyComponent (rpp, cam.gameObject) as RetroPixelPro;
 		retroPixelPro.dither = 0;
-		CopyComponent (retroPixelPro, cam.gameObject);
+
+		pixelSize = 1;
 
 		charactersManager = Game.Instance.GetComponent<CharactersManager>();
        
@@ -141,9 +121,7 @@ public class GameCamera : MonoBehaviour
         } catch
         {
 
-        }
-
-        
+        }        
 		if (flow_target == null) {
 			flow_target = new GameObject ();
 			flow_target.transform.SetParent (transform.parent);
@@ -157,36 +135,43 @@ public class GameCamera : MonoBehaviour
 			transform.localPosition =  new Vector3 (0, 0,transform.localPosition.z);
 		}
 	}
-
+	IEnumerator DoExploteCoroutine;
 	void OncharacterCheer()
 	{
 		if (state != states.PLAYING)
 			return;	
+		if (DoExploteCoroutine != null)
+			StopCoroutine (DoExploteCoroutine);
 		state = states.EXPLOTING;
-		StartCoroutine (DoExplote ());
-		newH = 10;
-		newV = 10;
+
+		SetPixels(12);
+
+		DoExploteCoroutine = DoExplote ();
+		StartCoroutine (DoExploteCoroutine);
+
 	}
 	public void explote(float explotionForce)
 	{
 		if (state != states.PLAYING)
 			return;	
+		if (DoExploteCoroutine != null)
+			StopCoroutine (DoExploteCoroutine);
 		state = states.EXPLOTING;
+
+		SetPixels(6);
+
 		this.explotionForce = explotionForce*2f;
-		StartCoroutine (DoExplote ());
-		newH = 150;
-		newV = 200;
+		DoExploteCoroutine = DoExplote ();
+		StartCoroutine (DoExploteCoroutine);
 	}
 	public IEnumerator DoExplote () {
 		float delay = 0.03f;
         for (int a = 0; a < 6; a++)
         {
 			rotateRandom( Random.Range(-explotionForce, explotionForce) );
-			SetPizelPro ();
             yield return new WaitForSeconds(delay);
         }
         rotateRandom(0);
-		ChangeResolution ();
 		if(state == states.EXPLOTING)
 			state = states.PLAYING;
 	}
@@ -214,8 +199,21 @@ public class GameCamera : MonoBehaviour
 		cam.transform.localRotation = Quaternion.Lerp(cam.transform.localRotation, newRot, Time.deltaTime*10);
 	}
 
+	void SetPixels(float _pixelSize)
+	{
+		this.pixelSize = _pixelSize;
+		retroPixelPro.pixelSize = (int)(pixelSize);
+	}
+	void UpdatePixels()
+	{
+		if (pixelSize < 1)
+			pixelSize = 1;
+		else 
+			pixelSize -= pixel_speed_recovery * Time.deltaTime;
 
+		retroPixelPro.pixelSize = (int)(pixelSize);
 
+	}
 	void LateUpdate () 
 	{
         if (state == states.START)
@@ -239,7 +237,9 @@ public class GameCamera : MonoBehaviour
         {
             return;
         }
-
+		if (retroPixelPro.pixelSize > 1) 
+			UpdatePixels ();
+		
 		if (team_id == 0)
 			newPos = charactersManager.getPosition ();
 		else
