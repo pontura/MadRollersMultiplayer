@@ -255,7 +255,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				clone = Boss2;
 			else if (go.name == "BossCalecitas1")
 				clone = BossCalecitas1;
-			else if (go.name == "BossCreator")
+			else if (go.name == "BossCreator") 
 				clone = BossCreator;
 			else if (go.name == "BossSpace1")
 				clone = BossSpace1;
