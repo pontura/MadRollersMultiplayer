@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class LoadingAsset : MonoBehaviour {
 
+	public Text field;
+	public string[] texts;
 	public GameObject loadingPanel;
 	public GameObject videoPanel;
 
@@ -14,18 +16,48 @@ public class LoadingAsset : MonoBehaviour {
 	public Image[] backgroundImages;
 	float speed;
 	bool isOn;
+
 	void Start () {
+		Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
+		Data.Instance.events.OnGameOver += OnGameOver;
 		videoPanel.SetActive (false);
 		ChangeBG ();
 	}
 	public void SetOn(bool _isOn)
 	{
-		videoPanel.SetActive (true);
+		videoPanel.SetActive (_isOn);
 		this.isOn = _isOn;
 		//panel.SetActive (_isOn);
 		loadingPanel.SetActive (_isOn);
-		Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
-		Data.Instance.events.OnGameOver += OnGameOver;
+		if (isOn)
+			StartCoroutine (LoadingRoutine ());
+	}
+	IEnumerator LoadingRoutine()
+	{
+		Data.Instance.events.OnSoundFX("loading", 0);
+		field.text = "";		
+		AddText("*** MAD ROLLERS ***");
+		yield return new WaitForSeconds (0.8f);
+		AddText("Goto 1982");
+		yield return new WaitForSeconds (0.6f);
+		AddText("Entering Boy-Land...");
+		UnityEngine.SceneManagement.SceneManager.LoadScene ("Game");
+		yield return new WaitForSeconds (0.5f);
+		int i = texts.Length;
+		while (i > 0) {
+			yield return new WaitForSeconds ((float)Random.Range (6, 10) / 10f);
+			AddText(texts[i-1]);
+			i--;
+		}
+		AddText("COMPLETE!");
+		yield return new WaitForSeconds (0.5f);
+		SetOn (false);
+		Data.Instance.events.OnGameStart();
+		yield return null;
+	}
+	void AddText(string text)
+	{
+		field.text += text +'\n';
 	}
 	void StartMultiplayerRace()
 	{
@@ -35,7 +67,6 @@ public class LoadingAsset : MonoBehaviour {
 	{
 		videoPanel.SetActive (true);
 	}
-
 
 	void Update () {
 		

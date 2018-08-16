@@ -19,8 +19,6 @@ public class ArcadeGUI : MonoBehaviour {
     public enum states
     {
         INTRO,
-        SHOOT_ONE,
-        SHOOTS_READY,
         WELLCOME
     }
 
@@ -33,36 +31,7 @@ public class ArcadeGUI : MonoBehaviour {
         Data.Instance.events.OnGameOver += OnGameOver;
        
 		SetFields ("");
-        SetIntroFields();
-
-		if (Data.Instance.isReplay) {
-			Invoke ("Delayed", 0.1f);
-		}
 	}
-	void Delayed()
-	{
-		Data.Instance.events.StartMultiplayerRace ();
-		state = states.SHOOTS_READY;
-		SetFields ("");
-	}
-    void SetIntroFields()
-    {
-		if (state == states.INTRO)
-			SetFields (""); //ABRAN PASO!");
-		else if (state == states.SHOOT_ONE)
-			SetFields ("TODOS DISPAREN!");
-		else if (state == states.SHOOTS_READY) {
-			if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
-				SetFields ("BIEN!...");
-			else
-				SetFields ("");
-		} else if (state == states.WELLCOME) {
-			if(Data.Instance.playMode ==Data.PlayModes.COMPETITION )
-				SetFields ("...AHORA ROMPAN TODO!");
-			else
-				SetFields ("");
-		}
-    }
     void ResetFields()
     {
         if (ended) return;
@@ -101,7 +70,6 @@ public class ArcadeGUI : MonoBehaviour {
     void OnDestroy()
     {
         Data.Instance.events.OnGameOver -= OnGameOver;
-       // Data.Instance.events.OnAvatarShoot -= OnAvatarShoot;
     }
     void SetFields(string _text)
     {

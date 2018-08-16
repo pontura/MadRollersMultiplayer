@@ -11,8 +11,8 @@ public class MainMenuActions : MonoBehaviour {
 	void Start () {
      //   Data.Instance.events.VoiceFromResources("welcome");
       //  DebugText.text = "username: " + Data.Instance.userData.username + " - id: " + Data.Instance.userData.facebookId + " - id: " + Data.Instance.userData.userId;
-        Data.Instance.GetComponent<Tracker>().TrackScreen("Main Menu");
-        Data.Instance.events.OnInterfacesStart();
+      //  Data.Instance.GetComponent<Tracker>().TrackScreen("Main Menu");
+      //  Data.Instance.events.OnInterfacesStart();
 
         if (Application.platform == RuntimePlatform.Android)
             Data.Instance.mode = Data.modes.ACCELEROMETER;

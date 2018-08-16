@@ -26,7 +26,6 @@ public class MusicManager : MonoBehaviour {
 
 		Data.Instance.events.OnVersusTeamWon += OnVersusTeamWon;
         Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
-        Data.Instance.events.OnMissionStart += OnMissionStart;
         Data.Instance.events.OnInterfacesStart += OnInterfacesStart;
         Data.Instance.events.OnAvatarChangeFX += OnAvatarChangeFX;
         Data.Instance.events.OnAvatarDie += OnAvatarDie;
@@ -104,10 +103,6 @@ public class MusicManager : MonoBehaviour {
     {
         playSound(MainTheme);
     }
-    void OnMissionStart(int id)
-    {
-        //playSound(MainTheme);
-	}
 	public void BossMusic(bool isBoss)
 	{
 		return;
@@ -131,6 +126,7 @@ public class MusicManager : MonoBehaviour {
     public void stopAllSounds()
     {
         audioSource.Stop();
+		audioSource.clip = null;
     }
 
     float nextHeartSoundTime;

@@ -32,7 +32,6 @@ public class VoicesManager : MonoBehaviour
 		if (!Data.Instance.voicesOn)
 			return;
 		
-		Data.Instance.events.OnGameStart += OnGameStart;
         Data.Instance.events.OnMissionComplete += OnMissionComplete;
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
@@ -48,10 +47,6 @@ public class VoicesManager : MonoBehaviour
 	void OnVoicesStatus(bool isOn)
 	{
 		audioSource.enabled = isOn;
-	}
-	void OnGameStart()
-	{
-		
 	}
     void SetVolume(float vol)
     {

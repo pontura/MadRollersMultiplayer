@@ -49,7 +49,11 @@ public class GameCamera : MonoBehaviour
 		return copy;
 	}
     void Start()
-    {
+	{
+		Data.Instance.events.OnGameStart += OnGameStart;
+	}
+	void OnGameStart()
+	{
 		Component rpp = Data.Instance.videogamesData.GetActualVideogameData ().retroPixelPro;
 		retroPixelPro = CopyComponent (rpp, cam.gameObject) as RetroPixelPro;
 		retroPixelPro.dither = 0;
@@ -91,6 +95,7 @@ public class GameCamera : MonoBehaviour
 	}
     void OnDestroy()
     {
+		Data.Instance.events.OnGameStart -= OnGameStart;
         Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
         Data.Instance.events.OnChangeMood -= OnChangeMood;
 		Data.Instance.events.OnVersusTeamWon -= OnVersusTeamWon;

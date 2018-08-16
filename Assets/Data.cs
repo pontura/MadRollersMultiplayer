@@ -143,6 +143,7 @@ public class Data : MonoBehaviour {
 	}
 	void Start()
 	{
+		loadingAsset.SetOn (false);
 		GetComponent<PhotosManager>().LoadPhotos();
 	}
     void SetVolume(float vol)
@@ -187,13 +188,18 @@ public class Data : MonoBehaviour {
     }
     public void LoadLevel(string levelName)
     {
-		//loadingAsset.SetOn (true);
 		Data.Instance.events.ForceFrameRate (1);
-        GetComponent<Fade>().LoadLevel(levelName, 0.6f, Color.black);
-    }
+		float delay = 0.1f;
+		if (!isReplay && levelName == "Game") {
+			Data.Instance.GetComponent<MusicManager>().stopAllSounds();
+			loadingAsset.SetOn (true);
+			return;
+		}
+		GetComponent<Fade> ().LoadLevel (levelName, 1f, Color.black);
+	}
 	public void LoadingReady()
 	{
-		//loadingAsset.SetOn (false);
+		loadingAsset.SetOn (false);
 	}
 	public void LoadLevelNotFading(string levelName)
 	{

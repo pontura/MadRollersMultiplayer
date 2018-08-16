@@ -108,8 +108,12 @@ public class LevelSelector : MonoBehaviour {
 		lastButtonSelected.OnClick ();
 		Invoke ("Delayed", 0.3f);
 	}
+	bool loading;
 	void Delayed()
 	{
+		if (loading)
+			return;
+		loading = true;
 		if (Data.Instance.playMode == Data.PlayModes.STORY ) {
 			data.missions.MissionActiveID =lastButtonSelected.id;
 			Data.Instance.LoadLevel ("Game");
@@ -166,7 +170,6 @@ public class LevelSelector : MonoBehaviour {
 
 	void InitComtetitionMode()
 	{
-		Data.Instance.events.OnInterfacesStart();
 
 		data = Data.Instance;		
 		missions = data.missions;
@@ -234,7 +237,6 @@ public class LevelSelector : MonoBehaviour {
 
 	void InitStoryMode () {
 
-		Data.Instance.events.OnInterfacesStart();
 
 		data = Data.Instance;		
 		missions = data.missions;

@@ -49,7 +49,7 @@ public class CharactersManager : MonoBehaviour {
     void StartMultiplayerRace()
     {
 		if (Data.Instance.isReplay) {
-			// no hace nada:
+			Data.Instance.isReplay = false;
 		} else {
 			speedRun = 19;
 			//RalentaCoroutine = DoRalentaCoroutine (2, 0, 0.05f);
@@ -143,7 +143,7 @@ public class CharactersManager : MonoBehaviour {
 		if (Data.Instance.multiplayerData.player3) { addCharacter(CalculateInitialPosition(pos, positionID+2), 2); playerPositions.Add(2); };
 		yield return new WaitForSeconds (timeToAppear);
 		if (Data.Instance.multiplayerData.player4) { addCharacter(CalculateInitialPosition(pos, positionID+3), 3); playerPositions.Add(3); };
-		Data.Instance.isReplay = false;
+
 	}
     void OnDestroy()
     {

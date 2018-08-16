@@ -34,7 +34,7 @@ public class MainMenuArcade : MonoBehaviour {
 		foreach (Text t in missionFields) {
 			t.text = desc;
 		}
-        Data.Instance.events.OnInterfacesStart();
+        //Data.Instance.events.OnInterfacesStart();
         multiplayerData = Data.Instance.multiplayerData;
 		CountDownField.text = "";
         int id = 0;
@@ -160,7 +160,12 @@ public class MainMenuArcade : MonoBehaviour {
 				||  (Data.Instance.playMode== Data.PlayModes.VERSUS && totalPlayers > 1)
 			)
             {
-                done = true;
+                
+				if (done)
+					return;
+
+				done = true;
+
 				if (Data.Instance.playMode == Data.PlayModes.COMPETITION ) {
 					Data.Instance.LoadLevel ("Game");
 				} else {

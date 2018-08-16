@@ -122,7 +122,6 @@ public class SummaryMultiplayer : MonoBehaviour {
     }
     void ShowRanking()
     {
-        Data.Instance.events.OnInterfacesStart();
         Reset();
         GetComponent<Animation>().Play("summaryMultiplayerRanking");
         Invoke("ReadyRanking", 2);

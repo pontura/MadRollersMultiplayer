@@ -11,15 +11,19 @@ public class UICountDown : MonoBehaviour {
 	int countDown = 3;
 
 	void Start () {
+		
 		if (Data.Instance.playMode == Data.PlayModes.STORY || Data.Instance.isReplay) {
 			panel.SetActive (false);
 			return;
 		}
-		
+		Data.Instance.events.OnGameStart += OnGameStart;		
 		panel.SetActive (true);
-		CountDown ();
 	}
-	void CountDown()
+	void OnDestroy()
+	{
+		Data.Instance.events.OnGameStart -= OnGameStart;
+	}
+	void OnGameStart()
 	{
 		countDownField.text = countDown.ToString ();
 		Invoke ("SetNextCountDown", 1.2f);
@@ -33,6 +37,6 @@ public class UICountDown : MonoBehaviour {
 			panel.SetActive (false);
 			return;
 		}
-		CountDown ();
+		OnGameStart ();
 	}
 }

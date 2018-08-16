@@ -30,10 +30,15 @@ public class Game : MonoBehaviour {
     }
     void Awake()
     {
-        mInstance = this;        
+        mInstance = this;  
+
     }
     void Start()
     {
+		if (Data.Instance.isReplay) {
+			print ("SSSSSSSIIIIIIIIIIII");
+			Invoke ("Delayed", 0.2f);
+		}
 		GetComponent<CompetitionManager> ().Init ();
 		GetComponent<CharactersManager>().Init();
 		GetComponent<RainManager> ().Init ();
@@ -48,8 +53,12 @@ public class Game : MonoBehaviour {
         Data.Instance.GetComponent<Tracker>().TrackScreen("Game Screen");
         Data.Instance.events.SetSettingsButtonStatus(false);
 
-        Data.Instance.events.OnGameStart();
+        //Data.Instance.events.OnGameStart();
     }
+	void Delayed()
+	{
+		Data.Instance.events.OnGameStart();
+	}
     void OnDestroy()
     {
         Data.Instance.events.OnGamePaused -= OnGamePaused;

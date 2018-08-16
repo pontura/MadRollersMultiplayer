@@ -81,6 +81,7 @@ public class Level : MonoBehaviour {
 		data.events.OnAddHeartsByBreaking += OnAddHeartsByBreaking;
 		data.events.StartMultiplayerRace += StartMultiplayerRace;
 		data.events.SetVictoryArea += SetVictoryArea;
+		Data.Instance.events.OnGameStart += OnGameStart;
 
 		charactersManager = game.GetComponent<CharactersManager>();
 		powerupsManager = GetComponent<PowerupsManager>();
@@ -116,15 +117,16 @@ public class Level : MonoBehaviour {
 		if (!Data.Instance.isArcadeMultiplayer && !waitingToStart) // nunevo && !waitingToStart)
             missions.StartNext();
 
-		Invoke ("Delayed", 0.5f);
+		//Invoke ("Delayed", 2.5f);
     }
-	void Delayed()
+	void OnGameStart()
 	{
 		Data.Instance.voicesManager.PlayRandom (Data.Instance.voicesManager.welcome);
 	}
     
     public void OnDestroy()
     {
+		Data.Instance.events.OnGameStart -= OnGameStart;
         data.events.OnResetLevel -= reset;
 		data.events.OnScoreOn -= OnScoreOn;
         data.events.OnAddExplotion -= OnAddExplotion;
