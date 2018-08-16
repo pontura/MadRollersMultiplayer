@@ -58,6 +58,7 @@ public class Game : MonoBehaviour {
 	void Delayed()
 	{
 		Data.Instance.events.OnGameStart();
+		Data.Instance.events.StartMultiplayerRace();
 	}
     void OnDestroy()
     {

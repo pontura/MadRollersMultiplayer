@@ -51,10 +51,6 @@ public class Missions : MonoBehaviour {
     {
 		lastMissionSignalShowed = -1;
         data = Data.Instance;
-//      Data.Instance.events.OnScoreOn += OnScoreOn;
-//      Data.Instance.events.OnGrabHeart += OnGrabHeart;
-//		Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
-//		Data.Instance.events.OnDestroySceneObject += OnDestroySceneObject;
 
 		int videogameID = 0;
 		int lastVideoGameID = -1;
@@ -77,18 +73,6 @@ public class Missions : MonoBehaviour {
 			allMissionsByVideogame [videogameID].missions.Add (mission);
 			id++;
 		}
-
-    }
-//    void OnDestroy()
-//    {
-//        Data.Instance.events.OnScoreOn -= OnScoreOn;
-//        Data.Instance.events.OnGrabHeart -= OnGrabHeart;
-//		Data.Instance.events.OnDestroySceneObject -= OnDestroySceneObject;
-//    }
-
-    public void OnDisable()
-    {
-      //  data.events.OnListenerDispatcher -= OnListenerDispatcher;
     }
     private void OnListenerDispatcher(string message)
     {        
@@ -192,14 +176,51 @@ public class Missions : MonoBehaviour {
         lastDistance = (int)Game.Instance.GetComponent<CharactersManager>().distance;
     }
 
-
-
 	bool CanComputeMission()
 	{
 		if (Data.Instance.playMode == Data.PlayModes.STORY || Data.Instance.playMode == Data.PlayModes.COMPETITION)
 			return true;
 		return false;
 	}
+
+	public int GetActualMissionByVideogame()
+	{
+		int viedogameActive = Data.Instance.videogamesData.actualID;
+		int id = 0;
+		foreach (Mission mission in allMissionsByVideogame[viedogameActive].missions) {
+			if (mission.id == MissionActive.id)
+				return id;
+			id++;
+		}
+		return 0;
+	}
+	public Mission GetMissionActive()
+	{
+		return missions[MissionActiveID];
+	}
+	public void ResetLastMissionID()
+	{
+		lastMissionSignalShowed = -1;
+	}
+	public void SetLastMissionID(int lastMissionSignalShowed)
+	{
+		this.lastMissionSignalShowed = lastMissionSignalShowed;
+	}
+	public bool HasBeenShowed(int title)
+	{
+		if (lastMissionSignalShowed == title)
+			return true;
+		return false;
+	}
+	public void ActivateFirstGameByVideogame(int videoGameID)
+	{
+		MissionActiveID = allMissionsByVideogame[videoGameID].missions[0].id;
+	}
+	public void ForceBossPercent(int totalHits)
+	{
+		//MissionActive.boss1 = totalHits;
+	}
+
 //	private void OnScoreOn(int playerID, Vector3 pos, int qty, ScoresManager.types type)
 //    {
 //		if (!CanComputeMission ())
@@ -271,18 +292,6 @@ public class Missions : MonoBehaviour {
 //			setMissionStatus(MissionActive.boss1);
 //		} 
 //	}
-	public int GetActualMissionByVideogame()
-	{
-		int viedogameActive = Data.Instance.videogamesData.actualID;
-		int id = 0;
-		foreach (Mission mission in allMissionsByVideogame[viedogameActive].missions) {
-			if (mission.id == MissionActive.id)
-				return id;
-			id++;
-		}
-		return 0;
-	}
-
 //    void OnGrabHeart()
 //    {
 //		if (!CanComputeMission ())
@@ -332,30 +341,5 @@ public class Missions : MonoBehaviour {
 //            }            
 //		}
 //	}
-	public Mission GetMissionActive()
-	{
-		return missions[MissionActiveID];
-	}
-	public void ResetLastMissionID()
-	{
-		lastMissionSignalShowed = -1;
-	}
-	public void SetLastMissionID(int lastMissionSignalShowed)
-	{
-		this.lastMissionSignalShowed = lastMissionSignalShowed;
-	}
-	public bool HasBeenShowed(int title)
-	{
-		if (lastMissionSignalShowed == title)
-			return true;
-		return false;
-	}
-	public void ActivateFirstGameByVideogame(int videoGameID)
-	{
-		MissionActiveID = allMissionsByVideogame[videoGameID].missions[0].id;
-	}
-	public void ForceBossPercent(int totalHits)
-	{
-		//MissionActive.boss1 = totalHits;
-	}
+
 }
