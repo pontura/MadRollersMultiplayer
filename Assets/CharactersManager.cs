@@ -129,12 +129,15 @@ public class CharactersManager : MonoBehaviour {
 		pos = new Vector3(0, _y, 0);
 
 		int positionID = 0;
-		if (Data.Instance.playMode == Data.PlayModes.STORY) {
-			InputSavedAutomaticPlay savedAutomaticPlay = Data.Instance.inputSavedAutomaticPlay;
-			savedAutomaticPlay.Init (this);
-			positionID = savedAutomaticPlay.allPlayersSavedData.Count;
-		}		 
+//		if (Data.Instance.playMode == Data.PlayModes.STORY) {
+//			InputSavedAutomaticPlay savedAutomaticPlay = Data.Instance.inputSavedAutomaticPlay;
+//			savedAutomaticPlay.Init (this);
+//			positionID = savedAutomaticPlay.allPlayersSavedData.Count;
+//		}		 
 		totalCharacters = Data.Instance.multiplayerData.GetTotalCharacters ();
+		if (totalCharacters == 0)
+			yield return null;
+		
 		if (Data.Instance.multiplayerData.player1) { addCharacter(CalculateInitialPosition(pos, positionID), 0); playerPositions.Add(0); };
 		float timeToAppear = 0.08f;
 		yield return new WaitForSeconds (timeToAppear);
@@ -197,7 +200,7 @@ public class CharactersManager : MonoBehaviour {
     }
     public void addNewCharacter(int id)
     {
-		if (characters.Count == 0)
+		if (characters.Count == 0 && Game.Instance.gameCamera.state != GameCamera.states.WAITING_TO_TRAVEL)
 			return;
 
 		Data.Instance.multiplayerData.AddNewCharacter (id);
@@ -205,7 +208,11 @@ public class CharactersManager : MonoBehaviour {
         Data.Instance.events.OnSoundFX("coin", id);
         Data.Instance.events.OnAddNewPlayer(id);
 
-        Vector3 pos = characters[0].transform.position;
+		Vector3 pos = Vector3.zero;
+
+		if(characters.Count >0)
+			pos = characters[0].transform.position;
+		
         pos.y += 3;
         pos.x = 0;
 
@@ -242,12 +249,13 @@ public class CharactersManager : MonoBehaviour {
 		else
 			_x = (3.5f * positionID+1) - (5.3f);
 
-		print ("positionID : " + positionID + "   separationOnReplay: " + separationOnReplay  + "    CalculateInitialPosition " + _x + "  totalCharacters " + totalCharacters);
+		//print ("positionID : " + positionID + "   separationOnReplay: " + separationOnReplay  + "    CalculateInitialPosition " + _x + "  totalCharacters " + totalCharacters);
 
 		return new Vector3(_x,pos.y);
 	}
 	public CharacterBehavior addCharacter(Vector3 pos, int id)
     {
+		print ("addCharacter " + id);
         CharacterBehavior newCharacter = null;
         foreach (CharacterBehavior cb in deadCharacters)
         {

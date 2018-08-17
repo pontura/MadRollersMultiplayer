@@ -58,7 +58,7 @@ public class MissionSignal : MonoBehaviour {
 	{
 		Missions missions = Data.Instance.GetComponent<Missions> ();
 		mission = missions.missions[ missions.MissionActiveID];
-		gui.missionIcon.SetOn (mission);
+		//gui.missionIcon.SetOn (mission);
 	}
     void SetOn()
     {
@@ -110,13 +110,13 @@ public class MissionSignal : MonoBehaviour {
 		Mission mission = missions.missions[ missions.MissionActiveID];
 		if (id == 1) {
 			Open ("JUMP", -1);
-			gui.missionIcon.SetOn (mission, specialIcon_Tutorial1);
+		//	gui.missionIcon.SetOn (mission, specialIcon_Tutorial1);
 		} else if (id == 2) {
 			Open ("DOUBLE JUMP", -1);
-			gui.missionIcon.SetOn (mission, specialIcon_Tutorial2);
+			//gui.missionIcon.SetOn (mission, specialIcon_Tutorial2);
 		} else if (id == 3) {
 			Open ("NOW... DESTROY!", -1);
-			gui.missionIcon.SetOn (mission, specialIcon_Tutorial3);
+		//	gui.missionIcon.SetOn (mission, specialIcon_Tutorial3);
 		}
 		
 		CloseAfter(2f);

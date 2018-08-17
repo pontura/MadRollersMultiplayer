@@ -50,25 +50,26 @@ public class GameCamera : MonoBehaviour
 	}
     void Start()
 	{
-		Data.Instance.events.OnGameStart += OnGameStart;
-	}
-	void OnGameStart()
-	{
+		Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
+		//Data.Instance.events.OnGameStart += OnGameStart;
+
 		Component rpp = Data.Instance.videogamesData.GetActualVideogameData ().retroPixelPro;
 		retroPixelPro = CopyComponent (rpp, cam.gameObject) as RetroPixelPro;
 		retroPixelPro.dither = 0;
 
 		pixelSize = 1;
 
-		charactersManager = Game.Instance.GetComponent<CharactersManager>();
-       
+		charactersManager = Game.Instance.GetComponent<CharactersManager>();       
 
-		cam.transform.localEulerAngles = startRotation;
-
-        Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
+		cam.transform.localEulerAngles = startRotation;       
 		Data.Instance.events.OnChangeMood += OnChangeMood;
 		Data.Instance.events.OnVersusTeamWon += OnVersusTeamWon;
 		Data.Instance.events.OncharacterCheer += OncharacterCheer;
+
+		transform.localPosition = startPosition;
+		Vector3 newPos = transform.localPosition;
+		newPos.y = 4.5f;
+		transform.localPosition = newPos;
 
 		_Y_correction = 1;
 		if (team_id > 0) {
@@ -78,15 +79,14 @@ public class GameCamera : MonoBehaviour
 			SetOrientation (new Vector4 (0, 0, 0, 0));
 			transform.localPosition = new Vector3 (0, 4, Data.Instance.versusManager.GetArea().z_length-3);
 			cam.transform.localEulerAngles = new Vector3 (25, 0, 0);
-		}
-		else {
+		} 
+		else if (!Data.Instance.isReplay) {
+			anim.Play ("cameraIntro");
+		} else {
 			state = states.START;
-			transform.localPosition = startPosition;
-			Vector3 newPos = transform.localPosition;
-			newPos.y = 4.5f;
-			transform.localPosition = newPos;
 			anim.Play ("intro");
 		}
+
 
     }
 	void Start_Traveling()
@@ -95,7 +95,7 @@ public class GameCamera : MonoBehaviour
 	}
     void OnDestroy()
     {
-		Data.Instance.events.OnGameStart -= OnGameStart;
+		//Data.Instance.events.OnGameStart -= OnGameStart;
         Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
         Data.Instance.events.OnChangeMood -= OnChangeMood;
 		Data.Instance.events.OnVersusTeamWon -= OnVersusTeamWon;

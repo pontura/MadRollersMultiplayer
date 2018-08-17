@@ -42,6 +42,7 @@ public class LevelSelector : MonoBehaviour {
 	float timePassed;
 	void Start()
 	{
+		Data.Instance.multiplayerData.ResetAll ();
 		Data.Instance.events.OnResetScores ();
 		timePassed = 0;
 		videogameActiveID = 0;
@@ -120,7 +121,8 @@ public class LevelSelector : MonoBehaviour {
 			Data.Instance.isReplay = true;
 		} else if ( Data.Instance.playMode == Data.PlayModes.COMPETITION ) {
 			data.missions.ActivateFirstGameByVideogame (lastButtonSelected.id);
-			Data.Instance.LoadLevel ("MainMenuArcade");
+			Data.Instance.LoadLevel ("Game");
+		//	Data.Instance.LoadLevel ("MainMenuArcade");
 		} else  {
 			Data.Instance.LoadLevel ("MainMenuArcadeVersus");
 		}

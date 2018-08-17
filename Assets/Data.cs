@@ -113,14 +113,14 @@ public class Data : MonoBehaviour {
 		inputSavedAutomaticPlay = GetComponent<InputSavedAutomaticPlay> ();
 		versusManager = GetComponent<VersusManager> ();
 
-		if (totalJoysticks > 0)
-			multiplayerData.player1 = true;
-		if (totalJoysticks > 1)
-			multiplayerData.player2 = true;
-		if (totalJoysticks > 2)
-			multiplayerData.player3 = true;
-		if (totalJoysticks > 3)
-			multiplayerData.player4 = true;
+//		if (totalJoysticks > 0)
+//			multiplayerData.player1 = true;
+//		if (totalJoysticks > 1)
+//			multiplayerData.player2 = true;
+//		if (totalJoysticks > 2)
+//			multiplayerData.player3 = true;
+//		if (totalJoysticks > 3)
+//			multiplayerData.player4 = true;
 
        // competitions.Init();
         if(userData)

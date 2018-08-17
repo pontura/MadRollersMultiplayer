@@ -43,6 +43,7 @@ public class LoadingAsset : MonoBehaviour {
 		AddText("Entering Boy-Land...");
 		UnityEngine.SceneManagement.SceneManager.LoadScene ("Game");
 		yield return new WaitForSeconds (0.5f);
+		SetOn (false);
 		int i = texts.Length;
 		while (i > 0) {
 			yield return new WaitForSeconds ((float)Random.Range (6, 10) / 10f);
@@ -52,7 +53,7 @@ public class LoadingAsset : MonoBehaviour {
 		AddText("COMPLETE!");
 		yield return new WaitForSeconds (0.5f);
 		SetOn (false);
-		Data.Instance.events.OnGameStart();
+		//Data.Instance.events.OnGameStart();
 		yield return null;
 	}
 	void AddText(string text)

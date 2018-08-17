@@ -148,6 +148,18 @@ public class MultiplayerData : MonoBehaviour
 		player3_played = false;
 		player4_played = false;
 	}
+	public void ResetAll()
+	{
+		player1 = false;
+		player2 = false;
+		player3 = false;
+		player4 = false;		
+		
+		player1_played = false;
+		player2_played = false;
+		player3_played = false;
+		player4_played = false;
+	}
 	void OnScoreOn(int playerID, Vector3 pos, int points, ScoresManager.types type)
 	{
 		if (NextScoreToWinCredit < score) {

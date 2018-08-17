@@ -12,16 +12,16 @@ public class Gui : MonoBehaviour {
 	private int barWidth = 200;
     private bool MainMenuOpened = false;
 
-	public MissionIcon missionIcon_to_instantiate;
-	[HideInInspector]
-	public MissionIcon missionIcon;
+//	public MissionIcon missionIcon_to_instantiate;
+//	[HideInInspector]
+//	public MissionIcon missionIcon;
 	public GameObject killemAll;
 
 	void Start()
 	{
 		killemAll.SetActive (false);
-		missionIcon = Instantiate (missionIcon_to_instantiate);
-		missionIcon.transform.localPosition = new Vector3 (1000, 0, 0);
+//		missionIcon = Instantiate (missionIcon_to_instantiate);
+//		missionIcon.transform.localPosition = new Vector3 (1000, 0, 0);
 
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
         Data.Instance.events.OnAvatarFall += OnAvatarCrash;

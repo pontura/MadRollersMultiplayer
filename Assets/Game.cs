@@ -36,7 +36,6 @@ public class Game : MonoBehaviour {
     void Start()
     {
 		if (Data.Instance.isReplay) {
-			print ("SSSSSSSIIIIIIIIIIII");
 			Invoke ("Delayed", 0.2f);
 		}
 		GetComponent<CompetitionManager> ().Init ();

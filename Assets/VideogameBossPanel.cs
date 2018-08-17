@@ -18,12 +18,30 @@ public class VideogameBossPanel : MonoBehaviour {
 
 	void Start()
 	{
-		panel.SetActive (false);
+		
+		if(!Data.Instance.isReplay)
+			panel.SetActive (true);
+		else
+			panel.SetActive (false);
+		
+		Data.Instance.events.OnGameStart += OnGameStart;
 		Data.Instance.events.OnBossActive += OnBossActive;
 		Data.Instance.events.OnAvatarDie += OnAvatarDie;
 	}
+	void OnGameStart()
+	{
+		StartCoroutine (InitCoroutine ());
+	}
+	IEnumerator InitCoroutine ()
+	{
+		panel.SetActive (true);
+		anim.Play ("mad");
+		yield return new WaitForSeconds (2);
+		panel.SetActive (false);
+	}
 	void OnDestroy()
 	{
+		Data.Instance.events.OnGameStart -= OnGameStart;
 		Data.Instance.events.OnBossActive -= OnBossActive;
 		Data.Instance.events.OnAvatarDie -= OnAvatarDie;
 	}
