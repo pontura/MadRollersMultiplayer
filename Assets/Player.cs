@@ -25,7 +25,7 @@ public class Player : MonoBehaviour {
 
     public fxStates fxState;
 
-	public bool canJump = false;
+	//public bool canJump = false;
 
     private CharacterBehavior characterBehavior;
     private IEnumerator progressBarCoroutine;
@@ -218,17 +218,17 @@ public class Player : MonoBehaviour {
    public void OnMissionStart(int missionID)
    {
 
-       if (Data.Instance.DEBUG 
-			|| Data.Instance.playMode == Data.PlayModes.COMPETITION)
-       {
-           canJump = true;
-       }
-       else
-       {
-
-           if (missionID > 1)
-               canJump = true;
-       }
+//       if (Data.Instance.DEBUG 
+//			|| Data.Instance.playMode == Data.PlayModes.COMPETITION)
+//       {
+//           canJump = true;
+//       }
+//       else
+//       {
+//
+//           if (missionID > 1)
+//               canJump = true;
+//       }
    }
    private void setStartingState()
    {

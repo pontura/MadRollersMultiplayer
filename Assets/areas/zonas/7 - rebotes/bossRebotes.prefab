@@ -9,30 +9,30 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1160149939296066}
+  m_RootGameObject: {fileID: 1801091342276810}
   m_IsPrefabAsset: 1
---- !u!1 &1160149939296066
+--- !u!1 &1801091342276810
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4336310582067832}
-  - component: {fileID: 114373686509189878}
+  - component: {fileID: 4128610187016644}
+  - component: {fileID: 114983160959571566}
   m_Layer: 0
-  m_Name: throw
+  m_Name: bossRebotes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4336310582067832
+--- !u!4 &4128610187016644
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1160149939296066}
+  m_GameObject: {fileID: 1801091342276810}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 64.046844, y: 108.22239, z: -239.56937}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -40,31 +40,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114373686509189878
+--- !u!114 &114983160959571566
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1160149939296066}
+  m_GameObject: {fileID: 1801091342276810}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 772be226d7eee534998f146178bc9df9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  competitionsPriority: 70
+  competitionsPriority: 0
   randomize: 0
   areas:
-  - {fileID: 114380901353386640, guid: 2026d0a895b84d24aa98d92215513f3b, type: 2}
-  - {fileID: 114784659898383368, guid: c76d5e901b704a4488f2cf6f27904705, type: 2}
-  - {fileID: 114643483579303398, guid: 1f3fcab3e2eadf0479ab272457aff6ec, type: 2}
-  - {fileID: 114784659898383368, guid: c76d5e901b704a4488f2cf6f27904705, type: 2}
-  - {fileID: 114643483579303398, guid: 1f3fcab3e2eadf0479ab272457aff6ec, type: 2}
-  - {fileID: 11400042, guid: 7280e0960c1b27a419ba18d6c66d9346, type: 2}
-  - {fileID: 114380901353386640, guid: 2026d0a895b84d24aa98d92215513f3b, type: 2}
-  - {fileID: 114784659898383368, guid: c76d5e901b704a4488f2cf6f27904705, type: 2}
-  - {fileID: 114643483579303398, guid: 1f3fcab3e2eadf0479ab272457aff6ec, type: 2}
-  - {fileID: 11400042, guid: 7280e0960c1b27a419ba18d6c66d9346, type: 2}
-  totalAreasInSet: 6
-  cameraOrientation: {x: 0, y: 1.2, z: -3}
+  - {fileID: 114808993209926750, guid: 01a250f4fabcdd64a87734ca53f44f78, type: 2}
+  - {fileID: 114657087972404832, guid: 8f2f84b5f31cafe42843287360d505f6, type: 2}
+  - {fileID: 114010476711600490, guid: 853588de9fee28045a15c3470af90240, type: 2}
+  totalAreasInSet: 3
+  cameraOrientation: {x: 0, y: -1, z: -1}
   cameraRotationX: 0
   isLastArea: 0

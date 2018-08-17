@@ -52,10 +52,10 @@ public class AreasManager : MonoBehaviour {
         activeAreaSetID = 1;
 
 //#if UNITY_EDITOR
-		if (Data.Instance.DEBUG && Data.Instance.missions.test_mission) {
-			setNewAreaSet ();
-			return;
-		}
+//		if (Data.Instance.DEBUG && Data.Instance.missions.test_mission) {
+//			setNewAreaSet ();
+//			return;
+//		}
 		if (Data.Instance.playMode == Data.PlayModes.COMPETITION && 1==2)
         {
             areaSets.Clear();

@@ -372,7 +372,7 @@ public class CharacterBehavior : MonoBehaviour {
 		{
 			return;
 		}
-		if (!player.canJump) return;
+		//if (!player.canJump) return;
 		if(state == states.JUMP) return;
 
 		rb.velocity = Vector3.zero;
@@ -406,7 +406,7 @@ public class CharacterBehavior : MonoBehaviour {
 	}
 	public void SuperJump(float _superJumpHeight, bool isDoubleJump = false)
 	{
-		if (!player.canJump) return;
+	//	if (!player.canJump) return;
 
 		float velocityY = Mathf.Abs(rb.velocity.y)/8;
 

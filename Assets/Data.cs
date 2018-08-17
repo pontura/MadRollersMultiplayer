@@ -5,7 +5,7 @@ public class Data : MonoBehaviour {
 
 	public bool isArcadeMultiplayer;
 	public bool DEBUG;
-
+	public int forceMissionID;
 	public bool canContinue;
 	public int totalCredits;
 	public int credits;
@@ -191,6 +191,8 @@ public class Data : MonoBehaviour {
 		Data.Instance.events.ForceFrameRate (1);
 		float delay = 0.1f;
 		if (!isReplay && levelName == "Game") {
+			if (forceMissionID > 0 && DEBUG)
+				missions.MissionActiveID = forceMissionID;
 			Data.Instance.GetComponent<MusicManager>().stopAllSounds();
 			loadingAsset.SetOn (true);
 			return;

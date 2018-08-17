@@ -94,12 +94,12 @@ public class Missions : MonoBehaviour {
         progressBar = level.missionBar;
 
 #if UNITY_EDITOR
-        if (data.DEBUG && test_mission)
-        {
-            MissionActive = test_mission;
-            MissionActive.reset();
-            return;
-        }
+//        if (data.DEBUG && test_mission)
+//        {
+//            MissionActive = test_mission;
+//            MissionActive.reset();
+//            return;
+//        }
 #endif
 		if (Data.Instance.playMode == Data.PlayModes.COMPETITION && 1==2)
         {

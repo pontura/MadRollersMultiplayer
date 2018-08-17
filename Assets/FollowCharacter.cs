@@ -3,39 +3,41 @@ using System.Collections;
 
 public class FollowCharacter : MmoCharacter {
 
-	float activaTionDistance = 8;
-	float speed = 3;
+	float activaTionDistance = 7;
+	float speed = 4;
 	CharacterBehavior characterBehavior;
 	float realPositionZ = 0;
+	CharactersManager charactersManager;
 
 	public override void OnRestart(Vector3 pos)
 	{
-//		transform.localEulerAngles = Vector3.zero;
-//		realPositionZ = 0;
-//		base.OnRestart(pos);
-//		Repositionate ();
+		charactersManager = Game.Instance.level.charactersManager;
+		transform.localEulerAngles = Vector3.zero;
+		realPositionZ = 0;
+		base.OnRestart(pos);
+		Repositionate ();
 	}
 	void Repositionate()
 	{
-//		CharacterBehavior ch = charactersMmanager.getMainCharacter ();
-//		Vector3 myPos = transform.position;
-//		myPos.z = ch.transform.position.z - activaTionDistance;
-//		transform.position = myPos;
+		CharacterBehavior ch = charactersManager.getMainCharacter ();
+		Vector3 myPos = transform.position;
+		myPos.z = ch.transform.position.z - activaTionDistance;
+		transform.position = myPos;
 	}
 	public void OnSceneObjectUpdated()
     {		
-//		CharacterBehavior cb = charactersMmanager.getMainCharacter ();
-//		if (cb == null)
-//			return;
-//		
-//		realPositionZ +=  (speed * Time.deltaTime);
-//
-//        Vector3 pos = transform.position;
-//		pos.z = Mathf.Lerp(transform.position.z,  cb.transform.position.z - activaTionDistance + realPositionZ, 0.1f);
-//		transform.position = pos;
-//
-//		if (transform.position.z > cb.transform.position.z + 40)
-//			Pool ();
+		CharacterBehavior cb = charactersManager.getMainCharacter ();
+		if (cb == null)
+			return;
+		
+		realPositionZ +=  (speed * Time.deltaTime);
+
+        Vector3 pos = transform.position;
+		pos.z = cb.transform.position.z - activaTionDistance + realPositionZ;
+		transform.position = pos;
+
+		if (transform.position.z > cb.transform.position.z + 40)
+			Pool ();
     }
 }
 

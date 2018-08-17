@@ -200,10 +200,10 @@ public class LevelSelector : MonoBehaviour {
 				lastButton = button;
 				button.videoGameID = mission.videoGameID;
 
-				if (videogameID==0 && id_in_videogame > data.levelUnlocked_level_1 && !Data.Instance.DEBUG)
-					button.disableButton ();
-				else if (videogameID==1 && id_in_videogame > data.levelUnlocked_level_2 && !Data.Instance.DEBUG)
-					button.disableButton ();
+//				if (videogameID==0 && id_in_videogame > data.levelUnlocked_level_1 && !Data.Instance.DEBUG)
+//					button.disableButton ();
+//				else if (videogameID==1 && id_in_videogame > data.levelUnlocked_level_2 && !Data.Instance.DEBUG)
+//					button.disableButton ();
 
 
 				videogameID = mission.videoGameID;
@@ -271,10 +271,10 @@ public class LevelSelector : MonoBehaviour {
 			lastButton = button;
 			button.videoGameID = mission.videoGameID;
 
-			if (videogameID==0 && id_in_videogame > data.levelUnlocked_level_1 && !Data.Instance.DEBUG)
-				button.disableButton ();
-			else if (videogameID==1 && id_in_videogame > data.levelUnlocked_level_2 && !Data.Instance.DEBUG)
-				button.disableButton ();
+//			if (videogameID==0 && id_in_videogame > data.levelUnlocked_level_1 && !Data.Instance.DEBUG)
+//				button.disableButton ();
+//			else if (videogameID==1 && id_in_videogame > data.levelUnlocked_level_2 && !Data.Instance.DEBUG)
+//				button.disableButton ();
 
 
 			videogameID = mission.videoGameID;
