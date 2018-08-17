@@ -15,7 +15,7 @@ public class FramesController : MonoBehaviour {
 	public void ForceFrameRate(float newFrameRate)
 	{
 		if (ralentaCoroutine != null)
-			StopAllCoroutines ();
+			StopCoroutine (ralentaCoroutine);
 		
 		this.frameRate = newFrameRate;
 		Time.timeScale = frameRate;
@@ -24,7 +24,7 @@ public class FramesController : MonoBehaviour {
 		this.speedEveryFrame = speedEveryFrame;
 
 		if (ralentaCoroutine != null)
-			StopAllCoroutines ();
+			StopCoroutine (ralentaCoroutine);
 		
 		ralentaCoroutine = OnChangingSpeed (newFrameRate);
 		StartCoroutine ( ralentaCoroutine );

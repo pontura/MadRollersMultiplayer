@@ -48,6 +48,7 @@ public class VideogameBossPanel : MonoBehaviour {
 	void OnBossActive(bool isOn)
 	{
 		if (isOn) {
+			state = states.IDLE;
 			panel.SetActive (true);
 			Laugh(3);
 		} else {			
