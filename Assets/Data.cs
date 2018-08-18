@@ -4,8 +4,11 @@ using System.Collections;
 public class Data : MonoBehaviour {
 
 	public bool isArcadeMultiplayer;
+
 	public bool DEBUG;
+	public int forceVideogameID;
 	public int forceMissionID;
+
 	public bool canContinue;
 	public int totalCredits;
 	public int credits;
@@ -188,11 +191,17 @@ public class Data : MonoBehaviour {
     }
     public void LoadLevel(string levelName)
     {
+		print ("LOAD LEVEL: " + levelName);
 		Data.Instance.events.ForceFrameRate (1);
 		float delay = 0.1f;
+		if(DEBUG && forceVideogameID != -1 && forceMissionID != -1 && levelName == "LevelSelector")
+		{
+			levelName = "Game";
+			missions.MissionActiveID = forceMissionID;
+			videogamesData.actualID = forceVideogameID;
+
+		}
 		if (!isReplay && levelName == "Game") {
-			if (forceMissionID > 0 && DEBUG)
-				missions.MissionActiveID = forceMissionID;
 			Data.Instance.GetComponent<MusicManager>().stopAllSounds();
 			loadingAsset.SetOn (true);
 			return;

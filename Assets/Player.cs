@@ -9,6 +9,7 @@ public class Player : MonoBehaviour {
 
 	public MadRoller madRoller;
 
+	public bool isPlaying = true;
 
 	private Game game;
 	private Gui gui;
@@ -40,16 +41,13 @@ public class Player : MonoBehaviour {
     private Material originalMaterial;
     public CharactersManager charactersManager;
 
- //   public EnergyBar energyBar;
-	void Awake()
-	{
-		if (UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name == "Game")
-			charactersManager = Game.Instance.GetComponent<CharactersManager>();
-	}
+
 	void Start()
 	{		
+		if (isPlaying)
+			charactersManager = Game.Instance.GetComponent<CharactersManager>();
 		
-		if (UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name != "Game") {
+		if (!isPlaying) {
 			SetSettings ();
 			return;
 		}

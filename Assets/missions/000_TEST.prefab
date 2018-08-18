@@ -1,28 +1,39 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &176574
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1534561428768982}
+  m_IsPrefabAsset: 1
+--- !u!1 &1534561428768982
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 476574}
-  - component: {fileID: 11476576}
-  - component: {fileID: 11476574}
+  - component: {fileID: 4000181039934306}
+  - component: {fileID: 114943916167540774}
+  - component: {fileID: 114353402779236192}
   m_Layer: 0
-  m_Name: 1_1_helices
+  m_Name: 000_TEST
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!4 &476574
+--- !u!4 &4000181039934306
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 176574}
+  m_GameObject: {fileID: 1534561428768982}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.0025587082, y: -0.0018539429, z: -0.0011138916}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -30,38 +41,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &11476574
+--- !u!114 &114353402779236192
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 176574}
+  m_GameObject: {fileID: 1534561428768982}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aab087fa44cc671439e1b50508ce4d75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   areaSets:
-  - {fileID: 11400000, guid: 1ae6239c73f864e4aac71f5a8c41206e, type: 2}
-  - {fileID: 11460980, guid: fb59ba29ce72bb44f89d8e9953205c44, type: 2}
-  - {fileID: 11445142, guid: a563221b8c02f4b43a00079ab60be1f2, type: 2}
-  - {fileID: 11400000, guid: 1ae6239c73f864e4aac71f5a8c41206e, type: 2}
-  - {fileID: 11404542, guid: ede488dc85841194f992db36c3fdc032, type: 2}
-  - {fileID: 114983160959571566, guid: d2d780f7b7efa7a44999b57f22ad22b8, type: 2}
-  activeAreaSetID: 4
+  - {fileID: 114004391671021460, guid: 46c69ba0d7d8f444da6e07b122b81664, type: 2}
+  activeAreaSetID: 0
   showRelaxAreaBeforeStarting: 0
---- !u!114 &11476576
+--- !u!114 &114943916167540774
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 176574}
+  m_GameObject: {fileID: 1534561428768982}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c52aa23c4c1909c45b1a2eeadb8f98cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 1
+  id: 8
   backgroundSides:
   - {fileID: 114621687253337444, guid: 4f1d5121ab1bedc4682219f82ac00fd9, type: 2}
   voices:
@@ -73,18 +79,7 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 9d495e62fbf695a49aa63a304a50ce63, type: 3}
   videoGameID: 0
   isCompetition: 0
-  maxScore: 460
+  maxScore: 1000
   Hiscore: 0
   avatarHiscore: 
-  description: BE CAREFULL.. HELICES!
---- !u!1001 &100100000
-Prefab:
-  m_ObjectHideFlags: 1
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications: []
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 176574}
-  m_IsPrefabAsset: 1
+  description: conveyor belts!

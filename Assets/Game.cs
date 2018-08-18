@@ -17,6 +17,14 @@ public class Game : MonoBehaviour {
 
     public Level level;
 
+	public states state;
+	public enum states
+	{
+		INTRO,
+		ALLOW_ADDING_CHARACTERS,
+		PLAYING
+	}
+
     public static Game Instance
     {
         get

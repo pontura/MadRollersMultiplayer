@@ -1,76 +1,80 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &100000
+--- !u!1 &152066
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 400000}
-  - component: {fileID: 11400002}
-  - component: {fileID: 11400000}
+  - component: {fileID: 452066}
+  - component: {fileID: 11452068}
+  - component: {fileID: 11452066}
   m_Layer: 0
-  m_Name: 2_1_intro
+  m_Name: 1_9_BossBrazos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!4 &400000
+--- !u!4 &452066
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
+  m_GameObject: {fileID: 152066}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.148207, y: 20.662792, z: -46.63002}
+  m_LocalPosition: {x: -0.0025587082, y: -0.0018539429, z: -0.0011138916}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &11400000
+--- !u!114 &11452066
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
+  m_GameObject: {fileID: 152066}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aab087fa44cc671439e1b50508ce4d75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   areaSets:
-  - {fileID: 11400000, guid: b5da800c80955a545bdcd0bf56a933bb, type: 2}
-  - {fileID: 11400000, guid: e3470d98618553c449ac83bbc9ea8231, type: 2}
-  - {fileID: 11400000, guid: a05b460428d9d8c4fa0d3239b4827bc7, type: 2}
-  - {fileID: 11400000, guid: 6f84b1d1f5c9b6c4f846835efe5df0a8, type: 2}
-  - {fileID: 114983160959571566, guid: 167803a7dd68d2a4d99fbecaa5adb739, type: 2}
-  - {fileID: 114004391671021460, guid: d5fa943a8c8b59e42bf2752230867ec4, type: 2}
-  activeAreaSetID: 3
-  showRelaxAreaBeforeStarting: 0
---- !u!114 &11400002
+  - {fileID: 11400000, guid: d245692cb3d92b649ba8b7ac29e3a557, type: 2}
+  - {fileID: 11400000, guid: 2ea05d94ef996ed428c6dd4507212a41, type: 2}
+  - {fileID: 11400000, guid: 5ec7d2c1e731c3a43ade40dddbda77ff, type: 2}
+  - {fileID: 114004391671021460, guid: 46c69ba0d7d8f444da6e07b122b81664, type: 2}
+  activeAreaSetID: 0
+  showRelaxAreaBeforeStarting: 1
+--- !u!114 &11452068
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
+  m_GameObject: {fileID: 152066}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c52aa23c4c1909c45b1a2eeadb8f98cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
+  id: 9
   backgroundSides:
-  - {fileID: 114142866667346430, guid: 30d818904e5c5b940946e9a90b41bcd6, type: 2}
-  voices: []
-  videoGameID: 1
+  - {fileID: 114621687253337444, guid: 4f1d5121ab1bedc4682219f82ac00fd9, type: 2}
+  voices:
+  - text: 
+    audioClip: {fileID: 8300000, guid: 6134bbcf0580be241a59783ebaeab5ae, type: 3}
+  - text: 
+    audioClip: {fileID: 8300000, guid: 482ce4025c792b04c88a58c51d5a0ede, type: 3}
+  - text: 
+    audioClip: {fileID: 8300000, guid: 9d495e62fbf695a49aa63a304a50ce63, type: 3}
+  videoGameID: 0
   isCompetition: 0
-  maxScore: 3000
+  maxScore: 1000
   Hiscore: 0
   avatarHiscore: 
-  description: Born to Roll!
+  description: conveyor belts!
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -80,5 +84,5 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 100000}
+  m_RootGameObject: {fileID: 152066}
   m_IsPrefabAsset: 1

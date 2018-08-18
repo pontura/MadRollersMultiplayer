@@ -116,8 +116,12 @@ public class Breakable : MonoBehaviour {
 
 		foreach (MeshRenderer mr in all) {
 
-			Rigidbody rb = mr.gameObject.AddComponent< Rigidbody >();
-			if (rb == null) rb = mr.gameObject.GetComponent<Rigidbody> ();
+			Rigidbody rb;
+			rb = mr.gameObject.GetComponent<Rigidbody> ();
+
+			if (rb == null) 
+				rb = mr.gameObject.AddComponent< Rigidbody >();
+			
 			BreakedBlock bb = mr.gameObject.AddComponent< BreakedBlock >();
 
 			rb.mass = 100;
@@ -130,7 +134,7 @@ public class Breakable : MonoBehaviour {
 			mr.gameObject.AddComponent<BoxCollider> ();
 			mr.transform.localEulerAngles = new Vector3(0, id * (360 / all.Length), 0);
 			Vector3 direction = ((mr.transform.forward * force) + (Vector3.up * (force*2)));
-			mr.GetComponent<Rigidbody>().AddForce(direction, ForceMode.Impulse);
+			rb.AddForce(direction, ForceMode.Impulse);
 
 			id++;
 		}

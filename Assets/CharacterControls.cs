@@ -71,7 +71,8 @@ public class CharacterControls : MonoBehaviour {
             }
 			moveByKeyboard();
         }
-
+		if (characterBehavior.player.charactersManager == null)
+			return;
 		characterBehavior.UpdateByController(rotationY); 
 	}
 
@@ -79,6 +80,9 @@ public class CharacterControls : MonoBehaviour {
 	float lastHorizontalKeyPressed;
     private void moveByKeyboard()
     {
+		if (characterBehavior.player.charactersManager == null)
+			return;
+		
 		if (Data.Instance.playMode == Data.PlayModes.COMPETITION && characterBehavior.player.charactersManager.distance<40)
 			return;
 		float _speed = InputManager.getHorizontal(player.id);

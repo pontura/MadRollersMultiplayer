@@ -29,9 +29,9 @@ public class BossThrower : Boss {
 		pos.z -= 0;
 		pos.y += 0.35f;
 		SceneObject sceneObject = Data.Instance.sceneObjectsPool.GetObjectForType( "flyer_real", false);  
+
+		print ("AddEnemy " + pos + " flyer");
 		if (sceneObject) {
-			sceneObject.isActive = false;
-			//sceneObject.Restart(pos);
 			Game.Instance.sceneObjectsManager.AddSceneObjectAndInitIt(sceneObject, pos);
 		}
 	}

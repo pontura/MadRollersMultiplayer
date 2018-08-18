@@ -6,6 +6,7 @@ public class BossPart : MonoBehaviour {
 
 	public Boss boss;
 	public GameObject asset;
+	bool called;
 
 	public void Init(Boss _boss)
 	{
@@ -13,7 +14,13 @@ public class BossPart : MonoBehaviour {
 	}
 	public void OnActivate()
 	{
+		if (called)
+			return;
+		
+		called = true;
+
 		CancelInvoke ();
+		print ("CCCCCCCCCCCCCCCCCCC  " + gameObject.name);
 		boss.OnPartBroken (this);
 		asset.SetActive (false);
 	}

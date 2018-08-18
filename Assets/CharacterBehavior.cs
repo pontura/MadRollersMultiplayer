@@ -60,9 +60,10 @@ public class CharacterBehavior : MonoBehaviour {
 		rb = GetComponent<Rigidbody> ();
 	}
 	void Start () {
-		data = Data.Instance;       
+		data = Data.Instance;  
+		player = GetComponent<Player>();
 
-		if (UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name != "Game") {
+		if (!player.isPlaying) {
 			GetComponent<Collider> ().enabled = false;
 			rb.useGravity = false;
 			rb.isKinematic = true;
@@ -75,7 +76,7 @@ public class CharacterBehavior : MonoBehaviour {
 		
 
 
-		player = GetComponent<Player>();
+
 
 		data.events.OnVersusTeamWon += OnVersusTeamWon;
 		data.events.OnAvatarProgressBarEmpty += OnAvatarProgressBarEmpty;

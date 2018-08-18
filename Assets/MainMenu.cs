@@ -64,6 +64,7 @@ public class MainMenu : MonoBehaviour {
 		float _separation = 6;
 		for (int a = 0; a < 4; a++) {
 			Player p = Instantiate (player_to_instantiate);
+			p.isPlaying = false;
 			p.transform.SetParent (container);
 			p.id = a;
 			p.transform.localPosition = new Vector3((-(_separation*3)/2)+(_separation*a),0,0);
@@ -72,6 +73,10 @@ public class MainMenu : MonoBehaviour {
 		}
 	}
 	void OnDestroy()
+	{
+		Reset ();
+	}
+	void Reset()
 	{
 		Data.Instance.events.OnJoystickClick -= OnJoystickClick;
 		Data.Instance.events.OnJoystickDown -= OnJoystickDown;
@@ -131,16 +136,19 @@ public class MainMenu : MonoBehaviour {
 	}
 	void MissionsScene()
 	{
+		Reset ();
 		Data.Instance.playMode = Data.PlayModes.STORY;
 		Data.Instance.LoadLevel("LevelSelector");
 	}
 	void Compite()
 	{
+		Reset ();
 		Data.Instance.playMode = Data.PlayModes.COMPETITION;
 		Data.Instance.LoadLevel("LevelSelector");
 	}
 	void Versus()
 	{
+		Reset ();
 		Data.Instance.playMode = Data.PlayModes.VERSUS;
 		Data.Instance.LoadLevel("LevelSelector");
 	}

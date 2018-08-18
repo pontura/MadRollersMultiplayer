@@ -10,7 +10,6 @@ public class Mission: MonoBehaviour {
 	public List<VoicesManager.VoiceData> voices;
 
 	public int videoGameID;
-	public GameObject missionIcon;
     public bool isCompetition;
     public int maxScore;
     public int Hiscore;

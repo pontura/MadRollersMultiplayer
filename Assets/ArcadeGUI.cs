@@ -13,14 +13,7 @@ public class ArcadeGUI : MonoBehaviour {
     public GameObject singleSignal;
     public GameObject singleSignalTexts;
     public List<int> avatarsThatShoot;
-    public states state;
 	public JoysticksCanvas joysticksCanvas;
-
-    public enum states
-    {
-        INTRO,
-        WELLCOME
-    }
 
 	void Start () {
 		
@@ -31,20 +24,16 @@ public class ArcadeGUI : MonoBehaviour {
         Data.Instance.events.OnGameOver += OnGameOver;
        
 		SetFields ("");
+		Invoke ("AllowAddingCharacters", 2);
 	}
-    void ResetFields()
-    {
-        if (ended) return;
-        if (state == states.WELLCOME)
-        {
-            SetFields("");return;
-        }
-        state = states.WELLCOME;
-        Invoke("ResetFields", 3);
-
-    }
+	void AllowAddingCharacters()
+	{
+		Game.Instance.state = Game.states.ALLOW_ADDING_CHARACTERS;
+	}
     void Update()
     {
+		if (Game.Instance.state ==  Game.states.INTRO)
+			return;
         if (ended) return;
 		if ((InputManager.getFireDown(0) || InputManager.getJump(0)) && joysticksCanvas.CanRevive(0))
         {
