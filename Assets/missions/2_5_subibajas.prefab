@@ -3,9 +3,9 @@
 --- !u!1 &100000
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 400000}
   - component: {fileID: 11400002}
@@ -20,7 +20,7 @@ GameObject:
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -33,7 +33,7 @@ Transform:
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
@@ -53,12 +53,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5ec7d2c1e731c3a43ade40dddbda77ff, type: 2}
   - {fileID: 11417044, guid: b11de97099f3f094db267425794f942d, type: 2}
   - {fileID: 11400000, guid: 5ec7d2c1e731c3a43ade40dddbda77ff, type: 2}
-  activeAreaSetID: 9
+  - {fileID: 11400000, guid: 5ec7d2c1e731c3a43ade40dddbda77ff, type: 2}
+  - {fileID: 11400000, guid: c23ceba177ba5204f9bb06f716f4f632, type: 2}
+  activeAreaSetID: 11
   showRelaxAreaBeforeStarting: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
@@ -66,6 +68,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c52aa23c4c1909c45b1a2eeadb8f98cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
+  totalDistance: 0
   id: 24
   backgroundSides:
   - {fileID: 114142866667346430, guid: 30d818904e5c5b940946e9a90b41bcd6, type: 2}
@@ -77,21 +81,10 @@ MonoBehaviour:
   - text: 
     audioClip: {fileID: 8300000, guid: 9d495e62fbf695a49aa63a304a50ce63, type: 3}
   videoGameID: 1
-  missionIcon: {fileID: 1500483267502380, guid: a816137bab5155d44aae12fae78075ad,
-    type: 2}
   isCompetition: 0
   maxScore: 1000
   Hiscore: 0
   avatarHiscore: 
-  boss1: 0
-  hearts: 0
-  guys: 0
-  ghost: 0
-  points: 472
-  listeners: 8
-  planes: 0
-  bombs: 0
-  distance: 650
   description: Subibajas
 --- !u!1001 &100100000
 Prefab:
@@ -101,6 +94,6 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications: []
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 0}
+  m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100000}
-  m_IsPrefabParent: 1
+  m_IsPrefabAsset: 1

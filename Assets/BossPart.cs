@@ -20,7 +20,6 @@ public class BossPart : MonoBehaviour {
 		called = true;
 
 		CancelInvoke ();
-		print ("CCCCCCCCCCCCCCCCCCC  " + gameObject.name);
 		boss.OnPartBroken (this);
 		asset.SetActive (false);
 	}

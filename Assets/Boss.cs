@@ -36,7 +36,6 @@ public class Boss : SceneObject {
 		if (hits >= totalHits)
 			Killed ();
 		
-		print("hits:  " +  hits + "  totalHits: " + totalHits );
 	}
 	public void Killed()
 	{

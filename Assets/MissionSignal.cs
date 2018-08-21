@@ -57,7 +57,7 @@ public class MissionSignal : MonoBehaviour {
 	void RefreshMissionIcon()
 	{
 		Missions missions = Data.Instance.GetComponent<Missions> ();
-		mission = missions.missions[ missions.MissionActiveID];
+		mission = missions.allMissionsByVideogame[Data.Instance.videogamesData.actualID].missions[ missions.MissionActiveID];
 		//gui.missionIcon.SetOn (mission);
 	}
     void SetOn()
@@ -107,7 +107,7 @@ public class MissionSignal : MonoBehaviour {
 	{
 		print ("OnShowTutorial " + id);
 		Missions missions = Data.Instance.GetComponent<Missions> ();
-		Mission mission = missions.missions[ missions.MissionActiveID];
+		Mission mission = missions.allMissionsByVideogame[Data.Instance.videogamesData.actualID].missions[ missions.MissionActiveID];
 		if (id == 1) {
 			Open ("JUMP", -1);
 		//	gui.missionIcon.SetOn (mission, specialIcon_Tutorial1);

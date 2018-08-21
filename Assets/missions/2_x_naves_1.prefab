@@ -8,21 +8,21 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications: []
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 0}
+  m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1221309298306902}
-  m_IsPrefabParent: 1
+  m_IsPrefabAsset: 1
 --- !u!1 &1221309298306902
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 4869694272694218}
   - component: {fileID: 114616697452836718}
   - component: {fileID: 114304743686381340}
   m_Layer: 0
-  m_Name: 2_2_naves_1
+  m_Name: 2_x_naves_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ GameObject:
 --- !u!4 &4869694272694218
 Transform:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1221309298306902}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -44,7 +44,7 @@ Transform:
 --- !u!114 &114304743686381340
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1221309298306902}
   m_Enabled: 1
@@ -60,7 +60,7 @@ MonoBehaviour:
 --- !u!114 &114616697452836718
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1221309298306902}
   m_Enabled: 1
@@ -75,19 +75,8 @@ MonoBehaviour:
   - text: 
     audioClip: {fileID: 8300000, guid: b0b7e9d022ae4a24092a869bdf74468c, type: 3}
   videoGameID: 1
-  missionIcon: {fileID: 1786715955694936, guid: 251631d6ab2caee4c9920c72ce203ef7,
-    type: 2}
   isCompetition: 0
   maxScore: 0
   Hiscore: 0
   avatarHiscore: 
-  boss1: 1
-  hearts: 0
-  guys: 0
-  ghost: 0
-  points: 0
-  listeners: 0
-  planes: 0
-  bombs: 0
-  distance: 0
   description: Kill em all

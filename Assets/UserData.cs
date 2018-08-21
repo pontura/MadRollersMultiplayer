@@ -75,7 +75,7 @@ public class UserData : MonoBehaviour {
     }
     void SetStars()
     {
-        Mission[] missions = data.GetComponent<Missions>().missions;
+		List<Mission> missions = data.GetComponent<Missions>().allMissionsByVideogame[Data.Instance.videogamesData.actualID].missions;
         int a = 0;
         foreach (Mission mission in missions)
         {

@@ -167,7 +167,7 @@ public class Data : MonoBehaviour {
         else
         {
 			VideogameData vdata = videogamesData.GetActualVideogameData ();
-			Mission mission = Data.Instance.missions.missions [num];
+			Mission mission = Data.Instance.missions.allMissionsByVideogame[vdata.id].missions[num];
 			if (vdata.id==0 &&  num > levelUnlocked_level_1)
             {
 				levelUnlocked_level_1 = idByVideogame;

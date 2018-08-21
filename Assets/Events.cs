@@ -33,7 +33,7 @@ public class Events : MonoBehaviour {
     public void MissionStart(int levelID) { OnMissionStart(levelID); }
     public System.Action<int> OnMissionStart = delegate { };
 
-	public System.Action OnMissionProgres = delegate { };
+	public System.Action OnMissionProgress = delegate { };
     public System.Action<int> OnMissionComplete = delegate { };
 	public void MissionComplete() { OnMissionComplete(Data.Instance.missions.MissionActiveID); }    
 	public System.Action NewMissionStart = delegate { };

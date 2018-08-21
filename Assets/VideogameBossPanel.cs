@@ -15,14 +15,11 @@ public class VideogameBossPanel : MonoBehaviour {
 	}
 	public GameObject panel;
 	public Animator anim;
+	public Animation animation;
 
 	void Start()
 	{
-		
-		if(!Data.Instance.isReplay)
-			panel.SetActive (true);
-		else
-			panel.SetActive (false);
+		panel.SetActive (false);
 		
 		Data.Instance.events.OnGameStart += OnGameStart;
 		Data.Instance.events.OnBossActive += OnBossActive;
@@ -37,6 +34,8 @@ public class VideogameBossPanel : MonoBehaviour {
 		panel.SetActive (true);
 		anim.Play ("mad");
 		yield return new WaitForSeconds (2);
+		animation.Play ("videoGameBossOut");
+		yield return new WaitForSeconds (1);
 		panel.SetActive (false);
 	}
 	void OnDestroy()
@@ -116,6 +115,8 @@ public class VideogameBossPanel : MonoBehaviour {
 	{
 		anim.Play ("mad");
 		yield return new WaitForSeconds (timer);
+		animation.Play ("videoGameBossOut");
+		yield return new WaitForSeconds (1);
 		panel.SetActive (false);
 	}
 }

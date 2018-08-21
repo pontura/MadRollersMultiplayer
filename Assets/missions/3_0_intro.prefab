@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 11400002}
   - component: {fileID: 11400000}
   m_Layer: 0
-  m_Name: 2_4_JumpHell
+  m_Name: 3_0_intro
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,7 +24,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.982987, y: 24.519918, z: -44.336185}
+  m_LocalPosition: {x: 16.148207, y: 20.662792, z: -46.63002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -42,9 +42,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   areaSets:
-  - {fileID: 11400000, guid: 108189196a5f735478867fb5dcbd1614, type: 2}
-  - {fileID: 11400000, guid: d388e04c16c79d3468c4c2972b157c28, type: 2}
-  - {fileID: 11400000, guid: a5bbeb75d8bcc9242892303ea91ac986, type: 2}
+  - {fileID: 11400000, guid: b5da800c80955a545bdcd0bf56a933bb, type: 2}
+  - {fileID: 11400000, guid: e3470d98618553c449ac83bbc9ea8231, type: 2}
+  - {fileID: 11400000, guid: 343a3fb574927134fa614ea2baad7aad, type: 2}
+  - {fileID: 11400000, guid: 6f84b1d1f5c9b6c4f846835efe5df0a8, type: 2}
+  - {fileID: 114983160959571566, guid: 167803a7dd68d2a4d99fbecaa5adb739, type: 2}
+  - {fileID: 114004391671021460, guid: d5fa943a8c8b59e42bf2752230867ec4, type: 2}
   activeAreaSetID: 2
   showRelaxAreaBeforeStarting: 0
 --- !u!114 &11400002
@@ -60,22 +63,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   totalDistance: 0
-  id: 23
+  id: 0
   backgroundSides:
   - {fileID: 114142866667346430, guid: 30d818904e5c5b940946e9a90b41bcd6, type: 2}
-  voices:
-  - text: 
-    audioClip: {fileID: 8300000, guid: 6134bbcf0580be241a59783ebaeab5ae, type: 3}
-  - text: 
-    audioClip: {fileID: 8300000, guid: 482ce4025c792b04c88a58c51d5a0ede, type: 3}
-  - text: 
-    audioClip: {fileID: 8300000, guid: 9d495e62fbf695a49aa63a304a50ce63, type: 3}
-  videoGameID: 1
+  voices: []
+  videoGameID: 2
   isCompetition: 0
-  maxScore: 1000
+  maxScore: 3000
   Hiscore: 0
   avatarHiscore: 
-  description: JUMPING IN SPACE
+  description: Born to Roll!
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

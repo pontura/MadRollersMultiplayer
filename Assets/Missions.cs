@@ -15,7 +15,7 @@ public class Missions : MonoBehaviour {
 
     public Mission test_mission;
 
-	public Mission[] missions;
+	//public Mission[] missions;
 	public List<MissionsByVideogame> allMissionsByVideogame;
 
 	[Serializable]
@@ -44,8 +44,10 @@ public class Missions : MonoBehaviour {
 	private Level level;
 	private bool showStartArea;
     private Data data;
-    private int lastDistance = 0;
-    private int distance;
+	private float startingDistance;
+	float distance;
+	bool missionByDistance;
+	int totalDistance;
 
     public void Init()
     {
@@ -57,20 +59,13 @@ public class Missions : MonoBehaviour {
 			
 		List<MissionButton> all = new List<MissionButton> ();
 		int id = 0;
-		foreach (Mission mission in missions) {
-			mission.id = id;
-			if (lastVideoGameID != mission.videoGameID) {
-				lastVideoGameID = mission.videoGameID;
+		print (allMissionsByVideogame [Data.Instance.videogamesData.actualID].missions.Count);
 
-
-				Missions.MissionsByVideogame mbv = new Missions.MissionsByVideogame ();
-				allMissionsByVideogame.Add (mbv);
-				mbv.missions = new List<Mission> ();
-
-			} 
-
-			videogameID = mission.videoGameID;
-			allMissionsByVideogame [videogameID].missions.Add (mission);
+		foreach (Mission mission in allMissionsByVideogame[Data.Instance.videogamesData.actualID].missions) {
+			print (mission.name);
+		}
+		foreach (Mission mission in allMissionsByVideogame[Data.Instance.videogamesData.actualID].missions) {
+			mission.id = id;			
 			id++;
 		}
     }
@@ -81,10 +76,11 @@ public class Missions : MonoBehaviour {
     }
 	public void Init (int _MissionActiveID, Level level) {
       
+	//	progressBar.gameObject.SetActive (false);
         state = states.INACTIVE; 
 
 		MissionActiveID = _MissionActiveID;
-		MissionActive = missions [MissionActiveID];
+		MissionActive = allMissionsByVideogame[Data.Instance.videogamesData.actualID].missions[MissionActiveID];
 
 		Data.Instance.events.OnChangeBackgroundSide (MissionActive.backgroundSides);
 
@@ -92,18 +88,8 @@ public class Missions : MonoBehaviour {
 
         this.level = level;
         progressBar = level.missionBar;
-
-#if UNITY_EDITOR
-//        if (data.DEBUG && test_mission)
-//        {
-//            MissionActive = test_mission;
-//            MissionActive.reset();
-//            return;
-//        }
-#endif
 		if (Data.Instance.playMode == Data.PlayModes.COMPETITION && 1==2)
         {
-           // MissionActiveID = 0;
             MissionActive = Data.Instance.competitions.competitions[0].missions[0];
             MissionActive.reset();
             MissionActiveID = 0;  
@@ -113,14 +99,10 @@ public class Missions : MonoBehaviour {
             MissionActive.reset();
         }
 
-
 	}
-    public Mission[] GetActualMissions()
+    public List<Mission> GetActualMissions()
     {
-		if (Data.Instance.playMode == Data.PlayModes.COMPETITION  && 1==2)
-            return competitions.GetMissions();
-        else return missions;
-
+		return allMissionsByVideogame[Data.Instance.videogamesData.actualID].missions;
     }
 	public AreasManager getAreasManager()
 	{
@@ -133,47 +115,66 @@ public class Missions : MonoBehaviour {
 	}
 	public bool StartNext()
 	{
-//        if (Data.Instance.isArcade)
-//        {
-//            MissionActiveID = 0;
-//            MissionActive.reset();
-//        } else
-//        {
-			if (Data.Instance.playMode == Data.PlayModes.COMPETITION  && 1==2)
-            {
-                MissionActiveID = 0;
-                MissionActive.reset();
-               //desc_txt.text = "CORRE ";
-				return false;
-            }
-            else
-            if (MissionActiveID >= GetActualMissions().Length-1)
-            {
-				Game.Instance.GotoVideogameComplete ();
-				return false;
-				MissionActiveID = UnityEngine.Random.Range(2, GetActualMissions().Length - 1);
-            }
-      //  }
+		List<Mission> all = GetActualMissions();
+
+		if (Data.Instance.playMode == Data.PlayModes.COMPETITION  && 1==2)
+        {
+            MissionActiveID = 0;
+            MissionActive.reset();
+			return false;
+        }
+        else if (MissionActiveID >= all.Count-1)
+        {
+			Game.Instance.GotoVideogameComplete ();
+			return false;
+			MissionActiveID = UnityEngine.Random.Range(2, all.Count - 1);       
+		}
 		MissionActiveID++;
         MissionActive = GetActualMissions()[MissionActiveID];
 		Data.Instance.events.OnChangeBackgroundSide (MissionActive.backgroundSides);
 		MissionActive.reset();
 		data.events.NewMissionStart ();
+
+//		if (MissionActive.type == Mission.types.DISTANCE) {
+//			StartProgressBar ();
+//			missionByDistance = true;
+//			startingDistance = level.charactersManager.getDistance ();
+//			totalDistance = MissionActive.totalDistance;
+//		} else
+//		{
+			StopProgressBar ();
+			missionByDistance = false;
+	//	}
 		return true;
 	}
+	void StartProgressBar()
+	{
+		progressBar.gameObject.SetActive (true);
+	}
+	void StopProgressBar()
+	{
+		progressBar.gameObject.SetActive (false);
+	}
+//	void FixedUpdate()
+//	{
+//		if (!missionByDistance)
+//			return;
+//
+//		distance = level.charactersManager.getDistance () - (float)startingDistance;
+//		float value = distance / totalDistance;
+//		progressBar.setProgression (value);
+//	}
     private void activateMissionByListener()
     {
-
         state = states.ACTIVE;
-		string text = "";
-
-        if (MissionActive.Hiscore > 0)
-			text = "SCORE: " + MissionActive.Hiscore; 
-        else
-			text = MissionActive.description.ToUpper();
+//		string text = "";
+//
+//        if (MissionActive.Hiscore > 0)
+//			text = "SCORE: " + MissionActive.Hiscore; 
+//        else
+//			text = MissionActive.description.ToUpper();
         
-        //MissionActive.points = 0;
-        lastDistance = (int)Game.Instance.GetComponent<CharactersManager>().distance;
+//        lastDistance = (int)Game.Instance.GetComponent<CharactersManager>().distance;
     }
 
 	bool CanComputeMission()
@@ -196,7 +197,8 @@ public class Missions : MonoBehaviour {
 	}
 	public Mission GetMissionActive()
 	{
-		return missions[MissionActiveID];
+		int viedogameActive = Data.Instance.videogamesData.actualID;
+		return allMissionsByVideogame[viedogameActive].missions[MissionActiveID];
 	}
 	public void ResetLastMissionID()
 	{
@@ -219,127 +221,6 @@ public class Missions : MonoBehaviour {
 	public void ForceBossPercent(int totalHits)
 	{
 		//MissionActive.boss1 = totalHits;
-	}
-
-//	private void OnScoreOn(int playerID, Vector3 pos, int qty, ScoresManager.types type)
-//    {
-//		if (!CanComputeMission ())
-//			return;
-//        if (MissionActive.Hiscore > 0)
-//        {
-//            addPoints(qty);
-//            setMissionStatus(MissionActive.Hiscore);
-//        }
-//    }
-//    //lo llama el player
-//    public void updateDistance(float qty)
-//    {
-//		if (!CanComputeMission ())
-//			return;
-//        if (state == states.INACTIVE) return;
-//        distance = (int)qty - lastDistance;
-//        if (MissionActive.distance > 0)
-//        {
-//            setPoints(distance);
-//            setMissionStatus(MissionActive.distance);
-//        }
-//    }
-//	public void hitBoss (int qty) {
-//
-//		print ("hitBoss " + qty + "   MissionActive.boss1 " + MissionActive.boss1);
-//		if (!CanComputeMission ())
-//			return;
-//		if(MissionActive.boss1 > 0)
-//		{
-//			addPoints(qty);		
-//			setMissionStatus(MissionActive.boss1);
-//		}
-//	}
-//	public void killGuy (int qty) {
-//		if (!CanComputeMission ())
-//			return;
-//		if(MissionActive.guys > 0)
-//		{
-//            addPoints(qty);		
-//			setMissionStatus(MissionActive.guys);
-//		}
-//	}
-//	public void killPlane() {
-//		if (!CanComputeMission ())
-//			return;
-//		if(MissionActive.planes > 0)
-//		{
-//            addPoints(1);		
-//			setMissionStatus(MissionActive.planes);
-//		}
-//	}
-//	public void OnDestroySceneObject(string name)
-//	{
-//		if (!CanComputeMission ())
-//			return;
-//		print ("name: " + name);
-//		if(name == "bomb" && MissionActive.bombs > 0)
-//		{
-//			addPoints(1);
-//			setMissionStatus(MissionActive.bombs);
-//		} else if(name == "ghost" && MissionActive.ghost > 0)
-//		{
-//			addPoints(1);
-//			setMissionStatus(MissionActive.ghost);
-//		} else if(name == "boss1" && MissionActive.boss1 > 0)
-//		{
-//			addPoints(1);
-//			setMissionStatus(MissionActive.boss1);
-//		} 
-//	}
-//    void OnGrabHeart()
-//    {
-//		if (!CanComputeMission ())
-//			return;
-//		if(MissionActive.hearts > 0)
-//		{
-//            addPoints(1);
-//			setMissionStatus(MissionActive.hearts);
-//		}
-//	}
-//    void addPoints(float qty)
-//    {
-//		if (!CanComputeMission ())
-//			return;
-//        if (state == states.INACTIVE) return;
-//        MissionActive.addPoints(qty);
-//    }
-//    void setPoints(float points)
-//    {
-//        if (state == states.INACTIVE) return;
-//        MissionActive.setPoints((int)points);
-//    }
-//	void setMissionStatus(int total)
-//	{
-//		if (Data.Instance.playMode != Data.PlayModes.STORY && Data.Instance.playMode != Data.PlayModes.COMPETITION)
-//			return;
-//        if (state == states.INACTIVE) return;
-//
-//		missionCompletedPercent = MissionActive.points * 100 / total;
-//
-//		progressBar.setProgression(missionCompletedPercent);
-//
-//		if (MissionActive.distance == 0)
-//			Data.Instance.events.OnMissionProgres ();
-//
-//		if(missionCompletedPercent >= 100)
-//		{
-//            progressBar.reset();
-//			if (Data.Instance.playMode == Data.PlayModes.COMPETITION  && 1==2)
-//            {
-//                Data.Instance.events.OnCompetitionMissionComplete();
-//            }
-//            else
-//            {
-//                lastDistance = distance;
-//                level.Complete();
-//            }            
-//		}
-//	}
+	}	
 
 }

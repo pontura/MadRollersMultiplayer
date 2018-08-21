@@ -4,6 +4,13 @@ using System.Collections.Generic;
 
 public class Mission: MonoBehaviour {
 
+	public types type;
+	public enum types
+	{
+		BOSS,
+		DISTANCE
+	}
+	public int totalDistance;
 	public int id;
 	public BackgroundSideData[] backgroundSides;
 
