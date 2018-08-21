@@ -8,9 +8,16 @@ public class BossPart : MonoBehaviour {
 	public GameObject asset;
 	bool called;
 
-	public void Init(Boss _boss)
+	public void Init(Boss _boss, GameObject bossAsset = null)
 	{
 		this.boss = _boss;
+		if (bossAsset != null) {
+			GameObject newGO = Instantiate (bossAsset);
+			newGO.transform.SetParent (transform);
+			newGO.transform.localScale = Vector3.one;
+			newGO.transform.localEulerAngles = Vector3.zero;
+			newGO.transform.localPosition = Vector3.zero;
+		}
 	}
 	public void OnActivate()
 	{

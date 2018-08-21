@@ -45,7 +45,7 @@ public class BossCreator : Boss {
 		if (partID >= parts.Length)
 			return;
 		parts [partID].gameObject.SetActive (true);
-		parts [partID].Init (this);
+		parts [partID].Init (this, settings.bossAsset);
 		Invoke ("Init", time_to_init_enemies);
 		partID++;
 	}

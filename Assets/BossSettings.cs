@@ -6,6 +6,7 @@ public class BossSettings : MonoBehaviour {
 
 	public GameObject assets;
 	public float time_to_init_enemies;
+	public GameObject bossAsset;
 
 	void OnDisable()
 	{
