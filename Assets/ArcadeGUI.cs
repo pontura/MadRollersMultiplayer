@@ -32,6 +32,8 @@ public class ArcadeGUI : MonoBehaviour {
 	}
     void Update()
     {
+		print (Game.Instance.state);
+
 		if (Game.Instance.state ==  Game.states.INTRO)
 			return;
         if (ended) return;

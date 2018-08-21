@@ -58,6 +58,9 @@ public class CharacterShooter : MonoBehaviour {
 	}
 	public void CheckFire()
 	{
+		if (Game.Instance.state ==  Game.states.INTRO)
+			return;
+		
 		isLoadingGun = false;
 
 		if(lastShot+0.35f > Time.time) return;

@@ -22,6 +22,7 @@ public class StartingPlatform : SceneObject {
 			id++;
 		}
 		Data.Instance.events.OnAvatarShoot += OnAvatarShoot;
+		Data.Instance.events.OnAvatarJump += OnAvatarJump;
 //		foreach (GameObject go in platforms) {
 //			Vector3 pos = go.transform.localPosition;
 //			pos.y = 0.7f;
@@ -32,12 +33,18 @@ public class StartingPlatform : SceneObject {
 
 	void OnDestroy () {
 		Data.Instance.events.OnAvatarShoot -= OnAvatarShoot;
+		Data.Instance.events.OnAvatarJump -= OnAvatarJump;
 	}
-
+	void OnAvatarJump(int _avatarID)
+	{
+		CheckIfStart (_avatarID);
+	}
 	void OnAvatarShoot(int _avatarID)
 	{
-		if (Game.Instance.state ==  Game.states.INTRO)
-			return;
+		CheckIfStart (_avatarID);
+	}
+	void CheckIfStart(int _avatarID)
+	{		
 		foreach (int i in ids) {
 			if (i == _avatarID)
 				return;

@@ -353,7 +353,10 @@ public class CharacterBehavior : MonoBehaviour {
 	}
 	public void Jump()
 	{
+		if (Game.Instance.state ==  Game.states.INTRO)
+			return;
 		if (state == states.DEAD) return;
+
 		if (hasSomeoneOver != null)
 			OnGetRidOfOverAvatar();
 		else if (isOver != null)
@@ -363,6 +366,9 @@ public class CharacterBehavior : MonoBehaviour {
 
 		jumpsNumber++;
 		if (jumpsNumber > 4) return;
+
+		if(!controls.isAutomata)
+			data.events.OnAvatarJump (player.id);
 
 		if (state == states.JUMP)
 		{
@@ -381,8 +387,8 @@ public class CharacterBehavior : MonoBehaviour {
 
 		Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.JUMP, player.id);
 
-		if(!controls.isAutomata)
-			data.events.AvatarJump();
+		//
+		//	data.events.OnAvatarJump(player.id);
 
 		rb.AddForce(new Vector3(0, jumpHeight, 0), ForceMode.Impulse);
 
@@ -419,7 +425,7 @@ public class CharacterBehavior : MonoBehaviour {
 		floorCollitions.OnAvatarJump();
 		Data.Instance.events.OnMadRollerFX (MadRollersSFX.types.DOUBLE_JUMP, player.id);
 
-		data.events.AvatarJump();
+		//data.events.AvatarJump();
 
 		int rand = Random.Range (0, 10);
 		if(rand<5)
@@ -436,7 +442,7 @@ public class CharacterBehavior : MonoBehaviour {
 
 		ResetColliders();
 		floorCollitions.OnAvatarJump();
-		data.events.AvatarJump();
+		//data.events.AvatarJump();
 		Vector3 pos = transform.localPosition;
 		pos.y += offsetY;
 		transform.localPosition = pos;
