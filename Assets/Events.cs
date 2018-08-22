@@ -122,4 +122,5 @@ public class Events : MonoBehaviour {
 	public System.Action<bool> OnMadRollersSFXStatus= delegate { };
 
 	public System.Action<bool> OnBossActive = delegate { };
+	public System.Action OnBossDropBomb = delegate { };
 }

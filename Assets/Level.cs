@@ -190,7 +190,7 @@ public class Level : MonoBehaviour {
     }
     public void OnAddExplotion(Vector3 position, Color color)
     {
-        OnAddExplotion(position, explotion.name, explotionEffect.name, explotionGift.name, 3, color);
+        OnAddExplotion(position, explotion.name, explotionEffect.name, explotionGift.name, 8, color);
     }
     public void OnAddExplotion(Vector3 position, int force, Color color)
     {
@@ -211,7 +211,11 @@ public class Level : MonoBehaviour {
         {
            // Debug.LogError("No hay explosion");
             return;
-        }
+        } 
+		FXExplotion fxExplotion = explotionNew.GetComponent<FXExplotion> ();
+
+		if(fxExplotion != null)
+			fxExplotion.SetSize (force);
        
        // explotionNew.GetComponent<FXExplotion>()._scale = force;
 

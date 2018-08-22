@@ -4,7 +4,7 @@ using System.Collections;
 public class Bomb : SceneObject {
 
 	private float start_Y = 15;
-    private float speed = 8.2f;
+    private float speed = 9.2f;
 
     public Breakable breakable;
 
@@ -25,7 +25,7 @@ public class Bomb : SceneObject {
     {
         GetComponent<AudioSource>().Stop();
        // setScore();
-		Data.Instance.events.OnDestroySceneObject("bomb");
+		//Data.Instance.events.OnDestroySceneObject("bomb");
 
         alive = false;        
 
@@ -68,7 +68,7 @@ public class Bomb : SceneObject {
 	{
         if (!alive) return;
         if (!isActive) return;
-        Game.Instance.level.OnAddExplotion(transform.position, 6, Color.yellow);
+		Game.Instance.level.OnAddExplotion(transform.position, 16, Color.red);
 	}
     public override void OnPool()
     {

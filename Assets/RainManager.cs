@@ -10,7 +10,7 @@ public class RainManager : MonoBehaviour {
     private float offset = 300;//400;
     private float restaOffset = 30; //20;
     private float min_offset = 20; //150;
-    private float distanceToAdd = 50; //700;
+    private float distanceToAdd = 100; //700;
 
  	  public void Init()
     {
@@ -35,11 +35,11 @@ public class RainManager : MonoBehaviour {
             distanceToAdd = charactersManager.distance + (offset * 2) - dificultLevel;  
             offset -= restaOffset;
             if (offset < min_offset) offset = min_offset;
-
-            if(Random.Range(0,10)<5)
+			Data.Instance.events.OnBossDropBomb ();
+          //  if(Random.Range(0,10)<5)
                 AddSceneObject(new Vector3(0, 0, charactersManager.distance + 100), "Bomb1_real");
-            else
-                AddSceneObject(new Vector3(0, 0, charactersManager.distance + 100), "BombTeledirigida_real");
+         //   else
+             //   AddSceneObject(new Vector3(0, 0, charactersManager.distance + 100), "BombTeledirigida_real");
         }
     }
     public void AddSceneObject(Vector3 position, string sceneObjectName)

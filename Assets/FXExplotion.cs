@@ -4,8 +4,8 @@ using System.Collections;
 public class FXExplotion : SceneObject {
 
 	public MeshRenderer meshRenderer;
-	float finalScale = 7;
-	float speed = 5;	
+	float finalScale = 8;
+	float speed = 6;	
 
 	bool isOn;
 	float timer;
@@ -39,6 +39,10 @@ public class FXExplotion : SceneObject {
         position.y += 2;
 		timer = 0f;
 	}
+	public void SetSize(float size = 8)
+	{
+		this.finalScale = size;
+	}
 	public void SetColor(Color color)
 	{
 		if (lastColor == color)
@@ -62,9 +66,9 @@ public class FXExplotion : SceneObject {
 		if(getBigger)
 			transform.localScale = Vector3.Lerp(transform.localScale , new Vector3(finalScale,finalScale,finalScale), Time.deltaTime*speed);
 		else
-			transform.localScale = Vector3.Lerp(transform.localScale , Vector3.zero, Time.deltaTime*(speed*2));
+			transform.localScale = Vector3.Lerp(transform.localScale , Vector3.zero, Time.deltaTime*(speed*1.25f));
 
-		if (transform.localScale.x >= (finalScale - 0.5f))
+		if (getBigger && transform.localScale.x >= (finalScale - 0.4f))
 			getBigger = false;
 	}
     private void die()

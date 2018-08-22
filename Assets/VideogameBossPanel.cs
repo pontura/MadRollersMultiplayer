@@ -11,7 +11,8 @@ public class VideogameBossPanel : MonoBehaviour {
 		IDLE,
 		LAUGHING,
 		ATTACK,
-		MAD
+		MAD,
+		DROPPING_BOMB
 	}
 	public GameObject panel;
 	public Animator anim;
@@ -23,6 +24,7 @@ public class VideogameBossPanel : MonoBehaviour {
 		
 		Data.Instance.events.OnGameStart += OnGameStart;
 		Data.Instance.events.OnBossActive += OnBossActive;
+		Data.Instance.events.OnBossDropBomb += OnBossDropBomb;
 		Data.Instance.events.OnAvatarDie += OnAvatarDie;
 	}
 	void OnGameStart()
@@ -42,7 +44,24 @@ public class VideogameBossPanel : MonoBehaviour {
 	{
 		Data.Instance.events.OnGameStart -= OnGameStart;
 		Data.Instance.events.OnBossActive -= OnBossActive;
+		Data.Instance.events.OnBossDropBomb -= OnBossDropBomb;
 		Data.Instance.events.OnAvatarDie -= OnAvatarDie;
+	}
+	void OnBossDropBomb()
+	{		
+		if(state== states.OFF)
+			StartCoroutine (AxeCoroutine());
+	}
+	IEnumerator AxeCoroutine ()
+	{
+		state = states.DROPPING_BOMB;
+		panel.SetActive (true);
+		anim.Play ("axe");
+		yield return new WaitForSeconds (3);
+		if (state == states.DROPPING_BOMB) {
+			panel.SetActive (false);
+			state = states.OFF;
+		}			
 	}
 	void OnBossActive(bool isOn)
 	{
@@ -54,6 +73,7 @@ public class VideogameBossPanel : MonoBehaviour {
 			Mad (3);
 		}
 	}
+
 	void OnAvatarDie(CharacterBehavior cb)
 	{
 		Laugh (1.5f);
@@ -118,5 +138,6 @@ public class VideogameBossPanel : MonoBehaviour {
 		animation.Play ("videoGameBossOut");
 		yield return new WaitForSeconds (1);
 		panel.SetActive (false);
+		state = states.OFF;
 	}
 }
