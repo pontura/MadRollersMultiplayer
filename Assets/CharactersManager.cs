@@ -31,15 +31,14 @@ public class CharactersManager : MonoBehaviour {
     }
     void OnListenerDispatcher(string type)
     {
-        if (type == "Ralenta")
+		if(type == "ShowMissionName")
+			Data.Instance.events.OnGenericUIText ("Mission " + (Data.Instance.missions.MissionActiveID+1).ToString());
+		else  if (type == "Ralenta")
         {
          //   RalentaCoroutine = DoRalentaCoroutine(4, 1f, 0.05f);
           //  StartCoroutine(RalentaCoroutine);
-        }
-        if (type == "BonusEntrande")
+        }  else if (type == "BonusEntrande")
         {
-          //  RalentaCoroutine = DoRalentaCoroutine(11, 0, 0.05f);
-          //  StartCoroutine(RalentaCoroutine);
 
             Data.Instance.events.OnCreateBonusArea();
             foreach (CharacterBehavior cb in characters)

@@ -40,12 +40,13 @@ public class UICountDown : MonoBehaviour {
 	{
 		countDownField.text = countDown.ToString ();
 		panel.GetComponent<Animation>().Play("logo");
-		countDown--;
+		print (countDown);
 		if (countDown <= 0) {
 			Data.Instance.events.StartMultiplayerRace ();
 			panel.SetActive (false);
 			return;
 		}
-		Invoke ("SetNextCountDown", 1.2f);
+		countDown--;
+		Invoke ("SetNextCountDown", 1f);
 	}
 }

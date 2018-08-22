@@ -57,7 +57,7 @@ public class VideogameBossPanel : MonoBehaviour {
 		state = states.DROPPING_BOMB;
 		panel.SetActive (true);
 		anim.Play ("axe");
-		yield return new WaitForSeconds (3);
+		yield return new WaitForSeconds (1.5f);
 		if (state == states.DROPPING_BOMB) {
 			panel.SetActive (false);
 			state = states.OFF;

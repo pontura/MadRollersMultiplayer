@@ -3,9 +3,9 @@
 --- !u!1 &100000
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 400000}
   - component: {fileID: 11400000}
@@ -20,7 +20,7 @@ GameObject:
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -33,7 +33,7 @@ Transform:
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
@@ -41,6 +41,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c52aa23c4c1909c45b1a2eeadb8f98cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
+  totalDistance: 0
   id: 29
   backgroundSides:
   - {fileID: 114142866667346430, guid: fe596fe8516db97409385fc7ec50b386, type: 2}
@@ -48,26 +50,15 @@ MonoBehaviour:
   - text: 
     audioClip: {fileID: 8300000, guid: b0b7e9d022ae4a24092a869bdf74468c, type: 3}
   videoGameID: 2
-  missionIcon: {fileID: 1191225422062580, guid: 3953dc1552087814da02aec576a36194,
-    type: 2}
   isCompetition: 0
   maxScore: 1000
   Hiscore: 0
   avatarHiscore: 
-  boss1: 10
-  hearts: 0
-  guys: 0
-  ghost: 0
-  points: 10
-  listeners: 0
-  planes: 0
-  bombs: 0
-  distance: 0
   description: Kill em all
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
@@ -76,9 +67,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   areaSets:
+  - {fileID: 114464012675593752, guid: 8415e5cd8e11ce740a915a2736530b69, type: 2}
   - {fileID: 114393149578421074, guid: 5118b63c051b4bc4e87fc30b1bc619b9, type: 2}
   - {fileID: 114393149578421074, guid: 1e4a3d9dcb19f2d45854248520aeefd3, type: 2}
-  activeAreaSetID: 0
+  activeAreaSetID: 2
   showRelaxAreaBeforeStarting: 0
 --- !u!1001 &100100000
 Prefab:
@@ -88,6 +80,6 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications: []
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 0}
+  m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100000}
-  m_IsPrefabParent: 1
+  m_IsPrefabAsset: 1

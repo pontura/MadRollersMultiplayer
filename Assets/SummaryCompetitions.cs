@@ -67,14 +67,14 @@ public class SummaryCompetitions : MonoBehaviour {
 			}
 			num++;
 		}
-		scoreField.text = "Score: " + Data.Instance.multiplayerData.score;
+		scoreField.text = "Score " + Data.Instance.multiplayerData.score;
 		Invoke ("TimeOver", 15);
 		missionsField.text = "";
 		if (numMission < 0)
 			return;
 		int totalMissions = missionsInThisVideogame.missions.Count;
 		progressImage.fillAmount = (float)numMission / (float)totalMissions;
-		missionsField.text = "Mission: " + (numMission+1).ToString() + "/" + totalMissions.ToString();
+		missionsField.text = "Mission " + (numMission+1).ToString() + "/" + totalMissions.ToString();
 
 	}
 	void TimeOver()

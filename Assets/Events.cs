@@ -104,6 +104,8 @@ public class Events : MonoBehaviour {
 
 	public System.Action OnFireUI = delegate { };
 
+	public System.Action<string> OnGenericUIText = delegate { };
+
 	public System.Action OnJoystickUp = delegate { };
 	public System.Action OnJoystickDown = delegate { };
 	public System.Action OnJoystickRight = delegate { };

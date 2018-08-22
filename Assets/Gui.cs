@@ -12,44 +12,52 @@ public class Gui : MonoBehaviour {
 	private int barWidth = 200;
     private bool MainMenuOpened = false;
 
-//	public MissionIcon missionIcon_to_instantiate;
-//	[HideInInspector]
-//	public MissionIcon missionIcon;
-	public GameObject killemAll;
+	public Text genericField;
+	public GameObject centerPanel;
 
 	void Start()
 	{
-		killemAll.SetActive (false);
+		centerPanel.SetActive (false);
 //		missionIcon = Instantiate (missionIcon_to_instantiate);
 //		missionIcon.transform.localPosition = new Vector3 (1000, 0, 0);
 
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
         Data.Instance.events.OnAvatarFall += OnAvatarCrash;
 		Data.Instance.events.OnBossActive += OnBossActive;
+		Data.Instance.events.OnGenericUIText += OnGenericUIText;
     }
     void OnDestroy()
     {
         Data.Instance.events.OnAvatarCrash -= OnAvatarCrash;
         Data.Instance.events.OnAvatarFall -= OnAvatarCrash;
 		Data.Instance.events.OnBossActive -= OnBossActive;
+		Data.Instance.events.OnGenericUIText -= OnGenericUIText;
 
         levelComplete = null;
     }
 	void OnBossActive(bool isOn)
 	{
+		CancelInvoke ();
 		Reset ();
 		if (isOn) {
-			killemAll.SetActive (true);
+			OnGenericUIText( "Kill 'el all");
 		} else {
 			levelComplete.gameObject.SetActive (true);
 			levelComplete.Init (Data.Instance.missions.MissionActive.id);
 		}
 		Invoke ("Reset", 2);
 	}
+	void OnGenericUIText(string text)
+	{
+		centerPanel.SetActive (true);
+		genericField.text = text;
+		CancelInvoke ();
+		Invoke ("Reset", 2);
+	}
 	void Reset()
 	{
 		levelComplete.gameObject.SetActive(false); 
-		killemAll.SetActive (false);
+		centerPanel.SetActive (false);
 	}
     void OnAvatarCrash(CharacterBehavior cb)
     {

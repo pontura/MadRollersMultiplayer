@@ -69,11 +69,13 @@ public class Missions : MonoBehaviour {
 			id++;
 		}
     }
-    private void OnListenerDispatcher(string message)
-    {        
-       if (message == "ShowMissionName")
-            activateMissionByListener();        
-    }
+//    private void OnListenerDispatcher(string message)
+//    {        
+//		if (message == "ShowMissionName") {
+//			activateMissionByListener (); 
+//			Data.Instance.events.OnGenericUIText ("Mission " + MissionActiveID);
+//		}
+//    }
 	public void Init (int _MissionActiveID, Level level) {
       
 	//	progressBar.gameObject.SetActive (false);
