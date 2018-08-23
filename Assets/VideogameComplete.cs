@@ -57,6 +57,9 @@ public class VideogameComplete : MonoBehaviour {
 	{
 		if (!canContinue)
 			return;
+
+		canContinue = false;
+		OnDestroy ();
 		
 		if(Data.Instance.videogamesData.actualID == 0)
 			Data.Instance.videogamesData.actualID = 1;

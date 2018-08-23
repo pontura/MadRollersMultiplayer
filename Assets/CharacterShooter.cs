@@ -111,6 +111,7 @@ public class CharacterShooter : MonoBehaviour {
 	}
 	void Shoot(Vector3 pos, float RotationY)
 	{
+		print ("SOOOOOOOOTH: " + myProjectile.name);
 		Projectil projectil = ObjectPool.instance.GetObjectForType(myProjectile.name, true) as Projectil;
 
 		if (projectil)
