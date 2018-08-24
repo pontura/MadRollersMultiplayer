@@ -246,6 +246,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 198492, guid: db836a5a6ffc4dd4a9fa3b9d8ef991f3, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db836a5a6ffc4dd4a9fa3b9d8ef991f3, type: 2}
   m_IsPrefabAsset: 0
@@ -354,14 +358,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 11400002, guid: e69c3317a5dec5945b3feea00990d858, type: 2}
-      propertyPath: allMissionsByVideogame.Array.data[2].missions.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400002, guid: e69c3317a5dec5945b3feea00990d858, type: 2}
-      propertyPath: allMissionsByVideogame.Array.data[0].missions.Array.size
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e69c3317a5dec5945b3feea00990d858, type: 2}
       propertyPath: m_LocalPosition.x
       value: 2.71
@@ -398,46 +394,6 @@ Prefab:
       propertyPath: sceneObjectsPool
       value: 
       objectReference: {fileID: 1160979223}
-    - target: {fileID: 11400000, guid: e69c3317a5dec5945b3feea00990d858, type: 2}
-      propertyPath: DEBUG
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1090244366563106, guid: e69c3317a5dec5945b3feea00990d858, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400000, guid: e69c3317a5dec5945b3feea00990d858, type: 2}
-      propertyPath: forceVideogameID
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400000, guid: e69c3317a5dec5945b3feea00990d858, type: 2}
-      propertyPath: forceMissionID
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400002, guid: e69c3317a5dec5945b3feea00990d858, type: 2}
-      propertyPath: allMissionsByVideogame.Array.data[2].missions.Array.data[4]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400002, guid: e69c3317a5dec5945b3feea00990d858, type: 2}
-      propertyPath: allMissionsByVideogame.Array.data[0].missions.Array.data[10]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400000, guid: e69c3317a5dec5945b3feea00990d858, type: 2}
-      propertyPath: voicesOn
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400000, guid: e69c3317a5dec5945b3feea00990d858, type: 2}
-      propertyPath: soundsFXOn
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400000, guid: e69c3317a5dec5945b3feea00990d858, type: 2}
-      propertyPath: madRollersSoundsOn
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400000, guid: e69c3317a5dec5945b3feea00990d858, type: 2}
-      propertyPath: musicOn
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e69c3317a5dec5945b3feea00990d858, type: 2}
   m_IsPrefabAsset: 0
@@ -630,25 +586,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4195816654742880, guid: 4370387772b4a42428ca4ac9e6a80c2d,
     type: 2}
   m_PrefabInternal: {fileID: 1169070062}
---- !u!1 &574254393 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1910891209245454, guid: e69c3317a5dec5945b3feea00990d858,
-    type: 2}
-  m_PrefabInternal: {fileID: 356206619}
---- !u!114 &574254394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 574254393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
-  m_EffectDistance: {x: 1, y: -1}
-  m_UseGraphicAlpha: 0
 --- !u!1001 &668460959
 Prefab:
   m_ObjectHideFlags: 0

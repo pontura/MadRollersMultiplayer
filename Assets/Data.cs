@@ -202,6 +202,7 @@ public class Data : MonoBehaviour {
 
 		}
 		if (!isReplay && levelName == "Game") {
+			print ("#::::::::::::::::::::::");
 			Data.Instance.GetComponent<MusicManager>().stopAllSounds();
 			loadingAsset.SetOn (true);
 			return;

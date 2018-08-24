@@ -5,12 +5,6 @@ using UnityEngine.UI;
 
 public class MissionButton : MonoBehaviour {
 
-	public GameObject missionFields;
-	public GameObject missionNames;
-
-	public Text[] overs;
-
-	public Stars stars;
 	public Animation anim;
 	//public GameObject thumbPanel;
 
@@ -24,70 +18,21 @@ public class MissionButton : MonoBehaviour {
 	public Image logo;
 	public Image floppyCover;
 
-	public Mission mission;
+	public VideogameData videogameData;
 
-	// Use this for initialization
-	public void Init (Mission mission, int id) {
-		this.mission = mission;
-        this.id = id;
-		VideogameData data = Data.Instance.videogamesData.GetActualVideogameDataByID (mission.videoGameID);
-		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {
-			foreach (Text m in missionFields.GetComponentsInChildren<Text>())
-				m.text = Data.Instance.videogamesData.GetActualVideogameDataByID (mission.videoGameID).name;
-			foreach (Text m in missionNames.GetComponentsInChildren<Text>())
-				m.text = "COMPETITION-MODE";
-			
-		} else {
-			foreach (Text m in missionFields.GetComponentsInChildren<Text>())
-				m.text = data.name + " " + ((int)id + 1).ToString () + "/9";
-
-			foreach (Text m in missionNames.GetComponentsInChildren<Text>())
-				m.text = mission.description;
-		
-			int starsQty = Data.Instance.userData.GetStars (id);
-			stars.Init (starsQty);
-			background.transform.localEulerAngles = new Vector3 (30, 0, 0);
-		}
-
-		logo.sprite = data.logo;
-		floppyCover.sprite = data.floppyCover;
+	public void Init (VideogameData videogameData) {
+		this.videogameData = videogameData;
+		logo.sprite = videogameData.logo;
+		floppyCover.sprite = videogameData.floppyCover;
+		anim ["MissionButtonOn"].normalizedTime = 0;
+		anim.Play ("MissionButtonOn");
 	}
     public void OnClick()
     {
 		anim.Play ("MissionTopSetActive");
     }
-	bool isOn;
-	public void SetOn(bool _isOn)
+	public void SetOn()
 	{
-		if (isOn && _isOn)
-			return;
-
-		this.isOn = _isOn;
-		
-		if (_isOn) {
-			
-			//thumbPanel.SetActive (true);
-			anim.Play ("MissionButtonOn");
-			foreach (Text m in overs)
-				m.color = Color.yellow;
-		} else {
-			anim.Play ("MissionButtonOff");
-			foreach (Text m in overs)
-			{
-				if (isLocked) {
-					m.color = Color.red;
-				} else {
-					m.color = Color.white;
-				}
-			}
-		}
+		anim.Play ("MissionTopSetActive");
 	}
-    public void disableButton()
-    {
-		isLocked = true;
-		lockImage.SetActive(true);
-        stars.gameObject.SetActive(false);
-		foreach (Text m in overs)
-			m.color = Color.red;
-    }
 }

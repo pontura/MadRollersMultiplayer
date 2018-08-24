@@ -29,7 +29,7 @@ public class LoadingAsset : MonoBehaviour {
 		logo.sprite = Data.Instance.videogamesData.GetActualVideogameData ().floppyCover;
 		videoPanel.SetActive (_isOn);
 		this.isOn = _isOn;
-		//panel.SetActive (_isOn);
+		panel.SetActive (_isOn);
 		loadingPanel.SetActive (_isOn);
 		if (isOn)
 			StartCoroutine (LoadingRoutine ());
