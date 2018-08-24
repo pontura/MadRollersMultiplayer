@@ -67,6 +67,7 @@ public class LevelSelector : MonoBehaviour {
 	}
 	void Delayed()
 	{
+		Data.Instance.videogamesData.actualID = videgameID;
 		Data.Instance.missions.ActivateFirstGameByVideogame (videogameData.id);
 		Data.Instance.LoadLevel ("Game");
 	}

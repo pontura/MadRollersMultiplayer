@@ -95,19 +95,19 @@ public class SummaryCompetitions : MonoBehaviour {
 				OnJoystickClick ();
 			if (InputManager.getFireDown (a)) 
 				OnJoystickClick ();
-			if (processAxis) {
-				float v = InputManager.getVertical (a);
-				if (v < -0.5f)
-					OnJoystickDown ();
-				else if (v > 0.5f)
-					OnJoystickUp ();
-
-				float h = InputManager.getHorizontal (a);
-				if (h < -0.5f)
-					OnJoystickDown ();
-				else if (h > 0.5f)
-					OnJoystickUp ();
-			}
+//			if (processAxis) {
+//				float v = InputManager.getVertical (a);
+//				if (v < -0.5f)
+//					OnJoystickDown ();
+//				else if (v > 0.5f)
+//					OnJoystickUp ();
+//
+//				float h = InputManager.getHorizontal (a);
+//				if (h < -0.5f)
+//					OnJoystickDown ();
+//				else if (h > 0.5f)
+//					OnJoystickUp ();
+//			}
 		}
 	}
 
