@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Projectil : SceneObject {
 
-    public int playerID;
+    public int playerID = -1;
 	public int speed = 7;
 	public int myRange = 3;
 	public int damage = 10;
@@ -17,6 +17,11 @@ public class Projectil : SceneObject {
     private Color color;
     public MeshRenderer meshToColorize;
 	public int team_for_versus;
+
+	public GameObject BulletPlayer0;
+	public GameObject BulletPlayer1;
+	public GameObject BulletPlayer2;
+	public GameObject BulletPlayer3;
 	
 	void Start () {
 
@@ -30,8 +35,10 @@ public class Projectil : SceneObject {
 		lastColor = color;
         meshToColorize.material.color = color;
     }
+	int lastPlayerID;
     public override void OnRestart(Vector3 pos)
-    {		
+    {			
+
         level = Game.Instance.level;
         base.OnRestart(pos);
 
@@ -39,19 +46,43 @@ public class Projectil : SceneObject {
         exploted = false;
 		pos.z += 1;
 
-		MultiplayerData multiplayerData = Data.Instance.multiplayerData;
+		if (lastPlayerID != playerID) {
 
-		Color playerColor;
+			MultiplayerData multiplayerData = Data.Instance.multiplayerData;
 
-		if(playerID<4)
-			playerColor = multiplayerData.colors[playerID];
-		else
-			playerColor = multiplayerData.colors[4];
+			Color playerColor;
+
+			lastPlayerID = playerID;
+
+			BulletPlayer0.SetActive (false);
+			BulletPlayer1.SetActive (false);
+			BulletPlayer2.SetActive (false);
+			BulletPlayer3.SetActive (false);
+			if (playerID < 4) {
+				playerColor = multiplayerData.colors [playerID];
+				switch (playerID) {
+				case 0:
+					BulletPlayer0.SetActive (true);
+					break;
+				case 1:
+					BulletPlayer1.SetActive (true);
+					break;
+				case 2:
+					BulletPlayer2.SetActive (true);
+					break;
+				case 3:
+					BulletPlayer3.SetActive (true);
+					break;
+
+				}
+			} else
+				playerColor = multiplayerData.colors [4];
 		
-		playerColor.a = 0.5f;
+			playerColor.a = 0.5f;
 
-		GetComponent<TrailRenderer> ().startColor = playerColor;
-		GetComponent<TrailRenderer> ().endColor = playerColor;
+			GetComponent<TrailRenderer> ().startColor = playerColor;
+			GetComponent<TrailRenderer> ().endColor = playerColor;
+		}
 
 
     }
