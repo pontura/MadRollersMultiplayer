@@ -49,15 +49,19 @@ public class VideogameBossPanel : MonoBehaviour {
 	}
 	void OnBossDropBomb()
 	{		
-		if(state== states.OFF)
+		if(state == states.OFF)
 			StartCoroutine (AxeCoroutine());
+		else
+			anim.Play ("axe_throw");
 	}
 	IEnumerator AxeCoroutine ()
 	{
 		state = states.DROPPING_BOMB;
 		panel.SetActive (true);
-		anim.Play ("axe");
-		yield return new WaitForSeconds (1.5f);
+		anim.Play ("axe_idle");
+		yield return new WaitForSeconds (1f);
+		anim.Play ("axe_throw");
+		yield return new WaitForSeconds (1f);
 		if (state == states.DROPPING_BOMB) {
 			panel.SetActive (false);
 			state = states.OFF;
