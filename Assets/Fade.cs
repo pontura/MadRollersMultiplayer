@@ -102,6 +102,10 @@ public class Fade : MonoBehaviour
 
     public void LoadLevel(string aLevelName, float aFadeTime, Color aColor)
     {
+		//nuevos:
+		StopAllCoroutines ();
+		fading = false;
+		//;
         if (fading) return;
         m_LevelName = aLevelName;
         StartFade(aFadeTime, aColor);

@@ -456,8 +456,9 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			return;
 		pos.z += offset.z;
 		pos.x += offset.x;
-		newSceneObject.Restart (pos);
-		newSceneObject.SetMaterialByVideoGame ();
+		//newSceneObject.Restart (pos);
+		manager.AddSceneObject (newSceneObject, pos);
+		//newSceneObject.SetMaterialByVideoGame ();
 	}
 
 	public void deleteAll()
