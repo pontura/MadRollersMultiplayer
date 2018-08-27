@@ -71,15 +71,17 @@ public class Breakable : MonoBehaviour {
 	public void hasGravity() {
         isOn = false;
 		dontKillPlayers = true;
-				
-		if(!gameObject.GetComponent<Rigidbody>())
-			gameObject.AddComponent<Rigidbody>();
+			
+		Rigidbody rb = gameObject.GetComponent<Rigidbody> ();
+
+		if(rb == null)
+			rb = gameObject.AddComponent<Rigidbody>();
 		
-		gameObject.GetComponent<Rigidbody>().isKinematic = false;
-		gameObject.GetComponent<Rigidbody>().useGravity = true;
+		rb.isKinematic = false;
+		rb.useGravity = true;
 
         Vector3 newPosition = new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(0.5f, 1.1f), Random.Range(0, 0.9f));
-        gameObject.GetComponent<Rigidbody>().AddForce((Time.deltaTime * newPosition) * 2000, ForceMode.Impulse);
+        rb.AddForce((Time.deltaTime * newPosition) * 2000, ForceMode.Impulse);
 
         Vector3 rot = new Vector3(Random.Range(-20, 20), Random.Range(-20, 20), Random.Range(-20, 20));
         gameObject.transform.localEulerAngles += rot;
