@@ -28,8 +28,7 @@ public class Missions : MonoBehaviour {
 
     public Mission MissionActive;
 	private float missionCompletedPercent = 0;
-
-	private ProgressBar progressBar;    
+  
 
     private states state;
     private enum states
@@ -78,7 +77,6 @@ public class Missions : MonoBehaviour {
 //    }
 	public void Init (int _MissionActiveID, Level level) {
       
-	//	progressBar.gameObject.SetActive (false);
         state = states.INACTIVE; 
 
 		MissionActiveID = _MissionActiveID;
@@ -89,7 +87,6 @@ public class Missions : MonoBehaviour {
 		this.missionCompletedPercent = 0;
 
         this.level = level;
-        progressBar = level.missionBar;
 		if (Data.Instance.playMode == Data.PlayModes.COMPETITION && 1==2)
         {
             MissionActive = Data.Instance.competitions.competitions[0].missions[0];
@@ -137,25 +134,9 @@ public class Missions : MonoBehaviour {
 		MissionActive.reset();
 		data.events.NewMissionStart ();
 
-//		if (MissionActive.type == Mission.types.DISTANCE) {
-//			StartProgressBar ();
-//			missionByDistance = true;
-//			startingDistance = level.charactersManager.getDistance ();
-//			totalDistance = MissionActive.totalDistance;
-//		} else
-//		{
-			StopProgressBar ();
-			missionByDistance = false;
-	//	}
+		missionByDistance = false;
+
 		return true;
-	}
-	void StartProgressBar()
-	{
-		progressBar.gameObject.SetActive (true);
-	}
-	void StopProgressBar()
-	{
-		progressBar.gameObject.SetActive (false);
 	}
 //	void FixedUpdate()
 //	{

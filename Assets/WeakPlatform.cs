@@ -12,9 +12,14 @@ public class WeakPlatform : SceneObject {
 
 	Rigidbody rb;
 	bool falling;
+	public BorderVideogameCollider[] borders;
 
 	public override void OnRestart(Vector3 pos)
 	{
+		
+		foreach (BorderVideogameCollider border in borders)
+			border.Init ();
+		
 		falling = false;
 		floor_top = Data.Instance.videogamesData.GetActualVideogameData ().floor_top;
 		floor_border = Data.Instance.videogamesData.GetActualVideogameData ().floor_border;

@@ -5,26 +5,23 @@ using System.Collections;
 public class ProgressBar : MonoBehaviour {
 
     public Image sprite;
-    private float progress = 0;
     public float progression;
 
 	private void Start()
 	{
-        reset();
+		Reset();        
 	}
-	private void Awake () {
-        sprite.fillAmount = 0;
-	}
-	public void setProgression(float progression)
+	public void SetProgression(float progression)
 	{
         this.progression = progression;
-		if(progression>100) progression = 100;
-		progress = progression/100.0f;
-        sprite.fillAmount = progress;
+		if(progression<0) 
+			progression = 0;
+		sprite.fillAmount = progression;
 	}
-    public void reset()
+    public void Reset()
     {
-        setProgression(0);
+		SetProgression(0);
+		sprite.fillAmount = 0;
     }
 	
 }

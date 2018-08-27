@@ -8,7 +8,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	SceneObjectsManager manager;
 	public ArrayList unused = new ArrayList();
 
-	public SceneObject Border_videogame_1;
 	public SceneObject Water;
 	public SceneObject Lava;
 	public SceneObject Boss1;
@@ -172,27 +171,27 @@ public class SceneObjectsBehavior : MonoBehaviour {
 					//	sceneObject.SetMaterialByVideoGame ();
 					
 					//sceneObject.changeMaterial("pasto");
-
-					if (go.name == "extralargeBlock1")
-					{
-						//GameObject goNew = new GameObject ();
-						//goNew.transform.position = pos;
-						//goNew.transform.rotation = go.transform.rotation;
-						//borderTransforms.Add (goNew.transform);
-
-//						int num = Random.Range(1, 4);
-//						string decorationName = "";
-//						if (num == 1)
-//							decorationName = "flores1_real";
-//						if (num == 2)
-//							decorationName = "flores2_real";
-//						else if (num == 3)
-//							decorationName = "floorFlowers_real";
 //
-//						if (decorationName != "")
-//							addDecoration(decorationName, pos, Vector3.zero);
-
-					}
+//					if (go.name == "extralargeBlock1")
+//					{
+//						GameObject goNew = new GameObject ();
+//						goNew.transform.position = pos;
+//						goNew.transform.rotation = go.transform.rotation;
+//						borderTransforms.Add (goNew.transform);
+//
+////						int num = Random.Range(1, 4);
+////						string decorationName = "";
+////						if (num == 1)
+////							decorationName = "flores1_real";
+////						if (num == 2)
+////							decorationName = "flores2_real";
+////						else if (num == 3)
+////							decorationName = "floorFlowers_real";
+////
+////						if (decorationName != "")
+////							addDecoration(decorationName, pos, Vector3.zero);
+//
+//					}
 					//  }
 					if (go.GetComponent<DecorationManager>())
 					{
@@ -435,6 +434,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 		}
 
 			//AddBorders ();
+		//Debug.LogError (" borderTransforms.Count " + borderTransforms.Count);
 	}
 
 	Component CopyComponent(Component original, GameObject destination)
@@ -467,85 +467,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
 		{
 			Destroy(go);
 		}
-	}	
-
-
-
-
-
-
-
-
-
-
-
-	public void AddBorders()
-	{
-		int id1 = 0;
-		foreach (Transform t in borderTransforms) {
-			int id2 = 0;
-			bool front = true;
-			bool back = true;
-			bool right = true;
-			bool left = true;
-			foreach (Transform t2 in borderTransforms) {				
-				if (id1 != id2) {	
-					Vector3 myPos = t.transform.position;
-					Vector3 otherPos = t2.transform.position;
-					if (ThereIsAnotherBorder (new Vector3 (myPos.x, myPos.y, myPos.z + 12), otherPos))
-						back = false;
-					if (ThereIsAnotherBorder (new Vector3 (myPos.x, myPos.y, myPos.z - 12), otherPos))
-						front = false;
-					if (ThereIsAnotherBorder (new Vector3 (myPos.x+12, myPos.y, myPos.z), otherPos))
-						right = false;
-					if (ThereIsAnotherBorder (new Vector3 (myPos.x-12, myPos.y, myPos.z), otherPos))
-						left = false;					
-				}	
-				id2++;
-			}
-			AddBorder (t, front, back, right, left);
-			id1++;
-		}
-		borderTransforms.Clear ();
-	}
-	bool ThereIsAnotherBorder(Vector3 pos, Vector3 otherPos)
-	{
-		if (Vector3.Distance (pos, otherPos) < 1)
-			return true;
-		return false;
-	}
-	public void AddBorder(Transform t, bool front, bool back, bool right, bool left)
-	{
-		SceneObject sceneObject = Instantiate(Border_videogame_1) as SceneObject;
-		sceneObject.transform.parent = Pool.Scene.transform;
-		sceneObject.transform.rotation = t.transform.rotation;
-		sceneObject.Restart( t.transform.position);
-		BordersManager bordersManager = sceneObject.GetComponent<BordersManager> ();
-		if (front) {
-			foreach (WeakPlatform wp in bordersManager.front.GetComponentsInChildren<WeakPlatform>()) {
-				wp.OnRestart (wp.transform.position);
-				wp.transform.SetParent (sceneObject.transform.parent);
-			}
-		}
-		if (back) {
-			foreach (WeakPlatform wp in bordersManager.back.GetComponentsInChildren<WeakPlatform>()) {
-				wp.OnRestart (wp.transform.position);
-				wp.transform.SetParent (sceneObject.transform.parent);
-			}
-		}
-		if (right) {
-			foreach (WeakPlatform wp in bordersManager.right.GetComponentsInChildren<WeakPlatform>()) {
-				wp.OnRestart (wp.transform.position);
-				wp.transform.SetParent (sceneObject.transform.parent);
-			}
-		}
-		if (left) {
-			foreach (WeakPlatform wp in bordersManager.left.GetComponentsInChildren<WeakPlatform>()) {
-				wp.OnRestart (wp.transform.position);
-				wp.transform.SetParent (sceneObject.transform.parent);
-			}
-		}
-		sceneObject.Pool ();
 	}
 
 }

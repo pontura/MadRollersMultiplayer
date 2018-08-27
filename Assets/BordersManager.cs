@@ -9,4 +9,9 @@ public class BordersManager : MonoBehaviour {
 	public GameObject right;
 	public GameObject left;
 
+	public void Init()
+	{
+
+	}
+
 }

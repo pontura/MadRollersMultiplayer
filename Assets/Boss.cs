@@ -20,6 +20,7 @@ public class Boss : SceneObject {
 	{		
 		missions.ForceBossPercent (totalHits);
 		this.totalHits = totalHits;
+		Data.Instance.events.OnBossInit (totalHits);
 	}
 	public virtual void OnSceneObjectUpdated()
 	{
@@ -28,13 +29,15 @@ public class Boss : SceneObject {
 	public void breakOut()
 	{
 		Data.Instance.events.OnSoundFX("FX break", -1);
-		Hit ();
 		hits++;
+		Hit ();
 
 		Data.Instance.events.OncharacterCheer ();
 
 		if (hits >= totalHits)
 			Killed ();
+		else
+			Data.Instance.events.OnBossHitsUpdate (hits);
 		
 	}
 	public void Killed()
@@ -53,7 +56,7 @@ public class Boss : SceneObject {
 	}
 	public virtual void Hit()
 	{
-		Invoke ("Continue", 1);
+		//Invoke ("Continue", 1);
 	}
 	public virtual void Death()
 	{
