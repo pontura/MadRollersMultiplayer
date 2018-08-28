@@ -8,6 +8,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	SceneObjectsManager manager;
 	public ArrayList unused = new ArrayList();
 
+	public SceneObject Estrellas;
 	public SceneObject Water;
 	public SceneObject Lava;
 	public SceneObject Boss1;
@@ -246,6 +247,8 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				clone = jumper;
 			else if (go.name == "Lava")
 				clone = Lava;
+			else if (go.name == "Estrellas")
+				clone = Estrellas;
 			else if (go.name == "Water")
 				clone = Water;
 			else if (go.name == "Boss1")

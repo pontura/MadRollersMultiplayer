@@ -8,10 +8,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 400000}
-  - component: {fileID: 11400002}
   - component: {fileID: 11400000}
   m_Layer: 0
-  m_Name: 1_2_doble_conejos_galagas
+  m_Name: estrella_simple1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,7 +23,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.148207, y: 20.662792, z: -46.63002}
+  m_LocalPosition: {x: 17.76972, y: 70.41506, z: -10.118236}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -38,39 +37,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aab087fa44cc671439e1b50508ce4d75, type: 3}
+  m_Script: {fileID: 11500000, guid: 772be226d7eee534998f146178bc9df9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  areaSets:
-  - {fileID: 11400000, guid: 68d9f63656dade5478139fb4462bfbac, type: 2}
-  - {fileID: 114941458092399480, guid: 63984a57c6b6de543a9b8820c128e28e, type: 2}
-  - {fileID: 114004391671021460, guid: bc68e0b02bdb2e7419d8f95ec5baa949, type: 2}
-  - {fileID: 114393149578421074, guid: 8eb0046460522754a81b7c3735d1fa3d, type: 2}
-  activeAreaSetID: 1
-  showRelaxAreaBeforeStarting: 0
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c52aa23c4c1909c45b1a2eeadb8f98cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  totalDistance: 0
-  id: 2
-  backgroundSides:
-  - {fileID: 114261747288639716, guid: de223848633682f44882b76d6adecc79, type: 2}
-  voices: []
-  videoGameID: 0
-  isCompetition: 0
-  maxScore: 3000
-  Hiscore: 0
-  avatarHiscore: 
-  description: Survive 5km!
+  competitionsPriority: 0
+  randomize: 1
+  areas:
+  - {fileID: 114246886795568788, guid: 440e8ffaf7d962641b2e354580398152, type: 2}
+  - {fileID: 114080976688986130, guid: 9405d843cc24a1649bfe7b60203bb635, type: 2}
+  - {fileID: 114080976688986130, guid: ee50299eec44dc948a405daff05c1211, type: 2}
+  - {fileID: 114246886795568788, guid: 5b1452018d6cf0c4bb35e67757b5f0a4, type: 2}
+  - {fileID: 114246886795568788, guid: 47b6157d5043b114b8f5971ddbeb0d8b, type: 2}
+  totalAreasInSet: 10
+  cameraOrientation: {x: 0, y: 0, z: 0}
+  cameraRotationX: 0
+  isLastArea: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
