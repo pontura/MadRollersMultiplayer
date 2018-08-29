@@ -32,7 +32,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &100004
 GameObject:
   m_ObjectHideFlags: 0
@@ -47,7 +47,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &100006
 GameObject:
   m_ObjectHideFlags: 1
@@ -102,7 +102,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &100012
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,7 +120,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &100014
 GameObject:
   m_ObjectHideFlags: 1
@@ -177,7 +177,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &100020
 GameObject:
   m_ObjectHideFlags: 1
@@ -215,7 +215,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &100024
 GameObject:
   m_ObjectHideFlags: 1
@@ -252,7 +252,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &100028
 GameObject:
   m_ObjectHideFlags: 1
@@ -285,7 +285,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &100032
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,7 +303,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &100034
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,7 +318,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &100040
 GameObject:
   m_ObjectHideFlags: 1
@@ -384,7 +384,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &100072
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,7 +402,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &100074
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,7 +417,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &100076
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,7 +433,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &170164
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,7 +449,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &170166
 GameObject:
   m_ObjectHideFlags: 1
@@ -636,7 +636,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &170186
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,7 +652,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -2430,13 +2430,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dificult: 0
+  lastColor: {r: 0, g: 0, b: 0, a: 0}
   size_z: 0
   broken: 0
   id: 0
   characterTransform: {fileID: 0}
   isActive: 0
   score: 0
-  charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
   groundMaterial: {fileID: 0}
@@ -2484,13 +2484,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dificult: 0
+  lastColor: {r: 0, g: 0, b: 0, a: 0}
   size_z: 0
   broken: 0
   id: 0
   characterTransform: {fileID: 0}
   isActive: 0
   score: 0
-  charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
   groundMaterial: {fileID: 0}
@@ -2514,17 +2514,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dificult: 0
+  lastColor: {r: 0, g: 0, b: 0, a: 0}
   size_z: 0
   broken: 0
   id: 0
   characterTransform: {fileID: 0}
   isActive: 0
   score: 0
-  charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
   to: {fileID: 0}
   videoGame_ID: 0
+  borders: []
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2537,13 +2538,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dificult: 0
+  lastColor: {r: 0, g: 0, b: 0, a: 0}
   size_z: 0
   broken: 0
   id: 0
   characterTransform: {fileID: 0}
   isActive: 0
   score: 0
-  charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
   groundMaterial: {fileID: 0}
@@ -2579,17 +2580,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dificult: 0
+  lastColor: {r: 0, g: 0, b: 0, a: 0}
   size_z: 0
   broken: 0
   id: 0
   characterTransform: {fileID: 0}
   isActive: 0
   score: 0
-  charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
   to: {fileID: 0}
   videoGame_ID: 0
+  borders: []
 --- !u!114 &11400032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2602,13 +2604,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dificult: 0
+  lastColor: {r: 0, g: 0, b: 0, a: 0}
   size_z: 0
   broken: 0
   id: 0
   characterTransform: {fileID: 0}
   isActive: 0
   score: 0
-  charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
   groundMaterial: {fileID: 0}
@@ -2644,17 +2646,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dificult: 0
+  lastColor: {r: 0, g: 0, b: 0, a: 0}
   size_z: 0
   broken: 0
   id: 0
   characterTransform: {fileID: 0}
   isActive: 0
   score: 0
-  charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
   to: {fileID: 0}
   videoGame_ID: 0
+  borders: []
 --- !u!114 &11400050
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2680,13 +2683,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dificult: 0
+  lastColor: {r: 0, g: 0, b: 0, a: 0}
   size_z: 0
   broken: 0
   id: 0
   characterTransform: {fileID: 0}
   isActive: 0
   score: 20
-  charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
 --- !u!114 &11470166
@@ -2813,13 +2816,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dificult: 0
+  lastColor: {r: 0, g: 0, b: 0, a: 0}
   size_z: 0
   broken: 0
   id: 0
   characterTransform: {fileID: 0}
   isActive: 0
   score: 20
-  charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
 --- !u!114 &11470180
@@ -2890,13 +2893,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dificult: 0
+  lastColor: {r: 0, g: 0, b: 0, a: 0}
   size_z: 0
   broken: 0
   id: 0
   characterTransform: {fileID: 0}
   isActive: 0
   score: 20
-  charactersMmanager: {fileID: 0}
   distanceFromCharacter: 0
   onlyMultiplayers: 0
 --- !u!135 &13500000

@@ -103,7 +103,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	{
 		//print (area.name + " AREA");
 		borderTransforms = new List<Transform> ();
-		GameObject[] gos = area.getSceneObjects();
+		List<GameObject> gos = area.getSceneObjects();
 		bool nubesOn = false;
 
 		foreach (GameObject go in gos)
