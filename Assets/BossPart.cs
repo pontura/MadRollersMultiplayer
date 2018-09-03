@@ -32,6 +32,7 @@ public class BossPart : MonoBehaviour {
 	}
 	public void OnActive()
 	{
+		SendMessage ("OnBossPartActive", SendMessageOptions.DontRequireReceiver);
 		asset.SetActive (false);
 		Invoke ("Reactive", 4);
 	}

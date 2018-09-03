@@ -108,7 +108,10 @@ public class SceneObjectsBehavior : MonoBehaviour {
 
 		foreach (GameObject go in gos)
 		{
+			if (go == null)
+				break;
 			SceneObject sceneObject = null;
+			print (go.name);
 			Vector3 pos = go.transform.position;
 			pos.z += areasLength;
 			pos.x += areasX;

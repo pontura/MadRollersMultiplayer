@@ -6,7 +6,7 @@ public class Area : MonoBehaviour {
 
 	public float z_length;
     public int nextAreaX = 0;
-	List<GameObject> gos;
+	public List<GameObject> gos;
 
 	public List<GameObject> getSceneObjects()
     {
