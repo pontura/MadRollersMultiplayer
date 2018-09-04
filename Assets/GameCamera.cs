@@ -71,9 +71,9 @@ public class GameCamera : MonoBehaviour
 		newPos.y = 4.5f;
 		transform.localPosition = newPos;
 
-		_Y_correction = 1;
+		_Y_correction = 2;
 		if (team_id > 0) {
-			_Y_correction = 2;
+			//_Y_correction = 2;
 			state = states.WAITING_TO_TRAVEL;
 			Invoke ("Start_Traveling", 0.7f);
 			SetOrientation (new Vector4 (0, 0, 0, 0));
@@ -258,7 +258,7 @@ public class GameCamera : MonoBehaviour
 
 		_newPos.z = Mathf.Lerp (transform.localPosition.z, _newPos.z, Time.deltaTime*20);
 		_newPos.x = Mathf.Lerp (transform.localPosition.x, _newPos.x, Time.deltaTime*10);
-		_newPos.y = Mathf.Lerp (transform.localPosition.y, _newPos.y, Time.deltaTime*_Y_correction );
+		_newPos.y = Mathf.Lerp (transform.localPosition.y, _newPos.y, (Time.deltaTime*_Y_correction)/3 );
 
 		transform.localPosition = _newPos;
 		if(state != states.EXPLOTING)

@@ -9,30 +9,30 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1646828016710878}
+  m_RootGameObject: {fileID: 1160149939296066}
   m_IsPrefabAsset: 1
---- !u!1 &1646828016710878
+--- !u!1 &1160149939296066
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4633821665986382}
-  - component: {fileID: 114088022981575892}
+  - component: {fileID: 4336310582067832}
+  - component: {fileID: 114373686509189878}
   m_Layer: 0
-  m_Name: gargola
+  m_Name: lava
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4633821665986382
+--- !u!4 &4336310582067832
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1646828016710878}
+  m_GameObject: {fileID: 1160149939296066}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 64.046844, y: 108.22239, z: -239.56937}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -40,24 +40,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114088022981575892
+--- !u!114 &114373686509189878
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1646828016710878}
+  m_GameObject: {fileID: 1160149939296066}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 772be226d7eee534998f146178bc9df9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  competitionsPriority: 0
+  competitionsPriority: 70
   randomize: 1
   areas:
-  - {fileID: 114599850399068696, guid: 8d4a7a6f7a498984c94d5b05a27f95b0, type: 2}
-  - {fileID: 114477683991288302, guid: e02107054f046c246a72e30546c1bd63, type: 2}
-  - {fileID: 114747180031645898, guid: bad126f7516e22b4a8cce9c15d3219a5, type: 2}
-  totalAreasInSet: 6
-  cameraOrientation: {x: 0, y: 1, z: -1}
+  - {fileID: 114289944357650568, guid: 64a9398885a4c6a45bb2b7ab54b4a4b7, type: 2}
+  - {fileID: 114045269906822450, guid: 2781c5eb7e2bd8d45b750e00e66d732a, type: 2}
+  - {fileID: 114120818383513430, guid: d3459df6da9b94c4f87196120a8adba2, type: 2}
+  totalAreasInSet: 100
+  cameraOrientation: {x: 0, y: 0.5, z: 0}
   cameraRotationX: 0
   isLastArea: 0
