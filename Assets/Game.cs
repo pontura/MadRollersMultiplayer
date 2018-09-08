@@ -14,7 +14,7 @@ public class Game : MonoBehaviour {
 
     public MoodManager moodManager;
 	public SceneObjectsManager sceneObjectsManager;
-
+    public CombosManager combosManager;
     public Level level;
 
 	public states state;

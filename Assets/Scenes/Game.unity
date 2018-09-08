@@ -3982,6 +3982,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 1742112368}
   progressBar: {fileID: 1742112369}
+  totalHits: 0
+  value: 0
 --- !u!114 &964237556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5241,7 +5243,8 @@ Prefab:
       propertyPath: level
       value: 
       objectReference: {fileID: 2081913047}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114351820435468070, guid: d6fae757b899fd84dadae4510feb47b7, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: d6fae757b899fd84dadae4510feb47b7, type: 2}
   m_IsPrefabAsset: 0
 --- !u!114 &1272481443 stripped

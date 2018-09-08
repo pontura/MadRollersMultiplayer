@@ -97,7 +97,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	private void resetGO(GameObject go) {
 		go.GetComponentInChildren<Renderer>().enabled = true;
 	}
-
 	List<Transform> borderTransforms;
 	public void replaceSceneObject(Area area, float areasLength, int areasX, bool oposite = false)
 	{
@@ -111,7 +110,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			if (go == null)
 				break;
 			SceneObject sceneObject = null;
-			print (go.name);
 			Vector3 pos = go.transform.position;
 			pos.z += areasLength;
 			pos.x += areasX;
@@ -197,6 +195,10 @@ public class SceneObjectsBehavior : MonoBehaviour {
 //
 //					}
 					//  }
+					if(go.name == "Coin" || go.name =="bloodx1")
+					{
+						sceneObject.GetComponent<GrabbableItem>().SetComboGrabbable(areasLength,area.totalCoins);
+					} else
 					if (go.GetComponent<DecorationManager>())
 					{
 						addDecoration("Baranda1_real", pos, new Vector3(5.5f, 0, 3));

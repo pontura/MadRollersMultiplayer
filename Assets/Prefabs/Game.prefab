@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 11471626}
   - component: {fileID: 11439632}
   - component: {fileID: 11484942}
+  - component: {fileID: 114098382473028920}
+  - component: {fileID: 114351820435468070}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -48,6 +50,7 @@ MonoBehaviour:
   gameCamera: {fileID: 0}
   moodManager: {fileID: 0}
   sceneObjectsManager: {fileID: 0}
+  combosManager: {fileID: 114351820435468070}
   level: {fileID: 0}
   state: 0
 --- !u!114 &11400002
@@ -132,3 +135,25 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100000}
   m_IsPrefabAsset: 1
+--- !u!114 &114098382473028920
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdfd7dea8ff66524a9fc97ae3bc3a3ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114351820435468070
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdfd7dea8ff66524a9fc97ae3bc3a3ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

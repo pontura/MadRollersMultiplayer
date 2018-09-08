@@ -22,6 +22,9 @@ public class GrabbableItem : SceneObject
 
 	public Color[] titila;
 
+    public float areaID;
+    public int totalGrabbablesInArea;
+
     public override void OnRestart(Vector3 pos)
     {
 		base.OnRestart(pos);
@@ -80,6 +83,7 @@ public class GrabbableItem : SceneObject
                 Data.Instance.events.OnGrabHeart();
                 Data.Instance.GetComponent<MusicManager>().addHeartSound();
                 player = null;
+                CheckIfIsPartOfCombo();
                 Pool();
 			}
 		}
@@ -105,5 +109,16 @@ public class GrabbableItem : SceneObject
             FloorCollider.enabled = false;
 		}
 	}
-    
+    public void SetComboGrabbable(float areaID, int totalGrabbablesInArea)
+    {
+        this.areaID = areaID;
+        this.totalGrabbablesInArea = totalGrabbablesInArea;
+    } 
+    public void CheckIfIsPartOfCombo()
+    {
+        if(this.areaID>0)
+        {
+            Game.Instance.combosManager.GetNewItemToCombo(areaID, totalGrabbablesInArea);
+        }
+    }
 }

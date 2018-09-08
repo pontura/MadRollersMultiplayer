@@ -7,15 +7,15 @@ public class Area : MonoBehaviour {
 	public float z_length;
     public int nextAreaX = 0;
 	public List<GameObject> gos;
+    public int totalCoins;
 
 	public List<GameObject> getSceneObjects()
     {
 		
-		if (gos.Count > 0) {
-			//print ("siiiiiiiii ");
+		if (gos.Count > 0 && totalCoins>0) {
 			return gos;
 		}
-		//print ("NO ");
+		print("First time level loaded: " + name);
 		
         gos = new List<GameObject>();
         Transform[] childs = GetComponentsInChildren<Transform>(true);
@@ -23,10 +23,14 @@ public class Area : MonoBehaviour {
         {
            // if (t != transform)
            // {
+               
                 if (t.tag == "sceneObject")
                 {
                     gos.Add(t.gameObject);
 					t.gameObject.SetActive (false);
+
+                    if(t.name=="Coin")
+                        totalCoins++;
                 }
 //                else if (t.tag == "sceneObject_easy" && level.Dificulty == Level.Dificult.EASY)
 //                {
