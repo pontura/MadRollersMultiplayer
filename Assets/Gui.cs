@@ -40,7 +40,7 @@ public class Gui : MonoBehaviour {
 		CancelInvoke ();
 		Reset ();
 		if (isOn) {
-			OnGenericUIText( "Kill 'el all");
+			OnGenericUIText( "Kill 'em all");
 		} else {
 			levelComplete.gameObject.SetActive (true);
 			levelComplete.Init (Data.Instance.missions.MissionActive.id);

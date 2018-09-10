@@ -4,7 +4,6 @@ using System.Collections;
 public class MusicManager : MonoBehaviour {
 
     public AudioClip interfaces;
-    public AudioClip MainTheme;
     public AudioClip IndestructibleFX;
     public AudioClip heartClip;
     public AudioClip consumeHearts;
@@ -101,20 +100,20 @@ public class MusicManager : MonoBehaviour {
     }
     void StartMultiplayerRace()
     {
-        playSound(MainTheme);
+		PlayMainTheme ();
     }
 	public void BossMusic(bool isBoss)
 	{
 		return;
 		if (!isBoss)
-			playSound(MainTheme);
+			PlayMainTheme ();
 		else
 			playSound(IndestructibleFX);
 	}
     void OnAvatarChangeFX(Player.fxStates state)
     {
-        if (state == Player.fxStates.NORMAL)
-            playSound(MainTheme);
+		if (state == Player.fxStates.NORMAL)
+			PlayMainTheme ();
         else
             playSound(IndestructibleFX);
     }
@@ -142,4 +141,23 @@ public class MusicManager : MonoBehaviour {
           }
         }
     }
+	void PlayMainTheme()
+	{
+		string soundName = "song0";
+		switch(Data.Instance.videogamesData.actualID)
+		{
+		case 0:
+			soundName = "song0";
+			break;
+		case 1:
+			soundName = "song1";
+			break;
+		case 2:
+			soundName = "song2";
+			break;
+		}
+		audioSource.clip = Resources.Load("songs/" + soundName) as AudioClip;
+		audioSource.Play();
+		audioSource.loop = true;
+	}
 }

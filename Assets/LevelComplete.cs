@@ -29,7 +29,7 @@ public class LevelComplete : MonoBehaviour {
 
         int starsQty;
 		//if (missionScore >= quarter * 4) {
-			titleText = "EXCELENT";
+			titleText = "EXCELLENT";
 			starsQty = 3;
 //		//} else if (missionScore >= quarter * 2) {
 //			titleText = "WELL DONE";
