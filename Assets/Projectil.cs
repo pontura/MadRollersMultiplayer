@@ -90,9 +90,13 @@ public class Projectil : SceneObject {
     public override void OnSceneObjectUpdate()
     {
 		if (target != null) {
-			Vector3 lookAtPos =  target.transform.position;
-			lookAtPos.y += 1.5f;
-			transform.LookAt(lookAtPos);
+			if (target.transform.position.z < transform.position.z) {
+				target = null;
+			} else {		
+				Vector3 lookAtPos = target.transform.position;
+				lookAtPos.y += 1.5f;
+				transform.LookAt (lookAtPos);
+			}
 		}
 		Vector3 pos = transform.localPosition;
 

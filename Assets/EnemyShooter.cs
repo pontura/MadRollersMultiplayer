@@ -10,13 +10,13 @@ public class EnemyShooter : MonoBehaviour {
 
     void Start()
     {
-        mmoCharacter = GetComponent<MmoCharacter>();
-        OnReachFloor();
-        ready = false;
-        GameObject weaponOn = Instantiate(projectile_on) as GameObject;
-        weaponOn.transform.SetParent(mmoCharacter.weaponContainer.transform);
-        weaponOn.transform.localScale = Vector3.one;
-        weaponOn.transform.localPosition = Vector3.zero;
+//        mmoCharacter = GetComponent<MmoCharacter>();
+//        OnReachFloor();
+//        ready = false;
+//        GameObject weaponOn = Instantiate(projectile_on) as GameObject;
+//        weaponOn.transform.SetParent(mmoCharacter.weaponContainer.transform);
+//        weaponOn.transform.localScale = Vector3.one;
+//        weaponOn.transform.localPosition = Vector3.zero;
     }
     void OnDisable()
     {

@@ -13,10 +13,11 @@ public class Floor : MonoBehaviour
 	public List<BackgroundSideData> all;
 	string lastBackgroundSideName;
 	public CharactersManager charactersManager;
-	public VideogameBossPanel videoGameBossPanel;
+	VideogameBossPanel videoGameBossPanel;
 
 	void Start()
     {
+		videoGameBossPanel = Game.Instance.GetComponent<VideogameBossPanelsManager> ().actualBossPanel;
         isMoving = true;
         Data.Instance.events.OnGamePaused += OnGamePaused;
 		Data.Instance.events.OnGameOver += OnGameOver;
@@ -49,7 +50,10 @@ public class Floor : MonoBehaviour
         if (!isMoving) return;
         if (!charactersManager) return;
 		float charactersDistance = charactersManager.getDistance ();
-		videoGameBossPanel.transform.localPosition = new Vector3 (0,0,charactersDistance);
+
+		if(videoGameBossPanel != null)
+			videoGameBossPanel.transform.localPosition = new Vector3 (0,0,charactersDistance);
+		
 		if (charactersDistance == lastCharactersDistance)
 			return;
 		

@@ -45,7 +45,7 @@ public class SceneObjectsManager : MonoBehaviour {
 			i--;
 			if (so == null) {
 				sceneObjectsInScene.RemoveAt (i);
-			} else if (so.transform.localPosition.y < -4) {
+			} else if (so.transform.localPosition.y < -8) {
 				so.Pool ();
 			}else if (distance > so.transform.position.z + so.size_z + 22 && Data.Instance.playMode != Data.PlayModes.VERSUS)
 				so.Pool();

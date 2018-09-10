@@ -19,6 +19,7 @@ public class ScoresManager : MonoBehaviour {
 		DESTROY_FLOOR,
 		DESTROY_WALL,
 		GRAB_PIXEL,
-		BOSS
+		BOSS,
+		COMBO
 	}
 }

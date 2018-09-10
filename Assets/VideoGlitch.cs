@@ -1,20 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Video;
+//using UnityEngine.Video;
 
 public class VideoGlitch : MonoBehaviour {
 
-	public VideoPlayer videoPlayer;
+	//public VideoPlayer videoPlayer;
 	public GameObject panel;
 
 	private void Start()
 	{
 		//panel.SetActive (false);
-		videoPlayer.prepareCompleted += VideoPlayer_prepareCompleted;
-		videoPlayer.Prepare();
-		Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
-		Data.Instance.events.OnGameOver += OnGameOver;
+		//videoPlayer.prepareCompleted += VideoPlayer_prepareCompleted;
+		//videoPlayer.Prepare();
+	//	Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
+	//	Data.Instance.events.OnGameOver += OnGameOver;
 	}
 	public void Init()
 	{
@@ -22,14 +22,14 @@ public class VideoGlitch : MonoBehaviour {
 	}
 	void StartMultiplayerRace()
 	{
-		videoPlayer.Pause ();
+		//videoPlayer.Pause ();
 	}
 	void OnGameOver()
 	{
-		videoPlayer.Play ();
+		//videoPlayer.Play ();
 	}
-	private void VideoPlayer_prepareCompleted(VideoPlayer source)
-	{
-		videoPlayer.Play();
-	}  
+//	private void VideoPlayer_prepareCompleted(VideoPlayer source)
+//	{
+//	//	videoPlayer.Play();
+//	}  
 }

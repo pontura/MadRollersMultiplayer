@@ -6,8 +6,8 @@ using System.IO;
 public class WebCamPhotoCamera : MonoBehaviour
 {
 
-    Texture2D lastPhotoTexture;
-    WebCamTexture webCamTexture;
+  //  Texture2D lastPhotoTexture;
+  //  WebCamTexture webCamTexture;
 
     public MeshRenderer rawImage;
 
@@ -45,21 +45,21 @@ public class WebCamPhotoCamera : MonoBehaviour
     }
     void OnDestroy()
     {
-		if(webCamTexture != null)
-       		 webCamTexture.Stop();
+//		if(webCamTexture != null)
+//       		 webCamTexture.Stop();
     }
     public void TakePhoto(int score)
     {
-		if (WebCamTexture.devices.Length == 0) {
-			Data.Instance.LoadLevel("MainMenu");
-			return;
-		}
-        photoTaken = true;
-        lastPhotoTexture = new Texture2D(webCamTexture.width, webCamTexture.height);
-        lastPhotoTexture.SetPixels(webCamTexture.GetPixels());
-        lastPhotoTexture.Apply();
-        webCamTexture.Stop();
-        Data.Instance.GetComponent<PhotosManager>().SavePhoto(lastPhotoTexture, score);
-        lastPhotoTexture = null;
+//		if (WebCamTexture.devices.Length == 0) {
+//			Data.Instance.LoadLevel("MainMenu");
+//			return;
+//		}
+//        photoTaken = true;
+//        lastPhotoTexture = new Texture2D(webCamTexture.width, webCamTexture.height);
+//        lastPhotoTexture.SetPixels(webCamTexture.GetPixels());
+//        lastPhotoTexture.Apply();
+//        webCamTexture.Stop();
+//        Data.Instance.GetComponent<PhotosManager>().SavePhoto(lastPhotoTexture, score);
+//        lastPhotoTexture = null;
     }
 }

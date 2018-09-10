@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 11439632}
   - component: {fileID: 11484942}
   - component: {fileID: 114098382473028920}
-  - component: {fileID: 114351820435468070}
+  - component: {fileID: 114488407468105530}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -50,7 +50,7 @@ MonoBehaviour:
   gameCamera: {fileID: 0}
   moodManager: {fileID: 0}
   sceneObjectsManager: {fileID: 0}
-  combosManager: {fileID: 114351820435468070}
+  combosManager: {fileID: 114098382473028920}
   level: {fileID: 0}
   state: 0
 --- !u!114 &11400002
@@ -146,7 +146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdfd7dea8ff66524a9fc97ae3bc3a3ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114351820435468070
+  total: 0
+  value: 0
+--- !u!114 &114488407468105530
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,6 +156,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdfd7dea8ff66524a9fc97ae3bc3a3ce, type: 3}
+  m_Script: {fileID: 11500000, guid: b004de6092e79f9498d1dca4e232de9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boosPanel1: {fileID: 114713835251051092, guid: 7b7565ecf1b3f89409b354269254ec26,
+    type: 2}
+  boosPanel2: {fileID: 114414303273177220, guid: b9f8b9abbf29f9c4d928db13bdd6c5b2,
+    type: 2}
+  boosPanel3: {fileID: 114157730904639814, guid: b7a53ab17b401ce4d84ec4b6df544fa5,
+    type: 2}
+  actualBossPanel: {fileID: 0}

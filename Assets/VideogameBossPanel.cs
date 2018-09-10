@@ -57,8 +57,10 @@ public class VideogameBossPanel : MonoBehaviour {
 	IEnumerator AxeCoroutine ()
 	{
 		state = states.DROPPING_BOMB;
-		panel.SetActive (true);
 		anim.Play ("axe_idle");
+		yield return new WaitForEndOfFrame();
+		panel.SetActive (true);
+
 		yield return new WaitForSeconds (1f);
 		anim.Play ("axe_throw");
 		yield return new WaitForSeconds (1f);
@@ -71,7 +73,6 @@ public class VideogameBossPanel : MonoBehaviour {
 	{
 		if (isOn) {
 			state = states.IDLE;
-			panel.SetActive (true);
 			Laugh(3);
 		} else {			
 			Mad (3);
@@ -130,6 +131,8 @@ public class VideogameBossPanel : MonoBehaviour {
 	IEnumerator LaughCoroutine (float timer)
 	{
 		anim.Play ("laugh");
+		yield return new WaitForEndOfFrame();
+		panel.SetActive (true);
 
 		yield return new WaitForSeconds (timer);
 		if (state == states.LAUGHING)
