@@ -149,7 +149,7 @@ public class GameCamera : MonoBehaviour
 			StopCoroutine (DoExploteCoroutine);
 		state = states.EXPLOTING;
 
-		SetPixels(12);
+		SetPixels(8);
 
 		DoExploteCoroutine = DoExplote ();
 		StartCoroutine (DoExploteCoroutine);
@@ -163,7 +163,7 @@ public class GameCamera : MonoBehaviour
 			StopCoroutine (DoExploteCoroutine);
 		state = states.EXPLOTING;
 
-		SetPixels(6);
+		SetPixels(4);
 
 		this.explotionForce = explotionForce*2f;
 		DoExploteCoroutine = DoExplote ();
