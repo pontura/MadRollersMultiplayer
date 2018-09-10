@@ -83,7 +83,7 @@ public class CharacterShooter : MonoBehaviour {
 
 		lastShot = Time.time;
 
-		Vector3 pos = new Vector3(transform.position.x, transform.position.y+1.7f, transform.position.z+0.1f);
+		Vector3 pos = new Vector3(transform.position.x, transform.position.y+3f, transform.position.z+0.1f);
 
 		OnShoot (pos, weawponType);
 
@@ -121,7 +121,7 @@ public class CharacterShooter : MonoBehaviour {
 			Game.Instance.sceneObjectsManager.AddSceneObject(projectil, pos);
 			projectil.team_for_versus = characterBehavior.team_for_versus;
 			Vector3 rot = transform.localEulerAngles;
-			rot.x -= 4;
+			rot.x = 0;
 
 			if (characterBehavior.team_for_versus > 1) {
 				rot.y += 180;

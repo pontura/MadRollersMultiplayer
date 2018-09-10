@@ -38,7 +38,7 @@ public class Projectil : SceneObject {
 	int lastPlayerID;
     public override void OnRestart(Vector3 pos)
     {			
-
+		target = null;
         level = Game.Instance.level;
         base.OnRestart(pos);
 
@@ -89,6 +89,11 @@ public class Projectil : SceneObject {
     
     public override void OnSceneObjectUpdate()
     {
+		if (target != null) {
+			Vector3 lookAtPos =  target.transform.position;
+			lookAtPos.y += 1.5f;
+			transform.LookAt(lookAtPos);
+		}
 		Vector3 pos = transform.localPosition;
 
 		myDist += Time.deltaTime * speed;
@@ -102,15 +107,15 @@ public class Projectil : SceneObject {
 			gotoRot = 180;
 		else if (rotation.y > 180)
 			gotoRot = 360;
-		
-		rotation.y = Mathf.Lerp(rotation.y , gotoRot, Time.deltaTime*7);
+
+		rotation.y = Mathf.Lerp(rotation.y , gotoRot, Time.deltaTime*4);
 		
        // rotation.y = 0;
 		if (pos.y < - 0.8) Reset();
         else
 		if(myDist >= myRange)
 		{
-            rotation.x += 30 * Time.deltaTime;					
+            rotation.x += 15 * Time.deltaTime;					
             transform.localEulerAngles = rotation;
 		}
 		pos += transform.forward * 50  * Time.deltaTime;		
@@ -206,6 +211,16 @@ public class Projectil : SceneObject {
     }
 	void Reset()
     {
+		target = null;
         Pool();
     }
+
+	GameObject target;
+	public void StartFollowing(GameObject target)
+	{
+		if (this.target)
+			return;
+		
+		this.target = target;
+	}
 }
