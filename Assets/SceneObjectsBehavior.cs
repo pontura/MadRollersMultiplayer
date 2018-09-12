@@ -38,6 +38,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	public SceneObject palm_tall;
 	public SceneObject enemyGhost;
 	public SceneObject cilindro;
+	public SceneObject cilindroBig;
 
 	public SceneObject GrabbableInvensible;
 	public SceneObject GrabbableJetpack;
@@ -284,6 +285,8 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				clone = tunel2;
 			else if (go.name == "cilindro")
 				clone = cilindro;
+			else if (go.name == "cilindroBig")
+				clone = cilindroBig;
 			else if (go.name == "enemyGhost")
 				clone = enemyGhost;
 //			else if (go.name == "palmTall") {
