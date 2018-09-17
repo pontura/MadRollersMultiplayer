@@ -164,6 +164,7 @@ GameObject:
   - component: {fileID: 13658266}
   - component: {fileID: 114015396242777176}
   - component: {fileID: 114273506417448414}
+  - component: {fileID: 114843084798655888}
   m_Layer: 9
   m_Name: PlayerMultiplayer
   m_TagString: Untagged
@@ -448,12 +449,12 @@ MonoBehaviour:
   isOver: {fileID: 0}
   controls: {fileID: 11480918}
   shooter: {fileID: 114273506417448414}
+  characterMovement: {fileID: 0}
   superJumpHeight: 1200
   player: {fileID: 0}
   model: {fileID: 0}
   data: {fileID: 0}
   jumpsNumber: 0
-  position: 0
 --- !u!114 &11429352
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10969,6 +10970,18 @@ MonoBehaviour:
   player2: 0
   player3: 1
   player4: 0
+--- !u!114 &114843084798655888
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec573af103c12e745a9beea9032e0d4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterPosition: 0
 --- !u!114 &114868078186033550
 MonoBehaviour:
   m_ObjectHideFlags: 1

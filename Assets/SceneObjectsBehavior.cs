@@ -31,7 +31,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	public SceneObject rampa;
 	public SceneObject rampaHuge;
 	public SceneObject bomb1;
-	public SceneObject palm;
+	public SceneObject Laser;
 	public SceneObject palm2;
 	public SceneObject palm3;
 	public SceneObject palm4;
@@ -251,6 +251,8 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				clone = wallSuperSmall;
 			else if (go.name == "jumper")
 				clone = jumper;
+			else if (go.name == "Laser")
+				clone = Laser;
 			else if (go.name == "Lava")
 				clone = Lava;
 			else if (go.name == "Estrellas")
@@ -405,9 +407,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				EnemyPathsMultiples mo = go.GetComponent<EnemyPathsMultiples>();
 				CopyComponent(mo, sceneObject.gameObject);
 			}
-
-
-
 			if (go.GetComponent<Subibaja>())
 			{
 				Subibaja mo = go.GetComponent<Subibaja>();
@@ -439,7 +438,11 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				RandomPosition mo = go.GetComponent<RandomPosition>();
 				pos = mo.getPosition(pos);
 			}
-
+			if (go.GetComponent<SceneObjectData>())
+			{
+				SceneObjectData mo = go.GetComponent<SceneObjectData>();
+				CopyComponent(mo, sceneObject.gameObject);
+			}
 			if(sceneObject!=null)
 				manager.AddSceneObject (sceneObject, pos);
 		}

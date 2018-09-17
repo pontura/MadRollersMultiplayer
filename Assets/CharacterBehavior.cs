@@ -21,6 +21,7 @@ public class CharacterBehavior : MonoBehaviour {
 		RUN,
 		JUMP,
 		DOUBLEJUMP,
+		SUPERJUMP,
 		HITTED,
 		SHOOT,
 		DEAD,
@@ -33,6 +34,7 @@ public class CharacterBehavior : MonoBehaviour {
 	public CharacterBehavior isOver;
 	public CharacterControls controls;
 	public CharacterShooter shooter;
+	public CharacterMovement characterMovement;
 
 	private int MAX_JETPACK_HEIGHT = 25;
 
@@ -52,7 +54,7 @@ public class CharacterBehavior : MonoBehaviour {
 	public int jumpsNumber;
 
 	//en la carrera muktiplayer:
-	public int position;
+	//public int position;
 	Rigidbody rb;
 
 	// Use this for initialization
@@ -60,6 +62,7 @@ public class CharacterBehavior : MonoBehaviour {
 		rb = GetComponent<Rigidbody> ();
 	}
 	void Start () {
+		characterMovement = GetComponent<CharacterMovement> ();
 		data = Data.Instance;  
 		player = GetComponent<Player>();
 
@@ -81,10 +84,10 @@ public class CharacterBehavior : MonoBehaviour {
 		data.events.OnVersusTeamWon += OnVersusTeamWon;
 		data.events.OnAvatarProgressBarEmpty += OnAvatarProgressBarEmpty;
 		data.events.OncharacterCheer += OncharacterCheer;
-		data.events.OnReorderAvatarsByPosition += OnReorderAvatarsByPosition;
+
 		data.events.StartMultiplayerRace += StartMultiplayerRace;
 
-		Invoke("RefreshPosition", 0.1f);
+
 		//if(Data.Instance.isArcadeMultiplayer)
 		//_animation_hero.Play("saluda");
 
@@ -101,7 +104,6 @@ public class CharacterBehavior : MonoBehaviour {
 		data.events.OnVersusTeamWon -= OnVersusTeamWon;
 		data.events.OnAvatarProgressBarEmpty -= OnAvatarProgressBarEmpty;
 		data.events.OncharacterCheer -= OncharacterCheer;
-		data.events.OnReorderAvatarsByPosition -= OnReorderAvatarsByPosition;
 		data.events.StartMultiplayerRace -= StartMultiplayerRace;
 	}
 	void OnVersusTeamWon(int _team_id)
@@ -159,15 +161,8 @@ public class CharacterBehavior : MonoBehaviour {
 		Run();
 		Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.ENGINES, player.id);
 	}
-	void OnReorderAvatarsByPosition(List<int> players)
-	{
-		Invoke("RefreshPosition", 0.1f);
-	}
-	void RefreshPosition()
-	{
-		print ("__RefreshPosition");
-		this.position = player.charactersManager.GetPositionByID(player.id);
-	}
+
+
 	public void OncharacterCheer()
 	{
 		if (Random.Range(0, 8) < 2)
@@ -179,66 +174,7 @@ public class CharacterBehavior : MonoBehaviour {
 	{
 		if (state == states.DEAD)
 			return;
-		if (state == states.JETPACK)
-		{
-			player.OnAvatarProgressBarUnFill(0.25f * Time.deltaTime);
-			rb.velocity = Vector3.zero;
-			rb.useGravity = false;
-
-			Vector3 pos = transform.position;
-
-			if (pos.y < MAX_JETPACK_HEIGHT)
-			{
-				// pos.y += 6 * Time.deltaTime;
-				pos.y += (MAX_JETPACK_HEIGHT-pos.y) * Time.deltaTime;
-
-				transform.position = pos;
-			}
-		}
-		else
-		{
-			//if (transform.position.y > 20 && Random.Range(0,10)<4)
-			//  Data.Instance.voicesManager.VoiceSecondaryFromResources("que_vertigo_no");
-
-			//rb.mass = 100;
-			//rb.useGravity = true;
-		}
-
-		Vector3 goTo = transform.position;
-
-	//	if (isOver)
-	//	{
-	//		goTo.x = isOver.transform.localPosition.x;
-	//		goTo.y = isOver.transform.localPosition.y + 1;
-	//		goTo.z = isOver.transform.localPosition.z+0.2f;
-	//	}
-	//	else
-		//{
-			
-		float _z = player.charactersManager.distance - (position / 1);
-		if (controls.isAutomata)
-			_z -= 2;
-		if (team_for_versus == 2) {
-			rotationY *= -1;
-			_z *= -1;
-		}
-		float speedRotation;
-		if (Data.Instance.playMode == Data.PlayModes.VERSUS) {
-			speedRotation = 2.2f;
-		} else {
-			speedRotation = 3;
-		}
-		goTo.x += (rotationY / speedRotation) * Time.deltaTime;
-		goTo.z = _z;
-	//	}
-
-		if(controls.isAutomata || controls.ControlsEnabled)
-			transform.position = Vector3.Lerp(transform.position, goTo, 6);
-
-		if (transform.position.y < heightToFall)
-		{
-			Fall();
-		}
+		characterMovement.UpdateByController (rotationY);
 	}
 
 
@@ -303,7 +239,6 @@ public class CharacterBehavior : MonoBehaviour {
 	}
 	public void Slide()
 	{
-		print("SLIDE:");
 		_animation_hero.Play("slide");
 	}
 	public void JumpPressed()
@@ -356,6 +291,7 @@ public class CharacterBehavior : MonoBehaviour {
 		if (Game.Instance.state ==  Game.states.INTRO)
 			return;
 		if (state == states.DEAD) return;
+		if (state == states.SUPERJUMP) return;
 
 		if (hasSomeoneOver != null)
 			OnGetRidOfOverAvatar();
@@ -413,8 +349,6 @@ public class CharacterBehavior : MonoBehaviour {
 	}
 	public void SuperJump(float _superJumpHeight, bool isDoubleJump = false)
 	{
-	//	if (!player.canJump) return;
-
 		float velocityY = Mathf.Abs(rb.velocity.y)/8;
 
 		if (velocityY < 1 || !isDoubleJump)
@@ -439,7 +373,8 @@ public class CharacterBehavior : MonoBehaviour {
 
 	public void SuperJumpByBumped(int force , float offsetY, bool dir_forward)
 	{
-
+		if (state == states.SUPERJUMP)
+			return;
 		ResetColliders();
 		floorCollitions.OnAvatarJump();
 		//data.events.AvatarJump();
@@ -447,7 +382,7 @@ public class CharacterBehavior : MonoBehaviour {
 		pos.y += offsetY;
 		transform.localPosition = pos;
 		SuperJump(force);
-
+		state = states.SUPERJUMP;
 		Data.Instance.events.OnMadRollerFX (MadRollersSFX.types.DOUBLE_JUMP, player.id);
 
 		if (!dir_forward)
@@ -458,9 +393,6 @@ public class CharacterBehavior : MonoBehaviour {
 		{
 			_animation_hero.Play("superJump");            
 		}
-
-		//lo hago para resetear el doble salto:
-		// state = states.JUMP;
 
 	}
 	public void Fall()
@@ -531,6 +463,26 @@ public class CharacterBehavior : MonoBehaviour {
 		SuperJump( jumpHeight );
 	}
 
+	void OnCollisionEnter(Collision other)
+	{
+		if (other.gameObject.tag == "Player2")
+		{
+			if (state == CharacterBehavior.states.JUMP)
+			{
+				CharacterBehavior cb = other.gameObject.GetComponent<CharacterBehavior>();
+				if (cb != null)
+				{
+					// if (cb.transform.localPosition.y > characterBehavior.transform.localPosition.y) return;
+					if (cb.state != CharacterBehavior.states.RUN) return;
+					if (cb.isOver != null) return;
+					if (isOver != null) return;
 
+					//print("Player " + player.id + " con " + cb.player.id);
+					cb.OnAvatarStartCarringSomeone(this);
+					OnAvatarOverOther(cb);
+				}
+			}
+		} 
+	}
 }
 

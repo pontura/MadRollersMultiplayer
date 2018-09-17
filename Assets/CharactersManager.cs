@@ -94,7 +94,7 @@ public class CharactersManager : MonoBehaviour {
     public int GetPositionByID(int _playerID)
     {
 		//if (distance < 100) return 0;
-		if (Game.Instance.level.waitingToStart) return 0;
+		//if (Game.Instance.level.waitingToStart) return 0;
         int position = 0;
         foreach(int playerID in playerPositions)
         {

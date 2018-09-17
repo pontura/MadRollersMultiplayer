@@ -71,16 +71,7 @@ public class SceneObject : MonoBehaviour {
     }
     public virtual void OnRestart(Vector3 pos)
     {
-//        if (!Game.Instance)
-//        {
-//         //   Pool(); return;
-//        }
-     //   if(!charactersMmanager)
-      //   charactersMmanager = Game.Instance.GetComponent<CharactersManager>();
-
-       // gameObject.SetActive(true);
         transform.position = pos;
-        //isActive = true;
     }
 
 	public virtual void ChangeColor(Color newColor)  { 

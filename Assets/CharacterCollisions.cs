@@ -11,32 +11,34 @@ public class CharacterCollisions : MonoBehaviour {
 	{
         characterBehavior = gameObject.transform.parent.GetComponent<CharacterBehavior>();
         player = gameObject.transform.parent.GetComponent<Player>();
-	}
+	}		
+
 	void OnTriggerEnter(Collider other) {
+		print ("OnTriggerEnter  other   " + other.gameObject.name);
 		if (characterBehavior == null)
 			return;
         if (characterBehavior.state == CharacterBehavior.states.DEAD) return;
         if (characterBehavior.state == CharacterBehavior.states.CRASH) return;
         if (characterBehavior.state == CharacterBehavior.states.FALL) return;
-        if (other.tag == "Player")
-        {
-            if (characterBehavior.state == CharacterBehavior.states.JUMP)
-            {
-                if (other.GetComponent<CharacterCollisions>())
-                {
-                    CharacterBehavior cb = other.GetComponent<CharacterCollisions>().characterBehavior;
-
-                   // if (cb.transform.localPosition.y > characterBehavior.transform.localPosition.y) return;
-                    if (cb.state != CharacterBehavior.states.RUN) return;
-                    if (cb.isOver != null) return;
-                    if (characterBehavior.isOver != null) return;
-
-                    print("Player " + player.id + " con " + cb.player.id);
-                    cb.OnAvatarStartCarringSomeone(characterBehavior);
-                    characterBehavior.OnAvatarOverOther(cb);
-                }
-            }
-        } else
+//        if (other.tag == "Player")
+//        {
+//            if (characterBehavior.state == CharacterBehavior.states.JUMP)
+//            {
+//                if (other.GetComponent<CharacterCollisions>())
+//                {
+//                    CharacterBehavior cb = other.GetComponent<CharacterCollisions>().characterBehavior;
+//
+//                   // if (cb.transform.localPosition.y > characterBehavior.transform.localPosition.y) return;
+//                    if (cb.state != CharacterBehavior.states.RUN) return;
+//                    if (cb.isOver != null) return;
+//                    if (characterBehavior.isOver != null) return;
+//
+//                    print("Player " + player.id + " con " + cb.player.id);
+//                    cb.OnAvatarStartCarringSomeone(characterBehavior);
+//                    characterBehavior.OnAvatarOverOther(cb);
+//                }
+//            }
+//        } else
 		if (other.tag == "wall" || other.tag == "firewall") 
 		{
             if (characterBehavior.state == CharacterBehavior.states.SHOOT) return;
@@ -45,8 +47,8 @@ public class CharacterCollisions : MonoBehaviour {
                 characterBehavior.data.events.AddExplotion(transform.position, Color.red);
                 characterBehavior.Hit();
             }
-            else
-                other.GetComponent<WeakPlatform>().breakOut(transform.position);
+         //  else
+             //   other.GetComponent<WeakPlatform>().breakOut(transform.position);
         }
         if (other.tag == "destroyable") 
 		{
