@@ -4,7 +4,6 @@ using System.Collections;
 public class MusicManager : MonoBehaviour {
 
     public AudioClip interfaces;
-    public AudioClip IndestructibleFX;
     public AudioClip heartClip;
     public AudioClip consumeHearts;
     public AudioClip deathFX;
@@ -26,7 +25,7 @@ public class MusicManager : MonoBehaviour {
 		Data.Instance.events.OnVersusTeamWon += OnVersusTeamWon;
         Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
         Data.Instance.events.OnInterfacesStart += OnInterfacesStart;
-        Data.Instance.events.OnAvatarChangeFX += OnAvatarChangeFX;
+      //  Data.Instance.events.OnAvatarChangeFX += OnAvatarChangeFX;
         Data.Instance.events.OnAvatarDie += OnAvatarDie;
         Data.Instance.events.OnGamePaused += OnGamePaused;
         Data.Instance.events.SetVolume += SetVolume;
@@ -104,19 +103,19 @@ public class MusicManager : MonoBehaviour {
     }
 	public void BossMusic(bool isBoss)
 	{
-		return;
-		if (!isBoss)
-			PlayMainTheme ();
-		else
-			playSound(IndestructibleFX);
+//		return;
+//		if (!isBoss)
+//			PlayMainTheme ();
+//		else
+//			playSound(IndestructibleFX);
 	}
-    void OnAvatarChangeFX(Player.fxStates state)
-    {
-		if (state == Player.fxStates.NORMAL)
-			PlayMainTheme ();
-        else
-            playSound(IndestructibleFX);
-    }
+//    void OnAvatarChangeFX(Player.fxStates state)
+//    {
+//		if (state == Player.fxStates.NORMAL)
+//			PlayMainTheme ();
+//        else
+//            playSound(IndestructibleFX);
+//    }
     void OnAvatarDie(CharacterBehavior player)
     {
         if (Game.Instance.GetComponent<CharactersManager>().getTotalCharacters() > 0) return;
@@ -143,6 +142,7 @@ public class MusicManager : MonoBehaviour {
     }
 	void PlayMainTheme()
 	{
+		print ("PlayMainTheme");
 		string soundName = "song0";
 		switch(Data.Instance.videogamesData.actualID)
 		{

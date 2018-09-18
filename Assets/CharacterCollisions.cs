@@ -14,7 +14,6 @@ public class CharacterCollisions : MonoBehaviour {
 	}		
 
 	void OnTriggerEnter(Collider other) {
-		print ("OnTriggerEnter  other   " + other.gameObject.name);
 		if (characterBehavior == null)
 			return;
         if (characterBehavior.state == CharacterBehavior.states.DEAD) return;

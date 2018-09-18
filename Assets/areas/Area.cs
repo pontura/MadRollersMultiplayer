@@ -15,7 +15,7 @@ public class Area : MonoBehaviour {
 		if (gos.Count > 0 && totalCoins>0) {
 			return gos;
 		}
-		print("First time level loaded: " + name);
+		//print("First time level loaded: " + name);
 		
         gos = new List<GameObject>();
         Transform[] childs = GetComponentsInChildren<Transform>(true);
