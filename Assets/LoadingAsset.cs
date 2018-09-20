@@ -26,7 +26,7 @@ public class LoadingAsset : MonoBehaviour {
 	}
 	public void SetOn(bool _isOn)
 	{
-		logo.sprite = Data.Instance.videogamesData.GetActualVideogameData ().floppyCover;
+		logo.sprite = Data.Instance.videogamesData.GetActualVideogameData ().loadingSplash;
 		videoPanel.SetActive (_isOn);
 		this.isOn = _isOn;
 		panel.SetActive (_isOn);

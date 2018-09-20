@@ -28,7 +28,7 @@ public class StartingPlatform : SceneObject {
 //			pos.y = 0.7f;
 //			go.transform.localPosition = pos;
 //		}
-		logo.sprite = Data.Instance.videogamesData.GetActualVideogameData ().floppyCover;
+		logo.sprite = Data.Instance.videogamesData.GetActualVideogameData ().intro_logo;
 	}
 
 	void OnDestroy () {

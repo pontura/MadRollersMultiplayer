@@ -219,7 +219,7 @@ public class GameCamera : MonoBehaviour
 		retroPixelPro.pixelSize = (int)(pixelSize);
 
 	}
-	void LateUpdate () 
+	void Update () 
 	{
         if (state == states.START)
         {           
@@ -256,7 +256,7 @@ public class GameCamera : MonoBehaviour
 		if (_newPos.x < -15) _newPos.x = -15;
 		else if (_newPos.x > 15) _newPos.x = 15;
 
-		_newPos.z = Mathf.Lerp (transform.localPosition.z, _newPos.z, Time.deltaTime*20);
+		//_newPos.z = Mathf.Lerp (transform.localPosition.z, _newPos.z, Time.deltaTime*20);
 		_newPos.x = Mathf.Lerp (transform.localPosition.x, _newPos.x, Time.deltaTime*10);
 		_newPos.y = Mathf.Lerp (transform.localPosition.y, _newPos.y, (Time.deltaTime*_Y_correction)/3 );
 

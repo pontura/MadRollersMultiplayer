@@ -323,8 +323,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isArcadeMultiplayer: 1
-  DEBUG: 1
-  forceVideogameID: 0
+  DEBUG: 0
+  forceVideogameID: 1
   forceMissionID: 7
   canContinue: 1
   totalCredits: 3
@@ -400,7 +400,6 @@ MonoBehaviour:
     - {fileID: 114923521462391386, guid: 710d121cef0127a4da59c9690001652b, type: 2}
     - {fileID: 11495614, guid: aa3f891f0211e834fa9c5bbd7c4c9664, type: 2}
     - {fileID: 11452068, guid: 2348090e654a5454aab065a06455263b, type: 2}
-    - {fileID: 114585474883389056, guid: a3465e0abeb347a4baf878ab9c63392d, type: 2}
   - missions:
     - {fileID: 11400002, guid: e9bd992a0f9768048b78f535861a6d14, type: 2}
     - {fileID: 11495614, guid: 03ba739c48b48c1429734a7e17a09865, type: 2}
@@ -431,8 +430,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interfaces: {fileID: 8300000, guid: a97f30dd30c661142957f931ecf87e8e, type: 3}
-  MainTheme: {fileID: 8300000, guid: 831252d5f4eea2f448c77dd8053c0d70, type: 3}
-  IndestructibleFX: {fileID: 0}
   heartClip: {fileID: 8300000, guid: ad582dfb754268c488cc5757517b4873, type: 3}
   consumeHearts: {fileID: 8300000, guid: 864abdec44a85f64d97dcc3a2ea5c55d, type: 3}
   deathFX: {fileID: 8300000, guid: 98266118e6e31454d8af7a305ee69bb1, type: 3}
@@ -1928,8 +1925,10 @@ MonoBehaviour:
     floor_border: {r: 0.8235294, g: 0.46004057, b: 0, a: 1}
     skybox: {fileID: 2100000, guid: e64ae1eed0ce5e4459b511e72afcaf34, type: 2}
     fog: {r: 0.32941177, g: 0.8117647, b: 1, a: 1}
-    logo: {fileID: 21300000, guid: 651f6fe2d9a6c9643891d426ab51176d, type: 3}
+    logo: {fileID: 21300000, guid: a0f237148d620d8499f3fb391118e1a0, type: 3}
     floppyCover: {fileID: 21300000, guid: a0f237148d620d8499f3fb391118e1a0, type: 3}
+    loadingSplash: {fileID: 21300000, guid: df0ab66faf4bbf64db06fcf59c599887, type: 3}
+    intro_logo: {fileID: 21300000, guid: 4e76ce0ff063da140bd97e35fde0c6de, type: 3}
     retroPixelPro: {fileID: 114086138970418586, guid: 1ed79abff91532a47aab6196d231d520,
       type: 2}
   - id: 1
@@ -1940,6 +1939,8 @@ MonoBehaviour:
     fog: {r: 0.008434264, g: 0.11932049, b: 0.38235295, a: 1}
     logo: {fileID: 21300000, guid: 9e2cf35703e0d7f489d1d2d4d0076994, type: 3}
     floppyCover: {fileID: 21300000, guid: 9aa7381f9b34caf41b440a22263245b4, type: 3}
+    loadingSplash: {fileID: 21300000, guid: 9aa7381f9b34caf41b440a22263245b4, type: 3}
+    intro_logo: {fileID: 0}
     retroPixelPro: {fileID: 114086138970418586, guid: 1ed79abff91532a47aab6196d231d520,
       type: 2}
   - id: 2
@@ -1950,6 +1951,8 @@ MonoBehaviour:
     fog: {r: 0.41176468, g: 0, b: 0, a: 1}
     logo: {fileID: 21300000, guid: 913e420929a17944b803f6b274b34211, type: 3}
     floppyCover: {fileID: 21300000, guid: 4801a7e4da03be7458dca329bbddd69b, type: 3}
+    loadingSplash: {fileID: 21300000, guid: 4801a7e4da03be7458dca329bbddd69b, type: 3}
+    intro_logo: {fileID: 0}
     retroPixelPro: {fileID: 114086138970418586, guid: 1ed79abff91532a47aab6196d231d520,
       type: 2}
 --- !u!114 &114540071863892026

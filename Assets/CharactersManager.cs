@@ -75,7 +75,7 @@ public class CharactersManager : MonoBehaviour {
 //        speedRun = 19;
 //        yield return null;
 //    }
-    void Update()
+	void Update()
     {
 		OnUpdate ();
 		if(Input.GetKeyDown(KeyCode.M))
@@ -328,11 +328,13 @@ public class CharactersManager : MonoBehaviour {
 
 			normalPosition /= characters.Count;
 			normalPosition.y += 0.15f + (MaxDistance / 4f);
+			normalPosition.z -= 0.3f + (MaxDistance/26);
 			normalPosition.z = distance - 2.5f;
 
 			return normalPosition;
 		} else if (characters.Count == 0)
 			return characterPosition;
+		//else return characterPosition = characters[0].transform.position;
 		else {
 			Vector3 p = characters [0].transform.position;
 			p.z = distance-1.5f;

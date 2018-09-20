@@ -15,5 +15,7 @@ public class VideogameData {
 	public Color fog;
 	public Sprite logo;
 	public Sprite floppyCover;
+	public Sprite loadingSplash;
+	public Sprite intro_logo;
 	public RetroPixelPro retroPixelPro;
 }

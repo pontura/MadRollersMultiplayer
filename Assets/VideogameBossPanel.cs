@@ -34,7 +34,7 @@ public class VideogameBossPanel : MonoBehaviour {
 	IEnumerator InitCoroutine ()
 	{
 		panel.SetActive (true);
-		anim.Play ("mad");
+		PlayAnim ("mad");
 		yield return new WaitForSeconds (2);
 		animation.Play ("videoGameBossOut");
 		yield return new WaitForSeconds (1);
@@ -57,12 +57,12 @@ public class VideogameBossPanel : MonoBehaviour {
 	IEnumerator AxeCoroutine ()
 	{
 		state = states.DROPPING_BOMB;
-		anim.Play ("axe_idle");
+		PlayAnim ("axe_idle");
 		yield return new WaitForEndOfFrame();
 		panel.SetActive (true);
 
 		yield return new WaitForSeconds (1f);
-		anim.Play ("axe_throw");
+		PlayAnim ("axe_throw");
 		yield return new WaitForSeconds (1f);
 		if (state == states.DROPPING_BOMB) {
 			panel.SetActive (false);
@@ -89,7 +89,7 @@ public class VideogameBossPanel : MonoBehaviour {
 			return;
 		if (state == states.IDLE)
 			return;
-		anim.Play ("idle");
+		PlayAnim ("idle");
 		StartCoroutine (IdleCoroutine());
 	}
 	void Laugh(float timer)
@@ -117,9 +117,9 @@ public class VideogameBossPanel : MonoBehaviour {
 	{
 		int rand = Random.Range (0, 10);
 		if (rand < 5)
-			anim.Play ("axe");
+			PlayAnim ("axe");
 		else
-			anim.Play ("pinskull_attack");
+			PlayAnim ("pinskull_attack");
 		yield return new WaitForSeconds (2);
 		Idle ();
 	}
@@ -130,7 +130,7 @@ public class VideogameBossPanel : MonoBehaviour {
 	}
 	IEnumerator LaughCoroutine (float timer)
 	{
-		anim.Play ("laugh");
+		PlayAnim ("laugh");
 		yield return new WaitForEndOfFrame();
 		panel.SetActive (true);
 
@@ -140,11 +140,16 @@ public class VideogameBossPanel : MonoBehaviour {
 	}
 	IEnumerator MadCoroutine (float timer)
 	{
-		anim.Play ("mad");
+		PlayAnim ("mad");
 		yield return new WaitForSeconds (timer);
 		animation.Play ("videoGameBossOut");
 		yield return new WaitForSeconds (1);
 		panel.SetActive (false);
 		state = states.OFF;
+	}
+	void PlayAnim(string animName)
+	{
+		if(anim != null)
+			anim.Play (animName);
 	}
 }
