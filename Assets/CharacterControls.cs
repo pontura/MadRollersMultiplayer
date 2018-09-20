@@ -36,7 +36,8 @@ public class CharacterControls : MonoBehaviour {
 	{
 		childs.Remove (child);
 	}
-	// Update is called once per frame
+	float lastKeyPressedTime;
+	int lastKeyPressed;
 	void LateUpdate () {
 		if (characterBehavior == null || characterBehavior.player == null)
 			return;
@@ -47,19 +48,36 @@ public class CharacterControls : MonoBehaviour {
 			moveByAccelerometer ();
 		} else if(!isAutomata)
         {
-			if (InputManager.getFireDown(player.id))
-            {
-				characterBehavior.shooter.StartPressingFire();
-			} 
+			//if (InputManager.getFireDown(player.id))
+            //{
+			//	characterBehavior.shooter.StartPressingFire();
+			//} 
+			//if (lastKeyPressedTime < Time.time - 0.25f) {
+			//	lastKeyPressed = 0;
+			//}
+
 			if (InputManager.getFireUp(player.id))
 			{
-				characterBehavior.shooter.CheckFire();
+				
+				if (lastKeyPressedTime > Time.time - 0.25f) {
+					DashForward (1);
+				} else {
+					lastKeyPressedTime = Time.time;
+					characterBehavior.shooter.CheckFire ();
+					lastKeyPressed = 1;
+				}
+
 			}
             if (InputManager.getJump(player.id))
-            {
-                characterBehavior.Jump();
-			//	if(childs.Count>0)
-				//	StartCoroutine ( ChildsJump ());
+            {				
+				if (lastKeyPressedTime > Time.time - 0.25f) {
+					DashForward (-1);
+				} else {
+					lastKeyPressedTime = Time.time;
+					characterBehavior.Jump ();
+					lastKeyPressed = -1;
+				}
+
             } else
             if (Input.GetButton("Jump1"))
             {
@@ -75,9 +93,18 @@ public class CharacterControls : MonoBehaviour {
 			return;
 		characterBehavior.UpdateByController(rotationY); 
 	}
-
+	int total;
+	void DashForward(int keyPressed)
+	{
+		if (lastKeyPressed == keyPressed)
+			return;			
+		lastKeyPressedTime = Time.time;
+		characterBehavior.characterMovement.DashForward ();
+	}
   
-	float lastHorizontalKeyPressed;
+	//float lastHorizontalKeyPressed;
+	float last_x;
+	float last_x_timer;
     private void moveByKeyboard()
     {
 		if (characterBehavior.player.charactersManager == null)
@@ -86,11 +113,12 @@ public class CharacterControls : MonoBehaviour {
 		if (Data.Instance.playMode == Data.PlayModes.COMPETITION && characterBehavior.player.charactersManager.distance<40)
 			return;
 		float _speed = InputManager.getHorizontal(player.id);
-		if (lastHorizontalKeyPressed != _speed) {
-			lastHorizontalKeyPressed = _speed;
-			//if(!isAutomata)
-			//	Data.Instance.inputSaver.MoveInX (lastHorizontalKeyPressed, transform.position);
-		}
+
+//		if (lastHorizontalKeyPressed != _speed) {
+//			lastHorizontalKeyPressed = _speed;
+//			//if(!isAutomata)
+//			//	Data.Instance.inputSaver.MoveInX (lastHorizontalKeyPressed, transform.position);
+//		}
 		MoveInX (_speed);
     }
 	bool playerPlayed;
@@ -138,14 +166,14 @@ public class CharacterControls : MonoBehaviour {
 		}
 		yield return null;
 	}
-	void UpdateChilds()
-	{
-		foreach (CharacterBehavior cb in childs) {
-			cb.controls.rotationY = rotationY / 1.5f;
-			cb.transform.localRotation = transform.localRotation;
-		}
-	}
-
+//	void UpdateChilds()
+//	{
+//		foreach (CharacterBehavior cb in childs) {
+//			cb.controls.rotationY = rotationY / 1.5f;
+//			cb.transform.localRotation = transform.localRotation;
+//		}
+//	}
+//
 
 
 

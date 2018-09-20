@@ -254,7 +254,6 @@ public class CharactersManager : MonoBehaviour {
 	}
 	public CharacterBehavior addCharacter(Vector3 pos, int id)
     {
-		print ("addCharacter " + id);
         CharacterBehavior newCharacter = null;
         foreach (CharacterBehavior cb in deadCharacters)
         {
@@ -317,35 +316,28 @@ public class CharactersManager : MonoBehaviour {
     {
         return getMainCharacter().transform.position;
     }
-    public virtual Vector3 getPosition()
-    {
+	public virtual Vector3 getCameraPosition()
+    {		
 		///////retomar
-        if (characters.Count > 1)
-        {
-            Vector3 normalPosition = Vector3.zero;
-            Vector3 lastCharacterPosition = Vector3.zero;
-            float MaxDistance = 0;
-            foreach(CharacterBehavior cb in characters)
-            {
-                if(lastCharacterPosition != Vector3.zero)
-                {
-                  //  float dist = Vector3.Distance(cb.transform.localPosition, lastCharacterPosition);
-                  //  if(dist>MaxDistance) MaxDistance = dist;
-                }
-                lastCharacterPosition = cb.transform.localPosition;
-                normalPosition += lastCharacterPosition;
-            }
+		if (characters.Count > 1) {
+			Vector3 normalPosition = Vector3.zero;
+			float MaxDistance = 0;
+			foreach (CharacterBehavior cb in characters) {
+				normalPosition += cb.transform.localPosition;
+			}
 
-            normalPosition /= characters.Count;
-            normalPosition.y += 0.15f + (MaxDistance / 4f );
-            normalPosition.z -= 0.2f + (MaxDistance/26);
+			normalPosition /= characters.Count;
+			normalPosition.y += 0.15f + (MaxDistance / 4f);
+			normalPosition.z = distance - 2.5f;
 
-            return normalPosition;
-        }
-        else  if (characters.Count == 0) return characterPosition;
-        else characterPosition = characters[0].transform.position;
-
-        return characterPosition;
+			return normalPosition;
+		} else if (characters.Count == 0)
+			return characterPosition;
+		else {
+			Vector3 p = characters [0].transform.position;
+			p.z = distance-1.5f;
+			return p;
+		}
     }
     public int getTotalCharacters()
     {

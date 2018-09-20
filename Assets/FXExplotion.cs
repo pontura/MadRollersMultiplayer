@@ -21,7 +21,7 @@ public class FXExplotion : SceneObject {
 
         GameCamera camera = Game.Instance.gameCamera;
 
-        float distance = transform.position.z - Game.Instance.GetComponent<CharactersManager>().getPosition().z;
+		float distance = transform.position.z - Game.Instance.level.charactersManager.distance;
         distance /= 2;
 
         float explotionPower = 5 - distance;

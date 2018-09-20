@@ -42,9 +42,6 @@ public class GameBackground : MonoBehaviour {
      //   renderer.material = mat;
     }
 	void Update () {
-        Vector3 pos = charactersManager.getPosition();
-        pos.x = 0;
-        pos.y = 0;
-        transform.position = pos;
+		transform.position = new Vector3(0,0,charactersManager.distance);
 	}
 }

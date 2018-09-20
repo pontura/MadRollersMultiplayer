@@ -67,8 +67,8 @@ public class CharacterShooter : MonoBehaviour {
 
 		ResetWeapons ();
 
-		if(!characterBehavior.controls.isAutomata)
-			Data.Instance.events.OnAvatarShoot(characterBehavior.player.id);
+		//if(!characterBehavior.controls.isAutomata)
+		//	Data.Instance.events.OnAvatarShoot(characterBehavior.player.id);
 
 		if (characterBehavior.state != CharacterBehavior.states.RUN && characterBehavior.state != CharacterBehavior.states.SHOOT && transform.localPosition.y<6)
 			GetComponent<Rigidbody>().AddForce(new Vector3(0, 400, 0), ForceMode.Impulse);

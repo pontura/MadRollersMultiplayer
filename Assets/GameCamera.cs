@@ -246,7 +246,7 @@ public class GameCamera : MonoBehaviour
 			UpdatePixels ();
 		
 		if (team_id == 0)
-			newPos = charactersManager.getPosition ();
+			newPos = charactersManager.getCameraPosition ();
 		else
 			newPos = charactersManager.getPositionByTeam (team_id);
 

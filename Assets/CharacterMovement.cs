@@ -3,10 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour {
-	
+
+	public types type;
+	public enum types
+	{
+		NORMAL,
+		DASHING_FORWARD,
+		DASHING_BACK
+	}
+	float offset_Dash_Z = 6;
 	private int heightToFall = -5;
 	CharacterBehavior cb;
 	public int characterPosition;
+	public Vector3 offset;
 
 	void Start()
 	{
@@ -19,6 +28,26 @@ public class CharacterMovement : MonoBehaviour {
 	{
 		Data.Instance.events.OnReorderAvatarsByPosition -= OnReorderAvatarsByPosition;
 		Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
+	}
+	public void DashForward()
+	{
+		if (type == types.NORMAL)
+			type = types.DASHING_FORWARD;
+	}
+	void Update()
+	{
+		if (type == types.NORMAL)
+			return;
+		if (type == types.DASHING_FORWARD) {
+			if (offset.z > offset_Dash_Z)
+				type = types.DASHING_BACK;
+			offset.z += Time.deltaTime * 100;
+		} else if (type == types.DASHING_BACK)
+		offset.z -= Time.deltaTime * 10;
+		if (offset.z < 0) {
+			offset.z = 0;
+			type = types.NORMAL;
+		}
 	}
 	public void UpdateByController(float rotationY)
 	{
@@ -50,6 +79,8 @@ public class CharacterMovement : MonoBehaviour {
 			goTo.z = _z;
 		//}
 
+		goTo += offset;
+
 		if(cb.controls.isAutomata || cb.controls.ControlsEnabled)
 			transform.position = Vector3.Lerp(transform.position, goTo, 6);
 
@@ -67,8 +98,8 @@ public class CharacterMovement : MonoBehaviour {
 	IEnumerator RecalculatePosition()
 	{
 		yield return new WaitForEndOfFrame ();
-		print ("__RefreshPosition");
 		//this.characterPosition = Game.Instance.level.charactersManager.GetPositionByID(cb.player.id);
 		this.characterPosition = cb.player.id;
+		yield return null;
 	}
 }
