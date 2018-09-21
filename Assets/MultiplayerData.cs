@@ -196,6 +196,6 @@ public class MultiplayerData : MonoBehaviour
 		if(creditsWon>0)
 			NextScoreToWinCredit += NextScoreToWinCredit / 2;
 		
-		print ("NextScoreToWinCredit " + NextScoreToWinCredit);
+		//print ("NextScoreToWinCredit " + NextScoreToWinCredit);
 	}
 }

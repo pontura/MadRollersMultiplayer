@@ -72,6 +72,7 @@ public class Bomb : SceneObject {
 	}
     public override void OnPool()
     {
+		StopAllCoroutines ();
         GetComponent<AudioSource>().Stop();
 
 		if(trailRenderer!=null)

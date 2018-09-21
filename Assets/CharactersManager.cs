@@ -275,7 +275,6 @@ public class CharactersManager : MonoBehaviour {
         characters.Add(newCharacter);
         newCharacter.transform.position = pos;
 
-		print ("pos" + pos);
 		return newCharacter;
     }
     public void killCharacter(CharacterBehavior characterBehavior)

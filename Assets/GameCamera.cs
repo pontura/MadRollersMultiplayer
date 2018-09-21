@@ -95,7 +95,7 @@ public class GameCamera : MonoBehaviour
 	}
     void OnDestroy()
     {
-		//Data.Instance.events.OnGameStart -= OnGameStart;
+		StopAllCoroutines ();
         Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
         Data.Instance.events.OnChangeMood -= OnChangeMood;
 		Data.Instance.events.OnVersusTeamWon -= OnVersusTeamWon;
@@ -268,7 +268,6 @@ public class GameCamera : MonoBehaviour
     {
 		if (Game.Instance.GetComponent<CharactersManager>().getTotalCharacters() > 0) return;
         if (state == states.END) return;
-        print("OnAvatarCrash");
         state = states.END;
 		iTween.MoveTo(cam.gameObject, iTween.Hash(
             "position", new Vector3(player.transform.localPosition.x, transform.localPosition.y - 3.75f, transform.localPosition.z - 2.1f),
@@ -283,8 +282,6 @@ public class GameCamera : MonoBehaviour
 		
 		if (Game.Instance.GetComponent<CharactersManager>().getTotalCharacters() > 0) return;
         if (state == states.END) return;
-
-		print("OnAvatarFall");
 
         state = states.END;
 		iTween.MoveTo(cam.gameObject, iTween.Hash(

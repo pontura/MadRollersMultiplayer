@@ -182,7 +182,6 @@ public class MainHiscores : MonoBehaviour {
 			String[] arrLines = new String[hiscores.Count];
 			int a = 0;
 			foreach (Hiscore hs in arrengedHiscores) {
-				print (hs.username + "_" + hs.hiscore);
 				arrLines [a] = hs.username + "_" + hs.hiscore;
 				a++;
 			}

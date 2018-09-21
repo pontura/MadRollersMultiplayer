@@ -58,11 +58,7 @@ public class Missions : MonoBehaviour {
 			
 		List<MissionButton> all = new List<MissionButton> ();
 		int id = 0;
-		print (allMissionsByVideogame [Data.Instance.videogamesData.actualID].missions.Count);
 
-		foreach (Mission mission in allMissionsByVideogame[Data.Instance.videogamesData.actualID].missions) {
-			print (mission.name);
-		}
 		foreach (Mission mission in allMissionsByVideogame[Data.Instance.videogamesData.actualID].missions) {
 			mission.id = id;			
 			id++;

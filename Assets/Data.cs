@@ -191,7 +191,6 @@ public class Data : MonoBehaviour {
     }
     public void LoadLevel(string levelName)
     {
-		print ("LOAD LEVEL: " + levelName);
 		Data.Instance.events.ForceFrameRate (1);
 		float delay = 0.1f;
 		if(DEBUG && forceVideogameID != -1 && forceMissionID != -1 && levelName == "LevelSelector")
@@ -202,7 +201,6 @@ public class Data : MonoBehaviour {
 
 		}
 		if (!isReplay && levelName == "Game") {
-			print ("#::::::::::::::::::::::");
 			Data.Instance.GetComponent<MusicManager>().stopAllSounds();
 			loadingAsset.SetOn (true);
 			return;

@@ -70,7 +70,6 @@ public class ArcadeGUI : MonoBehaviour {
     void OnGameOver()
     {
 		Data.Instance.LoseCredit ();
-        print("OnGameOver");
         Data.Instance.multiplayerData.distance = Game.Instance.GetComponent<CharactersManager>().distance;
         
 		if (Data.Instance.credits > 0) {

@@ -21,7 +21,6 @@ public class CharacterControls : MonoBehaviour {
 			return;
         characterBehavior = GetComponent<CharacterBehavior>();
         player = GetComponent<Player>();
-        Invoke("EnabledMovements", 0.5f);
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
 	}
 	public void EnabledMovements(bool enabledControls)

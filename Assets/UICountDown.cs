@@ -15,11 +15,7 @@ public class UICountDown : MonoBehaviour {
 		panel.SetActive (false);	
 		if (Data.Instance.playMode == Data.PlayModes.STORY || Data.Instance.isReplay)
 			return;
-		else
-			Init ();		
-	}
-	void Init()
-	{
+		
 		Data.Instance.events.OnAddNewPlayer += OnAddNewPlayer;
 	}
 	void OnDestroy()
@@ -30,7 +26,7 @@ public class UICountDown : MonoBehaviour {
 	{		
 		if (isOn)
 			return;
-		print ("Game start");
+		
 		isOn = true;
 		panel.SetActive (true);
 		Data.Instance.events.OnGameStart ();
@@ -40,7 +36,6 @@ public class UICountDown : MonoBehaviour {
 	{
 		countDownField.text = countDown.ToString ();
 		panel.GetComponent<Animation>().Play("logo");
-		print (countDown);
 		if (countDown <= 0) {
 			Data.Instance.events.StartMultiplayerRace ();
 			panel.SetActive (false);

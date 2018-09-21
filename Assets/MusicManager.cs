@@ -142,7 +142,6 @@ public class MusicManager : MonoBehaviour {
     }
 	void PlayMainTheme()
 	{
-		print ("PlayMainTheme");
 		string soundName = "song0";
 		switch(Data.Instance.videogamesData.actualID)
 		{

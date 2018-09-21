@@ -104,7 +104,6 @@ public class LevelSelector : MonoBehaviour {
 	}
 	void SetSelected()
 	{
-		print ("SetSelected " + videgameID);
 		videogameData = Data.Instance.videogamesData.all [videgameID];
 		diskette.Init (videogameData);
 		videogameUI.Change ();

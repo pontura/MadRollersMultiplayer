@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StartingPlatform : SceneObject {
 
-	public GameObject[] platforms;
+	//public GameObject[] platforms;
 	public SpriteRenderer logo;
 	public Player playerToInstantiate;
 	public Transform[] containers;
@@ -12,7 +12,6 @@ public class StartingPlatform : SceneObject {
 	public int avatarID;
 
 	void OnEnable () {
-		print ("on enable");
 		int id = 0;
 		foreach (Transform t in containers) {
 			Player newPlayer = Instantiate (playerToInstantiate, Vector3.zero, Quaternion.identity, t);
@@ -30,8 +29,14 @@ public class StartingPlatform : SceneObject {
 //		}
 		logo.sprite = Data.Instance.videogamesData.GetActualVideogameData ().intro_logo;
 	}
-
-	void OnDestroy () {
+	void OnDestroy()
+	{
+		Data.Instance.events.OnAvatarShoot -= OnAvatarShoot;
+		Data.Instance.events.OnAvatarJump -= OnAvatarJump;
+	}
+	public override void OnPool()
+	{
+		playerToInstantiate = null;
 		Data.Instance.events.OnAvatarShoot -= OnAvatarShoot;
 		Data.Instance.events.OnAvatarJump -= OnAvatarJump;
 	}
@@ -51,14 +56,5 @@ public class StartingPlatform : SceneObject {
 		}
 		ids.Add (_avatarID);
 		Destroy (containers [_avatarID].gameObject);
-//		int id = 0;
-//		foreach (GameObject go in platforms) {
-//			if (_avatarID == id) {
-//				Vector3 pos = go.transform.localPosition;
-//				pos.y = -0.4f;
-//				go.transform.localPosition = pos;
-//			}
-//			id++;
-//		}
 	}
 }
