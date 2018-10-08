@@ -3,9 +3,9 @@
 --- !u!1 &170432
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 470432}
   - component: {fileID: 11470432}
@@ -19,7 +19,7 @@ GameObject:
 --- !u!4 &470432
 Transform:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 170432}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -32,7 +32,7 @@ Transform:
 --- !u!114 &11470432
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 170432}
   m_Enabled: 1
@@ -40,12 +40,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 772be226d7eee534998f146178bc9df9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomize: 0
+  competitionsPriority: 0
+  randomize: 1
   areas:
   - {fileID: 11483850, guid: 222f13874107446489534bf062792b26, type: 2}
-  totalAreasInSet: 2
+  - {fileID: 114651323320986628, guid: 3d01fda5a614a2c45b47736ef5623a08, type: 2}
+  totalAreasInSet: 1
   cameraOrientation: {x: 0, y: 0, z: 0}
-  id: 1
+  cameraRotationX: 0
+  isLastArea: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -54,6 +57,6 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications: []
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 0}
+  m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 170432}
-  m_IsPrefabParent: 1
+  m_IsPrefabAsset: 1

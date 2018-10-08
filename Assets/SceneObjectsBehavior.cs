@@ -265,7 +265,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				clone = Boss2;
 			else if (go.name == "BossCalecitas1")
 				clone = BossCalecitas1;
-			else if (go.name == "BossCreator") 
+			else if (go.name == "BossCreator")
 				clone = BossCreator;
 			else if (go.name == "BossSpace1")
 				clone = BossSpace1;
@@ -274,13 +274,15 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			else if (go.name == "BossGalaga")
 				clone = BossGalaga;
 			else if (go.name == "BossPacmansIntro")
-				clone = BossPacmansIntro;			
+				clone = BossPacmansIntro;
 			else if (go.name == "Calecita")
 				clone = Calecita;
 			else if (go.name == "Starting")
 				clone = Starting;
-			else if (go.name == "bomb1")
+			else if (go.name == "bomb1") {
+				Data.Instance.events.OnBossDropBomb ();
 				clone = bomb1;
+			}
 			else if (go.name == "tunel1")
 				clone = tunel1;
 			else if (go.name == "tunel2")

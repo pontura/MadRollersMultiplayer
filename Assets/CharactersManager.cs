@@ -51,31 +51,9 @@ public class CharactersManager : MonoBehaviour {
 			Data.Instance.isReplay = false;
 		} else {
 			speedRun = 19;
-			//RalentaCoroutine = DoRalentaCoroutine (2, 0, 0.05f);
-			//StartCoroutine (RalentaCoroutine);
 		}
     }
-//    IEnumerator DoRalentaCoroutine(float _speedRun, float delay, float speedTeRecover)
-//    {
-//        yield return new WaitForSeconds(delay);
-//        if (delay > 0)
-//        {
-//            while (speedRun > _speedRun)
-//            {
-//                yield return new WaitForEndOfFrame();
-//                speedRun -= Time.deltaTime + speedTeRecover;
-//            }
-//        }
-//        speedRun = _speedRun;
-//        while (speedRun < 19)
-//        {
-//            yield return new WaitForEndOfFrame();
-//            speedRun += Time.deltaTime + speedTeRecover;
-//        }
-//        speedRun = 19;
-//        yield return null;
-//    }
-	void Update()
+	void LateUpdate()
     {
 		OnUpdate ();
 		if(Input.GetKeyDown(KeyCode.M))
@@ -86,15 +64,11 @@ public class CharactersManager : MonoBehaviour {
 
         distance += speedRun * Time.deltaTime;
 
-//		if(Data.Instance.playMode == Data.PlayModes.STORY || Data.Instance.playMode == Data.PlayModes.COMPETITION)
-//            missions.updateDistance(distance);
 		
     }
 	public virtual void OnUpdate(){ }
     public int GetPositionByID(int _playerID)
     {
-		//if (distance < 100) return 0;
-		//if (Game.Instance.level.waitingToStart) return 0;
         int position = 0;
         foreach(int playerID in playerPositions)
         {
@@ -128,11 +102,7 @@ public class CharactersManager : MonoBehaviour {
 		pos = new Vector3(0, _y, 0);
 
 		int positionID = 0;
-//		if (Data.Instance.playMode == Data.PlayModes.STORY) {
-//			InputSavedAutomaticPlay savedAutomaticPlay = Data.Instance.inputSavedAutomaticPlay;
-//			savedAutomaticPlay.Init (this);
-//			positionID = savedAutomaticPlay.allPlayersSavedData.Count;
-//		}		 
+
 		totalCharacters = Data.Instance.multiplayerData.GetTotalCharacters ();
 		if (totalCharacters == 0)
 			yield return null;

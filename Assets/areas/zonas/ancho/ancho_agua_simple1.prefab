@@ -1701,6 +1701,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &1970648817704844
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4979752109951890}
+  - component: {fileID: 33110365459859142}
+  - component: {fileID: 23909948391681118}
+  - component: {fileID: 114412207289243380}
+  m_Layer: 0
+  m_Name: bomb1
+  m_TagString: sceneObject
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!1 &1971517207728222
 GameObject:
   m_ObjectHideFlags: 1
@@ -2091,6 +2109,7 @@ Transform:
   - {fileID: 4826042169371848}
   - {fileID: 4391211665227502}
   - {fileID: 4826981425061928}
+  - {fileID: 4979752109951890}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3211,6 +3230,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4723380532546064}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4979752109951890
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1970648817704844}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4172470243670688}
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4992155614023264
 Transform:
@@ -5269,6 +5301,41 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!23 &23909948391681118
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1970648817704844}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!23 &23925311644670208
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -5611,6 +5678,13 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1581956269897248}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!33 &33110365459859142
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1970648817704844}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &33129280941451118
 MeshFilter:
@@ -6320,6 +6394,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114138605568420526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6361,6 +6437,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114280557748190366
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6391,6 +6469,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114288777512379220
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6493,6 +6573,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114333735179409112
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6534,6 +6616,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114337198249905908
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6564,6 +6648,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114380017197747750
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6612,6 +6698,18 @@ MonoBehaviour:
   to: {fileID: 0}
   videoGame_ID: 0
   borders: []
+--- !u!114 &114412207289243380
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1970648817704844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bb96dfc3206b0f448342e7b76dfdaba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randomX: 4
 --- !u!114 &114420396574926338
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6686,6 +6784,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114466028767773262
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6716,6 +6816,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114486239718771558
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6746,6 +6848,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114490128704476524
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6776,6 +6880,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114532995387520742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6817,6 +6923,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114552713124351558
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6847,6 +6955,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114555249227341784
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6877,6 +6987,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114599614480597148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6907,6 +7019,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114604860588624542
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6961,6 +7075,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114656202569475568
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6991,6 +7107,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114667693115835148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7039,6 +7157,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   z_length: 72
   nextAreaX: 0
+  gos:
+  - {fileID: 1780503364553168}
+  - {fileID: 1385973667421740}
+  - {fileID: 1626172304422126}
+  - {fileID: 1792187975707340}
+  - {fileID: 1994822153226474}
+  - {fileID: 1479620917673286}
+  - {fileID: 1765785423484552}
+  - {fileID: 1424279023436094}
+  - {fileID: 1467938135409004}
+  - {fileID: 1391155445139900}
+  - {fileID: 1516772919235422}
+  - {fileID: 1419041374691894}
+  - {fileID: 1265146248423156}
+  - {fileID: 1557021947883922}
+  - {fileID: 1555005646400044}
+  - {fileID: 1940126731618778}
+  - {fileID: 1826289002782170}
+  - {fileID: 1509976927515348}
+  - {fileID: 1882523574181868}
+  - {fileID: 1180787716999042}
+  - {fileID: 1734654281444124}
+  - {fileID: 1700912505814038}
+  - {fileID: 1318891207194036}
+  - {fileID: 1152146875571770}
+  - {fileID: 1885512106192910}
+  - {fileID: 1253948316063170}
+  - {fileID: 1308400412389576}
+  - {fileID: 1786156701362732}
+  - {fileID: 1922501551309878}
+  - {fileID: 1455876752532890}
+  - {fileID: 1359818184052484}
+  - {fileID: 1546300122709160}
+  - {fileID: 1370291873248986}
+  - {fileID: 1127281416040762}
+  - {fileID: 1703099839621486}
+  - {fileID: 1004649550861174}
+  - {fileID: 1581956269897248}
+  - {fileID: 1043580965333658}
+  - {fileID: 1049815296547460}
+  - {fileID: 1442360945470648}
+  - {fileID: 1979056015782910}
+  - {fileID: 1250758393021462}
+  - {fileID: 1970648817704844}
+  totalCoins: 18
 --- !u!114 &114796993071989772
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7093,6 +7256,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114911047865052314
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7147,6 +7312,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114961619194592006
 MonoBehaviour:
   m_ObjectHideFlags: 1

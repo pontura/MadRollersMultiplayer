@@ -52,7 +52,7 @@ public class VideogameBossPanel : MonoBehaviour {
 		if(state == states.OFF)
 			StartCoroutine (AxeCoroutine());
 		else
-			anim.Play ("axe_throw");
+			PlayAnim ("axe_throw");
 	}
 	IEnumerator AxeCoroutine ()
 	{
@@ -65,8 +65,7 @@ public class VideogameBossPanel : MonoBehaviour {
 		PlayAnim ("axe_throw");
 		yield return new WaitForSeconds (1f);
 		if (state == states.DROPPING_BOMB) {
-			panel.SetActive (false);
-			state = states.OFF;
+			SetOff ();
 		}			
 	}
 	void OnBossActive(bool isOn)
@@ -94,7 +93,7 @@ public class VideogameBossPanel : MonoBehaviour {
 	}
 	void Laugh(float timer)
 	{
-		if (state == states.MAD)
+		if (state == states.OFF || state == states.MAD)
 			return;
 		state = states.LAUGHING;
 		StartCoroutine (LaughCoroutine(timer));
@@ -144,12 +143,16 @@ public class VideogameBossPanel : MonoBehaviour {
 		yield return new WaitForSeconds (timer);
 		animation.Play ("videoGameBossOut");
 		yield return new WaitForSeconds (1);
-		panel.SetActive (false);
-		state = states.OFF;
+		SetOff ();
 	}
 	void PlayAnim(string animName)
 	{
 		if(anim != null)
 			anim.Play (animName);
+	}
+	void SetOff()
+	{
+		panel.SetActive (false);
+		state = states.OFF;
 	}
 }

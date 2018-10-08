@@ -14,6 +14,13 @@ public class WeakPlatform : SceneObject {
 	bool falling;
 	public BorderVideogameCollider[] borders;
 
+	public types type;
+	public enum types
+	{
+		FLOOR,
+		WALL
+	}
+
 	public override void OnRestart(Vector3 pos)
 	{
 		
@@ -21,8 +28,6 @@ public class WeakPlatform : SceneObject {
 			border.Init ();
 		
 		falling = false;
-		floor_top = Data.Instance.videogamesData.GetActualVideogameData ().floor_top;
-		floor_border = Data.Instance.videogamesData.GetActualVideogameData ().floor_border;
 
 		base.OnRestart(pos);
 
@@ -31,10 +36,16 @@ public class WeakPlatform : SceneObject {
 
 		int newVideoGameID = Data.Instance.videogamesData.actualID;
 		if (newVideoGameID != videoGame_ID) {
-			videoGame_ID = newVideoGameID;
-			Renderer[] renderers = GetComponentsInChildren<Renderer>();
-			foreach(Renderer r in renderers)
-				ChangeMaterials(r);
+			if (type == types.FLOOR) {
+				floor_top = Data.Instance.videogamesData.GetActualVideogameData ().floor_top;
+				floor_border = Data.Instance.videogamesData.GetActualVideogameData ().floor_border;
+				videoGame_ID = newVideoGameID;
+				Renderer[] renderers = GetComponentsInChildren<Renderer> ();
+				foreach (Renderer r in renderers)
+					ChangeMaterials (r);
+			} else {
+				GetComponent<Renderer>().material = Data.Instance.videogamesData.GetActualVideogameData ().wallMaterial;
+			}
 		}
 	}
 	void ChangeMaterials(Renderer renderer)
@@ -116,14 +127,18 @@ public class WeakPlatform : SceneObject {
 
 		rb.isKinematic = false;
 		rb.useGravity = true;
-		rb.mass = 40;
-		rb.velocity = Vector3.zero;
-		Vector3 dir = (Vector3.up * Random.Range(120,260));
-		//dir += new Vector3 (Random.Range (-5, 5), Random.Range (-5, 5), Random.Range (-5, 5));
-		rb.AddForce(dir, ForceMode.Impulse);
-		//rb.AddTorque (new Vector3 (0, Random.Range(-10,10), 0), ForceMode.Impulse);
-		// Pool();
-		//StartCoroutine(FallDown());
+		if (type == types.FLOOR) {
+			rb.mass = 40;
+			rb.velocity = Vector3.zero;
+			Vector3 dir = (Vector3.up * Random.Range(120,260));
+			rb.AddForce(dir, ForceMode.Impulse);
+		} else {
+			rb.mass = 10;
+			rb.velocity = Vector3.zero;
+			Vector3 dir = (Vector3.forward * Random.Range(250,460));
+			dir += new Vector3 (Random.Range (-5, 5), Random.Range (0, 20), 0);
+			rb.AddForce(dir, ForceMode.Impulse);
+		}
 	}
 	public override void OnPool()
 	{

@@ -373,7 +373,7 @@ public class CharacterBehavior : MonoBehaviour {
 
 	public void SuperJumpByBumped(int force , float offsetY, bool dir_forward)
 	{
-		if (state == states.SUPERJUMP)
+		if (!GetComponent<Collider>().enabled)
 			return;
 		ResetColliders();
 		floorCollitions.OnAvatarJump();

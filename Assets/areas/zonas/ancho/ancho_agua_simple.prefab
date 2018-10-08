@@ -1623,6 +1623,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1662955562516258
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4872314131347216}
+  - component: {fileID: 33907988070197292}
+  - component: {fileID: 23809764776908242}
+  - component: {fileID: 114486539729024052}
+  m_Layer: 0
+  m_Name: bomb1
+  m_TagString: sceneObject
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!1 &1668579496846392
 GameObject:
   m_ObjectHideFlags: 1
@@ -4340,6 +4358,19 @@ Transform:
   m_Father: {fileID: 4694022769301080}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4872314131347216
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1662955562516258}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4876492459153536}
+  m_RootOrder: 31
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4872343614640224
 Transform:
   m_ObjectHideFlags: 1
@@ -4395,6 +4426,7 @@ Transform:
   - {fileID: 4216708851359882}
   - {fileID: 4830227422723560}
   - {fileID: 4350783934833394}
+  - {fileID: 4872314131347216}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6833,6 +6865,41 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!23 &23809764776908242
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1662955562516258}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!23 &23818924173569606
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -8072,6 +8139,13 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1659589669937064}
   m_Mesh: {fileID: 4300000, guid: 71c75448eec39a740a1db37f6ec6a6a1, type: 3}
+--- !u!33 &33907988070197292
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1662955562516258}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &33912000155942202
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -8469,6 +8543,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114019921528461444
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8534,6 +8610,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114100667235112360
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8664,6 +8742,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114189548775663274
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8729,6 +8809,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114222750608918838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8801,6 +8883,87 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   z_length: 72
   nextAreaX: 0
+  gos:
+  - {fileID: 1068597283743320}
+  - {fileID: 1378561604991140}
+  - {fileID: 1762976264039372}
+  - {fileID: 1715912150885480}
+  - {fileID: 1146671745953400}
+  - {fileID: 1180584989240138}
+  - {fileID: 1669372932642412}
+  - {fileID: 1675853616131444}
+  - {fileID: 1679982099729426}
+  - {fileID: 1368573362883830}
+  - {fileID: 1040379037769902}
+  - {fileID: 1026009948473554}
+  - {fileID: 1965227950137346}
+  - {fileID: 1127461223320116}
+  - {fileID: 1952864403054988}
+  - {fileID: 1879465418628230}
+  - {fileID: 1416789248624332}
+  - {fileID: 1159733172887134}
+  - {fileID: 1577990092208008}
+  - {fileID: 1520900435485520}
+  - {fileID: 1009847407076516}
+  - {fileID: 1476917896599480}
+  - {fileID: 1596679378112612}
+  - {fileID: 1517871081028570}
+  - {fileID: 1547891802735114}
+  - {fileID: 1781235016027740}
+  - {fileID: 1984193577695598}
+  - {fileID: 1071577229468442}
+  - {fileID: 1129082305345024}
+  - {fileID: 1804623652698436}
+  - {fileID: 1435676050657080}
+  - {fileID: 1891845466715018}
+  - {fileID: 1488807865604986}
+  - {fileID: 1018812200213242}
+  - {fileID: 1673620190278646}
+  - {fileID: 1939606298789088}
+  - {fileID: 1806533290177652}
+  - {fileID: 1907014690238582}
+  - {fileID: 1570878435405148}
+  - {fileID: 1053571640659686}
+  - {fileID: 1387786419556820}
+  - {fileID: 1429969427090754}
+  - {fileID: 1827892867935398}
+  - {fileID: 1167304099055234}
+  - {fileID: 1472095093257650}
+  - {fileID: 1108446876623560}
+  - {fileID: 1560518237816760}
+  - {fileID: 1480267202410252}
+  - {fileID: 1064888681344106}
+  - {fileID: 1939985524324232}
+  - {fileID: 1583606779459346}
+  - {fileID: 1855465338613436}
+  - {fileID: 1899978861507404}
+  - {fileID: 1682365335979866}
+  - {fileID: 1894010189368836}
+  - {fileID: 1465873076889728}
+  - {fileID: 1153292499593996}
+  - {fileID: 1737768028544704}
+  - {fileID: 1758844976279188}
+  - {fileID: 1625354401299032}
+  - {fileID: 1710050618734818}
+  - {fileID: 1244175847603692}
+  - {fileID: 1775577613706480}
+  - {fileID: 1342566819701276}
+  - {fileID: 1068736656686582}
+  - {fileID: 1754839485496482}
+  - {fileID: 1945060864907134}
+  - {fileID: 1670125916106158}
+  - {fileID: 1203182603846574}
+  - {fileID: 1482657244435112}
+  - {fileID: 1287104662709222}
+  - {fileID: 1878743997018628}
+  - {fileID: 1616524352752678}
+  - {fileID: 1234824581718838}
+  - {fileID: 1694943198571344}
+  - {fileID: 1680378026693264}
+  - {fileID: 1895282448935454}
+  - {fileID: 1474417133324156}
+  - {fileID: 1662955562516258}
+  totalCoins: 18
 --- !u!114 &114291230955091752
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8831,6 +8994,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114293749119310892
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8928,6 +9093,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114350144314493566
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9004,6 +9171,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114413553677329908
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9056,6 +9225,20 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
+--- !u!114 &114486539729024052
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1662955562516258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bb96dfc3206b0f448342e7b76dfdaba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randomX: 4
 --- !u!114 &114500811786365284
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9121,6 +9304,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114524403541015212
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9151,6 +9336,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114530430465087740
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9192,6 +9379,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114571302439255432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9222,6 +9411,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114585926222485968
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9344,6 +9535,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114768950681725856
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9398,6 +9591,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114892572625163032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9447,6 +9642,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114918523014973800
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9501,6 +9698,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114973460958196916
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9531,6 +9730,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114982179766375614
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9585,6 +9786,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!135 &135039999941679800
 SphereCollider:
   m_ObjectHideFlags: 1

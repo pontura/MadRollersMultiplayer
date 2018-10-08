@@ -198,7 +198,7 @@ public class Level : MonoBehaviour {
     }
     public void OnAddWallExplotion(Vector3 position, Color color)
     {
-        OnAddExplotion(position, wallExplotion.name, "ExplotionEffectWall", explotionGift.name, 3, color);
+        OnAddExplotion(position, wallExplotion.name, "ExplotionEffectWall", explotionGift.name, 12, color);
     }
     public void OnAddExplotion(Vector3 position, string _name, string _explotionEffect, string _explotionGift, int force, Color color)
 	{

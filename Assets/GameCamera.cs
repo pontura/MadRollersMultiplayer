@@ -219,7 +219,7 @@ public class GameCamera : MonoBehaviour
 		retroPixelPro.pixelSize = (int)(pixelSize);
 
 	}
-	void Update () 
+	void LateUpdate () 
 	{
         if (state == states.START)
         {           

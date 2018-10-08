@@ -11,6 +11,7 @@ public class VideogameData {
 	public string name;
 	public Color floor_top;
 	public Color floor_border;
+	public Material wallMaterial;
 	public Material skybox;
 	public Color fog;
 	public Sprite logo;

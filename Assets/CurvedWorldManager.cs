@@ -62,7 +62,7 @@ public class CurvedWorldManager : MonoBehaviour {
         turn = newTurn;
     }
 	
-	void Update () {
+	//void Update () {
 //        if (newTurn > turn) turn += 0.05f;
 //        else if (newTurn < turn) turn -= 0.05f;
 //       // if(bending!=newBending)
@@ -78,5 +78,5 @@ public class CurvedWorldManager : MonoBehaviour {
 //
 //        }
        
-	}
+	//}
 }
