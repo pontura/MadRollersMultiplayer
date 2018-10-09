@@ -69,7 +69,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1351099731690184
 GameObject:
   m_ObjectHideFlags: 1
@@ -86,7 +86,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1383060450655992
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,7 +102,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1422609933870046
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,7 +118,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1590688620636950
 GameObject:
   m_ObjectHideFlags: 1
@@ -154,7 +154,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1678601078070194
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,7 +170,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1702428750914788
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,7 +205,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1776152984866082
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,7 +224,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4046635639035746
 Transform:
   m_ObjectHideFlags: 1
@@ -746,6 +746,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   assets: {fileID: 1686291570922896, guid: 8d70bbcda4864b340b1af6c0cabad9d3, type: 2}
   time_to_init_enemies: 0.7
+  bossAsset: {fileID: 0}
 --- !u!114 &114361093761075398
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -759,6 +760,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   z_length: 26
   nextAreaX: 0
+  gos:
+  - {fileID: 1642098682831972}
+  - {fileID: 1744493730195806}
+  - {fileID: 1776152984866082}
+  - {fileID: 1298850438568042}
+  - {fileID: 1678601078070194}
+  - {fileID: 1422609933870046}
+  - {fileID: 1383060450655992}
+  - {fileID: 1351099731690184}
+  totalCoins: 3
 --- !u!114 &114419251553298022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -831,6 +842,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114638734424935184
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -892,6 +905,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!114 &114712978176732062
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -964,6 +979,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
 --- !u!135 &135119375392127670
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -138,6 +138,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			case "bloodx1":
 			//case "Yuyo":
 			case "enemyFrontal":   
+			case "enemyShooter": 
 			case "enemyWater":   
 			case "enemySide":  
 			case "enemyBack":  
@@ -389,11 +390,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				EnemyPathRunnerBehavior mo = go.GetComponent<EnemyPathRunnerBehavior>();
 				CopyComponent(mo, sceneObject.gameObject);
 			}
-//			if (go.GetComponent<EnemyShooter>())
-//			{
-//				EnemyShooter mo = go.GetComponent<EnemyShooter>();
-//				CopyComponent(mo, sceneObject.gameObject);
-//			}
 			if (go.GetComponent<EnemyRunnerBehavior>())
 			{
 				EnemyRunnerBehavior mo = go.GetComponent<EnemyRunnerBehavior>();

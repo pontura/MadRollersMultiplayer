@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MmoCharacter : SceneObject
 {
-    public GameObject weaponContainer;
+	public Animation shooterAnimation;
 
     public enum states
     {
@@ -36,44 +36,15 @@ public class MmoCharacter : SceneObject
         gameObject.GetComponent<Collider>().enabled = true;
         base.OnRestart(pos);
         state = states.IDLE;
-        Invoke("ResetMaterials", 0.2f);
+       // Invoke("ResetMaterials", 0.2f);
         
     }
-    public void EmptyWeapons()
-    {
-        foreach (Transform child in weaponContainer.transform) Destroy(child.gameObject);
-    }
-    private Color clothColor;
-    void ResetMaterials()
-    {
-		if (weaponContainer == null)
-			return;
-		
-        if (!GetComponent<EnemyShooter>() && weaponContainer.GetComponentsInChildren<Transform>().Length>0)
-            EmptyWeapons();
 
-        if (GetComponent<Jump>() && clothColor != Color.black)
-        {
-            ChangeSkinMaterial(Resources.Load("Materials/EnemyHead_Lila", typeof(Material)) as Material);            
-            ChangeClothesColor( Color.black);
-            ChangeSkinColor(Color.black);
-        }
-        else if (clothColor != Color.red)
-        {
-            ChangeSkinMaterial( Resources.Load("Materials/EnemyHead", typeof(Material)) as Material );
-            ChangeClothesColor( Color.red);
-            ChangeSkinColor(Color.yellow);
-        }
-    }
 	public void Die() {
 		if(state== states.DEAD) return;
 
         Data.Instance.events.OnSoundFX("FX muerte malo00", -1);
-
         setScore();
-
-//		Missions missions = Data.Instance.GetComponent<Missions>();
-//		missions.SendMessage ("killGuy", 1);
 		       
 		state = states.DEAD;
 
@@ -120,11 +91,6 @@ public class MmoCharacter : SceneObject
        // _animation.Play("enemyIdle");
         state = states.IDLE;
 	}
-    public void Shoot()
-    {
-        //_animation.Play("enemyShoot");
-        state = states.IDLE;
-    }
     public void waitToJump()
     {
        // _animation.Play("enemyIdle");
@@ -154,7 +120,6 @@ public class MmoCharacter : SceneObject
     }
     public void ChangeClothesColor(Color color)
     {
-        clothColor = color;
         SkinnedMeshRenderer skinnedMesh = GetComponentInChildren<SkinnedMeshRenderer>();
         if (skinnedMesh)
         {
@@ -170,4 +135,10 @@ public class MmoCharacter : SceneObject
             skinnedMesh.materials[2].color = color;
         }
     }
+	public void Shoot()
+	{
+		if (shooterAnimation != null)
+			shooterAnimation.Play ("shoot");
+		state = states.IDLE;
+	}
 }

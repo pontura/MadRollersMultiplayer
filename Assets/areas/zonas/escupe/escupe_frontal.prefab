@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1897955107940708}
+  m_IsPrefabAsset: 1
+--- !u!1 &1897955107940708
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4301790371111290}
+  - component: {fileID: 114885617490211874}
+  m_Layer: 0
+  m_Name: escupe_frontal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4301790371111290
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1897955107940708}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 64.046844, y: 108.22239, z: -239.56937}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114885617490211874
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1897955107940708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 772be226d7eee534998f146178bc9df9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  competitionsPriority: 0
+  randomize: 1
+  areas:
+  - {fileID: 114600286930964854, guid: 03b5fa48efdfe514cb77109145661d4f, type: 2}
+  - {fileID: 114855234772395272, guid: ecfd48398019f6142ba649732e84e1a3, type: 2}
+  - {fileID: 114287233085842178, guid: 23345402c31b9db44b34aa08d366e6c1, type: 2}
+  - {fileID: 114970893629502976, guid: 7df1111b11b952647ab4d4400c69710d, type: 2}
+  - {fileID: 114330675721836762, guid: f418de94a3e8c764480fa4a40f422d1e, type: 2}
+  - {fileID: 114174252074282192, guid: 253e584a79605f34db922ab7aec1fad0, type: 2}
+  - {fileID: 114242245442669132, guid: 064fb727f527ac44bbbff76b844ab932, type: 2}
+  - {fileID: 114927466893257718, guid: bc3dd3bf120e8de4b80332e0dd0bb709, type: 2}
+  totalAreasInSet: 14
+  cameraOrientation: {x: 0, y: 2, z: -1}
+  cameraRotationX: 0
+  isLastArea: 0

@@ -3,59 +3,41 @@ using System.Collections;
 
 public class EnemyShooter : MonoBehaviour {
 
-    public GameObject myProjectile;
-    public GameObject projectile_on;
+	public SceneObject myProjectile;
+
     private MmoCharacter mmoCharacter;
     private bool ready;
-
-    void Start()
+	void Start()
+	{
+		mmoCharacter = GetComponent<MmoCharacter>();
+	}
+    void OnEnable()
     {
-//        mmoCharacter = GetComponent<MmoCharacter>();
-//        OnReachFloor();
-//        ready = false;
-//        GameObject weaponOn = Instantiate(projectile_on) as GameObject;
-//        weaponOn.transform.SetParent(mmoCharacter.weaponContainer.transform);
-//        weaponOn.transform.localScale = Vector3.one;
-//        weaponOn.transform.localPosition = Vector3.zero;
-    }
-    void OnDisable()
-    {
-        Destroy(gameObject.GetComponent("EnemyShooter"));
-    }
-    public void OnReachFloor()
-    {
-  
+        ready = false;
     }
     public void OnSceneObjectUpdated()
     {
         if (ready) return;
         if (!mmoCharacter) return;        
         if (mmoCharacter.state == MmoCharacter.states.DEAD) return;
-        if (mmoCharacter.distanceFromCharacter < 10) Shoot();
+        if (mmoCharacter.distanceFromCharacter < 14) Shoot();
     }
     void Shoot()
     {
         mmoCharacter.Shoot();
-        SceneObject projectil = ObjectPool.instance.GetObjectForType(myProjectile.name, true);
-
-        Vector3 pos = new Vector3(transform.position.x, transform.position.y + 2f, transform.position.z + 4f);
-        transform.localPosition += new Vector3(0, 0, -2);
-
-		Game.Instance.sceneObjectsManager.AddSceneObject(projectil, pos);
-      //  projectil.Restart(pos);
-		Vector3 rot = new Vector3(0,0,0);
-        rot.x -= 7;
-        projectil.transform.localEulerAngles = rot;
-        
+		Vector3 pos = transform.position;
+		pos.y += 3;
+		pos.z -= 3;
+		SceneObject sceneObject = Instantiate(myProjectile, pos, Quaternion.identity) as SceneObject;
+		Game.Instance.sceneObjectsManager.AddSceneObject(sceneObject, pos);
+		sceneObject.transform.localEulerAngles = new Vector3(0,180,0);
         ready = true;
-
-        mmoCharacter.EmptyWeapons();
-
-        
-
-        OnDisable();
-
+		Invoke ("ResetAnim", 0.2f);
     }
+	void ResetAnim()
+	{
+		mmoCharacter.shooterAnimation.Play ("idle");
+	}
 
 }
 
