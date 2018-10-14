@@ -40,7 +40,7 @@ public class LoadingAsset : MonoBehaviour {
 		field.text = "";		
 		AddText("*** MAD ROLLERS ***");
 		yield return new WaitForSeconds (0.8f);
-		AddText("Goto 1982");
+		AddText("Goto 1985");
 		yield return new WaitForSeconds (0.6f);
 		AddText("Entering " + Data.Instance.videogamesData.GetActualVideogameData ().name + "...");
 		UnityEngine.SceneManagement.SceneManager.LoadScene ("Game");
