@@ -153,14 +153,21 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			case "enemyNaveSimple":  
 			case "BichoVuela":
 			case "palm":
-			case "palm2":
-			case "palm3":
-			case "palm4":
 			case "palmTall":
-				if(go.name == "smallBlock1" || go.name == "extraSmallBlock1")
-					sceneObject = Pool.GetObjectForType(go.name + "_real", true);    
-				else
-					sceneObject = Pool.GetObjectForType(go.name + "_real", false);  
+				if (go.name == "smallBlock1" || go.name == "extraSmallBlock1")
+					sceneObject = Pool.GetObjectForType (go.name + "_real", true);
+				else {
+					if (go.name == "palm") {
+						string soName = go.name;
+						int randNum = Random.Range (0, 3);
+						if (randNum == 1)
+							soName = "palm2";
+						else if (randNum == 2)
+							soName = "palm3";
+						sceneObject = Pool.GetObjectForType (soName + "_real", false);  
+					} else
+						sceneObject = Pool.GetObjectForType (go.name + "_real", false);  
+				}
 
 				if (sceneObject)
 				{
@@ -253,8 +260,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				clone = wallSuperSmall;
 			else if (go.name == "jumper")
 				clone = jumper;
-			else if (go.name == "Laser")
-				clone = Laser;
 			else if (go.name == "Lava")
 				clone = Lava;
 			else if (go.name == "Estrellas")
@@ -284,6 +289,9 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			else if (go.name == "bomb1") {
 				Data.Instance.events.OnBossDropBomb ();
 				clone = bomb1;
+			} else if (go.name == "Laser") {
+				clone = Laser;
+				Data.Instance.events.OnBossDropBomb ();
 			}
 			else if (go.name == "tunel1")
 				clone = tunel1;
