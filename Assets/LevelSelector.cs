@@ -22,7 +22,7 @@ public class LevelSelector : MonoBehaviour {
 		Data.Instance.multiplayerData.ResetAll ();
 		Data.Instance.events.OnResetScores ();
 		timePassed = 0;
-		title.text = "Select a videogame";
+		title.text = "SELECT GAME";
 
 		videgameID = Data.Instance.videogamesData.actualID;
 

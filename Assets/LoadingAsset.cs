@@ -42,7 +42,7 @@ public class LoadingAsset : MonoBehaviour {
 		yield return new WaitForSeconds (0.8f);
 		AddText("Goto 1985");
 		yield return new WaitForSeconds (0.6f);
-		AddText("Entering " + Data.Instance.videogamesData.GetActualVideogameData ().name + "...");
+		AddText("Loading " + Data.Instance.videogamesData.GetActualVideogameData ().name + "...");
 		UnityEngine.SceneManagement.SceneManager.LoadScene ("Game");
 		yield return new WaitForSeconds (0.5f);
 
