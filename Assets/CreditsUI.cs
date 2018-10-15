@@ -38,7 +38,7 @@ public class CreditsUI : MonoBehaviour {
 	{
 		CreditIcon go = Instantiate (creditIcon);
 		go.transform.SetParent (container);
-		go.transform.localScale = Vector3.one;
+		go.transform.localScale = new Vector3 (0.62f,0.62f,0.62f);
 	}
 	public void RemoveOne()
 	{
