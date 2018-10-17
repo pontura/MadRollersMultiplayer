@@ -25,6 +25,7 @@ public class VideogameBossPanel : MonoBehaviour {
 		Data.Instance.events.OnGameStart += OnGameStart;
 		Data.Instance.events.OnBossActive += OnBossActive;
 		Data.Instance.events.OnBossDropBomb += OnBossDropBomb;
+		Data.Instance.events.OnBossDropRay += OnBossDropRay;
 		Data.Instance.events.OnAvatarDie += OnAvatarDie;
 	}
 	void OnGameStart()
@@ -46,6 +47,31 @@ public class VideogameBossPanel : MonoBehaviour {
 		Data.Instance.events.OnBossActive -= OnBossActive;
 		Data.Instance.events.OnBossDropBomb -= OnBossDropBomb;
 		Data.Instance.events.OnAvatarDie -= OnAvatarDie;
+		Data.Instance.events.OnBossDropRay -= OnBossDropRay;
+	}
+	void OnBossDropRay(int _x)
+	{
+		if (Data.Instance.videogamesData.actualID != 1)
+			return;
+		
+		StopAllCoroutines ();
+		panel.SetActive (true);
+
+		state = states.ATTACK;
+		if(_x<0)
+			transform.localScale = new Vector3 (-1, 1, 1);
+		else 
+			transform.localScale = new Vector3 (1, 1, 1);
+		StartCoroutine (RayCoroutine ());
+
+	}
+	IEnumerator RayCoroutine ()
+	{
+		PlayAnim ("ray");
+		yield return new WaitForSeconds (3);
+		animation.Play ("videoGameBossOut");
+		yield return new WaitForSeconds (2);
+		SetOff ();
 	}
 	void OnBossDropBomb()
 	{		

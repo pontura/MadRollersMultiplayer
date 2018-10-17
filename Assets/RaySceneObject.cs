@@ -16,7 +16,9 @@ public class RaySceneObject : SceneObject {
 	}
 	IEnumerator ActionsToBeDone()
 	{
-		yield return new WaitForSeconds (2);
+		yield return new WaitForSeconds (1.5f);
+		Data.Instance.events.OnBossDropRay ((int)transform.localPosition.x);
+		yield return new WaitForSeconds (0.5f);
 		float randomValue = 20;
 		rayObject.transform.localEulerAngles = new Vector3 (Random.Range (-randomValue, randomValue), 0, Random.Range (-randomValue, randomValue));
 		rayObject.SetActive (true);      
