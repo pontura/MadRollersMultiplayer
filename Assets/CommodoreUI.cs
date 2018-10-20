@@ -8,6 +8,13 @@ public class CommodoreUI : MonoBehaviour {
 	public Text field;
 //	public string[] texts;
 
+	public types type;
+	public enum types
+	{
+		HISCORE,
+		GAME_COMPLETED
+	}
+
 	public Sprite[] spritesToBG;
 	public GameObject bg;
 	public Image[] backgroundImages;
@@ -16,16 +23,24 @@ public class CommodoreUI : MonoBehaviour {
 
 	void Start () {
 		ChangeBG ();
+		SetOn (true);
 	}
 	public void SetOn(bool _isOn)
 	{
 		this.isOn = _isOn;
-		if (isOn)
-			StartCoroutine (LoadingRoutine ());
+		if (isOn) {
+			
+			//Data.Instance.events.OnSoundFX("loading", -1);
+			field.text = "";	
+
+			if(type == types.HISCORE)
+				StartCoroutine (LoadingRoutine ());
+			else if(type == types.GAME_COMPLETED)
+				StartCoroutine (LoadingRoutine_GAME_COMPLETED ());
+		}
 	}
 	IEnumerator LoadingRoutine()
 	{
-		Data.Instance.events.OnSoundFX("loading", 0);
 		field.text = "";		
 		AddText("*** MAD ROLLERS ***");
 		yield return new WaitForSeconds (0.8f);
@@ -35,8 +50,20 @@ public class CommodoreUI : MonoBehaviour {
 		yield return new WaitForSeconds (0.8f);
 		AddText("Write Permisson Accepted!");
 		yield return new WaitForSeconds (0.5f);
-		SetOn (false);
-		//Data.Instance.events.OnGameStart();
+		yield return null;
+	}
+	IEnumerator LoadingRoutine_GAME_COMPLETED()
+	{
+			
+		AddText("SYSTEM VIOLATED! INTEGRITY CONSTRAINT");
+		yield return new WaitForSeconds (0.8f);
+		AddText("(SYSTEM.SYS_C007150 " + Data.Instance.videogamesData.GetActualVideogameData ().name + " -> scores.list");
+		yield return new WaitForSeconds (1.3f);
+		AddText("Commander64 P_HASH[VIOLATED - PARENT KEY is fucked!!]");
+		yield return new WaitForSeconds (2);
+		AddText("*** ERROR 666 ***");
+		yield return new WaitForSeconds (1.3f);
+		AddText("DIE!");
 		yield return null;
 	}
 	void AddText(string text)

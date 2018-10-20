@@ -36,7 +36,7 @@ public class LoadingAsset : MonoBehaviour {
 	}
 	IEnumerator LoadingRoutine()
 	{
-		Data.Instance.events.OnSoundFX("loading", 0);
+		Data.Instance.events.OnSoundFX("loading", -1);
 		field.text = "";		
 		AddText("*** MAD ROLLERS ***");
 		yield return new WaitForSeconds (0.8f);

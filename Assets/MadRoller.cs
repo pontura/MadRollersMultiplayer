@@ -6,11 +6,18 @@ public class MadRoller : MonoBehaviour {
 
 	public PlayerAsset[] assets;
 	public int forceInitOnMenues;
+	public GameObject[] gameFxOffOnStart;
 
 	void Start()
 	{
-		if (forceInitOnMenues > 0)
+		if (forceInitOnMenues > 0) {
 			Init (forceInitOnMenues - 1);
+		}
+	}
+	public void SetFxOff()
+	{
+		foreach (GameObject go in gameFxOffOnStart)
+			go.SetActive (false);
 	}
 	public void Init(int id)
 	{

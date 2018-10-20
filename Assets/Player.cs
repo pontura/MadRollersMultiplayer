@@ -48,9 +48,11 @@ public class Player : MonoBehaviour {
 			charactersManager = Game.Instance.GetComponent<CharactersManager>();
 		
 		if (!isPlaying) {
+			
 			SetSettings ();
 			return;
-		}
+		} 
+		madRoller.SetFxOff ();
 		Data.Instance.events.OnAvatarDie += OnAvatarDie;
 		Data.Instance.events.OnMissionStart += OnMissionStart;
 		Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;

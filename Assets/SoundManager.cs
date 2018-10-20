@@ -29,6 +29,7 @@ public class SoundManager : MonoBehaviour
     void OnDestroy()
     {
         Data.Instance.events.OnSoundFX -= OnSoundFX;
+		Data.Instance.events.OnSFXStatus -= OnSFXStatus;
         if (loopAudioSource)
         {
             loopAudioSource = null;
@@ -63,6 +64,8 @@ public class SoundManager : MonoBehaviour
     }
     void OnSoundFX(string soundName, int playerID)
     {
+		print ("_________soundName" + soundName + playerID);
+
         if (soundName == "")
         {
             audioSource.Stop();

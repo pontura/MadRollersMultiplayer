@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class VideogameComplete : MonoBehaviour {
 
-	public GameObject enrollButton;
 	bool canContinue;
 	public Text field;
 	public float speed = 0.1f;
@@ -17,18 +16,17 @@ public class VideogameComplete : MonoBehaviour {
 	bool done;
 
 	void Start () {
-		Data.Instance.events.OnJoystickClick += OnJoystickClick;
-		Data.Instance.events.OnJoystickBack += OnJoystickClick;
+		//Data.Instance.events.OnJoystickClick += OnJoystickClick;
+		//Data.Instance.events.OnJoystickBack += OnJoystickClick;
 
-		enrollButton.SetActive (false);
-		SetText("Congratulations! This videogame is completely ruined!");
+		SetText("Congratulations! This videogame is completely ruined...");
 
-		Invoke ("Done", 10);
+		Invoke ("Done", 15);
 	}
 	void OnDestroy()
 	{
-		Data.Instance.events.OnJoystickClick -= OnJoystickClick;
-		Data.Instance.events.OnJoystickBack -= OnJoystickClick;
+		//Data.Instance.events.OnJoystickClick -= OnJoystickClick;
+	//	Data.Instance.events.OnJoystickBack -= OnJoystickClick;
 	}
 	void SetText (string sentence) {
 		this.sentence = sentence;
@@ -40,7 +38,6 @@ public class VideogameComplete : MonoBehaviour {
 	void WriteLoop()
 	{
 		if (letterId == totalWords) {
-			enrollButton.SetActive (true);
 			return;
 		}
 		field.text = field.text.Remove (field.text.Length-1,1);
@@ -51,15 +48,10 @@ public class VideogameComplete : MonoBehaviour {
 
 	void Done()
 	{
-		canContinue = true;
+		OnJoystickClick ();
 	}
 	public void OnJoystickClick()
 	{
-		if (!canContinue)
-			return;
-
-		canContinue = false;
-		OnDestroy ();
 		
 		if(Data.Instance.videogamesData.actualID == 0)
 			Data.Instance.videogamesData.actualID = 1;
@@ -67,6 +59,6 @@ public class VideogameComplete : MonoBehaviour {
 			Data.Instance.videogamesData.actualID = 2;
 		else
 			Data.Instance.videogamesData.actualID = 0;
-		Data.Instance.LoadLevel ("LevelSelector");
+		Data.Instance.LoadLevel ("Hiscores");
 	}
 }

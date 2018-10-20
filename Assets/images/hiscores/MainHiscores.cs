@@ -50,7 +50,7 @@ public class MainHiscores : MonoBehaviour {
 		Data.Instance.events.OnJoystickRight += OnJoystickRight;
 		Data.Instance.events.OnJoystickLeft += OnJoystickLeft;
 		Data.Instance.events.OnJoystickClick += OnJoystickClick;
-		Data.Instance.events.OnJoystickBack += OnJoystickBack;
+	//	Data.Instance.events.OnJoystickBack += OnJoystickBack;
 
 		foreach (LeterChanger letterChanger in letters)
 		{
@@ -65,7 +65,7 @@ public class MainHiscores : MonoBehaviour {
 		Data.Instance.events.OnJoystickRight -= OnJoystickRight;
 		Data.Instance.events.OnJoystickLeft -= OnJoystickLeft;
 		Data.Instance.events.OnJoystickClick -= OnJoystickClick;
-		Data.Instance.events.OnJoystickBack -= OnJoystickBack;
+		//	Data.Instance.events.OnJoystickBack -= OnJoystickBack;
 	}
 	void OnJoystickRight()
 	{
