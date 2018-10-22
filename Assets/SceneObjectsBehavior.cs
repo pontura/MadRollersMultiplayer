@@ -222,7 +222,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				else
 				{
 					Debug.LogError("___________NO EXISTIO EL OBJETO: " + go.name);
-					Data.Instance.events.ForceFrameRate (0);
+					//Data.Instance.events.ForceFrameRate (0);
 				}
 				break;
 			}

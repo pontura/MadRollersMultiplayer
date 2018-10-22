@@ -64,8 +64,6 @@ public class SoundManager : MonoBehaviour
     }
     void OnSoundFX(string soundName, int playerID)
     {
-		print ("_________soundName" + soundName + playerID);
-
         if (soundName == "")
         {
             audioSource.Stop();

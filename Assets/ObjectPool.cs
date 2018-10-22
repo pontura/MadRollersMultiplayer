@@ -26,6 +26,8 @@ public class ObjectPool : MonoBehaviour
     public static ObjectPool instance;
     
 	List<SceneObject> pooledObjects;
+	List<SceneObject> pooledObjects_smallBlock;
+	List<SceneObject> pooledObjects_extraSmallBlock;
 
     protected GameObject containerObject;
 
@@ -38,6 +40,8 @@ public class ObjectPool : MonoBehaviour
     void Start()
     {
 		pooledObjects = new List<SceneObject> ();
+		pooledObjects_smallBlock = new List<SceneObject> ();
+		pooledObjects_extraSmallBlock = new List<SceneObject> ();
 
         DontDestroyOnLoad(this);
 
@@ -105,17 +109,34 @@ public class ObjectPool : MonoBehaviour
     {
 
 		SceneObject pooledObject = null;
-		int i = pooledObjects.Count;
-		while (i>0) {
-			SceneObject soPooled = pooledObjects [i - 1];
-			if (soPooled.name == objectType || soPooled.name + "(Clone)" == objectType) {
-				pooledObject = soPooled;
-				pooledObject.transform.SetParent( Scene.transform );
-				pooledObjects.Remove(pooledObject);	
+		if (objectType == "extraSmallBlock1_real") {
+			if (pooledObjects_extraSmallBlock.Count > 0) {
+				pooledObject = pooledObjects_extraSmallBlock [0];
+				pooledObjects_extraSmallBlock.Remove (pooledObject);	
+				pooledObject.transform.SetParent (Scene.transform);
 				return pooledObject;
 			}
-			i--;
-		}	
+		} else if (objectType == "smallBlock1_real") {
+			if (pooledObjects_smallBlock.Count > 0) {
+				pooledObject = pooledObjects_smallBlock [0];
+				pooledObjects_smallBlock.Remove (pooledObject);	
+				pooledObject.transform.SetParent (Scene.transform);
+				return pooledObject;
+			}
+		} else {
+			
+			int i = pooledObjects.Count;
+			while (i > 0) {
+				SceneObject soPooled = pooledObjects [i - 1];
+				if (soPooled.name == objectType || soPooled.name + "(Clone)" == objectType) {
+					pooledObject = soPooled;
+					pooledObject.transform.SetParent (Scene.transform);
+					pooledObjects.Remove (pooledObject);	
+					return pooledObject;
+				}
+				i--;
+			}	
+		}
 		if (!onlyPooled)
 		{
 			foreach (ObjectPoolEntry poe in Entries) {
@@ -127,7 +148,7 @@ public class ObjectPool : MonoBehaviour
 				}
 			}
 		} 
-	//	Debug.Log("_________________NO HAY: " + objectType + "  bool " + onlyPooled);
+		//Debug.LogError("_________________NO HAY: " + objectType + "  bool " + onlyPooled);
 		return null;
     }
 
@@ -147,7 +168,12 @@ public class ObjectPool : MonoBehaviour
             {        				
 				obj.transform.SetParent(containerObject.transform);
 				obj.gameObject.SetActive(false);
-                pooledObjects.Add(obj);
+				if(obj.name == "extraSmallBlock1_real")
+					pooledObjects_extraSmallBlock.Add(obj);
+				else if(obj.name == "smallBlock1_real")
+					pooledObjects_smallBlock.Add(obj);
+				else
+                	pooledObjects.Add(obj);
                 return;
             }
         }
