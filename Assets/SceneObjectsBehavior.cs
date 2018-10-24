@@ -32,10 +32,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	public SceneObject rampaHuge;
 	public SceneObject bomb1;
 	public SceneObject Laser;
-	public SceneObject palm2;
-	public SceneObject palm3;
-	public SceneObject palm4;
-	public SceneObject palm_tall;
+	public SceneObject Container;
 	public SceneObject enemyGhost;
 	public SceneObject cilindro;
 	public SceneObject cilindroBig;
@@ -117,8 +114,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			if (oposite) {
 				pos.z *= -1;
 			}
-
-		
 			//  if (!nubesOn)
 			//  {
 			//  nubesOn = true;
@@ -171,40 +166,10 @@ public class SceneObjectsBehavior : MonoBehaviour {
 
 				if (sceneObject)
 				{
-					
-
-
 					sceneObject.isActive = false;
-					//sceneObject.Restart(pos);
 					sceneObject.transform.position = pos;
 					sceneObject.transform.rotation = go.transform.rotation;
 
-					//if (go.name == "Yuyo")
-					//	sceneObject.SetMaterialByVideoGame ();
-					
-					//sceneObject.changeMaterial("pasto");
-//
-//					if (go.name == "extralargeBlock1")
-//					{
-//						GameObject goNew = new GameObject ();
-//						goNew.transform.position = pos;
-//						goNew.transform.rotation = go.transform.rotation;
-//						borderTransforms.Add (goNew.transform);
-//
-////						int num = Random.Range(1, 4);
-////						string decorationName = "";
-////						if (num == 1)
-////							decorationName = "flores1_real";
-////						if (num == 2)
-////							decorationName = "flores2_real";
-////						else if (num == 3)
-////							decorationName = "floorFlowers_real";
-////
-////						if (decorationName != "")
-////							addDecoration(decorationName, pos, Vector3.zero);
-//
-//					}
-					//  }
 					if(go.name == "Coin" || go.name =="bloodx1")
 					{
 						sceneObject.GetComponent<GrabbableItem>().SetComboGrabbable(areasLength,area.totalCoins);
@@ -303,25 +268,10 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				clone = cilindroBig;
 			else if (go.name == "enemyGhost")
 				clone = enemyGhost;
-//			else if (go.name == "palmTall") {
-//				clone = palm_tall;
-//				go.transform.localEulerAngles = new Vector3 (0, Random.Range (0, 4) * 90,  0);
-//			}
-//			else if (go.name == "palm")
-//			{
-//				int ran = Random.Range (0, 60);
-//				if (ran < 20)
-//					clone = palm;
-//				else if (ran < 40)
-//					clone = palm2;
-//				else 
-//					clone = palm3;
-//				
-//				go.transform.localEulerAngles = new Vector3 (0, Random.Range (0, 4) * 90,  0);
-//				//}
-//			}
 			else if (go.name == "streetFloor")
 				clone = streetFloor;
+			else if (go.name == "Container")
+				clone = Container;
 			else if (go.name == "streetFloorSmall")
 				clone = streetFloorSmall;
 			else if (go.name == "levelSignal")
@@ -450,13 +400,23 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				SceneObjectData mo = go.GetComponent<SceneObjectData>();
 				CopyComponent(mo, sceneObject.gameObject);
 			}
-			if(sceneObject!=null)
-				manager.AddSceneObject (sceneObject, pos);
-		}
 
+			if (sceneObject != null) {
+				if (lastSceneObjectContainer != null && go.transform.parent.GetComponent<SceneObjectContainer> ())
+					manager.AddSceneObject (sceneObject, pos, lastSceneObjectContainer);
+				else
+					manager.AddSceneObject (sceneObject, pos);
+			}
+
+			if (go.GetComponent<SceneObjectContainer> ()) {
+				lastSceneObjectContainer = sceneObject.transform;
+			}
+
+		}
 			//AddBorders ();
 		//Debug.LogError (" borderTransforms.Count " + borderTransforms.Count);
 	}
+	Transform lastSceneObjectContainer;
 
 	Component CopyComponent(Component original, GameObject destination)
 	{

@@ -22,6 +22,18 @@ public class SceneObjectsManager : MonoBehaviour {
 		sceneObjectsInScene.Add (so);
 		so.Init (this);
 	}
+	public void AddSceneObject(SceneObject so, Vector3 pos, Transform container)
+	{
+		print ("______" + container);
+		so.gameObject.SetActive (false);
+		so.isActive = false;
+
+		so.transform.localPosition = pos;
+		sceneObjectsInScene.Add (so);
+		so.Init (this);
+
+		so.transform.SetParent(container);
+	}
 	public void AddSceneObjectAndInitIt(SceneObject so, Vector3 pos)
 	{
 		so.gameObject.SetActive (false);
