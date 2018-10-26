@@ -107,7 +107,13 @@ public class WeakPlatform : SceneObject {
 				case 2: newPos = pos - transform.forward * MidZ - transform.right * MidX; break;
 				case 3: newPos = pos - transform.forward * MidZ + transform.right * MidX; break;
 				}
-				Game.Instance.sceneObjectsManager.AddSceneObjectAndInitIt(newSO, newPos);
+
+				Transform container = null;
+				SceneObject soc = transform.parent.gameObject.GetComponent<SceneObject> ();
+				if(soc!=null)
+					container = soc.transform;
+				
+				Game.Instance.sceneObjectsManager.AddSceneObjectAndInitIt(newSO, newPos, container);
 				newSO.transform.rotation = transform.rotation;
 			}
 		}

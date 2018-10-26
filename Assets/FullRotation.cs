@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using System;
+using System.Collections.Generic;
 
 public class FullRotation : MonoBehaviour {
 
@@ -20,18 +22,29 @@ public class FullRotation : MonoBehaviour {
 
 	public bool frameByFrame;
     
+	public List<TimelineData> rotations;
 
+	[Serializable]
+	public class TimelineData
+	{
+		public float duration;
+		public Vector3 rot;
+		public iTween.EaseType easetype;
+	}
 
 	void Start () {
+		if (rotations.Count > 0) {
+			RotateInTimeLine ();
+		}
 
         if (randomRotation)
         {
             if (rotateX)
-                rotationX = Random.Range(-180, 180);
+                rotationX = UnityEngine.Random.Range(-180, 180);
             if (rotateY)
-                rotationY = Random.Range(-45, 45);
+				rotationY =  UnityEngine.Random.Range(-45, 45);
             if (rotateZ)
-                rotationZ = Random.Range(-45, 45);
+				rotationZ =  UnityEngine.Random.Range(-45, 45);
         }
         else
         {
@@ -45,6 +58,25 @@ public class FullRotation : MonoBehaviour {
 			Loop ();
 		}
 	}
+	int rotID = 0;
+	void RotateInTimeLine()
+	{
+		iTween.RotateTo(gameObject, iTween.Hash(
+			"rotation", rotations[rotID].rot,
+			"time", rotations[rotID].duration,
+			"easetype", rotations[rotID].easetype,
+			"oncomplete", "RotateComplete",
+			"onCompleteTarget", this.gameObject
+			// "axis", "x"
+		));
+	}
+	void RotateComplete()
+	{
+		rotID++;
+		if (rotID >= rotations.Count)
+			rotID = 0;
+		RotateInTimeLine ();
+	}
 	void Loop()
 	{
 		Vector3 rot = transform.localEulerAngles;
@@ -53,7 +85,9 @@ public class FullRotation : MonoBehaviour {
 		Invoke ("Loop", 0.1f);
 	}
 	void Update () {
-		
+		if (rotations.Count > 0) {
+			return;
+		}
 		if (frameByFrame) {
 			return;
 		}

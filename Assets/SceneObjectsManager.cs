@@ -24,7 +24,6 @@ public class SceneObjectsManager : MonoBehaviour {
 	}
 	public void AddSceneObject(SceneObject so, Vector3 pos, Transform container)
 	{
-		print ("______" + container);
 		so.gameObject.SetActive (false);
 		so.isActive = false;
 
@@ -34,15 +33,22 @@ public class SceneObjectsManager : MonoBehaviour {
 
 		so.transform.SetParent(container);
 	}
-	public void AddSceneObjectAndInitIt(SceneObject so, Vector3 pos)
+	public void AddSceneObjectAndInitIt(SceneObject so, Vector3 pos, Transform container = null)
 	{
 		so.gameObject.SetActive (false);
 		so.isActive = true;
-		so.transform.SetParent(Pool.Scene.transform);
+
+		if(container != null)
+			so.transform.SetParent(container);
+		else
+			so.transform.SetParent(Pool.Scene.transform);
+		
 		so.transform.localPosition = pos;
 		sceneObjectsInScene.Add (so);
 		so.Init (this);
 		so.Restart (pos);
+
+
 	}
 	public void RemoveSceneObject(SceneObject so)
 	{
