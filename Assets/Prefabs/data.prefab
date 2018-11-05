@@ -55,7 +55,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &171332
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,9 +323,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isArcadeMultiplayer: 1
-  DEBUG: 0
-  forceVideogameID: 1
-  forceMissionID: 1
+  DEBUG: 1
+  forceVideogameID: 0
+  forceMissionID: 0
   canContinue: 1
   totalCredits: 3
   credits: 3
@@ -371,55 +371,1027 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36c09387fd1372140a72bc39ea3b489e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lastMissionSignalShowed: 0
-  startingAreaLevel1: {fileID: 114710416843263632, guid: 81219ce64cb7a274b92028c9064c6b0d,
-    type: 2}
-  startingArea: {fileID: 11442682, guid: 6ce08d356ad2bc64e9e14e54ec0a107d, type: 2}
-  relaxArea:
-  - {fileID: 11482596, guid: 9d70ab401d0a4a14a97b46b9e165fb9e, type: 2}
-  - {fileID: 11493930, guid: a8a0d0001f5546640874a098d3faa5ee, type: 2}
-  - {fileID: 11460554, guid: 80e9fbb8fcaccad41bbdcd950db84da8, type: 2}
-  - {fileID: 11496754, guid: 27817ae6890ba6f4a84a6fb0fcfb29fb, type: 2}
-  - {fileID: 11474726, guid: 1bfee7f498fbbfe44907a9898e9b5ad1, type: 2}
-  - {fileID: 11421004, guid: af363859c35814948a58caf5a619844a, type: 2}
-  - {fileID: 114000011041462772, guid: b3e3189962f06094dbb6aae1a0ef57fd, type: 2}
-  startingAreaAfterDying: {fileID: 11400042, guid: 9ad972e8dea1bcd43a78b50365557013,
-    type: 2}
-  startingAreaDuringGame: {fileID: 114628751800030858, guid: 67eaa1393fc1e3d48979f66ebb5d7848,
-    type: 2}
-  test_mission: {fileID: 11400002, guid: e6f1113625aa4384e98d2e8c6fa1140a, type: 2}
-  allMissionsByVideogame:
+  reloadMissions: 1
+  videogames:
   - missions:
-    - {fileID: 11400002, guid: d0ae778cb5e3cfd449a8fe528c7d5266, type: 2}
-    - {fileID: 11476576, guid: 6da95880900b6da45a03bc8bb7f9ed52, type: 2}
-    - {fileID: 11400002, guid: c64b7334e858185408559f4682b72212, type: 2}
-    - {fileID: 11400002, guid: e6f1113625aa4384e98d2e8c6fa1140a, type: 2}
-    - {fileID: 114937943808588396, guid: d8902b8ad4ff97e4789e0164b09a8353, type: 2}
-    - {fileID: 114144700556827404, guid: 0942924879c8f0849b957796b493a143, type: 2}
-    - {fileID: 11400002, guid: b84532f69b61e474d934fdaaaae14833, type: 2}
-    - {fileID: 114923521462391386, guid: 710d121cef0127a4da59c9690001652b, type: 2}
-    - {fileID: 11495614, guid: aa3f891f0211e834fa9c5bbd7c4c9664, type: 2}
-    - {fileID: 11452068, guid: 2348090e654a5454aab065a06455263b, type: 2}
+    - title: 
+      data:
+      - title: 
+        id: 0
+        maxScore: 3000
+        areaSetData:
+        - total_areas: 1000
+          randomize: 1
+          areas:
+          - test4
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 2
+          randomize: 0
+          areas:
+          - coinsJump1
+          - descanso1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 1
+          randomize: 0
+          areas:
+          - doubleJump1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 3
+          randomize: 1
+          areas:
+          - coinsEasy1
+          - coinsEasy2
+          - coinsEasy3
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 1
+          randomize: 1
+          areas:
+          - housesSmall1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 2
+          randomize: 0
+          areas:
+          - CoinsHard1
+          - tiraFinaDer
+          - coinsHard2
+          - tiraFinaDer
+          - coinsHard3
+          - bombas_pisoMueve2
+          - CoinsHard1
+          - coinsHard2
+          - coinsHard3
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 3
+          randomize: 0
+          areas:
+          - boss_Pacmans_intro_free
+          - boss_Pacmans_intro
+          - boss_Pacmans_intro_free
+          cameraOrientation: {x: 0, y: -1, z: -0.5}
+        - total_areas: 1000
+          randomize: 1
+          areas:
+          - boss_Pacmans_intro_free
+          - boss_Pacmans_intro_free_simple
+          - boss_Pacmans_intro_free
+          cameraOrientation: {x: 0, y: -2.2, z: -0.5}
+        backgroundSides: []
+    - title: 
+      data:
+      - title: 
+        id: 0
+        maxScore: 460
+        areaSetData:
+        - total_areas: 2
+          randomize: 1
+          areas:
+          - lava_2doPiso
+          - lava_2doPiso 1
+          - lava_2doPiso 2
+          cameraOrientation: {x: 0, y: 0.5, z: 0}
+        - total_areas: 1
+          randomize: 1
+          areas:
+          - ancho_agua_simple
+          - ancho_agua_simple1
+          - ancho_agua_simple2
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 1
+          randomize: 1
+          areas:
+          - container_cruz
+          - container_cruz_2
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 1
+          randomize: 1
+          areas:
+          - heliceSmall
+          - heliceDoubleSmall
+          - helicesx4
+          cameraOrientation: {x: 0, y: -2, z: -0.5}
+        - total_areas: 2
+          randomize: 1
+          areas:
+          - tiraFinaDer
+          - tiraFinaIzq
+          - tiraFinaEnemy1
+          - tiraFinaEnemy2
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 3
+          randomize: 0
+          areas:
+          - housesSmall1_med
+          - housesSmall2
+          - housesSmall3
+          cameraOrientation: {x: 0, y: -2.2, z: 0.5}
+        - total_areas: 1
+          randomize: 1
+          areas:
+          - houses1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 1
+          randomize: 1
+          areas:
+          - heliceSmall
+          - heliceDoubleSmall
+          - helicesx4
+          cameraOrientation: {x: 0, y: -2, z: -0.5}
+        - total_areas: 1
+          randomize: 0
+          areas:
+          - heliceDoubleSmall
+          cameraOrientation: {x: 0, y: -2, z: 1}
+        - total_areas: 5
+          randomize: 0
+          areas:
+          - boss_naves_boyland
+          - boss_ancho_free
+          - boss_free_fences
+          cameraOrientation: {x: 0, y: -2, z: -1}
+        backgroundSides: []
+    - title: 
+      data:
+      - title: 
+        id: 0
+        maxScore: 3000
+        areaSetData:
+        - total_areas: 2
+          randomize: 1
+          areas:
+          - estrellas simple
+          - estrellas simple 1
+          - estrellas simple 2
+          - estrellas simple 3
+          - estrellas simple_doble
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 3
+          randomize: 1
+          areas:
+          - doble_calecitas
+          - doble_1
+          - doble_agua
+          - doble_agua_simple
+          - doble_1 1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 4
+          randomize: 0
+          areas:
+          - bombaSingle1
+          - rampaHuge
+          - subeBaja
+          - boss_Pacmans_Galaga
+          - boss_45grados_free
+          cameraOrientation: {x: 0, y: -1, z: -1.4}
+        - total_areas: 1000
+          randomize: 1
+          areas:
+          - boss_45grados_free
+          - boss_45grados_free
+          - boss_45grados_trees
+          - boss_45grados_free_bomb
+          - boss_45grados_free_bomb
+          cameraOrientation: {x: 0, y: -1, z: 0}
+        backgroundSides: []
+    - title: 
+      data:
+      - title: 
+        id: 0
+        maxScore: 150
+        areaSetData:
+        - total_areas: 2
+          randomize: 1
+          areas:
+          - ruedasEnemigos
+          - ruedaSimple
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 3
+          randomize: 1
+          areas:
+          - killRunner
+          - killRunner2
+          - killRunner3
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 1
+          randomize: 1
+          areas:
+          - descanso1
+          - descanso2
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 3
+          randomize: 1
+          areas:
+          - killRunner
+          - killRunner2
+          - killRunner3
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 13
+          randomize: 0
+          areas:
+          - boss1Corre
+          - boss1Corre2
+          - boss1Corre2
+          - boss1Corre2
+          - boss1Corre2
+          - boss1Corre2
+          - boss1Corre2
+          - boss1Corre
+          - boss1Corre2_fences
+          - boss1Corre2
+          cameraOrientation: {x: 0, y: 2, z: -5}
+        - total_areas: 10000
+          randomize: 0
+          areas:
+          - boss_Crusader
+          - areaFree_boss1
+          cameraOrientation: {x: 0, y: -3.6, z: -2}
+        backgroundSides: []
+    - title: 
+      data:
+      - title: 
+        id: 0
+        maxScore: 5000
+        areaSetData:
+        - total_areas: 2
+          randomize: 1
+          areas:
+          - cilindro_simple
+          - cilindro_simple 1
+          cameraOrientation: {x: 0, y: -1.5, z: -0.5}
+        - total_areas: 3
+          randomize: 1
+          areas:
+          - killRunner
+          - killRunner2
+          - killRunner3
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 5
+          randomize: 1
+          areas:
+          - singleRunnerJump1
+          - singleRunnerJump2
+          - enemiesLineaJump
+          - enemiesLineaJumpSmall
+          - enemiesRunners3_Salto2
+          - enemiesRunnersSmall
+          - enemiesRunnersSmall_2Palms
+          - singleRunnerJump_linea1
+          - singleRunnerJump_linea2
+          - coinsEasy1
+          - coinsEasy2
+          - coinsEasy3
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 4
+          randomize: 0
+          areas:
+          - boss_Pacmans
+          - boss_zigzag_free
+          cameraOrientation: {x: 0, y: -1, z: 0}
+        backgroundSides: []
+    - title: 
+      data:
+      - title: 
+        id: 0
+        maxScore: 0
+        areaSetData:
+        - total_areas: 1
+          randomize: 1
+          areas:
+          - lava_1
+          - lava_2
+          cameraOrientation: {x: 0, y: 1, z: -3}
+        - total_areas: 5
+          randomize: 0
+          areas:
+          - throw_center
+          - throw_left
+          - throw_right
+          - calecita_x1
+          - slider_intro1
+          - throw_double
+          - throw_center
+          - throw_left
+          - throw_right
+          - throw_double
+          cameraOrientation: {x: 0, y: 1.2, z: -3}
+        - total_areas: 4
+          randomize: 0
+          areas:
+          - descanso1
+          - descanso2
+          - boss_anche_lineaVienen
+          - boss_ancho_free
+          cameraOrientation: {x: 0, y: -2, z: 0}
+        backgroundSides: []
+    - title: 
+      data:
+      - title: 
+        id: 0
+        maxScore: 0
+        areaSetData:
+        - total_areas: 6
+          randomize: 0
+          areas:
+          - sombrillaIntro
+          - sombrillaPozo
+          - sombrilla2Caminos
+          - sombrillaEnemigos
+          - sombrillaIntro2
+          - sombrillaIntro3
+          - sombrillaPozo
+          - sombrillaEnemigos
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 3
+          randomize: 0
+          areas:
+          - boss_Rebotes
+          - sombrilla2Caminos_simple
+          - sombrilla2Caminos_simple 1
+          cameraOrientation: {x: 0, y: -2, z: 1}
+        backgroundSides: []
+    - title: 
+      data:
+      - title: 
+        id: 0
+        maxScore: 5000
+        areaSetData:
+        - total_areas: 2
+          randomize: 1
+          areas:
+          - calle_caeCentro1
+          - calle_caeCentro2
+          - calle_caeDerecha
+          - calle_caeIzquierda
+          - calle_sombrilla
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 2
+          randomize: 1
+          areas:
+          - calle_caeCentro1
+          - calle_caeCentro2
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 4
+          randomize: 1
+          areas:
+          - 2lados_intro
+          - 2lados_intro 1
+          - 2lados_intro 1 1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 4
+          randomize: 1
+          areas:
+          - 2lados
+          - 2lados 1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 1
+          randomize: 0
+          areas:
+          - boss_2filas_boyland
+          - boss_2_filas_free
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        backgroundSides: []
+    - title: 
+      data:
+      - title: 
+        id: 0
+        maxScore: 0
+        areaSetData:
+        - total_areas: 2
+          randomize: 0
+          areas:
+          - slider_intro3
+          - slider_intro4
+          - slider_intro5_doble
+          - slider_intro1
+          - slider_intro2
+          - slider_intro6_doble_trees
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 2
+          randomize: 1
+          areas:
+          - slider2
+          - slider1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 3
+          randomize: 1
+          areas:
+          - sliderWalls1
+          - sliderWalls2
+          - sliderWalls2
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 1
+          randomize: 1
+          areas:
+          - sliderHard1
+          - sliderHard2
+          - sliderHard3
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 4
+          randomize: 0
+          areas:
+          - descanso1
+          - descanso2
+          - boss_Calecitas
+          - boss_45grados_free
+          cameraOrientation: {x: 0, y: -2, z: 0}
+        backgroundSides: []
+    - title: 
+      data:
+      - title: 
+        id: 0
+        maxScore: 1000
+        areaSetData:
+        - total_areas: 2
+          randomize: 0
+          areas:
+          - subibaja1
+          - subibaja2
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - total_areas: 1
+          randomize: 1
+          areas:
+          - cepillo1
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - total_areas: 1
+          randomize: 1
+          areas:
+          - subibaja2Enemies
+          - subibajaEnemy
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - total_areas: 10000
+          randomize: 0
+          areas:
+          - water_1
+          - boss_circular
+          - areaFree_boss2
+          cameraOrientation: {x: 0, y: 0, z: -2}
+        backgroundSides: []
   - missions:
-    - {fileID: 11400002, guid: e9bd992a0f9768048b78f535861a6d14, type: 2}
-    - {fileID: 114571720932278634, guid: d9b9914daf0ae3e4ba5ebf854406d9d3, type: 2}
-    - {fileID: 11495614, guid: 03ba739c48b48c1429734a7e17a09865, type: 2}
-    - {fileID: 11495614, guid: cbde0e75509487f4e8fb6e55f7517245, type: 2}
-    - {fileID: 114144700556827404, guid: 4370387772b4a42428ca4ac9e6a80c2d, type: 2}
-    - {fileID: 11400002, guid: e9bdfb59e91cc0d438603987e4497c84, type: 2}
-    - {fileID: 11400002, guid: ea21f7c531149a64b8bed0dda9b15682, type: 2}
-    - {fileID: 11495614, guid: 7a8b5c61062fbf34893c3e4fe4341bb4, type: 2}
-    - {fileID: 114174197576344946, guid: 452dafceb124c8b45947058856ab5f28, type: 2}
+    - title: 
+      data:
+      - title: 
+        id: 0
+        maxScore: 3000
+        areaSetData:
+        - total_areas: 2
+          randomize: 0
+          areas:
+          - coinsJump1
+          - descanso1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 1
+          randomize: 0
+          areas:
+          - doubleJump1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 3
+          randomize: 1
+          areas:
+          - coinsEasy1
+          - coinsEasy2
+          - coinsEasy3
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 1
+          randomize: 1
+          areas:
+          - bombas_pisoMueve1
+          - bombas_pisoMueve2
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 5
+          randomize: 1
+          areas:
+          - lasersrx4
+          - laserHorizontal
+          - lasersrx4 1
+          - laserMultiplesBigWalls1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 3
+          randomize: 0
+          areas:
+          - boss_naves
+          - areaFree_boss2
+          cameraOrientation: {x: 0, y: -2, z: -1}
+        - total_areas: 10000
+          randomize: 1
+          areas:
+          - boss_zigzag_free
+          - boss_free_fences
+          - boss_zigzag_free
+          - boss_ancho_free
+          - boss_zigzag_jumpers_free
+          - boss_Pacmans_intro_free_simple
+          - boss_zigzag_free_simple_fences
+          cameraOrientation: {x: 0, y: -2, z: -1}
+        backgroundSides: []
+    - title: 
+      data:
+      - title: 
+        id: 0
+        maxScore: 0
+        areaSetData:
+        - total_areas: 2
+          randomize: 0
+          areas:
+          - subibaja1
+          - subibaja2
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - total_areas: 2
+          randomize: 1
+          areas:
+          - escupe_frontal1 (1)
+          - escupe_frontal1 (1) 1
+          - escupe_frontal1 (1) 2
+          - escupe_frontal1 1
+          - escupe_frontal1 (2)
+          - escupe_frontal1
+          - escupe_frontal_fila
+          - escupe_frontal_fila 1
+          cameraOrientation: {x: 0, y: 2, z: -1}
+        - total_areas: 5
+          randomize: 1
+          areas:
+          - lasersrx4
+          - laserHorizontal
+          - lasersrx4 1
+          - laserMultiplesBigWalls1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 2
+          randomize: 1
+          areas:
+          - navesSimple1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 2
+          randomize: 1
+          areas:
+          - navesSimple2
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 4
+          randomize: 1
+          areas:
+          - navesSimple3
+          - navesSimple3 1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 1
+          randomize: 0
+          areas:
+          - boss_2_filas
+          - boss_2_filas_free
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        backgroundSides: []
+    - title: 
+      data:
+      - title: 
+        id: 0
+        maxScore: 0
+        areaSetData:
+        - total_areas: 16
+          randomize: 0
+          areas:
+          - pisoCurvo1
+          - pisoCurvo2
+          - pisoCurvo3
+          - pisoCurvo4
+          - pisoCurvo5
+          - pisoCurvo_helices
+          - pisoCurvo6
+          - pisoCurvo7
+          - pisoCurvo8
+          - pisoCurvo9
+          - pisoCurvo9 1
+          - pisoCurvo_helices
+          - pisoCurvo1 1
+          - pisoCurvo3
+          - pisoCurvo1 1
+          - pisoCurvo_boss
+          - pisoCurvo_boss_free
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        backgroundSides: []
+    - title: 
+      data:
+      - title: 
+        id: 0
+        maxScore: 0
+        areaSetData:
+        - total_areas: 1
+          randomize: 1
+          areas:
+          - laserMultiplesBigWalls1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 4
+          randomize: 0
+          areas:
+          - cilindrosBigSimple1
+          - cilindrosBigSimple2
+          - cilindrosBigSimple_doble
+          - cilindrosBigSimple_large
+          cameraOrientation: {x: 0, y: 2, z: -1}
+        - total_areas: 5
+          randomize: 1
+          areas:
+          - lasersrx4
+          - laserHorizontal
+          - lasersrx4 1
+          - laserMultiplesBigWalls1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 3
+          randomize: 1
+          areas:
+          - PisoRotativo1
+          - PisoRotativo2
+          - PisoRotativo3
+          - PisoRotativo4
+          - PisoRotativo5
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 4
+          randomize: 0
+          areas:
+          - paredes1
+          - paredes2
+          - paredes3
+          - paredes4
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 3
+          randomize: 1
+          areas:
+          - paredes_hard1
+          - paredes_hard2
+          - paredes_hard3
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 2
+          randomize: 0
+          areas:
+          - paredes1Boss
+          - paredes1BossFree1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        backgroundSides: []
+    - title: 
+      data:
+      - title: 
+        id: 0
+        maxScore: 1000
+        areaSetData:
+        - total_areas: 1
+          randomize: 1
+          areas:
+          - pisoSalta1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 3
+          randomize: 0
+          areas:
+          - pisoSaltaAlto
+          - pisoSaltaAlto 1
+          - pisoSaltaAlto 1 1
+          - pisoSaltaAlto
+          - pisoSaltaAlto 1
+          - pisoSaltaAlto 1 1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 6
+          randomize: 0
+          areas:
+          - resorteMovedizo_Boss
+          - resorteMovedizo_Boss_free
+          cameraOrientation: {x: 0, y: 1, z: -1}
+        backgroundSides: []
+    - title: 
+      data:
+      - title: 
+        id: 0
+        maxScore: 1000
+        areaSetData:
+        - total_areas: 1
+          randomize: 1
+          areas:
+          - cepillo1
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - total_areas: 2
+          randomize: 0
+          areas:
+          - subibaja1
+          - subibaja2
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - total_areas: 2
+          randomize: 0
+          areas:
+          - subibaja1
+          - subibaja2
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - total_areas: 1
+          randomize: 1
+          areas:
+          - cepillo1
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - total_areas: 1
+          randomize: 1
+          areas:
+          - subibaja2Enemies
+          - subibajaEnemy
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - total_areas: 2
+          randomize: 0
+          areas:
+          - subibaja1
+          - subibaja2
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - total_areas: 1
+          randomize: 1
+          areas:
+          - subibaja2Enemies
+          - subibajaEnemy
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - total_areas: 1
+          randomize: 1
+          areas:
+          - calecita_x1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 1
+          randomize: 1
+          areas:
+          - subibaja2Enemies
+          - subibajaEnemy
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - total_areas: 1
+          randomize: 1
+          areas:
+          - naves_3_filas
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 1
+          randomize: 1
+          areas:
+          - subibaja2Enemies
+          - subibajaEnemy
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - total_areas: 1
+          randomize: 1
+          areas:
+          - subibaja2Enemies
+          - subibajaEnemy
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        - total_areas: 1
+          randomize: 0
+          areas:
+          - subibajaBoss
+          - subibajaBossFree
+          cameraOrientation: {x: 0, y: 1, z: -2}
+        backgroundSides: []
+    - title: 
+      data:
+      - title: 
+        id: 0
+        maxScore: 0
+        areaSetData:
+        - total_areas: 14
+          randomize: 1
+          areas:
+          - escupe_frontal1 (1)
+          - escupe_frontal1 (1) 1
+          - escupe_frontal1 (1) 2
+          - escupe_frontal1 1
+          - escupe_frontal1 (2)
+          - escupe_frontal1
+          - escupe_frontal_fila
+          - escupe_frontal_fila 1
+          cameraOrientation: {x: 0, y: 2, z: -1}
+        - total_areas: 4
+          randomize: 0
+          areas:
+          - descanso1
+          - descanso2
+          - boss_Calecitas
+          - boss_45grados_free
+          cameraOrientation: {x: 0, y: -2, z: 0}
+        backgroundSides: []
+    - title: 
+      data:
+      - title: 
+        id: 0
+        maxScore: 0
+        areaSetData:
+        - total_areas: 5
+          randomize: 1
+          areas:
+          - lasersrWalls_x4
+          - lasersrWalls_x4Hard
+          - lasersrWalls_x4Hard1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 2
+          randomize: 1
+          areas:
+          - cilindro_simple
+          - cilindro_simple 1
+          cameraOrientation: {x: 0, y: -1.5, z: -0.5}
+        - total_areas: 10000
+          randomize: 0
+          areas:
+          - water_1
+          - boss_circular
+          - areaFree_boss2
+          cameraOrientation: {x: 0, y: 0, z: -2}
+        backgroundSides: []
   - missions:
-    - {fileID: 11400002, guid: 7a7366830cfc1874fb9df277624f7787, type: 2}
-    - {fileID: 11400000, guid: ef60b64b66a431546a8fed53892f0091, type: 2}
-    - {fileID: 11400002, guid: e499fdf6405b4384c8887773ec68d24b, type: 2}
-    - {fileID: 114647680365819570, guid: 911b4b8a51877f7489e8b0dbfdd18a04, type: 2}
-    - {fileID: 114359173162438890, guid: 826365e9cd695a941aa683746782953e, type: 2}
-    - {fileID: 11400000, guid: 4d5c6fbd37d6cbb4787856e2ba3127e8, type: 2}
-  competitions: {fileID: 11440242}
+    - title: 
+      data:
+      - title: 
+        id: 0
+        maxScore: 3000
+        areaSetData:
+        - total_areas: 2
+          randomize: 0
+          areas:
+          - coinsJump1
+          - descanso1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 1
+          randomize: 0
+          areas:
+          - doubleJump1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 3
+          randomize: 0
+          areas:
+          - coinsJumpHard1
+          - coinsJumpFence
+          - tiposWalkers2
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 1
+          randomize: 1
+          areas:
+          - bombas_pisoMueve1
+          - bombas_pisoMueve2
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 3
+          randomize: 0
+          areas:
+          - boss_naves
+          - areaFree_boss2
+          cameraOrientation: {x: 0, y: -2, z: -1}
+        - total_areas: 10000
+          randomize: 1
+          areas:
+          - boss_zigzag_free
+          - boss_free_fences
+          - boss_zigzag_free
+          - boss_ancho_free
+          - boss_zigzag_jumpers_free
+          - boss_Pacmans_intro_free_simple
+          - boss_zigzag_free_simple_fences
+          cameraOrientation: {x: 0, y: -2, z: -1}
+        backgroundSides: []
+    - title: 
+      data:
+      - title: 
+        id: 0
+        maxScore: 1000
+        areaSetData:
+        - total_areas: 4
+          randomize: 1
+          areas:
+          - 2lados_intro
+          - 2lados_intro 1
+          - 2lados_intro 1 1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 4
+          randomize: 1
+          areas:
+          - 2lados
+          - 2lados 1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 2
+          randomize: 1
+          areas:
+          - cilindro_simple
+          - cilindro_simple 1
+          cameraOrientation: {x: 0, y: -1.5, z: -0.5}
+        - total_areas: 3
+          randomize: 0
+          areas:
+          - boss_calle_CentroFree
+          - boss_calle_Centro_boss
+          - boss_calle_CentroFree
+          cameraOrientation: {x: 0, y: -2.5, z: -1}
+        - total_areas: 3
+          randomize: 1
+          areas:
+          - boss_calle_CentroFree
+          - boss_calle_CentroFree 1
+          - boss_calle_Centro_Cruz
+          cameraOrientation: {x: 0, y: -0.4, z: -0.5}
+        backgroundSides: []
+    - title: 
+      data:
+      - title: 
+        id: 0
+        maxScore: 0
+        areaSetData:
+        - total_areas: 2
+          randomize: 0
+          areas:
+          - slider_intro3
+          - slider_intro4
+          - slider_intro5_doble
+          - slider_intro1
+          - slider_intro2
+          - slider_intro6_doble_trees
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 1
+          randomize: 1
+          areas:
+          - sliderHard1
+          - sliderHard2
+          - sliderHard3
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 4
+          randomize: 0
+          areas:
+          - slider1
+          - sliderBossCubos
+          - sliderWalls_seguidas1
+          - sliderWalls_seguidas2
+          cameraOrientation: {x: 0, y: -2, z: 0}
+        - total_areas: 2
+          randomize: 1
+          areas:
+          - sliderWalls_seguidas1
+          - sliderWalls_seguidas2
+          cameraOrientation: {x: 0, y: -2, z: 0}
+        backgroundSides: []
+    - title: 
+      data:
+      - title: 
+        id: 0
+        maxScore: 0
+        areaSetData:
+        - total_areas: 45
+          randomize: 1
+          areas:
+          - pisoCurvo1
+          - pisoCurvo2
+          - pisoCurvo3
+          - pisoCurvo4
+          - pisoCurvo5
+          - pisoCurvo_helices
+          - pisoCurvo6
+          - pisoCurvo7
+          - pisoCurvo8
+          - pisoCurvo9
+          - pisoCurvo9 1
+          - pisoCurvo_helices
+          - pisoCurvo1 1
+          - pisoCurvo3
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 16
+          randomize: 0
+          areas:
+          - pisoCurvo_boss
+          - pisoCurvo_boss_free
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        backgroundSides: []
+    - title: 
+      data:
+      - title: 
+        id: 0
+        maxScore: 0
+        areaSetData:
+        - total_areas: 6
+          randomize: 1
+          areas:
+          - barrancas_1
+          - barrancas_2
+          - barrancas_3
+          - curved1
+          cameraOrientation: {x: 0, y: -0.5, z: 1}
+        - total_areas: 3
+          randomize: 0
+          areas:
+          - cilindro1
+          - cilindroBoss
+          - cilindro1
+          - cilindro1
+          cameraOrientation: {x: 0, y: -0.1, z: -0.5}
+        backgroundSides: []
+    - title: 
+      data:
+      - title: 
+        id: 0
+        maxScore: 1000
+        areaSetData:
+        - total_areas: 6
+          randomize: 1
+          areas:
+          - gargola1
+          - gargola2
+          - gargola3
+          cameraOrientation: {x: 0, y: 1, z: -1}
+        - total_areas: 100
+          randomize: 0
+          areas:
+          - escupe_boss
+          - escupeBoss_free1
+          cameraOrientation: {x: 0, y: 2, z: -1}
+        backgroundSides: []
   MissionActiveID: 0
-  MissionActive: {fileID: 0}
+  areaDataActive:
+    totalCoins: 0
+    z_length: 0
+    data: []
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -641,7 +1613,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 894abe25d2d50a3478b1b53c2d9ea492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bonusArea: {fileID: 11408796, guid: afed6edc13da3a6488a198be71c4ffc0, type: 2}
 --- !u!169 &16906094
 AudioLowPassFilter:
   m_ObjectHideFlags: 1
@@ -757,7 +1728,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1099185175720134
 GameObject:
   m_ObjectHideFlags: 1
@@ -869,7 +1840,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1220446056742670
 GameObject:
   m_ObjectHideFlags: 1
@@ -1071,7 +2042,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1955947876069294
 GameObject:
   m_ObjectHideFlags: 1
@@ -1965,7 +2936,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1930526343848880}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -2720,7 +3691,7 @@ VideoPlayer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1851720052504730}
-  m_Enabled: 1
+  m_Enabled: 0
   m_VideoClip: {fileID: 32900000, guid: eba65110d927cac4297ff83109e7b6a5, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0

@@ -5,10 +5,11 @@ using System.Linq;
 
 public class SceneObjectsBehavior : MonoBehaviour {
 
+	AreaSceneObjectManager areaSceneObjectManager;
 	SceneObjectsManager manager;
 	public ArrayList unused = new ArrayList();
 
-	public SceneObject Estrellas;
+	public SceneObject Star;
 	public SceneObject Water;
 	public SceneObject Lava;
 	public SceneObject Boss1;
@@ -20,7 +21,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	public SceneObject BossGalaga;
 	public SceneObject BossPacmansIntro;
 	public SceneObject Starting;
-	public SceneObject Calecita;
 	public SceneObject FloorSlider;
 	public SceneObject FloorSurface;
 	public SceneObject house1;
@@ -72,6 +72,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 
 	private void Awake()
 	{
+		areaSceneObjectManager = GetComponent<AreaSceneObjectManager> ();
 		manager = GetComponent<SceneObjectsManager> ();
 		Pool = Data.Instance.sceneObjectsPool;
 	}
@@ -95,25 +96,22 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	private void resetGO(GameObject go) {
 		go.GetComponentInChildren<Renderer>().enabled = true;
 	}
-	List<Transform> borderTransforms;
-	public void replaceSceneObject(Area area, float areasLength, int areasX, bool oposite = false)
+	public void AddSceneObjects(AreaData areaData, float z_length)
 	{
 		//print (area.name + " AREA");
-		borderTransforms = new List<Transform> ();
-		List<GameObject> gos = area.getSceneObjects();
 		bool nubesOn = false;
 
-		foreach (GameObject go in gos)
+		foreach (AreaSceneObjectData go in areaData.data)
 		{
 			if (go == null)
 				break;
 			SceneObject sceneObject = null;
-			Vector3 pos = go.transform.position;
-			pos.z += areasLength;
-			pos.x += areasX;
-			if (oposite) {
-				pos.z *= -1;
-			}
+			Vector3 pos = go.pos;
+			pos.z += z_length;
+//			pos.x += areasX;
+//			if (oposite) {
+//				pos.z *= -1;
+//			}
 			//  if (!nubesOn)
 			//  {
 			//  nubesOn = true;
@@ -168,19 +166,19 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				{
 					sceneObject.isActive = false;
 					sceneObject.transform.position = pos;
-					sceneObject.transform.rotation = go.transform.rotation;
+					sceneObject.transform.localEulerAngles = go.rot;
 
 					if(go.name == "Coin" || go.name =="bloodx1")
 					{
-						sceneObject.GetComponent<GrabbableItem>().SetComboGrabbable(areasLength,area.totalCoins);
-					} else
-					if (go.GetComponent<DecorationManager>())
-					{
-						addDecoration("Baranda1_real", pos, new Vector3(5.5f, 0, 3));
-						addDecoration("Baranda1_real", pos, new Vector3(-5.5f, 0, 3));
-						addDecoration("Baranda1_real", pos, new Vector3(5.5f, 0, -3));
-						addDecoration("Baranda1_real", pos, new Vector3(-5.5f, 0, -3));
-					}
+						sceneObject.GetComponent<GrabbableItem> ().SetComboGrabbable (areaData.z_length, areaData.totalCoins);//area.totalCoins);
+					} 
+					//else if (go.GetComponent<DecorationManager>())
+//					{
+//						addDecoration("Baranda1_real", pos, new Vector3(5.5f, 0, 3));
+//						addDecoration("Baranda1_real", pos, new Vector3(-5.5f, 0, 3));
+//						addDecoration("Baranda1_real", pos, new Vector3(5.5f, 0, -3));
+//						addDecoration("Baranda1_real", pos, new Vector3(-5.5f, 0, -3));
+//					}
 
 
 				}
@@ -227,8 +225,8 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				clone = jumper;
 			else if (go.name == "Lava")
 				clone = Lava;
-			else if (go.name == "Estrellas")
-				clone = Estrellas;
+			else if (go.name == "Star")
+				clone = Star;
 			else if (go.name == "Water")
 				clone = Water;
 			else if (go.name == "Boss1")
@@ -247,8 +245,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				clone = BossGalaga;
 			else if (go.name == "BossPacmansIntro")
 				clone = BossPacmansIntro;
-			else if (go.name == "Calecita")
-				clone = Calecita;
 			else if (go.name == "Starting")
 				clone = Starting;
 			else if (go.name == "bomb1") {
@@ -317,98 +313,101 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			if (clone)
 			{
 				sceneObject = Instantiate(clone, pos, Quaternion.identity) as SceneObject;
+				sceneObject.transform.localEulerAngles = go.rot;
 
-				sceneObject.transform.rotation = go.transform.rotation;
-
-				if (go.GetComponent<BossSettings>())
-				{
-					BossSettings mo = go.GetComponent<BossSettings>();
-					CopyComponent(mo, sceneObject.gameObject);
-				}
+//				if (go.GetComponent<BossSettings>())
+//				{
+//					BossSettings mo = go.GetComponent<BossSettings>();
+//					CopyComponent(mo, sceneObject.gameObject);
+//				}
 
 			//	sceneObject.Restart(pos);
 			}
-			if (go.GetComponent<Move>() && sceneObject.GetComponent<Move>() == null)
-			{
-				Move mo = go.GetComponent<Move>();
-				CopyComponent(mo, sceneObject.gameObject);
-			}
-			if (go.GetComponent<MoveObject>())
-			{
-				MoveObject mo = go.GetComponent<MoveObject>();
-				CopyComponent(mo, sceneObject.gameObject);
-			}
-			if (go.GetComponent<Dropper>())
-			{
-				Dropper mo = go.GetComponent<Dropper>();
-				CopyComponent(mo, sceneObject.gameObject);
-			}
-
-			if (go.GetComponent<EnemyPathRunnerBehavior>())
-			{
-				EnemyPathRunnerBehavior mo = go.GetComponent<EnemyPathRunnerBehavior>();
-				CopyComponent(mo, sceneObject.gameObject);
-			}
-			if (go.GetComponent<EnemyRunnerBehavior>())
-			{
-				EnemyRunnerBehavior mo = go.GetComponent<EnemyRunnerBehavior>();
-				CopyComponent(mo, sceneObject.gameObject);
-			}
-			if (go.GetComponent<Jump>())
-			{
-				Jump mo = go.GetComponent<Jump>();
-				CopyComponent(mo, sceneObject.gameObject);
-			}
-			if (go.GetComponent<EnemyPathsMultiples>())
-			{
-				EnemyPathsMultiples mo = go.GetComponent<EnemyPathsMultiples>();
-				CopyComponent(mo, sceneObject.gameObject);
-			}
-			if (go.GetComponent<Subibaja>())
-			{
-				Subibaja mo = go.GetComponent<Subibaja>();
-				CopyComponent(mo, sceneObject.gameObject);
-			}
-
-			if (go.GetComponent<ListenerDispatcher>())
-			{
-				ListenerDispatcher mo = go.GetComponent<ListenerDispatcher>();
-				CopyComponent(mo, sceneObject.gameObject);
-			}
-			if (go.GetComponent<FlyingBehavior>())
-			{
-				FlyingBehavior mo = go.GetComponent<FlyingBehavior>();
-				CopyComponent(mo, sceneObject.gameObject);
-			}
-			if (go.GetComponent<FullRotation>())
-			{
-				FullRotation mo = go.GetComponent<FullRotation>();
-				CopyComponent(mo, sceneObject.gameObject);
-			}
-			if (go.GetComponent<Bumper>())
-			{
-				Bumper mo = go.GetComponent<Bumper>();
-				CopyComponent(mo, sceneObject.gameObject);
-			}
-			if (go.GetComponent<RandomPosition>())
-			{
-				RandomPosition mo = go.GetComponent<RandomPosition>();
-				pos = mo.getPosition(pos);
-			}
-			if (go.GetComponent<SceneObjectData>())
-			{
-				SceneObjectData mo = go.GetComponent<SceneObjectData>();
-				CopyComponent(mo, sceneObject.gameObject);
-			}
-
+			if (sceneObject == null)
+				Debug.Log (go.name + "_______________ (No existe) " );
+			else
+				areaSceneObjectManager.AddComponentsToSceneObject (go, sceneObject.gameObject);
+//			if (go.GetComponent<Move>() && sceneObject.GetComponent<Move>() == null)
+//			{
+//				Move mo = go.GetComponent<Move>();
+//				CopyComponent(mo, sceneObject.gameObject);
+//			}
+//			if (go.GetComponent<MoveObject>())
+//			{
+//				MoveObject mo = go.GetComponent<MoveObject>();
+//				CopyComponent(mo, sceneObject.gameObject);
+//			}
+//			if (go.GetComponent<Dropper>())
+//			{
+//				Dropper mo = go.GetComponent<Dropper>();
+//				CopyComponent(mo, sceneObject.gameObject);
+//			}
+//
+//			if (go.GetComponent<EnemyPathRunnerBehavior>())
+//			{
+//				EnemyPathRunnerBehavior mo = go.GetComponent<EnemyPathRunnerBehavior>();
+//				CopyComponent(mo, sceneObject.gameObject);
+//			}
+//			if (go.GetComponent<EnemyRunnerBehavior>())
+//			{
+//				EnemyRunnerBehavior mo = go.GetComponent<EnemyRunnerBehavior>();
+//				CopyComponent(mo, sceneObject.gameObject);
+//			}
+//			if (go.GetComponent<Jump>())
+//			{
+//				Jump mo = go.GetComponent<Jump>();
+//				CopyComponent(mo, sceneObject.gameObject);
+//			}
+//			if (go.GetComponent<EnemyPathsMultiples>())
+//			{
+//				EnemyPathsMultiples mo = go.GetComponent<EnemyPathsMultiples>();
+//				CopyComponent(mo, sceneObject.gameObject);
+//			}
+//			if (go.GetComponent<Subibaja>())
+//			{
+//				Subibaja mo = go.GetComponent<Subibaja>();
+//				CopyComponent(mo, sceneObject.gameObject);
+//			}
+//
+//			if (go.GetComponent<ListenerDispatcher>())
+//			{
+//				ListenerDispatcher mo = go.GetComponent<ListenerDispatcher>();
+//				CopyComponent(mo, sceneObject.gameObject);
+//			}
+//			if (go.GetComponent<FlyingBehavior>())
+//			{
+//				FlyingBehavior mo = go.GetComponent<FlyingBehavior>();
+//				CopyComponent(mo, sceneObject.gameObject);
+//			}
+//			if (go.GetComponent<FullRotation>())
+//			{
+//				FullRotation mo = go.GetComponent<FullRotation>();
+//				CopyComponent(mo, sceneObject.gameObject);
+//			}
+//			if (go.GetComponent<Bumper>())
+//			{
+//				Bumper mo = go.GetComponent<Bumper>();
+//				CopyComponent(mo, sceneObject.gameObject);
+//			}
+//			if (go.GetComponent<RandomPosition>())
+//			{
+//				RandomPosition mo = go.GetComponent<RandomPosition>();
+//				pos = mo.getPosition(pos);
+//			}
+//			if (go.GetComponent<SceneObjectData>())
+//			{
+//				SceneObjectData mo = go.GetComponent<SceneObjectData>();
+//				CopyComponent(mo, sceneObject.gameObject);
+//			}
+//
 			if (sceneObject != null) {
-				if (lastSceneObjectContainer != null && go.transform.parent.GetComponent<SceneObjectContainer> ())
+				if (lastSceneObjectContainer != null && go.isChild)
 					manager.AddSceneObject (sceneObject, pos, lastSceneObjectContainer);
 				else
 					manager.AddSceneObject (sceneObject, pos);
 			}
 
-			if (go.GetComponent<SceneObjectContainer> ()) {
+			if (go.name == "Container") {
 				lastSceneObjectContainer = sceneObject.transform;
 			}
 

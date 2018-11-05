@@ -1,161 +1,105 @@
 ﻿using System;
+using System.IO;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
 public class Missions : MonoBehaviour {
 
-	public int lastMissionSignalShowed;
-	public Area startingAreaLevel1;
-	public Area startingArea;
-	public Area[] relaxArea;
+	public bool reloadMissions;
 
-	public Area startingAreaAfterDying;
-	public Area startingAreaDuringGame;
-
-    public Mission test_mission;
-
-	//public Mission[] missions;
-	public List<MissionsByVideogame> allMissionsByVideogame;
-
+	public List<MissionsByVideoGame> videogames;
 	[Serializable]
-	public class MissionsByVideogame
+	public class MissionsByVideoGame
 	{
-		public List<Mission> missions;
+		public List<MissionsData> missions;
 	}
-    public Competitions competitions;
+	[Serializable]
+	public class MissionsData
+	{
+		public string title;
+		public List<MissionData> data;
+	}
+
 	public int MissionActiveID = 0;
 
-    public Mission MissionActive;
+	MissionData MissionActive;
 	private float missionCompletedPercent = 0;
-  
 
-    private states state;
-    private enum states
-    {
-        INACTIVE,
-        ACTIVE
-    }
-
-	private GameObject name_txt;
-	private GameObject desc_txt;
-	//private Transform background;
 	private Level level;
 	private bool showStartArea;
-    private Data data;
-	private float startingDistance;
+	private Data data;
 	float distance;
-	bool missionByDistance;
-	int totalDistance;
 
-    public void Init()
-    {
-		lastMissionSignalShowed = -1;
-        data = Data.Instance;
+	public AreaData areaDataActive;
+	float areasLength;
+	int offset = 100;
+	int areaSetId = 0;
+	int areaNum = 0;
+	int areaID = 0;
 
-		int videogameID = 0;
-		int lastVideoGameID = -1;
-			
-		List<MissionButton> all = new List<MissionButton> ();
-		int id = 0;
+	VideogamesData videogamesData;
 
-		foreach (Mission mission in allMissionsByVideogame[Data.Instance.videogamesData.actualID].missions) {
-			mission.id = id;			
-			id++;
-		}
-    }
-//    private void OnListenerDispatcher(string message)
-//    {        
-//		if (message == "ShowMissionName") {
-//			activateMissionByListener (); 
-//			Data.Instance.events.OnGenericUIText ("Mission " + MissionActiveID);
-//		}
-//    }
-	public void Init (int _MissionActiveID, Level level) {
-      
-        state = states.INACTIVE; 
+	public void Init()
+	{			
+		videogamesData = GetComponent<VideogamesData> ();
+		data = Data.Instance;
 
-		MissionActiveID = _MissionActiveID;
-		MissionActive = allMissionsByVideogame[Data.Instance.videogamesData.actualID].missions[MissionActiveID];
-
-		Data.Instance.events.OnChangeBackgroundSide (MissionActive.backgroundSides);
-
-		this.missionCompletedPercent = 0;
-
-        this.level = level;
-		if (Data.Instance.playMode == Data.PlayModes.COMPETITION && 1==2)
-        {
-            MissionActive = Data.Instance.competitions.competitions[0].missions[0];
-            MissionActive.reset();
-            MissionActiveID = 0;  
-        } else
-        {
-            MissionActive = GetActualMissions()[MissionActiveID];
-            MissionActive.reset();
-        }
-
+		if (reloadMissions)
+			LoadAll ();
+		
+		data.events.OnMissionComplete += OnMissionComplete;
 	}
-    public List<Mission> GetActualMissions()
-    {
-		return allMissionsByVideogame[Data.Instance.videogamesData.actualID].missions;
-    }
+	public void LoadAll()
+	{
+		for (int a = 0; a < 3; a++) {
+			MissionsByVideoGame videogame = videogames [a];
+			videogame.missions = new List<MissionsData> ();
+			for (int b = 0; b < 20; b++) {				
+				TextAsset asset = Resources.Load ("missions/" + (a+1) + "_" + b) as TextAsset;
+				if (asset != null ) {					
+					MissionsData missionData = JsonUtility.FromJson<MissionsData> (asset.text);
+					videogame.missions.Add (missionData);
+				}
+			}
+		}
+	}
+	public void Init (Level level) {
+		this.level = level;
+		areasLength = -4;
+		StartNewMission ();
+		AddAreaByName ("start_Multiplayer");
+	}
+	void OnMissionComplete(int id)
+	{
+		AddAreaByName ("newLevel_playing");
+		MissionActiveID++;
+		StartNewMission ();
+	}
+	void StartNewMission()
+	{
+		areaSetId = 0;
+		ResetAreaSet ();
+		MissionActive = videogames[videogamesData.actualID].missions[MissionActiveID].data[0];
+		//Data.Instance.events.OnChangeBackgroundSide (MissionActive.backgroundSides);
+		this.missionCompletedPercent = 0;
+	}
+	public MissionData GetActualMissions()
+	{
+		return videogames[videogamesData.actualID].missions[MissionActiveID].data[0];
+	}
+	public MissionData GetMission(int videoGameID, int missionID)
+	{
+		return videogames[videoGameID].missions[missionID].data[0];
+	}
 	public AreasManager getAreasManager()
 	{
-		return MissionActive.GetComponent<AreasManager>();
+		return null;//MissionActive.GetComponent<AreasManager>();
 	}
 	public void Complete()
 	{
-        data.events.MissionComplete();
-        state = states.INACTIVE;        
+		data.events.MissionComplete();     
 	}
-	public bool StartNext()
-	{
-		List<Mission> all = GetActualMissions();
-
-		if (Data.Instance.playMode == Data.PlayModes.COMPETITION  && 1==2)
-        {
-            MissionActiveID = 0;
-            MissionActive.reset();
-			return false;
-        }
-        else if (MissionActiveID >= all.Count-1)
-        {
-			Game.Instance.GotoVideogameComplete ();
-			return false;
-			MissionActiveID = UnityEngine.Random.Range(2, all.Count - 1);       
-		}
-		MissionActiveID++;
-        MissionActive = GetActualMissions()[MissionActiveID];
-		Data.Instance.events.OnChangeBackgroundSide (MissionActive.backgroundSides);
-		MissionActive.reset();
-		data.events.NewMissionStart ();
-
-		missionByDistance = false;
-
-		return true;
-	}
-//	void FixedUpdate()
-//	{
-//		if (!missionByDistance)
-//			return;
-//
-//		distance = level.charactersManager.getDistance () - (float)startingDistance;
-//		float value = distance / totalDistance;
-//		progressBar.setProgression (value);
-//	}
-    private void activateMissionByListener()
-    {
-        state = states.ACTIVE;
-//		string text = "";
-//
-//        if (MissionActive.Hiscore > 0)
-//			text = "SCORE: " + MissionActive.Hiscore; 
-//        else
-//			text = MissionActive.description.ToUpper();
-        
-//        lastDistance = (int)Game.Instance.GetComponent<CharactersManager>().distance;
-    }
-
 	bool CanComputeMission()
 	{
 		if (Data.Instance.playMode == Data.PlayModes.STORY || Data.Instance.playMode == Data.PlayModes.COMPETITION)
@@ -165,41 +109,76 @@ public class Missions : MonoBehaviour {
 
 	public int GetActualMissionByVideogame()
 	{
-		int viedogameActive = Data.Instance.videogamesData.actualID;
+		int viedogameActive = videogamesData.actualID;
 		int id = 0;
-		foreach (Mission mission in allMissionsByVideogame[viedogameActive].missions) {
+		foreach (MissionData mission in videogames[viedogameActive].missions[0].data) {
 			if (mission.id == MissionActive.id)
 				return id;
 			id++;
 		}
 		return 0;
 	}
-	public Mission GetMissionActive()
+
+	public void OnUpdateDistance(float distance)
 	{
-		int viedogameActive = Data.Instance.videogamesData.actualID;
-		return allMissionsByVideogame[viedogameActive].missions[MissionActiveID];
+		if (distance > areasLength-offset) {
+			SetNextArea ();
+		}
+
 	}
-	public void ResetLastMissionID()
+	void SetNextArea()
 	{
-		lastMissionSignalShowed = -1;
+		CreateCurrentArea ();
+		Game.Instance.gameCamera.SetOrientation (MissionActive.areaSetData [areaSetId].cameraOrientation);
+		if (areaNum >= MissionActive.areaSetData [areaSetId].total_areas) {
+			if (areaSetId < MissionActive.areaSetData.Count - 1) {
+				areaSetId++;
+				ResetAreaSet ();
+			} else {
+				areaNum--;
+			}
+		}
+		areaNum++;
 	}
-	public void SetLastMissionID(int lastMissionSignalShowed)
+	void ResetAreaSet()
 	{
-		this.lastMissionSignalShowed = lastMissionSignalShowed;
+		areaNum = 0;
+		areaID = 0;
 	}
-	public bool HasBeenShowed(int title)
+	private void  CreateCurrentArea()
 	{
-		if (lastMissionSignalShowed == title)
-			return true;
-		return false;
+		MissionData.AreaSetData areaSetData = MissionActive.areaSetData[areaSetId];
+		string areaName = GetArea(areaSetData);
+		AddAreaByName (areaName);
 	}
-	public void ActivateFirstGameByVideogame(int videoGameID)
+	void AddAreaByName(string areaName)
 	{
-		MissionActiveID = allMissionsByVideogame[videoGameID].missions[0].id;
+		TextAsset asset = Resources.Load ("areas/" + areaName ) as TextAsset;
+		if (asset != null) {					
+			areaDataActive = JsonUtility.FromJson<AreaData> (asset.text);
+			areasLength += areaDataActive.z_length/2;
+			level.sceneObjects.AddSceneObjects (areaDataActive, areasLength);
+			print ("km: " + areasLength + " mission: " + MissionActiveID +  " areaSetId: " + areaSetId + " areaID: " + areaID + " z_length: " + areaDataActive.z_length + " en: areas/" + areaName );
+			areasLength += areaDataActive.z_length/2;
+		} else {
+			Debug.LogError ("Loco, no existe esta area: " + areaName + " en Respurces/areas/");
+		}
+
 	}
-	public void ForceBossPercent(int totalHits)
+	List<MissionData.AreaSetData> GetActualAreaSetData()
 	{
-		//MissionActive.boss1 = totalHits;
-	}	
+		return MissionActive.areaSetData;
+	}
+	string GetArea(MissionData.AreaSetData areaSetData)
+	{
+		if (areaSetData.randomize) {
+			return areaSetData.areas [UnityEngine.Random.Range (0, areaSetData.areas.Count)];
+		} else if (areaID < areaSetData.areas.Count - 1) {
+			areaID++;
+			return areaSetData.areas [areaID-1];
+		} else {
+			return areaSetData.areas [areaSetData.areas.Count-1];
+		}
+	}
 
 }

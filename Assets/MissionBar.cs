@@ -22,7 +22,6 @@ public class MissionBar : MonoBehaviour {
 	}
 	void OnBossHitsUpdate(float actualHits)
 	{
-		print (actualHits + " " + totalHits);
 		progressBar.SetProgression (1-(actualHits / totalHits));
 	}
 	void OnBossInit (int totalHits) {

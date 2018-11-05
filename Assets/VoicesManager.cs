@@ -85,8 +85,8 @@ public class VoicesManager : MonoBehaviour
         }
 		else if (message == "ShowMissionName")
 		{
-			if(Data.Instance.missions.MissionActive.voices.Count > 0)
-				PlaySequence (Data.Instance.missions.MissionActive.voices);
+//			if(Data.Instance.missions.MissionActive.voices.Count > 0)
+//				PlaySequence (Data.Instance.missions.MissionActive.voices);
 		}
     }
 	int sequenceID = 0;

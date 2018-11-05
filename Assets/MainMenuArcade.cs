@@ -30,7 +30,7 @@ public class MainMenuArcade : MonoBehaviour {
 	void Start () {
 		Data.Instance.events.OnResetScores ();
 		sec = 10;
-		string desc = Data.Instance.missions.GetMissionActive ().description;
+		string desc = ""; //Data.Instance.missions.GetMissionActive ().description;
 		foreach (Text t in missionFields) {
 			t.text = desc;
 		}

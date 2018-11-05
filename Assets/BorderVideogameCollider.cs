@@ -14,12 +14,10 @@ public class BorderVideogameCollider : MonoBehaviour {
 		colliders = GetComponent<Collider> ();
 		colliders.enabled = true;
 		setInactive = false;
-		StartCoroutine (CheckCollisionDone ());		
+		Invoke("CheckCollisionDone", 0.75f);		
 	}
-	IEnumerator CheckCollisionDone()
+	void CheckCollisionDone()
 	{
-		//yield return WaitForEndOfFrame ();
-		yield return new WaitForSeconds(0.75f);
 		if (!setInactive) {
 			SceneObjectsManager manager = Game.Instance.sceneObjectsManager;
 			foreach (Transform so in smallPlatformsTransform) {
@@ -30,14 +28,6 @@ public class BorderVideogameCollider : MonoBehaviour {
 			}
 		}
 		colliders.enabled = false;
-		yield return null;
-//
-//		if (smallPlatforms != null) {
-//			SceneObjectsManager manager = Game.Instance.sceneObjectsManager;
-//			foreach (SceneObject so in smallPlatforms) {
-//				manager.AddSceneObjectAndInitIt (so, so.transform.position);
-//			}
-//		}
 
 	}
 	void OnCollisionEnter(Collision other)
@@ -46,6 +36,10 @@ public class BorderVideogameCollider : MonoBehaviour {
 			setInactive = true;
 			colliders.enabled = false;
 		}
+	}
+	void OnDisable()
+	{
+		CancelInvoke();
 	}
 	
 }

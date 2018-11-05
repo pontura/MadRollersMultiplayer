@@ -14,10 +14,6 @@ public class Mission: MonoBehaviour {
 	public int id;
 	public BackgroundSideData[] backgroundSides;
 
-	public List<VoicesManager.VoiceData> voices;
-
-	public int videoGameID;
-    public bool isCompetition;
     public int maxScore;
     public int Hiscore;
     public string avatarHiscore;

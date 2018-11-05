@@ -5,6 +5,7 @@ public class AreaSet : MonoBehaviour {
 
     public int competitionsPriority;
     public bool randomize = true;
+	public TextAsset[] areasData;
 	public Area[] areas;
 	public int totalAreasInSet;
 
@@ -20,9 +21,9 @@ public class AreaSet : MonoBehaviour {
 	{
 		this.id = 0;
 	}
-	public Vector4 getCameraOrientation ()  {
-		return new Vector4(cameraOrientation.x,cameraOrientation.y,cameraOrientation.z,cameraRotationX);
-	}
+//	public Vector4 getCameraOrientation ()  {
+//		return new Vector4(cameraOrientation.x,cameraOrientation.y,cameraOrientation.z,cameraRotationX);
+//	}
 
 	public Area getArea () {
         Area area;

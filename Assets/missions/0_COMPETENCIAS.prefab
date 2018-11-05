@@ -3,9 +3,9 @@
 --- !u!1 &186818
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 486818}
   - component: {fileID: 11486816}
@@ -16,11 +16,11 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &486818
 Transform:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 186818}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -33,7 +33,7 @@ Transform:
 --- !u!114 &11486816
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 186818}
   m_Enabled: 1
@@ -41,28 +41,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c52aa23c4c1909c45b1a2eeadb8f98cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
+  totalDistance: 0
   id: 0
   backgroundSides: []
+  voices: []
   videoGameID: 0
-  missionIcon: {fileID: 0}
   isCompetition: 1
   maxScore: 0
   Hiscore: 0
   avatarHiscore: 
-  boss1: 0
-  hearts: 0
-  guys: 0
-  ghost: 0
-  points: 0
-  listeners: 0
-  planes: 0
-  bombs: 0
-  distance: 100000
   description: 
 --- !u!114 &11486818
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 186818}
   m_Enabled: 1
@@ -137,6 +130,6 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications: []
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 0}
+  m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 186818}
-  m_IsPrefabParent: 1
+  m_IsPrefabAsset: 1

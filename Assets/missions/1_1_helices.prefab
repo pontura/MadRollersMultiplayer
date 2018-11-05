@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &476574
 Transform:
   m_ObjectHideFlags: 1
@@ -24,7 +24,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 176574}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0025587082, y: -0.0018539429, z: -0.0011138916}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -42,6 +42,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   areaSets:
+  - {fileID: 114941458092399480, guid: c14365b8b68861944aec9590f4c4d517, type: 2}
   - {fileID: 114373686509189878, guid: cb67d90ed8ce9ca45ab7e991570d47e6, type: 2}
   - {fileID: 114941458092399480, guid: c14365b8b68861944aec9590f4c4d517, type: 2}
   - {fileID: 114356239780263314, guid: 9eb3143cb12b0f446b73361f31b562ce, type: 2}
@@ -52,8 +53,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1ae6239c73f864e4aac71f5a8c41206e, type: 2}
   - {fileID: 11404542, guid: ede488dc85841194f992db36c3fdc032, type: 2}
   - {fileID: 114983160959571566, guid: d2d780f7b7efa7a44999b57f22ad22b8, type: 2}
-  activeAreaSetID: 9
-  showRelaxAreaBeforeStarting: 0
 --- !u!114 &11476576
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -8,11 +8,13 @@ public class BossPart : MonoBehaviour {
 	public GameObject asset;
 	bool called;
 
-	public void Init(Boss _boss, GameObject bossAsset = null)
+	public void Init(Boss _boss, string bossAssetPath = null)
 	{
 		this.boss = _boss;
-		if (bossAsset != null) {
-			GameObject newGO = Instantiate (bossAsset);
+		Utils.RemoveAllChildsIn (transform);
+		print ("bossAssetPath " + bossAssetPath);
+		if (bossAssetPath != null) {
+			GameObject newGO = Instantiate(Resources.Load("bosses/" + bossAssetPath, typeof(GameObject))) as GameObject;
 			newGO.transform.SetParent (transform);
 			newGO.transform.localScale = Vector3.one;
 			newGO.transform.localEulerAngles = Vector3.zero;

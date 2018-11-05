@@ -29,7 +29,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1122492055080038
 GameObject:
   m_ObjectHideFlags: 0
@@ -47,7 +47,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1146074628889714
 GameObject:
   m_ObjectHideFlags: 1
@@ -99,7 +99,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1374470394980886
 GameObject:
   m_ObjectHideFlags: 1
@@ -118,7 +118,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1399402550510258
 GameObject:
   m_ObjectHideFlags: 1
@@ -135,7 +135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1439511534059570
 GameObject:
   m_ObjectHideFlags: 1
@@ -225,7 +225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1613787274758820
 GameObject:
   m_ObjectHideFlags: 1
@@ -242,7 +242,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1616644930991418
 GameObject:
   m_ObjectHideFlags: 1
@@ -279,7 +279,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1682141326096764
 GameObject:
   m_ObjectHideFlags: 1
@@ -298,7 +298,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1730510084725772
 GameObject:
   m_ObjectHideFlags: 1
@@ -334,7 +334,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1769769764178036
 GameObject:
   m_ObjectHideFlags: 1
@@ -351,7 +351,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1774483323453112
 GameObject:
   m_ObjectHideFlags: 1
@@ -402,7 +402,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1870926953358138
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,7 +420,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1875209704710898
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,7 +438,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1888621214908452
 GameObject:
   m_ObjectHideFlags: 1
@@ -505,7 +505,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4010165977649048
 Transform:
   m_ObjectHideFlags: 1
@@ -1819,6 +1819,7 @@ MonoBehaviour:
   to: {fileID: 0}
   videoGame_ID: 0
   borders: []
+  type: 0
 --- !u!114 &114062491243399646
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1832,22 +1833,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   z_length: 60
   nextAreaX: 0
-  gos:
-  - {fileID: 1531544215132332}
-  - {fileID: 1062280164309614}
-  - {fileID: 1368299293895076}
-  - {fileID: 1682141326096764}
-  - {fileID: 1374470394980886}
-  - {fileID: 1868185080765912}
-  - {fileID: 1989372027807872}
-  - {fileID: 1752101078789868}
-  - {fileID: 1769769764178036}
-  - {fileID: 1399402550510258}
-  - {fileID: 1613787274758820}
-  - {fileID: 1875209704710898}
-  - {fileID: 1635176948037910}
-  - {fileID: 1870926953358138}
-  - {fileID: 1122492055080038}
   totalCoins: 4
 --- !u!114 &114347197272645230
 MonoBehaviour:
@@ -1905,6 +1890,7 @@ MonoBehaviour:
   to: {fileID: 0}
   videoGame_ID: 0
   borders: []
+  type: 0
 --- !u!114 &114361861666657836
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2065,6 +2051,7 @@ MonoBehaviour:
   to: {fileID: 0}
   videoGame_ID: 0
   borders: []
+  type: 0
 --- !u!114 &114704505468406594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2089,6 +2076,7 @@ MonoBehaviour:
   to: {fileID: 0}
   videoGame_ID: 0
   borders: []
+  type: 0
 --- !u!114 &114761216221259922
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2113,6 +2101,7 @@ MonoBehaviour:
   to: {fileID: 0}
   videoGame_ID: 0
   borders: []
+  type: 0
 --- !u!114 &114804596769746854
 MonoBehaviour:
   m_ObjectHideFlags: 1

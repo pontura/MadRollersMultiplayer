@@ -16,7 +16,9 @@ public class BossCreator : Boss {
 		base.OnRestart (pos);	
 		settings = GetComponent<BossSettings> ();
 		time_to_init_enemies = settings.time_to_init_enemies;
-		GameObject assets = Instantiate (settings.assets);
+		print ("boss module " + settings.bossModule);
+		GameObject assets = Instantiate(Resources.Load("bosses/modules/" + settings.bossModule, typeof(GameObject))) as GameObject;
+		//GameObject assets = Instantiate (settings.assets);
 		assets.transform.SetParent (transform);
 		assets.transform.localPosition = Vector3.zero;
 		parts = assets.GetComponentsInChildren<BossPart> ();
@@ -45,7 +47,7 @@ public class BossCreator : Boss {
 		if (partID >= parts.Length)
 			return;
 		parts [partID].gameObject.SetActive (true);
-		parts [partID].Init (this, settings.bossAsset);
+		parts [partID].Init (this, settings.asset);
 		Invoke ("Init", time_to_init_enemies);
 		partID++;
 	}

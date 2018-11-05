@@ -109,6 +109,7 @@ public class Data : MonoBehaviour {
        // levelUnlockedID = PlayerPrefs.GetInt("levelUnlocked_0");
         events = GetComponent<Events>();
         missions = GetComponent<Missions>();
+		missions.Init ();
         competitions = GetComponent<Competitions>();
         multiplayerData = GetComponent<MultiplayerData>();
 		videogamesData = GetComponent<VideogamesData> ();
@@ -130,7 +131,6 @@ public class Data : MonoBehaviour {
             userData.Init();
 		
         GetComponent<Tracker>().Init();
-        GetComponent<Missions>().Init();
         GetComponent<CurvedWorldManager>().Init();
 
        // GetComponent<DataController>().Init();
@@ -167,16 +167,16 @@ public class Data : MonoBehaviour {
         else
         {
 			VideogameData vdata = videogamesData.GetActualVideogameData ();
-			Mission mission = Data.Instance.missions.allMissionsByVideogame[vdata.id].missions[num];
-			if (vdata.id==0 &&  num > levelUnlocked_level_1)
-            {
-				levelUnlocked_level_1 = idByVideogame;
-				PlayerPrefs.SetInt("levelUnlocked_level_1", idByVideogame);
-			} else if (vdata.id==1 &&  num > levelUnlocked_level_2)
-			{
-				levelUnlocked_level_2 = idByVideogame;
-				PlayerPrefs.SetInt("levelUnlocked_level_2", idByVideogame);
-			}
+//			MissionData mission = Data.Instance.missions.allMissionsByVideogame[vdata.id].data[num];
+//			if (vdata.id==0 &&  num > levelUnlocked_level_1)
+//            {
+//				levelUnlocked_level_1 = idByVideogame;
+//				PlayerPrefs.SetInt("levelUnlocked_level_1", idByVideogame);
+//			} else if (vdata.id==1 &&  num > levelUnlocked_level_2)
+//			{
+//				levelUnlocked_level_2 = idByVideogame;
+//				PlayerPrefs.SetInt("levelUnlocked_level_2", idByVideogame);
+//			}
         }
 	}
     public void resetProgress()

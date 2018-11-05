@@ -27,7 +27,6 @@ public class Level : MonoBehaviour {
 	public GameObject missionDesc;
 
 	private AreasManager areasManager;
-	//private FloorManager floorManager;
 	
 	private float lastDistanceToLoadLevel;
 
@@ -35,19 +34,13 @@ public class Level : MonoBehaviour {
 	public float nextDistanceVictoryArea;
     private int distanceVictoryArea = 550;
 
-	public Area victoryAreaLastLevel;
-    public Area victoryArea;
-    //////////////////////
-
 	static Area areaActive;
 	public float areasLength = 0;
 	private int nextPlatformSpace = 50;
 	public SceneObjectsBehavior sceneObjects;
 	Game game;
 
-	private Area skyArea;
-
-	public Missions missions;	
+	private Area skyArea;	
 
 	private bool showStartArea;
 	private Data data;
@@ -56,6 +49,7 @@ public class Level : MonoBehaviour {
     public CharactersManager charactersManager;
     private PowerupsManager powerupsManager;
 	public bool isLastArea;
+	Missions missions;
    
     public void SetDificultyByScore(int score)
     {
@@ -67,6 +61,7 @@ public class Level : MonoBehaviour {
     {
         Dificulty = Dificult.EASY;
 		waitingToStart = true;
+		missions = Data.Instance.missions;
     }
     public void Init()
 	{
@@ -91,33 +86,15 @@ public class Level : MonoBehaviour {
 		powerupsManager.Init ();
 		SetNewVideogameSettings ();
 
-		if (Data.Instance.playMode == Data.PlayModes.VERSUS) {
-			Area a = Data.Instance.versusManager.GetArea();
-			sceneObjects.replaceSceneObject(a, a.z_length/2, 0, false);
-			Area b = Data.Instance.versusManager.GetArea();
-			sceneObjects.replaceSceneObject(b, b.z_length/2, 0, true);
-			return;
-		}
-		//else if (Data.Instance.playMode == Data.PlayModes.COMPETITION )
-       	//	 nextDistanceVictoryArea = distanceVictoryArea;
+		missions.Init (this);
 
-        areasX = 0;
-        
-        areaActive = null;        
-
-        missions = data.GetComponent<Missions>();      
-
-
-		missions.Init(data.missions.MissionActiveID, this);
-        areasManager = missions.getAreasManager();
-        areasManager.Init(1);
-
-        areasLength = 0;
-
-		if (!Data.Instance.isArcadeMultiplayer && !waitingToStart) // nunevo && !waitingToStart)
-            missions.StartNext();
-
-		//Invoke ("Delayed", 2.5f);
+//		if (Data.Instance.playMode == Data.PlayModes.VERSUS) {
+//			Area a = Data.Instance.versusManager.GetArea();
+//			sceneObjects.replaceSceneObject(a, a.z_length/2, 0, false);
+//			Area b = Data.Instance.versusManager.GetArea();
+//			sceneObjects.replaceSceneObject(b, b.z_length/2, 0, true);
+//			return;
+//		}
     }
 	void OnGameStart()
 	{
@@ -145,14 +122,14 @@ public class Level : MonoBehaviour {
 		charactersManager.OnLevelComplete ();
 		showStartArea = true;
 
-		if (!missions.StartNext ())
-			return;
+//		if (!missions.StartNext ())
+//			return;
 		
 		data.events.MissionComplete ();
 		Data.Instance.voicesManager.PlayRandom (Data.Instance.voicesManager.missionComplete);
-		areasManager = missions.getAreasManager();
-		areasManager.Init(0);
-		data.setMission(missions.MissionActiveID);   
+//		areasManager = missions.getAreasManager();
+//		areasManager.Init(0);
+//		data.setMission(missions.MissionActiveID);   
 		SetNewVideogameSettings ();
 
 	}
@@ -299,16 +276,6 @@ public class Level : MonoBehaviour {
             }
         }
     }
-	private void  createNextArea(Area area)
-	{
-        if (areaActive)
-            areasLength += areaActive.z_length / 2;
-		areaActive = area;
-        areasLength += area.z_length / 2;
-               
-        sceneObjects.replaceSceneObject(area, areasLength - 4, areasX);
-        areasX += area.nextAreaX; 	   
-	}
     bool showVictory;
 	void SetVictoryArea()
     {
@@ -321,60 +288,7 @@ public class Level : MonoBehaviour {
 			return;
 		float dist = charactersManager.getDistance ();
 
-		if(missions.MissionActiveID == 0)
-		{
-			if (dist>92 && tutorialID < 1)
-			{
-				Data.Instance.voicesManager.PlayClip (Data.Instance.voicesManager.tutorials [0].audioClip);
-				tutorialID = 1;
-			} else if(missions.MissionActiveID == 0 && dist>150 && tutorialID < 2)
-			{
-				Data.Instance.voicesManager.PlayClip (Data.Instance.voicesManager.tutorials [1].audioClip);
-				tutorialID = 2;
-			} else if(missions.MissionActiveID == 0 && dist>250 && tutorialID < 3)
-			{
-				Data.Instance.voicesManager.PlayClip (Data.Instance.voicesManager.tutorials [2].audioClip);
-				tutorialID = 3;
-			}
-		}
-		////////////////
-		/// 
-        if (areasLength==0)
-       {
-           createNextArea(areasManager.getStartingArea());
-			NewMissionAreaStart ();
-		} else if (dist > (areasLength - nextPlatformSpace)
-		&&
-			lastDistanceToLoadLevel != dist)
-		{
-			lastDistanceToLoadLevel = dist;
-
-            Area newArea;
-            if(showVictory == true)
-            {
-                newArea = victoryArea;
-                showVictory = false;
-            } else
-			if(showStartArea)
-			{
-				if (isLastArea) {
-					areasManager.showRelaxAreaBeforeStarting = true;
-					newArea = victoryAreaLastLevel;
-				}
-				else
-					newArea = areasManager.getRandomArea(true);					
-				showStartArea = false; 
-			} else 
-			{
-				newArea = areasManager.getRandomArea(false);
-			}	
-			createNextArea(newArea);
-            //print("new area " + newArea.name + " lastDistanceToLoadLevel: " + lastDistanceToLoadLevel);
-		}
-	}
-	public void NewMissionAreaStart()
-	{
-		isLastArea = areasManager.GetActiveAreaSet ().isLastArea;
+		missions.OnUpdateDistance (dist);
 	}
     public void FallDown(int fallDownHeight)
     {

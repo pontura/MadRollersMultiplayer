@@ -1,0 +1,23 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System;
+
+[Serializable]
+public class MissionData  {
+
+	public string title;
+	public int id;
+	public int maxScore;
+	public List<AreaSetData> areaSetData;
+	public BackgroundSideData[] backgroundSides;
+
+	[Serializable]
+	public class AreaSetData
+	{
+		public int total_areas;
+		public bool randomize;
+		public List<string> areas;
+		public Vector3 cameraOrientation;
+	}
+}

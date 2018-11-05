@@ -1,25 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &100000
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 400000}
-  - component: {fileID: 3300000}
-  - component: {fileID: 6500004}
-  - component: {fileID: 11400002}
-  - component: {fileID: 11400006}
-  - component: {fileID: 9500000}
-  m_Layer: 10
-  m_Name: sombrilla
-  m_TagString: explotion
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &100006
 GameObject:
   m_ObjectHideFlags: 0
@@ -29,26 +9,16 @@ GameObject:
   m_Component:
   - component: {fileID: 400006}
   - component: {fileID: 11400000}
-  m_Layer: 0
+  - component: {fileID: 65303669683243750}
+  - component: {fileID: 114769805605688130}
+  - component: {fileID: 114138956083836668}
+  m_Layer: 10
   m_Name: sombrilla_real
-  m_TagString: Untagged
+  m_TagString: destroyable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &400000
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: -0.7071069, y: 0, z: 0, w: 0.70710677}
-  m_LocalPosition: {x: 0, y: 0.7471962, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 400006}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_IsActive: 1
 --- !u!4 &400006
 Transform:
   m_ObjectHideFlags: 1
@@ -59,48 +29,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 400000}
   - {fileID: 4880621588675240}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &3300000
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Mesh: {fileID: 4300000, guid: 05e8cd07ceb4d604a9cf42b06855c5ce, type: 3}
---- !u!65 &6500004
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3, y: 3.21, z: 2.33}
-  m_Center: {x: 0, y: 0, z: 0.62}
---- !u!95 &9500000
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -122,38 +54,6 @@ MonoBehaviour:
   score: 0
   distanceFromCharacter: 0
   onlyMultiplayers: 0
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 683ff4712fc92bb42876b81b414e4f6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  force: 16
-  animationClip: {fileID: 7400000, guid: aa1c4aa860e536346877b0b913eec429, type: 2}
-  backwardJump: 0
---- !u!114 &11400006
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7884f4fab5e41f4ca5c2e35847c755b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explotionType: 0
-  isOn: 0
-  NumOfParticles: 4
-  childs: []
-  dontKillPlayers: 1
-  dontDieOnHit: 0
-  score: 100
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -1058,8 +958,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4880621588675240}
   - component: {fileID: 111646572726187650}
-  - component: {fileID: 114940663996242528}
-  - component: {fileID: 65637918849663006}
   m_Layer: 10
   m_Name: mushroom
   m_TagString: destroyable
@@ -2674,7 +2572,7 @@ Transform:
   - {fileID: 4792670577448638}
   - {fileID: 4862493327110196}
   m_Father: {fileID: 400006}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4881044989930604
 Transform:
@@ -6211,18 +6109,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1375961339107816}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65637918849663006
+--- !u!65 &65303669683243750
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1637413976311392}
+  m_GameObject: {fileID: 100006}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.8, y: 1.53, z: 1.85}
-  m_Center: {x: -0.19, y: -0.63, z: 0}
+  m_Size: {x: 4.47, y: 4.16, z: 3.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!111 &111646572726187650
 Animation:
   m_ObjectHideFlags: 1
@@ -6238,12 +6136,12 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &114940663996242528
+--- !u!114 &114138956083836668
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1637413976311392}
+  m_GameObject: {fileID: 100006}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7884f4fab5e41f4ca5c2e35847c755b, type: 3}
@@ -6251,9 +6149,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explotionType: 0
   isOn: 0
-  NumOfParticles: 30
-  childs:
-  - {fileID: 11400006}
-  dontKillPlayers: 0
+  NumOfParticles: 4
+  childs: []
+  dontKillPlayers: 1
   dontDieOnHit: 0
-  score: 50
+  score: 100
+--- !u!114 &114769805605688130
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 683ff4712fc92bb42876b81b414e4f6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 16
+  animationClip: {fileID: 7400000, guid: aa1c4aa860e536346877b0b913eec429, type: 2}
+  backwardJump: 0

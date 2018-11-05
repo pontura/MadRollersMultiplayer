@@ -57,24 +57,24 @@ public class MissionSignal : MonoBehaviour {
 	void RefreshMissionIcon()
 	{
 		Missions missions = Data.Instance.GetComponent<Missions> ();
-		mission = missions.allMissionsByVideogame[Data.Instance.videogamesData.actualID].missions[ missions.MissionActiveID];
+		//mission = missions.allMissionsByVideogame[Data.Instance.videogamesData.actualID].missions[ missions.MissionActiveID];
 		//gui.missionIcon.SetOn (mission);
 	}
     void SetOn()
     {
-		if (Data.Instance.missions.MissionActiveID == 0)
-			return;
-		int missionID = Data.Instance.GetComponent<Missions> ().MissionActiveID;
-		
-		if (missionID>0 && Data.Instance.missions.HasBeenShowed (missionID))
-			return;
-
-		isOn = true;
-
-		Data.Instance.missions.SetLastMissionID (missionID);
-		
-		panel.SetActive (true);
-		Data.Instance.events.RalentaTo (0.05f, 0.3f);
+//		if (Data.Instance.missions.MissionActiveID == 0)
+//			return;
+//		int missionID = Data.Instance.GetComponent<Missions> ().MissionActiveID;
+//		
+//		if (missionID>0 && Data.Instance.missions.HasBeenShowed (missionID))
+//			return;
+//
+//		isOn = true;
+//
+//		Data.Instance.missions.SetLastMissionID (missionID);
+//		
+//		panel.SetActive (true);
+//		Data.Instance.events.RalentaTo (0.05f, 0.3f);
     }
 	void OnAvatarShoot(int id)
 	{
@@ -107,7 +107,7 @@ public class MissionSignal : MonoBehaviour {
 	{
 		print ("OnShowTutorial " + id);
 		Missions missions = Data.Instance.GetComponent<Missions> ();
-		Mission mission = missions.allMissionsByVideogame[Data.Instance.videogamesData.actualID].missions[ missions.MissionActiveID];
+		Mission mission = null;// = missions.allMissionsByVideogame[Data.Instance.videogamesData.actualID].missions[ missions.MissionActiveID];
 		if (id == 1) {
 			Open ("JUMP", -1);
 		//	gui.missionIcon.SetOn (mission, specialIcon_Tutorial1);
@@ -142,7 +142,7 @@ public class MissionSignal : MonoBehaviour {
 			foreach(Text f in fieldsMissionNum)
 				f.text = "MISSION " + missionId;		
 		}	
-		Game.Instance.level.NewMissionAreaStart ();
+	//	Game.Instance.level.NewMissionAreaStart ();
 	}
 
     void CloseAfter(float delay)

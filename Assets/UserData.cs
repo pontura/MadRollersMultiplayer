@@ -75,14 +75,14 @@ public class UserData : MonoBehaviour {
     }
     void SetStars()
     {
-		List<Mission> missions = data.GetComponent<Missions>().allMissionsByVideogame[Data.Instance.videogamesData.actualID].missions;
-        int a = 0;
-        foreach (Mission mission in missions)
-        {
-            a++;
-            int _stars = PlayerPrefs.GetInt("stars_level_" + a);
-            stars.Add(_stars);
-        }
+//		List<Mission> missions = data.GetComponent<Missions>().allMissionsByVideogame[Data.Instance.videogamesData.actualID].missions;
+//        int a = 0;
+//        foreach (Mission mission in missions)
+//        {
+//            a++;
+//            int _stars = PlayerPrefs.GetInt("stars_level_" + a);
+//            stars.Add(_stars);
+//        }
     }
     void OnSetUserData(string _username, int _userId, int _hiscore, bool saveIt)
     {

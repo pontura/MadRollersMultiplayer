@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class BossSettings : MonoBehaviour {
 
+	public string bossModule;
+
+	//despues borrrar:
 	public GameObject assets;
 	public float time_to_init_enemies;
-	public GameObject bossAsset;
+	public string asset;
 
 	void OnDisable()
 	{

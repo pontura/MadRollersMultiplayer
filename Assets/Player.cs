@@ -64,6 +64,9 @@ public class Player : MonoBehaviour {
 			versusSignal.SetActive (true);
 		else
 			versusSignal.SetActive (false);
+
+		if(Data.Instance.DEBUG)
+			fxState = fxStates.SUPER;
 	}
     void OnDestroy()
     {
@@ -201,9 +204,12 @@ public class Player : MonoBehaviour {
 	{
 		if (fxState == fxStates.SUPER) return;
 		setSuperState();
-		Data.Instance.events.AdvisesOn("INVENSIBLE!");
+
+	//	Data.Instance.events.AdvisesOn("INVENSIBLE!");
 		progressBarCoroutine = StartProgressBarCoroutine(timer);
-		StartCoroutine(progressBarCoroutine);    
+
+		if(!Data.Instance.DEBUG)
+			StartCoroutine(progressBarCoroutine);    
 	}
 	IEnumerator StartProgressBarCoroutine(float timer)
     {

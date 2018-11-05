@@ -22,20 +22,8 @@ public class FullRotation : MonoBehaviour {
 
 	public bool frameByFrame;
     
-	public List<TimelineData> rotations;
-
-	[Serializable]
-	public class TimelineData
-	{
-		public float duration;
-		public Vector3 rot;
-		public iTween.EaseType easetype;
-	}
 
 	void Start () {
-		if (rotations.Count > 0) {
-			RotateInTimeLine ();
-		}
 
         if (randomRotation)
         {
@@ -59,24 +47,7 @@ public class FullRotation : MonoBehaviour {
 		}
 	}
 	int rotID = 0;
-	void RotateInTimeLine()
-	{
-		iTween.RotateTo(gameObject, iTween.Hash(
-			"rotation", rotations[rotID].rot,
-			"time", rotations[rotID].duration,
-			"easetype", rotations[rotID].easetype,
-			"oncomplete", "RotateComplete",
-			"onCompleteTarget", this.gameObject
-			// "axis", "x"
-		));
-	}
-	void RotateComplete()
-	{
-		rotID++;
-		if (rotID >= rotations.Count)
-			rotID = 0;
-		RotateInTimeLine ();
-	}
+
 	void Loop()
 	{
 		Vector3 rot = transform.localEulerAngles;
@@ -85,9 +56,6 @@ public class FullRotation : MonoBehaviour {
 		Invoke ("Loop", 0.1f);
 	}
 	void Update () {
-		if (rotations.Count > 0) {
-			return;
-		}
 		if (frameByFrame) {
 			return;
 		}

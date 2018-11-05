@@ -47,34 +47,34 @@ public class SummaryCompetitions : MonoBehaviour {
 		SetSelected ();
 		int missionActive = Data.Instance.missions.MissionActiveID;
 		int id = 0;
-		foreach (Mission m in Data.Instance.missions.allMissionsByVideogame[Data.Instance.videogamesData.actualID].missions) {
-			SummaryMissionPoint smp = Instantiate (missionPoint);
-			smp.transform.SetParent (container);
-			smp.transform.localScale = Vector3.one;
-			if (id <= missionActive) 
-				smp.Init (true);
-			else
-				smp.Init (false);
-			id++;
-		}
-		Missions.MissionsByVideogame missionsInThisVideogame = Data.Instance.missions.allMissionsByVideogame [Data.Instance.videogamesData.actualID];
-		Mission mission;
-		int num = 0;
-		int numMission = -1;
-		foreach (Mission m in missionsInThisVideogame.missions) {
-			if (m.id == missionActive) {
-				numMission = num;
-			}
-			num++;
-		}
-		scoreField.text = "Score " + Data.Instance.multiplayerData.score;
-		Invoke ("TimeOver", 15);
-		missionsField.text = "";
-		if (numMission < 0)
-			return;
-		int totalMissions = missionsInThisVideogame.missions.Count;
-		progressImage.fillAmount = (float)numMission / (float)totalMissions;
-		missionsField.text = "Mission " + (numMission+1).ToString() + "/" + totalMissions.ToString();
+//		foreach (MissionData m in Data.Instance.missions.videogames[Data.Instance.videogamesData.actualID].missions[0].data) {
+//			SummaryMissionPoint smp = Instantiate (missionPoint);
+//			smp.transform.SetParent (container);
+//			smp.transform.localScale = Vector3.one;
+//			if (id <= missionActive) 
+//				smp.Init (true);
+//			else
+//				smp.Init (false);
+//			id++;
+//		}
+//		Missions.MissionsByVideogame missionsInThisVideogame = Data.Instance.missions.videogames [Data.Instance.videogamesData.actualID];
+//		MissionData mission;
+//		int num = 0;
+//		int numMission = -1;
+//		foreach (MissionData m in missionsInThisVideogame.data) {
+//			if (m.id == missionActive) {
+//				numMission = num;
+//			}
+//			num++;
+//		}
+//		scoreField.text = "Score " + Data.Instance.multiplayerData.score;
+//		Invoke ("TimeOver", 15);
+//		missionsField.text = "";
+//		if (numMission < 0)
+//			return;
+//		int totalMissions = missionsInThisVideogame.data.Count;
+//		progressImage.fillAmount = (float)numMission / (float)totalMissions;
+//		missionsField.text = "Mission " + (numMission+1).ToString() + "/" + totalMissions.ToString();
 
 	}
 	void TimeOver()

@@ -6,19 +6,17 @@ public class Boss : SceneObject {
 
 	public float distance_from_avatars;
 	int hits;
-	Missions missions;
+	//Missions missions;
 	int totalHits;
 
 	public override void OnRestart(Vector3 pos)
 	{		
 		Data.Instance.events.OnBossActive (true);
-		missions = Game.Instance.level.missions;
 		Data.Instance.GetComponent<MusicManager> ().BossMusic (true);
 		base.OnRestart (pos);
 	}
 	public void SetTotal(int totalHits)
 	{		
-		missions.ForceBossPercent (totalHits);
 		this.totalHits = totalHits;
 		Data.Instance.events.OnBossInit (totalHits);
 	}

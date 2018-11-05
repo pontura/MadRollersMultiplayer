@@ -72,7 +72,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &100008
 GameObject:
   m_ObjectHideFlags: 1
@@ -91,7 +91,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &100010
 GameObject:
   m_ObjectHideFlags: 1
@@ -109,7 +109,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &100012
 GameObject:
   m_ObjectHideFlags: 1
@@ -139,14 +139,14 @@ GameObject:
   - component: {fileID: 400014}
   - component: {fileID: 3300002}
   - component: {fileID: 5400000}
-  - component: {fileID: 11400002}
+  - component: {fileID: 114552140878871632}
   m_Layer: 0
   m_Name: enemyFrontal
   m_TagString: sceneObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &100016
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +161,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &100018
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +176,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &100020
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +209,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &100024
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,7 +241,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &100032
 GameObject:
   m_ObjectHideFlags: 1
@@ -295,7 +295,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &100042
 GameObject:
   m_ObjectHideFlags: 1
@@ -328,7 +328,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &100046
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,7 +344,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &100048
 GameObject:
   m_ObjectHideFlags: 1
@@ -379,7 +379,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &103904
 GameObject:
   m_ObjectHideFlags: 1
@@ -543,8 +543,8 @@ GameObject:
   m_Component:
   - component: {fileID: 448532}
   - component: {fileID: 3368278}
-  - component: {fileID: 11446448}
   - component: {fileID: 11444212}
+  - component: {fileID: 114907166415733400}
   m_Layer: 0
   m_Name: enemyFrontal
   m_TagString: sceneObject_hard
@@ -577,8 +577,8 @@ GameObject:
   m_Component:
   - component: {fileID: 454116}
   - component: {fileID: 3394296}
-  - component: {fileID: 11413544}
   - component: {fileID: 11484862}
+  - component: {fileID: 114460025676078990}
   m_Layer: 0
   m_Name: enemyFrontal
   m_TagString: sceneObject_medium
@@ -2567,20 +2567,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d66db0dc0b1de3543bb2a9cad1f2faaf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  randomSpeedDiff: 2
-  runToCharacter: 0
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2605,6 +2591,7 @@ MonoBehaviour:
   to: {fileID: 0}
   videoGame_ID: 0
   borders: []
+  type: 0
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2629,6 +2616,7 @@ MonoBehaviour:
   to: {fileID: 0}
   videoGame_ID: 0
   borders: []
+  type: 0
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2686,23 +2674,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   z_length: 36
   nextAreaX: 0
-  gos:
-  - {fileID: 100040}
-  - {fileID: 100008}
-  - {fileID: 100006}
-  - {fileID: 100050}
-  - {fileID: 100010}
-  - {fileID: 100018}
-  - {fileID: 100016}
-  - {fileID: 100030}
-  - {fileID: 100014}
-  - {fileID: 100022}
-  - {fileID: 100046}
-  - {fileID: 100044}
-  - {fileID: 1520580508605800}
-  - {fileID: 1744264987028732}
-  - {fileID: 1278765637226972}
-  - {fileID: 1566509211034574}
   totalCoins: 0
 --- !u!114 &11400024
 MonoBehaviour:
@@ -2776,20 +2747,6 @@ MonoBehaviour:
   force: 21
   animationClip: {fileID: 0}
   backwardJump: 0
---- !u!114 &11413544
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 169998}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d66db0dc0b1de3543bb2a9cad1f2faaf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  randomSpeedDiff: 2
-  runToCharacter: 0
 --- !u!114 &11443520
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2822,20 +2779,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomX: 4
---- !u!114 &11446448
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 156304}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d66db0dc0b1de3543bb2a9cad1f2faaf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  randomSpeedDiff: 2
-  runToCharacter: 0
 --- !u!114 &11471924
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2978,7 +2921,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1325027864800428
 GameObject:
   m_ObjectHideFlags: 1
@@ -3013,7 +2956,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1566509211034574
 GameObject:
   m_ObjectHideFlags: 1
@@ -3030,7 +2973,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1644157788383008
 GameObject:
   m_ObjectHideFlags: 1
@@ -3065,7 +3008,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1903596083893276
 GameObject:
   m_ObjectHideFlags: 1
@@ -3465,6 +3408,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delayToJump: 1.25
+--- !u!114 &114460025676078990
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 169998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd34424aa9b4b5448db3a82b364acc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: -2
+  randomSpeedDiff: 0
 --- !u!114 &114512578827728766
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3477,6 +3433,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delayToJump: 1
+--- !u!114 &114552140878871632
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd34424aa9b4b5448db3a82b364acc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  randomSpeedDiff: 2
 --- !u!114 &114571264367960534
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3489,6 +3458,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delayToJump: 0.75
+--- !u!114 &114907166415733400
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 156304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd34424aa9b4b5448db3a82b364acc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: -2
+  randomSpeedDiff: 0
 --- !u!114 &114933845600537864
 MonoBehaviour:
   m_ObjectHideFlags: 1

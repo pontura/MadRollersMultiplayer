@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -61,7 +61,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c52aa23c4c1909c45b1a2eeadb8f98cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 2
+  type: 0
+  totalDistance: 0
+  id: 3
   backgroundSides:
   - {fileID: 114406897925718168, guid: d77188fe2cbab6e488b67faba85b7357, type: 2}
   voices:
@@ -72,21 +74,10 @@ MonoBehaviour:
   - text: 
     audioClip: {fileID: 8300000, guid: 7321a27a5f5dc354b8182ca944e5c3f2, type: 3}
   videoGameID: 0
-  missionIcon: {fileID: 1658010390819498, guid: cb79261e7aecb064c82d4c67c2d7af25,
-    type: 2}
   isCompetition: 0
   maxScore: 150
   Hiscore: 0
   avatarHiscore: 
-  boss1: 14
-  hearts: 0
-  guys: 8
-  ghost: 0
-  points: 0
-  listeners: 0
-  planes: 0
-  bombs: 0
-  distance: 0
   description: Destroy 8
 --- !u!1001 &100100000
 Prefab:

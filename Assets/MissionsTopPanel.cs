@@ -33,7 +33,7 @@ public class MissionsTopPanel : MonoBehaviour
     {
 		if (message == "ShowMissionName") {
 			anim.Play ("MissionTopOpen");
-			field.text = Data.Instance.missions.MissionActive.description;
+			//field.text = Data.Instance.missions.MissionActive.description;
 		}
     }
 	void OnMissionProgress()
