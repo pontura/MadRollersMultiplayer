@@ -26,7 +26,7 @@ public class Level : MonoBehaviour {
 
 	public GameObject missionDesc;
 
-	private AreasManager areasManager;
+	//private AreasManager areasManager;
 	
 	private float lastDistanceToLoadLevel;
 

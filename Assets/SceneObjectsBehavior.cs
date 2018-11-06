@@ -170,7 +170,8 @@ public class SceneObjectsBehavior : MonoBehaviour {
 
 					if(go.name == "Coin" || go.name =="bloodx1")
 					{
-						sceneObject.GetComponent<GrabbableItem> ().SetComboGrabbable (areaData.z_length, areaData.totalCoins);//area.totalCoins);
+						//print (z_length + "       total coins   " +  areaData.totalCoins);
+						sceneObject.GetComponent<GrabbableItem> ().SetComboGrabbable (z_length, areaData.totalCoins);//area.totalCoins);
 					} 
 					//else if (go.GetComponent<DecorationManager>())
 //					{

@@ -92,10 +92,10 @@ public class Missions : MonoBehaviour {
 	{
 		return videogames[videoGameID].missions[missionID].data[0];
 	}
-	public AreasManager getAreasManager()
-	{
-		return null;//MissionActive.GetComponent<AreasManager>();
-	}
+//	public AreasManager getAreasManager()
+//	{
+//		return null;//MissionActive.GetComponent<AreasManager>();
+//	}
 	public void Complete()
 	{
 		data.events.MissionComplete();     

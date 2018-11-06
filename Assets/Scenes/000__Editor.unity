@@ -2252,18 +2252,49 @@ MonoBehaviour:
     z_length: 0
     data: []
   data:
-  - name: extralargeBlock1
-    pos: {x: 0, y: -1.5, z: -11.7}
+  - name: largeBlock1
+    pos: {x: 6, y: -0.42, z: -24.1}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
-    timelineAnimation: []
+    timelineAnimation:
+    - timeLineData:
+      - move: 1
+        rotate: 0
+        duration: 1
+        data: {x: -5, y: 0, z: 0}
+        easetype: 0
+      - move: 1
+        rotate: 0
+        duration: 1
+        data: {x: 5, y: 0, z: 0}
+        easetype: 0
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: largeBlock1
+    pos: {x: -6, y: -0.42, z: -24.1}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation:
+    - timeLineData:
+      - move: 1
+        rotate: 0
+        duration: 1
+        data: {x: 5, y: 0, z: 0}
+        easetype: 0
+      - move: 1
+        rotate: 0
+        duration: 1
+        data: {x: -5, y: 0, z: 0}
+        easetype: 0
     bossSettings: []
     moveForward: []
     soData: []
     isChild: 0
   - name: extralargeBlock1
-    pos: {x: 0, y: -1.5, z: 0.3}
-    rot: {x: -0, y: 0, z: 0}
+    pos: {x: -25.6, y: -1.5, z: 15.7}
+    rot: {x: -0, y: 45, z: -0}
     fullRotationData: []
     timelineAnimation: []
     bossSettings: []
@@ -2271,25 +2302,16 @@ MonoBehaviour:
     soData: []
     isChild: 0
   - name: extralargeBlock1
-    pos: {x: 0, y: -1.5, z: 12.3}
-    rot: {x: -0, y: 0, z: 0}
+    pos: {x: 24.8, y: -1.5, z: 15.7}
+    rot: {x: -0, y: 45, z: -0}
     fullRotationData: []
     timelineAnimation: []
     bossSettings: []
     moveForward: []
     soData: []
     isChild: 0
-  - name: enemyFrontal
-    pos: {x: -14, y: 3.8, z: 0}
-    rot: {x: -0, y: 0, z: 0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: enemyFrontal
-    pos: {x: 14, y: 3.8, z: 0}
+  - name: mediumBlock1
+    pos: {x: 0, y: -1.5, z: 16.15}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -2298,7 +2320,7 @@ MonoBehaviour:
     soData: []
     isChild: 0
   - name: mediumBlock1
-    pos: {x: -14, y: 2.2, z: 15.3}
+    pos: {x: 0, y: -1.5, z: 13.25}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -2307,7 +2329,7 @@ MonoBehaviour:
     soData: []
     isChild: 0
   - name: mediumBlock1
-    pos: {x: -14, y: 2.2, z: 10.9}
+    pos: {x: 0, y: -1.5, z: 7.55}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -2316,7 +2338,7 @@ MonoBehaviour:
     soData: []
     isChild: 0
   - name: mediumBlock1
-    pos: {x: -14, y: 2.2, z: 1.9}
+    pos: {x: 0, y: -1.5, z: 10.45}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -2325,7 +2347,7 @@ MonoBehaviour:
     soData: []
     isChild: 0
   - name: mediumBlock1
-    pos: {x: -14, y: 2.2, z: 6.3}
+    pos: {x: 0, y: -1.5, z: 4.65}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -2334,7 +2356,7 @@ MonoBehaviour:
     soData: []
     isChild: 0
   - name: mediumBlock1
-    pos: {x: -14, y: 2.2, z: -2.7}
+    pos: {x: 0, y: -1.5, z: 1.75}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -2343,7 +2365,7 @@ MonoBehaviour:
     soData: []
     isChild: 0
   - name: mediumBlock1
-    pos: {x: -14, y: 2.2, z: -7.1}
+    pos: {x: 0, y: -1.5, z: -4.05}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -2352,7 +2374,7 @@ MonoBehaviour:
     soData: []
     isChild: 0
   - name: mediumBlock1
-    pos: {x: -14, y: 2.2, z: -15.8}
+    pos: {x: 0, y: -1.5, z: -1.05}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -2361,7 +2383,7 @@ MonoBehaviour:
     soData: []
     isChild: 0
   - name: mediumBlock1
-    pos: {x: -14, y: 2.2, z: -11.4}
+    pos: {x: 0, y: -1.5, z: -7.06}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -2370,7 +2392,7 @@ MonoBehaviour:
     soData: []
     isChild: 0
   - name: mediumBlock1
-    pos: {x: 14, y: 2.2, z: 15.3}
+    pos: {x: 0, y: -1.5, z: -9.97}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -2379,7 +2401,7 @@ MonoBehaviour:
     soData: []
     isChild: 0
   - name: mediumBlock1
-    pos: {x: 14, y: 2.2, z: 10.9}
+    pos: {x: 0, y: -1.5, z: -12.83}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -2388,7 +2410,7 @@ MonoBehaviour:
     soData: []
     isChild: 0
   - name: mediumBlock1
-    pos: {x: 14, y: 2.2, z: 1.9}
+    pos: {x: 0, y: -1.5, z: -15.7}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -2397,7 +2419,7 @@ MonoBehaviour:
     soData: []
     isChild: 0
   - name: mediumBlock1
-    pos: {x: 14, y: 2.2, z: 6.3}
+    pos: {x: -9.4, y: -1.5, z: 16.15}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -2406,7 +2428,7 @@ MonoBehaviour:
     soData: []
     isChild: 0
   - name: mediumBlock1
-    pos: {x: 14, y: 2.2, z: -2.7}
+    pos: {x: -9.6, y: -1.5, z: 13.25}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -2415,7 +2437,7 @@ MonoBehaviour:
     soData: []
     isChild: 0
   - name: mediumBlock1
-    pos: {x: 14, y: 2.2, z: -7.1}
+    pos: {x: -9.6, y: -1.5, z: 7.55}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -2424,7 +2446,7 @@ MonoBehaviour:
     soData: []
     isChild: 0
   - name: mediumBlock1
-    pos: {x: 14, y: 2.2, z: -15.8}
+    pos: {x: -10, y: -1.5, z: 10.45}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -2433,10 +2455,315 @@ MonoBehaviour:
     soData: []
     isChild: 0
   - name: mediumBlock1
-    pos: {x: 14, y: 2.2, z: -11.4}
+    pos: {x: -9.6, y: -1.5, z: 4.65}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: mediumBlock1
+    pos: {x: -9.6, y: -1.5, z: 1.75}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: mediumBlock1
+    pos: {x: -9.6, y: -1.5, z: -4.05}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: mediumBlock1
+    pos: {x: -9.6, y: -1.5, z: -1.05}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: mediumBlock1
+    pos: {x: -9.6, y: -1.5, z: -7.06}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: mediumBlock1
+    pos: {x: -9.6, y: -1.5, z: -9.97}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: mediumBlock1
+    pos: {x: -9.6, y: -1.5, z: -12.83}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: mediumBlock1
+    pos: {x: -9.6, y: -1.5, z: -15.7}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: mediumBlock1
+    pos: {x: 10.4, y: -1.5, z: 16.15}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: mediumBlock1
+    pos: {x: 10.4, y: -1.5, z: 13.25}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: mediumBlock1
+    pos: {x: 10.4, y: -1.5, z: 7.55}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: mediumBlock1
+    pos: {x: 10.8, y: -1.5, z: 10.45}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: mediumBlock1
+    pos: {x: 10.4, y: -1.5, z: 4.65}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: mediumBlock1
+    pos: {x: 10.4, y: -1.5, z: 1.75}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: mediumBlock1
+    pos: {x: 10.4, y: -1.5, z: -4.05}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: mediumBlock1
+    pos: {x: 10.4, y: -1.5, z: -1.05}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: mediumBlock1
+    pos: {x: 10.4, y: -1.5, z: -7.06}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: mediumBlock1
+    pos: {x: 10.4, y: -1.5, z: -9.97}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: mediumBlock1
+    pos: {x: 10.4, y: -1.5, z: -12.83}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: mediumBlock1
+    pos: {x: 10.4, y: -1.5, z: -15.7}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: largeBlock1
+    pos: {x: 6, y: -0.42, z: 21.4}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation:
+    - timeLineData:
+      - move: 1
+        rotate: 0
+        duration: 1
+        data: {x: -5, y: 0, z: 0}
+        easetype: 0
+      - move: 1
+        rotate: 0
+        duration: 1
+        data: {x: 5, y: 0, z: 0}
+        easetype: 0
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: largeBlock1
+    pos: {x: -6, y: -0.42, z: 21.4}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation:
+    - timeLineData:
+      - move: 1
+        rotate: 0
+        duration: 1
+        data: {x: 5, y: 0, z: 0}
+        easetype: 0
+      - move: 1
+        rotate: 0
+        duration: 1
+        data: {x: -5, y: 0, z: 0}
+        easetype: 0
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: palmTall
+    pos: {x: -20.7, y: -0.9, z: 15.4}
+    rot: {x: 0, y: 180, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: palmTall
+    pos: {x: 21.4, y: -0.4, z: 15.4}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: palmTall
+    pos: {x: -28.3, y: -0.9, z: 15.4}
+    rot: {x: 0, y: 180, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: palmTall
+    pos: {x: -25.1, y: -0.9, z: 10.6}
+    rot: {x: 0, y: 180, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: palmTall
+    pos: {x: 29.4, y: -0.4, z: 15.4}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: palmTall
+    pos: {x: 25, y: -0.4, z: 10.6}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: largeBlock1
+    pos: {x: 6, y: -0.42, z: 27.4}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation:
+    - timeLineData:
+      - move: 1
+        rotate: 0
+        duration: 1
+        data: {x: 5, y: 0, z: 0}
+        easetype: 0
+      - move: 1
+        rotate: 0
+        duration: 1
+        data: {x: -5, y: 0, z: 0}
+        easetype: 0
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: largeBlock1
+    pos: {x: -6, y: -0.42, z: 27.4}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation:
+    - timeLineData:
+      - move: 1
+        rotate: 0
+        duration: 1
+        data: {x: -5, y: 0, z: 0}
+        easetype: 0
+      - move: 1
+        rotate: 0
+        duration: 1
+        data: {x: 5, y: 0, z: 0}
+        easetype: 0
     bossSettings: []
     moveForward: []
     soData: []
@@ -2466,11 +2793,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c144ae37d835c4bba5516e3f8057cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  videoGameID: 2
-  missionID: 6
+  videoGameID: 1
+  missionID: 3
   missions: {fileID: 1667941557}
   areaCreator: {fileID: 1667941559}
-  area: {fileID: 4900000, guid: 9e21e39b8d36d69469c7e08e9ecef095, type: 3}
+  area: {fileID: 4900000, guid: 4c84b080c170404499ce4ccd5fe64df9, type: 3}
 --- !u!4 &1667941562
 Transform:
   m_ObjectHideFlags: 0

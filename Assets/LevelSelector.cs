@@ -67,9 +67,9 @@ public class LevelSelector : MonoBehaviour {
 	}
 	void Delayed()
 	{
-//		Data.Instance.videogamesData.actualID = videgameID;
-//		Data.Instance.missions.ActivateFirstGameByVideogame (videogameData.id);
-//		Data.Instance.LoadLevel ("Game");
+		Data.Instance.videogamesData.actualID = videgameID;
+		Data.Instance.missions.MissionActiveID = 0;
+		Data.Instance.LoadLevel ("Game");
 	}
 	void OnJoystickUp()
 	{

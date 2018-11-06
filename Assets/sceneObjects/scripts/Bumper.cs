@@ -20,4 +20,8 @@ public class Bumper : MonoBehaviour {
 			break;
 		}
 	}
+	void OnPooled()
+	{
+		Destroy(gameObject.GetComponent("Bumper"));
+	}
 }

@@ -14,17 +14,17 @@ public class Competitions : MonoBehaviour {
         public int id;
         //public int myScore;
        // public int levelUnlockedID;
-        public Mission[] missions;
+      //  public Mission[] missions;
         
     }
     public void Init()
     {
         SocialEvents.OnMissionReady += OnMissionReady;
     }
-    public Mission[] GetMissions()
-    {
-        return competitions[current - 1].missions;
-    }
+//    public Mission[] GetMissions()
+//    {
+//        return competitions[current - 1].missions;
+//    }
     public int GetCurrentCompetition()
     {
         return current;

@@ -193,11 +193,11 @@ public class Data : MonoBehaviour {
     {
 		Data.Instance.events.ForceFrameRate (1);
 		float delay = 0.1f;
-		if(DEBUG && forceVideogameID != -1 && forceMissionID != -1 && levelName == "LevelSelector")
+		if(DEBUG && forceVideogameID != 0 && forceMissionID != -1 && levelName == "LevelSelector")
 		{
 			levelName = "Game";
 			missions.MissionActiveID = forceMissionID;
-			videogamesData.actualID = forceVideogameID;
+			videogamesData.actualID = forceVideogameID-1;
 
 		}
 		if (!isReplay && levelName == "Game") {

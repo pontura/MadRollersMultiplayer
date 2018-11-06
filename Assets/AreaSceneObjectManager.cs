@@ -61,17 +61,23 @@ public class AreaSceneObjectManager : MonoBehaviour {
 		if (jsonData.soData.Count > 0) {
 			SceneObjectDataGeneric data = jsonData.soData [0];
 			if (data.bumperForce > 0) {
-				Bumper newcomponent = so.gameObject.AddComponent<Bumper> ();
+				Bumper newcomponent = so.GetComponent<Bumper> ();
+				if(newcomponent == null)
+					newcomponent = so.gameObject.AddComponent<Bumper> ();
 				newcomponent.force = data.bumperForce;
 			}
 			if (data.size != Vector3.zero) {
-				SceneObjectData newcomponent = so.gameObject.AddComponent<SceneObjectData> ();
+				SceneObjectData newcomponent = so.GetComponent<SceneObjectData> ();
+				if(newcomponent == null)
+					newcomponent = so.gameObject.AddComponent<SceneObjectData> ();
 				newcomponent.size = data.size;
 			}
 		}
 		if (jsonData.fullRotationData.Count > 0) {
 			FullRotationData data = jsonData.fullRotationData [0];
-			FullRotation newcomponent = so.gameObject.AddComponent<FullRotation> ();
+			FullRotation newcomponent = so.GetComponent<FullRotation> ();
+			if(newcomponent == null)
+				newcomponent = so.gameObject.AddComponent<FullRotation> ();
 			newcomponent.rotateX = data.rotateX;
 			newcomponent.rotateY = data.rotateY;
 			newcomponent.rotateZ = data.rotateZ;
@@ -79,19 +85,25 @@ public class AreaSceneObjectManager : MonoBehaviour {
 		}
 		if (jsonData.timelineAnimation.Count > 0) {
 			TimelineAnimationData data = jsonData.timelineAnimation [0];
-			TimelineAnimation newcomponent = so.gameObject.AddComponent<TimelineAnimation> ();
+			TimelineAnimation newcomponent = so.GetComponent<TimelineAnimation> ();
+			if(newcomponent == null)
+				newcomponent = so.gameObject.AddComponent<TimelineAnimation> ();
 			newcomponent.timeLineData = data.timeLineData;
 		}
 		if (jsonData.bossSettings.Count > 0) {
 			BossSettingsData data = jsonData.bossSettings [0];
-			BossSettings newcomponent = so.gameObject.AddComponent<BossSettings> ();
+			BossSettings newcomponent = so.GetComponent<BossSettings> ();
+			if(newcomponent == null)
+				newcomponent = so.gameObject.AddComponent<BossSettings> ();
 			newcomponent.bossModule = data.bossModule;
 			newcomponent.time_to_init_enemies = data.time_to_init_enemies;
 			newcomponent.asset = data.asset;
 		}
 		if (jsonData.moveForward.Count > 0) {
 			MoveForwardData data = jsonData.moveForward [0];
-			MoveForward newcomponent = so.gameObject.AddComponent<MoveForward> ();
+			MoveForward newcomponent = so.GetComponent<MoveForward> ();
+			if(newcomponent == null)
+				newcomponent = so.gameObject.AddComponent<MoveForward> ();
 			newcomponent.speed = data.speed;
 			newcomponent.randomSpeedDiff = data.randomSpeedDiff;
 		}

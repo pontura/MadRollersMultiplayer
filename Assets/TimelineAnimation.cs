@@ -29,6 +29,7 @@ public class TimelineAnimation : MonoBehaviour {
 			"y", initialPosition.y + timeLineData[id].data.y,
 			"z", initialPosition.z + timeLineData[id].data.z,
 			"time", timeLineData[id].duration,
+			"easetype", iTween.EaseType.linear,
 			//"easetype", timeLineData[id].easetype,
 			"oncomplete", "TweenCompleted",
 			"onCompleteTarget", this.gameObject
@@ -41,6 +42,7 @@ public class TimelineAnimation : MonoBehaviour {
 		iTween.RotateTo(gameObject, iTween.Hash(
 			"rotation", timeLineData[id].data,
 			"time", timeLineData[id].duration,
+			"easetype", iTween.EaseType.linear,
 			//"easetype", timeLineData[id].easetype,
 			"oncomplete", "TweenCompleted",
 			"onCompleteTarget", this.gameObject
@@ -56,6 +58,7 @@ public class TimelineAnimation : MonoBehaviour {
 	}
 	void OnDisable()
 	{
+		iTween.Stop (this.gameObject);
 		Destroy(gameObject.GetComponent("TimelineAnimation"));
 	}
 }
