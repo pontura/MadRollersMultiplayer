@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 4531254986958890}
   - component: {fileID: 33804636053753624}
   - component: {fileID: 54907013226746228}
-  - component: {fileID: 114935684177050090}
+  - component: {fileID: 114779882335620646}
   m_Layer: 0
   m_Name: enemyNaveSimple
   m_TagString: sceneObject
@@ -424,7 +424,7 @@ GameObject:
   - component: {fileID: 4079735642243544}
   - component: {fileID: 33277082363508768}
   - component: {fileID: 54001102162368358}
-  - component: {fileID: 114130405763990432}
+  - component: {fileID: 114311163230906298}
   m_Layer: 0
   m_Name: enemyNaveSimple
   m_TagString: sceneObject
@@ -581,7 +581,7 @@ GameObject:
   - component: {fileID: 4935583911135996}
   - component: {fileID: 33941692429301706}
   - component: {fileID: 54982472728851026}
-  - component: {fileID: 114228351109665196}
+  - component: {fileID: 114638326015495102}
   m_Layer: 0
   m_Name: enemyNaveSimple
   m_TagString: sceneObject
@@ -722,7 +722,7 @@ GameObject:
   - component: {fileID: 4604367222395514}
   - component: {fileID: 33825318010654538}
   - component: {fileID: 54719161252182124}
-  - component: {fileID: 114116151442110280}
+  - component: {fileID: 114965545058886092}
   m_Layer: 0
   m_Name: enemyNaveSimple
   m_TagString: sceneObject
@@ -1171,7 +1171,7 @@ GameObject:
   - component: {fileID: 4956707165998014}
   - component: {fileID: 33862149314215166}
   - component: {fileID: 54183098834136038}
-  - component: {fileID: 114141472190239370}
+  - component: {fileID: 114255809364039872}
   m_Layer: 0
   m_Name: enemyNaveSimple
   m_TagString: sceneObject
@@ -1189,7 +1189,7 @@ GameObject:
   - component: {fileID: 4498102913293608}
   - component: {fileID: 33777331969150528}
   - component: {fileID: 54499424189959390}
-  - component: {fileID: 114920279784669046}
+  - component: {fileID: 114677713324889660}
   m_Layer: 0
   m_Name: enemyNaveSimple
   m_TagString: sceneObject
@@ -1436,7 +1436,7 @@ GameObject:
   - component: {fileID: 4339942027978134}
   - component: {fileID: 33480430760340928}
   - component: {fileID: 54799636603422830}
-  - component: {fileID: 114678690992594946}
+  - component: {fileID: 114964821965362050}
   m_Layer: 0
   m_Name: enemyNaveSimple
   m_TagString: sceneObject
@@ -1614,7 +1614,7 @@ GameObject:
   - component: {fileID: 4219395226921994}
   - component: {fileID: 33011726716274900}
   - component: {fileID: 54596457964999510}
-  - component: {fileID: 114057115999826990}
+  - component: {fileID: 114625200329389286}
   m_Layer: 0
   m_Name: enemyNaveSimple
   m_TagString: sceneObject
@@ -6361,27 +6361,6 @@ MonoBehaviour:
   titila: []
   areaID: 0
   totalGrabbablesInArea: 0
---- !u!114 &114057115999826990
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1975156378199320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66fbf33add2b4e5438886b210afede03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 8
-  randomSpeedDiff: 0
-  paths:
-  - {x: 3, y: 0, z: 0}
-  - {x: -3, y: 0, z: 0}
-  - {x: -3, y: -4, z: 0}
-  - {x: 3, y: -4, z: 0}
-  originalPath: {x: 0, y: 0, z: 0}
-  destPath: {x: 0, y: 0, z: 0}
-  pathID: 0
 --- !u!114 &114100199540025838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6414,48 +6393,6 @@ MonoBehaviour:
   titila: []
   areaID: 0
   totalGrabbablesInArea: 0
---- !u!114 &114116151442110280
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1390175286070730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66fbf33add2b4e5438886b210afede03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 8
-  randomSpeedDiff: 0
-  paths:
-  - {x: 3, y: 0, z: 0}
-  - {x: -3, y: 0, z: 0}
-  - {x: -3, y: -4, z: 0}
-  - {x: 3, y: -4, z: 0}
-  originalPath: {x: 0, y: 0, z: 0}
-  destPath: {x: 0, y: 0, z: 0}
-  pathID: 0
---- !u!114 &114130405763990432
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1172158552001250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66fbf33add2b4e5438886b210afede03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 8
-  randomSpeedDiff: 0
-  paths:
-  - {x: -3, y: 0, z: 0}
-  - {x: 3, y: 0, z: 0}
-  - {x: 3, y: -4, z: 0}
-  - {x: -3, y: -4, z: 0}
-  originalPath: {x: 0, y: 0, z: 0}
-  destPath: {x: 0, y: 0, z: 0}
-  pathID: 0
 --- !u!114 &114141169004092792
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6488,27 +6425,6 @@ MonoBehaviour:
   titila: []
   areaID: 0
   totalGrabbablesInArea: 0
---- !u!114 &114141472190239370
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1623103120182542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66fbf33add2b4e5438886b210afede03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 8
-  randomSpeedDiff: 0
-  paths:
-  - {x: -3, y: 0, z: 0}
-  - {x: 3, y: 0, z: 0}
-  - {x: 3, y: -4, z: 0}
-  - {x: -3, y: -4, z: 0}
-  originalPath: {x: 0, y: 0, z: 0}
-  destPath: {x: 0, y: 0, z: 0}
-  pathID: 0
 --- !u!114 &114163817673514928
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6585,27 +6501,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentSceneObject: {fileID: 0}
---- !u!114 &114228351109665196
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1255902951967320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66fbf33add2b4e5438886b210afede03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 8
-  randomSpeedDiff: 0
-  paths:
-  - {x: -3, y: 0, z: 0}
-  - {x: 3, y: 0, z: 0}
-  - {x: 3, y: -4, z: 0}
-  - {x: -3, y: -4, z: 0}
-  originalPath: {x: 0, y: 0, z: 0}
-  destPath: {x: 0, y: 0, z: 0}
-  pathID: 0
 --- !u!114 &114242269775065966
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6618,6 +6513,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentSceneObject: {fileID: 0}
+--- !u!114 &114255809364039872
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1623103120182542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5808ddd1b818ecf46bcc873e5d1554bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLineData:
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: -4, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: -4, z: 0}
+    easetype: 0
 --- !u!114 &114307635054274150
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6650,6 +6577,38 @@ MonoBehaviour:
   titila: []
   areaID: 0
   totalGrabbablesInArea: 0
+--- !u!114 &114311163230906298
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1172158552001250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5808ddd1b818ecf46bcc873e5d1554bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLineData:
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: -4, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: -4, z: 0}
+    easetype: 0
 --- !u!114 &114314473888960346
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6851,7 +6810,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   z_length: 58
   nextAreaX: 0
-  gos: []
   totalCoins: 0
 --- !u!114 &114515406918729840
 MonoBehaviour:
@@ -6953,6 +6911,38 @@ MonoBehaviour:
   titila: []
   areaID: 0
   totalGrabbablesInArea: 0
+--- !u!114 &114625200329389286
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1975156378199320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5808ddd1b818ecf46bcc873e5d1554bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLineData:
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: -4, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: -4, z: 0}
+    easetype: 0
 --- !u!114 &114629693039650026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6965,27 +6955,70 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentSceneObject: {fileID: 0}
---- !u!114 &114678690992594946
+--- !u!114 &114638326015495102
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1783778138784032}
+  m_GameObject: {fileID: 1255902951967320}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66fbf33add2b4e5438886b210afede03, type: 3}
+  m_Script: {fileID: 11500000, guid: 5808ddd1b818ecf46bcc873e5d1554bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
-  randomSpeedDiff: 0
-  paths:
-  - {x: 3, y: 0, z: 0}
-  - {x: -3, y: 0, z: 0}
-  - {x: -3, y: -4, z: 0}
-  - {x: 3, y: -4, z: 0}
-  originalPath: {x: 0, y: 0, z: 0}
-  destPath: {x: 0, y: 0, z: 0}
-  pathID: 0
+  timeLineData:
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: -4, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: -4, z: 0}
+    easetype: 0
+--- !u!114 &114677713324889660
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1640499197890862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5808ddd1b818ecf46bcc873e5d1554bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLineData:
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: -4, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: -4, z: 0}
+    easetype: 0
 --- !u!114 &114701881251436270
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7054,6 +7087,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentSceneObject: {fileID: 0}
+--- !u!114 &114779882335620646
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1112578250770762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5808ddd1b818ecf46bcc873e5d1554bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLineData:
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: -4, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: -4, z: 0}
+    easetype: 0
 --- !u!114 &114844517789651604
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7130,48 +7195,70 @@ MonoBehaviour:
   titila: []
   areaID: 0
   totalGrabbablesInArea: 0
---- !u!114 &114920279784669046
+--- !u!114 &114964821965362050
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1640499197890862}
+  m_GameObject: {fileID: 1783778138784032}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66fbf33add2b4e5438886b210afede03, type: 3}
+  m_Script: {fileID: 11500000, guid: 5808ddd1b818ecf46bcc873e5d1554bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
-  randomSpeedDiff: 0
-  paths:
-  - {x: 3, y: 0, z: 0}
-  - {x: -3, y: 0, z: 0}
-  - {x: -3, y: -4, z: 0}
-  - {x: 3, y: -4, z: 0}
-  originalPath: {x: 0, y: 0, z: 0}
-  destPath: {x: 0, y: 0, z: 0}
-  pathID: 0
---- !u!114 &114935684177050090
+  timeLineData:
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: -4, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: -4, z: 0}
+    easetype: 0
+--- !u!114 &114965545058886092
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1112578250770762}
+  m_GameObject: {fileID: 1390175286070730}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66fbf33add2b4e5438886b210afede03, type: 3}
+  m_Script: {fileID: 11500000, guid: 5808ddd1b818ecf46bcc873e5d1554bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
-  randomSpeedDiff: 0
-  paths:
-  - {x: -3, y: 0, z: 0}
-  - {x: 3, y: 0, z: 0}
-  - {x: 3, y: -4, z: 0}
-  - {x: -3, y: -4, z: 0}
-  originalPath: {x: 0, y: 0, z: 0}
-  destPath: {x: 0, y: 0, z: 0}
-  pathID: 0
+  timeLineData:
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: -4, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: -4, z: 0}
+    easetype: 0
 --- !u!114 &114978536180822754
 MonoBehaviour:
   m_ObjectHideFlags: 1

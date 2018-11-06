@@ -10,13 +10,19 @@ public class AreaSceneObjectManager : MonoBehaviour {
 		TimelineAnimation timelineAnimation = go.GetComponent<TimelineAnimation> ();
 		BossSettings bossSettings = go.GetComponent<BossSettings> ();
 		MoveForward moveForward = go.GetComponent<MoveForward> ();
+		Bumper bumper = go.GetComponent<Bumper> ();
 		SceneObjectData soData = go.GetComponent<SceneObjectData> ();
 
 		if (soData != null) {
 			newSOdata.soData = new List<SceneObjectDataGeneric> ();
 			SceneObjectDataGeneric data = new SceneObjectDataGeneric ();
 			data.size = soData.size;
-			data.bumperForce = soData.bumperForce;
+			newSOdata.soData.Add (data);
+		} 
+		if (bumper != null) {
+			newSOdata.soData = new List<SceneObjectDataGeneric> ();
+			SceneObjectDataGeneric data = new SceneObjectDataGeneric ();
+			data.bumperForce = bumper.force;
 			newSOdata.soData.Add (data);
 		} 
 		if (fullRotation != null) {
@@ -57,6 +63,10 @@ public class AreaSceneObjectManager : MonoBehaviour {
 			if (data.bumperForce > 0) {
 				Bumper newcomponent = so.gameObject.AddComponent<Bumper> ();
 				newcomponent.force = data.bumperForce;
+			}
+			if (data.size != Vector3.zero) {
+				SceneObjectData newcomponent = so.gameObject.AddComponent<SceneObjectData> ();
+				newcomponent.size = data.size;
 			}
 		}
 		if (jsonData.fullRotationData.Count > 0) {

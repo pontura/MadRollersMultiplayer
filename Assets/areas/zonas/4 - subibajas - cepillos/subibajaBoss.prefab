@@ -323,7 +323,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1702428750914788}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -744,9 +744,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9547058d7c35e3245ae66c9c535a7952, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossModule: Bosses_calle_central
   assets: {fileID: 1686291570922896, guid: 8d70bbcda4864b340b1af6c0cabad9d3, type: 2}
   time_to_init_enemies: 0.7
-  bossAsset: {fileID: 0}
+  asset: conejo
 --- !u!114 &114361093761075398
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -760,15 +761,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   z_length: 26
   nextAreaX: 0
-  gos:
-  - {fileID: 1642098682831972}
-  - {fileID: 1744493730195806}
-  - {fileID: 1776152984866082}
-  - {fileID: 1298850438568042}
-  - {fileID: 1678601078070194}
-  - {fileID: 1422609933870046}
-  - {fileID: 1383060450655992}
-  - {fileID: 1351099731690184}
   totalCoins: 3
 --- !u!114 &114419251553298022
 MonoBehaviour:

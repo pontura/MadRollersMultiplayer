@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 33165958609218656}
   - component: {fileID: 54949256188891246}
   - component: {fileID: 114485832676194910}
+  - component: {fileID: 114235763457063476}
   m_Layer: 0
   m_Name: enemyNaveSimple
   m_TagString: sceneObject
@@ -130,6 +131,7 @@ GameObject:
   - component: {fileID: 33160877326138702}
   - component: {fileID: 54685989797849030}
   - component: {fileID: 114768274632132108}
+  - component: {fileID: 114170174215067172}
   m_Layer: 0
   m_Name: enemyNaveSimple
   m_TagString: sceneObject
@@ -937,6 +939,7 @@ GameObject:
   - component: {fileID: 33059381795882672}
   - component: {fileID: 54327686803508256}
   - component: {fileID: 114352270614249868}
+  - component: {fileID: 114564845132842872}
   m_Layer: 0
   m_Name: enemyNaveSimple
   m_TagString: sceneObject
@@ -1009,6 +1012,7 @@ GameObject:
   - component: {fileID: 33788818311142916}
   - component: {fileID: 54318512226070096}
   - component: {fileID: 114175677304589474}
+  - component: {fileID: 114893331082182114}
   m_Layer: 0
   m_Name: enemyNaveSimple
   m_TagString: sceneObject
@@ -1045,6 +1049,7 @@ GameObject:
   - component: {fileID: 33850505968203216}
   - component: {fileID: 54357210357693290}
   - component: {fileID: 114741064540989932}
+  - component: {fileID: 114766789761441950}
   m_Layer: 0
   m_Name: enemyNaveSimple
   m_TagString: sceneObject
@@ -1185,6 +1190,7 @@ GameObject:
   - component: {fileID: 33496228759601478}
   - component: {fileID: 54126562953449988}
   - component: {fileID: 114182579177679606}
+  - component: {fileID: 114002771684521842}
   m_Layer: 0
   m_Name: enemyNaveSimple
   m_TagString: sceneObject
@@ -1346,6 +1352,7 @@ GameObject:
   - component: {fileID: 33704924047796770}
   - component: {fileID: 54573102943039562}
   - component: {fileID: 114074130938483322}
+  - component: {fileID: 114296664239729172}
   m_Layer: 0
   m_Name: enemyNaveSimple
   m_TagString: sceneObject
@@ -1541,6 +1548,7 @@ GameObject:
   - component: {fileID: 33497520838183466}
   - component: {fileID: 54150761750965720}
   - component: {fileID: 114515323917858370}
+  - component: {fileID: 114578950055238870}
   m_Layer: 0
   m_Name: enemyNaveSimple
   m_TagString: sceneObject
@@ -1888,6 +1896,7 @@ GameObject:
   - component: {fileID: 33745330306632610}
   - component: {fileID: 54908660007791904}
   - component: {fileID: 114435623599817756}
+  - component: {fileID: 114562268206285684}
   m_Layer: 0
   m_Name: enemyNaveSimple
   m_TagString: sceneObject
@@ -2142,6 +2151,7 @@ GameObject:
   - component: {fileID: 33254243849962104}
   - component: {fileID: 54568469173290094}
   - component: {fileID: 114882383089814500}
+  - component: {fileID: 114864966763286298}
   m_Layer: 0
   m_Name: enemyNaveSimple
   m_TagString: sceneObject
@@ -2387,6 +2397,7 @@ GameObject:
   - component: {fileID: 33883202176960128}
   - component: {fileID: 54029610174685264}
   - component: {fileID: 114305684301149938}
+  - component: {fileID: 114563778910998548}
   m_Layer: 0
   m_Name: enemyNaveSimple
   m_TagString: sceneObject
@@ -2509,6 +2520,7 @@ GameObject:
   - component: {fileID: 33944130882876504}
   - component: {fileID: 54471925015506226}
   - component: {fileID: 114345597128210468}
+  - component: {fileID: 114099005528646172}
   m_Layer: 0
   m_Name: enemyNaveSimple
   m_TagString: sceneObject
@@ -10380,6 +10392,38 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114002771684521842
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1450131247605332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5808ddd1b818ecf46bcc873e5d1554bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLineData:
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: 2, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: 2, z: 0}
+    easetype: 0
 --- !u!114 &114047666674957020
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10465,6 +10509,38 @@ MonoBehaviour:
   originalPath: {x: 0, y: 0, z: 0}
   destPath: {x: 0, y: 0, z: 0}
   pathID: 0
+--- !u!114 &114099005528646172
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1895366402024592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5808ddd1b818ecf46bcc873e5d1554bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLineData:
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: -7, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: -7, z: 0}
+    easetype: 0
 --- !u!114 &114099374831683942
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10650,6 +10726,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentSceneObject: {fileID: 0}
+--- !u!114 &114170174215067172
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1052044738926814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5808ddd1b818ecf46bcc873e5d1554bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLineData:
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: -7, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: -7, z: 0}
+    easetype: 0
 --- !u!114 &114171265082282678
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10756,6 +10864,38 @@ MonoBehaviour:
   titila: []
   areaID: 0
   totalGrabbablesInArea: 0
+--- !u!114 &114235763457063476
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1015653796143572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5808ddd1b818ecf46bcc873e5d1554bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLineData:
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: -7, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: -7, z: 0}
+    easetype: 0
 --- !u!114 &114239924038132590
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10850,6 +10990,38 @@ MonoBehaviour:
   videoGame_ID: 0
   borders: []
   type: 0
+--- !u!114 &114296664239729172
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1499267301302834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5808ddd1b818ecf46bcc873e5d1554bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLineData:
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: -7, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: -7, z: 0}
+    easetype: 0
 --- !u!114 &114297171065275166
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11218,6 +11390,102 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentSceneObject: {fileID: 0}
+--- !u!114 &114562268206285684
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1676368981656194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5808ddd1b818ecf46bcc873e5d1554bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLineData:
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: -7, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: -7, z: 0}
+    easetype: 0
+--- !u!114 &114563778910998548
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1853744239911184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5808ddd1b818ecf46bcc873e5d1554bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLineData:
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: 2, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: 2, z: 0}
+    easetype: 0
+--- !u!114 &114564845132842872
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1389572809758128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5808ddd1b818ecf46bcc873e5d1554bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLineData:
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: -7, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: -7, z: 0}
+    easetype: 0
 --- !u!114 &114567074067145106
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11230,6 +11498,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentSceneObject: {fileID: 0}
+--- !u!114 &114578950055238870
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1568600710609734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5808ddd1b818ecf46bcc873e5d1554bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLineData:
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: -7, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: -7, z: 0}
+    easetype: 0
 --- !u!114 &114594146828132154
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11472,6 +11772,38 @@ MonoBehaviour:
   titila: []
   areaID: 0
   totalGrabbablesInArea: 0
+--- !u!114 &114766789761441950
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1420531662639378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5808ddd1b818ecf46bcc873e5d1554bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLineData:
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: -7, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: -7, z: 0}
+    easetype: 0
 --- !u!114 &114768274632132108
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11581,6 +11913,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentSceneObject: {fileID: 0}
+--- !u!114 &114864966763286298
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1753030265999046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5808ddd1b818ecf46bcc873e5d1554bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLineData:
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: 2, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: 2, z: 0}
+    easetype: 0
 --- !u!114 &114882342879041638
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11634,6 +11998,38 @@ MonoBehaviour:
   originalPath: {x: 0, y: 0, z: 0}
   destPath: {x: 0, y: 0, z: 0}
   pathID: 0
+--- !u!114 &114893331082182114
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1416464417618000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5808ddd1b818ecf46bcc873e5d1554bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLineData:
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: 2, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: 2, z: 0}
+    easetype: 0
 --- !u!114 &114893839548240036
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11712,111 +12108,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   z_length: 64
   nextAreaX: 0
-  gos:
-  - {fileID: 1700545901670632}
-  - {fileID: 1660297549681698}
-  - {fileID: 1687138310666002}
-  - {fileID: 1463534053988900}
-  - {fileID: 1517650334560984}
-  - {fileID: 1451796210687032}
-  - {fileID: 1379607051189376}
-  - {fileID: 1392659747770016}
-  - {fileID: 1151704440073606}
-  - {fileID: 1663826649978852}
-  - {fileID: 1646954470710028}
-  - {fileID: 1165726532707026}
-  - {fileID: 1424569254364152}
-  - {fileID: 1630501239796438}
-  - {fileID: 1219834335388050}
-  - {fileID: 1639378216860862}
-  - {fileID: 1870112327768584}
-  - {fileID: 1810128141751732}
-  - {fileID: 1682369652845756}
-  - {fileID: 1378519107368928}
-  - {fileID: 1687119181155872}
-  - {fileID: 1717915700779110}
-  - {fileID: 1435466418987416}
-  - {fileID: 1441132606239692}
-  - {fileID: 1062821994106950}
-  - {fileID: 1163372408127506}
-  - {fileID: 1384829824037632}
-  - {fileID: 1572525489718482}
-  - {fileID: 1665931295027528}
-  - {fileID: 1928175262147386}
-  - {fileID: 1420531662639378}
-  - {fileID: 1568600710609734}
-  - {fileID: 1450131247605332}
-  - {fileID: 1416464417618000}
-  - {fileID: 1895366402024592}
-  - {fileID: 1052044738926814}
-  - {fileID: 1989647545909798}
-  - {fileID: 1279403999237846}
-  - {fileID: 1743323319425700}
-  - {fileID: 1638032232110104}
-  - {fileID: 1796917565330404}
-  - {fileID: 1966211471316250}
-  - {fileID: 1562211026624178}
-  - {fileID: 1218160812848580}
-  - {fileID: 1699077548935274}
-  - {fileID: 1758282139927328}
-  - {fileID: 1733112651967472}
-  - {fileID: 1497778002879850}
-  - {fileID: 1956233495094366}
-  - {fileID: 1994948948258698}
-  - {fileID: 1324532698474314}
-  - {fileID: 1075078629773606}
-  - {fileID: 1172496858850566}
-  - {fileID: 1310556221198292}
-  - {fileID: 1499267301302834}
-  - {fileID: 1676368981656194}
-  - {fileID: 1753030265999046}
-  - {fileID: 1853744239911184}
-  - {fileID: 1015653796143572}
-  - {fileID: 1389572809758128}
-  - {fileID: 1963482337770928}
-  - {fileID: 1618463453251802}
-  - {fileID: 1417196767135160}
-  - {fileID: 1139313095756614}
-  - {fileID: 1655433074862094}
-  - {fileID: 1829337988717496}
-  - {fileID: 1471780372500100}
-  - {fileID: 1442826390102998}
-  - {fileID: 1154018909976082}
-  - {fileID: 1828586856042006}
-  - {fileID: 1123416490648000}
-  - {fileID: 1264886823796080}
-  - {fileID: 1612436937604760}
-  - {fileID: 1380088065376084}
-  - {fileID: 1687056437367764}
-  - {fileID: 1908369941418026}
-  - {fileID: 1074511089500980}
-  - {fileID: 1865390196378190}
-  - {fileID: 1646782110592166}
-  - {fileID: 1698771025006442}
-  - {fileID: 1267960716993546}
-  - {fileID: 1135164364548816}
-  - {fileID: 1319051570682334}
-  - {fileID: 1365744156812696}
-  - {fileID: 1431699896132300}
-  - {fileID: 1900477992740102}
-  - {fileID: 1659741789584544}
-  - {fileID: 1411416089186546}
-  - {fileID: 1802516544888576}
-  - {fileID: 1409315932098074}
-  - {fileID: 1734428489075664}
-  - {fileID: 1003827750832890}
-  - {fileID: 1565642236355788}
-  - {fileID: 1482674446710458}
-  - {fileID: 1475580869053208}
-  - {fileID: 1244702514637596}
-  - {fileID: 1609047567812752}
-  - {fileID: 1087774095941368}
-  - {fileID: 1630664217189130}
-  - {fileID: 1178321170321416}
-  - {fileID: 1303560146429804}
-  - {fileID: 1072221402357174}
-  - {fileID: 1190549728156112}
-  - {fileID: 1586304747227912}
   totalCoins: 24
 --- !u!114 &114920647548383200
 MonoBehaviour:

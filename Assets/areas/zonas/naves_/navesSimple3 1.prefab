@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 4205629366958164}
   - component: {fileID: 33210395766891304}
   - component: {fileID: 54710482489791362}
-  - component: {fileID: 114532344680776274}
+  - component: {fileID: 114255824288026994}
   m_Layer: 0
   m_Name: enemyNaveSimple
   m_TagString: sceneObject
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 4562855018317992}
   - component: {fileID: 33707850566672256}
   - component: {fileID: 54365390067536758}
-  - component: {fileID: 114501887499807572}
+  - component: {fileID: 114323048273732790}
   m_Layer: 0
   m_Name: enemyNaveSimple
   m_TagString: sceneObject
@@ -485,7 +485,7 @@ GameObject:
   - component: {fileID: 4462359569753888}
   - component: {fileID: 33424111039104242}
   - component: {fileID: 54245119970735796}
-  - component: {fileID: 114472503044433286}
+  - component: {fileID: 114430798062329076}
   m_Layer: 0
   m_Name: enemyNaveSimple
   m_TagString: sceneObject
@@ -783,7 +783,7 @@ GameObject:
   - component: {fileID: 4275900988701054}
   - component: {fileID: 33189528427257758}
   - component: {fileID: 54983136872241862}
-  - component: {fileID: 114838097456713506}
+  - component: {fileID: 114728335740192338}
   m_Layer: 0
   m_Name: enemyNaveSimple
   m_TagString: sceneObject
@@ -939,7 +939,7 @@ GameObject:
   - component: {fileID: 4992932896052148}
   - component: {fileID: 33870550981749252}
   - component: {fileID: 54666826571771688}
-  - component: {fileID: 114750979067580166}
+  - component: {fileID: 114022370125943524}
   m_Layer: 0
   m_Name: enemyNaveSimple
   m_TagString: sceneObject
@@ -957,7 +957,7 @@ GameObject:
   - component: {fileID: 4161410439691284}
   - component: {fileID: 33537004681108164}
   - component: {fileID: 54081022160596950}
-  - component: {fileID: 114335104610214862}
+  - component: {fileID: 114161452724274276}
   m_Layer: 0
   m_Name: enemyNaveSimple
   m_TagString: sceneObject
@@ -4049,8 +4049,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   z_length: 58
   nextAreaX: 0
-  gos: []
   totalCoins: 0
+--- !u!114 &114022370125943524
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1809682008008614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5808ddd1b818ecf46bcc873e5d1554bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLineData:
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: -4, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: -4, z: 0}
+    easetype: 0
 --- !u!114 &114064706761083404
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4127,6 +4158,38 @@ MonoBehaviour:
   titila: []
   areaID: 0
   totalGrabbablesInArea: 0
+--- !u!114 &114161452724274276
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1819452801282736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5808ddd1b818ecf46bcc873e5d1554bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLineData:
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: -4, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: -4, z: 0}
+    easetype: 0
 --- !u!114 &114165907500090334
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4171,27 +4234,70 @@ MonoBehaviour:
   titila: []
   areaID: 0
   totalGrabbablesInArea: 0
---- !u!114 &114335104610214862
+--- !u!114 &114255824288026994
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1819452801282736}
+  m_GameObject: {fileID: 1075575394989564}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66fbf33add2b4e5438886b210afede03, type: 3}
+  m_Script: {fileID: 11500000, guid: 5808ddd1b818ecf46bcc873e5d1554bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
-  randomSpeedDiff: 0
-  paths:
-  - {x: -3, y: 0, z: 0}
-  - {x: 3, y: 0, z: 0}
-  - {x: 3, y: -4, z: 0}
-  - {x: -3, y: -4, z: 0}
-  originalPath: {x: 0, y: 0, z: 0}
-  destPath: {x: 0, y: 0, z: 0}
-  pathID: 0
+  timeLineData:
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: -4, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: -4, z: 0}
+    easetype: 0
+--- !u!114 &114323048273732790
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1089654025033934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5808ddd1b818ecf46bcc873e5d1554bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLineData:
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: -4, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: -4, z: 0}
+    easetype: 0
 --- !u!114 &114362500649615592
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4204,7 +4310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentSceneObject: {fileID: 0}
---- !u!114 &114472503044433286
+--- !u!114 &114430798062329076
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4212,40 +4318,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 1493709607524096}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66fbf33add2b4e5438886b210afede03, type: 3}
+  m_Script: {fileID: 11500000, guid: 5808ddd1b818ecf46bcc873e5d1554bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
-  randomSpeedDiff: 0
-  paths:
-  - {x: -3, y: 0, z: 0}
-  - {x: 3, y: 0, z: 0}
-  - {x: 3, y: 2, z: 0}
-  - {x: -3, y: 2, z: 0}
-  originalPath: {x: 0, y: 0, z: 0}
-  destPath: {x: 0, y: 0, z: 0}
-  pathID: 0
---- !u!114 &114501887499807572
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1089654025033934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66fbf33add2b4e5438886b210afede03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 8
-  randomSpeedDiff: 0
-  paths:
-  - {x: -3, y: 0, z: 0}
-  - {x: 3, y: 0, z: 0}
-  - {x: 3, y: -4, z: 0}
-  - {x: -3, y: -4, z: 0}
-  originalPath: {x: 0, y: 0, z: 0}
-  destPath: {x: 0, y: 0, z: 0}
-  pathID: 0
+  timeLineData:
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: -4, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: -4, z: 0}
+    easetype: 0
 --- !u!114 &114525479468981888
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4278,27 +4374,6 @@ MonoBehaviour:
   titila: []
   areaID: 0
   totalGrabbablesInArea: 0
---- !u!114 &114532344680776274
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1075575394989564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66fbf33add2b4e5438886b210afede03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 8
-  randomSpeedDiff: 0
-  paths:
-  - {x: -3, y: 0, z: 0}
-  - {x: 3, y: 0, z: 0}
-  - {x: 3, y: 2, z: 0}
-  - {x: -3, y: 2, z: 0}
-  originalPath: {x: 0, y: 0, z: 0}
-  destPath: {x: 0, y: 0, z: 0}
-  pathID: 0
 --- !u!114 &114556301401758878
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4375,27 +4450,38 @@ MonoBehaviour:
   titila: []
   areaID: 0
   totalGrabbablesInArea: 0
---- !u!114 &114750979067580166
+--- !u!114 &114728335740192338
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1809682008008614}
+  m_GameObject: {fileID: 1747161962650426}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66fbf33add2b4e5438886b210afede03, type: 3}
+  m_Script: {fileID: 11500000, guid: 5808ddd1b818ecf46bcc873e5d1554bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
-  randomSpeedDiff: 0
-  paths:
-  - {x: -3, y: 0, z: 0}
-  - {x: 3, y: 0, z: 0}
-  - {x: 3, y: -4, z: 0}
-  - {x: -3, y: -4, z: 0}
-  originalPath: {x: 0, y: 0, z: 0}
-  destPath: {x: 0, y: 0, z: 0}
-  pathID: 0
+  timeLineData:
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: 0, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: 3, y: -4, z: 0}
+    easetype: 0
+  - move: 1
+    rotate: 0
+    duration: 1
+    data: {x: -3, y: -4, z: 0}
+    easetype: 0
 --- !u!114 &114762282038680276
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4428,27 +4514,6 @@ MonoBehaviour:
   titila: []
   areaID: 0
   totalGrabbablesInArea: 0
---- !u!114 &114838097456713506
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1747161962650426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66fbf33add2b4e5438886b210afede03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 8
-  randomSpeedDiff: 0
-  paths:
-  - {x: -3, y: 0, z: 0}
-  - {x: 3, y: 0, z: 0}
-  - {x: 3, y: -4, z: 0}
-  - {x: -3, y: -4, z: 0}
-  originalPath: {x: 0, y: 0, z: 0}
-  destPath: {x: 0, y: 0, z: 0}
-  pathID: 0
 --- !u!114 &114854635891141136
 MonoBehaviour:
   m_ObjectHideFlags: 1
