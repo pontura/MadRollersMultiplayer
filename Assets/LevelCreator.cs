@@ -27,16 +27,22 @@ public class LevelCreator : MonoBehaviour {
 	{		
 		Clear ();
 		totalDistance = 0;
-	//	for(int videoGameID = 0; videoGameID<3; videoGameID++)
-	//	{
-		//	foreach (Missions.MissionsData md in missions.videogames[0].missions) {
-			foreach (MissionData.AreaSetData data in missions.videogames[videoGameID].missions[missionID].data[0].areaSetData) {
-					foreach (string areaName in data.areas) {
-						AddAreaByName (areaName);
-					}
+
+		List<string> allNames = new List<string>();
+
+		foreach (MissionData.AreaSetData data in missions.videogames[videoGameID].missions[missionID].data[0].areaSetData) {
+			foreach (string areaName in data.areas) {
+				bool exists = false;
+				foreach (string savedAreaName in allNames) {
+					if(savedAreaName == areaName)
+						exists = true;
 				}
-		//	}
-		//}
+				if (!exists) {
+					AddAreaByName (areaName);
+					allNames.Add (areaName);
+				}
+			}
+		}
 	}
 	void AddAreaByName(string areaName)
 	{
