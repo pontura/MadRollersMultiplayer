@@ -7,7 +7,6 @@ using UnityEngine;
 public class LevelCreatorUI : Editor {
 
 
-
 	public override void OnInspectorGUI()
 	{
 		base.OnInspectorGUI ();
@@ -18,11 +17,11 @@ public class LevelCreatorUI : Editor {
 			levelCreator.LoadArea ();
 		}
 		GUILayout.Space (20);
-		EditorGUILayout.IntField ("videoGameID", levelCreator.videoGameID);
-		EditorGUILayout.IntField ("missionID", levelCreator.missionID);		
 
 
-		if(GUILayout.Button("Load")) levelCreator.LoadMissions (); 
+		if (GUILayout.Button ("Load Mission")) {
+			levelCreator.LoadMissions (); 
+		}
 
 		GUILayout.Space (20);
 
@@ -31,7 +30,6 @@ public class LevelCreatorUI : Editor {
 			LevelCreator t = (LevelCreator)target;
 			t.UpdateMissions ();
 		}
-		GUILayout.BeginHorizontal ();
 		if(GUILayout.Button("Clear"))
 		{
 			LevelCreator t = (LevelCreator)target;

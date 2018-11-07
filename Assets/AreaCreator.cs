@@ -74,6 +74,10 @@ public class AreaCreator : MonoBehaviour {
 		AreaSceneObjectData newSOdata = new AreaSceneObjectData ();
 		if ( go.transform.parent.tag == "sceneObject")
 			newSOdata.isChild = true;
+		if (go.name.Contains ("(")) {
+			string[] arr = go.name.Split (" (" [0]);
+			go.name = arr [0];
+		}
 		newSOdata.name = go.name;
 		newSOdata.pos = RoundVector3(go.transform.position);
 		newSOdata.rot = RoundVector3(go.transform.eulerAngles);
