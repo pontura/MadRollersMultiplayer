@@ -91,14 +91,15 @@ public class Floor : MonoBehaviour
 //		return false;
 //	}
 //	List<BackgroundSideData> allBackgroundSides;
-	void OnChangeBackgroundSide(BackgroundSideData[] newBgs)
+	void OnChangeBackgroundSide(string backgroundName)
 	{
-		if (newBgs.Length == 0)
-			return;
-		if (all.Count>0 && newBgs [0].backgroundSideName == all [0].backgroundSideName) {
-			print ("__________mismo backgrouond!");
-			return;
-		}
+		print ("OnChangeBackgroundSide___________ " + backgroundName);
+//		if (newBgs.Length == 0)
+//			return;
+//		if (all.Count>0 && newBgs [0].backgroundSideName == all [0].backgroundSideName) {
+//			print ("__________mismo backgrouond!");
+//			return;
+//		}
 		int i = container.childCount;
 		while (i > 0) {
 			Destroy (container.GetChild(i-1).gameObject);
@@ -107,20 +108,22 @@ public class Floor : MonoBehaviour
 		all.Clear ();
 
 		List<BackgroundSideData> allBackgroundSides = new List<BackgroundSideData> ();
-		foreach (BackgroundSideData d in newBgs) {
-			allBackgroundSides.Add (d);
+		for (int a = 0; a < 3; a++) {
+			BackgroundSideData bsd = Instantiate (Resources.Load ("fondos/" + backgroundName, typeof(BackgroundSideData))) as BackgroundSideData;
+			allBackgroundSides.Add (bsd);
 		}
-		if(allBackgroundSides.Count<3) 
-		{
-			int next = 0;
-			while(allBackgroundSides.Count<3)
-			{			
-				if (newBgs.Length == next)
-					next = 0;
-				allBackgroundSides.Add (allBackgroundSides [next]);	
-				next++;
-			}	
-		}
+
+//		if(allBackgroundSides.Count<3) 
+//		{
+//			int next = 0;
+//			while(allBackgroundSides.Count<3)
+//			{			
+//				if (newBgs.Length == next)
+//					next = 0;
+//				allBackgroundSides.Add (allBackgroundSides [next]);	
+//				next++;
+//			}	
+//		}
 
 		z_length = 0;
 		foreach (BackgroundSideData data in allBackgroundSides) {

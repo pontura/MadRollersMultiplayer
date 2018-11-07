@@ -9,8 +9,8 @@ public class MissionData  {
 	public string title;
 	public int id;
 	public int maxScore;
+	public string fondo;
 	public List<AreaSetData> areaSetData;
-	public BackgroundSideData[] backgroundSides;
 
 	[Serializable]
 	public class AreaSetData

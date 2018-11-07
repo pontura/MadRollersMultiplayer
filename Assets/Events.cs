@@ -73,7 +73,7 @@ public class Events : MonoBehaviour {
     public System.Action StartMultiplayerRace = delegate { };
     public System.Action SetVictoryArea = delegate { };
     
-	public System.Action<BackgroundSideData[]> OnChangeBackgroundSide = delegate { };
+	public System.Action<string> OnChangeBackgroundSide = delegate { };
     public System.Action<int, Weapon.types> OnChangeWeapon = delegate { };
     public System.Action<int, Powerup.types> OnAvatarGetItem = delegate { };
     public System.Action<Player.fxStates> OnAvatarChangeFX = delegate { };

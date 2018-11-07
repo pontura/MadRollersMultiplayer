@@ -21,6 +21,7 @@ public class FramesController : MonoBehaviour {
 		Time.timeScale = frameRate;
 	}
 	void RalentaTo (float newFrameRate, float speedEveryFrame = 0.01f) {
+		print ("RalentaTo      newFrameRate: " + newFrameRate + " speedEveryFrame " + speedEveryFrame);
 		this.speedEveryFrame = speedEveryFrame;
 
 		if (ralentaCoroutine != null)

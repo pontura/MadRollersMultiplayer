@@ -22,8 +22,6 @@ public class MissionSignal : MonoBehaviour {
             Destroy(gameObject);
             return;
         }
-
-
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
 		Data.Instance.events.OnShowTutorial += OnShowTutorial;
         Data.Instance.events.OnAvatarFall += OnAvatarCrash;
@@ -142,7 +140,6 @@ public class MissionSignal : MonoBehaviour {
 			foreach(Text f in fieldsMissionNum)
 				f.text = "MISSION " + missionId;		
 		}	
-	//	Game.Instance.level.NewMissionAreaStart ();
 	}
 
     void CloseAfter(float delay)
@@ -152,11 +149,11 @@ public class MissionSignal : MonoBehaviour {
 	IEnumerator Closing(float delay)
 	{
 		yield return StartCoroutine(Utils.CoroutineUtil.WaitForRealSeconds (delay));
-		Data.Instance.events.RalentaTo (1, 0.05f);
 		Close ();
 	}
     public void Close()
     {
+		Data.Instance.events.RalentaTo (1, 0.05f);
 		isOn = false;
         SetOff();
 		Game.Instance.level.charactersManager.ResetJumps ();

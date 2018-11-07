@@ -115,6 +115,7 @@ public class Level : MonoBehaviour {
     }
     void StartMultiplayerRace()
     {
+		Data.Instance.events.OnChangeBackgroundSide (Data.Instance.missions.MissionActive.fondo);
         waitingToStart = false;
     }
 	public void Complete()
@@ -131,7 +132,6 @@ public class Level : MonoBehaviour {
 //		areasManager.Init(0);
 //		data.setMission(missions.MissionActiveID);   
 		SetNewVideogameSettings ();
-
 	}
 	void SetNewVideogameSettings()
 	{

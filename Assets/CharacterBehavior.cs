@@ -437,9 +437,11 @@ public class CharacterBehavior : MonoBehaviour {
 	}
 	void CrashReal()
 	{
-		if (player.charactersManager.getTotalCharacters() == 1) return;
+		if (player.charactersManager.getTotalCharacters () == 1) return;
+
 		Data.Instance.GetComponent<FramesController> ().ForceFrameRate (0.1f);
 		Data.Instance.events.RalentaTo (1, 0.2f);
+
 	}
 	void SaveDistance()
 	{

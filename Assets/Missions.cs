@@ -23,7 +23,8 @@ public class Missions : MonoBehaviour {
 
 	public int MissionActiveID = 0;
 
-	MissionData MissionActive;
+	[HideInInspector]
+	public MissionData MissionActive;
 	private float missionCompletedPercent = 0;
 
 	private Level level;
@@ -75,13 +76,13 @@ public class Missions : MonoBehaviour {
 		AddAreaByName ("newLevel_playing");
 		MissionActiveID++;
 		StartNewMission ();
+		Data.Instance.events.OnChangeBackgroundSide (MissionActive.fondo);
 	}
 	void StartNewMission()
 	{
 		areaSetId = 0;
 		ResetAreaSet ();
 		MissionActive = videogames[videogamesData.actualID].missions[MissionActiveID].data[0];
-		//Data.Instance.events.OnChangeBackgroundSide (MissionActive.backgroundSides);
 		this.missionCompletedPercent = 0;
 	}
 	public MissionData GetActualMissions()
