@@ -9,5 +9,10 @@ public class TimelineData
 	public bool rotate;
 	public float duration;
 	public Vector3 data;
-	public int easetype;
+	public easetypes easeType;		
+	public enum easetypes{
+		LINEAR,
+		IN_OUT,
+		OUT_IN
+	}
 }

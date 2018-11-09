@@ -157,7 +157,13 @@ public class Missions : MonoBehaviour {
 	{
 		MissionData.AreaSetData areaSetData = MissionActive.areaSetData[areaSetId];
 		string areaName = GetArea(areaSetData);
-		AddAreaByName (areaName);
+
+		//DEBUG:::::
+		if(Data.Instance.testAreaName != "")
+			AddAreaByName (Data.Instance.testAreaName);
+		else
+			AddAreaByName (areaName);
+		
 	}
 	void AddAreaByName(string areaName)
 	{

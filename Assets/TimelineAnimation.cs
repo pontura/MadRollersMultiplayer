@@ -10,7 +10,7 @@ public class TimelineAnimation : MonoBehaviour {
 	Vector3 initialPosition;
 
 	void Start () {
-		initialPosition = transform.localPosition;
+		initialPosition = transform.position;
 		Init ();
 	}
 	void Init()
@@ -20,17 +20,29 @@ public class TimelineAnimation : MonoBehaviour {
 		else if (timeLineData [id].move)
 			MoveInTimeLine ();
 	}
+	iTween.EaseType GetEaseType(TimelineData.easetypes type)
+	{
+		switch (type) {
+		case TimelineData.easetypes.IN_OUT:
+			return iTween.EaseType.easeInCubic;
+		case TimelineData.easetypes.OUT_IN:
+			return iTween.EaseType.easeOutCubic;
+		default:
+			return iTween.EaseType.linear;
+		}
+	}
 	void MoveInTimeLine()
 	{
 		if (timeLineData [id].duration == 0)
 			return;
+
+		print ("MoveInTimeLine " + gameObject.name + timeLineData[id].data.x);
 		iTween.MoveTo(gameObject, iTween.Hash(
 			"x", initialPosition.x + timeLineData[id].data.x,
 			"y", initialPosition.y + timeLineData[id].data.y,
 			"z", initialPosition.z + timeLineData[id].data.z,
 			"time", timeLineData[id].duration,
-			"easetype", iTween.EaseType.linear,
-			//"easetype", timeLineData[id].easetype,
+			"easetype", GetEaseType(timeLineData[id].easeType),
 			"oncomplete", "TweenCompleted",
 			"onCompleteTarget", this.gameObject
 		));
@@ -42,8 +54,7 @@ public class TimelineAnimation : MonoBehaviour {
 		iTween.RotateTo(gameObject, iTween.Hash(
 			"rotation", timeLineData[id].data,
 			"time", timeLineData[id].duration,
-			"easetype", iTween.EaseType.linear,
-			//"easetype", timeLineData[id].easetype,
+			"easetype", GetEaseType(timeLineData[id].easeType),
 			"oncomplete", "TweenCompleted",
 			"onCompleteTarget", this.gameObject
 			// "axis", "x"
@@ -58,7 +69,7 @@ public class TimelineAnimation : MonoBehaviour {
 	}
 	void OnDisable()
 	{
+		print ("OnDisable");
 		iTween.Stop (this.gameObject);
-		Destroy(gameObject.GetComponent("TimelineAnimation"));
 	}
 }

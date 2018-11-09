@@ -6,8 +6,10 @@ public class Data : MonoBehaviour {
 	public bool isArcadeMultiplayer;
 
 	public bool DEBUG;
-	public int forceVideogameID;
-	public int forceMissionID;
+	int forceVideogameID;
+	int forceMissionID;
+	[HideInInspector]
+	public string testAreaName;
 
 	public bool canContinue;
 	public int totalCredits;
@@ -92,8 +94,6 @@ public class Data : MonoBehaviour {
     }
 	void Awake () {
 
-		Random.seed = 42;
-
 		if (RESET)
 			PlayerPrefs.DeleteAll ();
       //  Cursor.visible = false;
@@ -104,6 +104,12 @@ public class Data : MonoBehaviour {
         mInstance = this;
 		DontDestroyOnLoad(this);
         
+		if (LevelDataDebug.Instance) {
+			DEBUG = true;
+			this.forceVideogameID = LevelDataDebug.Instance.videogameID;
+			this.forceMissionID = LevelDataDebug.Instance.missionID;
+			this.testAreaName =  LevelDataDebug.Instance.testArea;
+		}
 
 		//setAvatarUpgrades();
        // levelUnlockedID = PlayerPrefs.GetInt("levelUnlocked_0");
@@ -193,11 +199,11 @@ public class Data : MonoBehaviour {
     {
 		Data.Instance.events.ForceFrameRate (1);
 		float delay = 0.1f;
-		if(DEBUG && forceVideogameID != 0 && forceMissionID != -1 && levelName == "LevelSelector")
+		if(DEBUG && forceVideogameID != -1 && forceMissionID != -1 && levelName == "LevelSelector")
 		{
 			levelName = "Game";
 			missions.MissionActiveID = forceMissionID;
-			videogamesData.actualID = forceVideogameID-1;
+			videogamesData.actualID = forceVideogameID;
 
 		}
 		if (!isReplay && levelName == "Game") {

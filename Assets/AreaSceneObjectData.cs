@@ -42,5 +42,6 @@ public class BossSettingsData  {
 public class MoveForwardData  {
 	public float speed;
 	public float randomSpeedDiff;
+	public float moveBackIn;
 }
 

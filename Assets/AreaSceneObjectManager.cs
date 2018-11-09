@@ -54,6 +54,7 @@ public class AreaSceneObjectManager : MonoBehaviour {
 			MoveForwardData data = new MoveForwardData ();
 			data.speed = moveForward.speed;
 			data.randomSpeedDiff = moveForward.randomSpeedDiff;
+			data.moveBackIn = moveForward.moveBackIn;
 			newSOdata.moveForward.Add (data);
 		}
 	}
@@ -113,6 +114,7 @@ public class AreaSceneObjectManager : MonoBehaviour {
 				newcomponent = so.gameObject.AddComponent<MoveForward> ();
 			newcomponent.speed = data.speed;
 			newcomponent.randomSpeedDiff = data.randomSpeedDiff;
+			newcomponent.moveBackIn = data.moveBackIn;
 		}
 	}
 }

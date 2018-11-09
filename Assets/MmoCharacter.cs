@@ -32,7 +32,7 @@ public class MmoCharacter : SceneObject
     }
     public override void OnRestart(Vector3 pos)
     {
-        
+		print ("Restart");
         gameObject.GetComponent<Collider>().enabled = true;
         base.OnRestart(pos);
         state = states.IDLE;

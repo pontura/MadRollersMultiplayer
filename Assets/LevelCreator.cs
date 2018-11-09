@@ -5,6 +5,7 @@ using System;
 using UnityEditor;
 public class LevelCreator : MonoBehaviour {
 
+	public bool forceThisMission;
 	public int videoGameID;
 	public int missionID;
 
@@ -15,6 +16,12 @@ public class LevelCreator : MonoBehaviour {
 
 	float totalDistance;
 	void Start () {
+		if (forceThisMission) {
+			LevelDataDebug.Instance.videogameID = videoGameID;
+			LevelDataDebug.Instance.missionID = missionID;
+			if (area != null)
+				LevelDataDebug.Instance.testArea = area.name;
+		}
 		Application.LoadLevel("00_Loading");
 	}
 	public void LoadArea()
