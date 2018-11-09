@@ -2897,10 +2897,10 @@ MonoBehaviour:
   - missions:
     - title: 
       data:
-      - title: 
+      - title: jumps
         id: 0
         maxScore: 3000
-        fondo: 
+        fondo: wonderland_castles
         areaSetData:
         - total_areas: 2
           randomize: 0
@@ -2957,7 +2957,7 @@ MonoBehaviour:
       - title: 
         id: 0
         maxScore: 460
-        fondo: 
+        fondo: wonderland_nubes
         areaSetData:
         - total_areas: 1
           randomize: 1
@@ -3037,7 +3037,7 @@ MonoBehaviour:
       - title: 
         id: 0
         maxScore: 3000
-        fondo: 
+        fondo: wonderland_ghosts
         areaSetData:
         - total_areas: 2
           randomize: 1
@@ -3080,7 +3080,7 @@ MonoBehaviour:
       - title: 
         id: 0
         maxScore: 150
-        fondo: 
+        fondo: wonderland_castles_boss
         areaSetData:
         - total_areas: 2
           randomize: 1
@@ -3133,7 +3133,7 @@ MonoBehaviour:
       - title: 
         id: 0
         maxScore: 5000
-        fondo: 
+        fondo: wonderland_castles
         areaSetData:
         - total_areas: 2
           randomize: 1
@@ -3175,7 +3175,7 @@ MonoBehaviour:
       - title: 
         id: 0
         maxScore: 0
-        fondo: 
+        fondo: wonderland_nubes
         areaSetData:
         - total_areas: 1
           randomize: 1
@@ -3210,7 +3210,7 @@ MonoBehaviour:
       - title: 
         id: 0
         maxScore: 0
-        fondo: 
+        fondo: wonderland_ghosts
         areaSetData:
         - total_areas: 6
           randomize: 0
@@ -3236,7 +3236,7 @@ MonoBehaviour:
       - title: 
         id: 0
         maxScore: 5000
-        fondo: 
+        fondo: wonderland_planes
         areaSetData:
         - total_areas: 2
           randomize: 1
@@ -3270,14 +3270,14 @@ MonoBehaviour:
           randomize: 0
           areas:
           - boss_2filas_boyland
-          - boss_2_filas_free
+          - boss_2_filas_boyland_free
           cameraOrientation: {x: 0, y: 0, z: 0}
     - title: 
       data:
       - title: 
         id: 0
         maxScore: 0
-        fondo: 
+        fondo: wonderland_castles_boss
         areaSetData:
         - total_areas: 2
           randomize: 0
@@ -3322,7 +3322,7 @@ MonoBehaviour:
       - title: 
         id: 0
         maxScore: 1000
-        fondo: 
+        fondo: wonderland_nubes
         areaSetData:
         - total_areas: 2
           randomize: 0
@@ -3348,13 +3348,26 @@ MonoBehaviour:
           - boss_circular
           - areaFree_boss2
           cameraOrientation: {x: 0, y: 0, z: -2}
+    - title: 
+      data:
+      - title: 
+        id: 0
+        maxScore: 0
+        fondo: wonderland_castles
+        areaSetData:
+        - total_areas: 2
+          randomize: 0
+          areas:
+          - paredes1Boss
+          - paredes1BossFree1
+          cameraOrientation: {x: 0, y: 0, z: 0}
   - missions:
     - title: 
       data:
       - title: 
         id: 0
         maxScore: 3000
-        fondo: 
+        fondo: gallax
         areaSetData:
         - total_areas: 2
           randomize: 0
@@ -3410,14 +3423,22 @@ MonoBehaviour:
       - title: 
         id: 0
         maxScore: 0
-        fondo: 
+        fondo: gallax
         areaSetData:
         - total_areas: 2
           randomize: 0
           areas:
           - subibaja1
           - subibaja2
+          - zigzag
           cameraOrientation: {x: 0, y: 1, z: -2}
+        - total_areas: 12
+          randomize: 1
+          areas:
+          - raysAncho
+          - zigzag_Rays_1
+          - zigzag_Rays_2
+          cameraOrientation: {x: 0, y: 2, z: -1}
         - total_areas: 2
           randomize: 1
           areas:
@@ -3465,7 +3486,7 @@ MonoBehaviour:
       - title: 
         id: 0
         maxScore: 0
-        fondo: 
+        fondo: gallax
         areaSetData:
         - total_areas: 16
           randomize: 0
@@ -3474,6 +3495,7 @@ MonoBehaviour:
           - pisoCurvo2
           - pisoCurvo3
           - pisoCurvo4
+          - pisoCurvo_Rays1
           - pisoCurvo5
           - pisoCurvo_helices
           - pisoCurvo6
@@ -3485,6 +3507,22 @@ MonoBehaviour:
           - pisoCurvo1 1
           - pisoCurvo3
           - pisoCurvo1 1
+          - pisoCurvo_Rays2
+          - pisoCurvo5
+          - pisoCurvo_helices
+          - pisoCurvo6
+          - pisoCurvo7
+          - pisoCurvo8
+          - pisoCurvo9
+          - pisoCurvo9 1
+          - pisoCurvo_helices
+          - pisoCurvo1 1
+          - pisoCurvo3
+          - pisoCurvo_Rays1
+          - pisoCurvo2
+          - pisoCurvo3
+          - pisoCurvo1 1
+          - pisoCurvo_Rays2
           - pisoCurvo_boss
           - pisoCurvo_boss_free
           cameraOrientation: {x: 0, y: 0, z: 0}
@@ -3493,7 +3531,7 @@ MonoBehaviour:
       - title: 
         id: 0
         maxScore: 0
-        fondo: 
+        fondo: gallax
         areaSetData:
         - total_areas: 1
           randomize: 1
@@ -3551,7 +3589,7 @@ MonoBehaviour:
       - title: 
         id: 0
         maxScore: 1000
-        fondo: 
+        fondo: gallax
         areaSetData:
         - total_areas: 1
           randomize: 1
@@ -3579,7 +3617,7 @@ MonoBehaviour:
       - title: 
         id: 0
         maxScore: 1000
-        fondo: 
+        fondo: gallax
         areaSetData:
         - total_areas: 1
           randomize: 1
@@ -3660,7 +3698,7 @@ MonoBehaviour:
       - title: 
         id: 0
         maxScore: 0
-        fondo: 
+        fondo: gallax
         areaSetData:
         - total_areas: 14
           randomize: 1
@@ -3687,7 +3725,7 @@ MonoBehaviour:
       - title: 
         id: 0
         maxScore: 0
-        fondo: 
+        fondo: gallax
         areaSetData:
         - total_areas: 5
           randomize: 1
@@ -3715,7 +3753,7 @@ MonoBehaviour:
       - title: 
         id: 0
         maxScore: 3000
-        fondo: 
+        fondo: inferno
         areaSetData:
         - total_areas: 2
           randomize: 0
@@ -3763,7 +3801,7 @@ MonoBehaviour:
       - title: 
         id: 0
         maxScore: 1000
-        fondo: 
+        fondo: inferno
         areaSetData:
         - total_areas: 4
           randomize: 1
@@ -3803,7 +3841,7 @@ MonoBehaviour:
       - title: 
         id: 0
         maxScore: 0
-        fondo: 
+        fondo: inferno
         areaSetData:
         - total_areas: 2
           randomize: 0
@@ -3841,7 +3879,7 @@ MonoBehaviour:
       - title: 
         id: 0
         maxScore: 0
-        fondo: 
+        fondo: inferno
         areaSetData:
         - total_areas: 45
           randomize: 1
@@ -3872,7 +3910,7 @@ MonoBehaviour:
       - title: 
         id: 0
         maxScore: 0
-        fondo: 
+        fondo: inferno
         areaSetData:
         - total_areas: 6
           randomize: 1
@@ -3895,7 +3933,7 @@ MonoBehaviour:
       - title: 
         id: 0
         maxScore: 1000
-        fondo: 
+        fondo: inferno
         areaSetData:
         - total_areas: 6
           randomize: 1
@@ -4004,6 +4042,7 @@ MonoBehaviour:
   - {fileID: 1639499334497142, guid: 0923428ee1a466b479488d26cb88ea28, type: 2}
   - {fileID: 1222416966033632, guid: b017d568f1cc49947909551c7a621254, type: 2}
   - {fileID: 100000, guid: 185203f1843e1404fa3b824bacc0e818, type: 2}
+  - {fileID: 1690008919195294, guid: 5c7be9ce0ca51034f8f4451a9fcca3ea, type: 2}
   areaSceneObjectManager: {fileID: 2147287810}
 --- !u!114 &2147287809
 MonoBehaviour:
@@ -4023,7 +4062,7 @@ MonoBehaviour:
     data: []
   data:
   - name: extralargeBlock1
-    pos: {x: 0, y: -1.5, z: 23.8}
+    pos: {x: 0, y: -1.5, z: -35}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -4032,7 +4071,7 @@ MonoBehaviour:
     soData: []
     isChild: 0
   - name: extralargeBlock1
-    pos: {x: 0, y: -1.5, z: -23.7}
+    pos: {x: 0, y: -1.5, z: -46.7}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -4041,7 +4080,7 @@ MonoBehaviour:
     soData: []
     isChild: 0
   - name: extralargeBlock1
-    pos: {x: 0, y: -1.5, z: -11.7}
+    pos: {x: 0, y: -1.5, z: -58.7}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -4049,8 +4088,8 @@ MonoBehaviour:
     moveForward: []
     soData: []
     isChild: 0
-  - name: extralargeBlock1
-    pos: {x: 0, y: -1.5, z: 0.3}
+  - name: mediumBlock1
+    pos: {x: 0, y: -1.5, z: -22.18}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -4058,8 +4097,8 @@ MonoBehaviour:
     moveForward: []
     soData: []
     isChild: 0
-  - name: extralargeBlock1
-    pos: {x: 0, y: -1.5, z: 12.3}
+  - name: largeBlock1
+    pos: {x: 0, y: -1.5, z: -26.16}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -4067,8 +4106,8 @@ MonoBehaviour:
     moveForward: []
     soData: []
     isChild: 0
-  - name: Coin
-    pos: {x: 3.3, y: 3.09, z: 0}
+  - name: mediumBlock1
+    pos: {x: -3.6, y: -1.5, z: -27.9}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -4076,8 +4115,8 @@ MonoBehaviour:
     moveForward: []
     soData: []
     isChild: 0
-  - name: Coin
-    pos: {x: 3.3, y: 3.09, z: 3.5}
+  - name: mediumBlock1
+    pos: {x: 3.8, y: -1.5, z: -27.9}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -4085,8 +4124,8 @@ MonoBehaviour:
     moveForward: []
     soData: []
     isChild: 0
-  - name: Coin
-    pos: {x: 3.3, y: 3.09, z: 7.25}
+  - name: mediumBlock1
+    pos: {x: -3.7, y: -1.5, z: -66.13}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -4094,8 +4133,8 @@ MonoBehaviour:
     moveForward: []
     soData: []
     isChild: 0
-  - name: Coin
-    pos: {x: 3.3, y: 3.09, z: 11}
+  - name: largeBlock1
+    pos: {x: 0, y: -1.5, z: -67.4}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -4103,8 +4142,8 @@ MonoBehaviour:
     moveForward: []
     soData: []
     isChild: 0
-  - name: Coin
-    pos: {x: 3.3, y: 3.09, z: -3.75}
+  - name: mediumBlock1
+    pos: {x: 3.7, y: -1.5, z: -66.13}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -4112,8 +4151,8 @@ MonoBehaviour:
     moveForward: []
     soData: []
     isChild: 0
-  - name: Coin
-    pos: {x: 3.3, y: 3.09, z: -7.5}
+  - name: largeBlock1
+    pos: {x: 0, y: -1.5, z: -73}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -4121,8 +4160,8 @@ MonoBehaviour:
     moveForward: []
     soData: []
     isChild: 0
-  - name: Coin
-    pos: {x: 3.3, y: 3.09, z: -11.25}
+  - name: mediumBlock1
+    pos: {x: -3.7, y: -1.5, z: -75.7}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -4130,224 +4169,8 @@ MonoBehaviour:
     moveForward: []
     soData: []
     isChild: 0
-  - name: Coin
-    pos: {x: 3.3, y: 3.09, z: -14.75}
-    rot: {x: -0, y: 0, z: 0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: Coin
-    pos: {x: 5.8, y: 3.09, z: -14.75}
-    rot: {x: -0, y: 0, z: 0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: Coin
-    pos: {x: 5.8, y: 3.09, z: -11.25}
-    rot: {x: -0, y: 0, z: 0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: Coin
-    pos: {x: 5.8, y: 3.09, z: -7.5}
-    rot: {x: -0, y: 0, z: 0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: Coin
-    pos: {x: 5.8, y: 3.09, z: -3.75}
-    rot: {x: -0, y: 0, z: 0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: Coin
-    pos: {x: 5.8, y: 3.09, z: 11}
-    rot: {x: -0, y: 0, z: 0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: Coin
-    pos: {x: 5.8, y: 3.09, z: 7.25}
-    rot: {x: -0, y: 0, z: 0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: Coin
-    pos: {x: 5.8, y: 3.09, z: 3.5}
-    rot: {x: -0, y: 0, z: 0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: Coin
-    pos: {x: 5.8, y: 3.09, z: 0}
-    rot: {x: -0, y: 0, z: 0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: Coin
-    pos: {x: -2.4, y: 3.09, z: 0}
-    rot: {x: -0, y: 0, z: 0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: Coin
-    pos: {x: -2.4, y: 3.09, z: 3.5}
-    rot: {x: -0, y: 0, z: 0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: Coin
-    pos: {x: -2.4, y: 3.09, z: 7.25}
-    rot: {x: -0, y: 0, z: 0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: Coin
-    pos: {x: -2.4, y: 3.09, z: 11}
-    rot: {x: -0, y: 0, z: 0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: Coin
-    pos: {x: -2.4, y: 3.09, z: -3.75}
-    rot: {x: -0, y: 0, z: 0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: Coin
-    pos: {x: -2.4, y: 3.09, z: -7.5}
-    rot: {x: -0, y: 0, z: 0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: Coin
-    pos: {x: -2.4, y: 3.09, z: -11.25}
-    rot: {x: -0, y: 0, z: 0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: Coin
-    pos: {x: -2.4, y: 3.09, z: -14.75}
-    rot: {x: -0, y: 0, z: 0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: Coin
-    pos: {x: -5.1, y: 3.09, z: -14.75}
-    rot: {x: -0, y: 0, z: 0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: Coin
-    pos: {x: -5.1, y: 3.09, z: -11.25}
-    rot: {x: -0, y: 0, z: 0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: Coin
-    pos: {x: -5.1, y: 3.09, z: -7.5}
-    rot: {x: -0, y: 0, z: 0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: Coin
-    pos: {x: -5.1, y: 3.09, z: -3.75}
-    rot: {x: -0, y: 0, z: 0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: Coin
-    pos: {x: -5.1, y: 3.09, z: 11}
-    rot: {x: -0, y: 0, z: 0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: Coin
-    pos: {x: -5.1, y: 3.09, z: 7.25}
-    rot: {x: -0, y: 0, z: 0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: Coin
-    pos: {x: -5.1, y: 3.09, z: 3.5}
-    rot: {x: -0, y: 0, z: 0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: Coin
-    pos: {x: -5.1, y: 3.09, z: 0}
+  - name: mediumBlock1
+    pos: {x: 3.7, y: -1.5, z: -75.7}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -4356,7 +4179,7 @@ MonoBehaviour:
     soData: []
     isChild: 0
   - name: palm
-    pos: {x: -4.5, y: -0.87, z: 13.4}
+    pos: {x: -5, y: -0.9, z: -62.9}
     rot: {x: 0, y: 180, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -4365,11 +4188,267 @@ MonoBehaviour:
     soData: []
     isChild: 0
   - name: palm
-    pos: {x: 5, y: -0.87, z: -18.3}
-    rot: {x: -0, y: 90, z: -0}
+    pos: {x: 5.05, y: -0.4, z: -62.83}
+    rot: {x: 0, y: 270, z: 0}
     fullRotationData: []
     timelineAnimation: []
     bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: Coin
+    pos: {x: 0, y: -1.4, z: -12.9}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: Coin
+    pos: {x: 0, y: -1.4, z: -9.4}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: Coin
+    pos: {x: 0, y: -1.4, z: -5.65}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: Coin
+    pos: {x: 0, y: -1.4, z: -1.9}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: Coin
+    pos: {x: 0, y: -1.4, z: 12.85}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: Coin
+    pos: {x: 0, y: -1.4, z: 9.1}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: Coin
+    pos: {x: 0, y: -1.4, z: 5.35}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: Coin
+    pos: {x: 0, y: -1.4, z: 1.85}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: palm
+    pos: {x: -5, y: -0.9, z: -58.17}
+    rot: {x: 0, y: 180, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: palm
+    pos: {x: 5.05, y: -0.4, z: -58.1}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: sombrilla
+    pos: {x: 3.5, y: 1.7, z: -28.05}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData:
+    - size: {x: 0, y: 0, z: 0}
+      bumperForce: 0
+      random_pos_x: 0
+    isChild: 0
+  - name: sombrilla
+    pos: {x: -3.5, y: 1.7, z: -28.05}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData:
+    - size: {x: 0, y: 0, z: 0}
+      bumperForce: 0
+      random_pos_x: 0
+    isChild: 0
+  - name: cilindro
+    pos: {x: 0, y: 2.4, z: -16.9}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData:
+    - rotateX: 0
+      rotateY: 0
+      rotateZ: 1
+      speed: 40
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: cilindro
+    pos: {x: 0, y: 2.4, z: -7.6}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData:
+    - rotateX: 0
+      rotateY: 0
+      rotateZ: 1
+      speed: 40
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: cilindro
+    pos: {x: 0, y: 2.4, z: 1.6}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData:
+    - rotateX: 0
+      rotateY: 0
+      rotateZ: 1
+      speed: 40
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: cilindro
+    pos: {x: 0, y: 2.4, z: 10.8}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData:
+    - rotateX: 0
+      rotateY: 0
+      rotateZ: 1
+      speed: 40
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: cilindro
+    pos: {x: 0, y: 2.4, z: 20}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData:
+    - rotateX: 0
+      rotateY: 0
+      rotateZ: 1
+      speed: 40
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: cilindro
+    pos: {x: 0, y: 2.4, z: 29.1}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData:
+    - rotateX: 0
+      rotateY: 0
+      rotateZ: 1
+      speed: -40
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: cilindro
+    pos: {x: 0, y: 2.4, z: 38.3}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData:
+    - rotateX: 0
+      rotateY: 0
+      rotateZ: 1
+      speed: -40
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: cilindro
+    pos: {x: 0, y: 2.4, z: 47.5}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData:
+    - rotateX: 0
+      rotateY: 0
+      rotateZ: 1
+      speed: -40
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: cilindro
+    pos: {x: 0, y: 2.4, z: 56.7}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData:
+    - rotateX: 0
+      rotateY: 0
+      rotateZ: 1
+      speed: -40
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: cilindro
+    pos: {x: 0, y: 2.4, z: 65.9}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData:
+    - rotateX: 0
+      rotateY: 0
+      rotateZ: 1
+      speed: -40
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: BossCreator
+    pos: {x: 0, y: -1.2, z: 0}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings:
+    - bossModule: Cilindros_Boss
+      time_to_init_enemies: 1
+      asset: conejo
     moveForward: []
     soData: []
     isChild: 0
@@ -4398,8 +4477,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c144ae37d835c4bba5516e3f8057cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  videoGameID: 0
-  missionID: 3
+  videoGameID: 2
+  missionID: 5
   missions: {fileID: 2147287807}
   areaCreator: {fileID: 2147287809}
   area: {fileID: 4900000, guid: dfddbc5da1e22904c935f73494c2d42d, type: 3}

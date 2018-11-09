@@ -21,7 +21,7 @@ public class LevelComplete : MonoBehaviour {
     {
 		Data.Instance.events.RalentaTo (0.6f, 0.05f);
 		panel.SetActive (true);
-		int maxScore = Data.Instance.GetComponent<Missions>().GetActualMissions().maxScore;
+		int maxScore = Data.Instance.GetComponent<Missions>().GetActualMissionData().maxScore;
       //  int missionScore = Data.Instance.userData.missionScore;
         int quarter = maxScore / 4;
 

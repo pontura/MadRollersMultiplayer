@@ -400,8 +400,14 @@ public class SceneObjectsBehavior : MonoBehaviour {
 //				SceneObjectData mo = go.GetComponent<SceneObjectData>();
 //				CopyComponent(mo, sceneObject.gameObject);
 //			}
-//
+
 			if (sceneObject != null) {
+
+				SceneObjectData soData = sceneObject.GetComponent<SceneObjectData> ();
+				if (soData != null && soData.random_pos_x != 0) {
+					pos.x += Random.Range (-soData.random_pos_x, soData.random_pos_x);
+				}
+
 				if (lastSceneObjectContainer != null && go.isChild)
 					manager.AddSceneObject (sceneObject, pos, lastSceneObjectContainer);
 				else

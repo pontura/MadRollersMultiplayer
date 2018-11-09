@@ -73,6 +73,13 @@ public class Missions : MonoBehaviour {
 	}
 	void OnMissionComplete(int id)
 	{
+		if (MissionActiveID >= videogames [videogamesData.actualID].missions.Count - 1) 
+			Game.Instance.GotoVideogameComplete ();
+		else
+			NextMission();
+	}
+	void NextMission()
+	{
 		AddAreaByName ("newLevel_playing");
 		MissionActiveID++;
 		StartNewMission ();
@@ -85,7 +92,7 @@ public class Missions : MonoBehaviour {
 		MissionActive = videogames[videogamesData.actualID].missions[MissionActiveID].data[0];
 		this.missionCompletedPercent = 0;
 	}
-	public MissionData GetActualMissions()
+	public MissionData GetActualMissionData()
 	{
 		return videogames[videogamesData.actualID].missions[MissionActiveID].data[0];
 	}
@@ -97,7 +104,7 @@ public class Missions : MonoBehaviour {
 //	{
 //		return null;//MissionActive.GetComponent<AreasManager>();
 //	}
-	public void Complete()
+	void Complete()
 	{
 		data.events.MissionComplete();     
 	}

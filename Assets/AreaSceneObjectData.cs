@@ -19,6 +19,7 @@ public class AreaSceneObjectData  {
 public class SceneObjectDataGeneric  {
 	public Vector3 size;
 	public float bumperForce;
+	public float random_pos_x;
 }
 [Serializable]
 public class FullRotationData  {
