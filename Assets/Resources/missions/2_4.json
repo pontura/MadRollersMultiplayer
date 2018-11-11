@@ -3,11 +3,11 @@
 		"title": "",
 		"fondo": "gallax",
 		"id": 0,
-		"maxScore": 1000,
+		"maxScore": 0,
 		"areaSetData": [{
-			"total_areas": 1,
+			"total_areas": 10,
 			"randomize": true,
-			"areas": ["pisoSalta1"],
+			"areas": ["container_cruz_enemy","container_cruz_enemy2"],
 			"cameraOrientation": {
 				"x": 0.0,
 				"y": 0.0,
@@ -15,28 +15,13 @@
 			}
 		},
 		{
-			"total_areas": 3,
+			"total_areas": 2,
 			"randomize": false,
-			"areas": ["pisoSaltaAlto",
-			"pisoSaltaAlto 1",
-			"pisoSaltaAlto 1 1",
-			"pisoSaltaAlto",
-			"pisoSaltaAlto 1",
-			"pisoSaltaAlto 1 1"],
+			"areas": ["container_cruz_enemy_boss",
+			"container_cruz_enemy_boss_free"],
 			"cameraOrientation": {
 				"x": 0.0,
-				"y": 0.0,
-				"z": 0.0
-			}
-		},
-		{
-			"total_areas": 6,
-			"randomize": false,
-			"areas": ["resorteMovedizo_Boss",
-			"resorteMovedizo_Boss_free"],
-			"cameraOrientation": {
-				"x": 0.0,
-				"y": 1.0,
+				"y": 2.0,
 				"z": -1.0
 			}
 		}],

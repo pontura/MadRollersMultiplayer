@@ -62,6 +62,7 @@ public class CharacterBehavior : MonoBehaviour {
 		rb = GetComponent<Rigidbody> ();
 	}
 	void Start () {
+		
 		characterMovement = GetComponent<CharacterMovement> ();
 		data = Data.Instance;  
 		player = GetComponent<Player>();
@@ -98,6 +99,23 @@ public class CharacterBehavior : MonoBehaviour {
 			controls.EnabledMovements (false);
 			_animation_hero.gameObject.transform.localEulerAngles = Vector3.zero;
 		} 
+
+
+
+		//DEBUG: para que el player 1 nunca muera
+		#if UNITY_EDITOR
+		if(player.id == 0)
+		{
+		rb.isKinematic = true;
+		rb.useGravity = false;
+		GetComponent<Collider>().enabled = false;
+			player.fxState = Player.fxStates.SUPER;
+			Vector3 pos = transform.localPosition;
+			pos.x = 0;
+			pos.y = 1;
+			transform.localPosition = pos;
+		}
+		#endif
 	}
 	void OnDestroy ()
 	{

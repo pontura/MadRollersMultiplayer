@@ -52,6 +52,7 @@ public class AreaCreator : MonoBehaviour {
 		int totalCoins = 0;
 		foreach (Transform t in area.GetComponentsInChildren<Transform>()) {
 			if (t.tag == "sceneObject") {
+				print (t.name);
 				AddSceneObjectToFile (t.gameObject);
 				if (t.name == "Coin" || t.name == "bloodx1")
 					totalCoins++;
@@ -62,7 +63,7 @@ public class AreaCreator : MonoBehaviour {
 		a.totalCoins = totalCoins;
 		a.z_length = areaReal.z_length;
 		string json = JsonUtility.ToJson (a);
-
+		//using (FileStream fs = new FileStream ("Assets/Resources/areas/_______.json", FileMode.Create)) {
 		using (FileStream fs = new FileStream ("Assets/Resources/areas/" + area.name + ".json", FileMode.Create)) {
 			using (StreamWriter writer = new StreamWriter (fs)) {
 				writer.Write (json);
@@ -79,22 +80,21 @@ public class AreaCreator : MonoBehaviour {
 			go.name = arr [0];
 		}
 		newSOdata.name = go.name;
-		newSOdata.pos = RoundVector3(go.transform.position);
-		newSOdata.rot = RoundVector3(go.transform.eulerAngles);
 		areaSceneobjectManager.AddComponentsToJson (newSOdata, go);
+
+		newSOdata.pos.x = float.Parse(go.transform.position.x.ToString("F2"));
+		newSOdata.pos.y = float.Parse(go.transform.position.y.ToString("F2"));
+		newSOdata.pos.z = float.Parse(go.transform.position.z.ToString("F2"));
+
+		newSOdata.rot = go.transform.eulerAngles;
+		//newSOdata.rot = RoundVector3(newSOdata.rot);
+		print (newSOdata.rot);
+
 		data.Add (newSOdata);
+		print ("newSOdata.pos.x: " + newSOdata.pos.x);
 	}
-	Vector3 RoundVector3(Vector3 v)
-	{
-		Vector3 newV = Vector3.zero;
-		newV.x = Round( (float)v.x, 2);
-		newV.y = Round( (float)v.y, 2);
-		newV.z = Round( (float)v.z, 2);
-		return newV;
-	}
-	public float Round(float value, int digits)
-	{
-		float mult = Mathf.Pow(10.0f, (float)digits);
-		return Mathf.Round(value * mult) / mult;
-	}
+//	Vector3 RoundVector3(Vector3 v)
+//	{
+//		return new Vector3( (float)System.Math.Round(v.x,2), (float)System.Math.Round(v.y,2), (float)System.Math.Round(v.z,2) );
+//	}
 }

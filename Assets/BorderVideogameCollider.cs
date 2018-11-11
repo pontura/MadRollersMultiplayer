@@ -14,7 +14,7 @@ public class BorderVideogameCollider : MonoBehaviour {
 		colliders = GetComponent<Collider> ();
 		colliders.enabled = true;
 		setInactive = false;
-		Invoke("CheckCollisionDone", 0.75f);		
+		Invoke("CheckCollisionDone", 0.5f);		
 	}
 	void CheckCollisionDone()
 	{

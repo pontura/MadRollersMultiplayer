@@ -127,6 +127,8 @@ MonoBehaviour:
   - {fileID: 1222416966033632, guid: b017d568f1cc49947909551c7a621254, type: 2}
   - {fileID: 100000, guid: 185203f1843e1404fa3b824bacc0e818, type: 2}
   - {fileID: 1690008919195294, guid: 5c7be9ce0ca51034f8f4451a9fcca3ea, type: 2}
+  - {fileID: 1664583324907192, guid: c55c040d54173044abe9fe50cebe342f, type: 2}
+  - {fileID: 1507540803180602, guid: 82f43c68aaa75614c9be56e04f71402a, type: 2}
   areaSceneObjectManager: {fileID: 114914903407543062}
 --- !u!114 &114427156183994502
 MonoBehaviour:
@@ -144,8 +146,44 @@ MonoBehaviour:
     z_length: 0
     data: []
   data:
+  - name: Water
+    pos: {x: -7.2, y: -0.2, z: 1.16}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: extralargeBlock1
+    pos: {x: 0, y: -1.5, z: 10}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: extralargeBlock1
+    pos: {x: 0, y: -1.5, z: 21.6}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: extralargeBlock1
+    pos: {x: 0, y: -1.5, z: -20}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
   - name: fences
-    pos: {x: -3.2, y: -0.4, z: 5.09}
+    pos: {x: -2.87, y: -0.08, z: -16.02}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -154,7 +192,7 @@ MonoBehaviour:
     soData: []
     isChild: 0
   - name: fences
-    pos: {x: 0, y: -0.4, z: 5.09}
+    pos: {x: 0.39, y: -0.08, z: -16.02}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -163,7 +201,7 @@ MonoBehaviour:
     soData: []
     isChild: 0
   - name: fences
-    pos: {x: 3.2, y: -0.4, z: 5.09}
+    pos: {x: 3.67, y: -0.08, z: -16.02}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -171,8 +209,8 @@ MonoBehaviour:
     moveForward: []
     soData: []
     isChild: 0
-  - name: extralargeBlock1
-    pos: {x: 0, y: -1.5, z: -6}
+  - name: mediumBlock1
+    pos: {x: -6.09, y: -1.32, z: 3.69}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -180,8 +218,8 @@ MonoBehaviour:
     moveForward: []
     soData: []
     isChild: 0
-  - name: extralargeBlock1
-    pos: {x: 6, y: -1.5, z: 6}
+  - name: mediumBlock1
+    pos: {x: 7.04, y: -1.32, z: 3.69}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -189,8 +227,8 @@ MonoBehaviour:
     moveForward: []
     soData: []
     isChild: 0
-  - name: extralargeBlock1
-    pos: {x: 0, y: -1.5, z: 18}
+  - name: mediumBlock1
+    pos: {x: 7.04, y: -1.32, z: -14.18}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -198,26 +236,8 @@ MonoBehaviour:
     moveForward: []
     soData: []
     isChild: 0
-  - name: extralargeBlock1
-    pos: {x: 6, y: -1.5, z: -18}
-    rot: {x: -0, y: 0, z: 0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: extralargeBlock1
-    pos: {x: -6, y: -1.5, z: 6}
-    rot: {x: -0, y: 0, z: 0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: extralargeBlock1
-    pos: {x: -6, y: -1.5, z: -18}
+  - name: mediumBlock1
+    pos: {x: -6.84, y: -0.55, z: -15}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -226,7 +246,16 @@ MonoBehaviour:
     soData: []
     isChild: 0
   - name: palm
-    pos: {x: 5.2, y: -0.9, z: 4.4}
+    pos: {x: -7.22, y: -0.1, z: -14.55}
+    rot: {x: -0, y: 90, z: -0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: palm
+    pos: {x: 6.26, y: -0.87, z: -13.5}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -235,7 +264,16 @@ MonoBehaviour:
     soData: []
     isChild: 0
   - name: palm
-    pos: {x: -4.9, y: -0.9, z: 4.4}
+    pos: {x: 7.66, y: -0.87, z: -14.99}
+    rot: {x: -0, y: 90, z: -0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: palm
+    pos: {x: 5.83, y: -0.87, z: 5.01}
     rot: {x: 0, y: 270, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -243,6 +281,145 @@ MonoBehaviour:
     moveForward: []
     soData: []
     isChild: 0
+  - name: palm
+    pos: {x: 6.98, y: -0.87, z: 3.63}
+    rot: {x: 0, y: 270, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: palm
+    pos: {x: -6.99, y: -0.87, z: 5.01}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: palm
+    pos: {x: -5.51, y: -0.87, z: 3.63}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: palm
+    pos: {x: -5.28, y: -0.87, z: -16.34}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: palm
+    pos: {x: 5.27, y: -0.87, z: -16.34}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: Water
+    pos: {x: 6.8, y: -0.2, z: 1.16}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: Water
+    pos: {x: -7.2, y: -0.2, z: -4.84}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: Water
+    pos: {x: 6.8, y: -0.2, z: -4.84}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: Water
+    pos: {x: -7.2, y: -0.2, z: -10.84}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: Water
+    pos: {x: 6.8, y: -0.2, z: -10.84}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: Container
+    pos: {x: 0, y: 0, z: -3.04}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData:
+    - rotateX: 0
+      rotateY: 0
+      rotateZ: 1
+      speed: 90
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 0
+  - name: Fish
+    pos: {x: 0, y: 11, z: -3.04}
+    rot: {x: -0, y: 0, z: 0}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 1
+  - name: Fish
+    pos: {x: -11, y: 0, z: -3.04}
+    rot: {x: -0, y: -0, z: 90}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 1
+  - name: Fish
+    pos: {x: 11, y: 0, z: -3.04}
+    rot: {x: -0, y: 0, z: 270}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 1
+  - name: Fish
+    pos: {x: 0, y: -11, z: -3.04}
+    rot: {x: -0, y: -0, z: 180}
+    fullRotationData: []
+    timelineAnimation: []
+    bossSettings: []
+    moveForward: []
+    soData: []
+    isChild: 1
   areaCreatorSceneObject: {fileID: 114040369902571122}
 --- !u!114 &114588441034155716
 MonoBehaviour:
@@ -1345,11 +1522,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceThisMission: 1
-  videoGameID: 1
-  missionID: 0
+  videoGameID: 0
+  missionID: 1
   missions: {fileID: 114588441034155716}
   areaCreator: {fileID: 114427156183994502}
-  area: {fileID: 4900000, guid: 493b2bdeeeb416746a6e7d01bbfa6fea, type: 3}
+  area: {fileID: 4900000, guid: c9f89d82737c76046a2fdd0dae94a5f4, type: 3}
 --- !u!114 &114914903407543062
 MonoBehaviour:
   m_ObjectHideFlags: 1

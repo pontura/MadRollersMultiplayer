@@ -3,13 +3,11 @@
 		"title": "",
 		"fondo": "gallax",
 		"id": 0,
-		"maxScore": 0,
+		"maxScore": 1000,
 		"areaSetData": [{
-			"total_areas": 5,
+			"total_areas": 1,
 			"randomize": true,
-			"areas": ["lasersrWalls_x4",
-			"lasersrWalls_x4Hard",
-			"lasersrWalls_x4Hard1"],
+			"areas": ["pisoSalta1"],
 			"cameraOrientation": {
 				"x": 0.0,
 				"y": 0.0,
@@ -17,26 +15,29 @@
 			}
 		},
 		{
-			"total_areas": 2,
-			"randomize": true,
-			"areas": ["cilindro_simple",
-			"cilindro_simple 1"],
-			"cameraOrientation": {
-				"x": 0.0,
-				"y": -1.5,
-				"z": -0.5
-			}
-		},
-		{
-			"total_areas": 10000,
+			"total_areas": 3,
 			"randomize": false,
-			"areas": ["water_1",
-			"boss_circular",
-			"areaFree_boss2"],
+			"areas": ["pisoSaltaAlto",
+			"pisoSaltaAlto 1",
+			"pisoSaltaAlto 1 1",
+			"pisoSaltaAlto",
+			"pisoSaltaAlto 1",
+			"pisoSaltaAlto 1 1"],
 			"cameraOrientation": {
 				"x": 0.0,
 				"y": 0.0,
-				"z": -2.0
+				"z": 0.0
+			}
+		},
+		{
+			"total_areas": 6,
+			"randomize": false,
+			"areas": ["resorteMovedizo_Boss",
+			"resorteMovedizo_Boss_free"],
+			"cameraOrientation": {
+				"x": 0.0,
+				"y": 1.0,
+				"z": -1.0
 			}
 		}],
 		"backgroundSides": []
