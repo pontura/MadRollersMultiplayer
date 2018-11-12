@@ -31,7 +31,8 @@ public class MoveForward : MonoBehaviour {
 	}
 	void OnDisable()
 	{
-		Destroy(gameObject.GetComponent("MoveForward"));
+		//speed = 0;
+		//Destroy(gameObject.GetComponent("MoveForward"));
 	}
 
 	public void OnSceneObjectUpdated()

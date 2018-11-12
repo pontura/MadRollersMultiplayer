@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 33798297020355204}
   - component: {fileID: 23521594640997442}
   - component: {fileID: 114631107128454314}
+  - component: {fileID: 114802816907624282}
   m_Layer: 0
   m_Name: sombrilla
   m_TagString: sceneObject
@@ -97,3 +98,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: {x: 0, y: 0, z: 0}
   bumperForce: 16
+  random_pos_x: 0
+--- !u!114 &114802816907624282
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 683ff4712fc92bb42876b81b414e4f6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 16
+  animationClip: {fileID: 0}
+  backwardJump: 0

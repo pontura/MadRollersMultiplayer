@@ -8,9 +8,11 @@ public class TimelineAnimation : MonoBehaviour {
 	public List<TimelineData> timeLineData;
 	int id = 0;
 	Vector3 initialPosition;
+	Vector3 initialRotation;
 
 	void Start () {
 		initialPosition = transform.position;
+		initialRotation = transform.eulerAngles;
 		Init ();
 	}
 	void Init()
@@ -52,7 +54,9 @@ public class TimelineAnimation : MonoBehaviour {
 		if (timeLineData [id].duration == 0)
 			return;
 		iTween.RotateTo(gameObject, iTween.Hash(
-			"rotation", timeLineData[id].data,
+			"x",  initialRotation.x + timeLineData[id].data.x,
+			"y",  initialRotation.y + timeLineData[id].data.y,
+			"z",  initialRotation.z + timeLineData[id].data.z,
 			"time", timeLineData[id].duration,
 			"easetype", GetEaseType(timeLineData[id].easeType),
 			"oncomplete", "TweenCompleted",
