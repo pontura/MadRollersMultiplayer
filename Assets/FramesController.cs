@@ -32,14 +32,23 @@ public class FramesController : MonoBehaviour {
 	}
 	IEnumerator OnChangingSpeed(float newFrameRate)
 	{
+		Debug.Log("OnChangingSpeed newFrameRate: " + newFrameRate + " speedEveryFrame: " + speedEveryFrame);
+		frameRate = Time.timeScale;
 		float Resto = 0;
 		if(newFrameRate<frameRate)
 			Resto = -speedEveryFrame;
 		else if(newFrameRate>frameRate)
 			Resto = speedEveryFrame;
-		while (Mathf.Abs (frameRate - newFrameRate) > 0.05f) {
+		while (Mathf.Abs (frameRate - newFrameRate) > 0.05f ) {
+			
 			frameRate += Resto;
 			SetNewTimeScale (frameRate);
+
+			if (Time.timeScale == 1 || Time.timeScale == 0) {
+				break;
+				yield return null;
+			}
+			
 			yield return new WaitForSecondsRealtime(speedEveryFrame);
 		}
 		SetNewTimeScale (newFrameRate);
@@ -51,6 +60,11 @@ public class FramesController : MonoBehaviour {
 			newFrameRate = 1;
 		else if (newFrameRate < 0)
 			newFrameRate = 0;
+		if (newFrameRate == 0) {
+			if (ralentaCoroutine != null)
+				StopCoroutine (ralentaCoroutine);
+		}
+		print ("newFrameRate " + newFrameRate);
 		Time.timeScale = newFrameRate;
 	}
 }

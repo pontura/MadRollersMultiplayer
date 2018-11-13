@@ -129,4 +129,6 @@ public class Events : MonoBehaviour {
 	public System.Action<int> OnBossInit = delegate { };
 	public System.Action<float> OnBossHitsUpdate = delegate { };
 
+	public System.Action<GameObject> OnProjectilStartSnappingTarget = delegate { };
+
 }

@@ -222,8 +222,12 @@ public class Projectil : SceneObject {
 	GameObject target;
 	public void StartFollowing(GameObject target)
 	{
+		
 		if (this.target)
 			return;
+		
+		speed /= 2;
+		Data.Instance.events.OnProjectilStartSnappingTarget (target);
 		
 		this.target = target;
 	}

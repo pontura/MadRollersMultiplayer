@@ -14,8 +14,10 @@ public class GameCamera : MonoBehaviour
         START,
         PLAYING,
 		EXPLOTING,
-        END
+        END,
+		SNAPPING_TO
     }
+	public Vector3 snapTargetPosition;
     private CharactersManager charactersManager;
 
     public Vector3 startRotation = new Vector3(0, 0,0);
@@ -65,6 +67,7 @@ public class GameCamera : MonoBehaviour
 		Data.Instance.events.OnChangeMood += OnChangeMood;
 		Data.Instance.events.OnVersusTeamWon += OnVersusTeamWon;
 		Data.Instance.events.OncharacterCheer += OncharacterCheer;
+		Data.Instance.events.OnProjectilStartSnappingTarget += OnProjectilStartSnappingTarget;
 
 		transform.localPosition = startPosition;
 		Vector3 newPos = transform.localPosition;
@@ -221,6 +224,11 @@ public class GameCamera : MonoBehaviour
 	}
 	void LateUpdate () 
 	{
+		if (state == states.SNAPPING_TO) { 
+			transform.localPosition = Vector3.Lerp (transform.localPosition, snapTargetPosition, 0.1f);
+			cam.transform.LookAt (snapTargetPosition);
+			return;	
+		}
         if (state == states.START)
         {           
 			if(Data.Instance.playMode == Data.PlayModes.VERSUS)
@@ -305,5 +313,31 @@ public class GameCamera : MonoBehaviour
 		Vector3 pos = transform.localPosition;
 		pos.y = 0;
 		transform.localPosition = pos; 
+	}
+	void OnProjectilStartSnappingTarget(GameObject go)
+	{
+		Vector3 pos = transform.localPosition;
+		pos.z += 1;
+		transform.localPosition = pos;
+
+		//Data.Instance.events.ForceFrameRate (0.9f);
+		Data.Instance.events.RalentaTo (0.2f, 0.1f);
+		this.snapTargetPosition = go.transform.localPosition;
+		snapTargetPosition.y += 3f;
+		snapTargetPosition.z -= 3;
+		state = states.SNAPPING_TO;
+		StartCoroutine ( ResetSnapping() );
+	}
+	IEnumerator ResetSnapping()
+	{
+		yield return new WaitForSeconds(0.5f);
+		if (state != states.SNAPPING_TO)
+			yield return null;
+		else {			
+			StopAllCoroutines ();
+			print ("ResetSnapping");
+			Data.Instance.events.RalentaTo (1f, 0.2f);
+			state = states.PLAYING;
+		}
 	}
 }
