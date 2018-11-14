@@ -21,7 +21,6 @@ public class FramesController : MonoBehaviour {
 		Time.timeScale = frameRate;
 	}
 	void RalentaTo (float newFrameRate, float speedEveryFrame = 0.01f) {
-		print ("RalentaTo      newFrameRate: " + newFrameRate + " speedEveryFrame " + speedEveryFrame);
 		this.speedEveryFrame = speedEveryFrame;
 
 		if (ralentaCoroutine != null)
@@ -32,7 +31,6 @@ public class FramesController : MonoBehaviour {
 	}
 	IEnumerator OnChangingSpeed(float newFrameRate)
 	{
-		Debug.Log("OnChangingSpeed newFrameRate: " + newFrameRate + " speedEveryFrame: " + speedEveryFrame);
 		frameRate = Time.timeScale;
 		float Resto = 0;
 		if(newFrameRate<frameRate)
@@ -64,7 +62,6 @@ public class FramesController : MonoBehaviour {
 			if (ralentaCoroutine != null)
 				StopCoroutine (ralentaCoroutine);
 		}
-		print ("newFrameRate " + newFrameRate);
 		Time.timeScale = newFrameRate;
 	}
 }

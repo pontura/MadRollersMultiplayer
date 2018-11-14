@@ -28,7 +28,13 @@ public class CharactersManager : MonoBehaviour {
     void Start()
     {
         missions = Data.Instance.GetComponent<Missions>();
+
     }
+	bool freezed;
+	void FreezeCharacters(bool _freezed)
+	{
+		freezed = _freezed;
+	}
     void OnListenerDispatcher(string type)
     {
 		if(type == "ShowMissionName")
@@ -55,6 +61,8 @@ public class CharactersManager : MonoBehaviour {
     }
 	void LateUpdate()
     {
+		if (freezed)
+			return;
 		OnUpdate ();
 		if(Input.GetKeyDown(KeyCode.M))
 			AddChildPlayer( getMainCharacter() );
@@ -87,6 +95,7 @@ public class CharactersManager : MonoBehaviour {
         Data.Instance.events.OnAvatarFall += OnAvatarFall;
         Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
 		Data.Instance.events.OnAutomataCharacterDie += OnAutomataCharacterDie;
+		Data.Instance.events.FreezeCharacters += FreezeCharacters;
 
 		StartCoroutine (AddCharactersInitials ());
     }
@@ -126,6 +135,7 @@ public class CharactersManager : MonoBehaviour {
         Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
         Data.Instance.events.OnAlignAllCharacters -= OnAlignAllCharacters;
 		Data.Instance.events.OnAutomataCharacterDie -= OnAutomataCharacterDie;
+		Data.Instance.events.FreezeCharacters -= FreezeCharacters;
     }
 	void OnAutomataCharacterDie(CharacterBehavior automataCharacter)
 	{

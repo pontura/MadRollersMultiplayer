@@ -153,7 +153,11 @@ public class Player : MonoBehaviour {
         //print("OnAvatarProgressBarEmpty " + fxState);
        // progressBar.gameObject.SetActive(false);
 
-        if (fxState == fxStates.SUPER)
+		//DEBUG: para hacer inmortal al player 1
+		if (Data.Instance.DEBUG && id == 0)
+			return;
+		
+        if (fxState == fxStates.SUPER )
         {
             setNormalState();
             return;

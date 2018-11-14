@@ -4,6 +4,7 @@ using System.Collections;
 public class Projectil : SceneObject {
 
     public int playerID = -1;
+	int realSpeed;
 	public int speed = 7;
 	public int myRange = 3;
 	public int damage = 10;
@@ -38,6 +39,7 @@ public class Projectil : SceneObject {
 	int lastPlayerID;
     public override void OnRestart(Vector3 pos)
     {			
+		realSpeed = speed;
 		target = null;
         level = Game.Instance.level;
         base.OnRestart(pos);
@@ -100,7 +102,7 @@ public class Projectil : SceneObject {
 		}
 		Vector3 pos = transform.localPosition;
 
-		myDist += Time.deltaTime * speed;
+		myDist += Time.deltaTime * realSpeed;
         rotation = transform.localEulerAngles;
 
 		float multiplier = 150 * Time.deltaTime;
@@ -226,8 +228,7 @@ public class Projectil : SceneObject {
 		if (this.target)
 			return;
 		
-		speed /= 2;
-		Data.Instance.events.OnProjectilStartSnappingTarget (target);
+		realSpeed /= 4;
 		
 		this.target = target;
 	}

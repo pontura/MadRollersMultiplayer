@@ -53,6 +53,11 @@ public class GameCamera : MonoBehaviour
     void Start()
 	{
 		Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
+		Data.Instance.events.OnChangeMood += OnChangeMood;
+		Data.Instance.events.OnVersusTeamWon += OnVersusTeamWon;
+		Data.Instance.events.OncharacterCheer += OncharacterCheer;
+		Data.Instance.events.OnProjectilStartSnappingTarget += OnProjectilStartSnappingTarget;
+
 		//Data.Instance.events.OnGameStart += OnGameStart;
 
 		Component rpp = Data.Instance.videogamesData.GetActualVideogameData ().retroPixelPro;
@@ -64,10 +69,7 @@ public class GameCamera : MonoBehaviour
 		charactersManager = Game.Instance.GetComponent<CharactersManager>();       
 
 		cam.transform.localEulerAngles = startRotation;       
-		Data.Instance.events.OnChangeMood += OnChangeMood;
-		Data.Instance.events.OnVersusTeamWon += OnVersusTeamWon;
-		Data.Instance.events.OncharacterCheer += OncharacterCheer;
-		Data.Instance.events.OnProjectilStartSnappingTarget += OnProjectilStartSnappingTarget;
+
 
 		transform.localPosition = startPosition;
 		Vector3 newPos = transform.localPosition;
@@ -103,6 +105,7 @@ public class GameCamera : MonoBehaviour
         Data.Instance.events.OnChangeMood -= OnChangeMood;
 		Data.Instance.events.OnVersusTeamWon -= OnVersusTeamWon;
 		Data.Instance.events.OncharacterCheer -= OncharacterCheer;
+		Data.Instance.events.OnProjectilStartSnappingTarget -= OnProjectilStartSnappingTarget;
     }
 	void OnVersusTeamWon(int _team_id)
 	{
@@ -225,7 +228,7 @@ public class GameCamera : MonoBehaviour
 	void LateUpdate () 
 	{
 		if (state == states.SNAPPING_TO) { 
-			transform.localPosition = Vector3.Lerp (transform.localPosition, snapTargetPosition, 0.1f);
+			transform.localPosition = Vector3.Lerp (transform.localPosition, snapTargetPosition, 0.05f);
 			cam.transform.LookAt (snapTargetPosition);
 			return;	
 		}
@@ -314,30 +317,33 @@ public class GameCamera : MonoBehaviour
 		pos.y = 0;
 		transform.localPosition = pos; 
 	}
-	void OnProjectilStartSnappingTarget(GameObject go)
+	void OnProjectilStartSnappingTarget(Vector3 targetPos)
 	{
+		Data.Instance.events.FreezeCharacters (true);
 		Vector3 pos = transform.localPosition;
 		pos.z += 1;
 		transform.localPosition = pos;
 
 		//Data.Instance.events.ForceFrameRate (0.9f);
-		Data.Instance.events.RalentaTo (0.2f, 0.1f);
-		this.snapTargetPosition = go.transform.localPosition;
-		snapTargetPosition.y += 3f;
-		snapTargetPosition.z -= 3;
+		Data.Instance.events.RalentaTo (0.1f, 0.1f);
+		this.snapTargetPosition = targetPos;
+		snapTargetPosition.y += 4f;
+		snapTargetPosition.z -= 0.5f;
+		snapTargetPosition.x /= 2;
 		state = states.SNAPPING_TO;
 		StartCoroutine ( ResetSnapping() );
 	}
 	IEnumerator ResetSnapping()
 	{
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(1);
 		if (state != states.SNAPPING_TO)
 			yield return null;
 		else {			
 			StopAllCoroutines ();
 			print ("ResetSnapping");
-			Data.Instance.events.RalentaTo (1f, 0.2f);
+			Data.Instance.events.RalentaTo (1f, 0.02f);
 			state = states.PLAYING;
+			Data.Instance.events.FreezeCharacters (false);
 		}
 	}
 }

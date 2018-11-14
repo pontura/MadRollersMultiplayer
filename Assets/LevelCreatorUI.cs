@@ -1,12 +1,12 @@
-﻿using System.Collections;
+﻿#if UNITY_EDITOR
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+
 using UnityEngine;
 
 [CustomEditor(typeof(LevelCreator))]
 public class LevelCreatorUI : Editor {
-
-
 	public override void OnInspectorGUI()
 	{
 		base.OnInspectorGUI ();
@@ -41,16 +41,20 @@ public class LevelCreatorUI : Editor {
 			t.SaveArea ();
 		}
 
-//		if(GUILayout.Button("Show Mission"))
-//		{			
-//			LevelCreator levelCreator = (LevelCreator)target;
-//			levelCreator.ResetAreas ();
-//			MissionData mission = levelCreator.GetMission ();
-////			foreach (AreaSet areaSet in mission.GetComponent<AreasManager> ().areaSets) {
-////				foreach (Area area in areaSet.areas) {
-////					levelCreator.AddArea (area.gameObject, area.z_length);
-////				}
-////			}
-//		}
+		//		if(GUILayout.Button("Show Mission"))
+		//		{			
+		//			LevelCreator levelCreator = (LevelCreator)target;
+		//			levelCreator.ResetAreas ();
+		//			MissionData mission = levelCreator.GetMission ();
+		////			foreach (AreaSet areaSet in mission.GetComponent<AreasManager> ().areaSets) {
+		////				foreach (Area area in areaSet.areas) {
+		////					levelCreator.AddArea (area.gameObject, area.z_length);
+		////				}
+		////			}
+		//		}
 	}
 }
+#endif
+
+
+

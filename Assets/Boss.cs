@@ -24,6 +24,13 @@ public class Boss : SceneObject {
 	{
 		
 	} 
+	public bool HasOnlyOneLifeLeft()
+	{
+		if (hits+1 >= totalHits)
+			return true;
+		else
+			return false;
+	}
 	public void breakOut()
 	{
 		Data.Instance.events.OnSoundFX("FX break", -1);

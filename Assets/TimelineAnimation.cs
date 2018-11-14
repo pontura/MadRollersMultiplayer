@@ -38,7 +38,6 @@ public class TimelineAnimation : MonoBehaviour {
 		if (timeLineData [id].duration == 0)
 			return;
 
-		print ("MoveInTimeLine " + gameObject.name + timeLineData[id].data.x);
 		iTween.MoveTo(gameObject, iTween.Hash(
 			"x", initialPosition.x + timeLineData[id].data.x,
 			"y", initialPosition.y + timeLineData[id].data.y,
@@ -73,7 +72,6 @@ public class TimelineAnimation : MonoBehaviour {
 	}
 	void OnDisable()
 	{
-		print ("OnDisable");
 		iTween.Stop (this.gameObject);
 	}
 }

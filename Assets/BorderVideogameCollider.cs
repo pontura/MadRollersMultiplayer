@@ -20,11 +20,12 @@ public class BorderVideogameCollider : MonoBehaviour {
 	{
 		if (!setInactive) {
 			SceneObjectsManager manager = Game.Instance.sceneObjectsManager;
+
 			foreach (Transform so in smallPlatformsTransform) {
 				SceneObject newSceneObject = Data.Instance.sceneObjectsPool.GetObjectForType("smallBlock1_real", true);  
 
-				if(newSceneObject!=null)
-					manager.AddSceneObject(newSceneObject, so.position);
+				if (newSceneObject != null) 
+					manager.AddSceneObject (newSceneObject, so.position);
 			}
 		}
 		colliders.enabled = false;
