@@ -218,6 +218,10 @@ public class CharacterBehavior : MonoBehaviour {
 	public void Revive()
 	{		
 		Reset();
+
+		if(player!=null && !player.IsDebbugerPlayer())
+			rb.useGravity = true;
+		
 		rb.velocity = Vector3.zero;
 		rb.freezeRotation = true;
 		state = states.RUN;

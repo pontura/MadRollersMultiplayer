@@ -97,7 +97,10 @@ public class Projectil : SceneObject {
 			} else {		
 				Vector3 lookAtPos = target.transform.position;
 				lookAtPos.y += 1.5f;
-				transform.LookAt (lookAtPos);
+				Vector3 myPos = transform.position;
+				myPos.z = lookAtPos.z;
+				Vector3 newLookAt = Vector3.Lerp(myPos, lookAtPos, 0.1f);
+				transform.LookAt (newLookAt);
 			}
 		}
 		Vector3 pos = transform.localPosition;

@@ -58,13 +58,17 @@ public class LevelComplete : MonoBehaviour {
 	IEnumerator Closing(float delay)
 	{
 		yield return StartCoroutine(Utils.CoroutineUtil.WaitForRealSeconds (delay));
-
 		Close ();
 	}
+	void OnDisable()
+	{
+		Close();
+	}
+
 	public void Close()
 	{
 		Data.Instance.events.RalentaTo (1, 0.05f);
-		panel.SetActive (false);
 		Game.Instance.level.charactersManager.ResetJumps ();
+		panel.SetActive (false);
 	}
 }

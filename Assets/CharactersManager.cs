@@ -33,6 +33,11 @@ public class CharactersManager : MonoBehaviour {
 	bool freezed;
 	void FreezeCharacters(bool _freezed)
 	{
+		foreach (CharacterBehavior cb in characters) {
+			if (!cb.player.IsDebbugerPlayer ()) {
+				cb.GetComponent<Rigidbody> ().useGravity = !_freezed;
+			}
+		}
 		freezed = _freezed;
 	}
     void OnListenerDispatcher(string type)

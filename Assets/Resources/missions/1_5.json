@@ -4,7 +4,8 @@
 		"fondo": "wonderland_nubes",
 		"id": 0,
 		"maxScore": 0,
-		"areaSetData": [{
+		"areaSetData": [
+		{
 			"total_areas": 1,
 			"randomize": true,
 			"areas": ["lava_1",
@@ -16,8 +17,19 @@
 			}
 		},
 		{
-			"total_areas": 5,
-			"randomize": false,
+			"total_areas": 1,
+			"randomize": true,
+			"areas": ["ancho_agua_simple1",
+			"ancho_agua_simple2"],
+			"cameraOrientation": {
+				"x": 0.0,
+				"y": -1.0,
+				"z": -2.0
+			}
+		},
+		{
+			"total_areas": 10,
+			"randomize": true,
 			"areas": ["throw_center",
 			"throw_left",
 			"throw_right",
@@ -33,7 +45,7 @@
 				"y": 1.2000000476837159,
 				"z": -3.0
 			}
-		},
+		},		
 		{
 			"total_areas": 4,
 			"randomize": false,
@@ -41,6 +53,20 @@
 			"descanso2",
 			"boss_anche_lineaVienen",
 			"boss_ancho_free"],
+			"cameraOrientation": {
+				"x": 0.0,
+				"y": -2.0,
+				"z": 0.0
+			}
+		},
+		{
+			"total_areas": 4,
+			"randomize": true,
+			"areas": [
+			"boss_ancho_free_throws",
+			"boss_ancho_free_throws_2",
+			"boss_ancho_free"
+			],
 			"cameraOrientation": {
 				"x": 0.0,
 				"y": -2.0,

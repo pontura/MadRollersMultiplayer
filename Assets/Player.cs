@@ -147,6 +147,12 @@ public class Player : MonoBehaviour {
       //  progressBar.Init(color);
       //  progressBar.gameObject.SetActive(true);
     }
+	public bool IsDebbugerPlayer()
+	{
+		if (Data.Instance.DEBUG && id == 0)
+			return true;
+		return false;
+	}
     public void OnAvatarProgressBarEmpty()
     {
 
@@ -154,7 +160,7 @@ public class Player : MonoBehaviour {
        // progressBar.gameObject.SetActive(false);
 
 		//DEBUG: para hacer inmortal al player 1
-		if (Data.Instance.DEBUG && id == 0)
+		if ( IsDebbugerPlayer() )
 			return;
 		
         if (fxState == fxStates.SUPER )

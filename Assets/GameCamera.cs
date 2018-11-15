@@ -228,7 +228,7 @@ public class GameCamera : MonoBehaviour
 	void LateUpdate () 
 	{
 		if (state == states.SNAPPING_TO) { 
-			transform.localPosition = Vector3.Lerp (transform.localPosition, snapTargetPosition, 0.05f);
+			transform.localPosition = Vector3.Lerp (transform.localPosition, snapTargetPosition, 0.01f);
 			cam.transform.LookAt (snapTargetPosition);
 			return;	
 		}
@@ -321,27 +321,26 @@ public class GameCamera : MonoBehaviour
 	{
 		Data.Instance.events.FreezeCharacters (true);
 		Vector3 pos = transform.localPosition;
-		pos.z += 1;
+		pos.z += 0.7f;
 		transform.localPosition = pos;
 
 		//Data.Instance.events.ForceFrameRate (0.9f);
-		Data.Instance.events.RalentaTo (0.1f, 0.1f);
+		Data.Instance.events.RalentaTo (0.1f, 0.2f);
 		this.snapTargetPosition = targetPos;
 		snapTargetPosition.y += 4f;
-		snapTargetPosition.z -= 0.5f;
-		snapTargetPosition.x /= 2;
+		snapTargetPosition.z += 0.5f;
 		state = states.SNAPPING_TO;
 		StartCoroutine ( ResetSnapping() );
 	}
 	IEnumerator ResetSnapping()
 	{
-		yield return new WaitForSeconds(1);
+		yield return new WaitForSecondsRealtime(2f);
 		if (state != states.SNAPPING_TO)
 			yield return null;
 		else {			
 			StopAllCoroutines ();
 			print ("ResetSnapping");
-			Data.Instance.events.RalentaTo (1f, 0.02f);
+			Data.Instance.events.RalentaTo (1f, 0.01f);
 			state = states.PLAYING;
 			Data.Instance.events.FreezeCharacters (false);
 		}

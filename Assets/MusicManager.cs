@@ -18,7 +18,6 @@ public class MusicManager : MonoBehaviour {
     {
 		
         audioSource = GetComponent<AudioSource>();
-        GetComponent<AudioLowPassFilter>().enabled = false;
 		Data.Instance.GetComponent<Tracker> ().TrackScreen ("Main Menu");
 		OnInterfacesStart ();
 
@@ -32,8 +31,9 @@ public class MusicManager : MonoBehaviour {
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
         Data.Instance.events.OnAvatarFall += OnAvatarCrash;
      //   Data.Instance.events.OnSoundFX += OnSoundFX;
-        Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
+      //  Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
 		Data.Instance.events.OnMusicStatus += OnMusicStatus;
+		Data.Instance.events.FreezeCharacters += FreezeCharacters;
 
 		if (!Data.Instance.musicOn)
 			audioSource.enabled = false;
@@ -46,19 +46,46 @@ public class MusicManager : MonoBehaviour {
 	{
 		playSound( interfaces );
 	}
-    void OnListenerDispatcher(string type)
-    {
-        
-        if (type == "LevelFinish_hard" || type == "LevelFinish_medium" || type == "LevelFinish_easy")
-        {
-            GetComponent<AudioLowPassFilter>().enabled = true;
-            Invoke("ResetFilter", 4.7f);
-        }
-    }
+//    void OnListenerDispatcher(string type)
+//    {        
+//        if (type == "LevelFinish_hard" || type == "LevelFinish_medium" || type == "LevelFinish_easy")
+//        {
+//			ChengePitch (0.65f);
+//            Invoke("ResetFilter", 4.7f);
+//        }
+//    }
+	void FreezeCharacters(bool freezeThem)
+	{
+		if(freezeThem)
+			ChengePitch (0.65f);
+		else
+			ChengePitch (1);
+	}
+	void ChengePitch(float pitchValue)
+	{
+		StopAllCoroutines ();
+		StartCoroutine (ChangePitch (pitchValue));
+	}
+	float pitchSpeed = 0.025f;
+	IEnumerator ChangePitch(float pitchValue)
+	{
+		if (pitchValue < audioSource.pitch) {
+			while (pitchValue < audioSource.pitch) {
+				audioSource.pitch -= pitchSpeed;
+				yield return new WaitForEndOfFrame ();
+			}
+		} else {
+			while (pitchValue > audioSource.pitch) {
+				audioSource.pitch += pitchSpeed;
+				yield return new WaitForEndOfFrame ();
+			}
+		}
+		yield return null;
+	}
     
     void ResetFilter()
     {
-        GetComponent<AudioLowPassFilter>().enabled = false;
+		ChengePitch (1);
     }
     //void OnSoundFX(string name)
     //{
