@@ -149,7 +149,7 @@ public class Player : MonoBehaviour {
     }
 	public bool IsDebbugerPlayer()
 	{
-		if (Data.Instance.DEBUG && id == 0)
+		if (Data.Instance.isEditor && id == 0)
 			return true;
 		return false;
 	}

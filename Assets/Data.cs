@@ -58,6 +58,9 @@ public class Data : MonoBehaviour {
 
     public modes mode;
 
+	[HideInInspector]
+	public bool isEditor;
+
     public VoicesManager voicesManager;
 	public VersusManager versusManager;
 
@@ -105,7 +108,7 @@ public class Data : MonoBehaviour {
 		DontDestroyOnLoad(this);
         
 		if (LevelDataDebug.Instance) {
-			DEBUG = true;
+			DEBUG = LevelDataDebug.Instance.isDebbug;
 			this.forceVideogameID = LevelDataDebug.Instance.videogameID;
 			this.forceMissionID = LevelDataDebug.Instance.missionID;
 			this.testAreaName =  LevelDataDebug.Instance.testArea;
@@ -152,6 +155,10 @@ public class Data : MonoBehaviour {
 	}
 	void Start()
 	{
+
+#if UNITY_EDITOR
+		isEditor= true;
+#endif
 		loadingAsset.SetOn (false);
 		GetComponent<PhotosManager>().LoadPhotos();
 	}

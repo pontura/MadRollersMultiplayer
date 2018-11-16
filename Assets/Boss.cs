@@ -26,6 +26,7 @@ public class Boss : SceneObject {
 	} 
 	public bool HasOnlyOneLifeLeft()
 	{
+		print ("HasOnlyOneLifeLeft hits: " + hits + "     totalhits: " + totalHits);
 		if (hits+1 >= totalHits)
 			return true;
 		else
@@ -67,5 +68,8 @@ public class Boss : SceneObject {
 	{
 		//bossBar.enabled = false;
 	}
-	public virtual void OnPartBroken(BossPart part) { }
+	public virtual void OnPartBroken(BossPart part) 
+	{ 
+	
+	}
 }

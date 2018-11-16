@@ -24,8 +24,13 @@ public class VideogameBossPanel : MonoBehaviour {
 		
 		Data.Instance.events.OnGameStart += OnGameStart;
 		Data.Instance.events.OnBossActive += OnBossActive;
-		Data.Instance.events.OnBossDropBomb += OnBossDropBomb;
-		Data.Instance.events.OnBossDropRay += OnBossDropRay;
+
+		if (Data.Instance.videogamesData.actualID == 0)
+			Data.Instance.events.OnBossDropBomb += OnBossDropBomb;
+		
+		if (Data.Instance.videogamesData.actualID == 1)
+			Data.Instance.events.OnBossDropRay += OnBossDropRay;
+		
 		Data.Instance.events.OnAvatarDie += OnAvatarDie;
 	}
 	void OnGameStart()
@@ -46,8 +51,8 @@ public class VideogameBossPanel : MonoBehaviour {
 		Data.Instance.events.OnGameStart -= OnGameStart;
 		Data.Instance.events.OnBossActive -= OnBossActive;
 		Data.Instance.events.OnBossDropBomb -= OnBossDropBomb;
-		Data.Instance.events.OnAvatarDie -= OnAvatarDie;
-		Data.Instance.events.OnBossDropRay -= OnBossDropRay;
+		Data.Instance.events.OnBossDropRay -= OnBossDropRay;		
+		Data.Instance.events.OnAvatarDie -= OnAvatarDie;	
 	}
 	void OnBossDropRay(int _x)
 	{
@@ -115,6 +120,10 @@ public class VideogameBossPanel : MonoBehaviour {
 		if (state == states.IDLE)
 			return;
 		PlayAnim ("idle");
+
+		if(Data.Instance.videogamesData.actualID != 0)
+			return;
+		
 		StartCoroutine (IdleCoroutine());
 	}
 	void Laugh(float timer)
@@ -126,6 +135,8 @@ public class VideogameBossPanel : MonoBehaviour {
 	}
 	void Mad(float timer)
 	{
+		if(Data.Instance.videogamesData.actualID != 0)
+			return;
 		if (state == states.MAD)
 			return;
 		state = states.MAD;
@@ -140,11 +151,7 @@ public class VideogameBossPanel : MonoBehaviour {
 	}
 	IEnumerator AttackCoroutine ()
 	{
-		int rand = Random.Range (0, 10);
-		if (rand < 5)
-			PlayAnim ("axe");
-		else
-			PlayAnim ("pinskull_attack");
+		PlayAnim ("pinskull_attack");
 		yield return new WaitForSeconds (2);
 		Idle ();
 	}
@@ -173,6 +180,7 @@ public class VideogameBossPanel : MonoBehaviour {
 	}
 	void PlayAnim(string animName)
 	{
+		print ("animName: " + animName);
 		if(anim != null)
 			anim.Play (animName);
 	}

@@ -5,7 +5,7 @@ using System;
 using UnityEditor;
 public class LevelCreator : MonoBehaviour {
 
-	public bool forceThisMission;
+	public bool Debbug;
 	public int videoGameID;
 	public int missionID;
 
@@ -16,8 +16,9 @@ public class LevelCreator : MonoBehaviour {
 
 	float totalDistance;
 	void Start () {
-		if (forceThisMission) {
-			LevelDataDebug.Instance.videogameID = videoGameID;
+		if (Debbug) {
+			LevelDataDebug.Instance.isDebbug = true;
+			LevelDataDebug.Instance.videogameID = videoGameID-1;
 			LevelDataDebug.Instance.missionID = missionID;
 			if (area != null)
 				LevelDataDebug.Instance.testArea = area.name;
@@ -37,7 +38,7 @@ public class LevelCreator : MonoBehaviour {
 
 		List<string> allNames = new List<string>();
 
-		foreach (MissionData.AreaSetData data in missions.videogames[videoGameID].missions[missionID].data[0].areaSetData) {
+		foreach (MissionData.AreaSetData data in missions.videogames[videoGameID-1].missions[missionID].data[0].areaSetData) {
 			foreach (string areaName in data.areas) {
 				bool exists = false;
 				foreach (string savedAreaName in allNames) {

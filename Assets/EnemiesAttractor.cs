@@ -10,11 +10,11 @@ public class EnemiesAttractor : MonoBehaviour {
 	{
 		projectil.StartFollowing (other.gameObject);
 
-		BossPart bossPart = other.GetComponent<BossPart> ();
-		if(bossPart != null)
-		{
-			if( bossPart.boss.HasOnlyOneLifeLeft() )
-				Data.Instance.events.OnProjectilStartSnappingTarget (other.transform.position);
-		}
+//		BossPart bossPart = other.GetComponent<BossPart> ();
+//		if(bossPart != null)
+//		{
+//			if( bossPart.boss.HasOnlyOneLifeLeft() )
+//				Data.Instance.events.OnProjectilStartSnappingTarget (other.transform.position);
+//		}
 	}
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class LevelDataDebug : MonoBehaviour {
 
 	[HideInInspector]
+	public bool isDebbug;
+	[HideInInspector]
 	public int videogameID;
 	[HideInInspector]
 	public int missionID;

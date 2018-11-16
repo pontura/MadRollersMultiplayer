@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4a902be19d4c554ab2fae2a398d31c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDebbug: 0
   videogameID: 0
   missionID: 0
   testArea: 
@@ -204,7 +205,26 @@ Prefab:
     - target: {fileID: 114729657910990716, guid: 9b88fa411ff7c534cb60090455c1e231,
         type: 2}
       propertyPath: missionID
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114729657910990716, guid: 9b88fa411ff7c534cb60090455c1e231,
+        type: 2}
+      propertyPath: videoGameID
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114729657910990716, guid: 9b88fa411ff7c534cb60090455c1e231,
+        type: 2}
+      propertyPath: forceThisMission
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114729657910990716, guid: 9b88fa411ff7c534cb60090455c1e231,
+        type: 2}
+      propertyPath: Debbug
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1607946126678742, guid: 9b88fa411ff7c534cb60090455c1e231, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b88fa411ff7c534cb60090455c1e231, type: 2}

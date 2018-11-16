@@ -27,8 +27,11 @@ public class BossPart : MonoBehaviour {
 			return;
 		
 		called = true;
-
 		CancelInvoke ();
+
+		if( boss.HasOnlyOneLifeLeft() )
+			Data.Instance.events.OnProjectilStartSnappingTarget (transform.position);		
+
 		boss.OnPartBroken (this);
 		asset.SetActive (false);
 	}
