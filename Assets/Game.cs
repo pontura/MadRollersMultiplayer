@@ -57,7 +57,7 @@ public class Game : MonoBehaviour {
         Data.Instance.events.OnGamePaused += OnGamePaused;
         
         Init();
-        Data.Instance.GetComponent<Tracker>().TrackScreen("Game Screen");
+      //  Data.Instance.GetComponent<Tracker>().TrackScreen("Game Screen");
         Data.Instance.events.SetSettingsButtonStatus(false);
 
         //Data.Instance.events.OnGameStart();
@@ -123,7 +123,11 @@ public class Game : MonoBehaviour {
 		Data.Instance.events.OnResetLevel();
 		// Application.LoadLevel("LevelSelector");
 		Data.Instance.events.ForceFrameRate (1);
-		Data.Instance.LoadLevel("VideogameComplete");
+		//Data.Instance.LoadLevel("VideogameComplete");
+		Data.Instance.isReplay = true;
+		Data.Instance.videogamesData.SetOtherGameActive();
+		Data.Instance.missions.MissionActiveID = 0;
+		Data.Instance.LoadLevel("Game");
 	}
     public void GotoLevelSelector()
     {
