@@ -32,7 +32,7 @@ public class Continue : MonoBehaviour {
 	{
 		Data.Instance.events.OnGameOver -= OnGameOver;
 	}
-	public void OnGameOver()
+	public void OnGameOver(bool isTimeOver)
 	{	
 		Invoke ("OnGameOverDelayed", 2);
 	}	

@@ -35,7 +35,7 @@ public class InputSaver : MonoBehaviour {
 		isd.distance = Game.Instance.level.charactersManager.distance;
 		recordingList.Add (isd);
 	}
-	void OnGameOver()
+	void OnGameOver(bool isTimeOver)
 	{
 		GetComponent<InputSavedAutomaticPlay> ().Reset();
 		GetComponent<InputSavedAutomaticPlay> ().SaveNewList( recordingList );

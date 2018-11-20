@@ -59,31 +59,39 @@ public class ArcadeGUI : MonoBehaviour {
     void OnDestroy()
     {
         Data.Instance.events.OnGameOver -= OnGameOver;
+
     }
     void SetFields(string _text)
     {
+		print ("SetFields " + _text);
         singleSignal.SetActive(true);
         foreach (Text field in singleSignalTexts.GetComponentsInChildren<Text>())
             field.text = _text;
         singleSignal.GetComponent<Animation>().Play("gameOver");
     }
-    void OnGameOver()
+	void OnGameOver(bool isTimeOver)
     {
+
+		print ("OnGameOver   " + isTimeOver);
+
 		Data.Instance.LoseCredit ();
         Data.Instance.multiplayerData.distance = Game.Instance.GetComponent<CharactersManager>().distance;
         
 		if (Data.Instance.credits > 0) {
-			
-			if (Data.Instance.multiplayerData.GetTotalCharacters () == 1)
+
+			if (isTimeOver)
+				SetFields ("TIME OVER");
+			else if (Data.Instance.multiplayerData.GetTotalCharacters () == 1)
 				SetFields ("DEAD!");
 			else
 				SetFields ("ALL DEAD!");
 
-			Invoke("Reset", 2);
+			Invoke("Reset", 2.2f);
 		} else {
 			SetFields ("GAME OVER");
 			Invoke("Reset", 4);
 		}
+
 		GetComponent<CreditsUI> ().RemoveOne ();
         ended = true;
         Data.Instance.scoreForArcade = 0;
@@ -91,12 +99,6 @@ public class ArcadeGUI : MonoBehaviour {
     void Reset()
     {
 		SetFields("");
-
-		return;
-		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {
-			Data.Instance.events.OnResetLevel ();
-			Data.Instance.LoadLevel ("SummaryMultiplayer");  
-		}
     }
     
 

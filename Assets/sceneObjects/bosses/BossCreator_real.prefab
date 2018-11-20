@@ -36,7 +36,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4814548146808116}
-  - component: {fileID: 114207011677129172}
+  - component: {fileID: 114861278375811450}
   m_Layer: 10
   m_Name: BossCreator_real
   m_TagString: boss
@@ -514,7 +514,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ebd04269cc81154d979328d94f98e45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114207011677129172
+--- !u!114 &114552356178052122
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1304732474240338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4d340a12142ccd43b76c4e1133746a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  asset: {fileID: 1952437663776096}
+  total: 1
+--- !u!114 &114861278375811450
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -535,24 +548,10 @@ MonoBehaviour:
   score: 0
   distanceFromCharacter: 18
   onlyMultiplayers: 0
-  distance_from_avatars: 14
-  assets_to_instantiate: {fileID: 1312236732931812, guid: d00f37e95ca18e54d9b4da7b77441046,
-    type: 2}
-  time_to_init_enemies: 0.3
+  distance_from_avatars: 10
+  assets_to_instantiate: {fileID: 0}
+  time_to_init_enemies: 0
   parts: []
---- !u!114 &114552356178052122
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1304732474240338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4d340a12142ccd43b76c4e1133746a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  asset: {fileID: 1952437663776096}
-  total: 1
 --- !u!198 &198322660891507386
 ParticleSystem:
   m_ObjectHideFlags: 1

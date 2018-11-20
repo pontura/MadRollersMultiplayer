@@ -471,8 +471,7 @@ public class CharacterBehavior : MonoBehaviour {
 		//    SocialEvents.OnFinalDistance(distance);
 	}
 	public void Die()
-	{
-		
+	{		
 		if(state == states.DEAD) return;
 
 		SaveDistance();

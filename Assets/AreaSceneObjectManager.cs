@@ -47,6 +47,8 @@ public class AreaSceneObjectManager : MonoBehaviour {
 			data.bossModule = bossSettings.bossModule;
 			data.asset = bossSettings.asset;
 			data.time_to_init_enemies = bossSettings.time_to_init_enemies;
+			data.time_to_kill = bossSettings.time_to_kill;
+			data.distance_from_avatars = bossSettings.distance_from_avatars;
 			newSOdata.bossSettings.Add (data);
 		}
 		if (moveForward != null) {
@@ -99,13 +101,18 @@ public class AreaSceneObjectManager : MonoBehaviour {
 			newcomponent.timeLineData = data.timeLineData;
 		}
 		if (jsonData.bossSettings.Count > 0) {
+
 			BossSettingsData data = jsonData.bossSettings [0];
 			BossSettings newcomponent = so.GetComponent<BossSettings> ();
+
 			if(newcomponent == null)
 				newcomponent = so.gameObject.AddComponent<BossSettings> ();
+			
 			newcomponent.bossModule = data.bossModule;
 			newcomponent.time_to_init_enemies = data.time_to_init_enemies;
 			newcomponent.asset = data.asset;
+			newcomponent.time_to_kill = data.time_to_kill;
+			newcomponent.distance_from_avatars = data.distance_from_avatars;
 		}
 		if (jsonData.moveForward.Count > 0) {
 			MoveForwardData data = jsonData.moveForward [0];

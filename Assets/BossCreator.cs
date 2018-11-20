@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BossCreator : Boss {
-
+	
 	public GameObject assets_to_instantiate;
 	public float time_to_init_enemies;
 
@@ -12,11 +12,17 @@ public class BossCreator : Boss {
 	BossSettings settings;
 
 	public override void OnRestart(Vector3 pos)
-	{
-		base.OnRestart (pos);	
+	{		
+		base.OnRestart (pos);
 		settings = GetComponent<BossSettings> ();
+
+		Data.Instance.events.OnBossSetNewAsset (settings.asset);
+		Data.Instance.events.OnBossSetTimer (settings.time_to_kill);
+
+		distance_from_avatars = settings.distance_from_avatars;
 		time_to_init_enemies = settings.time_to_init_enemies;
 		print ("boss module " + settings.bossModule);
+
 		GameObject assets = Instantiate(Resources.Load("bosses/modules/" + settings.bossModule, typeof(GameObject))) as GameObject;
 		//GameObject assets = Instantiate (settings.assets);
 		assets.transform.SetParent (transform);

@@ -32,6 +32,7 @@ public class VideogameBossPanel : MonoBehaviour {
 			Data.Instance.events.OnBossDropRay += OnBossDropRay;
 		
 		Data.Instance.events.OnAvatarDie += OnAvatarDie;
+		Data.Instance.events.OnGameOver += OnGameOver;
 	}
 	void OnGameStart()
 	{
@@ -53,6 +54,11 @@ public class VideogameBossPanel : MonoBehaviour {
 		Data.Instance.events.OnBossDropBomb -= OnBossDropBomb;
 		Data.Instance.events.OnBossDropRay -= OnBossDropRay;		
 		Data.Instance.events.OnAvatarDie -= OnAvatarDie;	
+		Data.Instance.events.OnGameOver -= OnGameOver;
+	}
+	void OnGameOver(bool isTimeOver)
+	{
+		Laugh (10);
 	}
 	void OnBossDropRay(int _x)
 	{
@@ -128,6 +134,8 @@ public class VideogameBossPanel : MonoBehaviour {
 	}
 	void Laugh(float timer)
 	{
+		if(Data.Instance.videogamesData.actualID != 0)
+			return;
 		if (state == states.OFF || state == states.MAD)
 			return;
 		state = states.LAUGHING;

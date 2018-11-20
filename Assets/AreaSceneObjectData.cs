@@ -37,6 +37,8 @@ public class BossSettingsData  {
 	public string bossModule;
 	public float time_to_init_enemies;
 	public string asset;
+	public float distance_from_avatars;
+	public int time_to_kill;
 }
 [Serializable]
 public class MoveForwardData  {

@@ -22,8 +22,6 @@ public class Level : MonoBehaviour {
 	public GameObject limitObject;
     public ScoreSignal scoreSignal;
 
-    public ProgressBar missionBar;
-
 	public GameObject missionDesc;
 
 	//private AreasManager areasManager;

@@ -35,7 +35,7 @@ public class Summary : MonoBehaviour {
 		Data.Instance.events.OnGameOver -= OnGameOver;
 		Data.Instance.events.OnFireUI -= OnFireUI;
     }
-	void OnGameOver()
+	void OnGameOver(bool isTimeOver)
     {
         if (isOn) return;
 

@@ -42,7 +42,7 @@ public class JoystickPlayer : MonoBehaviour {
 		puesto.text = scorePosition.ToString();
 		field.text = text;
 	}
-	public void OnGameOver()
+	public void OnGameOver(bool isTimeOver)
 	{
 		SetHorizontal (0);
 		state = states.GAME_OVER;

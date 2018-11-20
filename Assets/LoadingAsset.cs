@@ -66,7 +66,7 @@ public class LoadingAsset : MonoBehaviour {
 	{
 		videoPanel.SetActive (false);
 	}
-	void OnGameOver()
+	void OnGameOver(bool isTimeOver)
 	{
 		videoPanel.SetActive (true);
 	}

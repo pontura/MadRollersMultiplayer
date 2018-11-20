@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Boss : SceneObject {
 
+	public int time_to_kill;
 	public float distance_from_avatars;
 	int hits;
 	//Missions missions;
@@ -24,6 +25,10 @@ public class Boss : SceneObject {
 	{
 		
 	} 
+	public void OnSetTimer(int timer)
+	{
+		Data.Instance.events.OnBossSetTimer (timer);
+	}
 	public bool HasOnlyOneLifeLeft()
 	{
 		print ("HasOnlyOneLifeLeft hits: " + hits + "     totalhits: " + totalHits);

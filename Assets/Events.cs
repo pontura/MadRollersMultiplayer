@@ -15,7 +15,7 @@ public class Events : MonoBehaviour {
 
 	public System.Action AddNewCredit = delegate { }; 
 	public System.Action<int, string> OnDrawScore = delegate { };
-    public System.Action OnGameOver = delegate { };
+	public System.Action<bool> OnGameOver = delegate { };
     public System.Action<string> VoiceFromResources = delegate { };
     public System.Action<string, int> OnSoundFX = delegate { };
 	public System.Action<MadRollersSFX.types, int> OnMadRollerFX = delegate { };
@@ -127,6 +127,8 @@ public class Events : MonoBehaviour {
 	public System.Action OnBossDropBomb = delegate { };
 	public System.Action<int> OnBossDropRay = delegate { };
 	public System.Action<int> OnBossInit = delegate { };
+	public System.Action<string> OnBossSetNewAsset = delegate { };
+	public System.Action<int> OnBossSetTimer = delegate { };
 	public System.Action<float> OnBossHitsUpdate = delegate { };
 
 	public System.Action<Vector3> OnProjectilStartSnappingTarget = delegate { };

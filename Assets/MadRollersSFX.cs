@@ -86,7 +86,7 @@ public class MadRollersSFX : MonoBehaviour {
 		audioSource.clip = ac;
 		audioSource.Play ();
 	}
-	void OnGameOver()
+	void OnGameOver(bool isTimeOver)
 	{
 		player1.Stop ();
 		player2.Stop ();

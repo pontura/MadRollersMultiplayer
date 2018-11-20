@@ -24,7 +24,7 @@ public class VideoGlitch : MonoBehaviour {
 	{
 		//videoPlayer.Pause ();
 	}
-	void OnGameOver()
+	void OnGameOver(bool isTimeOver)
 	{
 		//videoPlayer.Play ();
 	}

@@ -22,12 +22,12 @@ public class JoysticksCanvas : MonoBehaviour {
 	}
 	void OnVersusTeamWon(int team_id)
 	{
-		OnGameOver ();
+		OnGameOver (false);
 	}
-	void OnGameOver()
+	void OnGameOver(bool isTimeOver)
 	{
 		foreach (JoystickPlayer jp in players)
-			jp.OnGameOver ();
+			jp.OnGameOver (false);
 
 		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {
 		}

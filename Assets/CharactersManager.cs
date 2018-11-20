@@ -262,6 +262,11 @@ public class CharactersManager : MonoBehaviour {
 
 		return newCharacter;
     }
+	public void KillAllCharacters()
+	{
+		foreach (CharacterBehavior cb in characters)
+			cb.Die ();
+	}
     public void killCharacter(CharacterBehavior characterBehavior)
     {
 		if (gameOver)
@@ -284,7 +289,7 @@ public class CharactersManager : MonoBehaviour {
     {
         gameOver = true;
         yield return new WaitForSeconds(0.05f);
-        Data.Instance.events.OnGameOver();
+        Data.Instance.events.OnGameOver(false);
         yield return new WaitForSeconds(1.32f);
     }
     public CharacterBehavior getMainCharacter()

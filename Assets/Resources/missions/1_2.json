@@ -1,18 +1,18 @@
 {
 	"data": [{
 		"title": "",
-		"fondo": "wonderland_ghosts",
+		"fondo": "wonderland_nubes",
 		"id": 0,
-		"maxScore": 3000,
-		"areaSetData": [{
-			"total_areas": 2,
+		"maxScore": 460,
+		"areaSetData": [		
+		{
+			"total_areas": 3,
 			"randomize": true,
 			"areas": [
-			"estrellas simple",
-			"estrellas simple 1",
-			"estrellas simple 2",
-			"estrellas simple 3",
-			"estrellas simple_doble"
+			"agua_lados",
+			"ancho_agua_simple",
+			"ancho_agua_simple_lados",
+			"agua_lados"
 			],
 			"cameraOrientation": {
 				"x": 0.0,
@@ -21,13 +21,13 @@
 			}
 		},
 		{
-			"total_areas": 3,
+			"total_areas": 2,
 			"randomize": true,
-			"areas": ["doble_calecitas",
-			"doble_1",
+			"areas": [
 			"doble_agua",
 			"doble_agua_simple",
-			"doble_1 1"],
+			"doble_1 1"
+			],
 			"cameraOrientation": {
 				"x": 0.0,
 				"y": 0.0,
@@ -35,31 +35,39 @@
 			}
 		},
 		{
-			"total_areas": 4,
-			"randomize": false,
-			"areas": ["bombaSingle1",
-			"rampaHuge",
-			"subeBaja",
-			"boss_Pacmans_Galaga",
-			"boss_45grados_free"],
+			"total_areas": 1,
+			"randomize": true,
+			"areas": ["container_cruz",
+			"container_cruz_2"],
 			"cameraOrientation": {
 				"x": 0.0,
-				"y": -1.0,
-				"z": -1.399999976158142
+				"y": 0.0,
+				"z": 0.0
+			}
+		},	
+	{
+			"total_areas": 3,
+			"randomize": true,
+			"areas": [
+			"ancho_agua_simple1",
+			"ancho_agua_simple2"],
+			"cameraOrientation": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
 			}
 		},
 		{
-			"total_areas": 1000,
-			"randomize": true,
-			"areas": ["boss_45grados_free",
-			"boss_45grados_free",
-			"boss_45grados_trees",
-			"boss_45grados_free_bomb",
-			"boss_45grados_free_bomb"],
+			"total_areas": 5,
+			"randomize": false,
+			"areas": ["boss_naves_boyland",
+			"boss_ancho_free",
+			"boss_ancho_free",
+			"boss_free_agua"],
 			"cameraOrientation": {
 				"x": 0.0,
-				"y": -1.0,
-				"z": 0.0
+				"y": -2.0,
+				"z": -1.0
 			}
 		}],
 		"backgroundSides": []

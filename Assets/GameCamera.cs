@@ -57,6 +57,7 @@ public class GameCamera : MonoBehaviour
 		Data.Instance.events.OnVersusTeamWon += OnVersusTeamWon;
 		Data.Instance.events.OncharacterCheer += OncharacterCheer;
 		Data.Instance.events.OnProjectilStartSnappingTarget += OnProjectilStartSnappingTarget;
+		Data.Instance.events.OnGameOver += OnGameOver;
 
 		//Data.Instance.events.OnGameStart += OnGameStart;
 
@@ -106,6 +107,7 @@ public class GameCamera : MonoBehaviour
 		Data.Instance.events.OnVersusTeamWon -= OnVersusTeamWon;
 		Data.Instance.events.OncharacterCheer -= OncharacterCheer;
 		Data.Instance.events.OnProjectilStartSnappingTarget -= OnProjectilStartSnappingTarget;
+		Data.Instance.events.OnGameOver -= OnGameOver;
     }
 	void OnVersusTeamWon(int _team_id)
 	{
@@ -275,6 +277,20 @@ public class GameCamera : MonoBehaviour
 		if(state != states.EXPLOTING)
 			LookAtFlow ();
 	}
+	void OnGameOver(bool isTimeOver)
+	{
+		if (!isTimeOver)
+			return;
+		if (state == states.END) return;
+		state = states.END;
+
+		iTween.MoveTo(cam.gameObject, iTween.Hash(
+			"z", cam.gameObject.transform.position.z+130,
+			"time", 1,
+			"easetype", iTween.EaseType.easeOutCubic
+			// "axis", "x"
+		));
+	}
     public void OnAvatarCrash(CharacterBehavior player)
     {
 		if (Game.Instance.GetComponent<CharactersManager>().getTotalCharacters() > 0) return;
@@ -288,6 +304,7 @@ public class GameCamera : MonoBehaviour
            // "axis", "x"
             ));
     }
+
     public void OnAvatarFall(CharacterBehavior player)
 	{
 		

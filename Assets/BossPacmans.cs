@@ -11,6 +11,9 @@ public class BossPacmans : Boss {
 
 	public override void OnRestart(Vector3 pos)
 	{
+		Data.Instance.events.OnBossSetNewAsset ("pacman");
+		Data.Instance.events.OnBossSetTimer (30);
+
 		base.OnRestart (pos);	
 		parts = bossPartsContainer.GetComponentsInChildren<BossPart> ();
 
