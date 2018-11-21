@@ -1,14 +1,19 @@
 {
 	"data": [{
 		"title": "",
-		"fondo": "wonderland_castles_boss",
+		"fondo": "wonderland_nubes",
 		"id": 0,
-		"maxScore": 150,
-		"areaSetData": [{
-			"total_areas": 2,
+		"maxScore": 460,
+		"areaSetData": [		
+		{
+			"total_areas": 3,
 			"randomize": true,
-			"areas": ["ruedasEnemigos",
-			"ruedaSimple"],
+			"areas": [
+			"agua_lados",
+			"ancho_agua_simple",
+			"ancho_agua_simple_lados",
+			"agua_lados"
+			],
 			"cameraOrientation": {
 				"x": 0.0,
 				"y": 0.0,
@@ -16,11 +21,13 @@
 			}
 		},
 		{
-			"total_areas": 3,
+			"total_areas": 2,
 			"randomize": true,
-			"areas": ["killRunner",
-			"killRunner2",
-			"killRunner3"],
+			"areas": [
+			"doble_agua",
+			"doble_agua_simple",
+			"doble_1 1"
+			],
 			"cameraOrientation": {
 				"x": 0.0,
 				"y": 0.0,
@@ -30,20 +37,20 @@
 		{
 			"total_areas": 1,
 			"randomize": true,
-			"areas": ["descanso1",
-			"descanso2"],
+			"areas": ["container_cruz",
+			"container_cruz_2"],
 			"cameraOrientation": {
 				"x": 0.0,
 				"y": 0.0,
 				"z": 0.0
 			}
-		},
-		{
+		},	
+	{
 			"total_areas": 3,
 			"randomize": true,
-			"areas": ["killRunner",
-			"killRunner2",
-			"killRunner3"],
+			"areas": [
+			"ancho_agua_simple1",
+			"ancho_agua_simple2"],
 			"cameraOrientation": {
 				"x": 0.0,
 				"y": 0.0,
@@ -51,32 +58,27 @@
 			}
 		},
 		{
-			"total_areas": 13,
+			"total_areas": 2,
 			"randomize": false,
-			"areas": ["boss1Corre",
-			"boss1Corre2",
-			"boss1Corre2",
-			"boss1Corre2",
-			"boss1Corre2",
-			"boss1Corre2",
-			"boss1Corre2",
-			"boss1Corre",
-			"boss1Corre2_fences",
-			"boss1Corre2"],
+			"areas": [
+			"boss_agua",
+			"boss_agua_free2"
+			],
 			"cameraOrientation": {
 				"x": 0.0,
-				"y": 2.0,
-				"z": -5.0
+				"y": -2.0,
+				"z": -1.0
 			}
 		},
 		{
-			"total_areas": 10000,
-			"randomize": false,
-			"areas": ["boss_Crusader",
-			"areaFree_boss1"],
+			"total_areas": 100,
+			"randomize": true,
+			"areas": [
+			"boss_agua_free",
+			"boss_agua_free2"],
 			"cameraOrientation": {
 				"x": 0.0,
-				"y": -3.5999999046325685,
+				"y": -3.0,
 				"z": -2.0
 			}
 		}],

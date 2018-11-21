@@ -1,22 +1,22 @@
 {
 	"data": [{
 		"title": "",
-		"fondo": "wonderland_castles",
+		"fondo": "wonderland_castles_boss",
 		"id": 0,
-		"maxScore": 5000,
+		"maxScore": 150,
 		"areaSetData": [{
 			"total_areas": 2,
 			"randomize": true,
-			"areas": ["ancho_agua_simple1",
-			"ancho_agua_simple2"],
+			"areas": ["ruedasEnemigos",
+			"ruedaSimple"],
 			"cameraOrientation": {
 				"x": 0.0,
-				"y": -1.5,
-				"z": -0.5
+				"y": 0.0,
+				"z": 0.0
 			}
 		},
 		{
-			"total_areas": 4,
+			"total_areas": 3,
 			"randomize": true,
 			"areas": ["killRunner",
 			"killRunner2",
@@ -28,20 +28,10 @@
 			}
 		},
 		{
-			"total_areas": 7,
+			"total_areas": 1,
 			"randomize": true,
-			"areas": ["singleRunnerJump1",
-			"singleRunnerJump2",
-			"enemiesLineaJump",
-			"enemiesLineaJumpSmall",
-			"enemiesRunners3_Salto2",
-			"enemiesRunnersSmall",
-			"enemiesRunnersSmall_2Palms",
-			"singleRunnerJump_linea1",
-			"singleRunnerJump_linea2",
-			"coinsEasy1",
-			"coinsEasy2",
-			"coinsEasy3"],
+			"areas": ["descanso1",
+			"descanso2"],
 			"cameraOrientation": {
 				"x": 0.0,
 				"y": 0.0,
@@ -49,14 +39,45 @@
 			}
 		},
 		{
-			"total_areas": 4,
-			"randomize": false,
-			"areas": ["boss_Pacmans",
-			"boss_zigzag_free"],
+			"total_areas": 3,
+			"randomize": true,
+			"areas": ["killRunner",
+			"killRunner2",
+			"killRunner3"],
 			"cameraOrientation": {
 				"x": 0.0,
-				"y": -1.0,
+				"y": 0.0,
 				"z": 0.0
+			}
+		},
+		{
+			"total_areas": 13,
+			"randomize": false,
+			"areas": ["boss1Corre",
+			"boss1Corre2",
+			"boss1Corre2",
+			"boss1Corre2",
+			"boss1Corre2",
+			"boss1Corre2",
+			"boss1Corre2",
+			"boss1Corre",
+			"boss1Corre2_fences",
+			"boss1Corre2"],
+			"cameraOrientation": {
+				"x": 0.0,
+				"y": 2.0,
+				"z": -5.0
+			}
+		},
+		{
+			"total_areas": 10000,
+			"randomize": false,
+			"areas": ["boss_Crusader",
+			"areaFree_boss1"],
+			"cameraOrientation": {
+				"x": 0.0,
+				"y": -3.5999999046325685,
+				"z": -2.0
 			}
 		}],
 		"backgroundSides": []
