@@ -138,6 +138,7 @@ public class VideogameBossPanel : MonoBehaviour {
 			return;
 		if (state == states.OFF || state == states.MAD)
 			return;
+		StopAllCoroutines ();
 		state = states.LAUGHING;
 		StartCoroutine (LaughCoroutine(timer));
 	}
