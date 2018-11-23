@@ -43,10 +43,12 @@ public class CharacterControls : MonoBehaviour {
 		if (characterBehavior.state == CharacterBehavior.states.CRASH || characterBehavior.state == CharacterBehavior.states.DEAD) 
 			return;
 		if (Time.deltaTime == 0) return;
-		if (mobileController) {
-			moveByAccelerometer ();
-		} else if(!isAutomata)
-        {
+
+
+		//if (mobileController) {
+		//	moveByAccelerometer ();
+		//} else if(!isAutomata)
+      //  {
 			//if (InputManager.getFireDown(player.id))
             //{
 			//	characterBehavior.shooter.StartPressingFire();
@@ -55,6 +57,12 @@ public class CharacterControls : MonoBehaviour {
 			//	lastKeyPressed = 0;
 			//}
 
+			if (InputManager.getWeapon(player.id))
+				characterBehavior.shooter.ChangeNextWeapon ();
+		
+			if (InputManager.getDash(player.id))
+				DashForward ();
+		
 			if (InputManager.getFireUp(player.id))
 			{
 				
@@ -82,19 +90,16 @@ public class CharacterControls : MonoBehaviour {
                 characterBehavior.JumpPressed();
             }
 			moveByKeyboard();
-        }
+       // }
 		if (characterBehavior.player.charactersManager == null)
 			return;
 		characterBehavior.UpdateByController(rotationY); 
 	}
-//	int total;
-//	void DashForward(int keyPressed)
-//	{
-//		if (lastKeyPressed == keyPressed)
-//			return;			
-//		lastKeyPressedTime = Time.time;
-//		characterBehavior.characterMovement.DashForward ();
-//	}
+	int total;
+	void DashForward()
+	{
+		characterBehavior.characterMovement.DashForward ();
+	}
   
 	//float lastHorizontalKeyPressed;
 	float last_x;

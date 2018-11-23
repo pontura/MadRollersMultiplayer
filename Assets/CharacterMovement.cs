@@ -85,9 +85,15 @@ public class CharacterMovement : MonoBehaviour {
 
 		if(cb.controls.isAutomata || cb.controls.ControlsEnabled)
 			transform.position = Vector3.Lerp(transform.position, goTo, 6);
-
-		if (transform.position.y < heightToFall)
-			cb.Fall();
+		
+		if (transform.position.y < -0.15f && cb.player.fxState == Player.fxStates.SUPER) {
+			Vector3 pos = transform.position;
+			pos.y = -0.16f;
+			transform.position = pos;
+			GetComponent<Rigidbody> ().velocity = Vector3.zero;
+		} else if (transform.position.y < heightToFall) {
+			 cb.Fall ();
+		}
 	}
 	void StartMultiplayerRace()
 	{

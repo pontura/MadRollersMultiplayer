@@ -38,7 +38,6 @@ public class CharacterBehavior : MonoBehaviour {
 
 	private int MAX_JETPACK_HEIGHT = 25;
 
-	private int heightToFall = -5;
 	private float jumpHeight = 1300;
 	public float superJumpHeight = 1200;
 	private Vector3 movement;
@@ -347,7 +346,7 @@ public class CharacterBehavior : MonoBehaviour {
 		if (player.transport != null && player.transport.isOn) return;
 
 		jumpsNumber++;
-		if (jumpsNumber > 2) return;
+		if (jumpsNumber > 4) return;
 
 	//	if(!controls.isAutomata)
 	//		data.events.OnAvatarJump (player.id);

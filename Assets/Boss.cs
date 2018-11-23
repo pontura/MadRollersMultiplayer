@@ -20,6 +20,7 @@ public class Boss : SceneObject {
 	{		
 		this.totalHits = totalHits;
 		Data.Instance.events.OnBossInit (totalHits);
+		print ("SetTotal " + totalHits);
 	}
 	public virtual void OnSceneObjectUpdated()
 	{

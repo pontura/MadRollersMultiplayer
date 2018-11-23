@@ -7,6 +7,14 @@ public class BossThrower : Boss {
 	bool canAddEnemies;
 	public int totalArms;
 
+	public override void OnRestart(Vector3 pos)
+	{
+		base.OnRestart (pos);
+		Data.Instance.events.OnBossSetNewAsset ("helicopter");
+		Data.Instance.events.OnBossSetTimer (45);
+		SetTotal (4);
+	}
+
 	public override void OnSceneObjectUpdated()
 	{
 		float avatarsDistance = Game.Instance.level.charactersManager.getDistance ();
@@ -19,7 +27,6 @@ public class BossThrower : Boss {
 		Vector3 pos = transform.localPosition;
 		pos.z = _z;
 		transform.localPosition = pos;
-		SetTotal (totalArms);
 	} 
 	public void AddEnemy(Vector3 pos)	
 	{

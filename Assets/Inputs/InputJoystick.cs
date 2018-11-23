@@ -38,4 +38,12 @@ public class InputJoystick : InputType {
     {
         return Input.GetButton("Jump" + id );
     }
+	public override bool getDash()
+	{
+		return Input.GetButtonDown("Dash" + id );
+	}
+	public override bool getWeapon()
+	{
+		return Input.GetButtonDown("Weapon" + id );
+	}
 }

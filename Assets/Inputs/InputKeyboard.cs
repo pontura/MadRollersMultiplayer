@@ -37,4 +37,12 @@ public class InputKeyboard : InputType{
     {
        return Input.GetButtonDown("Jump" + id);
     }
+	public override bool getDash()
+	{
+		return Input.GetButtonDown("Dash" + id );
+	}
+	public override bool getWeapon()
+	{
+		return Input.GetButtonDown("Weapon" + id );
+	}
 }

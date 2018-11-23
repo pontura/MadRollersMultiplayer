@@ -162,6 +162,10 @@ public class MultiplayerData : MonoBehaviour
 	}
 	void OnScoreOn(int playerID, Vector3 pos, int points, ScoresManager.types type)
 	{
+		
+		if (Game.Instance.level.charactersManager.getTotalCharacters () == 1)
+			points *= 2;
+		
 		if (NextScoreToWinCredit < score) {
 			creditsWon ++;
 			SetNextScoreToWinCredit ();

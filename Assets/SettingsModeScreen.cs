@@ -5,11 +5,13 @@ using UnityEngine;
 public class SettingsModeScreen : MonoBehaviour {
 
 	public void InitStoryMode () {
+		Data.Instance.totalCredits = 5;
 		Data.Instance.playMode = Data.PlayModes.STORYMODE;
 		Go ();
 	}
 
 	public void InitPartyMode () {
+		Data.Instance.totalCredits = 3;
 		Data.Instance.playMode = Data.PlayModes.PARTYMODE;
 		Go ();
 	}

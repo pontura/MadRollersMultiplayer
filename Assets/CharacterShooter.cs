@@ -51,6 +51,16 @@ public class CharacterShooter : MonoBehaviour {
 		if (playerID != characterBehavior.player.id) return;    
 		weapon.OnChangeWeapon(type);
 	}
+	public void ChangeNextWeapon()
+	{
+		Weapon.types nextWeapon;
+		if (weawponType == Weapon.types.SIMPLE)
+			nextWeapon = Weapon.types.TRIPLE;
+		else
+			nextWeapon = Weapon.types.SIMPLE;
+		
+		Data.Instance.events.OnChangeWeapon (characterBehavior.player.id, nextWeapon);
+	}
 	public void StartPressingFire(){
 		isLoadingGun = true;
 		timePressing = Time.time;

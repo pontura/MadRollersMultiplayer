@@ -71,7 +71,7 @@ public class Level : MonoBehaviour {
 		data.events.OnAddExplotion += OnAddExplotion;
 		data.events.OnAddWallExplotion += OnAddWallExplotion;
 		data.events.OnAddObjectExplotion += OnAddObjectExplotion;
-		data.events.OnAddHeartsByBreaking += OnAddHeartsByBreaking;
+		//data.events.OnAddHeartsByBreaking += OnAddHeartsByBreaking;
 		data.events.StartMultiplayerRace += StartMultiplayerRace;
 		data.events.SetVictoryArea += SetVictoryArea;
 		Data.Instance.events.OnGameStart += OnGameStart;
@@ -109,7 +109,7 @@ public class Level : MonoBehaviour {
         data.events.OnAddObjectExplotion -= OnAddObjectExplotion;
         data.events.StartMultiplayerRace -= StartMultiplayerRace;
         data.events.SetVictoryArea -= SetVictoryArea;
-        data.events.OnAddHeartsByBreaking -= OnAddHeartsByBreaking;
+       // data.events.OnAddHeartsByBreaking -= OnAddHeartsByBreaking;
     }
     void StartMultiplayerRace()
     {
@@ -214,9 +214,12 @@ public class Level : MonoBehaviour {
 
         }
 
-		Data.Instance.events.OnAddPowerUp(position);
+		//if (Data.Instance.playMode == Data.PlayModes.PARTYMODE)
+			//Data.Instance.events.OnAddPowerUp (position);
+		//else
+			AddHeartsByBreaking (position, 14, 470);
 	}
-	public void OnAddHeartsByBreaking(Vector3 position, Material[] mat, Vector3[] pos)
+	public void AddBricksByBreak(Vector3 position, Material[] mat, Vector3[] pos)
 	{
 		int force = 400;
 		//position.y += 0.7f;

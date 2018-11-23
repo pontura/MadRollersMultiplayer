@@ -152,6 +152,6 @@ public class Breakable : MonoBehaviour {
 			pos [id] = mr.transform.position;
 			id++;
 		}
-		Game.Instance.level.OnAddHeartsByBreaking(transform.position, materials, pos);
+		Game.Instance.level.AddBricksByBreak(transform.position, materials, pos);
 	}
 }
