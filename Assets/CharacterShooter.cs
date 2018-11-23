@@ -140,10 +140,10 @@ public class CharacterShooter : MonoBehaviour {
 	{
 		if (characterBehavior.state == CharacterBehavior.states.DEAD)
 			return;
-		if (characterBehavior.floorCollitions.state == CharacterFloorCollitions.states.ON_FLOOR)
+		if (characterBehavior.grounded)
 			characterBehavior.Run();
-		else if(characterBehavior.jumpsNumber<2)
-			characterBehavior.state = CharacterBehavior.states.JUMP;
+//		else if(characterBehavior.jumpsNumber<2)
+//			characterBehavior.state = CharacterBehavior.states.JUMP;
 		else
 			characterBehavior.state = CharacterBehavior.states.DOUBLEJUMP;
 	}

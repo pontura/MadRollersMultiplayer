@@ -53,6 +53,10 @@ public class CharacterBehavior : MonoBehaviour {
 
 	public int jumpsNumber;
 
+	public Transform groundCheck;
+	public bool grounded;
+	float startJumping;
+
 	//en la carrera muktiplayer:
 	//public int position;
 	Rigidbody rb;
@@ -61,6 +65,13 @@ public class CharacterBehavior : MonoBehaviour {
 	void Awake () {
 		rb = GetComponent<Rigidbody> ();
 	}
+
+	public void OnAvatarJump()
+	{
+		startJumping = Time.time;
+		grounded = false;
+	}
+
 	void Start () {
 		
 		characterMovement = GetComponent<CharacterMovement> ();
@@ -92,7 +103,7 @@ public class CharacterBehavior : MonoBehaviour {
 		//if(Data.Instance.isArcadeMultiplayer)
 		//_animation_hero.Play("saluda");
 
-		state = states.JUMP;
+		state = states.RUN;
 		Run ();
 
 		if (Data.Instance.playMode == Data.PlayModes.VERSUS) {
@@ -175,7 +186,7 @@ public class CharacterBehavior : MonoBehaviour {
 	void StartMultiplayerRace()
 	{
 		controls.EnabledMovements (true);
-		state = states.JUMP;
+		state = states.RUN;
 		Run();
 		Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.ENGINES, player.id);
 	}
@@ -192,6 +203,15 @@ public class CharacterBehavior : MonoBehaviour {
 	{
 		if (state == states.DEAD)
 			return;
+
+		if (!grounded &&  startJumping + 0.2f < Time.time ) {
+			Vector3 pos = transform.position;
+			pos.y += 1;
+			grounded = Physics.Linecast (pos, groundCheck.position, 1 << LayerMask.NameToLayer ("Floor"));
+			if(grounded)
+				OnFloor();
+		}
+
 		characterMovement.UpdateByController (rotationY);
 	}
 
@@ -231,12 +251,19 @@ public class CharacterBehavior : MonoBehaviour {
 	{
 		if (state == states.DEAD) return;
 		if (state == states.IDLE) return;
-		if(state == states.RUN) return;
-		Data.Instance.events.OnMadRollerFX (MadRollersSFX.types.TOUCH_GROUND, player.id);
+
+	//	print ("___________OnFloor");
+
+		jumpsNumber = 0;
 		state = states.RUN;
+
+		if(state == states.RUN) return;
+
+		Data.Instance.events.OnMadRollerFX (MadRollersSFX.types.TOUCH_GROUND, player.id);
+
 		_animation_hero.Play("floorHit");
 		Invoke ("OnFloorDone", 0.5f);
-		jumpsNumber = 0;
+
 	}
 	void OnFloorDone()
 	{
@@ -281,40 +308,41 @@ public class CharacterBehavior : MonoBehaviour {
 	}
 	public void Jetpack()
 	{
-		return;
-		if (state == states.JETPACK) return;
-
-		_animation_hero.transform.localEulerAngles = new Vector3(40, 0, 0);
-		_animation_hero.Play("jetPack");
-
-		floorCollitions.OnAvatarFly();
-		state = states.JETPACK;
-		player.transport.SetOn();
+//		return;
+//		if (state == states.JETPACK) return;
+//
+//		_animation_hero.transform.localEulerAngles = new Vector3(40, 0, 0);
+//		_animation_hero.Play("jetPack");
+//
+//		floorCollitions.OnAvatarFly();
+//		state = states.JETPACK;
+//		player.transport.SetOn();
 	}
 	public void JetpackOff()
 	{
-		_animation_hero.transform.localEulerAngles = new Vector3(20, 0, 0);
-		floorCollitions.OnAvatarFalling();
-
-		if (player.transport)
-			player.transport.SetOff();
-
-		jumpsNumber = 0;
-		Run();
+//		_animation_hero.transform.localEulerAngles = new Vector3(20, 0, 0);
+//		floorCollitions.OnAvatarFalling();
+//
+//		if (player.transport)
+//			player.transport.SetOff();
+//
+//		jumpsNumber = 0;
+//		Run();
 	}
 	public void ResetJump()
 	{
 		if (state == states.DEAD) return;
-		state = states.JUMP;
+		//print ("ResetJump");
+		state = states.RUN;
 		jumpsNumber = 0;
 	}
 	public void Jump()
 	{
-		if (Game.Instance.state ==  Game.states.INTRO)
-			return;
-		if (state == states.DEAD) return;
-		if (state == states.SUPERJUMP) return;
+		if (Game.Instance.state == Game.states.INTRO || state == states.DEAD || state == states.SUPERJUMP) 
+			return;	
 
+		//print ("startJumping :" + startJumping + "  Time.time: " + Time.time + "   jumpsNumber: " + jumpsNumber+ " state: " + state);
+		
 		if (hasSomeoneOver != null)
 			OnGetRidOfOverAvatar();
 		else if (isOver != null)
@@ -323,30 +351,28 @@ public class CharacterBehavior : MonoBehaviour {
 		if (player.transport != null && player.transport.isOn) return;
 
 		jumpsNumber++;
-		if (jumpsNumber > 4) return;
+		if (jumpsNumber > 2) return;
 
-		if(!controls.isAutomata)
-			data.events.OnAvatarJump (player.id);
+	//	if(!controls.isAutomata)
+	//		data.events.OnAvatarJump (player.id);
 
 		if (state == states.JUMP)
 		{
-			SuperJump(superJumpHeight, true);
-			return;
+			if (startJumping + 0.2f < Time.time) 
+				SuperJump (superJumpHeight, true);
+			
+			return;			
 		}
 		else if(state != states.RUN && state != states.SHOOT)
 		{
 			return;
 		}
-		//if (!player.canJump) return;
 		if(state == states.JUMP) return;
 
 		rb.velocity = Vector3.zero;
-		floorCollitions.OnAvatarJump();
+		OnAvatarJump();
 
 		Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.JUMP, player.id);
-
-		//
-		//	data.events.OnAvatarJump(player.id);
 
 		rb.AddForce(new Vector3(0, jumpHeight, 0), ForceMode.Impulse);
 
@@ -378,10 +404,8 @@ public class CharacterBehavior : MonoBehaviour {
 		
 		rb.velocity = Vector3.zero;
 
-		floorCollitions.OnAvatarJump();
+		OnAvatarJump();
 		Data.Instance.events.OnMadRollerFX (MadRollersSFX.types.DOUBLE_JUMP, player.id);
-
-		//data.events.AvatarJump();
 
 		int rand = Random.Range (0, 10);
 		if(rand<5)
@@ -391,6 +415,7 @@ public class CharacterBehavior : MonoBehaviour {
 
 		rb.AddForce( new Vector3(0, (_superJumpHeight ) - (jumpHeight / 10), 0)*velocityY, ForceMode.Impulse);
 		state = states.DOUBLEJUMP;
+	//	print ("SuperJump");
 	}
 
 	public void SuperJumpByBumped(int force , float offsetY, bool dir_forward)
@@ -398,8 +423,8 @@ public class CharacterBehavior : MonoBehaviour {
 		if (!GetComponent<Collider>().enabled)
 			return;
 		ResetColliders();
-		floorCollitions.OnAvatarJump();
-		//data.events.AvatarJump();
+		OnAvatarJump();
+
 		Vector3 pos = transform.localPosition;
 		pos.y += offsetY;
 		transform.localPosition = pos;
@@ -480,11 +505,11 @@ public class CharacterBehavior : MonoBehaviour {
 	}
 
 
-	public void burned(float damage)
-	{
-		//player.removeEnergy(damage);
-		SuperJump( jumpHeight );
-	}
+//	public void burned(float damage)
+//	{
+//		//player.removeEnergy(damage);
+//		SuperJump( jumpHeight );
+//	}
 
 	void OnCollisionEnter(Collision other)
 	{

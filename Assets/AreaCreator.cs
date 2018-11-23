@@ -52,7 +52,6 @@ public class AreaCreator : MonoBehaviour {
 		int totalCoins = 0;
 		foreach (Transform t in area.GetComponentsInChildren<Transform>()) {
 			if (t.tag == "sceneObject") {
-				print (t.name);
 				AddSceneObjectToFile (t.gameObject);
 				if (t.name == "Coin" || t.name == "bloodx1")
 					totalCoins++;
@@ -63,7 +62,6 @@ public class AreaCreator : MonoBehaviour {
 		a.totalCoins = totalCoins;
 		a.z_length = areaReal.z_length;
 		string json = JsonUtility.ToJson (a);
-		//using (FileStream fs = new FileStream ("Assets/Resources/areas/_______.json", FileMode.Create)) {
 		using (FileStream fs = new FileStream ("Assets/Resources/areas/" + area.name + ".json", FileMode.Create)) {
 			using (StreamWriter writer = new StreamWriter (fs)) {
 				writer.Write (json);
@@ -87,14 +85,7 @@ public class AreaCreator : MonoBehaviour {
 		newSOdata.pos.z = float.Parse(go.transform.position.z.ToString("F2"));
 
 		newSOdata.rot = go.transform.eulerAngles;
-		//newSOdata.rot = RoundVector3(newSOdata.rot);
-		print (newSOdata.rot);
 
 		data.Add (newSOdata);
-		print ("newSOdata.pos.x: " + newSOdata.pos.x);
 	}
-//	Vector3 RoundVector3(Vector3 v)
-//	{
-//		return new Vector3( (float)System.Math.Round(v.x,2), (float)System.Math.Round(v.y,2), (float)System.Math.Round(v.z,2) );
-//	}
 }

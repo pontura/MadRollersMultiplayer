@@ -43,8 +43,9 @@ GameObject:
   m_Component:
   - component: {fileID: 429564}
   - component: {fileID: 3364128}
-  - component: {fileID: 11429352}
-  - component: {fileID: 13515790}
+  - component: {fileID: 23135728960094896}
+  - component: {fileID: 114958953666235222}
+  - component: {fileID: 135167753178816334}
   m_Layer: 19
   m_Name: floorCollitions
   m_TagString: Player
@@ -191,8 +192,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 153942}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.3, z: 0.16}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.83, z: -0.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 459580}
@@ -443,7 +444,7 @@ MonoBehaviour:
   _animation_hero: {fileID: 111172978436860100}
   speed: 0
   colliders: []
-  floorCollitions: {fileID: 11429352}
+  floorCollitions: {fileID: 0}
   state: 0
   hasSomeoneOver: {fileID: 0}
   isOver: {fileID: 0}
@@ -455,18 +456,8 @@ MonoBehaviour:
   model: {fileID: 0}
   data: {fileID: 0}
   jumpsNumber: 0
---- !u!114 &11429352
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 153942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae86ba83c0475a545a5540c55a023fbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: 0
+  groundCheck: {fileID: 429564}
+  grounded: 0
 --- !u!114 &11475116
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -539,18 +530,6 @@ MonoBehaviour:
   isAutomata: 0
   childs: []
   ControlsEnabled: 1
---- !u!135 &13515790
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 153942}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.2
-  m_Center: {x: 0, y: 0.66, z: -0.24}
 --- !u!135 &13598294
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -8010,6 +7989,41 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!23 &23135728960094896
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 153942}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!23 &23137554807806446
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -11201,6 +11215,18 @@ MonoBehaviour:
   - {fileID: 1445148943844360}
   - {fileID: 1124865499545398}
   - {fileID: 1822818095843604}
+--- !u!114 &114958953666235222
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 153942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae86ba83c0475a545a5540c55a023fbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterBehavior: {fileID: 11414192}
 --- !u!114 &114997544682646014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11234,6 +11260,18 @@ Projector:
   m_IgnoreLayers:
     serializedVersion: 2
     m_Bits: 4294967039
+--- !u!135 &135167753178816334
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 153942}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.89
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &198036800033654258
 ParticleSystem:
   m_ObjectHideFlags: 1

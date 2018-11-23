@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4971013043577128}
   - component: {fileID: 33718446747195096}
   - component: {fileID: 23591534246104776}
+  - component: {fileID: 114462162567384096}
   m_Layer: 0
   m_Name: BossCreator
   m_TagString: sceneObject
@@ -83,3 +84,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1396955462274316}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114462162567384096
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1396955462274316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9547058d7c35e3245ae66c9c535a7952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossModule: 
+  time_to_init_enemies: 0
+  asset: 
+  distance_from_avatars: 12
+  time_to_kill: 20

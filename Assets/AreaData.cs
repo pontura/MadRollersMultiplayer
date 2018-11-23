@@ -5,7 +5,9 @@ using System;
 
 [Serializable]
 public class AreaData {
+	
 	public int totalCoins;
 	public float z_length;
 	public List<AreaSceneObjectData> data;
+
 }

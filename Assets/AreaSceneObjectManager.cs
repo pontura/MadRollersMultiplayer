@@ -18,6 +18,7 @@ public class AreaSceneObjectManager : MonoBehaviour {
 			SceneObjectDataGeneric data = new SceneObjectDataGeneric ();
 			data.size = soData.size;
 			data.random_pos_x = soData.random_pos_x;
+			data.minPayers = soData.minPayers;
 			newSOdata.soData.Add (data);
 		} 
 		if (bumper != null) {
@@ -64,6 +65,7 @@ public class AreaSceneObjectManager : MonoBehaviour {
 	{
 		if (jsonData.soData.Count > 0) {
 			SceneObjectDataGeneric data = jsonData.soData [0];
+
 			if (data.bumperForce > 0) {
 				Bumper newcomponent = so.GetComponent<Bumper> ();
 				if(newcomponent == null)
@@ -75,12 +77,21 @@ public class AreaSceneObjectManager : MonoBehaviour {
 				if(newcomponent == null)
 					newcomponent = so.gameObject.AddComponent<SceneObjectData> ();
 				newcomponent.size = data.size;
+
 			}
 			if (data.random_pos_x != 0) {
 				SceneObjectData newcomponent = so.GetComponent<SceneObjectData> ();
 				if(newcomponent == null)
 					newcomponent = so.gameObject.AddComponent<SceneObjectData> ();
+
 				newcomponent.random_pos_x = data.random_pos_x;
+			}
+			if (data.minPayers != 0) {
+				SceneObjectData newcomponent = so.GetComponent<SceneObjectData> ();
+				if(newcomponent == null)
+					newcomponent = so.gameObject.AddComponent<SceneObjectData> ();
+
+				newcomponent.minPayers = data.minPayers;
 			}
 		}
 		if (jsonData.fullRotationData.Count > 0) {

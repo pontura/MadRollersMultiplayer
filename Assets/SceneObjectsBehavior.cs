@@ -315,112 +315,40 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			{
 				sceneObject = Instantiate(clone, pos, Quaternion.identity) as SceneObject;
 				sceneObject.transform.localEulerAngles = go.rot;
-
-//				if (go.GetComponent<BossSettings>())
-//				{
-//					BossSettings mo = go.GetComponent<BossSettings>();
-//					CopyComponent(mo, sceneObject.gameObject);
-//				}
-
-			//	sceneObject.Restart(pos);
 			}
 			if (sceneObject == null)
 				Debug.Log (go.name + "_______________ (No existe) " );
 			else
 				areaSceneObjectManager.AddComponentsToSceneObject (go, sceneObject.gameObject);
-//			if (go.GetComponent<Move>() && sceneObject.GetComponent<Move>() == null)
-//			{
-//				Move mo = go.GetComponent<Move>();
-//				CopyComponent(mo, sceneObject.gameObject);
-//			}
-//			if (go.GetComponent<MoveObject>())
-//			{
-//				MoveObject mo = go.GetComponent<MoveObject>();
-//				CopyComponent(mo, sceneObject.gameObject);
-//			}
-//			if (go.GetComponent<Dropper>())
-//			{
-//				Dropper mo = go.GetComponent<Dropper>();
-//				CopyComponent(mo, sceneObject.gameObject);
-//			}
-//
-//			if (go.GetComponent<EnemyPathRunnerBehavior>())
-//			{
-//				EnemyPathRunnerBehavior mo = go.GetComponent<EnemyPathRunnerBehavior>();
-//				CopyComponent(mo, sceneObject.gameObject);
-//			}
-//			if (go.GetComponent<EnemyRunnerBehavior>())
-//			{
-//				EnemyRunnerBehavior mo = go.GetComponent<EnemyRunnerBehavior>();
-//				CopyComponent(mo, sceneObject.gameObject);
-//			}
-//			if (go.GetComponent<Jump>())
-//			{
-//				Jump mo = go.GetComponent<Jump>();
-//				CopyComponent(mo, sceneObject.gameObject);
-//			}
-//			if (go.GetComponent<EnemyPathsMultiples>())
-//			{
-//				EnemyPathsMultiples mo = go.GetComponent<EnemyPathsMultiples>();
-//				CopyComponent(mo, sceneObject.gameObject);
-//			}
-//			if (go.GetComponent<Subibaja>())
-//			{
-//				Subibaja mo = go.GetComponent<Subibaja>();
-//				CopyComponent(mo, sceneObject.gameObject);
-//			}
-//
-//			if (go.GetComponent<ListenerDispatcher>())
-//			{
-//				ListenerDispatcher mo = go.GetComponent<ListenerDispatcher>();
-//				CopyComponent(mo, sceneObject.gameObject);
-//			}
-//			if (go.GetComponent<FlyingBehavior>())
-//			{
-//				FlyingBehavior mo = go.GetComponent<FlyingBehavior>();
-//				CopyComponent(mo, sceneObject.gameObject);
-//			}
-//			if (go.GetComponent<FullRotation>())
-//			{
-//				FullRotation mo = go.GetComponent<FullRotation>();
-//				CopyComponent(mo, sceneObject.gameObject);
-//			}
-//			if (go.GetComponent<Bumper>())
-//			{
-//				Bumper mo = go.GetComponent<Bumper>();
-//				CopyComponent(mo, sceneObject.gameObject);
-//			}
-//			if (go.GetComponent<RandomPosition>())
-//			{
-//				RandomPosition mo = go.GetComponent<RandomPosition>();
-//				pos = mo.getPosition(pos);
-//			}
-//			if (go.GetComponent<SceneObjectData>())
-//			{
-//				SceneObjectData mo = go.GetComponent<SceneObjectData>();
-//				CopyComponent(mo, sceneObject.gameObject);
-//			}
+			
 
 			if (sceneObject != null) {
-
+				bool canBeDisplayed = true;
 				SceneObjectData soData = sceneObject.GetComponent<SceneObjectData> ();
-				if (soData != null && soData.random_pos_x != 0) {
-					pos.x += Random.Range (-soData.random_pos_x, soData.random_pos_x);
+
+				if (soData != null )
+				{
+					if(soData.minPayers > 0 && soData.minPayers > Game.Instance.level.charactersManager.getTotalCharacters ()) {
+						canBeDisplayed = false;
+					} else  if (soData.random_pos_x != 0) {
+						pos.x += Random.Range (-soData.random_pos_x, soData.random_pos_x);
+					}
+				}
+				if (canBeDisplayed) {
+					if (lastSceneObjectContainer != null && go.isChild)
+						manager.AddSceneObject (sceneObject, pos, lastSceneObjectContainer);
+					else
+						manager.AddSceneObject (sceneObject, pos);
+				} else {
+					//print(sceneObject.name +  "   ----------   no hay suficientes jugadores para soportar este objeto");
 				}
 
-				if (lastSceneObjectContainer != null && go.isChild)
-					manager.AddSceneObject (sceneObject, pos, lastSceneObjectContainer);
-				else
-					manager.AddSceneObject (sceneObject, pos);
 			}
 
 			if (go.name == "Container") {
 				lastSceneObjectContainer = sceneObject.transform;
 			}
-
 		}
-			//AddBorders ();
-		//Debug.LogError (" borderTransforms.Count " + borderTransforms.Count);
 	}
 	Transform lastSceneObjectContainer;
 
@@ -443,9 +371,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			return;
 		pos.z += offset.z;
 		pos.x += offset.x;
-		//newSceneObject.Restart (pos);
 		manager.AddSceneObject (newSceneObject, pos);
-		//newSceneObject.SetMaterialByVideoGame ();
 	}
 
 	public void deleteAll()
