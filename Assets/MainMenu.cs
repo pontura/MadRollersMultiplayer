@@ -47,17 +47,9 @@ public class MainMenu : MonoBehaviour {
 
 		if(Data.Instance.isArcadeMultiplayer)
 		{
-			if(Data.Instance.playMode == Data.PlayModes.COMPETITION)
-				activeID = 0;
-			else
-				activeID = 1;			
+			activeID = 0;		
 		} else{
-			if (Data.Instance.playMode == Data.PlayModes.STORY)
-				activeID = 0;
-			else if (Data.Instance.playMode == Data.PlayModes.COMPETITION)
-				activeID = 1;
-			else
-				activeID = 2;
+			activeID = 1;
 		}
 		SetButtons ();
 		activeButton.SetOn (true);
@@ -137,19 +129,19 @@ public class MainMenu : MonoBehaviour {
 	void MissionsScene()
 	{
 		Reset ();
-		Data.Instance.playMode = Data.PlayModes.STORY;
+		//Data.Instance.playMode = Data.PlayModes.STORY;
 		Data.Instance.LoadLevel("LevelSelector");
 	}
 	void Compite()
 	{
 		Reset ();
-		Data.Instance.playMode = Data.PlayModes.COMPETITION;
+		//Data.Instance.playMode = Data.PlayModes.COMPETITION;
 		Data.Instance.LoadLevel("LevelSelector");
 	}
 	void Versus()
 	{
 		Reset ();
-		Data.Instance.playMode = Data.PlayModes.VERSUS;
+		//Data.Instance.playMode = Data.PlayModes.VERSUS;
 		Data.Instance.LoadLevel("LevelSelector");
 	}
 

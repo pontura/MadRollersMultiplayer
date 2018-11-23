@@ -17,11 +17,6 @@ public class MissionSignal : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if (Data.Instance.playMode == Data.PlayModes.COMPETITION  && 1==2)
-        {
-            Destroy(gameObject);
-            return;
-        }
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
 		Data.Instance.events.OnShowTutorial += OnShowTutorial;
         Data.Instance.events.OnAvatarFall += OnAvatarCrash;

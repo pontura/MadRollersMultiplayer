@@ -71,8 +71,8 @@ public class Data : MonoBehaviour {
     public PlayModes playMode;
     public enum PlayModes
     {
-        STORY,
-        COMPETITION,
+        STORYMODE,
+		PARTYMODE,
 		VERSUS
 	//	GHOSTMODE
     }
@@ -108,6 +108,7 @@ public class Data : MonoBehaviour {
 		DontDestroyOnLoad(this);
         
 		if (LevelDataDebug.Instance) {
+			playMode = PlayModes.STORYMODE;
 			DEBUG = LevelDataDebug.Instance.isDebbug;
 			this.forceVideogameID = LevelDataDebug.Instance.videogameID;
 			this.forceMissionID = LevelDataDebug.Instance.missionID;
@@ -173,24 +174,24 @@ public class Data : MonoBehaviour {
 
 		int idByVideogame = missions.GetActualMissionByVideogame ();
 
-		if (playMode == PlayModes.COMPETITION)
-        {
+//		if (playMode == PlayModes.COMPETITION)
+//        {
             SocialEvents.OnMissionReady(num);
-        }
-        else
-        {
-			VideogameData vdata = videogamesData.GetActualVideogameData ();
-//			MissionData mission = Data.Instance.missions.allMissionsByVideogame[vdata.id].data[num];
-//			if (vdata.id==0 &&  num > levelUnlocked_level_1)
-//            {
-//				levelUnlocked_level_1 = idByVideogame;
-//				PlayerPrefs.SetInt("levelUnlocked_level_1", idByVideogame);
-//			} else if (vdata.id==1 &&  num > levelUnlocked_level_2)
-//			{
-//				levelUnlocked_level_2 = idByVideogame;
-//				PlayerPrefs.SetInt("levelUnlocked_level_2", idByVideogame);
-//			}
-        }
+//        }
+//        else
+//        {
+//			VideogameData vdata = videogamesData.GetActualVideogameData ();
+////			MissionData mission = Data.Instance.missions.allMissionsByVideogame[vdata.id].data[num];
+////			if (vdata.id==0 &&  num > levelUnlocked_level_1)
+////            {
+////				levelUnlocked_level_1 = idByVideogame;
+////				PlayerPrefs.SetInt("levelUnlocked_level_1", idByVideogame);
+////			} else if (vdata.id==1 &&  num > levelUnlocked_level_2)
+////			{
+////				levelUnlocked_level_2 = idByVideogame;
+////				PlayerPrefs.SetInt("levelUnlocked_level_2", idByVideogame);
+////			}
+//        }
 	}
     public void resetProgress()
     {

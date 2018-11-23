@@ -106,13 +106,13 @@ public class UserData : MonoBehaviour {
 
     void OnSetStarsToMission(int missionId, int starsQty)
     {
-		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) return;
-
-        if (stars[missionId] < starsQty)
-        {
-            PlayerPrefs.SetInt("stars_level_" + missionId, starsQty);
-            stars[missionId] = starsQty;
-        }
+//		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) return;
+//
+//        if (stars[missionId] < starsQty)
+//        {
+//            PlayerPrefs.SetInt("stars_level_" + missionId, starsQty);
+//            stars[missionId] = starsQty;
+//        }
     }
     public int GetStars(int MissionID)
     {

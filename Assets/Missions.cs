@@ -110,9 +110,9 @@ public class Missions : MonoBehaviour {
 	}
 	bool CanComputeMission()
 	{
-		if (Data.Instance.playMode == Data.PlayModes.STORY || Data.Instance.playMode == Data.PlayModes.COMPETITION)
+		//if (Data.Instance.playMode == Data.PlayModes.STORY || Data.Instance.playMode == Data.PlayModes.COMPETITION)
 			return true;
-		return false;
+	//	return false;
 	}
 
 	public int GetActualMissionByVideogame()

@@ -88,10 +88,6 @@ public class CharacterBehavior : MonoBehaviour {
 			rb.mass = 100;
 			rb.isKinematic = false;
 		}
-		
-
-
-
 
 		data.events.OnVersusTeamWon += OnVersusTeamWon;
 		data.events.OnAvatarProgressBarEmpty += OnAvatarProgressBarEmpty;
@@ -99,9 +95,6 @@ public class CharacterBehavior : MonoBehaviour {
 
 		data.events.StartMultiplayerRace += StartMultiplayerRace;
 
-
-		//if(Data.Instance.isArcadeMultiplayer)
-		//_animation_hero.Play("saluda");
 
 		state = states.RUN;
 		Run ();
@@ -113,9 +106,9 @@ public class CharacterBehavior : MonoBehaviour {
 
 
 
-		//DEBUG: para que el player 1 nunca muera
+//DEBUG: para que el player ultimo nunca muera
 		#if UNITY_EDITOR
-		if(player.id == 0)
+		if(player.id == 3)
 		{
 		rb.isKinematic = true;
 		rb.useGravity = false;
@@ -126,7 +119,9 @@ public class CharacterBehavior : MonoBehaviour {
 			pos.y = 1;
 			transform.localPosition = pos;
 		}
-		#endif
+#endif
+
+
 	}
 	void OnDestroy ()
 	{
@@ -243,6 +238,7 @@ public class CharacterBehavior : MonoBehaviour {
 			rb.useGravity = true;
 		
 		rb.velocity = Vector3.zero;
+		transform.localEulerAngles = Vector3.zero;
 		rb.freezeRotation = true;
 		state = states.RUN;
 		Run();

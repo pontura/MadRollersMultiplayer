@@ -48,21 +48,18 @@ public class JoystickPlayer : MonoBehaviour {
 		state = states.GAME_OVER;
 		dead.SetActive (false);
 		insertCoin.SetActive (false);
+	
+		int score_player = Data.Instance.multiplayerData.GetScore(playerID);
 
-		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {
-			
-			int score_player = Data.Instance.multiplayerData.GetScore(playerID);
+		int total = Data.Instance.multiplayerData.GetTotalScore();
 
-			int total = Data.Instance.multiplayerData.GetTotalScore();
-
-			if (score_player > 0) {
-				Vector2 pos =  transform.localPosition;
-				int positionByScore = Data.Instance.multiplayerData.GetPositionByScore (playerID);
-				pos.y -= positionByScore * 2;
-				transform.localPosition = pos;
-				int perc = score_player * 100 / total;
-				SetFields (positionByScore, perc.ToString () + "%");
-			}
+		if (score_player > 0) {
+			Vector2 pos =  transform.localPosition;
+			int positionByScore = Data.Instance.multiplayerData.GetPositionByScore (playerID);
+			pos.y -= positionByScore * 2;
+			transform.localPosition = pos;
+			int perc = score_player * 100 / total;
+			SetFields (positionByScore, perc.ToString () + "%");
 		}
 	}
 	public void RefreshStates() {	

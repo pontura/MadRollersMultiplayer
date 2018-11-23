@@ -13,9 +13,8 @@ public class Continue : MonoBehaviour {
 	void Start () {
 		canClick = false;
 		panel.SetActive (false);
-		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {			
-			Data.Instance.events.OnGameOver += OnGameOver;
-		}
+		Data.Instance.events.OnGameOver += OnGameOver;
+
 	}
 	void Update()
 	{
@@ -55,7 +54,10 @@ public class Continue : MonoBehaviour {
 		Data.Instance.isReplay = false;
 		CancelInvoke ();
 		Data.Instance.events.OnResetLevel();
-		Data.Instance.LoadLevel ("Hiscores");
+		if(Data.Instance.playMode == Data.PlayModes.PARTYMODE)
+			Data.Instance.LoadLevel ("Hiscores");
+		else 
+			Data.Instance.LoadLevel ("MainMenu");
 	}
 	public void Loop()
 	{

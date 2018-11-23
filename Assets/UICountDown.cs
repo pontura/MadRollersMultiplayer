@@ -13,7 +13,7 @@ public class UICountDown : MonoBehaviour {
 
 	void Start () {	
 		panel.SetActive (false);	
-		if (Data.Instance.playMode == Data.PlayModes.STORY || Data.Instance.isReplay)
+		if (Data.Instance.isReplay)
 			return;
 		
 		Data.Instance.events.OnAddNewPlayer += OnAddNewPlayer;

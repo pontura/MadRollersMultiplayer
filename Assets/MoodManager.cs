@@ -28,8 +28,5 @@ public class MoodManager : MonoBehaviour {
     public void Changes(int id)
     {
 		return;
-
-		if(Data.Instance.playMode == Data.PlayModes.COMPETITION )
-			Data.Instance.events.OnChangeMood(id);
     }
 }

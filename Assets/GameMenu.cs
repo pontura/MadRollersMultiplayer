@@ -62,7 +62,7 @@ public class GameMenu : MonoBehaviour {
     }
     public void Compite()
     {
-        Data.Instance.playMode = Data.PlayModes.COMPETITION;
+        //Data.Instance.playMode = Data.PlayModes.COMPETITION;
         Data.Instance.events.OnResetLevel();
         SocialEvents.OnGetHiscores(1);
         Data.Instance.LoadLevel("Competitions");
@@ -70,7 +70,7 @@ public class GameMenu : MonoBehaviour {
     }
     public void Misiones()
     {
-        Data.Instance.playMode = Data.PlayModes.STORY;
+       // Data.Instance.playMode = Data.PlayModes.STORY;
         Data.Instance.events.OnResetLevel();
         Data.Instance.LoadLevel("LevelSelector");
         Close();

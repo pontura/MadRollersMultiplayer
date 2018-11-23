@@ -79,7 +79,7 @@ public class UIVersus : MonoBehaviour {
 			Data.Instance.LoadLevelNotFading ("LevelSelector");
 		} else {	
 			Data.Instance.versusManager.ResetScores ();
-			Data.Instance.playMode = Data.PlayModes.COMPETITION;
+		//	Data.Instance.playMode = Data.PlayModes.COMPETITION;
 			Data.Instance.LoadLevelNotFading ("LevelSelector");
 		}
 	}

@@ -74,6 +74,13 @@ public class MissionBar : MonoBehaviour {
 	{
 		if (timer == 0)
 			timer = 50;
+		
+		if(Game.Instance.level.charactersManager.getTotalCharacters()==1)
+			timer *= 2;
+		
+		if (timer > 60)
+			timer = 60;	
+
 		sec = timer;
 
 		field.color = Color.white;

@@ -96,6 +96,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	private void resetGO(GameObject go) {
 		go.GetComponentInChildren<Renderer>().enabled = true;
 	}
+
 	public void AddSceneObjects(AreaData areaData, float z_length)
 	{
 		//print (area.name + " AREA");
@@ -103,8 +104,8 @@ public class SceneObjectsBehavior : MonoBehaviour {
 
 		foreach (AreaSceneObjectData go in areaData.data)
 		{
-			if (go == null)
-				break;
+			if (!canBeDisplayed(go)) 
+				continue;
 			SceneObject sceneObject = null;
 			Vector3 pos = go.pos;
 			pos.z += z_length;
@@ -323,26 +324,19 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			
 
 			if (sceneObject != null) {
-				bool canBeDisplayed = true;
 				SceneObjectData soData = sceneObject.GetComponent<SceneObjectData> ();
 
 				if (soData != null )
 				{
-					if(soData.minPayers > 0 && soData.minPayers > Game.Instance.level.charactersManager.getTotalCharacters ()) {
-						canBeDisplayed = false;
-					} else  if (soData.random_pos_x != 0) {
+					if (soData.random_pos_x != 0) {
 						pos.x += Random.Range (-soData.random_pos_x, soData.random_pos_x);
 					}
 				}
-				if (canBeDisplayed) {
-					if (lastSceneObjectContainer != null && go.isChild)
-						manager.AddSceneObject (sceneObject, pos, lastSceneObjectContainer);
-					else
-						manager.AddSceneObject (sceneObject, pos);
-				} else {
-					//print(sceneObject.name +  "   ----------   no hay suficientes jugadores para soportar este objeto");
-				}
-
+				if (lastSceneObjectContainer != null && go.isChild)
+					manager.AddSceneObject (sceneObject, pos, lastSceneObjectContainer);
+				else
+					manager.AddSceneObject (sceneObject, pos);
+				
 			}
 
 			if (go.name == "Container") {
@@ -381,6 +375,18 @@ public class SceneObjectsBehavior : MonoBehaviour {
 		{
 			Destroy(go);
 		}
+	}
+
+	bool canBeDisplayed(AreaSceneObjectData go)
+	{
+		if (go == null)
+			return false;
+		if (go.soData.Count > 0) {
+			SceneObjectDataGeneric data = go.soData [0];
+			if (data.minPayers > 0 && data.minPayers > Game.Instance.level.charactersManager.getTotalCharacters ())
+				return false;
+		}
+		return true;
 	}
 
 }

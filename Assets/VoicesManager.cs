@@ -78,16 +78,16 @@ public class VoicesManager : MonoBehaviour
     }
     private void OnListenerDispatcher(string message)
     {
-		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) return;
-        if (message == "ShowMissionId")
-        {
-			
-        }
-		else if (message == "ShowMissionName")
-		{
-//			if(Data.Instance.missions.MissionActive.voices.Count > 0)
-//				PlaySequence (Data.Instance.missions.MissionActive.voices);
-		}
+//		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) return;
+//        if (message == "ShowMissionId")
+//        {
+//			
+//        }
+//		else if (message == "ShowMissionName")
+//		{
+////			if(Data.Instance.missions.MissionActive.voices.Count > 0)
+////				PlaySequence (Data.Instance.missions.MissionActive.voices);
+//		}
     }
 	int sequenceID = 0;
 	bool onSequence = false;

@@ -53,10 +53,7 @@ public class ArcadeUILevelTransitions : MonoBehaviour {
         {
             StopAllCoroutines();
 
-			if (Data.Instance.playMode == Data.PlayModes.STORY) 
-				StartCoroutine(DoFade(0f, 3f));
-			else
-           		 StartCoroutine(DoFade(0.2f, 0.25f));
+			StartCoroutine(DoFade(0.2f, 0.25f));
 			
             panel.SetActive(true);
             foreach (Text field in texts.GetComponentsInChildren<Text>())
@@ -100,26 +97,26 @@ public class ArcadeUILevelTransitions : MonoBehaviour {
 
         panel.SetActive(true);
         //  panel.GetComponent<Animation>().Play("levelTransition");
-		if (Data.Instance.playMode == Data.PlayModes.STORY) {
-			SetTexts ("STAGE CLEAR!", "");
-		} else {
-			// StartCoroutine(DoFade());
-			foreach (Text field in texts.GetComponentsInChildren<Text>())
-				field.text = "Nivel " + (level + 1).ToString ();
-			foreach (Text field in texts2.GetComponentsInChildren<Text>()) {
-				switch (Game.Instance.level.Dificulty) {
-				case Level.Dificult.EASY:
-					field.text = "modo FáCIL";
-					break;
-				case Level.Dificult.MEDIUM:
-					field.text = "dificultad MEDIA";
-					break;
-				case Level.Dificult.HARD:
-					field.text = "modo EXTREMO!";
-					break;
-				}
-			}
-		}
+//		if (Data.Instance.playMode == Data.PlayModes.STORY) {
+//			SetTexts ("STAGE CLEAR!", "");
+//		} else {
+//			// StartCoroutine(DoFade());
+//			foreach (Text field in texts.GetComponentsInChildren<Text>())
+//				field.text = "Nivel " + (level + 1).ToString ();
+//			foreach (Text field in texts2.GetComponentsInChildren<Text>()) {
+//				switch (Game.Instance.level.Dificulty) {
+//				case Level.Dificult.EASY:
+//					field.text = "modo FáCIL";
+//					break;
+//				case Level.Dificult.MEDIUM:
+//					field.text = "dificultad MEDIA";
+//					break;
+//				case Level.Dificult.HARD:
+//					field.text = "modo EXTREMO!";
+//					break;
+//				}
+//			}
+//		}
 
         level++;
         ready = true;

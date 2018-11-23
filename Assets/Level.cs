@@ -214,14 +214,7 @@ public class Level : MonoBehaviour {
 
         }
 
-		if ((Data.Instance.playMode == Data.PlayModes.STORY && Data.Instance.missions.MissionActiveID<7) 
-            || !powerupsManager.CanBeThrown() 
-            || Random.Range(0, 100) > 50
-            || charactersManager.getDistance()<300
-            )
-            AddHeartsByBreaking(position, 12, 450);
-        else
-            Data.Instance.events.OnAddPowerUp(position);
+		Data.Instance.events.OnAddPowerUp(position);
 	}
 	public void OnAddHeartsByBreaking(Vector3 position, Material[] mat, Vector3[] pos)
 	{

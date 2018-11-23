@@ -200,7 +200,7 @@ public class CharactersManager : MonoBehaviour {
         pos.y += 3;
         pos.x = 0;
 
-		if(Data.Instance.playMode == Data.PlayModes.COMPETITION && distance<40)
+		if(distance<40)
 			pos.x = (3.5f * id) - (5.3f);
 		
         addCharacter(pos, id);

@@ -29,8 +29,6 @@ public class JoysticksCanvas : MonoBehaviour {
 		foreach (JoystickPlayer jp in players)
 			jp.OnGameOver (false);
 
-		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) {
-		}
 	}
 	public void RefreshStates() 
 	{

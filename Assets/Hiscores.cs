@@ -68,9 +68,9 @@ public class Hiscores : MonoBehaviour {
     void OnFinalDistance(float score)
     {
 		return;
-        if (Data.Instance.playMode == Data.PlayModes.STORY) return;
-        int competitionID = Data.Instance.competitions.GetCurrentCompetition();
-        checkToSaveHiscore(competitionID, score);
+      //  if (Data.Instance.playMode == Data.PlayModes.STORY) return;
+//        int competitionID = Data.Instance.competitions.GetCurrentCompetition();
+//        checkToSaveHiscore(competitionID, score);
     }
     void checkToSaveHiscore(int competitionID, float score)
     {

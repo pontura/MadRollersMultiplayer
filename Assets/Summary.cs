@@ -18,10 +18,10 @@ public class Summary : MonoBehaviour {
     void Start()
     {
         panel.SetActive(false);
-		if (Data.Instance.playMode == Data.PlayModes.STORY) {		
-			Data.Instance.events.OnGameOver += OnGameOver;
-			Data.Instance.events.OnFireUI += OnFireUI;
-		}
+//		if (Data.Instance.playMode == Data.PlayModes.STORY) {		
+//			Data.Instance.events.OnGameOver += OnGameOver;
+//			Data.Instance.events.OnFireUI += OnFireUI;
+//		}
     }
 	void OnFireUI()
 	{
@@ -52,8 +52,8 @@ public class Summary : MonoBehaviour {
 	}
 	public void Restart()
 	{
-		if(Data.Instance.playMode == Data.PlayModes.STORY)
-			Data.Instance.isReplay = true;
+//		if(Data.Instance.playMode == Data.PlayModes.STORY)
+//			Data.Instance.isReplay = true;
 		Game.Instance.ResetLevel();        
 	}
 	void Update()

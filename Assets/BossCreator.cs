@@ -13,7 +13,7 @@ public class BossCreator : Boss {
 
 	public override void OnRestart(Vector3 pos)
 	{		
-		base.OnRestart (pos);
+		
 		settings = GetComponent<BossSettings> ();
 
 		Data.Instance.events.OnBossSetNewAsset (settings.asset);
@@ -21,7 +21,7 @@ public class BossCreator : Boss {
 
 		distance_from_avatars = settings.distance_from_avatars;
 		time_to_init_enemies = settings.time_to_init_enemies;
-		print ("boss module " + settings.bossModule);
+		//print ("boss module " + settings.bossModule);
 
 		GameObject assets = Instantiate(Resources.Load("bosses/modules/" + settings.bossModule, typeof(GameObject))) as GameObject;
 		//GameObject assets = Instantiate (settings.assets);
@@ -35,6 +35,8 @@ public class BossCreator : Boss {
 
 		SetTotal (parts.Length);
 		Init ();
+
+		base.OnRestart (pos);
 	}
 	public override void OnSceneObjectUpdated()
 	{

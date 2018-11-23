@@ -44,10 +44,7 @@ public class MainMenuArcade : MonoBehaviour {
             id++;
             pm.Init();
         }
-		if (Data.Instance.playMode == Data.PlayModes.COMPETITION ) {
-			//LoopWinners ();
-			SetFields (0);
-		}
+		SetFields (0);
 		Invoke ("TimeOver", 30);
 		Loop ();
 		playersField.text = "0 PLAYERS";
@@ -156,8 +153,8 @@ public class MainMenuArcade : MonoBehaviour {
         {
             GetTotalPlayers();
 			if (
-				(Data.Instance.playMode== Data.PlayModes.COMPETITION && totalPlayers > 0)
-				||  (Data.Instance.playMode== Data.PlayModes.VERSUS && totalPlayers > 1)
+				totalPlayers > 0
+				//||  (Data.Instance.playMode== Data.PlayModes.VERSUS && totalPlayers > 1)
 			)
             {
                 
@@ -166,12 +163,12 @@ public class MainMenuArcade : MonoBehaviour {
 
 				done = true;
 
-				if (Data.Instance.playMode == Data.PlayModes.COMPETITION ) {
+			//	if (Data.Instance.playMode == Data.PlayModes.COMPETITION ) {
 					Data.Instance.LoadLevel ("Game");
-				} else {
-					Data.Instance.LoadLevel ("GameVersus");
-				}
-                return;
+//				} else {
+//					Data.Instance.LoadLevel ("GameVersus");
+//				}
+//                return;
             }
         }
         

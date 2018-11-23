@@ -36,12 +36,12 @@ public class MainMenuActions : MonoBehaviour {
     }
     public void Compite()
     {
-        Data.Instance.playMode = Data.PlayModes.COMPETITION;
+     //   Data.Instance.playMode = Data.PlayModes.COMPETITION;
         Data.Instance.LoadLevel("Competitions");
     }
     public void MissionsScene()
     {
-        Data.Instance.playMode = Data.PlayModes.STORY;
+      //  Data.Instance.playMode = Data.PlayModes.STORY;
         Data.Instance.LoadLevel("LevelSelector");
       //  Data.Instance.levelUnlockedID = PlayerPrefs.GetInt("levelUnlocked_0");
     }

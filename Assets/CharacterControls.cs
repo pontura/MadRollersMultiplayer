@@ -58,33 +58,28 @@ public class CharacterControls : MonoBehaviour {
 			if (InputManager.getFireUp(player.id))
 			{
 				
-				if (lastKeyPressedTime > Time.time - 0.25f) {
-					DashForward (1);
-				} else {
-					lastKeyPressedTime = Time.time;
+//				if (lastKeyPressedTime > Time.time - 0.25f) {
+//					DashForward (1);
+//				} else {
+//					lastKeyPressedTime = Time.time;
 					characterBehavior.shooter.CheckFire ();
-					lastKeyPressed = 1;
-				}
+				//	lastKeyPressed = 1;
+				//}
 
 			}
             if (InputManager.getJump(player.id))
             {				
-				if (lastKeyPressedTime > Time.time - 0.25f) {
-					DashForward (-1);
-				} else {
-					lastKeyPressedTime = Time.time;
+//				if (lastKeyPressedTime > Time.time - 0.25f) {
+//					DashForward (-1);
+//				} else {
+			//		lastKeyPressedTime = Time.time;
 					characterBehavior.Jump ();
-					lastKeyPressed = -1;
-				}
+			//		lastKeyPressed = -1;
+			//	}
 
-            } else
-            if (Input.GetButton("Jump1"))
+            } else  if (Input.GetButton("Jump1"))
             {
                 characterBehavior.JumpPressed();
-            }
-            else
-            {
-                characterBehavior.AllButtonsReleased();
             }
 			moveByKeyboard();
         }
@@ -92,14 +87,14 @@ public class CharacterControls : MonoBehaviour {
 			return;
 		characterBehavior.UpdateByController(rotationY); 
 	}
-	int total;
-	void DashForward(int keyPressed)
-	{
-		if (lastKeyPressed == keyPressed)
-			return;			
-		lastKeyPressedTime = Time.time;
-		characterBehavior.characterMovement.DashForward ();
-	}
+//	int total;
+//	void DashForward(int keyPressed)
+//	{
+//		if (lastKeyPressed == keyPressed)
+//			return;			
+//		lastKeyPressedTime = Time.time;
+//		characterBehavior.characterMovement.DashForward ();
+//	}
   
 	//float lastHorizontalKeyPressed;
 	float last_x;
@@ -109,7 +104,7 @@ public class CharacterControls : MonoBehaviour {
 		if (characterBehavior.player.charactersManager == null)
 			return;
 		
-		if (Data.Instance.playMode == Data.PlayModes.COMPETITION && characterBehavior.player.charactersManager.distance<40)
+		if (characterBehavior.player.charactersManager.distance<40)
 			return;
 		float _speed = InputManager.getHorizontal(player.id);
 
