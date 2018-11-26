@@ -16,6 +16,12 @@ public class CharacterControls : MonoBehaviour {
     public bool ControlsEnabled = true;
     private CharactersManager charactersManager;
 
+	float lastKeyPressedTime;
+	int lastKeyPressed;
+
+	float jumpingPressedSince;
+	float jumpingPressedTime = 0.28f;
+
 	void Start () {
 		if (UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name != "Game")
 			return;
@@ -35,11 +41,7 @@ public class CharacterControls : MonoBehaviour {
 	{
 		childs.Remove (child);
 	}
-	float lastKeyPressedTime;
-	int lastKeyPressed;
 
-	float jumpingPressedSince;
-	float jumpingPressedTime = 0.32f;
 	void LateUpdate () {
 		if (characterBehavior == null || characterBehavior.player == null)
 			return;

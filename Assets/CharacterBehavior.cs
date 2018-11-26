@@ -36,7 +36,7 @@ public class CharacterBehavior : MonoBehaviour {
 
 	private int MAX_JETPACK_HEIGHT = 25;
 
-	private float jumpingPressedAmount = 16f;
+	private float jumpingPressedAmount = 14f;
 	float jumpingPressedAmountFactor = 2.5f;
 	private float jumpHeight = 900;
 	public float superJumpHeight = 1200;
