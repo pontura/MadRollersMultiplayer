@@ -37,6 +37,9 @@ public class CharacterControls : MonoBehaviour {
 	}
 	float lastKeyPressedTime;
 	int lastKeyPressed;
+
+	float jumpingPressedSince;
+	float jumpingPressedTime = 0.32f;
 	void LateUpdate () {
 		if (characterBehavior == null || characterBehavior.player == null)
 			return;
@@ -44,56 +47,47 @@ public class CharacterControls : MonoBehaviour {
 			return;
 		if (Time.deltaTime == 0) return;
 
+		if (InputManager.getWeapon(player.id))
+			characterBehavior.shooter.ChangeNextWeapon ();
+	
+		if (InputManager.getDash(player.id))
+			DashForward ();
+	
+		if (InputManager.getFireUp(player.id))
+			characterBehavior.shooter.CheckFire ();
 
-		//if (mobileController) {
-		//	moveByAccelerometer ();
-		//} else if(!isAutomata)
-      //  {
-			//if (InputManager.getFireDown(player.id))
-            //{
-			//	characterBehavior.shooter.StartPressingFire();
-			//} 
-			//if (lastKeyPressedTime < Time.time - 0.25f) {
-			//	lastKeyPressed = 0;
-			//}
-
-			if (InputManager.getWeapon(player.id))
-				characterBehavior.shooter.ChangeNextWeapon ();
-		
-			if (InputManager.getDash(player.id))
-				DashForward ();
-		
-			if (InputManager.getFireUp(player.id))
-			{
-				
-//				if (lastKeyPressedTime > Time.time - 0.25f) {
-//					DashForward (1);
-//				} else {
-//					lastKeyPressedTime = Time.time;
-					characterBehavior.shooter.CheckFire ();
-				//	lastKeyPressed = 1;
-				//}
-
+		if (
+			characterBehavior.state == CharacterBehavior.states.RUN
+		) {
+			if (InputManager.getJumpDown (player.id))
+				jumpingPressedSince = 0;
+			if (InputManager.getJump (player.id)) {
+				jumpingPressedSince += Time.deltaTime;
+				if (jumpingPressedSince > jumpingPressedTime)
+					Jump ();
+				else
+					characterBehavior.JumpingPressed ();
+			} else if (InputManager.getJumpUp (player.id)) {
+				Jump ();
 			}
-            if (InputManager.getJump(player.id))
-            {				
-//				if (lastKeyPressedTime > Time.time - 0.25f) {
-//					DashForward (-1);
-//				} else {
-			//		lastKeyPressedTime = Time.time;
-					characterBehavior.Jump ();
-			//		lastKeyPressed = -1;
-			//	}
+		} else if (InputManager.getJumpDown (player.id)) {
+			print("release jumping");
+			Jump ();
+		}
+		
+        else if (Input.GetButton("Jump1"))
+            characterBehavior.JumpPressed();
+		
+		moveByKeyboard();
 
-            } else  if (Input.GetButton("Jump1"))
-            {
-                characterBehavior.JumpPressed();
-            }
-			moveByKeyboard();
-       // }
 		if (characterBehavior.player.charactersManager == null)
 			return;
 		characterBehavior.UpdateByController(rotationY); 
+	}
+	void Jump()
+	{
+		jumpingPressedSince = 0;
+		characterBehavior.Jump ();
 	}
 	int total;
 	void DashForward()

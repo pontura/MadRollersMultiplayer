@@ -82,7 +82,7 @@ public class CharacterCollisions : MonoBehaviour {
             && characterBehavior.state != CharacterBehavior.states.FALL
             )
         {
-            if (player.fxState == Player.fxStates.NORMAL && characterBehavior.state != CharacterBehavior.states.JETPACK)
+            if (player.fxState == Player.fxStates.NORMAL)
                 characterBehavior.Hit();
 
 			MmoCharacter mmoCharacter = other.GetComponent<MmoCharacter> ();
@@ -93,7 +93,7 @@ public class CharacterCollisions : MonoBehaviour {
 			&& characterBehavior.state != CharacterBehavior.states.FALL
 		)
 		{
-			if (player.fxState == Player.fxStates.NORMAL && characterBehavior.state != CharacterBehavior.states.JETPACK)
+			if (player.fxState == Player.fxStates.NORMAL)
 				characterBehavior.Hit();
 		}
     }

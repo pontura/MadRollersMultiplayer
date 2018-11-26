@@ -37,6 +37,14 @@ public class InputMobile : InputType {
     {
         return Input.GetButton("Jump" + id );
     }
+	public override bool getJumpDown()
+	{
+		return Input.GetButtonDown("Jump" + id);
+	}
+	public override bool getJumpUp()
+	{
+		return Input.GetButtonUp("Jump" + id);
+	}
 	public override bool getDash()
 	{
 		return Input.GetButtonDown("Dash" + id );

@@ -259,6 +259,7 @@ public class CharactersManager : MonoBehaviour {
 		newCharacter.Revive();
         characters.Add(newCharacter);
         newCharacter.transform.position = pos;
+		Data.Instance.events.OnCharacterInit (id);
 
 		return newCharacter;
     }

@@ -14,6 +14,8 @@ public class Events : MonoBehaviour {
     public System.Action<Texture2D, int> OnHiscore = delegate { };   
 
 	public System.Action AddNewCredit = delegate { }; 
+
+	public System.Action<int> OnCharacterInit = delegate { };
 	public System.Action<int, string> OnDrawScore = delegate { };
 	public System.Action<bool> OnGameOver = delegate { };
     public System.Action<string> VoiceFromResources = delegate { };

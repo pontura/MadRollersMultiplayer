@@ -26,9 +26,7 @@ public class CharacterBehavior : MonoBehaviour {
 		SHOOT,
 		DEAD,
 		FALL,
-		CRASH,
-		JETPACK,
-		JETPACK_OFF
+		CRASH
 	}
 	public CharacterBehavior hasSomeoneOver;
 	public CharacterBehavior isOver;
@@ -38,7 +36,9 @@ public class CharacterBehavior : MonoBehaviour {
 
 	private int MAX_JETPACK_HEIGHT = 25;
 
-	private float jumpHeight = 1300;
+	private float jumpingPressedAmount = 16f;
+	float jumpingPressedAmountFactor = 2.5f;
+	private float jumpHeight = 900;
 	public float superJumpHeight = 1200;
 	private Vector3 movement;
 	private float hittedTime;
@@ -331,8 +331,39 @@ public class CharacterBehavior : MonoBehaviour {
 		state = states.RUN;
 		jumpsNumber = 0;
 	}
+	bool jumpingPressed;
+
+	float jumpingPressedAmountReal;
+	public void JumpingPressed()
+	{
+		if (!jumpingPressed) {
+			jumpingPressedAmountReal = jumpingPressedAmount;
+			int rand = Random.Range (0, 10);
+			if (rand < 6)
+				_animation_hero.Play ("jump");
+			else if (rand < 8)
+				_animation_hero.Play ("jump_right");
+			else
+				_animation_hero.Play ("jump_left");
+			jumpingPressed = true;
+		}
+
+		jumpingPressedAmountReal -= jumpingPressedAmountFactor;
+		if (jumpingPressedAmountReal < 0)
+			jumpingPressedAmountReal = 0;
+
+		Vector3 v = rb.velocity;
+		v.y = 0;
+		rb.velocity = v;
+		Vector3 pos = transform.localPosition;
+		pos.y += jumpingPressedAmount*Time.deltaTime;
+		transform.localPosition = pos;
+
+		print (jumpingPressedAmountReal);	
+	}
 	public void Jump()
 	{
+		jumpingPressed = false;
 		if (Game.Instance.state == Game.states.INTRO || state == states.DEAD || state == states.SUPERJUMP) 
 			return;	
 
@@ -371,13 +402,7 @@ public class CharacterBehavior : MonoBehaviour {
 
 		rb.AddForce(new Vector3(0, jumpHeight, 0), ForceMode.Impulse);
 
-		int rand = Random.Range (0, 10);
-		if(rand<6)
-			_animation_hero.Play("jump");
-		else if (rand<8)
-			_animation_hero.Play("jump_right");
-		else
-			_animation_hero.Play("jump_left");
+
 		state = states.JUMP;
 		ResetColliders();
 	}

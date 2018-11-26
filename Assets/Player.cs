@@ -187,24 +187,24 @@ public class Player : MonoBehaviour {
         }
         else if (item == Powerup.types.JETPACK)
         {
-            if (fxState == fxStates.SUPER) setNormalState();
-            if (characterBehavior.state != CharacterBehavior.states.JETPACK)
-            {
-                transport = Instantiate(transports[0] as Transport, Vector3.zero, Quaternion.identity) as Transport;
-              //  transport.transform.parent = transportContainer.transform;
-                transport.transform.localPosition = Vector3.zero;
-                transport.transform.localEulerAngles = Vector3.zero;
-                transport.transform.localScale = Vector3.one;
-                Data.Instance.events.AdvisesOn("JETPACK!");
-                Data.Instance.events.VoiceFromResources("jetpack_Activado");
-            }
-            OnAvatarProgressBarStart(Color.green);
+//            if (fxState == fxStates.SUPER) setNormalState();
+//            if (characterBehavior.state != CharacterBehavior.states.JETPACK)
+//            {
+//                transport = Instantiate(transports[0] as Transport, Vector3.zero, Quaternion.identity) as Transport;
+//              //  transport.transform.parent = transportContainer.transform;
+//                transport.transform.localPosition = Vector3.zero;
+//                transport.transform.localEulerAngles = Vector3.zero;
+//                transport.transform.localScale = Vector3.one;
+//                Data.Instance.events.AdvisesOn("JETPACK!");
+//                Data.Instance.events.VoiceFromResources("jetpack_Activado");
+//            }
+//            OnAvatarProgressBarStart(Color.green);
         }
         else if (item == Powerup.types.INVENSIBLE)
         {
             print("INVENSIBLE player id: " + id);
             if (gameObject == null) return;
-            if (characterBehavior.state == CharacterBehavior.states.JETPACK) return;
+           // if (characterBehavior.state == CharacterBehavior.states.JETPACK) return;
 			SetInvensible (8);                   
         }
     }

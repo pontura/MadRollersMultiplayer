@@ -8,6 +8,8 @@ public abstract class InputType {
     public abstract bool getFireDown();
 	public abstract bool getFireUp();
     public abstract bool getJump();
+	public abstract bool getJumpUp ();
+	public abstract bool getJumpDown ();
     public abstract bool getOpenMenu();
 	public abstract bool getDash();
 	public abstract bool getWeapon();

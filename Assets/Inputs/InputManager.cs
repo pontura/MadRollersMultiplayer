@@ -43,6 +43,16 @@ public class InputManager {
         if (!initialized) Init();
         return inputs[id].getJump();
     }
+	public static bool getJumpDown(int id = 0)
+	{
+		if (!initialized) Init();
+		return inputs[id].getJumpDown();
+	}
+	public static bool getJumpUp(int id = 0)
+	{
+		if (!initialized) Init();
+		return inputs[id].getJumpUp();
+	}
 	public static bool getDash(int id = 0)
 	{
 		if (!initialized) Init();
