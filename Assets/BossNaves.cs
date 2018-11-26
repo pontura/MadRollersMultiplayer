@@ -7,13 +7,24 @@ public class BossNaves : Boss {
 	public GameObject[] all;
 	bool started;
 
+	public override void OnRestart(Vector3 pos)
+	{
+		Data.Instance.events.OnBossSetNewAsset ("alien");
+		Data.Instance.events.OnBossSetTimer (30);
+
+		base.OnRestart (pos);	
+
+		SetTotal( all.Length );
+		Init ();
+	}
+
 	public override void OnSceneObjectUpdated()
 	{
 		float avatarsDistance = Game.Instance.level.charactersManager.getDistance ();
 		if (avatarsDistance + distance_from_avatars < transform.localPosition.z)
 			return;
 		if (!started) {
-			SetTotal( all.Length );
+			//SetTotal( all.Length );
 			partID = 0;
 			Init ();
 			started = true;
