@@ -138,7 +138,7 @@ public class Game : MonoBehaviour {
 		//  Pause();
 		Data.Instance.events.OnResetLevel();
 		Data.Instance.events.ForceFrameRate (1);
-		Data.Instance.LoadLevel("MainMenuArcade");
+		Data.Instance.LoadLevel("Game");
 	}
     public void GotoMainMenu()
     {

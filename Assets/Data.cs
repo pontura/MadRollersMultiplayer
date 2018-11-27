@@ -193,16 +193,6 @@ public class Data : MonoBehaviour {
 ////			}
 //        }
 	}
-    public void resetProgress()
-    {
-        PlayerPrefs.DeleteAll();
-		levelUnlocked_level_1 = 0;
-		levelUnlocked_level_2 = 0;
-
-        SocialEvents.OnCompetitionHiscore(1, 0, false);
-        userData.resetProgress();
-        Social.Instance.hiscores.Reset();  
-    }
     public void LoadLevel(string levelName)
     {
 		Data.Instance.events.ForceFrameRate (1);

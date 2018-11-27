@@ -159,6 +159,8 @@ public class MultiplayerData : MonoBehaviour
 		player2_played = false;
 		player3_played = false;
 		player4_played = false;
+
+		OnResetScores ();
 	}
 	void OnScoreOn(int playerID, Vector3 pos, int points, ScoresManager.types type)
 	{

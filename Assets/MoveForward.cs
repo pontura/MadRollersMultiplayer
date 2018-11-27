@@ -31,6 +31,7 @@ public class MoveForward : MonoBehaviour {
 	}
 	void OnDisable()
 	{
+		CancelInvoke ();
 		//speed = 0;
 		//Destroy(gameObject.GetComponent("MoveForward"));
 	}

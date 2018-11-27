@@ -65,6 +65,6 @@ public class Gui : MonoBehaviour {
     }
     public void Settings()
     {
-        Data.Instance.GetComponent<GameMenu>().Init();
+        //Data.Instance.GetComponent<GameMenu>().Init();
     }
 }

@@ -190,7 +190,7 @@ public class CharactersManager : MonoBehaviour {
 		Data.Instance.multiplayerData.AddNewCharacter (id);
 		
         Data.Instance.events.OnSoundFX("coin", id);
-        Data.Instance.events.OnAddNewPlayer(id);
+        
 
 		Vector3 pos = Vector3.zero;
 
@@ -207,6 +207,33 @@ public class CharactersManager : MonoBehaviour {
 
 		Data.Instance.events.ForceFrameRate(1);
     }
+	public CharacterBehavior addCharacter(Vector3 pos, int id)
+	{
+		Data.Instance.events.OnAddNewPlayer(id);
+		CharacterBehavior newCharacter = null;
+		foreach (CharacterBehavior cb in deadCharacters)
+		{
+			if (cb.player.id == id)
+			{
+				newCharacter = cb;
+			}
+		}
+		if (newCharacter == null)
+			newCharacter = Instantiate(character, Vector3.zero, Quaternion.identity) as CharacterBehavior;
+		else
+			deadCharacters.Remove(newCharacter);
+
+		Player player = newCharacter.GetComponent<Player> ();
+		player.Init(id);
+		player.SetInvensible (3);
+		player.id = id;
+		newCharacter.Revive();
+		characters.Add(newCharacter);
+		newCharacter.transform.position = pos;
+		Data.Instance.events.OnCharacterInit (id);
+
+		return newCharacter;
+	}
 	int automaticIdPosition = 0;
 	public CharacterBehavior AddAutomaticPlayer(int id)
 	{
@@ -237,32 +264,7 @@ public class CharactersManager : MonoBehaviour {
 
 		return new Vector3(_x,pos.y);
 	}
-	public CharacterBehavior addCharacter(Vector3 pos, int id)
-    {
-        CharacterBehavior newCharacter = null;
-        foreach (CharacterBehavior cb in deadCharacters)
-        {
-            if (cb.player.id == id)
-            {
-                newCharacter = cb;
-            }
-        }
-        if (newCharacter == null)
-            newCharacter = Instantiate(character, Vector3.zero, Quaternion.identity) as CharacterBehavior;
-        else
-            deadCharacters.Remove(newCharacter);
-		      
-		Player player = newCharacter.GetComponent<Player> ();
-		player.Init(id);
-		player.SetInvensible (3);
-		player.id = id;
-		newCharacter.Revive();
-        characters.Add(newCharacter);
-        newCharacter.transform.position = pos;
-		Data.Instance.events.OnCharacterInit (id);
 
-		return newCharacter;
-    }
 	public void KillAllCharacters()
 	{
 		foreach (CharacterBehavior cb in characters)

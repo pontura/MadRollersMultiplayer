@@ -16,11 +16,10 @@ public class SummaryCompetitions : MonoBehaviour {
 	public Image progressImage;
 	public Text scoreField;
 	public Text missionsField;
-
+	float delayToReact = 0.3f;
 
 	void Start()
 	{
-		optionSelected = 1;
 		panel.SetActive (false);
 	}
 	public void Init()
@@ -80,28 +79,27 @@ public class SummaryCompetitions : MonoBehaviour {
 			progressImage.fillAmount += 0.005f;
 		else
 			progressImage.fillAmount = fillAmount;
-
 		lastClickedTime += Time.deltaTime;
-		if (lastClickedTime > 0.1f)
+		if (lastClickedTime > delayToReact)
 			processAxis = true;
 		for (int a = 0; a < 4; a++) {
 			if (InputManager.getJump (a)) 
 				OnJoystickClick ();
 			if (InputManager.getFireDown (a)) 
 				OnJoystickClick ();
-//			if (processAxis) {
-//				float v = InputManager.getVertical (a);
-//				if (v < -0.5f)
-//					OnJoystickDown ();
-//				else if (v > 0.5f)
-//					OnJoystickUp ();
-//
-//				float h = InputManager.getHorizontal (a);
-//				if (h < -0.5f)
-//					OnJoystickDown ();
-//				else if (h > 0.5f)
-//					OnJoystickUp ();
-//			}
+			if (processAxis) {				
+				float v = InputManager.getVertical (a);
+				if (v < -0.5f)
+					OnJoystickDown ();
+				else if (v > 0.5f)
+					OnJoystickUp ();
+
+				float h = InputManager.getHorizontal (a);
+				if (h < -0.5f)
+					OnJoystickUp ();
+				else if (h > 0.5f)
+					OnJoystickDown ();
+			}
 		}
 	}
 
@@ -130,11 +128,13 @@ public class SummaryCompetitions : MonoBehaviour {
 
 	void OnJoystickClick () {
 		if (optionSelected == 0) {
+			Data.Instance.events.OnResetScores ();
 			Data.Instance.inputSavedAutomaticPlay.RemoveAllData ();
 			Data.Instance.missions.MissionActiveID = 0;
 			//Game.Instance.ResetLevel();  
 			Game.Instance.GotoMainMenuArcade ();	
 		} else if (optionSelected == 1) {
+			Data.Instance.events.OnResetScores ();
 			Data.Instance.inputSavedAutomaticPlay.RemoveAllData ();
 			Data.Instance.videogamesData.SetOtherGameActive ();
 			Game.Instance.GotoLevelSelector ();	
