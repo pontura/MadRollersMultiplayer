@@ -352,13 +352,12 @@ public class GameCamera : MonoBehaviour
 	}
 	IEnumerator ResetSnapping()
 	{
-		yield return new WaitForSecondsRealtime(2f);
+		yield return new WaitForSecondsRealtime(3f);
 		if (state != states.SNAPPING_TO)
 			yield return null;
 		else {			
 			StopAllCoroutines ();
-			print ("ResetSnapping");
-			Data.Instance.events.RalentaTo (1f, 0.01f);
+			Data.Instance.events.RalentaTo (1f, 0.005f);
 			state = states.PLAYING;
 			Data.Instance.events.FreezeCharacters (false);
 		}
