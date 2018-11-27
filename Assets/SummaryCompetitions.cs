@@ -28,6 +28,7 @@ public class SummaryCompetitions : MonoBehaviour {
 		if (isOn) return;
 		Invoke("SetOn", 2F);
 	}
+	float fillAmount;
 	public void SetOn()
 	{
 		Data.Instance.events.RalentaTo (1, 0.05f);
@@ -36,16 +37,16 @@ public class SummaryCompetitions : MonoBehaviour {
 		SetSelected ();
 		int missionActive = Data.Instance.missions.MissionActiveID;
 		int id = 0;
-		foreach (MissionData m in Data.Instance.missions.videogames[Data.Instance.videogamesData.actualID].missions[0].data) {
-			SummaryMissionPoint smp = Instantiate (missionPoint);
-			smp.transform.SetParent (container);
-			smp.transform.localScale = Vector3.one;
-			if (id <= missionActive) 
-				smp.Init (true);
-			else
-				smp.Init (false);
-			id++;
-		}
+//		foreach (Missions.MissionsData m in Data.Instance.missions.videogames[Data.Instance.videogamesData.actualID].missions) {
+//			SummaryMissionPoint smp = Instantiate (missionPoint);
+//			smp.transform.SetParent (container);
+//			smp.transform.localScale = Vector3.one;
+//			if (id <= missionActive) 
+//				smp.Init (true);
+//			else
+//				smp.Init (false);
+//			id++;
+//		}
 //		Missions.MissionsByVideogame missionsInThisVideogame = Data.Instance.missions.videogames [Data.Instance.videogamesData.actualID];
 //		MissionData mission;
 //		int num = 0;
@@ -56,15 +57,14 @@ public class SummaryCompetitions : MonoBehaviour {
 //			}
 //			num++;
 //		}
-		scoreField.text = "Score " + Data.Instance.multiplayerData.score;
-		Invoke ("TimeOver", 15);
+		scoreField.text = "SCORE " + Data.Instance.multiplayerData.score;
+		Invoke ("TimeOver", 35);
 		missionsField.text = "";
 		if (missionActive < 0)
 			return;
-		int totalMissions = Data.Instance.missions.videogames[Data.Instance.videogamesData.actualID].missions[0].data.Count;
-		progressImage.fillAmount = (float)missionActive / (float)totalMissions;
-		missionsField.text = "Mission " + (missionActive+1).ToString() + "/" + totalMissions.ToString();
-
+		int totalMissions = Data.Instance.missions.videogames[Data.Instance.videogamesData.actualID].missions.Count;
+		fillAmount = (float)missionActive / (float)totalMissions;
+		missionsField.text = "MISSION " + (missionActive+1).ToString() + "/" + totalMissions.ToString();
 	}
 	void TimeOver()
 	{
@@ -75,6 +75,11 @@ public class SummaryCompetitions : MonoBehaviour {
 	{
 		if (!isOn)
 			return;
+
+		if(progressImage.fillAmount < fillAmount)
+			progressImage.fillAmount += 0.005f;
+		else
+			progressImage.fillAmount = fillAmount;
 
 		lastClickedTime += Time.deltaTime;
 		if (lastClickedTime > 0.1f)

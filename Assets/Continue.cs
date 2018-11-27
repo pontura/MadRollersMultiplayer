@@ -37,10 +37,16 @@ public class Continue : MonoBehaviour {
 	}	
 	public void OnGameOverDelayed()
 	{			
-		if (!Data.Instance.canContinue || Data.Instance.credits==0) {
-			Invoke ("ShowHiscores", 2);
+		if (!Data.Instance.canContinue || Data.Instance.credits == 0) {
+			if (Data.Instance.playMode == Data.PlayModes.PARTYMODE) {
+				Invoke ("ShowHiscores", 2);
+			} else {
+				canClick = false;
+				panel.GetComponent<Animation> ().Play ("signalOff");
+				Invoke ("Done", 1f);
+			}
 			return;
-		} 
+		}		
 		credits_txt.text = Data.Instance.credits + " CREDITS"; 
 		panel.SetActive (true);
 		num = 9;

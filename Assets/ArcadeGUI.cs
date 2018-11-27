@@ -71,9 +71,6 @@ public class ArcadeGUI : MonoBehaviour {
     }
 	void OnGameOver(bool isTimeOver)
     {
-
-		print ("OnGameOver   " + isTimeOver);
-
 		Data.Instance.LoseCredit ();
         Data.Instance.multiplayerData.distance = Game.Instance.GetComponent<CharactersManager>().distance;
         
