@@ -11,6 +11,7 @@ public class LevelSelector : MonoBehaviour {
 
 	public GameObject computerUI;
 	public Text title;
+	public Text credits;
 	public MissionButton diskette;
 	VideogameData videogameData;
 	public int videgameID;
@@ -60,7 +61,7 @@ public class LevelSelector : MonoBehaviour {
 			return;
 		
 		canInteract = false;
-		computerUI.SetActive (false);
+		//computerUI.SetActive (false);
 		diskette.SetOn ();
 		Invoke ("Delayed", 4f);
 		camAnimnation.Play ("levelSelectorCamera");
@@ -107,6 +108,7 @@ public class LevelSelector : MonoBehaviour {
 		videogameData = Data.Instance.videogamesData.all [videgameID];
 		diskette.Init (videogameData);
 		videogameUI.Change ();
+		credits.text = videogameData.credits;
 	}
 	public void OnJoystickBack()
 	{

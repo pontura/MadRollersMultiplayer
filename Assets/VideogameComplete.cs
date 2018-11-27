@@ -21,7 +21,7 @@ public class VideogameComplete : MonoBehaviour {
 
 		SetText("Congratulations! This videogame is completely ruined...");
 
-		Invoke ("Done", 15);
+		Invoke ("Done", 10);
 	}
 	void OnDestroy()
 	{
@@ -52,13 +52,17 @@ public class VideogameComplete : MonoBehaviour {
 	}
 	public void OnJoystickClick()
 	{
-		
-		if(Data.Instance.videogamesData.actualID == 0)
-			Data.Instance.videogamesData.actualID = 1;
-		else if(Data.Instance.videogamesData.actualID == 1)
-			Data.Instance.videogamesData.actualID = 2;
-		else
-			Data.Instance.videogamesData.actualID = 0;
-		Data.Instance.LoadLevel ("Hiscores");
+		Data.Instance.isReplay = true;
+		Data.Instance.videogamesData.SetOtherGameActive();
+		Data.Instance.missions.MissionActiveID = 0;
+		Data.Instance.LoadLevel("Game");
+
+//		if(Data.Instance.videogamesData.actualID == 0)
+//			Data.Instance.videogamesData.actualID = 1;
+//		else if(Data.Instance.videogamesData.actualID == 1)
+//			Data.Instance.videogamesData.actualID = 2;
+//		else
+//			Data.Instance.videogamesData.actualID = 0;
+//		Data.Instance.LoadLevel ("Hiscores");
 	}
 }

@@ -123,11 +123,7 @@ public class Game : MonoBehaviour {
 		Data.Instance.events.OnResetLevel();
 		// Application.LoadLevel("LevelSelector");
 		Data.Instance.events.ForceFrameRate (1);
-		//Data.Instance.LoadLevel("VideogameComplete");
-		Data.Instance.isReplay = true;
-		Data.Instance.videogamesData.SetOtherGameActive();
-		Data.Instance.missions.MissionActiveID = 0;
-		Data.Instance.LoadLevel("Game");
+		Data.Instance.LoadLevel("VideogameComplete");
 	}
     public void GotoLevelSelector()
     {

@@ -19,4 +19,6 @@ public class VideogameData {
 	public Sprite loadingSplash;
 	public Sprite intro_logo;
 	public RetroPixelPro retroPixelPro;
+	public string credits;
+
 }
