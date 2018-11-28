@@ -9,7 +9,7 @@ public class LoadingAsset : MonoBehaviour {
 	public Text field;
 	public string[] texts;
 	public GameObject loadingPanel;
-	public GameObject videoPanel;
+	//public GameObject videoPanel;
 
 	public GameObject panel;
 	public Sprite[] spritesToBG;
@@ -19,15 +19,12 @@ public class LoadingAsset : MonoBehaviour {
 	bool isOn;
 
 	void Start () {
-		Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
-		Data.Instance.events.OnGameOver += OnGameOver;
-		videoPanel.SetActive (false);
 		ChangeBG ();
 	}
 	public void SetOn(bool _isOn)
 	{
 		logo.sprite = Data.Instance.videogamesData.GetActualVideogameData ().loadingSplash;
-		videoPanel.SetActive (_isOn);
+	//	videoPanel.SetActive (_isOn);
 		this.isOn = _isOn;
 		panel.SetActive (_isOn);
 		loadingPanel.SetActive (_isOn);
@@ -36,7 +33,7 @@ public class LoadingAsset : MonoBehaviour {
 	}
 	IEnumerator LoadingRoutine()
 	{
-		Data.Instance.events.OnSoundFX("loading", -1);
+		Data.Instance.GetComponent<MusicManager>().OnLoadingMusic();
 		field.text = "";		
 		AddText("*** MAD ROLLERS ***");
 		yield return new WaitForSeconds (0.8f);
@@ -55,20 +52,12 @@ public class LoadingAsset : MonoBehaviour {
 		AddText("COMPLETE!");
 		yield return new WaitForSeconds (0.5f);
 		SetOn (false);
-		//Data.Instance.events.OnGameStart();
+		Data.Instance.GetComponent<MusicManager>().stopAllSounds();
 		yield return null;
 	}
 	void AddText(string text)
 	{
 		field.text += text +'\n';
-	}
-	void StartMultiplayerRace()
-	{
-		videoPanel.SetActive (false);
-	}
-	void OnGameOver(bool isTimeOver)
-	{
-		videoPanel.SetActive (true);
 	}
 
 	void Update () {

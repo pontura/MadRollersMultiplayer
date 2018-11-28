@@ -20,7 +20,6 @@ public class Intro : MonoBehaviour {
 
 	void Start () {
 
-        Data.Instance.GetComponent<MusicManager>().stopAllSounds();
         MultiplayerData multiplayerData = Data.Instance.multiplayerData;
 
         gorro1.material.color = multiplayerData.colors[0];

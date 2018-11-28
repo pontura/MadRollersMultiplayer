@@ -13,10 +13,10 @@ public class MusicManager : MonoBehaviour {
 
     private float heartsDelay = 0.1f;
     private AudioSource audioSource;
+	float pitchSpeed = 0.015f;
 
     void Start()
-    {
-		
+    {		
         audioSource = GetComponent<AudioSource>();
 		Data.Instance.GetComponent<Tracker> ().TrackScreen ("Main Menu");
 		OnInterfacesStart ();
@@ -57,17 +57,17 @@ public class MusicManager : MonoBehaviour {
 	void FreezeCharacters(bool freezeThem)
 	{
 		if(freezeThem)
-			ChengePitch (0.65f);
+			ChangePitch (0.65f);
 		else
-			ChengePitch (1);
+			ChangePitch (1);
 	}
-	void ChengePitch(float pitchValue)
+	void ChangePitch(float pitchValue)
 	{
 		StopAllCoroutines ();
-		StartCoroutine (ChangePitch (pitchValue));
+		StartCoroutine (ChangePitchCoroutine (pitchValue));
 	}
-	float pitchSpeed = 0.025f;
-	IEnumerator ChangePitch(float pitchValue)
+
+	IEnumerator ChangePitchCoroutine(float pitchValue)
 	{
 		if (pitchValue < audioSource.pitch) {
 			while (pitchValue < audioSource.pitch) {
@@ -85,7 +85,7 @@ public class MusicManager : MonoBehaviour {
     
     void ResetFilter()
     {
-		ChengePitch (1);
+		ChangePitch (1);
     }
     //void OnSoundFX(string name)
     //{
@@ -105,8 +105,9 @@ public class MusicManager : MonoBehaviour {
     {
         audioSource.volume = vol;
     }
-    public void playSound(AudioClip _clip, bool looped = true)
-    {        
+    void playSound(AudioClip _clip, bool looped = true)
+    {      
+		print ("playSound " + _clip);
 		if (audioSource.clip!=null && audioSource.clip.name == _clip.name) return;
         stopAllSounds();
         audioSource.clip = _clip;
@@ -124,8 +125,17 @@ public class MusicManager : MonoBehaviour {
     {
         playSound( interfaces );
     }
+	public void OnLoadingMusic()
+	{
+		audioSource.pitch = 1;
+		audioSource.clip = Resources.Load("Sound/loading") as AudioClip;
+		audioSource.Play();
+		audioSource.loop = true;
+	}
     void StartMultiplayerRace()
     {
+		print ("StartMultiplayerRace");
+		audioSource.pitch = 1;
 		PlayMainTheme ();
     }
 	public void BossMusic(bool isBoss)
@@ -182,8 +192,12 @@ public class MusicManager : MonoBehaviour {
 			soundName = "song2";
 			break;
 		}
+		audioSource.pitch = 1;
+		audioSource.volume = 1;
 		audioSource.clip = Resources.Load("songs/" + soundName) as AudioClip;
 		audioSource.Play();
 		audioSource.loop = true;
+
+		print ("PlayMainTheme " + soundName);
 	}
 }

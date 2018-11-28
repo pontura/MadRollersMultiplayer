@@ -357,7 +357,7 @@ public class CharacterBehavior : MonoBehaviour {
 	{
 		jumpingPressed = false;
 
-		print ("startJumping :" + startJumping + "  Time.time: " + Time.time + "   jumpsNumber: " + jumpsNumber+ " state: " + state);
+	//	print ("startJumping :" + startJumping + "  Time.time: " + Time.time + "   jumpsNumber: " + jumpsNumber+ " state: " + state);
 
 
 		if (Game.Instance.state == Game.states.INTRO || state == states.DEAD || state == states.DOUBLEJUMP) 
@@ -412,20 +412,21 @@ public class CharacterBehavior : MonoBehaviour {
 	public void SuperJump(float _superJumpHeight, bool isDoubleJump = false)
 	{
 		float velocityY = rb.velocity.y;
-		if (velocityY < 0) {
+		print (velocityY);
+		if (velocityY < 10) {
 			OnAvatarJump();
-
+			velocityY = Mathf.Abs (velocityY);
 			rb.velocity = Vector3.zero;
 
-			if (velocityY < -4)
-				velocityY = -4;
+			if (velocityY > 4)
+				velocityY = 4;
 		
 			velocityY /= 8;
 
-			if (velocityY > -1 || !isDoubleJump)
-				velocityY = -1;
+			if (velocityY < 1 || !isDoubleJump)
+				velocityY = 1;
 			
-			rb.AddForce( new Vector3(0, (_superJumpHeight ) - (jumpHeight / 10), 0)*-velocityY, ForceMode.Impulse);
+			rb.AddForce( new Vector3(0, (_superJumpHeight ) - (jumpHeight / 10), 0)*velocityY, ForceMode.Impulse);
 
 			Data.Instance.events.OnMadRollerFX (MadRollersSFX.types.DOUBLE_JUMP, player.id);
 

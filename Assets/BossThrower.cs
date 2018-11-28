@@ -11,7 +11,7 @@ public class BossThrower : Boss {
 	{
 		base.OnRestart (pos);
 		Data.Instance.events.OnBossSetNewAsset ("helicopter");
-		Data.Instance.events.OnBossSetTimer (45);
+		Data.Instance.events.OnBossSetTimer (30);
 		SetTotal (4);
 	}
 

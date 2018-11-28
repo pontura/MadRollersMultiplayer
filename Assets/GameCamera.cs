@@ -344,7 +344,7 @@ public class GameCamera : MonoBehaviour
 		//Data.Instance.events.ForceFrameRate (0.9f);
 		Data.Instance.events.RalentaTo (0.1f, 0.2f);
 		this.snapTargetPosition = targetPos;
-		snapTargetPosition.y += 3f;
+		snapTargetPosition.y += 4f;
 		snapTargetPosition.z -= 0.5f;
 		snapTargetPosition.x /= 2;
 		state = states.SNAPPING_TO;
