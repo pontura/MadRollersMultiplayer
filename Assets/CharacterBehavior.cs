@@ -285,12 +285,6 @@ public class CharacterBehavior : MonoBehaviour {
 	{
 		_animation_hero.Play("slide");
 	}
-	public void JumpPressed()
-	{
-		return;
-		if (player.transport != null)
-			Jetpack();
-	}
 	public void AllButtonsReleased()
 	{
 		//if (player.transport != null)
@@ -358,42 +352,42 @@ public class CharacterBehavior : MonoBehaviour {
 		Vector3 pos = transform.localPosition;
 		pos.y += jumpingPressedAmount*Time.deltaTime;
 		transform.localPosition = pos;
-
-		print (jumpingPressedAmountReal);	
 	}
 	public void Jump()
 	{
 		jumpingPressed = false;
-		if (Game.Instance.state == Game.states.INTRO || state == states.DEAD || state == states.SUPERJUMP) 
+
+		print ("startJumping :" + startJumping + "  Time.time: " + Time.time + "   jumpsNumber: " + jumpsNumber+ " state: " + state);
+
+
+		if (Game.Instance.state == Game.states.INTRO || state == states.DEAD || state == states.DOUBLEJUMP) 
 			return;	
 
-		//print ("startJumping :" + startJumping + "  Time.time: " + Time.time + "   jumpsNumber: " + jumpsNumber+ " state: " + state);
-		
-		if (hasSomeoneOver != null)
-			OnGetRidOfOverAvatar();
-		else if (isOver != null)
-			OnGetRidOfBelowAvatar();
 
-		if (player.transport != null && player.transport.isOn) return;
+//		if (hasSomeoneOver != null)
+//			OnGetRidOfOverAvatar();
+//		else if (isOver != null)
+//			OnGetRidOfBelowAvatar();
+
+		//if (player.transport != null && player.transport.isOn) return;
 
 		jumpsNumber++;
-		if (jumpsNumber > 4) return;
+		if (jumpsNumber > 3) return;
 
 	//	if(!controls.isAutomata)
 	//		data.events.OnAvatarJump (player.id);
 
-		if (state == states.JUMP)
+		//print ("JUMP  " + state);
+		if (state == states.JUMP || jumpsNumber >1 || state == states.SUPERJUMP)
 		{
 			if (startJumping + 0.2f < Time.time) 
-				SuperJump (superJumpHeight, true);
-			
+				SuperJump (superJumpHeight, true);			
 			return;			
 		}
 		else if(state != states.RUN && state != states.SHOOT)
 		{
 			return;
 		}
-		if(state == states.JUMP) return;
 
 		rb.velocity = Vector3.zero;
 		OnAvatarJump();
@@ -417,25 +411,32 @@ public class CharacterBehavior : MonoBehaviour {
 	}
 	public void SuperJump(float _superJumpHeight, bool isDoubleJump = false)
 	{
-		float velocityY = Mathf.Abs(rb.velocity.y)/8;
+		float velocityY = rb.velocity.y;
+		if (velocityY < 0) {
+			OnAvatarJump();
 
-		if (velocityY < 1 || !isDoubleJump)
-			velocityY = 1;
+			rb.velocity = Vector3.zero;
+
+			if (velocityY < -4)
+				velocityY = -4;
 		
-		rb.velocity = Vector3.zero;
+			velocityY /= 8;
 
-		OnAvatarJump();
-		Data.Instance.events.OnMadRollerFX (MadRollersSFX.types.DOUBLE_JUMP, player.id);
+			if (velocityY > -1 || !isDoubleJump)
+				velocityY = -1;
+			
+			rb.AddForce( new Vector3(0, (_superJumpHeight ) - (jumpHeight / 10), 0)*-velocityY, ForceMode.Impulse);
 
-		int rand = Random.Range (0, 10);
-		if(rand<5)
-			_animation_hero.Play("doubleJump");
-		else
-			_animation_hero.Play("doubleJump2");
+			Data.Instance.events.OnMadRollerFX (MadRollersSFX.types.DOUBLE_JUMP, player.id);
 
-		rb.AddForce( new Vector3(0, (_superJumpHeight ) - (jumpHeight / 10), 0)*velocityY, ForceMode.Impulse);
-		state = states.DOUBLEJUMP;
-	//	print ("SuperJump");
+			int rand = Random.Range (0, 10);
+			if(rand<5)
+				_animation_hero.Play("doubleJump");
+			else
+				_animation_hero.Play("doubleJump2");
+
+			state = states.DOUBLEJUMP;
+		}
 	}
 
 	public void SuperJumpByBumped(int force , float offsetY, bool dir_forward)

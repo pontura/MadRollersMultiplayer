@@ -53,4 +53,8 @@ public class InputKeyboard : InputType{
 	{
 		return Input.GetButtonDown("Weapon" + id );
 	}
+	public override float getDH()
+	{
+		return Input.GetAxisRaw("DH" + id );
+	}
 }

@@ -41,7 +41,7 @@ public class CharacterControls : MonoBehaviour {
 	{
 		childs.Remove (child);
 	}
-
+	float lastDH;
 	void LateUpdate () {
 		if (characterBehavior == null || characterBehavior.player == null)
 			return;
@@ -49,11 +49,19 @@ public class CharacterControls : MonoBehaviour {
 			return;
 		if (Time.deltaTime == 0) return;
 
+
+		if (lastDH != InputManager.getDH (player.id)) {
+			lastDH = InputManager.getDH (player.id);
+			characterBehavior.characterMovement.DH (-lastDH);
+		}
+		
 		if (InputManager.getWeapon(player.id))
 			characterBehavior.shooter.ChangeNextWeapon ();
 	
-		if (InputManager.getDash(player.id))
-			DashForward ();
+		if (InputManager.getDash (player.id)) {
+			characterBehavior.shooter.CheckFireDouble ();
+			//characterBehavior.characterMovement.DashForward ();
+		}
 	
 		if (InputManager.getFireUp(player.id))
 			characterBehavior.shooter.CheckFire ();
@@ -61,8 +69,10 @@ public class CharacterControls : MonoBehaviour {
 		if (
 			characterBehavior.state == CharacterBehavior.states.RUN
 		) {
-			if (InputManager.getJumpDown (player.id))
+			
+			if (InputManager.getJumpDown (player.id)) {
 				jumpingPressedSince = 0;
+			}
 			if (InputManager.getJump (player.id)) {
 				jumpingPressedSince += Time.deltaTime;
 				if (jumpingPressedSince > jumpingPressedTime)
@@ -73,12 +83,8 @@ public class CharacterControls : MonoBehaviour {
 				Jump ();
 			}
 		} else if (InputManager.getJumpDown (player.id)) {
-			print("release jumping");
 			Jump ();
 		}
-		
-        else if (Input.GetButton("Jump1"))
-            characterBehavior.JumpPressed();
 		
 		moveByKeyboard();
 
@@ -90,13 +96,7 @@ public class CharacterControls : MonoBehaviour {
 	{
 		jumpingPressedSince = 0;
 		characterBehavior.Jump ();
-	}
-	int total;
-	void DashForward()
-	{
-		characterBehavior.characterMovement.DashForward ();
-	}
-  
+	}  
 	//float lastHorizontalKeyPressed;
 	float last_x;
 	float last_x_timer;
@@ -181,37 +181,33 @@ public class CharacterControls : MonoBehaviour {
 
 
 
-	/// <summary>
-	/// For mobile
-	/// </summary>
-	private void moveByAccelerometer()
-	{
-		if (Input.touchCount > 0)
-		{
-			var touch = Input.touches[0];
-			if (touch.position.x < Screen.width / 2)
-			{
-				if (Input.GetTouch(0).phase == TouchPhase.Began)
-					characterBehavior.Jump();
-				else
-				{
-					characterBehavior.JumpPressed();
-				}
-			}
-			else if (touch.position.x > Screen.width / 2)
-			{
-				characterBehavior.shooter.CheckFire();
-			}
-		} else
-		{
-			characterBehavior.AllButtonsReleased();
-		} 
-
-
-		if (Time.deltaTime == 0) return;
-		transform.localRotation = Quaternion.Euler(transform.localRotation.x, Input.acceleration.x * 50, rotationZ);
-
-		// transform.Translate(0, 0, Time.deltaTime * characterBehavior.speed);
-
-	}
+//	/// <summary>
+//	/// For mobile
+//	/// </summary>
+//	private void moveByAccelerometer()
+//	{
+//		if (Input.touchCount > 0)
+//		{
+//			var touch = Input.touches[0];
+//			if (touch.position.x < Screen.width / 2)
+//			{
+//				if (Input.GetTouch(0).phase == TouchPhase.Began)
+//					characterBehavior.Jump();
+//			}
+//			else if (touch.position.x > Screen.width / 2)
+//			{
+//				characterBehavior.shooter.CheckFire();
+//			}
+//		} else
+//		{
+//			characterBehavior.AllButtonsReleased();
+//		} 
+//
+//
+//		if (Time.deltaTime == 0) return;
+//		transform.localRotation = Quaternion.Euler(transform.localRotation.x, Input.acceleration.x * 50, rotationZ);
+//
+//		// transform.Translate(0, 0, Time.deltaTime * characterBehavior.speed);
+//
+//	}
 }

@@ -13,4 +13,5 @@ public abstract class InputType {
     public abstract bool getOpenMenu();
 	public abstract bool getDash();
 	public abstract bool getWeapon();
+	public abstract float getDH();
 }

@@ -10,7 +10,7 @@ public class CharacterShooter : MonoBehaviour {
 	float timePressing;
 	public Weapon.types weawponType;
 	public Missil weapon;
-	bool isLoadingGun;
+//	bool isLoadingGun;
 
 	void Start()
 	{
@@ -25,26 +25,26 @@ public class CharacterShooter : MonoBehaviour {
 	{
 		weapon.ResetAll ();
 	}
-	void Update()
-	{	
-		return;
-
-		if (isLoadingGun) {
-			float timePressed = Time.time - timePressing;
-			Weapon.types newWeawponType;
-			if (timePressed < 0.5f )
-				newWeawponType= Weapon.types.SIMPLE;
-			else if (timePressed < 1f)
-				newWeawponType= Weapon.types.DOUBLE;
-			else
-				newWeawponType= Weapon.types.TRIPLE;
-			if (newWeawponType != weawponType) {
-				weawponType = newWeawponType;
-				weapon.OnChangeWeapon (newWeawponType);
-			}
-			//weapon.Turn (characterBehavior.transform.eulerAngles.y);
-		}
-	}
+//	void Update()
+//	{	
+//		return;
+//
+//		if (isLoadingGun) {
+//			float timePressed = Time.time - timePressing;
+//			Weapon.types newWeawponType;
+//			if (timePressed < 0.5f )
+//				newWeawponType= Weapon.types.SIMPLE;
+//			else if (timePressed < 1f)
+//				newWeawponType= Weapon.types.DOUBLE;
+//			else
+//				newWeawponType= Weapon.types.TRIPLE;
+//			if (newWeawponType != weawponType) {
+//				weawponType = newWeawponType;
+//				weapon.OnChangeWeapon (newWeawponType);
+//			}
+//			//weapon.Turn (characterBehavior.transform.eulerAngles.y);
+//		}
+//	}
 	void OnChangeWeapon(int playerID, Weapon.types type)
 	{       
 		this.weawponType = type;
@@ -53,29 +53,39 @@ public class CharacterShooter : MonoBehaviour {
 	}
 	public void ChangeNextWeapon()
 	{
-		Weapon.types nextWeapon;
-		if (weawponType == Weapon.types.SIMPLE)
-			nextWeapon = Weapon.types.TRIPLE;
-		else
-			nextWeapon = Weapon.types.SIMPLE;
-		
-		Data.Instance.events.OnChangeWeapon (characterBehavior.player.id, nextWeapon);
+		SetFire (Weapon.types.TRIPLE, 0.6f);
+		return;
+//		Weapon.types nextWeapon;
+//		if (weawponType == Weapon.types.SIMPLE)
+//			nextWeapon = Weapon.types.TRIPLE;
+//		else
+//			nextWeapon = Weapon.types.SIMPLE;
+//		
+//		Data.Instance.events.OnChangeWeapon (characterBehavior.player.id, nextWeapon);
 	}
 	public void StartPressingFire(){
-		isLoadingGun = true;
+		//isLoadingGun = true;
 		timePressing = Time.time;
 		weapon.OnChangeWeapon (Weapon.types.SIMPLE);
 	}
+	public void CheckFireDouble()
+	{
+		SetFire (Weapon.types.DOUBLE, 0.45f);
+	}
 	public void CheckFire()
+	{
+		SetFire (Weapon.types.SIMPLE, 0.3f);
+	}
+	public void SetFire(Weapon.types weawponType, float delay)
 	{
 		if (Game.Instance.state ==  Game.states.INTRO)
 			return;
 		
-		isLoadingGun = false;
+		//isLoadingGun = false;
 
-		if(lastShot+0.35f > Time.time) return;
+		if(lastShot+delay > Time.time) return;
 
-		ResetWeapons ();
+	//	ResetWeapons ();
 
 		//if(!characterBehavior.controls.isAutomata)
 		//	Data.Instance.events.OnAvatarShoot(characterBehavior.player.id);
@@ -97,7 +107,7 @@ public class CharacterShooter : MonoBehaviour {
 
 		OnShoot (pos, weawponType);
 
-		Invoke("ResetShoot", 0.3f);
+		Invoke("ResetShoot", delay - 0.5f);
 	}
 	void OnShoot(Vector3 pos, Weapon.types type)
 	{
@@ -108,8 +118,8 @@ public class CharacterShooter : MonoBehaviour {
 			Shoot(pos, offsetY);
 			break;
 		case Weapon.types.DOUBLE:
-			Shoot(new Vector3(pos.x+1, pos.y, pos.z),-4 + offsetY);
-			Shoot(new Vector3(pos.x-1, pos.y, pos.z), 4 + offsetY);
+			Shoot(new Vector3(pos.x+1, pos.y, pos.z),-20 + offsetY);
+			Shoot(new Vector3(pos.x-1, pos.y, pos.z), 20 + offsetY);
 			break;
 		case Weapon.types.TRIPLE:
 			Shoot(pos, 0);
@@ -154,7 +164,7 @@ public class CharacterShooter : MonoBehaviour {
 			characterBehavior.Run();
 //		else if(characterBehavior.jumpsNumber<2)
 //			characterBehavior.state = CharacterBehavior.states.JUMP;
-		else
-			characterBehavior.state = CharacterBehavior.states.DOUBLEJUMP;
+		//else
+		//	characterBehavior.state = CharacterBehavior.states.DOUBLEJUMP;
 	}
 }

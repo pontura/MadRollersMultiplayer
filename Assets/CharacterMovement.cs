@@ -16,6 +16,8 @@ public class CharacterMovement : MonoBehaviour {
 	CharacterBehavior cb;
 	public int characterPosition;
 	public Vector3 offset;
+	float DHSpeed =20f;
+	float DHMoveTo;
 
 	void Start()
 	{
@@ -29,6 +31,14 @@ public class CharacterMovement : MonoBehaviour {
 		Data.Instance.events.OnReorderAvatarsByPosition -= OnReorderAvatarsByPosition;
 		Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
 	}
+	public void DH(float value)
+	{		
+		DHMoveTo = value * DHSpeed;
+	}
+	void DHDone()
+	{
+		DHMoveTo = 0;
+	}
 	public void DashForward()
 	{
 		if (type == types.NORMAL) {
@@ -39,7 +49,7 @@ public class CharacterMovement : MonoBehaviour {
 	void Update()
 	{
 		if (type == types.NORMAL)
-			return;
+			return; 
 		if (type == types.DASHING_FORWARD) {
 			if (offset.z > offset_Dash_Z)
 				type = types.DASHING_BACK;
@@ -77,14 +87,16 @@ public class CharacterMovement : MonoBehaviour {
 			} else {
 				speedRotation = 3;
 			}
-			goTo.x += (rotationY / speedRotation) * Time.deltaTime;
+
+			if (DHMoveTo == 0)
+				goTo.x += (rotationY / speedRotation) * Time.deltaTime;
+			else
+				goTo.x += DHMoveTo * Time.deltaTime;
+		
 			goTo.z = _z;
 		//}
 
 		goTo += offset;
-
-		if(cb.controls.isAutomata || cb.controls.ControlsEnabled)
-			transform.position = Vector3.Lerp(transform.position, goTo, 6);
 		
 		if (transform.position.y < -0.15f && cb.player.fxState == Player.fxStates.SUPER) {
 			Vector3 pos = transform.position;
@@ -94,6 +106,9 @@ public class CharacterMovement : MonoBehaviour {
 		} else if (transform.position.y < heightToFall) {
 			 cb.Fall ();
 		}
+
+		if(cb.controls.isAutomata || cb.controls.ControlsEnabled)
+			transform.position = Vector3.Lerp(transform.position, goTo, 6);
 	}
 	void StartMultiplayerRace()
 	{

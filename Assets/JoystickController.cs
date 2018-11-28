@@ -25,9 +25,13 @@ public class JoystickController : MonoBehaviour {
 		if (lastClickedTime > delayToReact)
 			processAxis = true;
 		for (int a = 0; a < 4; a++) {
-			if (InputManager.getJump (a)) 
+			if (InputManager.getJumpDown (a)) 
 				OnJoystickBack ();
 			if (InputManager.getFireDown (a)) 
+				OnJoystickClick ();
+			if (InputManager.getWeapon (a)) 
+				OnJoystickClick ();
+			if (InputManager.getDash (a)) 
 				OnJoystickClick ();
 			if (processAxis) {				
 				float v = InputManager.getVertical (a);

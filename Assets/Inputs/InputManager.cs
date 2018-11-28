@@ -63,6 +63,11 @@ public class InputManager {
 		if (!initialized) Init();
 		return inputs[id].getWeapon();
 	}
+	public static float getDH(int id = 0)
+	{
+		if (!initialized) Init();
+		return inputs[id].getDH();
+	}
 
     static void Init()
     {        
