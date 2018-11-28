@@ -52,7 +52,9 @@ public class LoadingAsset : MonoBehaviour {
 		AddText("COMPLETE!");
 		yield return new WaitForSeconds (0.5f);
 		SetOn (false);
-		Data.Instance.GetComponent<MusicManager>().stopAllSounds();
+		if (!Data.Instance.isReplay) {
+			Data.Instance.GetComponent<MusicManager>().stopAllSounds();
+		}
 		yield return null;
 	}
 	void AddText(string text)

@@ -34,7 +34,7 @@ public class Missions : MonoBehaviour {
 
 	public AreaData areaDataActive;
 	float areasLength;
-	int offset = 100;
+	int offset = 120;
 	int areaSetId = 0;
 	int areaNum = 0;
 	int areaID = 0;

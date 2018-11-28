@@ -5,7 +5,7 @@ using UnityEngine;
 public class SettingsModeScreen : MonoBehaviour {
 
 	public void InitStoryMode () {
-		Data.Instance.totalCredits = 5;
+		Data.Instance.totalCredits = 10;
 		Data.Instance.playMode = Data.PlayModes.STORYMODE;
 		Go ();
 	}

@@ -13,9 +13,7 @@ public class CreditsUI : MonoBehaviour {
 		newCreditPanel.SetActive (false);
 		int totalCredits = Data.Instance.credits;
 		for (int a = 0; a < totalCredits; a++) {
-			if (a < 6) {
-				AddCredit ();
-			}
+			AddCredit ();
 		}
 	}
 	void OnDestroy()
@@ -38,7 +36,7 @@ public class CreditsUI : MonoBehaviour {
 	{
 		CreditIcon go = Instantiate (creditIcon);
 		go.transform.SetParent (container);
-		go.transform.localScale = new Vector3 (0.62f,0.62f,0.62f);
+		go.transform.localScale = new Vector3 (0.6f,0.6f,0.6f);
 	}
 	public void RemoveOne()
 	{
