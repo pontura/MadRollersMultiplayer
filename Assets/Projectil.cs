@@ -99,7 +99,7 @@ public class Projectil : SceneObject {
 				lookAtPos.y += 0.9f;
 				Vector3 myPos = transform.position;
 				myPos.z = lookAtPos.z;
-				Vector3 newLookAt = Vector3.Lerp(myPos, lookAtPos, 0.2f);
+				Vector3 newLookAt = Vector3.Lerp(myPos, lookAtPos, 0.15f);
 				transform.LookAt (newLookAt);
 			}
 		}
