@@ -96,7 +96,7 @@ public class Projectil : SceneObject {
 				target = null;
 			} else {		
 				Vector3 lookAtPos = target.transform.position;
-				lookAtPos.y += 1.35f;
+				lookAtPos.y += 0.9f;
 				Vector3 myPos = transform.position;
 				myPos.z = lookAtPos.z;
 				Vector3 newLookAt = Vector3.Lerp(myPos, lookAtPos, 0.2f);
@@ -224,15 +224,15 @@ public class Projectil : SceneObject {
         Pool();
     }
 
-	GameObject target;
-	public void StartFollowing(GameObject target)
+	GameObject target = null;
+	public void StartFollowing(GameObject _target)
 	{
 		
-		if (this.target)
+		if (target != null)
 			return;
 		
 		realSpeed /= 4;
 		
-		this.target = target;
+		this.target = _target;
 	}
 }
