@@ -63,7 +63,7 @@ public class CharacterControls : MonoBehaviour {
 			//characterBehavior.characterMovement.DashForward ();
 		}
 	
-		if (InputManager.getFireUp(player.id))
+		if (InputManager.getFireDown(player.id))
 			characterBehavior.shooter.CheckFire ();
 
 		if (

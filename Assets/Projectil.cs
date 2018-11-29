@@ -96,10 +96,10 @@ public class Projectil : SceneObject {
 				target = null;
 			} else {		
 				Vector3 lookAtPos = target.transform.position;
-				lookAtPos.y += 1.5f;
+				lookAtPos.y += 1.35f;
 				Vector3 myPos = transform.position;
 				myPos.z = lookAtPos.z;
-				Vector3 newLookAt = Vector3.Lerp(myPos, lookAtPos, 0.1f);
+				Vector3 newLookAt = Vector3.Lerp(myPos, lookAtPos, 0.2f);
 				transform.LookAt (newLookAt);
 			}
 		}
