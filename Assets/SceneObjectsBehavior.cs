@@ -57,7 +57,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	public SceneObject levelSignal;
 	public SceneObject streetFloor;
 	public SceneObject streetFloorSmall;
-	public SceneObject subibaja;
 	public SceneObject cepillo;
 	public SceneObject pisoRotatorio;
 	public SceneObject wallBig;
@@ -300,8 +299,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				clone = helice1;
 			else if (go.name == "helice2")
 				clone = helice2;
-			else if (go.name == "subibaja")
-				clone = subibaja;
 			else if (go.name == "cepillo")
 				clone = cepillo;
 			else if (go.name == "pisoRotatorio")

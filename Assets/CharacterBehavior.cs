@@ -412,7 +412,7 @@ public class CharacterBehavior : MonoBehaviour {
 	public void SuperJump(float _superJumpHeight, bool isDoubleJump = false)
 	{
 		float velocityY = rb.velocity.y;
-		print (velocityY);
+		print ("SuperJump velocityY: " + velocityY);
 		if (velocityY < 10) {
 			OnAvatarJump();
 			velocityY = Mathf.Abs (velocityY);
@@ -444,6 +444,7 @@ public class CharacterBehavior : MonoBehaviour {
 	{
 		if (!GetComponent<Collider>().enabled)
 			return;
+		print ("______________ SuperJumpByBumped " + state);	
 		ResetColliders();
 		OnAvatarJump();
 

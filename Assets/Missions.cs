@@ -173,7 +173,7 @@ public class Missions : MonoBehaviour {
 			areaDataActive = JsonUtility.FromJson<AreaData> (asset.text);
 			areasLength += areaDataActive.z_length/2;
 			level.sceneObjects.AddSceneObjects (areaDataActive, areasLength);
-			print ("km: " + areasLength + " mission: " + MissionActiveID +  " areaSetId: " + areaSetId + " areaID: " + areaID + " z_length: " + areaDataActive.z_length + " en: areas/" + areaName );
+		//	print ("km: " + areasLength + " mission: " + MissionActiveID +  " areaSetId: " + areaSetId + " areaID: " + areaID + " z_length: " + areaDataActive.z_length + " en: areas/" + areaName );
 			areasLength += areaDataActive.z_length/2;
 		} else {
 			Debug.LogError ("Loco, no existe esta area: " + areaName + " en Respurces/areas/");

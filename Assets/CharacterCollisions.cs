@@ -71,8 +71,8 @@ public class CharacterCollisions : MonoBehaviour {
                 characterBehavior.SuperJumpByBumped(1200, 0.5f, false);
                 Invoke("resetHits", 1);
             }
-            if (other.GetComponent<WeakPlatform>())
-                other.GetComponent<WeakPlatform>().breakOut(characterBehavior.transform.position);           
+           // if (other.GetComponent<WeakPlatform>())
+               // other.GetComponent<WeakPlatform>().breakOut(characterBehavior.transform.position);           
         }
         else if (
             other.tag == "enemy"

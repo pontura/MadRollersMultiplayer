@@ -10,9 +10,11 @@ public class Bumper : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) 
 	{
+		print ("other            " + other.name);
 		switch (other.tag)
 		{
 		case "Player":
+			print ("BUMP___________________");
 			CharacterBehavior ch = other.transform.parent.GetComponent<CharacterBehavior> ();
 			ch.SuperJumpByBumped ((int)force * 100, 0.5f, backwardJump);
 
@@ -20,8 +22,8 @@ public class Bumper : MonoBehaviour {
 			break;
 		}
 	}
-	void OnPooled()
-	{
-		Destroy(gameObject.GetComponent("Bumper"));
-	}
+//	void OnPooled()
+//	{
+//		//Destroy(gameObject.GetComponent("Bumper"));
+//	}
 }

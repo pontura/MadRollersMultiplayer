@@ -83,7 +83,6 @@ public class Floor : MonoBehaviour
 		all.Clear ();
 
 		for (int a = 0; a < 3; a++) {
-			print ("_____________fondos/" + backgroundName);
 			BackgroundSideData bsd = Instantiate (Resources.Load ("fondos/" + backgroundName, typeof(BackgroundSideData))) as BackgroundSideData;
 			all.Add (bsd);
 		}
