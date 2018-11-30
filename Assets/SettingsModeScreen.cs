@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class SettingsModeScreen : MonoBehaviour {
 
+	void Start()
+	{
+		InitStoryMode ();
+	}
 	public void InitStoryMode () {
 		Data.Instance.totalCredits = 10;
 		Data.Instance.playMode = Data.PlayModes.STORYMODE;
