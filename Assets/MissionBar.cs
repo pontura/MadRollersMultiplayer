@@ -12,8 +12,10 @@ public class MissionBar : MonoBehaviour {
 	public Text field;
 	public int sec;
 	public Transform itemContainer;
+	public GameObject bossTimer;
 
 	void Start () {
+		bossTimer.SetActive (false);
 		panel.SetActive (false);
 		Data.Instance.events.OnBossInit += OnBossInit;
 		Data.Instance.events.OnBossActive += OnBossActive;
@@ -56,6 +58,7 @@ public class MissionBar : MonoBehaviour {
 		if (sec <= 9) {
 			field.text = "0" + sec.ToString ();
 			field.color = Color.red;
+			StartCoroutine (SetBossTimer ());
 		} 
 		if (sec <=  0) {
 			Data.Instance.events.OnGameOver (true);
@@ -64,6 +67,13 @@ public class MissionBar : MonoBehaviour {
 			Invoke ("Loop", 1);
 		}
 
+	}
+	IEnumerator SetBossTimer()
+	{
+		bossTimer.SetActive (true);
+		bossTimer.GetComponent<Text> ().text = sec.ToString ();
+		yield return new WaitForSeconds (0.5f);
+		bossTimer.SetActive (false);
 	}
 	void OnBossInit (int totalHits) {
 		progressBar.SetProgression (1);

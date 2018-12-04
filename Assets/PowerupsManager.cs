@@ -57,14 +57,16 @@ public class PowerupsManager : MonoBehaviour {
 	}
     void OnAddPowerUp(Vector3 pos)
     {
+		if (!CanBeThrown ())
+			return;
         powerUpOn = true;
         SceneObject newSO = null;
         int rand = Random.Range(0, 10); 
 
-        if(rand<50)
+      //  if(rand<50)
             newSO = ObjectPool.instance.GetObjectForType(Missile.name, true);
-        else
-            newSO = ObjectPool.instance.GetObjectForType(Invencible.name, true);
+      //  else
+       //     newSO = ObjectPool.instance.GetObjectForType(Invencible.name, true);
 
         if (newSO)
         {

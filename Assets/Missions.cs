@@ -173,7 +173,7 @@ public class Missions : MonoBehaviour {
 			areaDataActive = JsonUtility.FromJson<AreaData> (asset.text);
 			areasLength += areaDataActive.z_length/2;
 			level.sceneObjects.AddSceneObjects (areaDataActive, areasLength);
-		//	print ("km: " + areasLength + " mission: " + MissionActiveID +  " areaSetId: " + areaSetId + " areaID: " + areaID + " z_length: " + areaDataActive.z_length + " en: areas/" + areaName );
+			print ("km: " + areasLength + " mission: " + MissionActiveID +  " areaSetId: " + areaSetId + " areaID: " + areaID + " z_length: " + areaDataActive.z_length + " en: areas/" + areaName );
 			areasLength += areaDataActive.z_length/2;
 		} else {
 			Debug.LogError ("Loco, no existe esta area: " + areaName + " en Respurces/areas/");
@@ -187,6 +187,11 @@ public class Missions : MonoBehaviour {
 	string GetArea(MissionData.AreaSetData areaSetData)
 	{
 		if (areaSetData.randomize) {
+
+			//si hay un solo jugador muestra un area sola de todas:
+			if (Data.Instance.multiplayerData.GetTotalCharacters () == 1)
+				areaSetData.total_areas = 1;
+			
 			return areaSetData.areas [UnityEngine.Random.Range (0, areaSetData.areas.Count)];
 		} else if (areaID < areaSetData.areas.Count - 1) {
 			areaID++;

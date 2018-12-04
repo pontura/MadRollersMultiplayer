@@ -214,9 +214,9 @@ public class Level : MonoBehaviour {
 
         }
 
-		//if (Data.Instance.playMode == Data.PlayModes.PARTYMODE)
-			//Data.Instance.events.OnAddPowerUp (position);
-		//else
+		if (Random.Range(0,100)>85 && Data.Instance.isArcadeMultiplayer)
+			Data.Instance.events.OnAddPowerUp (position);
+		else
 			AddHeartsByBreaking (position, 14, 470);
 	}
 	public void AddBricksByBreak(Vector3 position, Material[] mat, Vector3[] pos)

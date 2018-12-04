@@ -5,6 +5,7 @@ using System;
 using UnityEditor;
 public class LevelCreator : MonoBehaviour {
 
+	public bool isArcadeMultiplayer;
 	public bool Debbug;
 	public int videoGameID;
 	public int missionID;
@@ -17,6 +18,7 @@ public class LevelCreator : MonoBehaviour {
 	float totalDistance;
 	void Start () {
 		if (Debbug) {
+			LevelDataDebug.Instance.isArcadeMultiplayer = isArcadeMultiplayer;
 			LevelDataDebug.Instance.isDebbug = true;
 			LevelDataDebug.Instance.videogameID = videoGameID-1;
 			LevelDataDebug.Instance.missionID = missionID;

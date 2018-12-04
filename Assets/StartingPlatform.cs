@@ -13,9 +13,6 @@ public class StartingPlatform : SceneObject {
 
 	public override void OnRestart(Vector3 pos)
 	{
-
-		print ("StartingPlatform OnRestart");
-
 		base.OnRestart( pos );
 		int id = 0;
 		foreach (Transform t in containers) {
@@ -35,25 +32,20 @@ public class StartingPlatform : SceneObject {
 	}
 	public override void OnPool()
 	{
-		print ("OnPool");
 		playerToInstantiate = null;
 		Data.Instance.events.OnCharacterInit -= OnCharacterInit;
 	}
 	void OnCharacterInit(int _avatarID)
 	{
-		print ("OnCharacterInit");
 		CheckIfStart (_avatarID);
 	}
 	void CheckIfStart(int _avatarID)
 	{		
-		print ("CheckIfStart" + _avatarID);
 		foreach (int i in ids) {
 			if (i == _avatarID)
 				return;
 		}
 		ids.Add (_avatarID);
 		Destroy (containers [_avatarID].gameObject);
-		print ("Destroy" + _avatarID);
-
 	}
 }

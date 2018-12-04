@@ -412,7 +412,6 @@ public class CharacterBehavior : MonoBehaviour {
 	public void SuperJump(float _superJumpHeight, bool isDoubleJump = false)
 	{
 		float velocityY = rb.velocity.y;
-		print ("SuperJump velocityY: " + velocityY);
 		if (velocityY < 10) {
 			OnAvatarJump();
 			velocityY = Mathf.Abs (velocityY);

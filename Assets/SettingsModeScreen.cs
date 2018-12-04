@@ -6,7 +6,7 @@ public class SettingsModeScreen : MonoBehaviour {
 
 	void Start()
 	{
-		InitStoryMode ();
+		//InitStoryMode ();
 	}
 	public void InitStoryMode () {
 		Data.Instance.totalCredits = 10;
@@ -15,7 +15,7 @@ public class SettingsModeScreen : MonoBehaviour {
 	}
 
 	public void InitPartyMode () {
-		Data.Instance.totalCredits = 3;
+		Data.Instance.totalCredits = 4;
 		Data.Instance.playMode = Data.PlayModes.PARTYMODE;
 		Go ();
 	}

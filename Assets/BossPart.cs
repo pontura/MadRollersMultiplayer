@@ -12,7 +12,6 @@ public class BossPart : MonoBehaviour {
 	{
 		this.boss = _boss;
 		Utils.RemoveAllChildsIn (transform);
-		print ("bossAssetPath " + bossAssetPath);
 		if (bossAssetPath != null) {
 			GameObject newGO = Instantiate(Resources.Load("bosses/" + bossAssetPath, typeof(GameObject))) as GameObject;
 			newGO.transform.SetParent (transform);

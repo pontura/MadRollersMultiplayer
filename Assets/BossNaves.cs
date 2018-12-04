@@ -40,7 +40,10 @@ public class BossNaves : Boss {
 	{
 		if (partID >= all.Length)
 			return;
-		all [partID].gameObject.SetActive (true);
+		
+		if(all [partID]!=null)
+			all [partID].gameObject.SetActive (true);
+		
 		Invoke ("Init", 0.5f);
 		partID++;
 	}

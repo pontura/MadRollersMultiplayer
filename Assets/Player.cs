@@ -115,6 +115,7 @@ public class Player : MonoBehaviour {
 
 
         characterBehavior = GetComponent<CharacterBehavior>();
+		characterBehavior.shooter.ResetWeapons ();
 
         this.id = id;
        

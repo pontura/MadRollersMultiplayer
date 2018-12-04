@@ -21,47 +21,33 @@ public class CharacterShooter : MonoBehaviour {
 	{
 		Data.Instance.events.OnChangeWeapon -= OnChangeWeapon;
 	}
-	void ResetWeapons()
+	public void ResetWeapons()
 	{
 		weapon.ResetAll ();
+		weawponType = Weapon.types.SIMPLE;
 	}
-//	void Update()
-//	{	
-//		return;
-//
-//		if (isLoadingGun) {
-//			float timePressed = Time.time - timePressing;
-//			Weapon.types newWeawponType;
-//			if (timePressed < 0.5f )
-//				newWeawponType= Weapon.types.SIMPLE;
-//			else if (timePressed < 1f)
-//				newWeawponType= Weapon.types.DOUBLE;
-//			else
-//				newWeawponType= Weapon.types.TRIPLE;
-//			if (newWeawponType != weawponType) {
-//				weawponType = newWeawponType;
-//				weapon.OnChangeWeapon (newWeawponType);
-//			}
-//			//weapon.Turn (characterBehavior.transform.eulerAngles.y);
-//		}
-//	}
 	void OnChangeWeapon(int playerID, Weapon.types type)
-	{       
+	{     
+		if (playerID != characterBehavior.player.id) 
+			return; 
+
 		this.weawponType = type;
-		if (playerID != characterBehavior.player.id) return;    
+		
 		weapon.OnChangeWeapon(type);
 	}
 	public void ChangeNextWeapon()
 	{
-		SetFire (Weapon.types.TRIPLE, 0.6f);
-		return;
-//		Weapon.types nextWeapon;
-//		if (weawponType == Weapon.types.SIMPLE)
-//			nextWeapon = Weapon.types.TRIPLE;
-//		else
-//			nextWeapon = Weapon.types.SIMPLE;
-//		
-//		Data.Instance.events.OnChangeWeapon (characterBehavior.player.id, nextWeapon);
+		if (!Data.Instance.isArcadeMultiplayer)
+			SetFire (Weapon.types.TRIPLE, 0.6f);
+		else {
+			Weapon.types nextWeapon;
+			if (weawponType == Weapon.types.SIMPLE)
+				nextWeapon = Weapon.types.TRIPLE;
+			else
+				nextWeapon = Weapon.types.SIMPLE;
+		
+			Data.Instance.events.OnChangeWeapon (characterBehavior.player.id, nextWeapon);
+		}
 	}
 	public void StartPressingFire(){
 		//isLoadingGun = true;
@@ -74,7 +60,10 @@ public class CharacterShooter : MonoBehaviour {
 	}
 	public void CheckFire()
 	{
-		SetFire (Weapon.types.SIMPLE, 0.3f);
+		if(Data.Instance.isArcadeMultiplayer)
+			SetFire (weawponType, 0.3f);
+		else
+			SetFire (Weapon.types.SIMPLE, 0.3f);
 	}
 	public void SetFire(Weapon.types weawponType, float delay)
 	{

@@ -79,9 +79,12 @@ public class SummaryCompetitions : MonoBehaviour {
 			progressImage.fillAmount += 0.005f;
 		else
 			progressImage.fillAmount = fillAmount;
+		
 		lastClickedTime += Time.deltaTime;
+
 		if (lastClickedTime > delayToReact)
 			processAxis = true;
+		
 		for (int a = 0; a < 4; a++) {
 			if (InputManager.getJump (a)) 
 				OnJoystickClick ();
