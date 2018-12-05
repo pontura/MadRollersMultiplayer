@@ -194,7 +194,7 @@ public class Missions : MonoBehaviour {
 	{
 		if (areaSetData.randomize) {
 			areaID++;
-			return areaSetData.areas [UnityEngine.Random.Range(0,areaSetData.areas.Count-1)];
+			return areaSetData.areas [UnityEngine.Random.Range(0,areaSetData.areas.Count)];
 		} else if (areaID < areaSetData.areas.Count - 1) {
 			areaID++;
 			return areaSetData.areas [areaID-1];
