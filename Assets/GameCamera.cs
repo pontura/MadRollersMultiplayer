@@ -288,10 +288,10 @@ public class GameCamera : MonoBehaviour
 		if (state == states.END) return;
 		state = states.END;
 
-		cam.gameObject.transform.localEulerAngles = new Vector3 (20, 0, 0);
+		cam.gameObject.transform.localEulerAngles = new Vector3 (40, 0, 0);
 
 		iTween.MoveTo(cam.gameObject, iTween.Hash(
-			"z", cam.gameObject.transform.position.z+130,
+			"z", cam.gameObject.transform.position.z+140,
 			"time", 1,
 			"easetype", iTween.EaseType.easeOutCubic
 			// "axis", "x"

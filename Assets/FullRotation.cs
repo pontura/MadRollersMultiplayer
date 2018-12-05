@@ -25,19 +25,25 @@ public class FullRotation : MonoBehaviour {
 
 	void OnEnable () {
 
-        if (randomRotation)
-        {
-            if (rotateX)
-                rotationX = UnityEngine.Random.Range(-180, 180);
-            if (rotateY)
-				rotationY =  UnityEngine.Random.Range(-180, 180);
-            if (rotateZ)
-				rotationZ =  UnityEngine.Random.Range(-45, 45);
-        }
-        else
-        {
-            rotationZ = startRotation;
-        }
+		if (randomRotation) {
+			if (rotateX)
+				rotationX = UnityEngine.Random.Range (-180, 180);
+			if (rotateY)
+				rotationY = UnityEngine.Random.Range (-180, 180);
+			if (rotateZ)
+				rotationZ = UnityEngine.Random.Range (-45, 45);
+		} else if (startRotation != 0) {
+			if (rotateX)
+				rotationX = startRotation;
+			else if (rotateY)
+				rotationY = startRotation;
+			else if (rotateZ)
+				rotationZ = startRotation;
+		} else {
+			rotationX = transform.localEulerAngles.x;
+			rotationY = transform.localEulerAngles.y;
+			rotationZ = transform.localEulerAngles.z;
+		}
 
 		if(inverse)
 			speed *=-1;
@@ -59,9 +65,10 @@ public class FullRotation : MonoBehaviour {
 		if (frameByFrame) {
 			return;
 		}
-		if(rotateX)
-			rotationX+=speed*Time.deltaTime;
-        else rotationX = transform.localRotation.x;
+		if (rotateX) 
+			rotationX += speed * Time.deltaTime;
+		else 
+			rotationX = transform.localRotation.x;
 
 		if (rotateY) 
 			rotationY += speed * Time.deltaTime;

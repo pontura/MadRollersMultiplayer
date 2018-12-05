@@ -136,8 +136,11 @@ public class CharacterBehavior : MonoBehaviour {
 			state = states.DEAD;
 		}
 	}
-
-
+	float rotationZ = 0;
+	public void SetRotation(float rotationY)
+	{
+		transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, rotationY, rotationZ);
+	}
 
 	/// <summary>
 	/// /////////////////////////////over
@@ -152,15 +155,15 @@ public class CharacterBehavior : MonoBehaviour {
 	}
 	public void OnGetRidOfOverAvatar()
 	{
-		if (hasSomeoneOver != null)
-			hasSomeoneOver.OnAvatarFree();
-		Reset();
+//		if (hasSomeoneOver != null)
+//			hasSomeoneOver.OnAvatarFree();
+//		Reset();
 	}
 	public void OnGetRidOfBelowAvatar()
 	{
-		if (isOver != null)
-			isOver.Reset();
-		Reset();
+//		if (isOver != null)
+//			isOver.Reset();
+//		Reset();
 	}
 	public void OnAvatarFree()
 	{
@@ -198,9 +201,18 @@ public class CharacterBehavior : MonoBehaviour {
 		if (state == states.DEAD)
 			return;
 
+		RaycastHit coverHit;
+		if (Physics.Linecast (transform.position, groundCheck.position, out coverHit)) {
+			if (coverHit.transform.tag == "floor") {
+				rotationZ = coverHit.transform.up.x * -30;
+			} else
+				rotationZ = 0;
+		}
+
 		if (!grounded &&  startJumping + 0.2f < Time.time ) {
 			Vector3 pos = transform.position;
 			pos.y += 1;
+
 			grounded = Physics.Linecast (pos, groundCheck.position, 1 << LayerMask.NameToLayer ("Floor"));
 			if(grounded)
 				OnFloor();
@@ -209,14 +221,6 @@ public class CharacterBehavior : MonoBehaviour {
 		characterMovement.UpdateByController (rotationY);
 	}
 
-
-	public void setRotation(Vector3 rot)
-	{
-		if (team_for_versus == 2)
-			rot.y += 180;
-		if (transform.localEulerAngles == rot) return;
-		transform.localEulerAngles = rot;
-	}
 	public void bump(float damage)
 	{
 		Die();
@@ -357,9 +361,6 @@ public class CharacterBehavior : MonoBehaviour {
 	{
 		jumpingPressed = false;
 
-	//	print ("startJumping :" + startJumping + "  Time.time: " + Time.time + "   jumpsNumber: " + jumpsNumber+ " state: " + state);
-
-
 		if (Game.Instance.state == Game.states.INTRO || state == states.DEAD || state == states.DOUBLEJUMP) 
 			return;	
 
@@ -474,7 +475,6 @@ public class CharacterBehavior : MonoBehaviour {
 
 		if(team_for_versus == 0)
 			Game.Instance.gameCamera.OnAvatarFall (this);
-		// Die();
 	}
 
 	public void HitWithObject(Vector3 objPosition)
@@ -494,7 +494,6 @@ public class CharacterBehavior : MonoBehaviour {
 		rb.velocity = Vector3.zero;
 		rb.AddForce(new Vector3(Random.Range(-500,500), 1500, Random.Range(0,-200)), ForceMode.Impulse);
 		rb.freezeRotation = false;
-		//removeColliders();
 
 		_animation_hero.Play("hit");
 
@@ -525,13 +524,6 @@ public class CharacterBehavior : MonoBehaviour {
 
 		state = states.DEAD;
 	}
-
-
-//	public void burned(float damage)
-//	{
-//		//player.removeEnergy(damage);
-//		SuperJump( jumpHeight );
-//	}
 
 	void OnCollisionEnter(Collision other)
 	{

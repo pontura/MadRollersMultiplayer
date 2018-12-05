@@ -9,7 +9,6 @@ public class CharacterControls : MonoBehaviour {
 	public List<CharacterBehavior> childs;
     Player player;
     private float rotationY;
-    private float rotationZ = 0;
     private float turnSpeed = 2.8f;
     private float speedX = 9f;
     private bool mobileController;
@@ -144,7 +143,7 @@ public class CharacterControls : MonoBehaviour {
 
 		if (Time.deltaTime == 0) return;
 
-		transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, rotationY, rotationZ);
+		characterBehavior.SetRotation (rotationY);
 
 		//if (childs.Count > 0)
 		//	UpdateChilds ();

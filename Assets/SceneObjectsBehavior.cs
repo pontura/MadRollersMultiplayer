@@ -19,7 +19,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	public SceneObject BossCalecitas1;
 	public SceneObject BossPacmans;
 	public SceneObject BossGalaga;
-	public SceneObject BossPacmansIntro;
 	public SceneObject Starting;
 	public SceneObject FloorSlider;
 	public SceneObject FloorSurface;
@@ -42,7 +41,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	public SceneObject borde1;
 
 	public SceneObject fences;
-	public SceneObject rainbow;
 	public SceneObject Listener;
 
 	public SceneObject tunel1;
@@ -53,11 +51,9 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	public SceneObject CruzGrande;
 	public SceneObject rueda1;
 	public SceneObject helice1;
-	public SceneObject helice2;
 	public SceneObject levelSignal;
 	public SceneObject streetFloor;
 	public SceneObject streetFloorSmall;
-	public SceneObject cepillo;
 	public SceneObject pisoRotatorio;
 	public SceneObject wallBig;
 	public SceneObject wallMedium;
@@ -246,8 +242,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				clone = BossPacmans;
 			else if (go.name == "BossGalaga")
 				clone = BossGalaga;
-			else if (go.name == "BossPacmansIntro")
-				clone = BossPacmansIntro;
 			else if (go.name == "Starting")
 				clone = Starting;
 			else if (go.name == "bomb1") {
@@ -283,8 +277,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				clone = borde1;
 			else if (go.name == "fences")
 				clone = fences;
-			else if (go.name == "rainbow")
-				clone = rainbow;
 			else if (go.name == "Listener")
 			{
 				clone = Listener;
@@ -297,10 +289,6 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				clone = rueda1;
 			else if (go.name == "helice1")
 				clone = helice1;
-			else if (go.name == "helice2")
-				clone = helice2;
-			else if (go.name == "cepillo")
-				clone = cepillo;
 			else if (go.name == "pisoRotatorio")
 				clone = pisoRotatorio;
 			else if (go.name == "sombrilla")
