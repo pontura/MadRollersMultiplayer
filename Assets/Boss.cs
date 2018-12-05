@@ -31,7 +31,6 @@ public class Boss : SceneObject {
 	}
 	public bool HasOnlyOneLifeLeft()
 	{
-		print ("HasOnlyOneLifeLeft hits: " + hits + "     totalhits: " + totalHits);
 		if (hits+1 >= totalHits)
 			return true;
 		else

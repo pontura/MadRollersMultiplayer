@@ -230,7 +230,11 @@ public class GameCamera : MonoBehaviour
 	void LateUpdate () 
 	{
 		if (state == states.SNAPPING_TO) { 
-			transform.localPosition = Vector3.Lerp (transform.localPosition, snapTargetPosition, 0.07f);
+			Vector3 dest = snapTargetPosition;
+			dest.y += 1.5f;
+			dest.z -= 3f;
+			dest.x /= 2;
+			transform.localPosition = Vector3.Lerp (transform.localPosition, dest, 0.02f);
 			cam.transform.LookAt (snapTargetPosition);
 			return;	
 		}
@@ -283,6 +287,8 @@ public class GameCamera : MonoBehaviour
 			return;
 		if (state == states.END) return;
 		state = states.END;
+
+		cam.gameObject.transform.localEulerAngles = new Vector3 (20, 0, 0);
 
 		iTween.MoveTo(cam.gameObject, iTween.Hash(
 			"z", cam.gameObject.transform.position.z+130,
@@ -337,16 +343,9 @@ public class GameCamera : MonoBehaviour
 	void OnProjectilStartSnappingTarget(Vector3 targetPos)
 	{
 		Data.Instance.events.FreezeCharacters (true);
-		Vector3 pos = transform.localPosition;
-		pos.z += 0.7f;
-		transform.localPosition = pos;
-
-		//Data.Instance.events.ForceFrameRate (0.9f);
+		Data.Instance.events.ForceFrameRate (0.5f);
 		Data.Instance.events.RalentaTo (0.1f, 0.2f);
 		this.snapTargetPosition = targetPos;
-		snapTargetPosition.y += 4f;
-		snapTargetPosition.z -= 0.5f;
-		snapTargetPosition.x /= 2;
 		state = states.SNAPPING_TO;
 		StartCoroutine ( ResetSnapping() );
 	}

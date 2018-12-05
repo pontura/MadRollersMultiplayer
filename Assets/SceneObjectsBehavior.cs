@@ -310,19 +310,14 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			else if (go.name == "FloorSlider")
 				clone = FloorSlider;
 
-
 			if (clone)
 			{
 				sceneObject = Instantiate(clone, pos, Quaternion.identity) as SceneObject;
 				sceneObject.transform.localEulerAngles = go.rot;
-			}
-			if (sceneObject == null)
-				Debug.Log (go.name + "_______________ (No existe) " );
-			else
-				areaSceneObjectManager.AddComponentsToSceneObject (go, sceneObject.gameObject);
-			
+			}			
 
 			if (sceneObject != null) {
+				areaSceneObjectManager.AddComponentsToSceneObject (go, sceneObject.gameObject);
 				SceneObjectData soData = sceneObject.GetComponent<SceneObjectData> ();
 
 				if (soData != null )
@@ -336,7 +331,9 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				else
 					manager.AddSceneObject (sceneObject, pos);
 				
-			}
+			} else
+				Debug.Log (go.name + "_______________ (No existe) " );
+			
 
 			if (go.name == "Container") {
 				lastSceneObjectContainer = sceneObject.transform;

@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SceneObjectsManager : MonoBehaviour {
-
+	
+	public AreaSceneObjectManager areaSceneObjectManager;
 	public CharactersManager charactersManager;
 	List<SceneObject> sceneObjectsInScene;
 	private ObjectPool Pool;
 
 	void Awake()
 	{
+		areaSceneObjectManager = GetComponent<AreaSceneObjectManager> ();
 		Pool = Data.Instance.sceneObjectsPool;
 		sceneObjectsInScene = new List<SceneObject>();
 	}
@@ -35,6 +37,7 @@ public class SceneObjectsManager : MonoBehaviour {
 	}
 	public void AddSceneObjectAndInitIt(SceneObject so, Vector3 pos, Transform container = null)
 	{
+		
 		so.gameObject.SetActive (false);
 		so.isActive = true;
 

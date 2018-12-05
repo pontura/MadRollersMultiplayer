@@ -10,13 +10,15 @@ public class TimelineAnimation : MonoBehaviour {
 	Vector3 initialPosition;
 	Vector3 initialRotation;
 
-	void Start () {
+	void OnEnable () {
 		initialPosition = transform.position;
 		initialRotation = transform.eulerAngles;
 		Init ();
 	}
 	void Init()
 	{
+		if (timeLineData == null)
+			return;
 		if (timeLineData [id].rotate)
 			RotateInTimeLine ();
 		else if (timeLineData [id].move)
@@ -70,8 +72,13 @@ public class TimelineAnimation : MonoBehaviour {
 			id = 0;
 		Init ();
 	}
-	void OnDisable()
+	public void OnComponentDisposed()
 	{
 		iTween.Stop (this.gameObject);
+		Destroy (this);
 	}
+//	void OnDisable()
+//	{
+//		//iTween.Stop (this.gameObject);
+//	}
 }

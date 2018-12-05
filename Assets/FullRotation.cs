@@ -23,14 +23,14 @@ public class FullRotation : MonoBehaviour {
 	public bool frameByFrame;
     
 
-	void Start () {
+	void OnEnable () {
 
         if (randomRotation)
         {
             if (rotateX)
                 rotationX = UnityEngine.Random.Range(-180, 180);
             if (rotateY)
-				rotationY =  UnityEngine.Random.Range(-45, 45);
+				rotationY =  UnityEngine.Random.Range(-180, 180);
             if (rotateZ)
 				rotationZ =  UnityEngine.Random.Range(-45, 45);
         }
@@ -42,19 +42,19 @@ public class FullRotation : MonoBehaviour {
 		if(inverse)
 			speed *=-1;
 
-		if (frameByFrame) {
-			Loop ();
-		}
+//		if (frameByFrame) {
+//			Loop ();
+//		}
 	}
-	int rotID = 0;
-
-	void Loop()
-	{
-		Vector3 rot = transform.localEulerAngles;
-		rot.y += 90;
-		transform.localEulerAngles = rot;
-		Invoke ("Loop", 0.1f);
-	}
+//	int rotID = 0;
+//
+//	void Loop()
+//	{
+//		Vector3 rot = transform.localEulerAngles;
+//		rot.y += 90;
+//		transform.localEulerAngles = rot;
+//		Invoke ("Loop", 0.1f);
+//	}
 	void Update () {
 		if (frameByFrame) {
 			return;
@@ -64,12 +64,12 @@ public class FullRotation : MonoBehaviour {
         else rotationX = transform.localRotation.x;
 
 		if (rotateY) 
-			rotationY = transform.localEulerAngles.y + speed * Time.deltaTime;
+			rotationY += speed * Time.deltaTime;
         else 
 			rotationY = transform.localRotation.y;
 
         if (rotateZ && inverseRotation)
-			rotationZ+=speed*Time.deltaTime;
+			rotationZ += speed*Time.deltaTime;
         else if (rotateZ && !inverseRotation)
             rotationZ -= speed * Time.deltaTime;
         else rotationZ = transform.localRotation.z;
@@ -77,5 +77,9 @@ public class FullRotation : MonoBehaviour {
 			
 		transform.localRotation = Quaternion.Euler(rotationX, rotationY, rotationZ);
 		
+	}
+	public void OnComponentDisposed()
+	{
+		Destroy (this);
 	}
 }

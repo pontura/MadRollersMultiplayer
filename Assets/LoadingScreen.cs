@@ -11,7 +11,10 @@ public class LoadingScreen : MonoBehaviour {
 		#if UNITY_EDITOR
 		Data.Instance.LoadLevel("MainMenu");
 		#else
-		Data.Instance.LoadLevel("Settings");
+		if(Data.Instance.isArcadeMultiplayer)
+			Data.Instance.LoadLevel("Settings");
+		else
+			Data.Instance.LoadLevel("MainMenu");
 		#endif
 	}
 }

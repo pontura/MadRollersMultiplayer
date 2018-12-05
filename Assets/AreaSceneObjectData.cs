@@ -28,6 +28,7 @@ public class FullRotationData  {
 	public bool rotateY;
 	public bool rotateZ;
 	public float speed;
+	public bool random;
 }
 [Serializable]
 public class TimelineAnimationData  {

@@ -34,6 +34,7 @@ public class AreaSceneObjectManager : MonoBehaviour {
 			data.rotateY = fullRotation.rotateY;
 			data.rotateZ = fullRotation.rotateZ;
 			data.speed = fullRotation.speed;
+			data.random = fullRotation.randomRotation;
 			newSOdata.fullRotationData.Add (data);
 		} 
 		if (timelineAnimation != null) {
@@ -65,52 +66,62 @@ public class AreaSceneObjectManager : MonoBehaviour {
 	{
 		if (jsonData.soData.Count > 0) {
 			SceneObjectDataGeneric data = jsonData.soData [0];
+			SceneObjectData sceneObjectData = so.GetComponent<SceneObjectData> ();
+			Bumper bumper = so.GetComponent<Bumper> ();
 
-			if (data.bumperForce > 0) {
-				Bumper newcomponent = so.GetComponent<Bumper> ();
-				if(newcomponent == null)
-					newcomponent = so.gameObject.AddComponent<Bumper> ();
-				newcomponent.force = data.bumperForce;
+			if (data.bumperForce > 0) {				
+				if(bumper == null)
+					bumper = so.gameObject.AddComponent<Bumper> ();
+				bumper.force = data.bumperForce;
 			}
 			if (data.size != Vector3.zero) {
-				SceneObjectData newcomponent = so.GetComponent<SceneObjectData> ();
-				if(newcomponent == null)
-					newcomponent = so.gameObject.AddComponent<SceneObjectData> ();
-				newcomponent.size = data.size;
+				
+				if(sceneObjectData == null)
+					sceneObjectData = so.gameObject.AddComponent<SceneObjectData> ();
+				sceneObjectData.size = data.size;
 
 			}
 			if (data.random_pos_x != 0) {
-				SceneObjectData newcomponent = so.GetComponent<SceneObjectData> ();
-				if(newcomponent == null)
-					newcomponent = so.gameObject.AddComponent<SceneObjectData> ();
+				if(sceneObjectData == null)
+					sceneObjectData = so.gameObject.AddComponent<SceneObjectData> ();
 
-				newcomponent.random_pos_x = data.random_pos_x;
+				sceneObjectData.random_pos_x = data.random_pos_x;
 			}
 			if (data.minPayers != 0) {
-				SceneObjectData newcomponent = so.GetComponent<SceneObjectData> ();
-				if(newcomponent == null)
-					newcomponent = so.gameObject.AddComponent<SceneObjectData> ();
+				if(sceneObjectData == null)
+					sceneObjectData = so.gameObject.AddComponent<SceneObjectData> ();
 
-				newcomponent.minPayers = data.minPayers;
+				sceneObjectData.minPayers = data.minPayers;
 			}
 		}
+
+
+
+		FullRotation fullRotation = so.GetComponent<FullRotation> ();
 		if (jsonData.fullRotationData.Count > 0) {
 			FullRotationData data = jsonData.fullRotationData [0];
-			FullRotation newcomponent = so.GetComponent<FullRotation> ();
-			if(newcomponent == null)
-				newcomponent = so.gameObject.AddComponent<FullRotation> ();
-			newcomponent.rotateX = data.rotateX;
-			newcomponent.rotateY = data.rotateY;
-			newcomponent.rotateZ = data.rotateZ;
-			newcomponent.speed = data.speed;
+
+			if(fullRotation == null)
+				fullRotation = so.gameObject.AddComponent<FullRotation> ();
+			fullRotation.rotateX = data.rotateX;
+			fullRotation.rotateY = data.rotateY;
+			fullRotation.rotateZ = data.rotateZ;
+			fullRotation.speed = data.speed;
+			fullRotation.randomRotation = data.random;
+		} else if (fullRotation != null) {
+			fullRotation.OnComponentDisposed ();
 		}
+
+		TimelineAnimation timelineAnimation = so.GetComponent<TimelineAnimation> ();
 		if (jsonData.timelineAnimation.Count > 0) {
 			TimelineAnimationData data = jsonData.timelineAnimation [0];
-			TimelineAnimation newcomponent = so.GetComponent<TimelineAnimation> ();
-			if(newcomponent == null)
-				newcomponent = so.gameObject.AddComponent<TimelineAnimation> ();
-			newcomponent.timeLineData = data.timeLineData;
+			if (timelineAnimation == null)
+				timelineAnimation = so.gameObject.AddComponent<TimelineAnimation> ();
+			timelineAnimation.timeLineData = data.timeLineData;
+		} else if (timelineAnimation != null) {
+			timelineAnimation.OnComponentDisposed ();
 		}
+
 		if (jsonData.bossSettings.Count > 0) {
 
 			BossSettingsData data = jsonData.bossSettings [0];
@@ -133,6 +144,22 @@ public class AreaSceneObjectManager : MonoBehaviour {
 			newcomponent.speed = data.speed;
 			newcomponent.randomSpeedDiff = data.randomSpeedDiff;
 			newcomponent.moveBackIn = data.moveBackIn;
+		}
+	}
+	public void ResetEveryaditionalComponent(SceneObject so)
+	{
+		TimelineAnimation timelineAnimation = so.GetComponent<TimelineAnimation> ();
+		SceneObjectData sceneObjectData = so.GetComponent<SceneObjectData> ();
+		FullRotation fullRotation = so.GetComponent<FullRotation> ();
+
+		if (timelineAnimation != null) {
+			timelineAnimation.OnComponentDisposed ();
+		}
+		if (sceneObjectData != null) {
+			Destroy (sceneObjectData);
+		}
+		if (fullRotation != null) {
+			fullRotation.OnComponentDisposed ();
 		}
 	}
 }

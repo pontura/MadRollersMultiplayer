@@ -135,11 +135,17 @@ public class Missions : MonoBehaviour {
 		if (MissionActiveID == 0)
 			CheckTutorial (distance);
 	}
+	int total_areas = 1;
 	void SetNextArea()
 	{
 		CreateCurrentArea ();
 		Game.Instance.gameCamera.SetOrientation (MissionActive.areaSetData [areaSetId].cameraOrientation);
-		if (areaNum >= MissionActive.areaSetData [areaSetId].total_areas) {
+		total_areas = MissionActive.areaSetData [areaSetId].total_areas;
+
+		if (MissionActive.areaSetData [areaSetId].randomize && Game.Instance.level.charactersManager.getTotalCharacters()==1) 
+			total_areas /= 2;
+		
+		if (areaNum >= total_areas) {
 			if (areaSetId < MissionActive.areaSetData.Count - 1) {
 				areaSetId++;
 				ResetAreaSet ();
@@ -173,7 +179,7 @@ public class Missions : MonoBehaviour {
 			areaDataActive = JsonUtility.FromJson<AreaData> (asset.text);
 			areasLength += areaDataActive.z_length/2;
 			level.sceneObjects.AddSceneObjects (areaDataActive, areasLength);
-			print ("km: " + areasLength + " mission: " + MissionActiveID +  " areaSetId: " + areaSetId + " areaID: " + areaID + " z_length: " + areaDataActive.z_length + " en: areas/" + areaName );
+			print ("km: " + areasLength + " mission: " + MissionActiveID +  " areaSetId: " + areaSetId + " areaID: " + areaID + " z_length: " + areaDataActive.z_length + " en: areas/" + areaName +  " totalAreas" + total_areas );
 			areasLength += areaDataActive.z_length/2;
 		} else {
 			Debug.LogError ("Loco, no existe esta area: " + areaName + " en Respurces/areas/");
@@ -187,12 +193,8 @@ public class Missions : MonoBehaviour {
 	string GetArea(MissionData.AreaSetData areaSetData)
 	{
 		if (areaSetData.randomize) {
-
-			//si hay un solo jugador muestra un area sola de todas:
-			if (Data.Instance.multiplayerData.GetTotalCharacters () == 1)
-				areaSetData.total_areas = 1;
-			
-			return areaSetData.areas [UnityEngine.Random.Range (0, areaSetData.areas.Count)];
+			areaID++;
+			return areaSetData.areas [UnityEngine.Random.Range(0,areaSetData.areas.Count-1)];
 		} else if (areaID < areaSetData.areas.Count - 1) {
 			areaID++;
 			return areaSetData.areas [areaID-1];

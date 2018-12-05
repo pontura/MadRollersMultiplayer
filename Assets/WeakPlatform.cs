@@ -88,36 +88,32 @@ public class WeakPlatform : SceneObject {
 		float MidX = transform.lossyScale.x / 4;
 		float MidZ = transform.lossyScale.z / 4;
 
+		Transform container = null;
+		SceneObject soc = transform.parent.gameObject.GetComponent<SceneObject> ();
+		if(soc!=null)
+			container = soc.transform;
+		
+		SceneObjectsManager som = Game.Instance.sceneObjectsManager;
+		Vector3 pos = transform.position;
 
 		for (int a = 0; a < 4; a++)
 		{
 			SceneObject newSO = ObjectPool.instance.GetObjectForType(to.name, false);
-			if (!newSO)
-			{
-				return;
-			}
-			else
-			{
-				Vector3 pos = transform.position;
-				Vector3 newPos = new Vector3(0, 0, 0);
-				switch (a)
-				{
-				case 0: newPos = pos + transform.forward * MidZ + transform.right * MidX; break;
-				case 1: newPos = pos + transform.forward * MidZ - transform.right * MidX; break;
-				case 2: newPos = pos - transform.forward * MidZ - transform.right * MidX; break;
-				case 3: newPos = pos - transform.forward * MidZ + transform.right * MidX; break;
-				}
+			if (newSO.name != "extraSmallBlock1_real" && newSO.name != "extraSmallBlock1_real")
+				som.areaSceneObjectManager.ResetEveryaditionalComponent (newSO);			
 
-				Transform container = null;
-				SceneObject soc = transform.parent.gameObject.GetComponent<SceneObject> ();
-				if(soc!=null)
-					container = soc.transform;
-				
-				Game.Instance.sceneObjectsManager.AddSceneObjectAndInitIt(newSO, newPos, container);
-				newSO.transform.rotation = transform.rotation;
+			Vector3 newPos = new Vector3(0, 0, 0);
+			switch (a)
+			{
+			case 0: newPos = pos + transform.forward * MidZ + transform.right * MidX; break;
+			case 1: newPos = pos + transform.forward * MidZ - transform.right * MidX; break;
+			case 2: newPos = pos - transform.forward * MidZ - transform.right * MidX; break;
+			case 3: newPos = pos - transform.forward * MidZ + transform.right * MidX; break;
 			}
+
+			som.AddSceneObjectAndInitIt(newSO, newPos, container);
+			newSO.transform.rotation = transform.rotation;
 		}
-
 		Pool();
 
 	}
