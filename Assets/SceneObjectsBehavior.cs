@@ -37,7 +37,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	public SceneObject cilindroBig;
 
 	public SceneObject Fish;
-	public SceneObject GrabbableJetpack;
+	public SceneObject GrabbableInvensible;
 	public SceneObject borde1;
 
 	public SceneObject fences;
@@ -271,8 +271,8 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				clone = streetFloorSmall;
 			else if (go.name == "levelSignal")
 				clone = levelSignal;
-			else if (go.name == "GrabbableJetpack")
-				clone = GrabbableJetpack;
+			else if (go.name == "GrabbableInvensible")
+				clone = GrabbableInvensible;
 			else if (go.name == "borde1")
 				clone = borde1;
 			else if (go.name == "fences")

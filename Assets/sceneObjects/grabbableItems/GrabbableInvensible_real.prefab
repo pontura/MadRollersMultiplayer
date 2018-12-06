@@ -521,8 +521,8 @@ Rigidbody:
   m_Mass: 100
   m_Drag: 0
   m_AngularDrag: 0
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
@@ -636,6 +636,8 @@ MonoBehaviour:
   FloorCollider: {fileID: 0}
   player: {fileID: 0}
   titila: []
+  areaID: 0
+  totalGrabbablesInArea: 0
   grabbableName: missile
   type: 2
 --- !u!135 &13529942
@@ -18240,7 +18242,7 @@ ParticleSystemRenderer:
   m_EnableGPUInstancing: 0
   m_ApplyActiveColorSpace: 0
   m_VertexStreams: 0001030405
-  m_Mesh: {fileID: 4300000, guid: 97b39370f63444d468e3df532dbd65cd, type: 3}
+  m_Mesh: {fileID: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
@@ -18297,7 +18299,7 @@ ParticleSystemRenderer:
   m_EnableGPUInstancing: 0
   m_ApplyActiveColorSpace: 0
   m_VertexStreams: 0001030405
-  m_Mesh: {fileID: 4300000, guid: 97b39370f63444d468e3df532dbd65cd, type: 3}
+  m_Mesh: {fileID: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
@@ -18354,7 +18356,7 @@ ParticleSystemRenderer:
   m_EnableGPUInstancing: 0
   m_ApplyActiveColorSpace: 0
   m_VertexStreams: 0001030405
-  m_Mesh: {fileID: 4300000, guid: 97b39370f63444d468e3df532dbd65cd, type: 3}
+  m_Mesh: {fileID: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}

@@ -194,7 +194,7 @@ Transform:
   m_GameObject: {fileID: 829266496}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -14.4, y: -1.25, z: 0}
-  m_LocalScale: {x: 6, y: 1, z: 28}
+  m_LocalScale: {x: 6, y: 1, z: 118.9}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -287,6 +287,11 @@ MonoBehaviour:
         maxScore: 3000
         fondo: wonderland_castles
         areaSetData:
+        - total_areas: 1
+          randomize: 0
+          areas:
+          - descansoAnchoMinimal
+          cameraOrientation: {x: 0, y: 2, z: -1.5}
         - total_areas: 2
           randomize: 0
           areas:
@@ -310,15 +315,14 @@ MonoBehaviour:
           areas:
           - housesSmall1
           cameraOrientation: {x: 0, y: 0, z: 0}
-        - total_areas: 2
+        - total_areas: 1
           randomize: 0
           areas:
-          - CoinsHard1
-          - tiraFinaDer
-          - coinsHard2
-          - tiraFinaDer
-          - coinsHard3
-          - bombas_pisoMueve2
+          - descansoAncho
+          cameraOrientation: {x: 0, y: 1, z: -0.5}
+        - total_areas: 2
+          randomize: 1
+          areas:
           - CoinsHard1
           - coinsHard2
           - coinsHard3
@@ -655,12 +659,18 @@ MonoBehaviour:
           - sombrillaPozo
           - sombrillaEnemigos
           cameraOrientation: {x: 0, y: 0, z: 0}
-        - total_areas: 10000
+        - total_areas: 3
           randomize: 0
           areas:
           - boss_Crusader
           - areaFree_boss1
+          - areaFree_boss1
           cameraOrientation: {x: 0, y: -3.6, z: -2}
+        - total_areas: 10000
+          randomize: 0
+          areas:
+          - areaFree_boss1
+          cameraOrientation: {x: 0, y: 0, z: -1}
   - missions:
     - title: 
       data:
@@ -731,18 +741,18 @@ MonoBehaviour:
         fondo: gallax
         areaSetData:
         - total_areas: 16
-          randomize: 0
+          randomize: 1
           areas:
           - pisoCurvo1
           - pisoCurvo2
           - pisoCurvo3
           - pisoCurvo4
-          - pisoCurvo_Rays1
           - pisoCurvo5
           - pisoCurvo_helices
           - pisoCurvo6
           - pisoCurvo7
           - pisoCurvo8
+          - pisoCurvo1
           - pisoCurvo9
           - pisoCurvo9 1
           - pisoCurvo_helices
@@ -750,6 +760,7 @@ MonoBehaviour:
           - pisoCurvo3
           - pisoCurvo1 1
           - pisoCurvo_Rays2
+          - pisoCurvo1
           - pisoCurvo5
           - pisoCurvo_helices
           - pisoCurvo6
@@ -759,10 +770,11 @@ MonoBehaviour:
           - pisoCurvo8
           - pisoCurvo9
           - pisoCurvo9 1
+          - pisoCurvo1
           - pisoCurvo_helices
           - pisoCurvo1 1
+          - pisoCurvo1
           - pisoCurvo3
-          - pisoCurvo_Rays1
           - pisoCurvo2
           - pisoCurvo8
           - pisoCurvo9 1
@@ -770,9 +782,22 @@ MonoBehaviour:
           - pisoCurvo3
           - pisoCurvo_helices
           - pisoCurvo1 1
-          - pisoCurvo_Rays2
+          - pisoCurvo1
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 2
+          randomize: 0
+          areas:
           - pisoCurvo_boss
           - pisoCurvo_boss_free
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 2
+          randomize: 1
+          areas:
+          - pisoCurvo_boss_free
+          - pisoCurvo_boss_free
+          - pisoCurvo_boss_free
+          - pisoCurvo_boss_free
+          - pisoCurvo_Rays1
           cameraOrientation: {x: 0, y: 0, z: 0}
     - title: 
       data:
@@ -1182,11 +1207,18 @@ MonoBehaviour:
           - pisoCurvo1 1
           - pisoCurvo3
           cameraOrientation: {x: 0, y: 0, z: 0}
-        - total_areas: 16
+        - total_areas: 6
           randomize: 0
           areas:
           - pisoCurvo_boss
           - pisoCurvo_boss_free
+          cameraOrientation: {x: 0, y: 0, z: 0}
+        - total_areas: 16
+          randomize: 1
+          areas:
+          - pisoCurvo_boss_free
+          - pisoCurvo_boss_free
+          - pisoCurvo_heliceAlta
           cameraOrientation: {x: 0, y: 0, z: 0}
     - title: 
       data:

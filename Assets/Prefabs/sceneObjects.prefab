@@ -57,8 +57,6 @@ MonoBehaviour:
     type: 2}
   BossGalaga: {fileID: 114072935178452288, guid: e172aff4e6d3af447b2ce96b3b15e666,
     type: 2}
-  BossPacmansIntro: {fileID: 114078634250002748, guid: 35e663d3ddbe3c546aa42623dc778a6f,
-    type: 2}
   Starting: {fileID: 114204047810402636, guid: bc7fdec20e6925f41a99621972e3269c, type: 2}
   FloorSlider: {fileID: 11487404, guid: eac3504abbe240748835d4dba277a9a6, type: 2}
   FloorSurface: {fileID: 11406988, guid: 63eb5388251059b4e9a925b10b8d18fd, type: 2}
@@ -79,10 +77,10 @@ MonoBehaviour:
   cilindroBig: {fileID: 114403071220813050, guid: eb8716d1204973a4a9a27efadd8c95b4,
     type: 2}
   Fish: {fileID: 114819348109972418, guid: 25df5b16ae44e7947ba5d2965af90e47, type: 2}
-  GrabbableJetpack: {fileID: 11404208, guid: 0a0f53ddc3dd4ba4d88065b827a7eb93, type: 2}
+  GrabbableInvensible: {fileID: 11440376, guid: 76a57c8a176aded4a9dd613fe9908163,
+    type: 2}
   borde1: {fileID: 11400014, guid: ac5979aa0815bd8478cb00a0e01a3df7, type: 2}
   fences: {fileID: 11400002, guid: 981bca6ac0ceafe4fa4ea32901bd6e93, type: 2}
-  rainbow: {fileID: 0}
   Listener: {fileID: 11400002, guid: 9010ddb8f3718d340bbbb1e3209b2bec, type: 2}
   tunel1: {fileID: 11400002, guid: cf190b474e5e946439995e5cacd034d9, type: 2}
   tunel2: {fileID: 11400012, guid: 94d0571bf25fca54981bc5dac00b3b60, type: 2}
@@ -91,12 +89,9 @@ MonoBehaviour:
   CruzGrande: {fileID: 11400024, guid: 871faa6e29d3e1c4e86cc86f6466d24f, type: 2}
   rueda1: {fileID: 11400052, guid: dacca19cb8c85dd45bfad7d694301541, type: 2}
   helice1: {fileID: 11400016, guid: 4a674c7dbf460984cbdcfe7cce767362, type: 2}
-  helice2: {fileID: 11400016, guid: 1ebabe980d3764046a5c5d6cc82fa3ae, type: 2}
   levelSignal: {fileID: 11443440, guid: 22c86f8d761480d4eafa674051678b6f, type: 2}
   streetFloor: {fileID: 11400000, guid: 4fabf47a1253e90439664d967d6fec50, type: 2}
   streetFloorSmall: {fileID: 11400044, guid: 972b40523f77fce48abbd2aff2fd4364, type: 2}
-  subibaja: {fileID: 11400000, guid: e1f71154ffe7a3649b7c0148e073d806, type: 2}
-  cepillo: {fileID: 11400000, guid: f1f289967557baf408b662935e19d52b, type: 2}
   pisoRotatorio: {fileID: 11400066, guid: c7adcd9b8266db848a4f1af3606697d6, type: 2}
   wallBig: {fileID: 11465076, guid: 6b767ab11551fc144bea856919259daf, type: 2}
   wallMedium: {fileID: 11400000, guid: e980358d1227abd4eb82c152a02520d1, type: 2}
@@ -128,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 323545ac9f45efa4f84aef904531fb60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  areaSceneObjectManager: {fileID: 0}
   charactersManager: {fileID: 0}
 --- !u!114 &114637941481318252
 MonoBehaviour:

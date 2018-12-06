@@ -63,10 +63,10 @@ public class PowerupsManager : MonoBehaviour {
         SceneObject newSO = null;
         int rand = Random.Range(0, 10); 
 
-      //  if(rand<50)
+       // if(rand<70)
             newSO = ObjectPool.instance.GetObjectForType(Missile.name, true);
-      //  else
-       //     newSO = ObjectPool.instance.GetObjectForType(Invencible.name, true);
+       // else
+          //  newSO = ObjectPool.instance.GetObjectForType(Invencible.name, true);
 
         if (newSO)
         {
