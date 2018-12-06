@@ -46,6 +46,8 @@ public class MultiplayerData : MonoBehaviour
 	{
 		NextScoreToWinCredit = 0;
 		score_player1 = score_player2 = score_player3 = score_player4 = 0;
+		player1 = player2 = player3 = player4 = false;
+		player1_played = player2_played = player3_played = player4_played = false;
 		score = 0;
 		distance = 0;
 		creditsWon = 0;

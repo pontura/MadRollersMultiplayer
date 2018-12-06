@@ -12,12 +12,12 @@ public class GrabbableMissile : Powerup {
     public override void OnRestart(Vector3 pos)
     {
         base.OnRestart(pos);
-        int rand = Random.Range(0, 100);
-        if (rand < 33)
-            missileType = Weapon.types.SIMPLE;
-        else if (rand < 66)
-            missileType = Weapon.types.DOUBLE;
-        else
+//        int rand = Random.Range(0, 100);
+//        if (rand < 33)
+//            missileType = Weapon.types.SIMPLE;
+//        else if (rand < 66)
+//            missileType = Weapon.types.DOUBLE;
+//        else
             missileType = Weapon.types.TRIPLE;
         InitWeapon(missileType);
     }

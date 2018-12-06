@@ -95,7 +95,6 @@ public class Game : MonoBehaviour {
     //pierdo y arranca de ni
     public void ResetLevel()
 	{		
-		
         Data.Instance.events.OnResetLevel();
         Data.Instance.LoadLevel("Game");
 	}
