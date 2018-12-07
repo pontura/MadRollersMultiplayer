@@ -20,7 +20,6 @@ GameObject:
   - component: {fileID: 11465950}
   - component: {fileID: 11448546}
   - component: {fileID: 11431402}
-  - component: {fileID: 16906094}
   - component: {fileID: 11473434}
   - component: {fileID: 114000013039351974}
   - component: {fileID: 114000010000730600}
@@ -323,12 +322,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9dfc0ca489e59d4cbf88e7e54bf2c7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isArcadeMultiplayer: 1
-  DEBUG: 1
+  isArcadeMultiplayer: 0
+  DEBUG: 0
   testAreaName: 
   canContinue: 1
-  totalCredits: 3
-  credits: 3
+  totalCredits: 10
+  credits: 10
   voicesOn: 1
   soundsFXOn: 1
   madRollersSoundsOn: 1
@@ -359,7 +358,7 @@ MonoBehaviour:
   versusManager: {fileID: 114317075688720918}
   loadingAsset: {fileID: 114694153890948252}
   FORCE_LOCAL_SCORE: 0
-  playMode: 1
+  playMode: 0
   hasContinueOnce: 0
 --- !u!114 &11400002
 MonoBehaviour:
@@ -1618,30 +1617,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 894abe25d2d50a3478b1b53c2d9ea492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!169 &16906094
-AudioLowPassFilter:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_LowpassResonanceQ: 1
-  lowpassLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.03177273
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!222 &22271332
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -1845,7 +1820,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1220446056742670
 GameObject:
   m_ObjectHideFlags: 1
@@ -1980,7 +1955,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1612186276924906
 GameObject:
   m_ObjectHideFlags: 1
@@ -3028,7 +3003,6 @@ MonoBehaviour:
   - sudo chmod -R a+rwx
   - Virus Installing...
   loadingPanel: {fileID: 1597654436206790}
-  videoPanel: {fileID: 1150846067253878}
   panel: {fileID: 1090244366563106}
   spritesToBG:
   - {fileID: 21300000, guid: 66c945d5f339f2c47be1f1323437c7f4, type: 3}
