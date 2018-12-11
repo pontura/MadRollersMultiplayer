@@ -59,8 +59,7 @@ public class Game : MonoBehaviour {
         Init();
       //  Data.Instance.GetComponent<Tracker>().TrackScreen("Game Screen");
         Data.Instance.events.SetSettingsButtonStatus(false);
-
-        //Data.Instance.events.OnGameStart();
+		Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
     }
 	void Delayed()
 	{
@@ -70,7 +69,12 @@ public class Game : MonoBehaviour {
     void OnDestroy()
     {
         Data.Instance.events.OnGamePaused -= OnGamePaused;
+		Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
     }
+	void StartMultiplayerRace()
+	{
+		state = states.PLAYING;
+	}
 	private void Init()
 	{
 		Data.Instance.events.MissionStart(Data.Instance.missions.MissionActiveID);

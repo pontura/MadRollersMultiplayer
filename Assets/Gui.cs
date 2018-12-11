@@ -50,7 +50,7 @@ public class Gui : MonoBehaviour {
 	void OnGenericUIText(string text)
 	{
 		centerPanel.SetActive (true);
-		genericField.text = text;
+		Data.Instance.handWriting.WriteTo(genericField, text, null);
 		CancelInvoke ();
 		Invoke ("Reset", 2);
 	}

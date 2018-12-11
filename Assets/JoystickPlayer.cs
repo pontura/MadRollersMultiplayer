@@ -18,6 +18,7 @@ public class JoystickPlayer : MonoBehaviour {
 	public states state;
 	public Image playerImageColor;
 
+
 	public enum states
 	{
 		INSERT_COIN,
@@ -144,8 +145,17 @@ public class JoystickPlayer : MonoBehaviour {
 
 		SetHorizontal (h);
 
-		if (state == states.DEAD && Data.Instance.playMode != Data.PlayModes.VERSUS)
+		if (state == states.DEAD && Data.Instance.playMode != Data.PlayModes.VERSUS) {
+			if(Input.GetButtonDown("Jump"+(playerID+1)) || Input.GetButtonDown("Fire"+(playerID+1)))
+			{
+				fillAmount += 0.015f;
+				if (deadFill.fillAmount > 1)
+					deadFill.fillAmount = 1;
+				dead.GetComponent<Animation> () ["deadAndClicked"].normalizedTime = 0;
+				dead.GetComponent<Animation> ().Play ();
+			}
 			FillDead ();
+		}
 		
 	}
 	float lastValue;

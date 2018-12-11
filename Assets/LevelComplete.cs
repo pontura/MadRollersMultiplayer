@@ -45,7 +45,7 @@ public class LevelComplete : MonoBehaviour {
         stars.Init(starsQty);
 
 		foreach (Text label in fields)
-			label.text = titleText; //"SCORE " + missionScore;
+			Data.Instance.handWriting.WriteTo(label, titleText, null);
       
         Data.Instance.events.OnSetStarsToMission(missionNum, starsQty);
 

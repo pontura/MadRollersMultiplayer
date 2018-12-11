@@ -107,7 +107,6 @@ public class MusicManager : MonoBehaviour {
     }
     void playSound(AudioClip _clip, bool looped = true)
     {      
-		print ("playSound " + _clip);
 		if (audioSource.clip!=null && audioSource.clip.name == _clip.name) return;
         stopAllSounds();
         audioSource.clip = _clip;

@@ -67,7 +67,9 @@ public class CharacterShooter : MonoBehaviour {
 	}
 	public void SetFire(Weapon.types weawponType, float delay)
 	{
-		if (Game.Instance.state ==  Game.states.INTRO)
+		Data.Instance.events.OnAvatarShoot (characterBehavior.player.id);
+
+		if (Game.Instance.state !=  Game.states.PLAYING)
 			return;
 		
 		//isLoadingGun = false;
@@ -100,6 +102,8 @@ public class CharacterShooter : MonoBehaviour {
 	}
 	void OnShoot(Vector3 pos, Weapon.types type)
 	{
+		
+
 		float offsetY = characterBehavior.transform.localEulerAngles.y;
 		switch (type)
 		{

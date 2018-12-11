@@ -32,6 +32,7 @@ GameObject:
   - component: {fileID: 114770109075638300}
   - component: {fileID: 114647756900399492}
   - component: {fileID: 114810863582257624}
+  - component: {fileID: 114021335622753930}
   m_Layer: 0
   m_Name: data
   m_TagString: Untagged
@@ -352,6 +353,7 @@ MonoBehaviour:
   videogamesData: {fileID: 0}
   inputSaver: {fileID: 0}
   inputSavedAutomaticPlay: {fileID: 0}
+  handWriting: {fileID: 0}
   mode: 2
   isEditor: 0
   voicesManager: {fileID: 114892904904857298}
@@ -2609,6 +2611,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114021335622753930
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02eaf53dbce603548aadb25d60770cfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114082184793671734
 MonoBehaviour:
   m_ObjectHideFlags: 1

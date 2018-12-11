@@ -27,10 +27,18 @@ public class ListenerDispatcher : MonoBehaviour {
     };
 	
 	void OnTriggerEnter(Collider other) {
+		
+		print ("__________" + other.name + ready);
 
 		if(other.tag == "Player")
 		{
             Player player = other.GetComponentInParent<Player>();
+			if (message == myEnum.LevelFinish)
+			{
+				if (!ready)
+					data.events.ListenerDispatcher("LevelFinish");
+				ready = true;
+			}
 			if (message == myEnum.ShowMissionId)
 			{
 				if (!ready)
@@ -98,7 +106,7 @@ public class ListenerDispatcher : MonoBehaviour {
     void Reset()
     {
         ready = false;
-        playersID.Clear();
+     //   playersID.Clear();
     }
 
 }

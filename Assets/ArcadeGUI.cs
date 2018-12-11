@@ -63,7 +63,6 @@ public class ArcadeGUI : MonoBehaviour {
     }
     void SetFields(string _text)
     {
-		print ("SetFields " + _text);
         singleSignal.SetActive(true);
         foreach (Text field in singleSignalTexts.GetComponentsInChildren<Text>())
             field.text = _text;
