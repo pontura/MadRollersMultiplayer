@@ -13,6 +13,7 @@ public class Missions : MonoBehaviour {
 	public class MissionsByVideoGame
 	{
 		public List<MissionsData> missions;
+		public int missionUnblockedID;
 	}
 	[Serializable]
 	public class MissionsData
@@ -56,13 +57,15 @@ public class Missions : MonoBehaviour {
 		for (int a = 0; a < 3; a++) {
 			MissionsByVideoGame videogame = videogames [a];
 			videogame.missions = new List<MissionsData> ();
+			int videogameID = a + 1;
 			for (int b = 0; b < 20; b++) {				
-				TextAsset asset = Resources.Load ("missions/" + (a+1) + "_" + b) as TextAsset;
+				TextAsset asset = Resources.Load ("missions/" + videogameID + "_" + b) as TextAsset;
 				if (asset != null ) {					
 					MissionsData missionData = JsonUtility.FromJson<MissionsData> (asset.text);
 					videogame.missions.Add (missionData);
 				}
 			}
+			videogame.missionUnblockedID = PlayerPrefs.GetInt("missionUnblockedID_" + videogameID, 0);
 		}
 	}
 	public void Init (Level level) {
@@ -77,6 +80,20 @@ public class Missions : MonoBehaviour {
 			Game.Instance.GotoVideogameComplete ();
 		else
 			NextMission();
+
+		videogames [videogamesData.actualID].missionUnblockedID = MissionActiveID;
+		int videogameID = videogamesData.actualID+1;
+		PlayerPrefs.SetInt ("missionUnblockedID_" + videogameID, MissionActiveID);
+
+		print ("graba MissionActiveID " + MissionActiveID + "missionUnblockedID_" + videogameID);
+	}
+	public int GetTotalMissionsInVideoGame(int videogameID)
+	{
+		return videogames [videogameID].missions.Count;
+	}
+	public MissionsByVideoGame GetMissionsByVideoGame(int videogameID)
+	{
+		return videogames [videogameID];
 	}
 	void NextMission()
 	{

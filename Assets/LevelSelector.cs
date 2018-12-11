@@ -18,8 +18,11 @@ public class LevelSelector : MonoBehaviour {
 	VideogamesUIManager videogameUI;
 	bool canInteract;
 	float timePassed;
+	MissionSelector missionSelector;
 	void Start()
 	{		
+		Data.Instance.isReplay = false;
+		missionSelector = GetComponent<MissionSelector> ();
 		Data.Instance.multiplayerData.ResetAll ();
 		Data.Instance.events.OnResetScores ();
 		timePassed = 0;
@@ -32,12 +35,12 @@ public class LevelSelector : MonoBehaviour {
 		SetSelected ();
 
 		Data.Instance.events.OnJoystickClick += OnJoystickClick;
-		//Data.Instance.events.OnJoystickDown += OnJoystickDown;
-		//Data.Instance.events.OnJoystickUp += OnJoystickUp;
+		Data.Instance.events.OnJoystickDown += OnJoystickDown;
+		Data.Instance.events.OnJoystickUp += OnJoystickUp;
 		Data.Instance.events.OnJoystickLeft += OnJoystickLeft;
 		Data.Instance.events.OnJoystickRight += OnJoystickRight;
 		Invoke ("SetCanInteract", 1);
-		Invoke ("TimeOver", 40);
+		Invoke ("TimeOver", 90);
 	}
 	void SetCanInteract()
 	{
@@ -50,8 +53,8 @@ public class LevelSelector : MonoBehaviour {
 	void OnDestroy()
 	{
 		Data.Instance.events.OnJoystickClick -= OnJoystickClick;
-	//	Data.Instance.events.OnJoystickDown -= OnJoystickDown;
-	//	Data.Instance.events.OnJoystickUp -= OnJoystickUp;
+		Data.Instance.events.OnJoystickDown -= OnJoystickDown;
+		Data.Instance.events.OnJoystickUp -= OnJoystickUp;
 		Data.Instance.events.OnJoystickLeft -= OnJoystickLeft;
 		Data.Instance.events.OnJoystickRight -= OnJoystickRight;
 	}
@@ -69,14 +72,38 @@ public class LevelSelector : MonoBehaviour {
 	void Delayed()
 	{
 		Data.Instance.videogamesData.actualID = videgameID;
-		Data.Instance.missions.MissionActiveID = 0;
 		Data.Instance.LoadLevel ("Game");
 	}
 	void OnJoystickUp()
 	{
+		print ("up");
 		if (!canInteract)
 			return;
 		
+		int MissionActiveID = Data.Instance.missions.MissionActiveID;
+		if (MissionActiveID < Data.Instance.missions.GetMissionsByVideoGame (videgameID).missionUnblockedID) {
+			Data.Instance.missions.MissionActiveID++;
+			missionSelector.ChangeMission (Data.Instance.missions.MissionActiveID);
+		}
+	}
+	void OnJoystickDown()
+	{
+		print ("down");
+
+		if (!canInteract)
+			return;
+
+		int MissionActiveID = Data.Instance.missions.MissionActiveID;
+		if (MissionActiveID > 0) {
+			Data.Instance.missions.MissionActiveID--;
+			missionSelector.ChangeMission (Data.Instance.missions.MissionActiveID);
+		}
+	}
+	void OnJoystickLeft()
+	{		
+		if (!canInteract)
+			return;
+
 		int total =  Data.Instance.videogamesData.all.Length-1;
 		if (videgameID < total)
 			videgameID++;
@@ -84,7 +111,7 @@ public class LevelSelector : MonoBehaviour {
 			return;
 		SetSelected ();
 	}
-	void OnJoystickDown()
+	void OnJoystickRight()
 	{
 		if (!canInteract)
 			return;
@@ -92,20 +119,13 @@ public class LevelSelector : MonoBehaviour {
 			videgameID--;
 		else
 			return;
-		
+
 		SetSelected ();	
-	}
-	void OnJoystickLeft()
-	{		
-		OnJoystickUp ();
-	}
-	void OnJoystickRight()
-	{
-		OnJoystickDown ();
 	}
 	void SetSelected()
 	{
 		videogameData = Data.Instance.videogamesData.all [videgameID];
+		missionSelector.LoadVideoGameData (videgameID);
 		diskette.Init (videogameData);
 		videogameUI.Change ();
 		credits.text = videogameData.credits;

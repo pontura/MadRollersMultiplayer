@@ -7,15 +7,17 @@ public class InputSaver : MonoBehaviour {
 	public List<InputSaverData> recordingList;
 
 	void Start () {
-		//Data.Instance.events.OnAvatarShoot += OnAvatarShoot;
-		//Data.Instance.events.OnAvatarJump += OnAvatarJump;
-		//Data.Instance.events.OnGameOver += OnGameOver;
+		Data.Instance.events.OnAvatarShoot += OnAvatarShoot;
+		Data.Instance.events.OnAvatarJump += OnAvatarJump;
+		Data.Instance.events.OnGameOver += OnGameOver;
 	}
-	public void MoveInX(float value, Vector3 pos)
+	public void MoveInX(float posX)
 	{
 		InputSaverData isd = new InputSaverData ();
-		isd.direction = value;
-		isd.posX = pos.x;
+		//isd.direction = value;
+
+		print("GRABA pos.x: " + posX);
+		isd.posX = posX;
 		AddToRecordingList (isd);
 	}
 	void OnAvatarShoot(int value)

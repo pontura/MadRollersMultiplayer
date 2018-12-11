@@ -75,8 +75,8 @@ public class CharacterMovement : MonoBehaviour {
 //		{
 
 			float _z = cb.player.charactersManager.distance - (characterPosition);
-	//		if (controls.isAutomata)
-	//			_z -= 2;
+		if (cb.controls.isAutomata)
+				_z -= 2;
 	//		if (team_for_versus == 2) {
 	//			rotationY *= -1;
 	//			_z *= -1;

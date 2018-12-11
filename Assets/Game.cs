@@ -45,6 +45,7 @@ public class Game : MonoBehaviour {
     {
 		if (Data.Instance.isReplay) {
 			Invoke ("Delayed", 0.2f);
+			state = states.PLAYING;
 		}
 		GetComponent<CompetitionManager> ().Init ();
 		GetComponent<CharactersManager>().Init();

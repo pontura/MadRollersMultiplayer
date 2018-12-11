@@ -375,8 +375,8 @@ public class CharacterBehavior : MonoBehaviour {
 		jumpsNumber++;
 		if (jumpsNumber > 3) return;
 
-	//	if(!controls.isAutomata)
-	//		data.events.OnAvatarJump (player.id);
+		if(!controls.isAutomata)
+			data.events.OnAvatarJump (player.id);
 
 		//print ("JUMP  " + state);
 		if (state == states.JUMP || jumpsNumber >1 || state == states.SUPERJUMP)

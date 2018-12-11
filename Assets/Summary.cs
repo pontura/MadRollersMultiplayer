@@ -15,13 +15,15 @@ public class Summary : MonoBehaviour {
 	public int optionSelected = 0;
     private bool isOn;
 
+	float delayToReact = 0.3f;
+
     void Start()
     {
         panel.SetActive(false);
-//		if (Data.Instance.playMode == Data.PlayModes.STORY) {		
-//			Data.Instance.events.OnGameOver += OnGameOver;
-//			Data.Instance.events.OnFireUI += OnFireUI;
-//		}
+		if (Data.Instance.playMode == Data.PlayModes.STORYMODE) {		
+			Data.Instance.events.OnGameOver += OnGameOver;
+			Data.Instance.events.OnFireUI += OnFireUI;
+		}
     }
 	void OnFireUI()
 	{
@@ -52,8 +54,7 @@ public class Summary : MonoBehaviour {
 	}
 	public void Restart()
 	{
-//		if(Data.Instance.playMode == Data.PlayModes.STORY)
-//			Data.Instance.isReplay = true;
+		Data.Instance.isReplay = true;
 		Game.Instance.ResetLevel();        
 	}
 	void Update()
@@ -62,8 +63,10 @@ public class Summary : MonoBehaviour {
 			return;
 
 		lastClickedTime += Time.deltaTime;
-		if (lastClickedTime > 0.1f)
+
+		if (lastClickedTime > delayToReact)
 			processAxis = true;
+		
 		for (int a = 0; a < 4; a++) {
 			if (InputManager.getJump (a)) 
 				OnJoystickClick ();
@@ -88,12 +91,14 @@ public class Summary : MonoBehaviour {
 			return;
 		optionSelected++;
 		SetSelected ();
+		ResetMove ();
 	}
 	void OnJoystickDown () {
 		if (optionSelected <= 0)
 			return;
 		optionSelected--;
 		SetSelected ();
+		ResetMove ();
 	}
 	void SetSelected()
 	{

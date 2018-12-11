@@ -22,9 +22,10 @@ public class ArcadeGUI : MonoBehaviour {
         ended = false;
         
         Data.Instance.events.OnGameOver += OnGameOver;
-       
 		SetFields ("");
-		Invoke ("AllowAddingCharacters", 2);
+
+		if(!Data.Instance.isReplay)
+			Invoke ("AllowAddingCharacters", 2);
 	}
 	void AllowAddingCharacters()
 	{

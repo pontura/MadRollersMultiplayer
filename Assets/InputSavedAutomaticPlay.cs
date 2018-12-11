@@ -66,6 +66,10 @@ public class InputSavedAutomaticPlay : MonoBehaviour {
 		
 		InputSaverData isdata = savedData.data [savedData.lastIdDataUsed];
 
+		InputSaverData nextdata = null;
+		if(savedData.data.Count > savedData.lastIdDataUsed+1)
+			nextdata = savedData.data [savedData.lastIdDataUsed+1];
+		
 		if (charactersManager.distance >= isdata.distance) {
 			savedData.lastIdDataUsed++;
 			if (isdata.shoot) {
@@ -76,14 +80,23 @@ public class InputSavedAutomaticPlay : MonoBehaviour {
 				cb.Jump();
 			} else {
 				//move
-				savedData.lastDirection = isdata.direction;
-				Vector3 pos = cb.transform.position;
-				pos.x = isdata.posX;
-				cb.transform.position = pos;
+				//savedData.lastDirection = isdata.direction;
+//				Vector3 pos = cb.transform.position;
+//				pos.x = isdata.posX;
+//				cb.transform.position = pos;
 			}
 			//savedData.data.RemoveAt (0);
 		}
-		cb.controls.MoveInX (savedData.lastDirection);
+		if (nextdata != null) {
+			float moveX = 0.5f;
+			if(isdata.posX > nextdata.posX)
+				moveX *= -1;
+			if (isdata.posX < nextdata.posX)
+				moveX *= 1;
+			else
+				return;
+			cb.controls.MoveInX (moveX);
+		}
 	}
 	public void SaveNewList(List<InputSaverData> newList)
 	{

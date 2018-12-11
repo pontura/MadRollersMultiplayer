@@ -13,6 +13,10 @@ public class Continue : MonoBehaviour {
 	void Start () {
 		canClick = false;
 		panel.SetActive (false);
+
+		if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
+			return;
+		
 		Data.Instance.events.OnGameOver += OnGameOver;
 
 	}

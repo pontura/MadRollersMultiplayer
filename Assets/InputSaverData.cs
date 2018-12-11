@@ -7,7 +7,7 @@ public class InputSaverData {
 
 	public float distance;
 	public float posX;
-	public float direction;
+	//public float direction;
 	public bool jump;
 	public bool shoot;
 

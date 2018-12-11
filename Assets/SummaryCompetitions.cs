@@ -24,6 +24,9 @@ public class SummaryCompetitions : MonoBehaviour {
 	}
 	public void Init()
 	{
+		panel.SetActive(false);
+		if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
+			return;
 		if (isOn) return;
 		Invoke("SetOn", 2F);
 	}

@@ -59,7 +59,7 @@ public class CharactersManager : MonoBehaviour {
     void StartMultiplayerRace()
     {
 		if (Data.Instance.isReplay) {
-			Data.Instance.isReplay = false;
+			//Data.Instance.isReplay = false;
 		} else {
 			speedRun = 19;
 		}
@@ -93,6 +93,7 @@ public class CharactersManager : MonoBehaviour {
     }
     public virtual void Init()
     {
+		Data.Instance.inputSavedAutomaticPlay.Init (this);
         Data.Instance.events.OnAlignAllCharacters += OnAlignAllCharacters;
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
         Data.Instance.events.OnReorderAvatarsByPosition += OnReorderAvatarsByPosition;

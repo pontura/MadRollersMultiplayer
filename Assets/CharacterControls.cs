@@ -96,7 +96,7 @@ public class CharacterControls : MonoBehaviour {
 		jumpingPressedSince = 0;
 		characterBehavior.Jump ();
 	}  
-	//float lastHorizontalKeyPressed;
+	float lastHorizontalKeyPressed;
 	float last_x;
 	float last_x_timer;
     private void moveByKeyboard()
@@ -108,11 +108,15 @@ public class CharacterControls : MonoBehaviour {
 			return;
 		float _speed = InputManager.getHorizontal(player.id);
 
-//		if (lastHorizontalKeyPressed != _speed) {
-//			lastHorizontalKeyPressed = _speed;
-//			//if(!isAutomata)
-//			//	Data.Instance.inputSaver.MoveInX (lastHorizontalKeyPressed, transform.position);
-//		}
+		if ( _speed>0 && lastHorizontalKeyPressed <=0
+			|| _speed<0 && lastHorizontalKeyPressed >=0
+			|| _speed==0 && (lastHorizontalKeyPressed <0  ||  lastHorizontalKeyPressed >0)
+		) {			
+			lastHorizontalKeyPressed = _speed;
+			if(!isAutomata)
+				Data.Instance.inputSaver.MoveInX (transform.position.x);
+		}
+
 		MoveInX (_speed);
     }
 	bool playerPlayed;
