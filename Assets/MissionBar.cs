@@ -82,6 +82,7 @@ public class MissionBar : MonoBehaviour {
 	}
 	void OnBossSetTimer(int timer)
 	{
+		timer = 5000;
 		if (timer == 0)
 			timer = 50;
 		

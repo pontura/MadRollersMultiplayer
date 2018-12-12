@@ -16,7 +16,7 @@ public class InputSaver : MonoBehaviour {
 		InputSaverData isd = new InputSaverData ();
 		//isd.direction = value;
 
-		print("GRABA pos.x: " + posX);
+		//print("GRABA pos.x: " + posX);
 		isd.posX = posX;
 		AddToRecordingList (isd);
 	}

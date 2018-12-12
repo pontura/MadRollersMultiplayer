@@ -159,8 +159,8 @@ public class Missions : MonoBehaviour {
 		Game.Instance.gameCamera.SetOrientation (MissionActive.areaSetData [areaSetId].cameraOrientation);
 		total_areas = MissionActive.areaSetData [areaSetId].total_areas;
 
-		if (MissionActive.areaSetData [areaSetId].randomize && Game.Instance.level.charactersManager.getTotalCharacters()==1) 
-			total_areas /= 2;
+	//	if (MissionActive.areaSetData [areaSetId].randomize && Game.Instance.level.charactersManager.getTotalCharacters()==1) 
+		//	total_areas /= 1.25f;
 		
 		if (areaNum >= total_areas) {
 			if (areaSetId < MissionActive.areaSetData.Count - 1) {

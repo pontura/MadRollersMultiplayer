@@ -8,7 +8,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 	AreaSceneObjectManager areaSceneObjectManager;
 	SceneObjectsManager manager;
 	public ArrayList unused = new ArrayList();
-
+	public SceneObject Catapulta;
 	public SceneObject Star;
 	public SceneObject Water;
 	public SceneObject Lava;
@@ -198,7 +198,9 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			if (go.name == "FloorSurface")
 				clone = FloorSurface;
 			if (go.name == "PisoPinche")
-				clone = PisoPinche;
+				clone = PisoPinche;			
+			else if (go.name == "Catapulta")
+				clone = Catapulta;
 			else if (go.name == "house1")
 				clone = house1;
 			else if (go.name == "house2")

@@ -1,10 +1,10 @@
 {
 	"data": [{
 		"title": "",
-		"fondo": "wonderland_castles",
+		"fondo": "wonderland_nubes",
 		"id": 0,
-		"maxScore": 5000,
-		"areaSetData": [
+		"maxScore": 460,
+		"areaSetData": [	
 		{
 			"total_areas": 1,
 			"randomize": false,
@@ -14,60 +14,67 @@
 				"y": 2.0,
 				"z": -1.5
 			}
+		},		
+		{
+			"total_areas": 8,
+			"randomize": true,
+			"areas": [
+			"heliceSmall",
+			"heliceSmall2",
+			"heliceDoubleSmall",
+			"helicesx4",
+			"helicesx4_enemies",
+			"pisoCurvo_helices",
+			"container_helice",
+			"helicesx2_larga"
+			],
+			"cameraOrientation": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			}
 		},
 		{
 			"total_areas": 1,
 			"randomize": true,
-			"areas": ["ancho_agua_simple1",
-			"ancho_agua_simple2"],
-			"cameraOrientation": {
-				"x": 0.0,
-				"y": -1.5,
-				"z": -0.5
-			}
-		},
-		{
-			"total_areas": 4,
-			"randomize": true,
-			"areas": ["killRunner",
-			"killRunner2",
-			"killRunner3"],
+			"areas": ["container_cruz",
+			"container_cruz_2"],
 			"cameraOrientation": {
 				"x": 0.0,
 				"y": 0.0,
 				"z": 0.0
 			}
-		},
+		},	
 		{
-			"total_areas": 7,
+			"total_areas": 1,
 			"randomize": true,
-			"areas": ["singleRunnerJump1",
-			"singleRunnerJump2",
-			"enemiesLineaJump",
-			"enemiesLineaJumpSmall",
-			"enemiesRunners3_Salto2",
-			"enemiesRunnersSmall",
-			"enemiesRunnersSmall_2Palms",
-			"singleRunnerJump_linea1",
-			"singleRunnerJump_linea2",
-			"coinsEasy1",
-			"coinsEasy2",
-			"coinsEasy3"],
-			"cameraOrientation": {
-				"x": 0.0,
-				"y": 0.0,
-				"z": 0.0
-			}
-		},
-		{
-			"total_areas": 4,
-			"randomize": false,
-			"areas": ["boss_Pacmans",
-			"boss_zigzag_free"],
+			"areas": [
+			"heliceSmall",
+			"heliceSmall2",
+			"heliceDoubleSmall",
+			"helicesx4",
+			"helicesx4_enemies",
+			"pisoCurvo_helices",
+			"container_helice",
+			"helicesx2_larga"
+			],
 			"cameraOrientation": {
 				"x": 0.0,
 				"y": -1.0,
-				"z": 0.0
+				"z": -1.0
+			}
+		},
+		{
+			"total_areas": 5,
+			"randomize": false,
+			"areas": ["boss_naves_boyland",
+			"boss_ancho_free",
+			"boss_ancho_free",
+			"boss_free_agua"],
+			"cameraOrientation": {
+				"x": 0.0,
+				"y": -3.0,
+				"z": -3.0
 			}
 		}],
 		"backgroundSides": []

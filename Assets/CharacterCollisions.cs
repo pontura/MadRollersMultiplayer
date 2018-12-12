@@ -5,7 +5,6 @@ public class CharacterCollisions : MonoBehaviour {
 
     private CharacterBehavior characterBehavior;
     private Player player;
-    private bool hitted;
 
 	void Start()
 	{
@@ -13,31 +12,47 @@ public class CharacterCollisions : MonoBehaviour {
         player = gameObject.transform.parent.GetComponent<Player>();
 	}		
 
-	void OnTriggerEnter(Collider other) {
+	void ______OnTriggerEnter(Collider other) {
 		if (characterBehavior == null)
 			return;
+		if (characterBehavior.state == CharacterBehavior.states.DEAD
+			|| characterBehavior.state == CharacterBehavior.states.CRASH
+			|| characterBehavior.state == CharacterBehavior.states.FALL)
+			return;
+		if (other.tag == "floor")
+		{
+			CharacterAnimationForcer chanimF = other.GetComponent<CharacterAnimationForcer> ();
+			if (chanimF != null) {				
+				switch (chanimF.characterAnimation) {
+				case CharacterAnimationForcer.animate.SLIDE:
+					characterBehavior.Slide ();
+					break;
+				}
+			}
+		}
+		if (other.tag == "enemy")
+		{
+			if (characterBehavior.state == CharacterBehavior.states.JUMP ||
+				characterBehavior.state == CharacterBehavior.states.DOUBLEJUMP ||
+				characterBehavior.state == CharacterBehavior.states.SHOOT)
+			{
+				MmoCharacter mmoCharacter = other.GetComponent<MmoCharacter> ();
+				if(mmoCharacter !=null)
+					other.GetComponent<MmoCharacter>().Die();
+				else
+					other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);
+
+				characterBehavior.SuperJumpByBumped(1200, 0.5f, false);
+			}
+		}
+	}
+	void OnTriggerEnter(Collider other) {
+		
+		if (characterBehavior == null) return;
         if (characterBehavior.state == CharacterBehavior.states.DEAD) return;
         if (characterBehavior.state == CharacterBehavior.states.CRASH) return;
         if (characterBehavior.state == CharacterBehavior.states.FALL) return;
-//        if (other.tag == "Player")
-//        {
-//            if (characterBehavior.state == CharacterBehavior.states.JUMP)
-//            {
-//                if (other.GetComponent<CharacterCollisions>())
-//                {
-//                    CharacterBehavior cb = other.GetComponent<CharacterCollisions>().characterBehavior;
-//
-//                   // if (cb.transform.localPosition.y > characterBehavior.transform.localPosition.y) return;
-//                    if (cb.state != CharacterBehavior.states.RUN) return;
-//                    if (cb.isOver != null) return;
-//                    if (characterBehavior.isOver != null) return;
-//
-//                    print("Player " + player.id + " con " + cb.player.id);
-//                    cb.OnAvatarStartCarringSomeone(characterBehavior);
-//                    characterBehavior.OnAvatarOverOther(cb);
-//                }
-//            }
-//        } else
+
 		if (other.tag == "wall" || other.tag == "firewall") 
 		{
             if (characterBehavior.state == CharacterBehavior.states.SHOOT) return;
@@ -59,35 +74,33 @@ public class CharacterCollisions : MonoBehaviour {
 					characterBehavior.HitWithObject(other.transform.position);
 			}
         }
-        else if (other.tag == "floor" && !hitted)
+        else if (other.tag == "floor")
         {
-            if (transform.position.y - other.transform.position.y < 0f)
-            {
-              //  characterBehavior.Hit();
-            }
-            else
-            {
-                hitted = true;
-                characterBehavior.SuperJumpByBumped(1200, 0.5f, false);
-                Invoke("resetHits", 1);
-            }
-           // if (other.GetComponent<WeakPlatform>())
-               // other.GetComponent<WeakPlatform>().breakOut(characterBehavior.transform.position);           
-        }
-        else if (
-            other.tag == "enemy"
-            && characterBehavior.state != CharacterBehavior.states.JUMP
-            && characterBehavior.state != CharacterBehavior.states.DOUBLEJUMP
-            && characterBehavior.state != CharacterBehavior.states.SHOOT
-            && characterBehavior.state != CharacterBehavior.states.FALL
-            )
-        {
-            if (player.fxState == Player.fxStates.NORMAL)
-                characterBehavior.Hit();
+			CharacterAnimationForcer chanimF = other.GetComponent<CharacterAnimationForcer> ();
+			if (chanimF != null) {				
+				switch (chanimF.characterAnimation) {
+				case CharacterAnimationForcer.animate.SLIDE:
+					characterBehavior.Slide ();
+					break;
+				}
+			}
 
-			MmoCharacter mmoCharacter = other.GetComponent<MmoCharacter> ();
-			if(mmoCharacter != null)
-            	other.GetComponent<MmoCharacter>().Die();
+            if (transform.position.y < other.transform.position.y + 1.5f)
+				characterBehavior.SuperJumpByBumped(1200, 0.5f, false);      
+        }
+        else if ( other.tag == "enemy" )
+        {
+			if (transform.position.y > other.transform.position.y + 1) {	
+				MmoCharacter mmoCharacter = other.GetComponent<MmoCharacter> ();
+				if (mmoCharacter != null) {		
+					other.GetComponent<MmoCharacter> ().Die ();
+				}
+				characterBehavior.SuperJumpByBumped (1200, 0.5f, false);
+				return;
+			} 
+			if (player.fxState == Player.fxStates.NORMAL)
+				characterBehavior.Hit();
+			
 		} else if (
 			other.tag == "fallingObject"
 			&& characterBehavior.state != CharacterBehavior.states.FALL
@@ -96,18 +109,5 @@ public class CharacterCollisions : MonoBehaviour {
 			if (player.fxState == Player.fxStates.NORMAL)
 				characterBehavior.Hit();
 		}
-    }
-    void resetHits()
-    {
-        hitted = false;
-    }
-    void breakBreakable(Breakable breakable, Vector3 position)
-    {
-        try {
-                breakable.breakOut(position);
-            }
-            catch (Exception e)  {
-                print("error" + e);
-            }  
     }
 }

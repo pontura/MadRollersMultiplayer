@@ -22,13 +22,23 @@ public class HandWriting : MonoBehaviour {
 				yield return null;
 				StopAllCoroutines ();
 			}	
-			field.text = field.text.Remove (field.text.Length - 1, 1);
-			field.text += textToWrite [letterId] + "_";
-			letterId++;
-			yield return new WaitForSeconds (speed);
+			if (field != null) {
+				field.text = field.text.Remove (field.text.Length - 1, 1);
+				field.text += textToWrite [letterId] + "_";
+				letterId++;
+				yield return new WaitForSeconds (speed);
+			}
 		}
 		if(OnReadyFunc != null)
 			OnReadyFunc ();
 		yield return null;
+	}
+	void OnDestroy()
+	{
+		StopAllCoroutines ();
+	}
+	void OnDisable()
+	{
+		StopAllCoroutines ();
 	}
 }

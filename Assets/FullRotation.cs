@@ -32,6 +32,10 @@ public class FullRotation : MonoBehaviour {
 				rotationY = UnityEngine.Random.Range (-180, 180);
 			if (rotateZ)
 				rotationZ = UnityEngine.Random.Range (-45, 45);
+
+			if (UnityEngine.Random.Range (0, 10) < 5)
+				speed *= -1;
+			
 		} else if (startRotation != 0) {
 			if (rotateX)
 				rotationX = startRotation;

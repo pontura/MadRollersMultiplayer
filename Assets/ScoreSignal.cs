@@ -12,7 +12,7 @@ public class ScoreSignal : SceneObject
         base.OnRestart(pos);
 
         Hashtable tweenData = new Hashtable();
-        tweenData.Add("y", pos.y+3);
+        tweenData.Add("y", pos.y+2);
         tweenData.Add("time", 0.5f);
         tweenData.Add("easeType", iTween.EaseType.easeOutQuad);
         tweenData.Add("onComplete", "Pool");
@@ -21,7 +21,7 @@ public class ScoreSignal : SceneObject
     }
     public void SetScore(int playerID, int qty)
     {
-		if (playerID > 3)
+		if (playerID > 3 || playerID <0)
 			return;
 		field.color = Data.Instance.GetComponent<MultiplayerData>().colors[playerID];
         field.text = "+" + qty.ToString();

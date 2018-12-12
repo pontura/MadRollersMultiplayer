@@ -4,8 +4,8 @@ using System.Collections;
 public class Projectil : SceneObject {
 
     public int playerID = -1;
-	int realSpeed;
-	public int speed = 7;
+	float realSpeed;
+	public int speed;
 	public int myRange = 3;
 	public int damage = 10;
 
@@ -23,11 +23,11 @@ public class Projectil : SceneObject {
 	public GameObject BulletPlayer1;
 	public GameObject BulletPlayer2;
 	public GameObject BulletPlayer3;
-	
+
 	void Start () {
 
 	}
-    public void SetColor(Color color)
+    public virtual void SetColor(Color color)
     {
 		if (lastColor == color)
 			return;
@@ -37,6 +37,14 @@ public class Projectil : SceneObject {
         meshToColorize.material.color = color;
     }
 	int lastPlayerID;
+	public virtual void ResetWeapons()
+	{
+
+		BulletPlayer0.SetActive (false);
+		BulletPlayer1.SetActive (false);
+		BulletPlayer2.SetActive (false);
+		BulletPlayer3.SetActive (false);
+	}
     public override void OnRestart(Vector3 pos)
     {			
 		realSpeed = speed;
@@ -48,19 +56,15 @@ public class Projectil : SceneObject {
         exploted = false;
 		pos.z += 1;
 
+		ResetWeapons ();
+
 		if (lastPlayerID != playerID) {
 
 			MultiplayerData multiplayerData = Data.Instance.multiplayerData;
-
 			Color playerColor;
-
 			lastPlayerID = playerID;
 
-			BulletPlayer0.SetActive (false);
-			BulletPlayer1.SetActive (false);
-			BulletPlayer2.SetActive (false);
-			BulletPlayer3.SetActive (false);
-			if (playerID < 4) {
+			if (playerID < 4 && playerID >= 0) {				
 				playerColor = multiplayerData.colors [playerID];
 				switch (playerID) {
 				case 0:
@@ -77,8 +81,9 @@ public class Projectil : SceneObject {
 					break;
 
 				}
-			} else
+			} else {
 				playerColor = multiplayerData.colors [4];
+			}
 		
 			playerColor.a = 0.5f;
 
@@ -104,31 +109,33 @@ public class Projectil : SceneObject {
 			}
 		}
 		Vector3 pos = transform.localPosition;
-
 		myDist += Time.deltaTime * realSpeed;
         rotation = transform.localEulerAngles;
-
 		float multiplier = 150 * Time.deltaTime;
-
-		//RECTIFICA
-		float gotoRot = 0;
-		if(team_for_versus == 2)
-			gotoRot = 180;
-		else if (rotation.y > 180)
-			gotoRot = 360;
-
-		rotation.y = Mathf.Lerp(rotation.y , gotoRot, Time.deltaTime*4);
+		RectificaRotation ();
 		
        // rotation.y = 0;
-		if (pos.y < - 0.8) Reset();
+		if (pos.y < - 3) Reset();
         else
 		if(myDist >= myRange)
 		{
             rotation.x += 15 * Time.deltaTime;					
             transform.localEulerAngles = rotation;
 		}
-		pos += transform.forward * 50  * Time.deltaTime;		
+		pos += transform.forward * speed  * Time.deltaTime;		
 		transform.localPosition = pos;
+	}
+	public virtual void RectificaRotation()
+	{
+		//RECTIFICA
+		float gotoRot = 0;
+//		if(team_for_versus == 2)
+//			gotoRot = 180;
+//		else 
+			if (rotation.y > 180)
+			gotoRot = 360;
+
+		rotation.y = Mathf.Lerp(rotation.y , gotoRot, Time.deltaTime*4);
 	}
 	void OnTriggerEnter(Collider other) 
 	{
@@ -204,7 +211,8 @@ public class Projectil : SceneObject {
 	}
 	void SetScore(int score, ScoresManager.types type)
     {
-		Data.Instance.events.OnScoreOn(playerID, transform.position, score, type);
+		if(playerID>=0 && score >0)
+			Data.Instance.events.OnScoreOn(playerID, transform.position, score, type);
     }
 	void addExplotion(float _y)
 	{
@@ -231,7 +239,7 @@ public class Projectil : SceneObject {
 		if (target != null)
 			return;
 		
-		realSpeed /= 4;
+		realSpeed /= 2;
 		
 		this.target = _target;
 	}

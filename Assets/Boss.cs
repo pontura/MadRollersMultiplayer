@@ -25,10 +25,10 @@ public class Boss : SceneObject {
 	{
 		
 	} 
-	public void OnSetTimer(int timer)
-	{
-		Data.Instance.events.OnBossSetTimer (timer);
-	}
+//	public void OnSetTimer(int timer)
+//	{
+//		Data.Instance.events.OnBossSetTimer (timer);
+//	}
 	public bool HasOnlyOneLifeLeft()
 	{
 		if (hits+1 >= totalHits)

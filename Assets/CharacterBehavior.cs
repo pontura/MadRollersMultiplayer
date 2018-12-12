@@ -11,7 +11,7 @@ public class CharacterBehavior : MonoBehaviour {
 	private bool walking2;
 
 	public Collider[] colliders;
-	public CharacterFloorCollitions floorCollitions;
+//	public CharacterFloorCollitions floorCollitions;
 
 	public states state;
 
@@ -444,7 +444,7 @@ public class CharacterBehavior : MonoBehaviour {
 	{
 		if (!GetComponent<Collider>().enabled)
 			return;
-		print ("______________ SuperJumpByBumped " + state);	
+		//print ("______________ SuperJumpByBumped " + state);	
 		ResetColliders();
 		OnAvatarJump();
 
