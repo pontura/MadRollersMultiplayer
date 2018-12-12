@@ -3,7 +3,7 @@ using System;
 
 public class CharacterCollisions : MonoBehaviour {
 
-    private CharacterBehavior characterBehavior;
+	public CharacterBehavior characterBehavior;
     private Player player;
 
 	void Start()

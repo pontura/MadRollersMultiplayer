@@ -255,7 +255,7 @@ public class CharacterBehavior : MonoBehaviour {
 		jumpsNumber = 0;
 		state = states.RUN;
 
-		if(state == states.RUN) return;
+		Data.Instance.events.OnSoundFX ("floor", player.id);
 
 		Data.Instance.events.OnMadRollerFX (MadRollersSFX.types.TOUCH_GROUND, player.id);
 

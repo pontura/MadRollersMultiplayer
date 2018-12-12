@@ -10,15 +10,12 @@ public class Bumper : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) 
 	{
-		print ("other            " + other.name);
 		switch (other.tag)
 		{
 		case "Player":
-			print ("BUMP___________________");
-			CharacterBehavior ch = other.transform.parent.GetComponent<CharacterBehavior> ();
-			ch.SuperJumpByBumped ((int)force * 100, 0.5f, backwardJump);
-
-			Invoke ("Reset", 0.5f);
+			CharacterCollisions ch = other.transform.GetComponent<CharacterCollisions> ();
+			if(ch != null)
+				ch.characterBehavior.SuperJumpByBumped ((int)force * 100, 0.5f, backwardJump);
 			break;
 		}
 	}
