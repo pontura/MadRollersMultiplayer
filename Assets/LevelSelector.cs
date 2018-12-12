@@ -128,7 +128,7 @@ public class LevelSelector : MonoBehaviour {
 		missionSelector.LoadVideoGameData (videgameID);
 		diskette.Init (videogameData);
 		videogameUI.Change ();
-		credits.text = videogameData.credits;
+		Data.Instance.handWriting.WriteTo (credits, videogameData.credits, null);
 	}
 	public void OnJoystickBack()
 	{

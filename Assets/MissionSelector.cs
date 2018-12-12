@@ -7,6 +7,7 @@ public class MissionSelector : MonoBehaviour {
 	
 	public Image puntero;
 	public Image bar;
+	public Text titleField;
 	public Text missionField;
 	public Text percentField;
 	public int totalMissions;
@@ -20,6 +21,7 @@ public class MissionSelector : MonoBehaviour {
 	public void LoadVideoGameData(int _videogameID)
 	{
 		this.videogameID = _videogameID;
+		titleField.text = Data.Instance.videogamesData.all[videogameID].name;
 		missionUnblockedID = Data.Instance.missions.GetMissionsByVideoGame (videogameID).missionUnblockedID;
 		actualMission = missionUnblockedID;
 		totalMissions = Data.Instance.missions.GetTotalMissionsInVideoGame (videogameID);
@@ -32,7 +34,7 @@ public class MissionSelector : MonoBehaviour {
 	}
 	void SetTexts()
 	{		
-		missionField.text = "MISSION " + actualMission + "/" + totalMissions;
+		missionField.text = "MISSION " + (actualMission+1) + "/" + totalMissions;
 		Data.Instance.missions.MissionActiveID = actualMission;
 	}
 	void Update()
@@ -41,7 +43,6 @@ public class MissionSelector : MonoBehaviour {
 		float goTo = (float)actualMission / (float)totalMissions;
 		bar.fillAmount = Mathf.Lerp (bar.fillAmount, fillAmount, 0.05f);
 		percentField.text = ((int)(bar.fillAmount * 100)).ToString() + "%";
-
 		Vector3 pos = puntero.transform.localPosition;
 		pos.x = Mathf.Lerp (pos.x, goTo*200, 0.05f);
 		puntero.transform.localPosition = pos;

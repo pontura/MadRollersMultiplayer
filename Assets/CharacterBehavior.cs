@@ -201,21 +201,20 @@ public class CharacterBehavior : MonoBehaviour {
 		if (state == states.DEAD)
 			return;
 
-		RaycastHit coverHit;
-		if (Physics.Linecast (transform.position, groundCheck.position, out coverHit)) {
-			if (coverHit.transform.tag == "floor") {
-				rotationZ = coverHit.transform.up.x * -30;
-			} else
-				rotationZ = 0;
-		}
-
-		if (!grounded &&  startJumping + 0.2f < Time.time ) {
+		if (!grounded && startJumping + 0.2f < Time.time) {
 			Vector3 pos = transform.position;
 			pos.y += 1;
-
 			grounded = Physics.Linecast (pos, groundCheck.position, 1 << LayerMask.NameToLayer ("Floor"));
-			if(grounded)
-				OnFloor();
+			if (grounded)
+				OnFloor ();
+		} else {
+			RaycastHit coverHit;
+			if (Physics.Linecast (transform.position, groundCheck.position, out coverHit)) {
+				if (coverHit.transform.tag == "floor") {
+					rotationZ = coverHit.transform.up.x * -30;
+				} else
+					rotationZ = 0;
+			}
 		}
 
 		characterMovement.UpdateByController (rotationY);
@@ -251,7 +250,7 @@ public class CharacterBehavior : MonoBehaviour {
 		if (state == states.DEAD) return;
 		if (state == states.IDLE) return;
 
-	//	print ("___________OnFloor");
+		print ("___________OnFloor");
 
 		jumpsNumber = 0;
 		state = states.RUN;
