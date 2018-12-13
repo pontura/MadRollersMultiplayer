@@ -117,6 +117,7 @@ public class SceneObjectsBehavior : MonoBehaviour {
 
 			switch (go.name)
 			{
+			case "Sapo":
 			case "extralargeBlock1":
 			case "flyer":
 			case "largeBlock1":

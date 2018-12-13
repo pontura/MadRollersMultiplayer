@@ -250,7 +250,6 @@ public class CharacterBehavior : MonoBehaviour {
 		if (state == states.DEAD) return;
 		if (state == states.IDLE) return;
 
-		print ("___________OnFloor");
 
 		jumpsNumber = 0;
 		state = states.RUN;
