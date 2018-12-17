@@ -11,14 +11,14 @@ GameObject:
   - component: {fileID: 5400000}
   - component: {fileID: 6500000}
   - component: {fileID: 11400000}
-  - component: {fileID: 11432204}
+  - component: {fileID: 114638256570169588}
   m_Layer: 18
   m_Name: flyer_real
   m_TagString: destroyable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &158880
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,28 +167,8 @@ MonoBehaviour:
   childs: []
   dontKillPlayers: 0
   dontDieOnHit: 0
+  ifJumpingDontKill: 0
   score: 0
---- !u!114 &11432204
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e5d74f77cec81d498bd58bb935ec316, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Dificult: 0
-  lastColor: {r: 0, g: 0, b: 0, a: 0}
-  size_z: 0
-  broken: 0
-  id: 0
-  characterTransform: {fileID: 0}
-  isActive: 0
-  score: 360
-  distanceFromCharacter: 0
-  onlyMultiplayers: 0
 --- !u!114 &11458878
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -220,6 +200,7 @@ MonoBehaviour:
   childs: []
   dontKillPlayers: 1
   dontDieOnHit: 0
+  ifJumpingDontKill: 0
   score: 100
 --- !u!1001 &100100000
 Prefab:
@@ -2466,3 +2447,24 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &114638256570169588
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d3d555793ff3d849aa8b31c6db5b487, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Dificult: 0
+  lastColor: {r: 0, g: 0, b: 0, a: 0}
+  size_z: 0
+  broken: 0
+  id: 0
+  characterTransform: {fileID: 0}
+  isActive: 0
+  score: 120
+  distanceFromCharacter: 0
+  onlyMultiplayers: 0
