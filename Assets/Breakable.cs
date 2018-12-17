@@ -16,6 +16,7 @@ public class Breakable : MonoBehaviour {
 	public Breakable[] childs;
 	public bool dontKillPlayers;
 	public bool dontDieOnHit;
+	public bool ifJumpingDontKill;
     private Vector3 originalPosition;
     public System.Action OnBreak = delegate { };
     public int score;

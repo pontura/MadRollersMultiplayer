@@ -322,8 +322,8 @@ public class SceneObjectsBehavior : MonoBehaviour {
 				else
 					manager.AddSceneObject (sceneObject, pos);
 				
-			} else
-				Debug.Log (go.name + "_______________ (No existe) " );
+			}// else
+			//	Debug.Log (go.name + "_______________ (No existe) " );
 			
 
 			if (go.name == "Container") {

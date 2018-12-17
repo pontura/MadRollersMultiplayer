@@ -5,10 +5,20 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Missions : MonoBehaviour {
+	
+	public TextAsset _all;
+	public MissionsListInVideoGame all;
 
 	public bool reloadMissions;
 
 	public List<MissionsByVideoGame> videogames;
+	[Serializable]
+	public class MissionsListInVideoGame
+	{
+		public string[] missionsVideoGame1;
+		public string[] missionsVideoGame2;
+		public string[] missionsVideoGame3;
+	}
 	[Serializable]
 	public class MissionsByVideoGame
 	{
@@ -43,30 +53,62 @@ public class Missions : MonoBehaviour {
 	VideogamesData videogamesData;
 
 	public void Init()
-	{			
+	{	
 		videogamesData = GetComponent<VideogamesData> ();
 		data = Data.Instance;
 
-		if (reloadMissions)
-			LoadAll ();
+	//	if (reloadMissions)
+		LoadAll();
 		
 		data.events.OnMissionComplete += OnMissionComplete;
 	}
 	public void LoadAll()
 	{
-		for (int a = 0; a < 3; a++) {
-			MissionsByVideoGame videogame = videogames [a];
-			videogame.missions = new List<MissionsData> ();
-			int videogameID = a + 1;
-			for (int b = 0; b < 20; b++) {				
-				TextAsset asset = Resources.Load ("missions/" + videogameID + "_" + b) as TextAsset;
-				if (asset != null ) {					
-					MissionsData missionData = JsonUtility.FromJson<MissionsData> (asset.text);
-					videogame.missions.Add (missionData);
+		all = JsonUtility.FromJson<MissionsListInVideoGame> (_all.text);
+
+		LoadByVideogame (all.missionsVideoGame1, 0);
+		LoadByVideogame (all.missionsVideoGame2, 1);
+		LoadByVideogame (all.missionsVideoGame3, 2);
+	}
+	public string LoadResourceTextfile(string path)
+	{
+		string filePath = "missions/" + path.Replace(".json", "");
+		TextAsset targetFile = Resources.Load<TextAsset>(filePath);
+		return targetFile.text;
+	}
+	public void LoadByVideogame(string[] missionsInVideogame, int videogameID)
+	{
+		
+		MissionsByVideoGame videogame = videogames [videogameID];
+		videogame.missions = new List<MissionsData> ();	
+		foreach (string missionName in missionsInVideogame) {	
+			Debug.Log ("_" + missionName);
+			string dataAsJson = LoadResourceTextfile (missionName);
+			Debug.Log (dataAsJson);
+			//string filePath = "Resources/missions/"+ missionName;
+//			if (File.Exists (filePath)) {
+//				string dataAsJson = File.ReadAllText (filePath);
+				MissionsData missionData = JsonUtility.FromJson<MissionsData> (dataAsJson);
+				missionData.data [0].jsonName = missionName;
+				videogame.missions.Add (missionData);
+				videogame.missionUnblockedID = PlayerPrefs.GetInt ("missionUnblockedID_" + (videogameID + 1), 0);
+//			} else {
+//				Debug.LogError ("No existe la mission " + filePath);
+//			}
+		}
+	}
+	public MissionData GetMissionsDataByJsonName(string jsonName)
+	{
+		Debug.Log (jsonName);
+		foreach (MissionsByVideoGame mvv in videogames) {
+			foreach (MissionsData mmData in mvv.missions)  {
+				foreach (MissionData mData in mmData.data)  {
+					if (mData.jsonName == jsonName)
+						return mData;
 				}
 			}
-			videogame.missionUnblockedID = PlayerPrefs.GetInt("missionUnblockedID_" + videogameID, 0);
 		}
+		return null;
 	}
 	public void Init (Level level) {
 		this.level = level;

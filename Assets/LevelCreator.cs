@@ -10,6 +10,7 @@ public class LevelCreator : MonoBehaviour {
 	public int videoGameID;
 	public int missionID;
 
+	public TextAsset mission;
 	public Missions missions;
 	public AreaCreator areaCreator;
 
@@ -33,24 +34,35 @@ public class LevelCreator : MonoBehaviour {
 		totalDistance = 0;
 		AddAreaByName (area.name);
 	}
+	List<string> allNames = new List<string>();
 	public void LoadMissions()
 	{		
 		Clear ();
 		totalDistance = 0;
 
-		List<string> allNames = new List<string>();
-
-		foreach (MissionData.AreaSetData data in missions.videogames[videoGameID-1].missions[missionID].data[0].areaSetData) {
-			foreach (string areaName in data.areas) {
-				bool exists = false;
-				foreach (string savedAreaName in allNames) {
-					if(savedAreaName == areaName)
-						exists = true;
-				}
-				if (!exists) {
-					AddAreaByName (areaName);
-					allNames.Add (areaName);
-				}
+		allNames = new List<string>();
+		if (mission != null) {
+			MissionData missionData = missions.GetMissionsDataByJsonName (mission.name);
+			foreach (MissionData.AreaSetData data in missionData.areaSetData) {
+				LoadMissionData (data);
+			}
+		} else {
+			foreach (MissionData.AreaSetData data in missions.videogames[videoGameID-1].missions[missionID].data[0].areaSetData) {
+				LoadMissionData (data);
+			}
+		}
+	}
+	void LoadMissionData(MissionData.AreaSetData data)
+	{
+		foreach (string areaName in data.areas) {
+			bool exists = false;
+			foreach (string savedAreaName in allNames) {
+				if(savedAreaName == areaName)
+					exists = true;
+			}
+			if (!exists) {
+				AddAreaByName (areaName);
+				allNames.Add (areaName);
 			}
 		}
 	}

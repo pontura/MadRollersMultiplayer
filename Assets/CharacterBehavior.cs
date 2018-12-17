@@ -355,20 +355,18 @@ public class CharacterBehavior : MonoBehaviour {
 		pos.y += jumpingPressedAmount*Time.deltaTime;
 		transform.localPosition = pos;
 	}
+	public bool IsJumping()
+	{
+		if(state == states.JUMP || state == states.SUPERJUMP || state == states.DOUBLEJUMP)
+			return true;
+		return false;
+	}
 	public void Jump()
 	{
 		jumpingPressed = false;
 
 		if (Game.Instance.state == Game.states.INTRO || state == states.DEAD || state == states.DOUBLEJUMP) 
 			return;	
-
-
-//		if (hasSomeoneOver != null)
-//			OnGetRidOfOverAvatar();
-//		else if (isOver != null)
-//			OnGetRidOfBelowAvatar();
-
-		//if (player.transport != null && player.transport.isOn) return;
 
 		jumpsNumber++;
 		if (jumpsNumber > 3) return;
@@ -407,6 +405,10 @@ public class CharacterBehavior : MonoBehaviour {
 	void ResetCollidersBack()
 	{
 		GetComponent<Collider>().enabled = true;
+	}
+	public void SuperJumpByHittingSomething()
+	{
+		SuperJumpByBumped (500, 0.5f, false);
 	}
 	public void SuperJump(float _superJumpHeight, bool isDoubleJump = false)
 	{

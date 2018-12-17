@@ -10,42 +10,7 @@ public class CharacterCollisions : MonoBehaviour {
 	{
         characterBehavior = gameObject.transform.parent.GetComponent<CharacterBehavior>();
         player = gameObject.transform.parent.GetComponent<Player>();
-	}		
-
-	void ______OnTriggerEnter(Collider other) {
-		if (characterBehavior == null)
-			return;
-		if (characterBehavior.state == CharacterBehavior.states.DEAD
-			|| characterBehavior.state == CharacterBehavior.states.CRASH
-			|| characterBehavior.state == CharacterBehavior.states.FALL)
-			return;
-		if (other.tag == "floor")
-		{
-			CharacterAnimationForcer chanimF = other.GetComponent<CharacterAnimationForcer> ();
-			if (chanimF != null) {				
-				switch (chanimF.characterAnimation) {
-				case CharacterAnimationForcer.animate.SLIDE:
-					characterBehavior.Slide ();
-					break;
-				}
-			}
-		}
-		if (other.tag == "enemy")
-		{
-			if (characterBehavior.state == CharacterBehavior.states.JUMP ||
-				characterBehavior.state == CharacterBehavior.states.DOUBLEJUMP ||
-				characterBehavior.state == CharacterBehavior.states.SHOOT)
-			{
-				MmoCharacter mmoCharacter = other.GetComponent<MmoCharacter> ();
-				if(mmoCharacter !=null)
-					other.GetComponent<MmoCharacter>().Die();
-				else
-					other.gameObject.SendMessage("breakOut",other.gameObject.transform.position, SendMessageOptions.DontRequireReceiver);
-
-				characterBehavior.SuperJumpByBumped(1200, 0.5f, false);
-			}
-		}
-	}
+	}	
 	void OnTriggerEnter(Collider other) {
 		
 		if (characterBehavior == null) return;
@@ -70,8 +35,15 @@ public class CharacterCollisions : MonoBehaviour {
             if (player.fxState == Player.fxStates.NORMAL)
 			{
 				Breakable breakable = other.GetComponent<Breakable> ();
-				if (breakable != null && !breakable.dontKillPlayers) 
-					characterBehavior.HitWithObject(other.transform.position);
+				if (breakable != null) {
+					
+					print ("if (breakable.ifJumpingDontKill: " + breakable.ifJumpingDontKill + " characterBehavior.state: " + characterBehavior.state);
+
+					if (breakable.ifJumpingDontKill && characterBehavior.IsJumping () && breakable.transform.position.y<transform.position.y)
+						characterBehavior.SuperJumpByHittingSomething ();
+					else if (!breakable.dontKillPlayers)
+						characterBehavior.HitWithObject (other.transform.position);
+				}
 			}
         }
         else if (other.tag == "floor")
@@ -90,7 +62,7 @@ public class CharacterCollisions : MonoBehaviour {
         }
         else if ( other.tag == "enemy" )
         {
-			if (transform.position.y > other.transform.position.y + 1) {	
+			if (characterBehavior.IsJumping()) {	
 				MmoCharacter mmoCharacter = other.GetComponent<MmoCharacter> ();
 				if (mmoCharacter != null) {		
 					other.GetComponent<MmoCharacter> ().Die ();

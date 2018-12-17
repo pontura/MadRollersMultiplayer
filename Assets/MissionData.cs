@@ -6,6 +6,7 @@ using System;
 [Serializable]
 public class MissionData  {
 
+	public string jsonName;
 	public string title;
 	public int id;
 	public int maxScore;

@@ -7,8 +7,9 @@ public class MissionSignal : MonoBehaviour {
 	public GameObject panel;
     public Text title;
 	public Text subtitle;
-
+	Missions missions;
 	void Start () {
+		missions =  Data.Instance.GetComponent<Missions> ();
         Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
 		SetState(false);
 	}
@@ -27,13 +28,14 @@ public class MissionSignal : MonoBehaviour {
 			title.text = "";
 			subtitle.text = "";
 			SetState(true);
-			Data.Instance.handWriting.WriteTo(title, Data.Instance.videogamesData.GetActualVideogameData().name, DoneText1);
+			string text = "";
+			//text =  Data.Instance.videogamesData.GetActualVideogameData().name+ "\n";
+
+			MissionData missionData= missions.GetActualMissionData ();
+			text += "MISSION " + (missions.MissionActiveID+1) + "\n";
+			text += missionData.title;
+			Data.Instance.handWriting.WriteTo(subtitle,text , DoneText2);
 		}
-    }
-	void DoneText1()
-	{
-		int missionID = (int)(Data.Instance.GetComponent<Missions> ().MissionActiveID+1);
-		Data.Instance.handWriting.WriteTo(subtitle, "MISSION " + missionID, DoneText2);
 	}
 	void DoneText2()
 	{
