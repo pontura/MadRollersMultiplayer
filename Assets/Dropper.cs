@@ -3,36 +3,33 @@ using System.Collections;
 
 public class Dropper : MonoBehaviour
 {
+	public string SceneObjectName;
     public float delay = 1;
     public float delayRandom = 0;
-    public GameObject[] projectiles;
 
-    private float sec;
+    float sec;
 
     void Start()
     {
         sec = 0;
-        delayRandom = Random.Range(0, delayRandom);
+		SetRandom ();
     }
-    public void Die()
+    public void SetRandom()
     {
-        
+		delayRandom = Random.Range(delay, delay+delayRandom);
     }
 
-    public void OnSceneObjectUpdated()
+    void Update()
     {
-        if (sec > delay + delayRandom)
+        if (sec > delayRandom)
         {
+			SetRandom ();
             Vector3 pos = transform.position;
-            GameObject _projectil = getRandomObject();
-            GameObject projectil = Instantiate(_projectil, pos, Quaternion.identity) as GameObject;
-            projectil.GetComponent<SceneObject>().Restart(pos);            
+			SceneObject newSceneObject;
+			newSceneObject = Data.Instance.sceneObjectsPool.GetObjectForType(SceneObjectName, false);  
+			Game.Instance.sceneObjectsManager.AddSceneObjectAndInitIt(newSceneObject, pos);         
             sec = 0;
         }
         sec += Time.deltaTime;
-    }
-    private GameObject getRandomObject()
-    {
-        return projectiles[Random.Range(0, projectiles.Length)];
     }
 }
