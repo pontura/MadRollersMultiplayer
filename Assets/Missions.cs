@@ -82,9 +82,7 @@ public class Missions : MonoBehaviour {
 		MissionsByVideoGame videogame = videogames [videogameID];
 		videogame.missions = new List<MissionsData> ();	
 		foreach (string missionName in missionsInVideogame) {	
-			Debug.Log ("_" + missionName);
 			string dataAsJson = LoadResourceTextfile (missionName);
-			Debug.Log (dataAsJson);
 			//string filePath = "Resources/missions/"+ missionName;
 //			if (File.Exists (filePath)) {
 //				string dataAsJson = File.ReadAllText (filePath);

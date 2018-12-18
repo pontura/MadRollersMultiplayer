@@ -9,7 +9,7 @@ public class CharacterBehavior : MonoBehaviour {
 	public float speed;
 	private bool walking1;
 	private bool walking2;
-
+	SliderEffect sliderEffect;
 	public Collider[] colliders;
 //	public CharacterFloorCollitions floorCollitions;
 
@@ -72,7 +72,7 @@ public class CharacterBehavior : MonoBehaviour {
 	}
 
 	void Start () {
-		
+		sliderEffect = GetComponent<SliderEffect> ();
 		characterMovement = GetComponent<CharacterMovement> ();
 		data = Data.Instance;  
 		player = GetComponent<Player>();
@@ -195,7 +195,10 @@ public class CharacterBehavior : MonoBehaviour {
 			Data.Instance.events.OnMadRollerFX(MadRollersSFX.types.CHEER, player.id);
 		
 	}
-
+	public void Slide()
+	{
+		_animation_hero.Play ("slide");
+	}
 	public void UpdateByController(float rotationY)
 	{
 		if (state == states.DEAD)
@@ -210,6 +213,13 @@ public class CharacterBehavior : MonoBehaviour {
 		} else {
 			RaycastHit coverHit;
 			if (Physics.Linecast (transform.position, groundCheck.position, out coverHit)) {
+				if (sliderEffect.speed != 0) {
+					SliderFloor sliderFloor = coverHit.transform.gameObject.GetComponent<SliderFloor>();
+					if (sliderFloor == null) {
+						sliderEffect.speed = 0;
+						_animation_hero.Play("run");
+					}
+				}
 				if (coverHit.transform.tag == "floor") {
 					rotationZ = coverHit.transform.up.x * -30;
 				} else
@@ -283,10 +293,6 @@ public class CharacterBehavior : MonoBehaviour {
 		else
 			_animation_hero.Play("run");
 	}
-	public void Slide()
-	{
-		_animation_hero.Play("slide");
-	}
 	public void AllButtonsReleased()
 	{
 		//if (player.transport != null)
@@ -357,7 +363,7 @@ public class CharacterBehavior : MonoBehaviour {
 	}
 	public bool IsJumping()
 	{
-		if(state == states.JUMP || state == states.SUPERJUMP || state == states.DOUBLEJUMP)
+		if(!grounded)
 			return true;
 		return false;
 	}

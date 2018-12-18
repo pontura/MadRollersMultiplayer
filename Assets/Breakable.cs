@@ -14,9 +14,16 @@ public class Breakable : MonoBehaviour {
 	public float NumOfParticles = 30;
 	private Vector3 position;
 	public Breakable[] childs;
+
+	//nunca mata
 	public bool dontKillPlayers;
+
+	//una vez roto no mata
 	public bool dontDieOnHit;
+
+	//si está saltando vuelve a hacer un salto y no muere:
 	public bool ifJumpingDontKill;
+
     private Vector3 originalPosition;
     public System.Action OnBreak = delegate { };
     public int score;

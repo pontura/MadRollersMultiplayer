@@ -67,7 +67,7 @@ public class CharacterCollisions : MonoBehaviour {
 				if (mmoCharacter != null) {		
 					other.GetComponent<MmoCharacter> ().Die ();
 				}
-				characterBehavior.SuperJumpByBumped (1200, 0.5f, false);
+				characterBehavior.SuperJumpByBumped (920, 0.5f, false);
 				return;
 			} 
 			if (player.fxState == Player.fxStates.NORMAL)
