@@ -504,7 +504,8 @@ public class CharacterBehavior : MonoBehaviour {
 		_animation_hero.Play("hit");
 
 		if (player.charactersManager.characters.Count >1) return;
-		Invoke("CrashReal", 0.3f);
+
+		Invoke("CrashReal", 0.2f);
 
 		if(team_for_versus == 0)
 			Game.Instance.gameCamera.OnAvatarCrash (this);
@@ -512,9 +513,8 @@ public class CharacterBehavior : MonoBehaviour {
 	void CrashReal()
 	{
 		if (player.charactersManager.getTotalCharacters () == 1) return;
-
-		Data.Instance.GetComponent<FramesController> ().ForceFrameRate (0.1f);
-		Data.Instance.events.RalentaTo (1, 0.2f);
+		Data.Instance.GetComponent<FramesController> ().ForceFrameRate (0.025f);
+		Data.Instance.events.RalentaTo (1, 0.15f);
 
 	}
 	void SaveDistance()

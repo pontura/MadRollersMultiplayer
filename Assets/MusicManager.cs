@@ -99,7 +99,9 @@ public class MusicManager : MonoBehaviour {
     void OnAvatarCrash(CharacterBehavior cb)
     {
         if (Game.Instance.GetComponent<CharactersManager>().getTotalCharacters() > 0) return;
-        audioSource.Stop();
+
+		ChangePitch (0.2f);
+        //audioSource.Stop();
     }
     public void SetVolume(float vol)
     {
@@ -155,7 +157,9 @@ public class MusicManager : MonoBehaviour {
     void OnAvatarDie(CharacterBehavior player)
     {
         if (Game.Instance.GetComponent<CharactersManager>().getTotalCharacters() > 0) return;
-        playSound(deathFX, false);
+		Data.Instance.events.OnSoundFX("dead", -1);
+		ChangePitch (0.2f);
+       // playSound(deathFX, false);
     }
     public void stopAllSounds()
     {

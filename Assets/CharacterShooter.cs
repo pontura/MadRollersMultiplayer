@@ -56,7 +56,8 @@ public class CharacterShooter : MonoBehaviour {
 	}
 	public void CheckFireDouble()
 	{
-		SetFire (Weapon.types.DOUBLE, 0.45f);
+		//SetFire (Weapon.types.DOUBLE, 0.45f);
+		SetFire (Weapon.types.SIMPLE, 0.45f);
 	}
 	public void CheckFire()
 	{

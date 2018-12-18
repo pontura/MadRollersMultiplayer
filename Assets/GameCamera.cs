@@ -301,10 +301,15 @@ public class GameCamera : MonoBehaviour
     {
 		if (Game.Instance.GetComponent<CharactersManager>().getTotalCharacters() > 0) return;
         if (state == states.END) return;
+
+		this.explotionForce = 105;
+		DoExploteCoroutine = DoExplote ();
+		StartCoroutine (DoExploteCoroutine);
+
         state = states.END;
 		iTween.MoveTo(cam.gameObject, iTween.Hash(
-            "position", new Vector3(player.transform.localPosition.x, transform.localPosition.y - 3.75f, transform.localPosition.z - 2.1f),
-            "time", 3f,
+            "position", new Vector3(player.transform.localPosition.x, transform.localPosition.y - 6.5f, transform.localPosition.z - 0.8f),
+            "time", 2f,
             "easetype", iTween.EaseType.easeOutCubic,
             "looktarget", player.transform
            // "axis", "x"
