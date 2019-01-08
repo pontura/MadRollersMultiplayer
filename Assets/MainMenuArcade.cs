@@ -65,7 +65,7 @@ public class MainMenuArcade : MonoBehaviour {
         if (actualWinner > 0)
             timeToLoop = 0.7f;
         
-        winnersPicture.material.mainTexture = Data.Instance.GetComponent<ArcadeRanking>().all[actualWinner].texture;
+       // winnersPicture.material.mainTexture = Data.Instance.GetComponent<ArcadeRanking>().all[actualWinner].texture;
         actualWinner++;
         if (actualWinner >= Data.Instance.GetComponent<ArcadeRanking>().all.Count)
             actualWinner = 0;
@@ -74,15 +74,15 @@ public class MainMenuArcade : MonoBehaviour {
     }
     void SetFields(int puesto)
     {
-        int hiscore = Data.Instance.GetComponent<ArcadeRanking>().all[puesto].score;
-        string actualCompetition = Data.Instance.GetComponent<MultiplayerCompetitionManager>().actualCompetition;
-        foreach (Text field in winnersText.GetComponentsInChildren<Text>())
-        {
-            if (puesto == 0)
-                field.text = "PUNTERx/S (" + hiscore + " PUNTOS) - CAMPEONATO " + actualCompetition + " -";
-           // else
-              //  field.text = "PUESTO " + (int)(puesto + 1);
-        }
+       // int hiscore = Data.Instance.GetComponent<ArcadeRanking>().all[puesto].score;
+//        string actualCompetition = Data.Instance.GetComponent<MultiplayerCompetitionManager>().actualCompetition;
+//        foreach (Text field in winnersText.GetComponentsInChildren<Text>())
+//        {
+//          //  if (puesto == 0)
+//              //  field.text = "PUNTERx/S (" + hiscore + " PUNTOS) - CAMPEONATO " + actualCompetition + " -";
+//           // else
+//              //  field.text = "PUESTO " + (int)(puesto + 1);
+//        }
     }
     void Update()
     {

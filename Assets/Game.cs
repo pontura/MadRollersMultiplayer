@@ -152,6 +152,7 @@ public class Game : MonoBehaviour {
     }
 	public void ChangeVideogame(int videogameID)
 	{
+		Data.Instance.missions.times_trying_same_mission = 0;
 		Data.Instance.missions.MissionActiveID++;
 		Data.Instance.videogamesData.actualID = videogameID;
 		Data.Instance.isReplay = true;
@@ -159,6 +160,7 @@ public class Game : MonoBehaviour {
 	}
 	public void Continue()
 	{
+		Data.Instance.missions.times_trying_same_mission++;
 		Data.Instance.multiplayerData.OnRefreshPlayersByActiveOnes ();
 		Data.Instance.inputSavedAutomaticPlay.RemoveAllData ();
 		Data.Instance.isReplay = true;

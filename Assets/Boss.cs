@@ -15,6 +15,7 @@ public class Boss : SceneObject {
 		Data.Instance.events.OnBossActive (true);
 		Data.Instance.GetComponent<MusicManager> ().BossMusic (true);
 		base.OnRestart (pos);
+		Data.Instance.voicesManager.PlayRandom (Data.Instance.voicesManager.killThemAll);
 	}
 	public void SetTotal(int totalHits)
 	{		
@@ -32,10 +33,12 @@ public class Boss : SceneObject {
 //	}
 	public bool HasOnlyOneLifeLeft()
 	{
-		if (hits+1 >= totalHits)
+		if (hits + 2 == totalHits)
+			Data.Instance.voicesManager.PlaySpecificClipFromList (Data.Instance.voicesManager.UIItems, 2);
+		else if (hits+1 >= totalHits)
 			return true;
-		else
-			return false;
+
+		return false;
 	}
 	public void breakOut()
 	{

@@ -33,57 +33,57 @@ public class SummaryMultiplayer : MonoBehaviour {
 
 	void Start () {
         //Data.Instance.GetComponent<MusicManager>().stopAllSounds();
-        int hiscore = Data.Instance.GetComponent<ArcadeRanking>().all[0].score;
-
-        rawimageRanking.material.mainTexture = Data.Instance.GetComponent<ArcadeRanking>().all[0].texture;
-
-        foreach (Text field in winnersTitle.GetComponentsInChildren<Text>())
-            field.text = "1er PUESTO - " + Data.Instance.GetComponent<MultiplayerCompetitionManager>().actualCompetition;
-
-        foreach ( Text field in rankingScore.GetComponentsInChildren<Text>())
-            field.text = "con " + hiscore + " PUNTOS.";
-
-        Time.timeScale = 1;
-        multiplayerData = Data.Instance.multiplayerData;
-
-        MultiplayerSummaryTexts texts = Data.Instance.GetComponent<MultiplayerSummaryTexts>();
-
-        for (int playerID = 0; playerID < 4; playerID++)
-            GetPosition(playerID);
-
-        int player_position_1 = multiplayerData.players[0];
-        int player_position_2 = multiplayerData.players[1];
-        int player_position_3 = multiplayerData.players[2];
-        int player_position_4 = multiplayerData.players[3];
-
-        int score1 = multiplayerData.GetScore(player_position_1);
-        int score2 = multiplayerData.GetScore(player_position_2);
-        int score3 = multiplayerData.GetScore(player_position_3);
-        int score4 = multiplayerData.GetScore(player_position_4);
-
-        string title_1 = texts.GetText(1, score1);
-        string title_2 = texts.GetText(2, score2);
-        string title_3 = texts.GetText(3, score3);
-        string title_4 = texts.GetText(4, score4);
-        totalScore = 1+ score1 + score2 + score3 + score4;
-        
-		if (totalScore>1000 && Data.Instance.GetComponent<ArcadeRanking>().CheckIfEnterHiscore(totalScore))
-        {
-            Data.Instance.GetComponent<ArcadeRanking>().newHiscore = totalScore;
-            SceneManager.LoadScene("NewHiscoreMultiplayer");
-            return;
-        }
-
-        foreach (Text field in title.GetComponentsInChildren<Text>())
-            field.text = "Puntos = " + totalScore; // + "x en " + (int)multiplayerData.distance  + " mts.";
-
-        player1.Init(multiplayerData.colors[player_position_1], title_1, score1, (score1 * 100) / totalScore, 1);
-        player2.Init(multiplayerData.colors[player_position_2], title_2, score2, (score2 * 100) / totalScore, 2);
-        player3.Init(multiplayerData.colors[player_position_3], title_3, score3, (score3 * 100) / totalScore, 3);
-        player4.Init(multiplayerData.colors[player_position_4], title_4, score4, (score4 * 100) / totalScore, 4);
-
-        nextRoutine = Next();
-        StartCoroutine(nextRoutine);
+//        int hiscore = Data.Instance.GetComponent<ArcadeRanking>().all[0].score;
+//
+//        rawimageRanking.material.mainTexture = Data.Instance.GetComponent<ArcadeRanking>().all[0].texture;
+//
+//        foreach (Text field in winnersTitle.GetComponentsInChildren<Text>())
+//            field.text = "1er PUESTO - " + Data.Instance.GetComponent<MultiplayerCompetitionManager>().actualCompetition;
+//
+//        foreach ( Text field in rankingScore.GetComponentsInChildren<Text>())
+//            field.text = "con " + hiscore + " PUNTOS.";
+//
+//        Time.timeScale = 1;
+//        multiplayerData = Data.Instance.multiplayerData;
+//
+//        MultiplayerSummaryTexts texts = Data.Instance.GetComponent<MultiplayerSummaryTexts>();
+//
+//        for (int playerID = 0; playerID < 4; playerID++)
+//            GetPosition(playerID);
+//
+//        int player_position_1 = multiplayerData.players[0];
+//        int player_position_2 = multiplayerData.players[1];
+//        int player_position_3 = multiplayerData.players[2];
+//        int player_position_4 = multiplayerData.players[3];
+//
+//        int score1 = multiplayerData.GetScore(player_position_1);
+//        int score2 = multiplayerData.GetScore(player_position_2);
+//        int score3 = multiplayerData.GetScore(player_position_3);
+//        int score4 = multiplayerData.GetScore(player_position_4);
+//
+//        string title_1 = texts.GetText(1, score1);
+//        string title_2 = texts.GetText(2, score2);
+//        string title_3 = texts.GetText(3, score3);
+//        string title_4 = texts.GetText(4, score4);
+//        totalScore = 1+ score1 + score2 + score3 + score4;
+//        
+//		if (totalScore>1000 && Data.Instance.GetComponent<ArcadeRanking>().CheckIfEnterHiscore(totalScore))
+//        {
+//            Data.Instance.GetComponent<ArcadeRanking>().newHiscore = totalScore;
+//            SceneManager.LoadScene("NewHiscoreMultiplayer");
+//            return;
+//        }
+//
+//        foreach (Text field in title.GetComponentsInChildren<Text>())
+//            field.text = "Puntos = " + totalScore; // + "x en " + (int)multiplayerData.distance  + " mts.";
+//
+//        player1.Init(multiplayerData.colors[player_position_1], title_1, score1, (score1 * 100) / totalScore, 1);
+//        player2.Init(multiplayerData.colors[player_position_2], title_2, score2, (score2 * 100) / totalScore, 2);
+//        player3.Init(multiplayerData.colors[player_position_3], title_3, score3, (score3 * 100) / totalScore, 3);
+//        player4.Init(multiplayerData.colors[player_position_4], title_4, score4, (score4 * 100) / totalScore, 4);
+//
+//        nextRoutine = Next();
+//        StartCoroutine(nextRoutine);
 	}
     IEnumerator Next()
     {

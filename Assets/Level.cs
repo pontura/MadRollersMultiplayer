@@ -96,7 +96,16 @@ public class Level : MonoBehaviour {
     }
 	void OnGameStart()
 	{
-		Data.Instance.voicesManager.PlayRandom (Data.Instance.voicesManager.welcome);
+		if(Data.Instance.isReplay)
+		{
+			if(Data.Instance.missions.times_trying_same_mission==0)
+				Data.Instance.voicesManager.PlaySpecificClipFromList (Data.Instance.voicesManager.welcome, 1);
+			else if(Data.Instance.missions.times_trying_same_mission<6) 
+				Data.Instance.voicesManager.PlaySpecificClipFromList (Data.Instance.voicesManager.welcome, Data.Instance.missions.times_trying_same_mission+1);
+			else
+				Data.Instance.voicesManager.PlayRandom (Data.Instance.voicesManager.welcome);
+		}else
+			Data.Instance.voicesManager.PlaySpecificClipFromList (Data.Instance.voicesManager.welcome, 0);
 	}
     
     public void OnDestroy()

@@ -89,11 +89,13 @@ public class Continue : MonoBehaviour {
 	{
 		//GetComponent<SummaryCompetitions> ().SetOn ();
 		GetComponent<GameOverPartyMode> ().Init ();
+		GetComponent<HiscoresComparison> ().Init ();
 		panel.SetActive (false);
 	}
 	void OnJoystickClick()
 	{
 		if (canClick) {
+			canClick = false;
 			CancelInvoke ();
 			Game.Instance.Continue();  
 		}

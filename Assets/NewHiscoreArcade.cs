@@ -27,18 +27,18 @@ public class NewHiscoreArcade : MonoBehaviour {
         SetTexts(title, "CAMPEONATO: " + actualCompetition);
 
         scoreField.SetActive(true);
-        newHiscore = Data.Instance.GetComponent<ArcadeRanking>().newHiscore;
-        SetTexts(scoreField, newHiscore + " PUNTOS");
-        int puesto = 1;
-        foreach (ArcadeRanking.RankingData rd in Data.Instance.GetComponent<ArcadeRanking>().all)
-        {
-            if (newHiscore > rd.score)
-            {
-                SetTexts(subtitle, "PUESTO #" + puesto);
-                return;
-            }
-            puesto++;
-        }
+//        newHiscore = Data.Instance.GetComponent<ArcadeRanking>().newHiscore;
+//        SetTexts(scoreField, newHiscore + " PUNTOS");
+//        int puesto = 1;
+//        foreach (ArcadeRanking.RankingData rd in Data.Instance.GetComponent<ArcadeRanking>().all)
+//        {
+//            if (newHiscore > rd.score)
+//            {
+//                SetTexts(subtitle, "PUESTO #" + puesto);
+//                return;
+//            }
+//            puesto++;
+//        }
     }
 	
 	void ResetIntro () {
@@ -81,7 +81,7 @@ public class NewHiscoreArcade : MonoBehaviour {
     void DoIt()
     { 
         Data.Instance.events.OnInterfacesStart();        
-        GetComponent<WebCamPhotoCamera>().TakePhoto(Data.Instance.GetComponent<ArcadeRanking>().newHiscore);
+       // GetComponent<WebCamPhotoCamera>().TakePhoto(Data.Instance.GetComponent<ArcadeRanking>().newHiscore);
         Invoke("Reset", 3);
 	}
 

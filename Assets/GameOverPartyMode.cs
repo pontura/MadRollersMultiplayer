@@ -9,6 +9,8 @@ public class GameOverPartyMode : MonoBehaviour {
 	public GameObject[] panelsToHide;
 	bool canClick;
 	public Text gameOverField;
+	public ScoreLine scoreLineToInstatiate;
+	public Transform hsicoresContainer;
 
 	void Start()
 	{
@@ -19,6 +21,8 @@ public class GameOverPartyMode : MonoBehaviour {
 		StartCoroutine (Loop ());
 		foreach (GameObject go in panelsToHide)
 			go.SetActive (false);
+
+		LoadHiscores ();
 
 		gameOverField.text = Data.Instance.texts.genericTexts.gameOver;
 	}
@@ -46,5 +50,23 @@ public class GameOverPartyMode : MonoBehaviour {
 		Data.Instance.inputSavedAutomaticPlay.RemoveAllData ();
 		Data.Instance.videogamesData.SetOtherGameActive ();
 		Game.Instance.GotoLevelSelector ();	
+	}
+	void LoadHiscores()
+	{
+		int num = 1;
+		foreach(ArcadeRanking.Hiscore data in Data.Instance.GetComponent<ArcadeRanking>().all)
+		{	
+			if (num > 10)
+				return;
+			AddSignal (data, num);
+			num++;
+		}
+	}
+	void AddSignal(ArcadeRanking.Hiscore data, int puesto)
+	{
+		ScoreLine newSignal = Instantiate (scoreLineToInstatiate);
+		newSignal.Init (puesto, data.username, data.hiscore);
+		newSignal.transform.SetParent (hsicoresContainer);
+		newSignal.transform.localScale = Vector3.one;
 	}
 }

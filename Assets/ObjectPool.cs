@@ -117,7 +117,6 @@ public class ObjectPool : MonoBehaviour
 				return pooledObject;
 			}
 		} else if (objectType == "smallBlock1_real") {
-			print ("___smallll " + pooledObjects_smallBlock.Count);
 			if (pooledObjects_smallBlock.Count > 0) {
 				pooledObject = pooledObjects_smallBlock [0];
 				pooledObjects_smallBlock.Remove (pooledObject);	

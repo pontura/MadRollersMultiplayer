@@ -10,11 +10,17 @@ public class VoicesManager : MonoBehaviour
 	public List<VoiceData> welcome;
 	public List<VoiceData> missionComplete;
 
+	public List<VoiceData> deads;
+
+	public List<VoiceData> killThemAll;
+
 	public List<VoiceData> lose_bad;
 	public List<VoiceData> lose_good;
 	public List<VoiceData> lose_great;
 
-	public VoiceData selectMadRollers;
+	public List<VoiceData> videogames_names;
+
+	public List<VoiceData> UIItems;
 
 	public AudioSpectrum audioSpectrum;
 	[Serializable]
@@ -53,14 +59,23 @@ public class VoicesManager : MonoBehaviour
     }
     private void OnMissionComplete(int id)
     {
+		PlayRandom (missionComplete);
+
+		if(Data.Instance.playMode == Data.PlayModes.PARTYMODE)
+			Invoke ("NextDestination", 7);
     }
+	void NextDestination()
+	{
+		Data.Instance.voicesManager.PlaySpecificClipFromList (Data.Instance.voicesManager.UIItems, 6);
+	}
     private void OnAvatarCrash(CharacterBehavior cb)
     {
-		Dead ();
+		if(Game.Instance.level.charactersManager.getTotalCharacters()<=1)
+			Dead ();
     }
     private void OnAvatarFall(CharacterBehavior cb)
     {
-		Dead ();
+		PlayRandom (deads);
     }
 	void Dead()
 	{
@@ -101,6 +116,10 @@ public class VoicesManager : MonoBehaviour
 			onSequence = false;
 			Done ();
 		}
+	}
+	public void PlaySpecificClipFromList( List<VoiceData> clips, int id)
+	{
+		PlayClip(clips[id].audioClip); 
 	}
 	public void PlayRandom( List<VoiceData> clips)
     {

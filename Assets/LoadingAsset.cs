@@ -33,6 +33,7 @@ public class LoadingAsset : MonoBehaviour {
 	}
 	IEnumerator LoadingRoutine()
 	{
+		Data.Instance.voicesManager.PlaySpecificClipFromList (Data.Instance.voicesManager.UIItems, 1);
 		Data.Instance.GetComponent<MusicManager>().OnLoadingMusic();
 		field.text = "";		
 		AddText("*** MAD ROLLERS ***");

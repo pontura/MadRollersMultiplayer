@@ -9,6 +9,8 @@ public class Missions : MonoBehaviour {
 	public TextAsset _all;
 	public MissionsListInVideoGame all;
 
+	public int times_trying_same_mission;
+
 	public bool reloadMissions;
 
 	public List<MissionsByVideoGame> videogames;
@@ -113,6 +115,7 @@ public class Missions : MonoBehaviour {
 	}
 	void OnMissionComplete(int id)
 	{
+		times_trying_same_mission = 0;
 		if (MissionActiveID >= videogames [videogamesData.actualID].missions.Count - 1)
 			Game.Instance.GotoVideogameComplete ();
 		else if (Data.Instance.playMode == Data.PlayModes.PARTYMODE) {

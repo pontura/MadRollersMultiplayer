@@ -15,22 +15,22 @@ public class PhotosManager : MonoBehaviour {
     }
     public void LoadPhotos()
     {
-        FOLDER = MultiplayerCompetitionManager.FOLDER;
-        actualCompetition = Data.Instance.GetComponent<MultiplayerCompetitionManager>().actualCompetition;
-
-        var info = new DirectoryInfo(FOLDER + "/" + actualCompetition);
-        var fileInfo = info.GetFiles();
-        ArcadeRanking arcadeRanking = Data.Instance.GetComponent<ArcadeRanking>();
-        foreach (FileInfo fileData in fileInfo)
-        {
-            string fileName = fileData.Name;
-            string[] scoreNum = fileName.Split("."[0]);
-            int score = int.Parse(scoreNum[0]);
-
-            string url = GetFullPathByFolder(FOLDER + "/" + actualCompetition, fileName);
-            Texture2D winners = LoadLocal(url);            
-            arcadeRanking.OnAddHiscore(winners, score);
-        }
+//        FOLDER = MultiplayerCompetitionManager.FOLDER;
+//        actualCompetition = Data.Instance.GetComponent<MultiplayerCompetitionManager>().actualCompetition;
+//
+//        var info = new DirectoryInfo(FOLDER + "/" + actualCompetition);
+//        var fileInfo = info.GetFiles();
+//        ArcadeRanking arcadeRanking = Data.Instance.GetComponent<ArcadeRanking>();
+//        foreach (FileInfo fileData in fileInfo)
+//        {
+//            string fileName = fileData.Name;
+//            string[] scoreNum = fileName.Split("."[0]);
+//            int score = int.Parse(scoreNum[0]);
+//
+//            string url = GetFullPathByFolder(FOLDER + "/" + actualCompetition, fileName);
+//            Texture2D winners = LoadLocal(url);            
+//            arcadeRanking.OnAddHiscore(winners, score);
+//        }
 	}
 	public void SavePhoto(Texture2D photo, int score)
     {

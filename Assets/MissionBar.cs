@@ -18,7 +18,7 @@ public class MissionBar : MonoBehaviour {
 
 	void Start () {
 		videogameField.text = Data.Instance.videogamesData.GetActualVideogameData ().name;
-		missionField.text = Data.Instance.texts.genericTexts.mission + " " + Data.Instance.missions.MissionActiveID;
+		missionField.text = Data.Instance.texts.genericTexts.mission + " " + (Data.Instance.missions.MissionActiveID+1);
 		bossTimer.SetActive (false);
 		panel.gameObject.SetActive (false);
 		Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
