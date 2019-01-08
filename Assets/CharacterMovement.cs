@@ -43,7 +43,7 @@ public class CharacterMovement : MonoBehaviour {
 	{
 		if (type == types.NORMAL) {
 			type = types.DASHING_FORWARD;
-			cb._animation_hero.Play("dashForward");
+			cb.madRoller.Play("dashForward");
 		}
 	}
 	void Update()

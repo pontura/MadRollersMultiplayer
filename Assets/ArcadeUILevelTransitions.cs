@@ -15,12 +15,12 @@ public class ArcadeUILevelTransitions : MonoBehaviour {
         SetOff();
         level = 1;
         panel.SetActive(false);
-        Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
+      //  Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
 		Data.Instance.events.ShowNotification += ShowNotification;
 	}
     void OnDestroy()
     {
-        Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
+      //  Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
 		Data.Instance.events.ShowNotification -= ShowNotification;
     }
     int percent = 0;
@@ -45,40 +45,40 @@ public class ArcadeUILevelTransitions : MonoBehaviour {
 		if (lastNotification == texts.GetComponentsInChildren<Text>()[0].text)
 			SetOff ();
 	}
-    void OnListenerDispatcher(string type)
-    {    
-		if (!Game.Instance.level.isLastArea)
-			return;
-        if (type == "Ralenta")
-        {
-            StopAllCoroutines();
-
-			StartCoroutine(DoFade(0.2f, 0.25f));
-			
-            panel.SetActive(true);
-            foreach (Text field in texts.GetComponentsInChildren<Text>())
-                field.text = "Rock!";
-             foreach (Text field in texts2.GetComponentsInChildren<Text>())
-                field.text = "";
-            return;
-        }
-        else if (type == "BonusEntrande")
-        {
-            panel.SetActive(true);
-            foreach (Text field in texts.GetComponentsInChildren<Text>())
-                field.text = "B O N U S !!!";
-            foreach (Text field in texts2.GetComponentsInChildren<Text>())
-                field.text = "";
-            return;
-        }
-
-        if (type == "LevelFinish_hard") percent += 100;
-        else if (type == "LevelFinish_medium") percent += 66;
-        else if (type == "LevelFinish_easy") percent += 33;
-
-        if(percent==0) return;
-        Invoke("Delay", 2f);
-	}
+//    void OnListenerDispatcher(string type)
+//    {    
+//		if (!Game.Instance.level.isLastArea)
+//			return;
+//        if (type == "Ralenta")
+//        {
+//            StopAllCoroutines();
+//
+//			StartCoroutine(DoFade(0.2f, 0.25f));
+//			
+//            panel.SetActive(true);
+//            foreach (Text field in texts.GetComponentsInChildren<Text>())
+//                field.text = "Rock!";
+//             foreach (Text field in texts2.GetComponentsInChildren<Text>())
+//                field.text = "";
+//            return;
+//        }
+//        else if (type == "BonusEntrande")
+//        {
+//            panel.SetActive(true);
+//            foreach (Text field in texts.GetComponentsInChildren<Text>())
+//                field.text = "B O N U S !!!";
+//            foreach (Text field in texts2.GetComponentsInChildren<Text>())
+//                field.text = "";
+//            return;
+//        }
+//
+//        if (type == "LevelFinish_hard") percent += 100;
+//        else if (type == "LevelFinish_medium") percent += 66;
+//        else if (type == "LevelFinish_easy") percent += 33;
+//
+//        if(percent==0) return;
+//        Invoke("Delay", 2f);
+//	}
     
     void Delay()
     {

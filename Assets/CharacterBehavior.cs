@@ -5,7 +5,7 @@ using System.Collections;
 public class CharacterBehavior : MonoBehaviour {
 
 	public int team_for_versus;
-	public Animation _animation_hero;
+	public Animation madRoller;
 	public float speed;
 	private bool walking1;
 	private bool walking2;
@@ -100,7 +100,7 @@ public class CharacterBehavior : MonoBehaviour {
 
 		if (Data.Instance.playMode == Data.PlayModes.VERSUS) {
 			controls.EnabledMovements (false);
-			_animation_hero.gameObject.transform.localEulerAngles = Vector3.zero;
+			madRoller.gameObject.transform.localEulerAngles = Vector3.zero;
 		} 
 
 
@@ -137,9 +137,11 @@ public class CharacterBehavior : MonoBehaviour {
 		}
 	}
 	float rotationZ = 0;
+	float rotationX = 0;
 	public void SetRotation(float rotationY)
 	{
-		transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, rotationY, rotationZ);
+		transform.localEulerAngles = new Vector3(0, rotationY, 0);
+		madRoller.transform.localEulerAngles = new Vector3(rotationX, 0, rotationZ);
 	}
 
 	/// <summary>
@@ -151,7 +153,7 @@ public class CharacterBehavior : MonoBehaviour {
 	}
 	void RunOverOther()
 	{
-		_animation_hero.Play("over");
+		madRoller.Play("over");
 	}
 	public void OnGetRidOfOverAvatar()
 	{
@@ -197,19 +199,22 @@ public class CharacterBehavior : MonoBehaviour {
 	}
 	public void Slide()
 	{
-		_animation_hero.Play ("slide");
+		madRoller.Play ("slide");
 	}
 	public void UpdateByController(float rotationY)
 	{
 		if (state == states.DEAD)
 			return;
-
-		if (!grounded && startJumping + 0.2f < Time.time) {
-			Vector3 pos = transform.position;
-			pos.y += 1;
-			grounded = Physics.Linecast (pos, groundCheck.position, 1 << LayerMask.NameToLayer ("Floor"));
-			if (grounded)
-				OnFloor ();
+		if(!grounded)
+		{
+			ResetRotations ();
+			if (startJumping + 0.2f < Time.time) {
+				Vector3 pos = transform.position;
+				pos.y += 1;
+				grounded = Physics.Linecast (pos, groundCheck.position, 1 << LayerMask.NameToLayer ("Floor"));
+				if (grounded)
+					OnFloor ();
+			}
 		} else {
 			RaycastHit coverHit;
 			if (Physics.Linecast (transform.position, groundCheck.position, out coverHit)) {
@@ -217,19 +222,23 @@ public class CharacterBehavior : MonoBehaviour {
 					SliderFloor sliderFloor = coverHit.transform.gameObject.GetComponent<SliderFloor>();
 					if (sliderFloor == null) {
 						sliderEffect.speed = 0;
-						_animation_hero.Play("run");
+						madRoller.Play("run");
 					}
 				}
 				if (coverHit.transform.tag == "floor") {
 					rotationZ = coverHit.transform.up.x * -30;
+					rotationX = coverHit.transform.eulerAngles.x;
 				} else
-					rotationZ = 0;
+					ResetRotations ();
 			}
 		}
-
 		characterMovement.UpdateByController (rotationY);
 	}
-
+	void ResetRotations()
+	{
+		rotationZ = 0;
+		rotationX = 0;
+	}
 	public void bump(float damage)
 	{
 		Die();
@@ -268,14 +277,14 @@ public class CharacterBehavior : MonoBehaviour {
 
 		Data.Instance.events.OnMadRollerFX (MadRollersSFX.types.TOUCH_GROUND, player.id);
 
-		_animation_hero.Play("floorHit");
+		madRoller.Play("floorHit");
 		Invoke ("OnFloorDone", 0.5f);
 
 	}
 	void OnFloorDone()
 	{
 		if (state == states.RUN) {
-			_animation_hero.Play ("run");
+			madRoller.Play ("run");
 			Data.Instance.events.OnMadRollerFX (MadRollersSFX.types.ENGINES, player.id);
 		}
 	}
@@ -291,7 +300,7 @@ public class CharacterBehavior : MonoBehaviour {
 		if(isOver != null)
 			RunOverOther();
 		else
-			_animation_hero.Play("run");
+			madRoller.Play("run");
 	}
 	public void AllButtonsReleased()
 	{
@@ -342,11 +351,11 @@ public class CharacterBehavior : MonoBehaviour {
 			jumpingPressedAmountReal = jumpingPressedAmount;
 			int rand = Random.Range (0, 10);
 			if (rand < 6)
-				_animation_hero.Play ("jump");
+				madRoller.Play ("jump");
 			else if (rand < 8)
-				_animation_hero.Play ("jump_right");
+				madRoller.Play ("jump_right");
 			else
-				_animation_hero.Play ("jump_left");
+				madRoller.Play ("jump_left");
 			jumpingPressed = true;
 		}
 
@@ -438,9 +447,9 @@ public class CharacterBehavior : MonoBehaviour {
 
 			int rand = Random.Range (0, 10);
 			if(rand<5)
-				_animation_hero.Play("doubleJump");
+				madRoller.Play("doubleJump");
 			else
-				_animation_hero.Play("doubleJump2");
+				madRoller.Play("doubleJump2");
 
 			state = states.DOUBLEJUMP;
 		}
@@ -463,11 +472,11 @@ public class CharacterBehavior : MonoBehaviour {
 
 		if (!dir_forward)
 		{
-			_animation_hero.Play("rebota");
+			madRoller.Play("rebota");
 		}
 		else
 		{
-			_animation_hero.Play("superJump");            
+			madRoller.Play("superJump");            
 		}
 
 	}
@@ -501,7 +510,7 @@ public class CharacterBehavior : MonoBehaviour {
 		rb.AddForce(new Vector3(Random.Range(-500,500), 1500, Random.Range(0,-200)), ForceMode.Impulse);
 		rb.freezeRotation = false;
 
-		_animation_hero.Play("hit");
+		madRoller.Play("hit");
 
 		if (player.charactersManager.characters.Count >1) return;
 

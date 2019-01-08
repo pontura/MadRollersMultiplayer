@@ -6,25 +6,42 @@ using System.IO;
 
 public class Texts : MonoBehaviour {
 	
+	public GenericTexts genericTexts;
+	public VideogameDataJson videoGamesDataJson;
+
 	[Serializable]
 	public class VideogameDataJson
 	{
 		public List<VideogameData> videogames;
 	}
 
-	void Start () {
-		LoadGameData ();
+	[Serializable]
+	public class GenericTexts
+	{
+		public string gameOver;
+		public string mission;
+		public string newCredit;
 	}
-	
-	private void LoadGameData()
+
+	void Start () {
+		LoadGenericTexts ();
+		LoadCredits ();
+	}
+	private void LoadGenericTexts()
 	{
 		string filePath = Application.streamingAssetsPath + "/texts/texts.json";
-
-		print (filePath);
+		if (File.Exists (filePath)) {
+			string dataAsJson = File.ReadAllText (filePath);
+			genericTexts = JsonUtility.FromJson<GenericTexts> (dataAsJson);
+		}
+	}
+	private void LoadCredits()
+	{
+		string filePath = Application.streamingAssetsPath + "/texts/credits.json";
 
 		if (File.Exists (filePath)) {
 			string dataAsJson = File.ReadAllText (filePath);
-			VideogameDataJson videoGamesDataJson = JsonUtility.FromJson<VideogameDataJson> (dataAsJson);
+			videoGamesDataJson = JsonUtility.FromJson<VideogameDataJson> (dataAsJson);
 			VideogamesData videoGamesData = GetComponent<VideogamesData> ();
 			int a = 0;
 			foreach (VideogameData data in videoGamesData.all) {

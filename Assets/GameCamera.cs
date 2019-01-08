@@ -57,6 +57,7 @@ public class GameCamera : MonoBehaviour
 		Data.Instance.events.OnVersusTeamWon += OnVersusTeamWon;
 		Data.Instance.events.OncharacterCheer += OncharacterCheer;
 		Data.Instance.events.OnProjectilStartSnappingTarget += OnProjectilStartSnappingTarget;
+		Data.Instance.events.OnCameraZoomTo += OnCameraZoomTo;
 		Data.Instance.events.OnGameOver += OnGameOver;
 
 		//Data.Instance.events.OnGameStart += OnGameStart;
@@ -74,31 +75,20 @@ public class GameCamera : MonoBehaviour
 
 		transform.localPosition = startPosition;
 		Vector3 newPos = transform.localPosition;
-		newPos.y = 4.5f;
-		transform.localPosition = newPos;
+
 
 		_Y_correction = 2;
-		if (team_id > 0) {
-			//_Y_correction = 2;
-			state = states.WAITING_TO_TRAVEL;
-			Invoke ("Start_Traveling", 0.7f);
-			SetOrientation (new Vector4 (0, 0, 0, 0));
-			transform.localPosition = new Vector3 (0, 4, Data.Instance.versusManager.GetArea().z_length-3);
-			cam.transform.localEulerAngles = new Vector3 (25, 0, 0);
-		} 
-		else if (!Data.Instance.isReplay) {
+		if (!Data.Instance.isReplay) {
 			anim.Play ("cameraIntro");
+			newPos.y = 4.5f;
 		} else {
 			state = states.START;
-			anim.Play ("intro");
+			//anim.Play ("intro");
+			newPos.y = 7;
 		}
-
+		transform.localPosition = newPos;
 
     }
-	void Start_Traveling()
-	{
-		state = states.START;
-	}
     void OnDestroy()
     {
 		StopAllCoroutines ();
@@ -107,6 +97,7 @@ public class GameCamera : MonoBehaviour
 		Data.Instance.events.OnVersusTeamWon -= OnVersusTeamWon;
 		Data.Instance.events.OncharacterCheer -= OncharacterCheer;
 		Data.Instance.events.OnProjectilStartSnappingTarget -= OnProjectilStartSnappingTarget;
+		Data.Instance.events.OnCameraZoomTo -= OnCameraZoomTo;
 		Data.Instance.events.OnGameOver -= OnGameOver;
     }
 	void OnVersusTeamWon(int _team_id)
@@ -120,7 +111,17 @@ public class GameCamera : MonoBehaviour
         anim.Stop();
         Init();
         state = states.PLAYING;
-		cam.transform.localPosition = Vector3.zero;
+
+	//	cam.transform.localPosition = new Vector3 (0, cam.transform.localPosition.y, 0);
+
+		iTween.MoveTo(cam.gameObject, iTween.Hash(
+			"position", new Vector3 (0, 2, 0),
+			"islocal", true,
+			"time", 3f,
+			"easetype", iTween.EaseType.easeOutCubic
+			// "axis", "x"
+		));
+
     }
     void OnChangeMood(int id)
     {
@@ -140,13 +141,17 @@ public class GameCamera : MonoBehaviour
 			flow_target.transform.SetParent (transform.parent);
 			flow_target.name = "Camera_TARGET";
 		}
-		if (team_id > 0) {
+	//	if (team_id > 0) {
 			//SetOrientation (new Vector4 (0, 0, 0, 0));
 		//	transform.localPosition = new Vector3 (0, 4, Data.Instance.versusManager.area.z_length);
 			//cam.transform.localEulerAngles = new Vector3 (25, 0, 0);
-		} else {
-			transform.localPosition =  new Vector3 (0, 0,transform.localPosition.z);
-		}
+//		} else {
+//			
+//		}
+//		if (Data.Instance.isReplay)
+//			transform.localPosition =  new Vector3 (0,10,transform.localPosition.z);
+//		else
+//			transform.localPosition =  new Vector3 (0, 0,transform.localPosition.z);
 	}
 	IEnumerator DoExploteCoroutine;
 	void OncharacterCheer()
@@ -240,12 +245,12 @@ public class GameCamera : MonoBehaviour
 		}
         if (state == states.START)
         {           
-			if(Data.Instance.playMode == Data.PlayModes.VERSUS)
-			{
-				Vector3 myPos = transform.localPosition;
-				Vector3 destPos = new Vector3 (0, 4, -Data.Instance.versusManager.GetArea().z_length-4);
-				transform.localPosition = Vector3.Lerp (myPos, destPos, 0.07f);					
-			}
+//			if(Data.Instance.playMode == Data.PlayModes.VERSUS)
+//			{
+//				Vector3 myPos = transform.localPosition;
+//				Vector3 destPos = new Vector3 (0, 4, -Data.Instance.versusManager.GetArea().z_length-4);
+//				transform.localPosition = Vector3.Lerp (myPos, destPos, 0.07f);					
+//			}
 			return;
         }
 		else if (state == states.END && Data.Instance.playMode == Data.PlayModes.VERSUS) {
@@ -262,10 +267,10 @@ public class GameCamera : MonoBehaviour
 		if (retroPixelPro.pixelSize > 1) 
 			UpdatePixels ();
 		
-		if (team_id == 0)
+		//if (team_id == 0)
 			newPos = charactersManager.getCameraPosition ();
-		else
-			newPos = charactersManager.getPositionByTeam (team_id);
+	//	else
+		//	newPos = charactersManager.getPositionByTeam (team_id);
 
 		Vector3 _newPos  = newPos;
 		_newPos += newCameraOrientationVector;
@@ -273,7 +278,7 @@ public class GameCamera : MonoBehaviour
 		if (_newPos.x < -15) _newPos.x = -15;
 		else if (_newPos.x > 15) _newPos.x = 15;
 
-		//_newPos.z = Mathf.Lerp (transform.localPosition.z, _newPos.z, Time.deltaTime*20);
+		//_newPos.z = Mathf.Lerp (transform.localPosition.z, _newPos.z, Time.deltaTime*10);
 		_newPos.x = Mathf.Lerp (transform.localPosition.x, _newPos.x, Time.deltaTime*10);
 		_newPos.y = Mathf.Lerp (transform.localPosition.y, _newPos.y, (Time.deltaTime*_Y_correction)/3 );
 
@@ -345,12 +350,24 @@ public class GameCamera : MonoBehaviour
 		pos.y = 0;
 		transform.localPosition = pos; 
 	}
+	void OnCameraZoomTo(Vector3 targetPos)
+	{
+		Data.Instance.events.FreezeCharacters (true);
+		Data.Instance.events.ForceFrameRate (0.5f);
+		Data.Instance.events.RalentaTo (0.1f, 0.2f);
+		this.snapTargetPosition = targetPos;
+		state = states.SNAPPING_TO;
+	}
 	void OnProjectilStartSnappingTarget(Vector3 targetPos)
 	{
 		Data.Instance.events.FreezeCharacters (true);
 		Data.Instance.events.ForceFrameRate (0.5f);
 		Data.Instance.events.RalentaTo (0.1f, 0.2f);
 		this.snapTargetPosition = targetPos;
+
+		if(snapTargetPosition.y < 1)
+			snapTargetPosition.y = 1;
+		
 		state = states.SNAPPING_TO;
 		StartCoroutine ( ResetSnapping() );
 	}

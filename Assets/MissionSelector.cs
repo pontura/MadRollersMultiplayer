@@ -8,6 +8,8 @@ public class MissionSelector : MonoBehaviour {
 	public Image puntero;
 	public Image bar;
 	public Text titleField;
+	public Text titlePartyField;
+
 	public Text missionField;
 	public Text percentField;
 	public int totalMissions;
@@ -21,7 +23,14 @@ public class MissionSelector : MonoBehaviour {
 	public void LoadVideoGameData(int _videogameID)
 	{
 		this.videogameID = _videogameID;
-		titleField.text = Data.Instance.videogamesData.all[videogameID].name;
+
+		if (Data.Instance.playMode == Data.PlayModes.STORYMODE)
+			titleField.text = Data.Instance.videogamesData.all [videogameID].name;
+		else {
+			titlePartyField.text = Data.Instance.videogamesData.all [videogameID].name;
+			return;
+		}
+		
 		missionUnblockedID = Data.Instance.missions.GetMissionsByVideoGame (videogameID).missionUnblockedID;
 		actualMission = missionUnblockedID;
 		totalMissions = Data.Instance.missions.GetTotalMissionsInVideoGame (videogameID);
@@ -39,6 +48,10 @@ public class MissionSelector : MonoBehaviour {
 	}
 	void Update()
 	{
+		
+		if (Data.Instance.playMode != Data.PlayModes.STORYMODE)
+			return;
+		
 		float fillAmount = (float)missionUnblockedID / (float)totalMissions;
 		float goTo = (float)actualMission / (float)totalMissions;
 		bar.fillAmount = Mathf.Lerp (bar.fillAmount, fillAmount, 0.05f);

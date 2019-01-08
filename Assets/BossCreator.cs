@@ -56,6 +56,7 @@ public class BossCreator : Boss {
 			return;
 		parts [partID].gameObject.SetActive (true);
 		parts [partID].Init (this, settings.asset);
+
 		Invoke ("Init", time_to_init_enemies);
 		partID++;
 	}

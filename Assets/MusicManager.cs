@@ -24,7 +24,7 @@ public class MusicManager : MonoBehaviour {
 		Data.Instance.events.OnVersusTeamWon += OnVersusTeamWon;
         Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
         Data.Instance.events.OnInterfacesStart += OnInterfacesStart;
-      //  Data.Instance.events.OnAvatarChangeFX += OnAvatarChangeFX;
+		Data.Instance.events.OnMissionComplete += OnMissionComplete;
         Data.Instance.events.OnAvatarDie += OnAvatarDie;
         Data.Instance.events.OnGamePaused += OnGamePaused;
         Data.Instance.events.SetVolume += SetVolume;
@@ -57,7 +57,7 @@ public class MusicManager : MonoBehaviour {
 	void FreezeCharacters(bool freezeThem)
 	{
 		if(freezeThem)
-			ChangePitch (0.65f);
+			ChangePitch (0.7f);
 		else
 			ChangePitch (1);
 	}
@@ -135,7 +135,6 @@ public class MusicManager : MonoBehaviour {
 	}
     void StartMultiplayerRace()
     {
-		print ("StartMultiplayerRace");
 		audioSource.pitch = 1;
 		PlayMainTheme ();
     }
@@ -157,7 +156,6 @@ public class MusicManager : MonoBehaviour {
     void OnAvatarDie(CharacterBehavior player)
     {
         if (Game.Instance.GetComponent<CharactersManager>().getTotalCharacters() > 0) return;
-		Data.Instance.events.OnSoundFX("dead", -1);
 		ChangePitch (0.2f);
        // playSound(deathFX, false);
     }
@@ -180,6 +178,16 @@ public class MusicManager : MonoBehaviour {
           }
         }
     }
+	void OnMissionComplete(int newm)
+	{
+		StopAllCoroutines ();
+		audioSource.pitch = 1;
+		audioSource.volume = 1;
+		audioSource.clip = Resources.Load("songs/win") as AudioClip;
+		audioSource.Play();
+		audioSource.loop = false;
+		Invoke ("PlayMainTheme", 7);
+	}
 	void PlayMainTheme()
 	{
 		string soundName = "song0";
@@ -201,6 +209,5 @@ public class MusicManager : MonoBehaviour {
 		audioSource.Play();
 		audioSource.loop = true;
 
-		print ("PlayMainTheme " + soundName);
 	}
 }

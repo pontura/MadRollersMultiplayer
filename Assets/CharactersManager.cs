@@ -23,7 +23,7 @@ public class CharactersManager : MonoBehaviour {
 
     void Awake()
     {
-		distance = 20;
+		distance = 0;
     }
     void Start()
     {
@@ -38,25 +38,9 @@ public class CharactersManager : MonoBehaviour {
 				cb.GetComponent<Rigidbody> ().useGravity = !_freezed;
 			}
 		}
+		Debug.Log ("FreezeCharacters" + _freezed);
 		freezed = _freezed;
 	}
-    void OnListenerDispatcher(string type)
-    {
-		if(type == "ShowMissionName")
-		{
-		//	Data.Instance.events.OnGenericUIText ("Mission " + (Data.Instance.missions.MissionActiveID+1).ToString());
-		} else  if (type == "Ralenta")
-        {
-         //   RalentaCoroutine = DoRalentaCoroutine(4, 1f, 0.05f);
-          //  StartCoroutine(RalentaCoroutine);
-        }  else if (type == "BonusEntrande")
-        {
-
-            Data.Instance.events.OnCreateBonusArea();
-            foreach (CharacterBehavior cb in characters)
-                cb.transform.localPosition = new Vector3(0, 25, 0);
-        }
-    }
     void StartMultiplayerRace()
     {
 		if (Data.Instance.isReplay) {
@@ -96,7 +80,6 @@ public class CharactersManager : MonoBehaviour {
     {
 		Data.Instance.inputSavedAutomaticPlay.Init (this);
         Data.Instance.events.OnAlignAllCharacters += OnAlignAllCharacters;
-        Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
         Data.Instance.events.OnReorderAvatarsByPosition += OnReorderAvatarsByPosition;
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
         Data.Instance.events.OnAvatarFall += OnAvatarFall;
@@ -135,10 +118,10 @@ public class CharactersManager : MonoBehaviour {
 	}
     void OnDestroy()
     {
+		Data.Instance.events.OnAvatarCrash -= OnAvatarCrash;
         Data.Instance.events.OnAvatarCrash -= OnAvatarCrash;
         Data.Instance.events.OnAvatarFall -= OnAvatarFall;
         Data.Instance.events.OnReorderAvatarsByPosition -= OnReorderAvatarsByPosition;
-        Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
         Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
         Data.Instance.events.OnAlignAllCharacters -= OnAlignAllCharacters;
 		Data.Instance.events.OnAutomataCharacterDie -= OnAutomataCharacterDie;
@@ -202,7 +185,7 @@ public class CharactersManager : MonoBehaviour {
         pos.y += 3;
         pos.x = 0;
 
-		if(distance<40)
+		if(distance<20)
 			pos.x = (3.5f * id) - (5.3f);
 		
         addCharacter(pos, id);
@@ -292,6 +275,9 @@ public class CharactersManager : MonoBehaviour {
     }
     IEnumerator restart(CharacterBehavior cb)
     {
+		Data.Instance.events.OnCameraChroma (CameraChromaManager.types.RED);
+		Data.Instance.events.OnSoundFX("dead", -1);
+
         gameOver = true;
         yield return new WaitForSeconds(0.05f);
         Data.Instance.events.OnGameOver(false);
@@ -323,7 +309,7 @@ public class CharactersManager : MonoBehaviour {
 			normalPosition /= characters.Count;
 			normalPosition.y += 0.15f + (MaxDistance / 4f);
 			normalPosition.z -= 0.3f + (MaxDistance/26);
-			normalPosition.z = distance - 2.5f;
+			normalPosition.z = distance-1.5f;
 
 			return normalPosition;
 		} else if (characters.Count == 0)
@@ -331,7 +317,7 @@ public class CharactersManager : MonoBehaviour {
 		//else return characterPosition = characters[0].transform.position;
 		else {
 			Vector3 p = characters [0].transform.position;
-			p.z = distance-1.5f;
+			p.z = distance-0.5f;
 			return p;
 		}
     }

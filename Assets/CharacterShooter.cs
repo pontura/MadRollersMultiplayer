@@ -86,8 +86,8 @@ public class CharacterShooter : MonoBehaviour {
 
 		characterBehavior.state = CharacterBehavior.states.SHOOT;
 
-		if (characterBehavior._animation_hero)
-			characterBehavior._animation_hero.Play("shoot");
+		if (characterBehavior.madRoller)
+			characterBehavior.madRoller.Play("shoot");
 
 		characterBehavior.shooter.weapon.Shoot();
 		Data.Instance.events.OnSoundFX("fire", characterBehavior.player.id);
@@ -134,7 +134,7 @@ public class CharacterShooter : MonoBehaviour {
 			Game.Instance.sceneObjectsManager.AddSceneObject(projectil, pos);
 			projectil.team_for_versus = characterBehavior.team_for_versus;
 			Vector3 rot = transform.localEulerAngles;
-			rot.x = 0;
+			rot.x = characterBehavior.madRoller.transform.eulerAngles.x;
 
 			if (characterBehavior.team_for_versus > 1) {
 				rot.y += 180;

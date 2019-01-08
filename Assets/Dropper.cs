@@ -12,7 +12,8 @@ public class Dropper : MonoBehaviour
     void Start()
     {
         sec = 0;
-		SetRandom ();
+		if(delay>0)
+			SetRandom ();
     }
     public void SetRandom()
     {
@@ -21,15 +22,21 @@ public class Dropper : MonoBehaviour
 
     void Update()
     {
+		if (delay == 0)
+			return;
         if (sec > delayRandom)
         {
 			SetRandom ();
-            Vector3 pos = transform.position;
-			SceneObject newSceneObject;
-			newSceneObject = Data.Instance.sceneObjectsPool.GetObjectForType(SceneObjectName, false);  
-			Game.Instance.sceneObjectsManager.AddSceneObjectAndInitIt(newSceneObject, pos);         
+			AddDroppedObject ();
             sec = 0;
         }
         sec += Time.deltaTime;
     }
+	public void AddDroppedObject()
+	{
+		Vector3 pos = transform.position;
+		SceneObject newSceneObject;
+		newSceneObject = Data.Instance.sceneObjectsPool.GetObjectForType(SceneObjectName, false);  
+		Game.Instance.sceneObjectsManager.AddSceneObjectAndInitIt(newSceneObject, pos);  
+	}
 }

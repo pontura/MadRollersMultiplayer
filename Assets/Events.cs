@@ -41,8 +41,8 @@ public class Events : MonoBehaviour {
 	public System.Action NewMissionStart = delegate { };
 
 	public System.Action<string> ShowNotification = delegate { };
-    public System.Action<string> OnListenerDispatcher = delegate { };
-    public void ListenerDispatcher(string message) { OnListenerDispatcher(message); }
+	public System.Action<ListenerDispatcher.myEnum> OnListenerDispatcher = delegate { };
+	public void ListenerDispatcher(ListenerDispatcher.myEnum message) { OnListenerDispatcher(message); }
 
    // public System.Action<int, Vector3, int> OnSetFinalScore = delegate { };
 	public System.Action<int, Vector3, int, ScoresManager.types> OnScoreOn = delegate { };
@@ -134,6 +134,7 @@ public class Events : MonoBehaviour {
 	public System.Action<float> OnBossHitsUpdate = delegate { };
 
 	public System.Action<Vector3> OnProjectilStartSnappingTarget = delegate { };
-
+	public System.Action<Vector3> OnCameraZoomTo = delegate { };
 	public System.Action<bool> FreezeCharacters = delegate { };
+	public System.Action<CameraChromaManager.types> OnCameraChroma = delegate { };
 }

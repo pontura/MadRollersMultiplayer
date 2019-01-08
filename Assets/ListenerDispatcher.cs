@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 public class ListenerDispatcher : MonoBehaviour {
 
-    public List<int> playersID;
-    public myEnum message;
-    private Data data;
-    private bool ready;
+	public myEnum message;
+
+    Data data;
+    bool ready;
 
     void Start()
     {
@@ -23,79 +23,18 @@ public class ListenerDispatcher : MonoBehaviour {
         LevelFinish_hard,
         LevelTransition,
         Ralenta,
-        BonusEntrande
-    };
+        BonusEntrande,
+		LevelChangeRight,
+		LevelChangeLeft,
+		LevelChangeCenter
+    }
 	
 	void OnTriggerEnter(Collider other) {
-		
-		print ("__________" + other.name + ready);
-
 		if(other.tag == "Player")
 		{
-            Player player = other.GetComponentInParent<Player>();
-			if (message == myEnum.LevelFinish)
-			{
-				if (!ready)
-					data.events.ListenerDispatcher("LevelFinish");
-				ready = true;
-			}
-			if (message == myEnum.ShowMissionId)
-			{
-				if (!ready)
-					data.events.ListenerDispatcher("ShowMissionName");
-				ready = true;
-			}
-			if (message == myEnum.ShowMissionName)
-			{
-				if (!ready)
-					data.events.ListenerDispatcher("ShowMissionName");
-				ready = true;
-			} else
-            if (message == myEnum.Ralenta)
-            {
-                if (!ready)
-                    data.events.ListenerDispatcher("Ralenta");
-                ready = true;
-            }
-            else if (message == myEnum.BonusEntrande)
-            {
-                
-                if (player == null) return;
-
-                foreach (int playerID in playersID)
-                    if (player.id == playerID)
-                        return;
-
-                playersID.Add(player.id);
-
-                if (playersID.Count == Game.Instance.level.charactersManager.getTotalCharacters())
-                {
-                    data.events.ListenerDispatcher("BonusEntrande");
-                    print("BPONUSSSS");
-                }
-
-                Invoke("Reset", 1);
-            }
-            else
-            {
-                
-                if (player == null) return;
-
-                foreach (int playerID in playersID)
-                    if (player.id == playerID)
-                        return;
-
-                playersID.Add(player.id);
-
-                if (other.transform.position.x > 4)
-                    data.events.ListenerDispatcher("LevelFinish_hard");
-                else if (other.transform.position.x < -4)
-                    data.events.ListenerDispatcher("LevelFinish_easy");
-                else
-                    data.events.ListenerDispatcher("LevelFinish_medium");
-
-                Invoke("Reset", 1);
-            }
+			if (!ready)
+				data.events.ListenerDispatcher(message);
+			ready = true;		
 		}
         
 	}
@@ -106,7 +45,6 @@ public class ListenerDispatcher : MonoBehaviour {
     void Reset()
     {
         ready = false;
-     //   playersID.Clear();
     }
 
 }

@@ -20,6 +20,11 @@ public class BossPart : MonoBehaviour {
 			newGO.transform.localPosition = Vector3.zero;
 		}
 	}
+	void Update()
+	{
+		if (transform.position.y < -15)
+			OnActivate ();
+	}
 	public void OnActivate()
 	{
 		if (called)

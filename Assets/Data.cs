@@ -55,6 +55,8 @@ public class Data : MonoBehaviour {
 	public InputSavedAutomaticPlay inputSavedAutomaticPlay;
 	[HideInInspector]
 	public HandWriting handWriting;
+	[HideInInspector]
+	public Texts texts;
 
     static Data mInstance = null;
 
@@ -130,6 +132,7 @@ public class Data : MonoBehaviour {
 		inputSavedAutomaticPlay = GetComponent<InputSavedAutomaticPlay> ();
 		versusManager = GetComponent<VersusManager> ();
 		handWriting = GetComponent<HandWriting> ();
+		texts = GetComponent<Texts> ();
 
 //		if (totalJoysticks > 0)
 //			multiplayerData.player1 = true;

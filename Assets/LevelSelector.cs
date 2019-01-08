@@ -9,9 +9,14 @@ public class LevelSelector : MonoBehaviour {
 
 	public Animation camAnimnation;
 
-	public GameObject computerUI;
+	public GameObject storyMode;
+	public GameObject partyMode;
+
 	public Text title;
+
 	public Text credits;
+	public Text creditsParty;
+
 	public MissionButton diskette;
 	VideogameData videogameData;
 	public int videgameID;
@@ -19,13 +24,27 @@ public class LevelSelector : MonoBehaviour {
 	bool canInteract;
 	float timePassed;
 	MissionSelector missionSelector;
+
 	void Start()
 	{		
+		if (Data.Instance.playMode == Data.PlayModes.PARTYMODE) {
+			storyMode.SetActive (false);
+			partyMode.SetActive (true);
+			timePassed = 0;
+			Invoke ("TimeOver", 90);
+			Invoke ("SetCanInteract", 1);
+		} else {			
+			Data.Instance.events.OnJoystickUp += OnJoystickUp;
+			Data.Instance.events.OnJoystickDown += OnJoystickDown;
+			partyMode.SetActive (false);
+			storyMode.SetActive (true);
+			Invoke ("SetCanInteract", 0.2f);
+		}
 		Data.Instance.isReplay = false;
 		missionSelector = GetComponent<MissionSelector> ();
 		Data.Instance.multiplayerData.ResetAll ();
 		Data.Instance.events.OnResetScores ();
-		timePassed = 0;
+
 		title.text = "SELECT GAME";
 
 		videgameID = Data.Instance.videogamesData.actualID;
@@ -33,14 +52,12 @@ public class LevelSelector : MonoBehaviour {
 		videogameUI = GetComponent<VideogamesUIManager> ();
 		videogameUI.Init ();
 		SetSelected ();
-
-		Data.Instance.events.OnJoystickClick += OnJoystickClick;
-		Data.Instance.events.OnJoystickDown += OnJoystickDown;
-		Data.Instance.events.OnJoystickUp += OnJoystickUp;
 		Data.Instance.events.OnJoystickLeft += OnJoystickLeft;
 		Data.Instance.events.OnJoystickRight += OnJoystickRight;
-		Invoke ("SetCanInteract", 1);
-		Invoke ("TimeOver", 90);
+
+		Data.Instance.events.OnJoystickClick += OnJoystickClick;
+
+
 	}
 	void SetCanInteract()
 	{
@@ -128,7 +145,10 @@ public class LevelSelector : MonoBehaviour {
 		missionSelector.LoadVideoGameData (videgameID);
 		diskette.Init (videogameData);
 		videogameUI.Change ();
-		Data.Instance.handWriting.WriteTo (credits, videogameData.credits, null);
+		if(Data.Instance.playMode == Data.PlayModes.STORYMODE)
+			Data.Instance.handWriting.WriteTo (credits, videogameData.credits, null);
+		else
+			Data.Instance.handWriting.WriteTo (creditsParty, videogameData.credits, null);
 	}
 	public void OnJoystickBack()
 	{

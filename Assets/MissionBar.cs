@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MissionBar : MonoBehaviour {
 
-	public GameObject panel;
+	public Animator panel;
 	public ProgressBar progressBar;
 	public float totalHits;
 	public float value;
@@ -13,10 +13,15 @@ public class MissionBar : MonoBehaviour {
 	public int sec;
 	public Transform itemContainer;
 	public GameObject bossTimer;
+	public Text videogameField;
+	public Text missionField;
 
 	void Start () {
+		videogameField.text = Data.Instance.videogamesData.GetActualVideogameData ().name;
+		missionField.text = Data.Instance.texts.genericTexts.mission + " " + Data.Instance.missions.MissionActiveID;
 		bossTimer.SetActive (false);
-		panel.SetActive (false);
+		panel.gameObject.SetActive (false);
+		Data.Instance.events.StartMultiplayerRace += StartMultiplayerRace;
 		Data.Instance.events.OnBossInit += OnBossInit;
 		Data.Instance.events.OnBossActive += OnBossActive;
 		Data.Instance.events.OnBossHitsUpdate += OnBossHitsUpdate;
@@ -25,6 +30,7 @@ public class MissionBar : MonoBehaviour {
 		Data.Instance.events.OnGameOver += OnGameOver;
 	}
 	void OnDestroy () {
+		Data.Instance.events.StartMultiplayerRace -= StartMultiplayerRace;
 		Data.Instance.events.OnBossInit -= OnBossInit;
 		Data.Instance.events.OnBossActive -= OnBossActive;
 		Data.Instance.events.OnBossHitsUpdate -= OnBossHitsUpdate;
@@ -32,11 +38,15 @@ public class MissionBar : MonoBehaviour {
 		Data.Instance.events.OnBossSetTimer -= OnBossSetTimer;
 		Data.Instance.events.OnGameOver -= OnGameOver;
 	}
+	void StartMultiplayerRace()
+	{
+		panel.gameObject.SetActive (true);
+	}
 	void OnGameOver(bool isTimeOut)
 	{
 		if (isTimeOut)
 			return;
-		panel.SetActive (false);
+		panel.gameObject.SetActive (false);
 		CancelInvoke ();
 	}
 	void OnBossSetNewAsset(string assetName)
@@ -78,7 +88,7 @@ public class MissionBar : MonoBehaviour {
 	void OnBossInit (int totalHits) {
 		progressBar.SetProgression (1);
 		this.totalHits = (float)totalHits;
-		panel.SetActive (true);
+		panel.Play ("MissionTopOpen");
 	}
 	void OnBossSetTimer(int timer)
 	{
@@ -102,7 +112,7 @@ public class MissionBar : MonoBehaviour {
 	void OnBossActive (bool isOn)
 	{
 		if (!isOn) {
-			panel.SetActive (false);
+			panel.Play ("MissionTopClose");
 			CancelInvoke ();
 		}
 	}

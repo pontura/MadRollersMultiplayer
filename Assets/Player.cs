@@ -54,8 +54,8 @@ public class Player : MonoBehaviour {
 		} 
 		madRoller.SetFxOff ();
 		Data.Instance.events.OnAvatarDie += OnAvatarDie;
-		Data.Instance.events.OnMissionStart += OnMissionStart;
-		Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
+	//	Data.Instance.events.OnMissionStart += OnMissionStart;
+	//	Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
 		Data.Instance.events.OnAvatarGetItem += OnAvatarGetItem;
 		Data.Instance.events.OnAvatarProgressBarEmpty += OnAvatarProgressBarEmpty;
 
@@ -69,8 +69,8 @@ public class Player : MonoBehaviour {
     void OnDestroy()
     {
         Data.Instance.events.OnAvatarDie -= OnAvatarDie;
-        Data.Instance.events.OnMissionStart -= OnMissionStart;
-        Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
+   //     Data.Instance.events.OnMissionStart -= OnMissionStart;
+   //     Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
         Data.Instance.events.OnAvatarGetItem -= OnAvatarGetItem;
         Data.Instance.events.OnAvatarProgressBarEmpty -= OnAvatarProgressBarEmpty;
     }
@@ -224,26 +224,26 @@ public class Player : MonoBehaviour {
 		yield return new WaitForSeconds(timer);
         OnAvatarProgressBarEmpty();
     }
-   private void OnListenerDispatcher(string message)
-    {
-        if (message == "ShowMissionName")
-			OnMissionStart(Data.Instance.missions.MissionActiveID);
-   }
-   public void OnMissionStart(int missionID)
-   {
-
-//       if (Data.Instance.DEBUG 
-//			|| Data.Instance.playMode == Data.PlayModes.COMPETITION)
-//       {
-//           canJump = true;
-//       }
-//       else
-//       {
+//   private void OnListenerDispatcher(string message)
+//    {
+//        if (message == "ShowMissionName")
+//			OnMissionStart(Data.Instance.missions.MissionActiveID);
+//   }
+//   public void OnMissionStart(int missionID)
+//   {
 //
-//           if (missionID > 1)
-//               canJump = true;
-//       }
-   }
+////       if (Data.Instance.DEBUG 
+////			|| Data.Instance.playMode == Data.PlayModes.COMPETITION)
+////       {
+////           canJump = true;
+////       }
+////       else
+////       {
+////
+////           if (missionID > 1)
+////               canJump = true;
+////       }
+//   }
    private void setStartingState()
    {
        fxState = fxStates.SUPER;

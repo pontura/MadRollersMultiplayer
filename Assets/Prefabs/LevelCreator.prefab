@@ -147,26 +147,8 @@ MonoBehaviour:
     z_length: 0
     data: []
   data:
-  - name: extralargeBlock1
-    pos: {x: 0, y: -1.25, z: -24}
-    rot: {x: -0, y: 0, z: 0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: extralargeBlock1
+  - name: largeBlock1
     pos: {x: 0, y: -1.25, z: 0}
-    rot: {x: -0, y: 44.999996, z: -0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: extralargeBlock1
-    pos: {x: 0, y: -1.25, z: -12}
     rot: {x: -0, y: 0, z: 0}
     fullRotationData: []
     timelineAnimation: []
@@ -174,90 +156,63 @@ MonoBehaviour:
     moveForward: []
     soData: []
     isChild: 0
-  - name: extralargeBlock1
-    pos: {x: 0, y: -1.25, z: 12}
-    rot: {x: -0, y: 44.999996, z: -0}
+  - name: largeBlock1
+    pos: {x: 5.69, y: -0.55, z: 0}
+    rot: {x: -0, y: -0, z: 15.000001}
     fullRotationData: []
     timelineAnimation: []
     bossSettings: []
     moveForward: []
     soData: []
     isChild: 0
-  - name: extralargeBlock1
-    pos: {x: 0, y: -1.25, z: 24}
-    rot: {x: -0, y: 0, z: 0}
+  - name: largeBlock1
+    pos: {x: 10.99, y: 1.68, z: 0}
+    rot: {x: -0, y: -0, z: 30.000002}
     fullRotationData: []
     timelineAnimation: []
     bossSettings: []
     moveForward: []
     soData: []
     isChild: 0
-  - name: enemyGhost
-    pos: {x: 0, y: 0, z: -10.28}
-    rot: {x: -0, y: 0, z: 0}
+  - name: largeBlock1
+    pos: {x: -11.1, y: 1.68, z: 0}
+    rot: {x: 0, y: 0, z: 330}
     fullRotationData: []
     timelineAnimation: []
     bossSettings: []
     moveForward: []
     soData: []
     isChild: 0
-  - name: enemyGhost
-    pos: {x: 0, y: 0, z: -1.88}
-    rot: {x: -0, y: 0, z: 0}
+  - name: mediumBlock1
+    pos: {x: 15.4, y: 4.94, z: -1.42}
+    rot: {x: -0, y: -0, z: 45.000004}
     fullRotationData: []
     timelineAnimation: []
     bossSettings: []
     moveForward: []
     soData: []
     isChild: 0
-  - name: enemyGhost
-    pos: {x: 0, y: 0, z: 6.52}
-    rot: {x: -0, y: 0, z: 0}
+  - name: mediumBlock1
+    pos: {x: 15.4, y: 4.94, z: 1.42}
+    rot: {x: -0, y: -0, z: 45.000004}
     fullRotationData: []
     timelineAnimation: []
     bossSettings: []
     moveForward: []
     soData: []
     isChild: 0
-  - name: enemyGhost
-    pos: {x: 0, y: 0, z: 14.92}
-    rot: {x: -0, y: 0, z: 0}
+  - name: mediumBlock1
+    pos: {x: -15.41, y: 4.94, z: -1.42}
+    rot: {x: 0, y: 0, z: 315}
     fullRotationData: []
     timelineAnimation: []
     bossSettings: []
     moveForward: []
     soData: []
     isChild: 0
-  - name: palmTall
-    pos: {x: -4.5, y: -0.84, z: 2.3}
-    rot: {x: -0, y: 0, z: 0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: palmTall
-    pos: {x: 4.5, y: -0.84, z: 2.3}
-    rot: {x: -0, y: 0, z: 0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: palmTall
-    pos: {x: -4.5, y: -0.84, z: 21.2}
-    rot: {x: -0, y: 0, z: 0}
-    fullRotationData: []
-    timelineAnimation: []
-    bossSettings: []
-    moveForward: []
-    soData: []
-    isChild: 0
-  - name: palmTall
-    pos: {x: 4.5, y: -0.84, z: 21.2}
-    rot: {x: -0, y: 0, z: 0}
+  - name: mediumBlock1
+    pos: {x: -15.41, y: 4.94, z: 1.42}
+    rot: {x: 0, y: 0, z: 315}
     fullRotationData: []
     timelineAnimation: []
     bossSettings: []
@@ -284,6 +239,7 @@ MonoBehaviour:
     - boy_ene_SubeyBajan
     - boy_sliders
     - boy_helices
+    - boy_barrancas
     - boy_pisosMueven
     - boy_sapos
     - boy_ruedas
@@ -605,6 +561,71 @@ MonoBehaviour:
           cameraOrientation: {x: 0, y: 0.6, z: 1.5}
     - title: 
       data:
+      - jsonName: boy_barrancas
+        title: BARRANCAS
+        id: 0
+        maxScore: 460
+        fondo: wonderland_nubes
+        areaSetData:
+        - total_areas: 2000
+          randomize: 0
+          areas:
+          - boss_Ball
+          - barrancas_free
+          cameraOrientation: {x: 0, y: 0.5, z: -1}
+        - total_areas: 5
+          randomize: 1
+          areas:
+          - barrancas_1
+          - barrancas_1_2
+          - barrancas_2
+          - barrancas_2_2
+          - barrancas_3
+          - barrancas_3_2
+          - barrancas_descanso_coins_1
+          - barrancas_3_2planes
+          cameraOrientation: {x: 0, y: 2, z: -1.5}
+        - total_areas: 3
+          randomize: 1
+          areas:
+          - barrancas_descanso_coins_1
+          - barrancas_descanso_x2
+          cameraOrientation: {x: 0, y: 2, z: -1.5}
+        - total_areas: 10
+          randomize: 1
+          areas:
+          - barrancas_1
+          - barrancas_1_2
+          - barrancas_2
+          - barrancas_descanso_x2
+          - barrancas_2_2
+          - barrancas_3
+          - barrancas_3_2
+          - barrancas_3_2planes
+          cameraOrientation: {x: 0, y: 2, z: -1.5}
+        - total_areas: 2
+          randomize: 0
+          areas:
+          - boss_Ball
+          - boss_ancho_free
+          cameraOrientation: {x: 0, y: -2.7, z: -1}
+        - total_areas: 1
+          randomize: 1
+          areas:
+          - boss_free_agua
+          cameraOrientation: {x: 0, y: -1.5, z: 0.25}
+        - total_areas: 1000
+          randomize: 1
+          areas:
+          - pisoCurvo0
+          - pisoCurvo0
+          - pisoCurvo1
+          - pisoCurvo2
+          - pisoCurvo4
+          - pisoCurvo5
+          cameraOrientation: {x: 0, y: 0.6, z: 1.5}
+    - title: 
+      data:
       - jsonName: boy_pisosMueven
         title: ROTATIVES
         id: 0
@@ -702,9 +723,11 @@ MonoBehaviour:
           areas:
           - container_descanso_cruz
           cameraOrientation: {x: 0, y: 0, z: 0}
-        - total_areas: 1
+        - total_areas: 4
           randomize: 1
           areas:
+          - subibajaSapos1
+          - subibajaSapos2
           - subibaja2Enemies
           - subibajaEnemy
           cameraOrientation: {x: 0, y: 1, z: -2}
@@ -1808,7 +1831,7 @@ MonoBehaviour:
   isArcadeMultiplayer: 0
   Debbug: 1
   videoGameID: 1
-  missionID: 6
+  missionID: 5
   mission: {fileID: 0}
   missions: {fileID: 114588441034155716}
   areaCreator: {fileID: 114427156183994502}

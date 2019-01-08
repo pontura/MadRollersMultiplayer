@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CreditsUI : MonoBehaviour {
 
 	public CreditIcon creditIcon;
 	public Transform container;
 	public GameObject newCreditPanel;
+	public Text field;
 
 	void Start () {
 		Data.Instance.events.AddNewCredit += AddNewCredit;
@@ -24,6 +26,7 @@ public class CreditsUI : MonoBehaviour {
 	{
 		Data.Instance.credits++;
 		newCreditPanel.SetActive (true);
+		field.text = Data.Instance.texts.genericTexts.newCredit;
 		AddCredit ();
 		StartCoroutine (ClosePanel ());
 	}

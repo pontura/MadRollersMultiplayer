@@ -57,7 +57,7 @@ public class CharacterCollisions : MonoBehaviour {
 				}
 			}
 
-            if (transform.position.y < other.transform.position.y + 1.5f)
+			if (other.transform.eulerAngles.x==0 &&  transform.position.y < other.transform.position.y + 1.5f)
 				characterBehavior.SuperJumpByBumped(1200, 0.5f, false);      
         }
         else if ( other.tag == "enemy" )

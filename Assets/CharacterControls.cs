@@ -87,7 +87,7 @@ public class CharacterControls : MonoBehaviour {
 		
 		moveByKeyboard();
 
-		if (characterBehavior.player.charactersManager == null)
+		if (characterBehavior.player.charactersManager == null || characterBehavior.player.charactersManager.gameOver)
 			return;
 		characterBehavior.UpdateByController(rotationY); 
 	}

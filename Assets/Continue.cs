@@ -64,10 +64,12 @@ public class Continue : MonoBehaviour {
 		Data.Instance.isReplay = false;
 		CancelInvoke ();
 		Data.Instance.events.OnResetLevel();
-		if(Data.Instance.playMode == Data.PlayModes.PARTYMODE)
-			Data.Instance.LoadLevel ("Hiscores");
-		else 
-			Data.Instance.LoadLevel ("MainMenu");
+	//	if(Data.Instance.playMode == Data.PlayModes.PARTYMODE)
+
+		Data.Instance.LoadLevel ("Hiscores");
+
+//		else 
+//			Data.Instance.LoadLevel ("MainMenu");
 	}
 	public void Loop()
 	{
@@ -85,17 +87,15 @@ public class Continue : MonoBehaviour {
 	}	
 	void Done()
 	{
-		GetComponent<SummaryCompetitions> ().SetOn ();
+		//GetComponent<SummaryCompetitions> ().SetOn ();
+		GetComponent<GameOverPartyMode> ().Init ();
 		panel.SetActive (false);
 	}
 	void OnJoystickClick()
 	{
 		if (canClick) {
-			Data.Instance.multiplayerData.OnRefreshPlayersByActiveOnes ();
-			Data.Instance.inputSavedAutomaticPlay.RemoveAllData ();
-			Data.Instance.isReplay = true;
 			CancelInvoke ();
-			Game.Instance.ResetLevel();  
+			Game.Instance.Continue();  
 		}
 	}
 

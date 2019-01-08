@@ -8,7 +8,7 @@ public class Boss : SceneObject {
 	public float distance_from_avatars;
 	int hits;
 	//Missions missions;
-	int totalHits;
+	public int totalHits;
 
 	public override void OnRestart(Vector3 pos)
 	{		
@@ -18,6 +18,7 @@ public class Boss : SceneObject {
 	}
 	public void SetTotal(int totalHits)
 	{		
+		Debug.Log ("SetTotal   totalHits: " + totalHits);
 		this.totalHits = totalHits;
 		Data.Instance.events.OnBossInit (totalHits);
 	}
@@ -54,7 +55,7 @@ public class Boss : SceneObject {
 	{
 		Data.Instance.events.OnSoundFX("FX explot00", -1);
 		Death ();
-		Data.Instance.events.AddExplotion (transform.position, Color.white);
+		// 	Data.Instance.events.AddExplotion (transform.position, Color.white);
 		Invoke ("Died", 0.2f);
 	}
 	void Died()

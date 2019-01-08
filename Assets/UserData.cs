@@ -118,11 +118,11 @@ public class UserData : MonoBehaviour {
     {
         return stars[MissionID];
     }
-    void OnListenerDispatcher(string message)
-    {
-        if (message == "ShowMissionName")
-            missionScore = 0;
-    }
+//    void OnListenerDispatcher(string message)
+//    {
+//        if (message == "ShowMissionName")
+//            missionScore = 0;
+//    }
     void OnGameStart()
     {
         score = 0;

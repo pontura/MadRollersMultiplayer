@@ -12,28 +12,28 @@ public class GameBackground : MonoBehaviour {
     {
         id = 0;
         charactersManager = Game.Instance.GetComponent<CharactersManager>();
-       	Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
+ //      	Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
         Data.Instance.events.OnChangeMood += OnChangeMood;
     }
     void OnDestroy()
     {
         Data.Instance.events.OnChangeMood -= OnChangeMood;
-        Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
+//        Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
     }
-    void OnListenerDispatcher(string type)
-    {
-        if (type == "LevelFinish" 
-            || type == "LevelFinish_medium"
-            || type == "LevelFinish_easy"
-            || type == "LevelFinish_hard")
-        {
-            
-            id++;
-            if (id > materials.Length - 1) id = 0;
-          //  renderer.material = materials[id];
-            print("moood id:  " + id);
-        }
-    }
+//    void OnListenerDispatcher(string type)
+//    {
+//        if (type == "LevelFinish" 
+//            || type == "LevelFinish_medium"
+//            || type == "LevelFinish_easy"
+//            || type == "LevelFinish_hard")
+//        {
+//            
+//            id++;
+//            if (id > materials.Length - 1) id = 0;
+//          //  renderer.material = materials[id];
+//            print("moood id:  " + id);
+//        }
+//    }
     void OnChangeMood(int id)
     {
 		return;

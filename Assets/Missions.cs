@@ -83,16 +83,10 @@ public class Missions : MonoBehaviour {
 		videogame.missions = new List<MissionsData> ();	
 		foreach (string missionName in missionsInVideogame) {	
 			string dataAsJson = LoadResourceTextfile (missionName);
-			//string filePath = "Resources/missions/"+ missionName;
-//			if (File.Exists (filePath)) {
-//				string dataAsJson = File.ReadAllText (filePath);
-				MissionsData missionData = JsonUtility.FromJson<MissionsData> (dataAsJson);
-				missionData.data [0].jsonName = missionName;
-				videogame.missions.Add (missionData);
-				videogame.missionUnblockedID = PlayerPrefs.GetInt ("missionUnblockedID_" + (videogameID + 1), 0);
-//			} else {
-//				Debug.LogError ("No existe la mission " + filePath);
-//			}
+			MissionsData missionData = JsonUtility.FromJson<MissionsData> (dataAsJson);
+			missionData.data [0].jsonName = missionName;
+			videogame.missions.Add (missionData);
+			videogame.missionUnblockedID = PlayerPrefs.GetInt ("missionUnblockedID_" + (videogameID + 1), 0);
 		}
 	}
 	public MissionData GetMissionsDataByJsonName(string jsonName)
@@ -112,13 +106,19 @@ public class Missions : MonoBehaviour {
 		this.level = level;
 		areasLength = -4;
 		StartNewMission ();
-		AddAreaByName ("start_Multiplayer");
+		if(!Data.Instance.isReplay)
+			AddAreaByName ("start_Multiplayer");
+		else
+			AddAreaByName ("continue_Multiplayer");
 	}
 	void OnMissionComplete(int id)
 	{
-		if (MissionActiveID >= videogames [videogamesData.actualID].missions.Count - 1) 
+		if (MissionActiveID >= videogames [videogamesData.actualID].missions.Count - 1)
 			Game.Instance.GotoVideogameComplete ();
-		else
+		else if (Data.Instance.playMode == Data.PlayModes.PARTYMODE) {
+			AddAreaByName ("areaChangeLevel");
+			return;
+		} else
 			NextMission();
 
 		videogames [videogamesData.actualID].missionUnblockedID = MissionActiveID;
@@ -157,21 +157,6 @@ public class Missions : MonoBehaviour {
 	{
 		return videogames[videoGameID].missions[missionID].data[0];
 	}
-//	public AreasManager getAreasManager()
-//	{
-//		return null;//MissionActive.GetComponent<AreasManager>();
-//	}
-	void Complete()
-	{
-		data.events.MissionComplete();     
-	}
-	bool CanComputeMission()
-	{
-		//if (Data.Instance.playMode == Data.PlayModes.STORY || Data.Instance.playMode == Data.PlayModes.COMPETITION)
-			return true;
-	//	return false;
-	}
-
 	public int GetActualMissionByVideogame()
 	{
 		int viedogameActive = videogamesData.actualID;
@@ -183,7 +168,6 @@ public class Missions : MonoBehaviour {
 		}
 		return 0;
 	}
-
 	public void OnUpdateDistance(float distance)
 	{
 		if (distance > areasLength-offset) {

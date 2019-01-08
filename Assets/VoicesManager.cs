@@ -33,7 +33,6 @@ public class VoicesManager : MonoBehaviour
 			return;
 		
         Data.Instance.events.OnMissionComplete += OnMissionComplete;
-        Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
         Data.Instance.events.OnAvatarCrash += OnAvatarCrash;
         Data.Instance.events.OnAvatarFall += OnAvatarFall;
         Data.Instance.events.OnAvatarChangeFX += OnAvatarChangeFX;
@@ -76,19 +75,7 @@ public class VoicesManager : MonoBehaviour
     private void OnAvatarChangeFX(Player.fxStates state)
     {
     }
-    private void OnListenerDispatcher(string message)
-    {
-//		if (Data.Instance.playMode == Data.PlayModes.COMPETITION) return;
-//        if (message == "ShowMissionId")
-//        {
-//			
-//        }
-//		else if (message == "ShowMissionName")
-//		{
-////			if(Data.Instance.missions.MissionActive.voices.Count > 0)
-////				PlaySequence (Data.Instance.missions.MissionActive.voices);
-//		}
-    }
+
 	int sequenceID = 0;
 	bool onSequence = false;
 	List<VoiceData> sequenceSaying;

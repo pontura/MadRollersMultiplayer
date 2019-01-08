@@ -21,9 +21,9 @@ public class MissionSignal : MonoBehaviour {
     {
 		panel.SetActive (isOff);
     }
-    private void OnListenerDispatcher(string message)
+	private void OnListenerDispatcher(ListenerDispatcher.myEnum message)
     {
-		if (message == "LevelFinish")
+		if (message == ListenerDispatcher.myEnum.LevelFinish)
 		{
 			title.text = "";
 			subtitle.text = "";

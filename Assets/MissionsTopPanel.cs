@@ -11,13 +11,11 @@ public class MissionsTopPanel : MonoBehaviour
     {
         anim =  GetComponent<Animation>();
         Data.Instance.events.OnMissionComplete += OnMissionComplete;
-        Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
 		Data.Instance.events.OnMissionProgress += OnMissionProgress;
 
     }
     void OnDisable()
     {
-        Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
         Data.Instance.events.OnMissionComplete -= OnMissionComplete;
 		Data.Instance.events.OnMissionProgress -= OnMissionProgress;
     }
@@ -25,13 +23,7 @@ public class MissionsTopPanel : MonoBehaviour
     {
         anim.Play("MissionTopClose");
     }
-    private void OnListenerDispatcher(string message)
-    {
-		if (message == "ShowMissionName") {
-			anim.Play ("MissionTopOpen");
-			//field.text = Data.Instance.missions.MissionActive.description;
-		}
-    }
+
 	void OnMissionProgress()
 	{
 		print ("OnMissionProgres");

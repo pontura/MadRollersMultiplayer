@@ -97,19 +97,11 @@ public class Game : MonoBehaviour {
 
         cb.Revive();
     }
-    //pierdo y arranca de ni
     public void ResetLevel()
 	{		
         Data.Instance.events.OnResetLevel();
         Data.Instance.LoadLevel("Game");
 	}
-    //IEnumerator  restart()
-    //{
-    //    yield return new WaitForSeconds(1f);
-    //    Debug.Log("_____________Restart");
-    //    Application.LoadLevel("Game");
-    //}
-
     public void OnGamePaused(bool paused)
     {
         if (paused)
@@ -137,9 +129,9 @@ public class Game : MonoBehaviour {
 		Data.Instance.events.ForceFrameRate (1);
         Data.Instance.LoadLevel("LevelSelector");
     }
-	public void GotoMainMenuArcade()
+	public void LoadGame()
 	{
-		//  Pause();
+		Data.Instance.inputSavedAutomaticPlay.RemoveAllData ();
 		Data.Instance.events.OnResetLevel();
 		Data.Instance.events.ForceFrameRate (1);
 		Data.Instance.LoadLevel("Game");
@@ -158,4 +150,18 @@ public class Game : MonoBehaviour {
         Time.timeScale = 1;
         Data.Instance.LoadLevel("Continue");
     }
+	public void ChangeVideogame(int videogameID)
+	{
+		Data.Instance.missions.MissionActiveID++;
+		Data.Instance.videogamesData.actualID = videogameID;
+		Data.Instance.isReplay = true;
+		ResetLevel ();
+	}
+	public void Continue()
+	{
+		Data.Instance.multiplayerData.OnRefreshPlayersByActiveOnes ();
+		Data.Instance.inputSavedAutomaticPlay.RemoveAllData ();
+		Data.Instance.isReplay = true;
+		Game.Instance.ResetLevel();  
+	}
 }

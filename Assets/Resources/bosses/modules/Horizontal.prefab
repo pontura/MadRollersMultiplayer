@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 114977316984145304}
   - component: {fileID: 114059793438440420}
   - component: {fileID: 111479364623155062}
+  - component: {fileID: 114791395167204884}
   m_Layer: 17
   m_Name: bossPart
   m_TagString: destroyable
@@ -95,6 +96,7 @@ GameObject:
   - component: {fileID: 114444395969130780}
   - component: {fileID: 114105912738938176}
   - component: {fileID: 111956499389833420}
+  - component: {fileID: 114622764717979746}
   m_Layer: 17
   m_Name: bossPart (5)
   m_TagString: destroyable
@@ -115,6 +117,7 @@ GameObject:
   - component: {fileID: 114698274948230060}
   - component: {fileID: 114567023626947430}
   - component: {fileID: 111897633576072934}
+  - component: {fileID: 114707107109104520}
   m_Layer: 17
   m_Name: bossPart (7)
   m_TagString: destroyable
@@ -153,6 +156,7 @@ GameObject:
   - component: {fileID: 114589840841763434}
   - component: {fileID: 114505683762471976}
   - component: {fileID: 111224668276580248}
+  - component: {fileID: 114777140031461588}
   m_Layer: 17
   m_Name: bossPart (6)
   m_TagString: destroyable
@@ -173,6 +177,7 @@ GameObject:
   - component: {fileID: 114811944418224006}
   - component: {fileID: 114162801691659184}
   - component: {fileID: 111175165154440886}
+  - component: {fileID: 114571612262182078}
   m_Layer: 17
   m_Name: bossPart (4)
   m_TagString: destroyable
@@ -211,6 +216,7 @@ GameObject:
   - component: {fileID: 114753798937813434}
   - component: {fileID: 114315851531162750}
   - component: {fileID: 111112563750211732}
+  - component: {fileID: 114542559991301398}
   m_Layer: 17
   m_Name: bossPart (2)
   m_TagString: destroyable
@@ -231,6 +237,7 @@ GameObject:
   - component: {fileID: 114413282310799572}
   - component: {fileID: 114118196331544052}
   - component: {fileID: 111370670853349800}
+  - component: {fileID: 114170564480246050}
   m_Layer: 17
   m_Name: bossPart (1)
   m_TagString: destroyable
@@ -323,6 +330,7 @@ GameObject:
   - component: {fileID: 114732154907581896}
   - component: {fileID: 114264167363681442}
   - component: {fileID: 111399436473080190}
+  - component: {fileID: 114600306306609792}
   m_Layer: 17
   m_Name: bossPart (3)
   m_TagString: destroyable
@@ -1387,6 +1395,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boss: {fileID: 0}
   asset: {fileID: 1618288143329072}
+--- !u!114 &114170564480246050
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1768983316776426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 721f1642ea9822b4f9320374a88e0c40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SceneObjectName: Dropper
+  delay: 0
+  delayRandom: 0
 --- !u!114 &114264167363681442
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1430,6 +1452,7 @@ MonoBehaviour:
   childs: []
   dontKillPlayers: 0
   dontDieOnHit: 1
+  ifJumpingDontKill: 0
   score: 0
 --- !u!114 &114444395969130780
 MonoBehaviour:
@@ -1448,6 +1471,7 @@ MonoBehaviour:
   childs: []
   dontKillPlayers: 0
   dontDieOnHit: 1
+  ifJumpingDontKill: 0
   score: 0
 --- !u!114 &114505683762471976
 MonoBehaviour:
@@ -1462,6 +1486,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boss: {fileID: 0}
   asset: {fileID: 1608283429122110}
+--- !u!114 &114542559991301398
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1712596691963218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 721f1642ea9822b4f9320374a88e0c40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SceneObjectName: Dropper
+  delay: 0
+  delayRandom: 0
 --- !u!114 &114567023626947430
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1475,6 +1513,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boss: {fileID: 0}
   asset: {fileID: 1376918396603452}
+--- !u!114 &114571612262182078
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1618288143329072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 721f1642ea9822b4f9320374a88e0c40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SceneObjectName: Dropper
+  delay: 0
+  delayRandom: 0
 --- !u!114 &114589840841763434
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1492,7 +1544,36 @@ MonoBehaviour:
   childs: []
   dontKillPlayers: 0
   dontDieOnHit: 1
+  ifJumpingDontKill: 0
   score: 0
+--- !u!114 &114600306306609792
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1961172991796872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 721f1642ea9822b4f9320374a88e0c40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SceneObjectName: Dropper
+  delay: 0
+  delayRandom: 0
+--- !u!114 &114622764717979746
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1315810848298050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 721f1642ea9822b4f9320374a88e0c40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SceneObjectName: Dropper
+  delay: 0
+  delayRandom: 0
 --- !u!114 &114698274948230060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1510,7 +1591,22 @@ MonoBehaviour:
   childs: []
   dontKillPlayers: 0
   dontDieOnHit: 1
+  ifJumpingDontKill: 0
   score: 0
+--- !u!114 &114707107109104520
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1376918396603452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 721f1642ea9822b4f9320374a88e0c40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SceneObjectName: Dropper
+  delay: 0
+  delayRandom: 0
 --- !u!114 &114732154907581896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1528,6 +1624,7 @@ MonoBehaviour:
   childs: []
   dontKillPlayers: 0
   dontDieOnHit: 1
+  ifJumpingDontKill: 0
   score: 0
 --- !u!114 &114753798937813434
 MonoBehaviour:
@@ -1546,7 +1643,36 @@ MonoBehaviour:
   childs: []
   dontKillPlayers: 0
   dontDieOnHit: 1
+  ifJumpingDontKill: 0
   score: 0
+--- !u!114 &114777140031461588
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1608283429122110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 721f1642ea9822b4f9320374a88e0c40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SceneObjectName: Dropper
+  delay: 0
+  delayRandom: 0
+--- !u!114 &114791395167204884
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1030376486086750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 721f1642ea9822b4f9320374a88e0c40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SceneObjectName: Dropper
+  delay: 0
+  delayRandom: 0
 --- !u!114 &114811944418224006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1564,6 +1690,7 @@ MonoBehaviour:
   childs: []
   dontKillPlayers: 0
   dontDieOnHit: 1
+  ifJumpingDontKill: 0
   score: 0
 --- !u!114 &114977316984145304
 MonoBehaviour:
@@ -1582,4 +1709,5 @@ MonoBehaviour:
   childs: []
   dontKillPlayers: 0
   dontDieOnHit: 1
+  ifJumpingDontKill: 0
   score: 0
