@@ -45,6 +45,7 @@ public class HiscoresComparison : MonoBehaviour {
 			"islocal", true,
 			"time", 2
 		));
+		StopAllCoroutines ();
 		StartCoroutine (DrawHiscores ());
 	}
 	IEnumerator DrawHiscores()
@@ -55,10 +56,15 @@ public class HiscoresComparison : MonoBehaviour {
 		{			
 			if (num > 10) {
 				SetPuesto ();
-				yield return new WaitForSeconds (15f);
+				print ("puesto :" + puesto + " score : " + score);
+				yield return new WaitForSeconds (3f);
+				if (puesto != 0) {
+					ShowHiscores ();
+				} 
+				yield return new WaitForSeconds (10f);
 				Reset ();
 			} else {
-				if (puesto== 0 && data.hiscore < hiscore)
+				if (puesto == 0 && data.hiscore < score)
 					puesto = num;
 				yield return new WaitForSeconds (0.25f);
 				AddSignal (data, num);
@@ -68,6 +74,7 @@ public class HiscoresComparison : MonoBehaviour {
 	}
 	void SetPuesto()
 	{
+		GetComponent<GameOverPartyMode> ().Init ();
 		if (puesto == 0)
 			Data.Instance.voicesManager.PlaySpecificClipFromList (Data.Instance.voicesManager.UIItems, 5);
 		else
@@ -88,7 +95,6 @@ public class HiscoresComparison : MonoBehaviour {
 			newSignal.Init ("",0, 0);
 
 		float _x = GetNormalizedPosition(data.hiscore);
-		print (_x);
 		newSignal.transform.localPosition = new Vector3 (_x ,0,0);
 		return newSignal;
 	}
@@ -111,5 +117,15 @@ public class HiscoresComparison : MonoBehaviour {
 		
 		float f = GetNormalizedPosition (lastScore) / 100;
 		topTenImage.fillAmount = f;
+	}
+	void ShowHiscores()
+	{
+		Data.Instance.multiplayerData.OnRefreshPlayersByActiveOnes ();
+		Data.Instance.inputSavedAutomaticPlay.RemoveAllData ();
+		Data.Instance.isReplay = false;
+		CancelInvoke ();
+		Data.Instance.events.OnResetLevel();
+		Data.Instance.LoadLevel ("Hiscores");
+		Reset ();
 	}
 }

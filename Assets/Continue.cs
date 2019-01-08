@@ -43,7 +43,7 @@ public class Continue : MonoBehaviour {
 	{			
 		if (!Data.Instance.canContinue || Data.Instance.credits == 0) {
 			if (Data.Instance.playMode == Data.PlayModes.PARTYMODE) {
-				Invoke ("ShowHiscores", 2);
+				Invoke ("Done", 2);
 			} else {
 				canClick = false;
 				panel.GetComponent<Animation> ().Play ("signalOff");
@@ -57,20 +57,6 @@ public class Continue : MonoBehaviour {
 		countdown_txt.text = num.ToString();
 		Invoke ("Loop", 0.5f);
 	}	
-	void ShowHiscores()
-	{
-		Data.Instance.multiplayerData.OnRefreshPlayersByActiveOnes ();
-		Data.Instance.inputSavedAutomaticPlay.RemoveAllData ();
-		Data.Instance.isReplay = false;
-		CancelInvoke ();
-		Data.Instance.events.OnResetLevel();
-	//	if(Data.Instance.playMode == Data.PlayModes.PARTYMODE)
-
-		Data.Instance.LoadLevel ("Hiscores");
-
-//		else 
-//			Data.Instance.LoadLevel ("MainMenu");
-	}
 	public void Loop()
 	{
 		canClick = true;
@@ -88,7 +74,6 @@ public class Continue : MonoBehaviour {
 	void Done()
 	{
 		//GetComponent<SummaryCompetitions> ().SetOn ();
-		GetComponent<GameOverPartyMode> ().Init ();
 		GetComponent<HiscoresComparison> ().Init ();
 		panel.SetActive (false);
 	}

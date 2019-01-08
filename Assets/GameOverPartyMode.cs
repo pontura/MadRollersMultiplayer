@@ -11,6 +11,7 @@ public class GameOverPartyMode : MonoBehaviour {
 	public Text gameOverField;
 	public ScoreLine scoreLineToInstatiate;
 	public Transform hsicoresContainer;
+	bool isOn;
 
 	void Start()
 	{
@@ -18,6 +19,10 @@ public class GameOverPartyMode : MonoBehaviour {
 	}
 	public void Init()
 	{
+		if (isOn)
+			return;
+		isOn = true;
+
 		StartCoroutine (Loop ());
 		foreach (GameObject go in panelsToHide)
 			go.SetActive (false);
