@@ -11,6 +11,7 @@ public class TimelineAnimation : MonoBehaviour {
 	Vector3 initialRotation;
 
 	void OnEnable () {
+		id = 0;
 		initialPosition = transform.position;
 		initialRotation = transform.eulerAngles;
 		Init ();
@@ -18,6 +19,8 @@ public class TimelineAnimation : MonoBehaviour {
 	void Init()
 	{
 		if (timeLineData == null)
+			return;
+		if (timeLineData.Count==0)
 			return;
 		if (timeLineData [id].rotate)
 			RotateInTimeLine ();

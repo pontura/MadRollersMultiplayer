@@ -20,7 +20,7 @@ public class ScoreBarMultiplayer : MonoBehaviour {
     
 
     void Start () {
-
+		RefreshScore ();
 		Data.Instance.events.OnDrawScore += OnDrawScore;
 
 //		bar.fillAmount = 0;
@@ -47,16 +47,14 @@ public class ScoreBarMultiplayer : MonoBehaviour {
 
 	void OnDrawScore(int score, string desc)
 	{	
-		
-		if (Data.Instance.multiplayerData.score == 0)
-			myScoreFields.text = "000";
-		else
-			myScoreFields.text = string.Format ("{0:#,#}",  Data.Instance.multiplayerData.score);
-
+		RefreshScore ();
 		ResetFieldsTimer = Time.time + delayToReset;
 		totalAdded += score;
 		scoreAdviseNum.text = "+" + totalAdded.ToString ();
 		SetDesc(desc);
+	}
+	void RefreshScore(){
+		myScoreFields.text = Utils.FormatNumbers(  Data.Instance.multiplayerData.score);
 	}
 	void Update()
 	{

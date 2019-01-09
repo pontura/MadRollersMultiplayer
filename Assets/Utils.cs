@@ -32,4 +32,8 @@
 			}
 		}
 	}
+	public static string FormatNumbers(int num)
+	{
+		return string.Format ("{0:#,#}",  num);
+	}
  }

@@ -17,6 +17,6 @@ public class ScoreLine : MonoBehaviour {
             num.text = "";
 
 		username.text = _username;
-		score.text = _score.ToString();
+		score.text = Utils.FormatNumbers(_score);
 	}
 }

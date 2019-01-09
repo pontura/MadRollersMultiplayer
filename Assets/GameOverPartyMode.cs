@@ -51,10 +51,10 @@ public class GameOverPartyMode : MonoBehaviour {
 	}
 	void OnJoystickClick()
 	{
+		canClick = false;
 		Data.Instance.events.OnResetScores ();
 		Data.Instance.inputSavedAutomaticPlay.RemoveAllData ();
-		Data.Instance.videogamesData.SetOtherGameActive ();
-		Game.Instance.GotoLevelSelector ();	
+		Game.Instance.GotoMainMenu ();	
 	}
 	void LoadHiscores()
 	{
@@ -73,5 +73,9 @@ public class GameOverPartyMode : MonoBehaviour {
 		newSignal.Init (puesto, data.username, data.hiscore);
 		newSignal.transform.SetParent (hsicoresContainer);
 		newSignal.transform.localScale = Vector3.one;
+	}
+	void OnDisable()
+	{
+		StopAllCoroutines ();
 	}
 }

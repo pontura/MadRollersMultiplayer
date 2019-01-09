@@ -36,9 +36,10 @@ public class SceneObject : MonoBehaviour {
 	}
 	public void Restart(Vector3 pos)
     {
-		isActive = true;
+		
 		gameObject.SetActive(true);
         OnRestart(pos);
+		isActive = true;
     }
     public void setRotation(Vector3 rot)
     {

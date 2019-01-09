@@ -38,6 +38,9 @@ public class LevelChanger : SceneObject {
 	void OnDisable()  { 
 		Reset ();
 	}
+	void OnDestroy()  { 
+		Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;
+	}
 	void Reset()  { 
 		StopAllCoroutines ();
 		Data.Instance.events.OnListenerDispatcher -= OnListenerDispatcher;

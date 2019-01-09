@@ -41,6 +41,8 @@ public class InputSavedAutomaticPlay : MonoBehaviour {
 	InputSaverData lastSavedDataUsed;
 	void Update () {
 		
+		if (Data.Instance.playMode == Data.PlayModes.PARTYMODE)
+			return;
 		if (allPlayersSavedData.Count == 0 || !isPlaying || characters.Count==0)
 			return;
 

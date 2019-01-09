@@ -22,8 +22,6 @@ public class MainHiscores : MonoBehaviour {
     public LeterChanger letterActive;
     public int puesto;
 
-    string fileName_pr = "C:\\tumbagames\\hiscores\\MadRollers.txt";
-
 	int _hiscore = 0;
 
     public List<Hiscore> arrengedHiscores;
@@ -43,7 +41,7 @@ public class MainHiscores : MonoBehaviour {
 		
         puesto = 1;
         Screen.fullScreen = true;
-		LoadHiscores(fileName_pr);
+		LoadHiscores(Data.Instance.GetComponent<ArcadeRanking>().path);
         puestoField.text = "PUESTO " + puesto;
 		field.text = _hiscore.ToString ();
 
@@ -79,10 +77,10 @@ public class MainHiscores : MonoBehaviour {
 	{
 		SetLetterActive(true);
 	}
-	void OnJoystickBack()
-	{
-		SetLetterActive(false);
-	}
+//	void OnJoystickBack()
+//	{
+//		SetLetterActive(false);
+//	}
 //    void Update()
 //    {
 //        if (Input.GetKeyUp(KeyCode.LeftArrow))
@@ -159,6 +157,12 @@ public class MainHiscores : MonoBehaviour {
      }
     void Save()
     {
+		
+		if (done)
+			return;
+		
+		done = true;
+
         string username = "";
         foreach (LeterChanger letterChanger in letters)
         {
@@ -166,32 +170,32 @@ public class MainHiscores : MonoBehaviour {
             if (letra == "_") letra = " ";
             username += letra;
         }
-		SaveNew(fileName_pr, username, _hiscore);
+		SaveNew(Data.Instance.GetComponent<ArcadeRanking>().path, username, _hiscore);
     }
     public void SaveNew(string fileName, string username, int newHiscoreToSave)
     {
-		if (!done) {
-			done = true;
-			Hiscore newHiscore = new Hiscore ();
-			newHiscore.username = username;
-			newHiscore.hiscore = newHiscoreToSave;
-			hiscores.Add (newHiscore);
+		Hiscore newHiscore = new Hiscore ();
+		newHiscore.username = username;
+		newHiscore.hiscore = newHiscoreToSave;
+		hiscores.Add (newHiscore);
 
-			arrengedHiscores = OrderByHiscore (hiscores);
+		arrengedHiscores = OrderByHiscore (hiscores);
 
-			String[] arrLines = new String[hiscores.Count];
-			int a = 0;
-			foreach (Hiscore hs in arrengedHiscores) {
-				arrLines [a] = hs.username + "_" + hs.hiscore;
-				a++;
-			}
-			File.WriteAllLines (fileName, arrLines);
-			Invoke ("grabaEnd", 0.1f);
+		String[] arrLines = new String[hiscores.Count];
+		int a = 0;
+		foreach (Hiscore hs in arrengedHiscores) {
+			arrLines [a] = hs.username + "_" + hs.hiscore;
+			a++;
 		}
+		File.WriteAllLines (fileName, arrLines);
+		Invoke ("grabaEnd", 0.25f);
     }
     void grabaEnd()
     {
-		
+		Data.Instance.events.RefreshHiscores ();
+		Data.Instance.missions.MissionActiveID = 0;
+		Data.Instance.events.OnResetScores();
+		Data.Instance.events.ForceFrameRate (1);
 		Data.Instance.LoadLevel("MainMenu");
     }
     List<Hiscore> OrderByHiscore(List<Hiscore> hs)

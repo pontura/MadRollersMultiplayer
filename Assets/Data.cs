@@ -115,6 +115,10 @@ public class Data : MonoBehaviour {
 			playMode = PlayModes.STORYMODE;
 			DEBUG = LevelDataDebug.Instance.isDebbug;
 			this.isArcadeMultiplayer = LevelDataDebug.Instance.isArcadeMultiplayer;
+
+			if (isArcadeMultiplayer)
+				playMode = PlayModes.PARTYMODE;
+			
 			this.forceVideogameID = LevelDataDebug.Instance.videogameID;
 			this.forceMissionID = LevelDataDebug.Instance.missionID;
 			this.testAreaName =  LevelDataDebug.Instance.testArea;

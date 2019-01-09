@@ -17,7 +17,7 @@ public class HiscoresComparisonSignal : MonoBehaviour {
 
 		if (puesto > 0)
 		{
-			scoreField.text = score.ToString();
+			scoreField.text = Utils.FormatNumbers(score);
 			teamNameField.text = teamName;
 			SetPuesto(puesto);
 		}

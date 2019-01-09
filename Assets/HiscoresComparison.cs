@@ -56,13 +56,14 @@ public class HiscoresComparison : MonoBehaviour {
 		{			
 			if (num > 10) {
 				SetPuesto ();
-				print ("puesto :" + puesto + " score : " + score);
 				yield return new WaitForSeconds (3f);
 				if (puesto != 0) {
-					ShowHiscores ();
-				} 
-				yield return new WaitForSeconds (10f);
-				Reset ();
+					GotoNewHiscore ();
+					Reset ();
+				} else {
+					yield return new WaitForSeconds (10f);
+					Reset ();
+				}
 			} else {
 				if (puesto == 0 && data.hiscore < score)
 					puesto = num;
@@ -118,7 +119,7 @@ public class HiscoresComparison : MonoBehaviour {
 		float f = GetNormalizedPosition (lastScore) / 100;
 		topTenImage.fillAmount = f;
 	}
-	void ShowHiscores()
+	void GotoNewHiscore()
 	{
 		Data.Instance.multiplayerData.OnRefreshPlayersByActiveOnes ();
 		Data.Instance.inputSavedAutomaticPlay.RemoveAllData ();
@@ -127,5 +128,9 @@ public class HiscoresComparison : MonoBehaviour {
 		Data.Instance.events.OnResetLevel();
 		Data.Instance.LoadLevel ("Hiscores");
 		Reset ();
+	}
+	void OnDisable()
+	{
+		StopAllCoroutines ();
 	}
 }

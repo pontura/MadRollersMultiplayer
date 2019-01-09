@@ -7,7 +7,8 @@ using System.Linq;
 
 public class ArcadeRanking : MonoBehaviour {
 
-	string fileName_pr = "C:\\tumbagames\\hiscores\\MadRollers.txt";
+	//public string path = "C:\\tumbagames\\hiscores\\MadRollers.txt";
+	public string path;
 	public List<Hiscore> all;
 
 	[Serializable]
@@ -17,15 +18,18 @@ public class ArcadeRanking : MonoBehaviour {
 		public int hiscore;       
 	}
 	void Start () {
-		
-		LoadHiscores(fileName_pr);
-
+		Data.Instance.events.RefreshHiscores += RefreshHiscores;
+		path = Application.streamingAssetsPath + "/hiscores.txt";
+		LoadHiscores(path);
 	}
-
+	void RefreshHiscores()
+	{
+		LoadHiscores (path);
+	}
 	void LoadHiscores(string fileName)
 	{
 		String[] arrLines = File.ReadAllLines(fileName);
-		//int num = 1;
+		all.Clear ();
 		foreach (string line in arrLines)
 		{
 			string[] lines = line.Split("_"[0]);

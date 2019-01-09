@@ -13,12 +13,11 @@ public class Catapulta : SceneObject {
 	public override void OnRestart(Vector3 pos)
 	{
 		base.OnRestart(pos);
-		isActive = false;
 	}
 
 	void OnTriggerEnter(Collider other) 
 	{
-		if (isActive)
+		if (!isActive)
 			return;
 		switch (other.tag)
 		{
