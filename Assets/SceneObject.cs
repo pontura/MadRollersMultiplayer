@@ -54,7 +54,10 @@ public class SceneObject : MonoBehaviour {
     {
         isActive = false;
         Vector3 newPos = new Vector3(2000, 0, 2000);
-        transform.position = newPos;       
+
+		if(transform !=null)
+      		transform.position = newPos;  
+		
         ObjectPool.instance.PoolObject(this);
 		if (manager == null)
 			Debug.LogError ("manager null " + gameObject.name);

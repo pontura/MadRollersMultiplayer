@@ -140,9 +140,13 @@ public class MusicManager : MonoBehaviour {
     }
 	public void BossMusic(bool isBoss)
 	{
+		int videogameID = Data.Instance.videogamesData.actualID;
+//		if (videogameID > 0)
+//			return;
 		if (isBoss) {
 			audioSource.pitch = 1;
-			audioSource.clip = Resources.Load ("songs/boss" + Data.Instance.videogamesData.actualID) as AudioClip;
+		//	audioSource.clip = Resources.Load ("songs/boss" + videogameID) as AudioClip;
+			audioSource.clip = Resources.Load ("songs/boss0") as AudioClip;
 			audioSource.Play ();
 			audioSource.loop = true;
 		}
@@ -184,7 +188,8 @@ public class MusicManager : MonoBehaviour {
 		StopAllCoroutines ();
 		audioSource.pitch = 1;
 		audioSource.volume = 1;
-		audioSource.clip = Resources.Load("songs/win"+Data.Instance.videogamesData.actualID) as AudioClip;
+		//audioSource.clip = Resources.Load("songs/win"+Data.Instance.videogamesData.actualID) as AudioClip;
+		audioSource.clip = Resources.Load("songs/win1") as AudioClip;
 		audioSource.Play();
 		audioSource.loop = false;
 		Invoke ("PlayMainTheme", 7);

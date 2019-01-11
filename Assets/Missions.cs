@@ -141,6 +141,11 @@ public class Missions : MonoBehaviour {
 	void NextMission()
 	{
 		AddAreaByName ("newLevel_playing");
+
+		//HACK
+		if (Data.Instance.playMode == Data.PlayModes.PARTYMODE && MissionActiveID > 24)
+			MissionActiveID = 0;
+		
 		MissionActiveID++;
 		StartNewMission ();
 		Data.Instance.events.OnChangeBackgroundSide (MissionActive.fondo);
