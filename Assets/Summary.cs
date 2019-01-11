@@ -40,13 +40,13 @@ public class Summary : MonoBehaviour {
 	void OnGameOver(bool isTimeOver)
     {
         if (isOn) return;
-
+		isOn = true;
         Invoke("SetOn", 2F);
     }
     void SetOn()
     {
 		Data.Instance.events.RalentaTo (1, 0.05f);
-		isOn = true;
+
         panel.SetActive(true);
         
 		SetSelected ();

@@ -140,11 +140,12 @@ public class MusicManager : MonoBehaviour {
     }
 	public void BossMusic(bool isBoss)
 	{
-//		return;
-//		if (!isBoss)
-//			PlayMainTheme ();
-//		else
-//			playSound(IndestructibleFX);
+		if (isBoss) {
+			audioSource.pitch = 1;
+			audioSource.clip = Resources.Load ("songs/boss" + Data.Instance.videogamesData.actualID) as AudioClip;
+			audioSource.Play ();
+			audioSource.loop = true;
+		}
 	}
 //    void OnAvatarChangeFX(Player.fxStates state)
 //    {
@@ -183,7 +184,7 @@ public class MusicManager : MonoBehaviour {
 		StopAllCoroutines ();
 		audioSource.pitch = 1;
 		audioSource.volume = 1;
-		audioSource.clip = Resources.Load("songs/win") as AudioClip;
+		audioSource.clip = Resources.Load("songs/win"+Data.Instance.videogamesData.actualID) as AudioClip;
 		audioSource.Play();
 		audioSource.loop = false;
 		Invoke ("PlayMainTheme", 7);

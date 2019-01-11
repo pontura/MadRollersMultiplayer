@@ -52,22 +52,25 @@ public class HiscoresComparison : MonoBehaviour {
 	{
 		puesto = 0;
 		int num = 1;
+		bool isCompleted = false;
 		foreach(ArcadeRanking.Hiscore data in arcadeRanking.all)
-		{			
-			if (num > 10) {
+		{		
+			if (isCompleted) { }	
+			else if (num > 10) {
+				isCompleted = true;
 				SetPuesto ();
 				yield return new WaitForSeconds (3f);
 				if (puesto != 0) {
 					GotoNewHiscore ();
 					Reset ();
 				} else {
-					yield return new WaitForSeconds (10f);
+					yield return new WaitForSeconds (3f);
 					Reset ();
 				}
 			} else {
 				if (puesto == 0 && data.hiscore < score)
 					puesto = num;
-				yield return new WaitForSeconds (0.25f);
+				yield return new WaitForSeconds (0.17f);
 				AddSignal (data, num);
 				num++;
 			}

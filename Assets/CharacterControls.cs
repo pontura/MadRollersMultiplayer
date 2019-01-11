@@ -56,14 +56,14 @@ public class CharacterControls : MonoBehaviour {
 		
 		if (InputManager.getWeapon(player.id))
 			characterBehavior.shooter.ChangeNextWeapon ();
-	
-		if (InputManager.getDash (player.id)) {
-			characterBehavior.shooter.CheckFireDouble ();
-			//characterBehavior.characterMovement.DashForward ();
-		}
-	
+
 		if (InputManager.getFireDown(player.id))
 			characterBehavior.shooter.CheckFire ();
+		
+		if (InputManager.getDash (player.id)) {
+			characterBehavior.characterMovement.DashForward ();
+		}
+	
 
 		if (
 			characterBehavior.state == CharacterBehavior.states.RUN
