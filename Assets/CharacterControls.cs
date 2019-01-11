@@ -104,7 +104,7 @@ public class CharacterControls : MonoBehaviour {
 		if (characterBehavior.player.charactersManager == null)
 			return;
 		
-		if (characterBehavior.player.charactersManager.distance<40)
+		if (characterBehavior.player.charactersManager.distance<12)
 			return;
 		float _speed = InputManager.getHorizontal(player.id);
 

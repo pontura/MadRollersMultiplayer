@@ -10,9 +10,11 @@ public class LevelChanger : SceneObject {
 	int actualVideogameID;
 	int videogame1 = 0;
 	int videogame2 = 0;
+	bool isDone;
 
 	public override void OnRestart(Vector3 pos)
 	{
+		isDone = false;
 		Data.Instance.events.OnListenerDispatcher += OnListenerDispatcher;
 		base.OnRestart( pos );
 		VideogamesData videogamesData = Data.Instance.videogamesData;
@@ -47,6 +49,9 @@ public class LevelChanger : SceneObject {
 	}
 	void OnListenerDispatcher(ListenerDispatcher.myEnum message)
 	{
+		if (isDone)
+			return;
+		isDone = true;
 		int videogameId = 0;
 		Transform t = null;
 		if (message == ListenerDispatcher.myEnum.LevelChangeLeft) {

@@ -20,6 +20,7 @@ public class MainMenu : MonoBehaviour {
 
 	void Start()
 	{		
+		Cursor.visible = false;
 		buttons = new List<MainMenuButton> ();
 		if (Data.Instance.isArcadeMultiplayer) {
 			partyGameButtons.SetActive (false);

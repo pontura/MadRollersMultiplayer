@@ -1,21 +1,11 @@
 {
 	"data": [
 {
-		"title": "GET INSIDE THE DARK FORCE",
+		"title": "INSIDE THE DARK FORCE",
 		"fondo": "gallax",
 		"id": 0,
 		"maxScore": 3000,
 		"areaSetData": [
-		{
-			"total_areas": 1,
-			"randomize": false,
-			"areas": ["descansoAnchoMinimal"],
-			"cameraOrientation": {
-				"x": 0.0,
-				"y": 2.0,
-				"z": -1.5
-			}
-		},
 		{
 			"total_areas": 1,
 			"randomize": false,
@@ -81,22 +71,24 @@
 			}
 		},
 		{
-			"total_areas": 1,
-			"randomize": true,
-			"areas": ["lasersrx4",
-			"laserHorizontal",
-			"lasersrx4 1",
-			"laserMultiplesBigWalls1"],
+			"total_areas": 2,
+			"randomize": false,
+			"areas": [
+			"descansoAncho",
+			"descansoAnchoWeapon3_double"
+			],
 			"cameraOrientation": {
 				"x": 0.0,
-				"y": 0.0,
-				"z": 0.0
+				"y": -4.0,
+				"z": -1
 			}
 		},
 		{
 			"total_areas": 3,
 			"randomize": false,
-			"areas": ["boss_naves",
+			"areas": [
+			"descansoAnchoMinimal",
+			"boss_naves",
 			"areaFree_boss2"],
 			"cameraOrientation": {
 				"x": 0.0,

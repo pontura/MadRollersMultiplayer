@@ -253,15 +253,15 @@ public class Missions : MonoBehaviour {
 		if(tutorialID >= 3 || Data.Instance.playMode == Data.PlayModes.VERSUS )
 			return;
 
-		if (distance>132 && tutorialID < 1)
+		if (distance>142 && tutorialID < 1)
 		{
 			Data.Instance.voicesManager.PlayClip (Data.Instance.voicesManager.tutorials [0].audioClip);
 			tutorialID = 1;
-		} else if(distance>190 && tutorialID < 2)
+		} else if(distance>200 && tutorialID < 2)
 		{
 			Data.Instance.voicesManager.PlayClip (Data.Instance.voicesManager.tutorials [1].audioClip);
 			tutorialID = 2;
-		} else if(distance>295 && tutorialID < 3)
+		} else if(distance>305 && tutorialID < 3)
 		{
 			Data.Instance.voicesManager.PlayClip (Data.Instance.voicesManager.tutorials [2].audioClip);
 			tutorialID = 3;
