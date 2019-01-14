@@ -12,18 +12,13 @@ public class BossCreator : Boss {
 	BossSettings settings;
 
 	public override void OnRestart(Vector3 pos)
-	{		
-		
+	{				
 		settings = GetComponent<BossSettings> ();
-
 		StartCoroutine (DoSequence ());
-
 		base.OnRestart (pos);
 	}
 	IEnumerator DoSequence()
 	{
-		//yield return new WaitForSeconds (0.2f);
-	//	Data.Instance.events.OnBossSetNewAsset (settings.asset);
 		yield return new WaitForSeconds (0.2f);
 		Data.Instance.events.OnBossSetTimer (settings.time_to_kill);
 

@@ -7,16 +7,45 @@ using UnityEngine;
 
 [CustomEditor(typeof(LevelCreator))]
 public class LevelCreatorUI : Editor {
+
+	string[] videogames = new string[]{"Boy-Land", "Gallax", "Inferno"};
+	string[] videogame1;
+	string[] videogame2;
+	string[] videogame3;
+
+	int _choiceIndex = 0;
+	int _videogameIndex = 0;
+
 	public override void OnInspectorGUI()
 	{
 		base.OnInspectorGUI ();
 		LevelCreator levelCreator = (LevelCreator)target;
+
+		string[] videogameData;
+		int vid = _videogameIndex;
+
+		videogameData = new string[levelCreator.missions.videogames[vid].missions.Count];
+		int id = 0;
+		foreach (Missions.MissionsData c in levelCreator.missions.videogames[vid].missions) {
+			videogameData [id] = id + "-" + c.data[0].title;
+			id++;
+		}
+
+		levelCreator.missionID = _choiceIndex;
+		levelCreator.videoGameID = _videogameIndex+1;
+
+	
+
+		EditorUtility.SetDirty (target);
 
 		if(GUILayout.Button("Load Area"))
 		{
 			levelCreator.LoadArea ();
 		}
 		GUILayout.Space (20);
+
+		_videogameIndex = EditorGUILayout.Popup (_videogameIndex, videogames);
+		_choiceIndex = EditorGUILayout.Popup (_choiceIndex, videogameData);
 
 
 		if (GUILayout.Button ("Load Mission")) {

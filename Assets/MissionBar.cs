@@ -111,9 +111,10 @@ public class MissionBar : MonoBehaviour {
 	}
 	void OnBossActive (bool isOn)
 	{
-//		if (!isOn) {
-//			panel.Play ("MissionTopClose");
-//			CancelInvoke ();
-//		}
+		progressBar.SetProgression (0);
+		if (!isOn) {
+			panel.Play ("MissionTopClose");
+			CancelInvoke ();
+		}
 	}
 }

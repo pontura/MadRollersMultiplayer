@@ -7,7 +7,9 @@ public class LevelCreator : MonoBehaviour {
 
 	public bool isArcadeMultiplayer;
 	public bool Debbug;
+	[HideInInspector]
 	public int videoGameID;
+	[HideInInspector]
 	public int missionID;
 
 	public TextAsset mission;
@@ -17,6 +19,7 @@ public class LevelCreator : MonoBehaviour {
 	public TextAsset area;
 
 	float totalDistance;
+
 	void Start () {
 		if (Debbug) {
 			LevelDataDebug.Instance.isArcadeMultiplayer = isArcadeMultiplayer;
