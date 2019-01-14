@@ -14,9 +14,12 @@ public class CharacterCollisions : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		
 		if (characterBehavior == null) return;
-        if (characterBehavior.state == CharacterBehavior.states.DEAD) return;
-        if (characterBehavior.state == CharacterBehavior.states.CRASH) return;
-        if (characterBehavior.state == CharacterBehavior.states.FALL) return;
+        if (
+			characterBehavior.state == CharacterBehavior.states.DEAD
+			|| characterBehavior.state == CharacterBehavior.states.CRASH
+			|| characterBehavior.state == CharacterBehavior.states.FALL
+		) 
+			return;
 
 		if (other.tag == "wall" || other.tag == "firewall") 
 		{
@@ -36,9 +39,6 @@ public class CharacterCollisions : MonoBehaviour {
 			{
 				Breakable breakable = other.GetComponent<Breakable> ();
 				if (breakable != null) {
-					
-					print ("if (breakable.ifJumpingDontKill: " + breakable.ifJumpingDontKill + " characterBehavior.state: " + characterBehavior.state);
-
 					if (breakable.ifJumpingDontKill && characterBehavior.IsJumping () && breakable.transform.position.y<transform.position.y)
 						characterBehavior.SuperJumpByHittingSomething ();
 					else if (!breakable.dontKillPlayers)

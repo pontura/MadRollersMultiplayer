@@ -69,5 +69,20 @@ public class FXExplotion : SceneObject {
     {
         Pool();
 	}
+	void OnTriggerEnter(Collider other)
+	{
+		WeakPlatform w = other.GetComponent<WeakPlatform> ();
+		if (w!=null)
+		{
+			w.breakOut(transform.position);
+			return;
+		}
+		Breakable breakable = other.GetComponent<Breakable> ();
+		if (breakable!=null)
+		{
+			breakable.breakOut(transform.position);
+			return;
+		}
+	}
 	
 }

@@ -27,7 +27,7 @@ public class LevelCreatorUI : Editor {
 		videogameData = new string[levelCreator.missions.videogames[vid].missions.Count];
 		int id = 0;
 		foreach (Missions.MissionsData c in levelCreator.missions.videogames[vid].missions) {
-			videogameData [id] = id + "-" + c.data[0].title;
+			videogameData [id] = id + "-" + c.data[0].title + " - " + c.data[0].jsonName;
 			id++;
 		}
 

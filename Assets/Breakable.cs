@@ -12,7 +12,6 @@ public class Breakable : MonoBehaviour {
     }
     public bool isOn;
 	public float NumOfParticles = 30;
-	private Vector3 position;
 	public Breakable[] childs;
 
 	//nunca mata
@@ -39,13 +38,7 @@ public class Breakable : MonoBehaviour {
     {               
         isOn = true;
     }
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "explotion")
-        {
-            breakOut(transform.position);
-        }
-    }
+
 	public void breakOut (Vector3 position) {
         if (!isOn) return;
 
@@ -62,7 +55,6 @@ public class Breakable : MonoBehaviour {
 		{
             if (breakable && breakable.isOn) breakable.hasGravity();
 		}
-		this.position = position;
 
 		breaker();
 

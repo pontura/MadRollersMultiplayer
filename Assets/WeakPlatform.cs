@@ -55,27 +55,7 @@ public class WeakPlatform : SceneObject {
 		else
 			renderer.material.color = floor_border;
 	}
-	void OnTriggerEnter(Collider other) 
-	{
 
-		if (falling)
-			return;
-
-		//		if(gameObject.name == "extralargeBlock1_real")
-		//			print (isActive + "   toca con " + other.name);
-
-		if (!isActive) return;
-		switch (other.tag)
-		{
-		case "explotion":
-			breakOut(other.transform.localPosition);
-			break;
-		case "destroyable":
-			breakOut(other.transform.localPosition);
-			break;
-		}
-
-	}
 	public void breakOut(Vector3 impactPosition) {
 
 		collider.enabled = false;
