@@ -15,8 +15,8 @@ public class EnemyShooter : MonoBehaviour {
     {
         ready = false;
     }
-    public void OnSceneObjectUpdated()
-    {
+	void Update()
+	{
         if (ready) return;
         if (!mmoCharacter) return;        
         if (mmoCharacter.state == MmoCharacter.states.DEAD) return;

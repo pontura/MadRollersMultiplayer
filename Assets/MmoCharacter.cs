@@ -103,12 +103,7 @@ public class MmoCharacter : SceneObject
         //run();
         //SendMessage("OnReachFloor", SendMessageOptions.DontRequireReceiver);
     }
-	// Update is called once per frame
-    public override void OnSceneObjectUpdate()
-    {
-        base.OnSceneObjectUpdate();
-       // SendMessage("OnSceneObjectUpdated", SendMessageOptions.DontRequireReceiver);
-	}
+
     public void ChangeSkinMaterial(Material material)
     {
         SkinnedMeshRenderer skinnedMesh = GetComponentInChildren<SkinnedMeshRenderer>();

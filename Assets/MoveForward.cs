@@ -7,7 +7,7 @@ public class MoveForward : MonoBehaviour {
 	public float speed = 2;
 	public float randomSpeedDiff  = 0;
 
-	//para hacer un pingpong
+	bool isOn;
 	public float moveBackIn = 0;
 
 	private float realSpeed;
@@ -32,12 +32,16 @@ public class MoveForward : MonoBehaviour {
 	void OnDisable()
 	{
 		CancelInvoke ();
-		//speed = 0;
-		//Destroy(gameObject.GetComponent("MoveForward"));
+		isOn = false;
 	}
-
-	public void OnSceneObjectUpdated()
+	void OnEnable()
 	{
+		isOn = true;
+	}
+	void Update()
+	{
+		if (!isOn)
+			return;
 		transform.Translate(-Vector3.forward * Mathf.Abs(realSpeed) * Time.deltaTime);
 	}
 }

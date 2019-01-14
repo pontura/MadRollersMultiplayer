@@ -7,6 +7,7 @@ public class BossPart : MonoBehaviour {
 	public Boss boss;
 	public GameObject asset;
 	bool called;
+	bool isOn;
 
 	public void Init(Boss _boss, string bossAssetPath = null)
 	{
@@ -19,9 +20,12 @@ public class BossPart : MonoBehaviour {
 			newGO.transform.localEulerAngles = Vector3.zero;
 			newGO.transform.localPosition = Vector3.zero;
 		}
+		isOn = true;
 	}
 	void Update()
 	{
+		if (!isOn)
+			return;
 		if (transform.position.y < -15)
 			OnActivate ();
 	}

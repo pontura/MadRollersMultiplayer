@@ -36,7 +36,6 @@ public class SceneObject : MonoBehaviour {
 	}
 	public void Restart(Vector3 pos)
     {
-		
 		gameObject.SetActive(true);
         OnRestart(pos);
 		isActive = true;
@@ -66,13 +65,13 @@ public class SceneObject : MonoBehaviour {
     }
 	public void Updated(float distance)
 	{
-		distanceFromCharacter = (int)transform.position.z - (int)distance;
-		OnSceneObjectUpdate();
+		distanceFromCharacter = (int)(transform.position.z - distance);
+	//	OnSceneObjectUpdate();
 	}
-    public virtual void OnSceneObjectUpdate()
-    {
-        SendMessage("OnSceneObjectUpdated", SendMessageOptions.DontRequireReceiver);
-    }
+//    public virtual void OnSceneObjectUpdate()
+//    {
+//        SendMessage("OnSceneObjectUpdated", SendMessageOptions.DontRequireReceiver);
+//    }
     public virtual void OnRestart(Vector3 pos)
     {
         transform.position = pos;

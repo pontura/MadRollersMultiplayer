@@ -24,8 +24,10 @@ public class DroppableSceneObject : SceneObject {
         collider = GetComponent<Collider>();
 
     }
-    void OnSceneObjectUpdated()
-    {
+	void Update()
+	{
+		if (!isActive)
+			return;
         if (isOn) return;
 
         if (sec > delay)

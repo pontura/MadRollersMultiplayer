@@ -43,8 +43,10 @@ public class GrabbableMissile : Powerup {
         doubleShot.SetActive(false);
         tripleShot.SetActive(false);
     }
-    public override void OnSceneObjectUpdate()
-    {
+	void Update()
+	{
+		if (!isActive)
+			return;
         if (hitted)
         {
             sec++;

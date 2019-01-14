@@ -16,8 +16,10 @@ public class WeaponEnemy : SceneObject {
 		exploted = false;
 	}
 
-	public override void OnSceneObjectUpdate()
+	void Update()
 	{
+		if (!isActive)
+			return;
 		if (target != null) {
 			if (target.transform.position.z < transform.position.z) {
 				target = null;

@@ -8,7 +8,6 @@ public class Catapulta : SceneObject {
 
 	public Animation anim;
 	CharacterBehavior characterBehavior; 
-	bool isActive;
 
 	public override void OnRestart(Vector3 pos)
 	{

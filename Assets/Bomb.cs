@@ -47,9 +47,10 @@ public class Bomb : SceneObject {
         addExplotion(0.2f);        
         Pool();
     }
-    public override void OnSceneObjectUpdate()
-    {
-        if (!isActive) return;
+	void Update()
+	{
+		if (!isActive)
+			return;
 
         trailRenderer.time = 10;
 

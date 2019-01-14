@@ -46,8 +46,8 @@ public class EnemyPathRunnerBehavior : MonoBehaviour {
         
     }
 
-    public void OnSceneObjectUpdated()
-    {
+	void Update()
+	{
         if (mmoCharacter.state == MmoCharacter.states.DEAD) return;
 
         float diff = Mathf.Abs(transform.localPosition.x - paths[pathID].x);

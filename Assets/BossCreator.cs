@@ -16,13 +16,24 @@ public class BossCreator : Boss {
 		
 		settings = GetComponent<BossSettings> ();
 
-		Data.Instance.events.OnBossSetNewAsset (settings.asset);
+		StartCoroutine (DoSequence ());
+
+		base.OnRestart (pos);
+	}
+	IEnumerator DoSequence()
+	{
+		//yield return new WaitForSeconds (0.2f);
+	//	Data.Instance.events.OnBossSetNewAsset (settings.asset);
+		yield return new WaitForSeconds (0.2f);
 		Data.Instance.events.OnBossSetTimer (settings.time_to_kill);
 
 		distance_from_avatars = settings.distance_from_avatars;
 		time_to_init_enemies = settings.time_to_init_enemies;
-		//print ("boss module " + settings.bossModule);
-
+		yield return new WaitForSeconds (0.5f);
+		Delayed ();
+	}
+	void Delayed()
+	{
 		GameObject assets = Instantiate(Resources.Load("bosses/modules/" + settings.bossModule, typeof(GameObject))) as GameObject;
 		//GameObject assets = Instantiate (settings.assets);
 		assets.transform.SetParent (transform);
@@ -35,11 +46,11 @@ public class BossCreator : Boss {
 
 		SetTotal (parts.Length);
 		Init ();
-
-		base.OnRestart (pos);
 	}
-	public override void OnSceneObjectUpdated()
+	void LateUpdate()
 	{
+		if (!isActive)
+			return;
 		float avatarsDistance = Game.Instance.level.charactersManager.getDistance ();
 		if (avatarsDistance + distance_from_avatars < transform.localPosition.z)
 			return;

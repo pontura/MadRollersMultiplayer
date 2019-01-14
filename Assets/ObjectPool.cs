@@ -7,7 +7,6 @@ using System.Collections.Generic;
 [AddComponentMenu("Gameplay/ObjectPool")]
 public class ObjectPool : MonoBehaviour
 {
-
     #region member
     [Serializable]
     public class ObjectPoolEntry
@@ -39,6 +38,8 @@ public class ObjectPool : MonoBehaviour
 
     void Start()
     {
+		
+
 		pooledObjects = new List<SceneObject> ();
 		pooledObjects_smallBlock = new List<SceneObject> ();
 		pooledObjects_extraSmallBlock = new List<SceneObject> ();

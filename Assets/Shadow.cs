@@ -14,8 +14,8 @@ public class Shadow : SceneObject {
     {
         this.target = target;        
     }
-    public override void OnSceneObjectUpdate()
-    {
+	void Update()
+	{
 		return;
         if (target && target.isActive)
         {

@@ -57,7 +57,19 @@ public class SceneObjectsManager : MonoBehaviour {
 	{
 		sceneObjectsInScene.Remove (so);
 	}
-	void LateUpdate () {
+	void Start()
+	{
+		StartCoroutine (UpdateCoroutine());
+	}
+	float tick = 0.25f;
+	IEnumerator UpdateCoroutine()
+	{
+		while (isActiveAndEnabled) {
+			yield return new WaitForSeconds (tick);
+			LateUpdatesss ();
+		}
+	}
+	void LateUpdatesss () {
 
 		float distance = charactersManager.getDistance();
 		int i = sceneObjectsInScene.Count;
@@ -71,11 +83,9 @@ public class SceneObjectsManager : MonoBehaviour {
 			}else if (distance > so.transform.position.z + so.size_z + 22 && Data.Instance.playMode != Data.PlayModes.VERSUS)
 				so.Pool();
 			else if (distance > so.transform.position.z - 58 || Data.Instance.playMode == Data.PlayModes.VERSUS) {				
-				if (!so.isActive) {
-					so.Restart (so.transform.position);
-				} else {				
-					so.Updated (distance);
-				}
+				if (!so.isActive) 
+					so.Restart (so.transform.position);								
+				so.Updated (distance);
 			}			
 		}
 	}

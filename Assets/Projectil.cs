@@ -24,9 +24,6 @@ public class Projectil : SceneObject {
 	public GameObject BulletPlayer2;
 	public GameObject BulletPlayer3;
 
-	void Start () {
-
-	}
     public virtual void SetColor(Color color)
     {
 		if (lastColor == color)
@@ -50,11 +47,13 @@ public class Projectil : SceneObject {
 		realSpeed = speed;
 		target = null;
         level = Game.Instance.level;
-        base.OnRestart(pos);
+       
 
         myDist = 0;
         exploted = false;
 		pos.z += 1;
+
+		base.OnRestart(pos);
 
 		ResetWeapons ();
 
@@ -94,8 +93,10 @@ public class Projectil : SceneObject {
 
     }
     
-    public override void OnSceneObjectUpdate()
-    {
+	void Update()
+	{
+		if (!isActive)
+			return;
 		if (target != null) {
 			if (target.transform.position.z < transform.position.z) {
 				target = null;

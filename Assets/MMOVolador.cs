@@ -21,8 +21,10 @@ public class MMOVolador : SceneObject {
 		base.OnRestart (pos);
 		GetComponent<Rigidbody> ().useGravity = true;
 	}
-	public override void OnSceneObjectUpdate()
+	void Update()
 	{
+		if (!isActive)
+			return;
 		if (!isPreparing && distanceFromCharacter < Distance_to_react + 15) {
 			anim.Play ("gargola_prepare");
 			isPreparing = true;

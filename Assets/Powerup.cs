@@ -18,8 +18,10 @@ public class Powerup : GrabbableItem {
     {
         base.OnRestart(pos);
     }
-    public override void OnSceneObjectUpdate()
-    {
+	void Update()
+	{
+		if (!isActive)
+			return;
         if (hitted)
         {
             if (sec == 0)

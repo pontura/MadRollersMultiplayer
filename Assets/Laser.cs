@@ -54,8 +54,10 @@ public class Laser : SceneObject {
 		laser.transform.localScale = new Vector3 (2f,(laser.transform.localPosition.y/0.4f),2f);
 	}
 	float delayedLastFrame;
-	public void OnSceneObjectUpdated()
+	void Update()
 	{
+		if (!isActive)
+			return;
 		if (isBeenBroken ()) return;
 		if (distanceFromCharacter < distanceToBeActive) {
 			if (!isActivatedByAvatar) {

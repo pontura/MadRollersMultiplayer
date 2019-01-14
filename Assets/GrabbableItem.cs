@@ -62,9 +62,10 @@ public class GrabbableItem : SceneObject
     {
         player = null;
     }
-    public override void OnSceneObjectUpdate()
-    {
-		//return;
+	void Update()
+	{
+		if (!isActive)
+			return;
 		if (titila.Length > 0) {
 			//meshRenderer.material.color = titila[0];
 		}

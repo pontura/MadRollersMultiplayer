@@ -7,11 +7,11 @@ public class MissionBar : MonoBehaviour {
 
 	public Animator panel;
 	public ProgressBar progressBar;
-	public float totalHits;
-	public float value;
+	public int totalHits;
+	//public float value;
 	public Text field;
 	public int sec;
-	public Transform itemContainer;
+	//public Transform itemContainer;
 	public GameObject bossTimer;
 	public Text videogameField;
 	public Text missionField;
@@ -51,15 +51,15 @@ public class MissionBar : MonoBehaviour {
 	}
 	void OnBossSetNewAsset(string assetName)
 	{
-		Utils.RemoveAllChildsIn (itemContainer);
-		GameObject icon = Instantiate(Resources.Load("bosses/" + assetName, typeof(GameObject))) as GameObject;
-		icon.transform.SetParent (itemContainer);
-		icon.transform.localScale = Vector3.one;
-		icon.transform.localPosition = Vector3.zero;
+//		Utils.RemoveAllChildsIn (itemContainer);
+//		GameObject icon = Instantiate(Resources.Load("bosses/" + assetName, typeof(GameObject))) as GameObject;
+//		icon.transform.SetParent (itemContainer);
+//		icon.transform.localScale = Vector3.one;
+//		icon.transform.localPosition = Vector3.zero;
 	}
 	void OnBossHitsUpdate(float actualHits)
 	{
-		progressBar.SetProgression (1-(actualHits / totalHits));
+		progressBar.SetProgression (1-(actualHits / (float)totalHits));
 	}
 	void Loop()
 	{		
@@ -87,7 +87,7 @@ public class MissionBar : MonoBehaviour {
 	}
 	void OnBossInit (int totalHits) {
 		progressBar.SetProgression (1);
-		this.totalHits = (float)totalHits;
+		this.totalHits = totalHits;
 		panel.Play ("MissionTopOpen");
 	}
 	void OnBossSetTimer(int timer)
@@ -111,9 +111,9 @@ public class MissionBar : MonoBehaviour {
 	}
 	void OnBossActive (bool isOn)
 	{
-		if (!isOn) {
-			panel.Play ("MissionTopClose");
-			CancelInvoke ();
-		}
+//		if (!isOn) {
+//			panel.Play ("MissionTopClose");
+//			CancelInvoke ();
+//		}
 	}
 }

@@ -46,7 +46,7 @@ public class EnemyPathsMultiples : MonoBehaviour {
 		destPath = originalPath+paths [pathID];
 	}
 
-	public void OnSceneObjectUpdated()
+	void Update()
 	{
 		if (destPath == null)
 			return;

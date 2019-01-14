@@ -38,9 +38,8 @@ public class EnemyRunnerBehavior : MonoBehaviour {
         else
             mmoCharacter.walk();
     }
-    public void OnSceneObjectUpdated()
-    {
-        
+	void Update()
+	{
         if (!mmoCharacter) return;
         if (mmoCharacter.state == MmoCharacter.states.DEAD) return;
 

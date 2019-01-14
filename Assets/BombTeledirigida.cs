@@ -27,9 +27,10 @@ public class BombTeledirigida : Bomb {
         }
     }
     
-    public override void OnSceneObjectUpdate()
-    {
-        if (!isActive) return;
+	void Update()
+	{
+		if (!isActive)
+			return;
 
         trailRenderer.time = 10;
 

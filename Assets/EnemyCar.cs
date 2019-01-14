@@ -14,8 +14,10 @@ public class EnemyCar : SceneObject {
         //missions.SendMessage ("killCar", 1);
         //Destroy(gameObject);
 	}
-    public override void OnSceneObjectUpdate()
-    {
+	void Update()
+	{
+		if (!isActive)
+			return;
       //  SendMessage("OnSceneObjectUpdated", SendMessageOptions.DontRequireReceiver);
     }
 }

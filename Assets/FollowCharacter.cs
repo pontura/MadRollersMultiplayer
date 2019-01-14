@@ -24,8 +24,10 @@ public class FollowCharacter : MmoCharacter {
 		myPos.z = ch.transform.position.z - activaTionDistance;
 		transform.position = myPos;
 	}
-	public void OnSceneObjectUpdated()
-    {		
+	void Update()
+	{
+		if (!isActive)
+			return;	
 		CharacterBehavior cb = charactersManager.getMainCharacter ();
 		if (cb == null)
 			return;

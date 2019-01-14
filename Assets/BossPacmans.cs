@@ -23,8 +23,10 @@ public class BossPacmans : Boss {
 		SetTotal (parts.Length);
 		Init ();
 	}
-	public override void OnSceneObjectUpdated()
+	void Update()
 	{
+		if (!isActive)
+			return;
 		float avatarsDistance = Game.Instance.level.charactersManager.getDistance ();
 		if (avatarsDistance + distance_from_avatars < transform.localPosition.z)
 			return;

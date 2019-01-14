@@ -121,8 +121,13 @@ public class WeakPlatform : SceneObject {
 	{
 		if (falling)
 			return;
-
 		falling = true;
+		float r = (float)Random.Range (1f, 10f) / 50f;
+
+		Invoke("Pool", r );
+		return;
+
+
 
 		if(rb==null)
 			rb = gameObject.AddComponent<Rigidbody>();
