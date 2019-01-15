@@ -43,17 +43,15 @@ public class Projectil : SceneObject {
 		BulletPlayer3.SetActive (false);
 	}
     public override void OnRestart(Vector3 pos)
-    {			
+    {		
+		base.OnRestart(pos);
+
 		realSpeed = speed;
 		target = null;
-        level = Game.Instance.level;
-       
+        level = Game.Instance.level;       
 
         myDist = 0;
         exploted = false;
-		pos.z += 1;
-
-		base.OnRestart(pos);
 
 		ResetWeapons ();
 
@@ -78,7 +76,6 @@ public class Projectil : SceneObject {
 				case 3:
 					BulletPlayer3.SetActive (true);
 					break;
-
 				}
 			} else {
 				playerColor = multiplayerData.colors [4];
@@ -95,8 +92,6 @@ public class Projectil : SceneObject {
     
 	void Update()
 	{
-		if (!isActive)
-			return;
 		if (target != null) {
 			if (target.transform.position.z < transform.position.z) {
 				target = null;

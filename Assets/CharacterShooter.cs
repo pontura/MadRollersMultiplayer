@@ -38,7 +38,7 @@ public class CharacterShooter : MonoBehaviour {
 	public void ChangeNextWeapon()
 	{
 		if (!Data.Instance.isArcadeMultiplayer)
-			SetFire (Weapon.types.TRIPLE, 0.6f);
+			SetFire (Weapon.types.TRIPLE, 0.7f);
 		else {
 			Weapon.types nextWeapon;
 			if (weawponType == Weapon.types.SIMPLE)
@@ -62,9 +62,9 @@ public class CharacterShooter : MonoBehaviour {
 	public void CheckFire()
 	{
 		if(Data.Instance.isArcadeMultiplayer)
-			SetFire (weawponType, 0.3f);
+			SetFire (weawponType, 0.4f);
 		else
-			SetFire (Weapon.types.SIMPLE, 0.3f);
+			SetFire (Weapon.types.SIMPLE, 0.4f);
 	}
 	public void SetFire(Weapon.types weawponType, float delay)
 	{
@@ -94,11 +94,11 @@ public class CharacterShooter : MonoBehaviour {
 
 		lastShot = Time.time;
 
-		Vector3 pos = new Vector3(transform.position.x, transform.position.y+3f, transform.position.z+0.1f);
+		Vector3 pos = new Vector3(transform.position.x, transform.position.y+2.5f, transform.position.z+4f);
 
 		OnShoot (pos, weawponType);
 
-		Invoke("ResetShoot", delay - 0.5f);
+		Invoke("ResetShoot", delay);
 	}
 	void OnShoot(Vector3 pos, Weapon.types type)
 	{
@@ -136,10 +136,10 @@ public class CharacterShooter : MonoBehaviour {
 			Vector3 rot = transform.localEulerAngles;
 			rot.x = characterBehavior.madRoller.transform.eulerAngles.x;
 
-			if (characterBehavior.team_for_versus > 1) {
-				rot.y += 180;
-			}
-			else
+//			if (characterBehavior.team_for_versus > 1) {
+//				rot.y += 180;
+//			}
+//			else
 				rot.y = RotationY;
 
 			projectil.transform.localEulerAngles = rot;

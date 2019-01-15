@@ -7,6 +7,7 @@ public class LevelCreator : MonoBehaviour {
 
 	public bool isArcadeMultiplayer;
 	public bool Debbug;
+
 	[HideInInspector]
 	public int videoGameID;
 	[HideInInspector]
@@ -26,6 +27,7 @@ public class LevelCreator : MonoBehaviour {
 			LevelDataDebug.Instance.isDebbug = true;
 			LevelDataDebug.Instance.videogameID = videoGameID-1;
 			LevelDataDebug.Instance.missionID = missionID;
+
 			if (area != null)
 				LevelDataDebug.Instance.testArea = area.name;
 		}
