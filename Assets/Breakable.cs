@@ -145,7 +145,12 @@ public class Breakable : MonoBehaviour {
 		Vector3[] pos = new Vector3[all.Length];
 		int id = 0;
 		foreach (MeshRenderer mr in all) {
-			colors [id] = mr.material.color;
+			
+			if (mr.material.color != null)
+				colors [id] = mr.material.color;
+			else
+				colors [id] = Color.black;
+			
 			pos [id] = mr.transform.position;
 			id++;
 		}

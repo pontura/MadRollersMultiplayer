@@ -37,8 +37,6 @@ public class JoystickWeaponUI : MonoBehaviour {
 		
 		panel.SetActive (true);
 
-		print ("carga: " + "bullets/" + type.ToString ());
-
 		Sprite texture = Resources.Load<Sprite>("bullets/" + type.ToString());
 		image.sprite = texture;
 

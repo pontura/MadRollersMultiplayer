@@ -38,7 +38,6 @@ public class CharactersManager : MonoBehaviour {
 				cb.GetComponent<Rigidbody> ().useGravity = !_freezed;
 			}
 		}
-		Debug.Log ("FreezeCharacters" + _freezed);
 		freezed = _freezed;
 	}
     void StartMultiplayerRace()
