@@ -67,8 +67,7 @@ public class Fade : MonoBehaviour
             masker.gameObject.SetActive(false);
     }
     IEnumerator FadeStart(float aFadeTime, Color aColor)
-    {
-		
+    {		
         masker.gameObject.SetActive(true);
         aFadeTime /= 10;
         float t = 0;
@@ -90,7 +89,6 @@ public class Fade : MonoBehaviour
             t -= Time.deltaTime + aFadeTime;
             masker.color = new Color(0, 0, 0, t);
         }
-      //  graphicRaycaster.enabled = false;
         fading = false;
         masker.gameObject.SetActive(false);
 		Data.Instance.LoadingReady ();
@@ -105,7 +103,6 @@ public class Fade : MonoBehaviour
 
     public void LoadLevel(string aLevelName, float aFadeTime, Color aColor)
     {
-		//nuevos:
 		StopAllCoroutines ();
 		fading = false;
 		//;

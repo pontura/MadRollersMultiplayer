@@ -56,16 +56,17 @@ public class Breakable : MonoBehaviour {
             if (breakable && breakable.isOn) breakable.hasGravity();
 		}
 
-		breaker();
-
-        if (dontDieOnHit)
-            dontKillPlayers = true;
-        else
-            Destroy(gameObject);
+		breaker();      
 
         isOn = false;
 		SendMessage("OnActivate", SendMessageOptions.DontRequireReceiver);
-        SendMessage("Die", SendMessageOptions.DontRequireReceiver);
+
+		if (dontDieOnHit)
+			dontKillPlayers = true;
+		else
+			Destroy(gameObject);
+		
+     //   SendMessage("Die", SendMessageOptions.DontRequireReceiver);
         
 	}
 	public void hasGravity() {
@@ -86,10 +87,10 @@ public class Breakable : MonoBehaviour {
         Vector3 rot = new Vector3(Random.Range(-20, 20), Random.Range(-20, 20), Random.Range(-20, 20));
         gameObject.transform.localEulerAngles += rot;
 
-		GetComponent<Collider>().isTrigger = true;
+		//GetComponent<Collider>().isTrigger = true;
 		//StartCoroutine(makeItTrigger());
 
-		SendMessage("OnActivate", SendMessageOptions.DontRequireReceiver);
+		//SendMessage("OnActivate", SendMessageOptions.DontRequireReceiver);
 
 		if(childs.Length>0)
 		{
@@ -100,14 +101,11 @@ public class Breakable : MonoBehaviour {
 			}
 		}
 	}
-	IEnumerator makeItTrigger() {
-		yield return new WaitForSeconds(0.9f);
-		GetComponent<Collider>().isTrigger = true;
-	}
-	
 	private void breaker(){
-		//BreakStandard ();
-		BreakEveryBlock ();
+		BreakStandard ();
+//		if (sceneObject.distanceFromCharacter > 25)
+//			return;
+//		BreakEveryBlock ();
 	}
 	void BreakEveryBlock()
 	{
@@ -116,9 +114,8 @@ public class Breakable : MonoBehaviour {
 		int id = 0;
 		float force = 500;
 
+		Rigidbody rb;
 		foreach (MeshRenderer mr in all) {
-
-			Rigidbody rb;
 			rb = mr.gameObject.GetComponent<Rigidbody> ();
 
 			if (rb == null) 
@@ -144,14 +141,14 @@ public class Breakable : MonoBehaviour {
 	void BreakStandard(){
 
 		MeshRenderer[] all = GetComponentsInChildren<MeshRenderer> ();
-		Material[] materials = new Material[all.Length];
+		Color[] colors = new Color[all.Length];
 		Vector3[] pos = new Vector3[all.Length];
 		int id = 0;
 		foreach (MeshRenderer mr in all) {
-			materials [id] = mr.material;
+			colors [id] = mr.material.color;
 			pos [id] = mr.transform.position;
 			id++;
 		}
-		Game.Instance.level.AddBricksByBreak(transform.position, materials, pos);
+		ObjectPool.instance.pixelsPool.AddPixelsByBreaking(transform.position, colors, pos);
 	}
 }

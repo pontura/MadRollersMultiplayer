@@ -30,6 +30,7 @@ public class ObjectPool : MonoBehaviour
 
     protected GameObject containerObject;
 
+	public PixelsPool pixelsPool;
 
     void Awake()
     {
@@ -39,7 +40,7 @@ public class ObjectPool : MonoBehaviour
     void Start()
     {
 		
-
+		pixelsPool = GetComponent<PixelsPool> ();
 		pooledObjects = new List<SceneObject> ();
 		pooledObjects_smallBlock = new List<SceneObject> ();
 		pooledObjects_extraSmallBlock = new List<SceneObject> ();
@@ -48,6 +49,8 @@ public class ObjectPool : MonoBehaviour
 
         containerObject = new GameObject("ObjectPool");
         Scene = new GameObject("Scene");
+
+		pixelsPool.Init (containerObject.transform, Scene.transform);
 
         DontDestroyOnLoad(containerObject);
         DontDestroyOnLoad(Scene);

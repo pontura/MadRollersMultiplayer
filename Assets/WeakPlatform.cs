@@ -109,8 +109,8 @@ public class WeakPlatform : SceneObject {
 
 
 
-		if(rb==null)
-			rb = gameObject.AddComponent<Rigidbody>();
+		//if(rb==null)
+		//	rb = gameObject.AddComponent<Rigidbody>();
 
 		rb.isKinematic = false;
 		rb.useGravity = true;

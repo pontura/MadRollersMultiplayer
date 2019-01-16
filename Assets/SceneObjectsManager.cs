@@ -97,5 +97,6 @@ public class SceneObjectsManager : MonoBehaviour {
 			sceneObject.Pool();
 			i--;
 		}
+		ObjectPool.instance.pixelsPool.PoolAll ();
 	}
 }
