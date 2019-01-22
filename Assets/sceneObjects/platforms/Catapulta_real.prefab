@@ -6431,8 +6431,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.75, y: 1.81, z: 1.78}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.5, y: 1.5, z: 1.5}
+  m_Center: {x: 0, y: -0.09, z: 0}
 --- !u!65 &65895147175627308
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -6479,6 +6479,7 @@ MonoBehaviour:
   - {fileID: 114467432227879968}
   dontKillPlayers: 0
   dontDieOnHit: 0
+  ifJumpingDontKill: 0
   score: 0
 --- !u!114 &114245633128844982
 MonoBehaviour:
@@ -6498,6 +6499,7 @@ MonoBehaviour:
   - {fileID: 114467432227879968}
   dontKillPlayers: 0
   dontDieOnHit: 0
+  ifJumpingDontKill: 0
   score: 0
 --- !u!114 &114420156240501742
 MonoBehaviour:
@@ -6539,6 +6541,7 @@ MonoBehaviour:
   childs: []
   dontKillPlayers: 0
   dontDieOnHit: 0
+  ifJumpingDontKill: 0
   score: 0
 --- !u!114 &114469791619180840
 MonoBehaviour:
@@ -6558,4 +6561,5 @@ MonoBehaviour:
   - {fileID: 114467432227879968}
   dontKillPlayers: 0
   dontDieOnHit: 0
+  ifJumpingDontKill: 0
   score: 75

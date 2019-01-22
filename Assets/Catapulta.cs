@@ -8,7 +8,7 @@ public class Catapulta : SceneObject {
 
 	public Animation anim;
 	CharacterBehavior characterBehavior; 
-
+	bool attacked;
 	public override void OnRestart(Vector3 pos)
 	{
 		base.OnRestart(pos);
@@ -17,6 +17,8 @@ public class Catapulta : SceneObject {
 	void OnTriggerEnter(Collider other) 
 	{
 		if (!isActive)
+			return;
+		if (attacked)
 			return;
 		switch (other.tag)
 		{
@@ -29,7 +31,7 @@ public class Catapulta : SceneObject {
 				throwItem.SetActive (false);
 
 				anim.Play ("catapulta");
-				isActive = true;
+				attacked = true;
 				characterBehavior.SuperJumpByBumped ((int)2 * 100, 0.5f, false);
 				Vector3 pos = transform.position;
 				pos.y += 6;

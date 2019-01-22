@@ -21,6 +21,9 @@ public class LevelCreatorUI : Editor {
 		base.OnInspectorGUI ();
 		LevelCreator levelCreator = (LevelCreator)target;
 
+		_videogameIndex = levelCreator.videoGameID - 1;
+		_choiceIndex = levelCreator.missionID;
+
 		string[] videogameData;
 		int vid = _videogameIndex;
 
