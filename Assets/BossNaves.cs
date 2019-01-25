@@ -51,7 +51,6 @@ public class BossNaves : Boss {
 	}
 	public override void OnPartBroken(BossPart part)
 	{
-		print ("___ breakOut()");
 		breakOut ();
 		//part.asset.GetComponent<Breakable>().breakOut (part.transform.position);
 	}

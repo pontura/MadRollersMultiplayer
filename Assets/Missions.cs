@@ -11,8 +11,6 @@ public class Missions : MonoBehaviour {
 
 	public int times_trying_same_mission;
 
-	public bool reloadMissions;
-
 	public List<MissionsByVideoGame> videogames;
 	[Serializable]
 	public class MissionsListInVideoGame
@@ -59,8 +57,8 @@ public class Missions : MonoBehaviour {
 		videogamesData = GetComponent<VideogamesData> ();
 		data = Data.Instance;
 
-	//	if (reloadMissions)
-		LoadAll();
+		//if (Data.Instance.DEBUG)
+			LoadAll();
 		
 		data.events.OnMissionComplete += OnMissionComplete;
 	}
@@ -108,27 +106,42 @@ public class Missions : MonoBehaviour {
 		this.level = level;
 		areasLength = -4;
 		StartNewMission ();
-		if(!Data.Instance.isReplay)
+		if (!Data.Instance.isReplay) {
+			if (!Data.Instance.DEBUG && Data.Instance.playMode == Data.PlayModes.PARTYMODE)
+				ShuffleMissions ();
 			AddAreaByName ("start_Multiplayer");
-		else
+		} else {
 			AddAreaByName ("continue_Multiplayer");
+		}
+	}
+	void ShuffleMissions()
+	{		
+	//	Debug.Log ("______ShuffleMissions");
+		foreach (MissionsByVideoGame mbv in videogames) {		
+			for (int a = 0; a < 50; a++) {	
+				int rand = UnityEngine.Random.Range (2, mbv.missions.Count - 1);
+				MissionsData randomMission1 = mbv.missions [1];
+				MissionsData randomMission2 = mbv.missions [rand];
+
+				mbv.missions [rand] = randomMission1;
+				mbv.missions [1] = randomMission2;
+			}
+		}
 	}
 	void OnMissionComplete(int id)
 	{
 		times_trying_same_mission = 0;
-		if (MissionActiveID >= videogames [videogamesData.actualID].missions.Count - 1)
-			Game.Instance.GotoVideogameComplete ();
-		else if (Data.Instance.playMode == Data.PlayModes.PARTYMODE) {
+		if (Data.Instance.playMode == Data.PlayModes.PARTYMODE) {
 			AddAreaByName ("areaChangeLevel");
 			return;
-		} else
-			NextMission();
-
+		} else if (MissionActiveID >= videogames [videogamesData.actualID].missions.Count - 1) {
+			Game.Instance.GotoVideogameComplete ();
+		} else {
+			NextMission ();
+			int videogameID = videogamesData.actualID+1;
+			PlayerPrefs.SetInt ("missionUnblockedID_" + videogameID, MissionActiveID);
+		}
 		videogames [videogamesData.actualID].missionUnblockedID = MissionActiveID;
-		int videogameID = videogamesData.actualID+1;
-		PlayerPrefs.SetInt ("missionUnblockedID_" + videogameID, MissionActiveID);
-
-		print ("graba MissionActiveID " + MissionActiveID + "missionUnblockedID_" + videogameID);
 	}
 	public int GetTotalMissionsInVideoGame(int videogameID)
 	{
@@ -141,10 +154,6 @@ public class Missions : MonoBehaviour {
 	void NextMission()
 	{
 		AddAreaByName ("newLevel_playing");
-
-		//HACK
-		if (Data.Instance.playMode == Data.PlayModes.PARTYMODE && MissionActiveID > 24)
-			MissionActiveID = 0;
 		
 		MissionActiveID++;
 		StartNewMission ();
@@ -154,7 +163,12 @@ public class Missions : MonoBehaviour {
 	{
 		areaSetId = 0;
 		ResetAreaSet ();
-		MissionActive = videogames[videogamesData.actualID].missions[MissionActiveID].data[0];
+
+		//HACK
+		if (Data.Instance.playMode == Data.PlayModes.PARTYMODE && MissionActiveID >= videogames[videogamesData.actualID].missions.Count-1)
+			MissionActiveID = 1;
+		else
+			MissionActive = videogames[videogamesData.actualID].missions[MissionActiveID].data[0];
 		this.missionCompletedPercent = 0;
 	}
 	public MissionData GetActualMissionData()

@@ -62,12 +62,13 @@ public class CharacterShooter : MonoBehaviour {
 	public void CheckFire()
 	{
 		if(Data.Instance.isArcadeMultiplayer)
-			SetFire (weawponType, 0.4f);
+			SetFire (weawponType, 0.3f);
 		else
-			SetFire (Weapon.types.SIMPLE, 0.4f);
+			SetFire (Weapon.types.SIMPLE, 0.3f);
 	}
 	public void SetFire(Weapon.types weawponType, float delay)
 	{
+
 		if(!characterBehavior.controls.isAutomata)
 			Data.Instance.events.OnAvatarShoot (characterBehavior.player.id);
 
@@ -131,7 +132,7 @@ public class CharacterShooter : MonoBehaviour {
 			projectil.playerID = characterBehavior.player.id;
 			projectil.SetColor(characterBehavior.player.color);
 
-			Game.Instance.sceneObjectsManager.AddSceneObject(projectil, pos);
+			Game.Instance.sceneObjectsManager.AddSceneObjectAndInitIt(projectil, pos);
 			projectil.team_for_versus = characterBehavior.team_for_versus;
 			Vector3 rot = transform.localEulerAngles;
 			rot.x = characterBehavior.madRoller.transform.eulerAngles.x;

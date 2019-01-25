@@ -21,9 +21,9 @@ public class LevelComplete : MonoBehaviour {
     {
 		Data.Instance.events.RalentaTo (0.6f, 0.05f);
 		panel.SetActive (true);
-		int maxScore = Data.Instance.GetComponent<Missions>().GetActualMissionData().maxScore;
+	//	int maxScore = Data.Instance.GetComponent<Missions>().GetActualMissionData().maxScore;
       //  int missionScore = Data.Instance.userData.missionScore;
-        int quarter = maxScore / 4;
+    //    int quarter = maxScore / 4;
 
 		string titleText ="";
 
@@ -47,7 +47,7 @@ public class LevelComplete : MonoBehaviour {
 		foreach (Text label in fields)
 			Data.Instance.handWriting.WriteTo(label, titleText, null);
       
-        Data.Instance.events.OnSetStarsToMission(missionNum, starsQty);
+       // Data.Instance.events.OnSetStarsToMission(missionNum, starsQty);
 
 		CloseAfter (3);
     }

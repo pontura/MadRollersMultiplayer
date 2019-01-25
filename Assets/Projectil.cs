@@ -33,10 +33,9 @@ public class Projectil : SceneObject {
 		lastColor = color;
         meshToColorize.material.color = color;
     }
-	int lastPlayerID;
+	int lastPlayerID = -1;
 	public virtual void ResetWeapons()
 	{
-
 		BulletPlayer0.SetActive (false);
 		BulletPlayer1.SetActive (false);
 		BulletPlayer2.SetActive (false);
@@ -46,6 +45,7 @@ public class Projectil : SceneObject {
     {		
 		base.OnRestart(pos);
 
+		Debug.Log ("Projectil Restart " + Time.time);
 		realSpeed = speed;
 		target = null;
         level = Game.Instance.level;       
@@ -85,6 +85,8 @@ public class Projectil : SceneObject {
 
 			GetComponent<TrailRenderer> ().startColor = playerColor;
 			GetComponent<TrailRenderer> ().endColor = playerColor;
+
+			print ("playerColor " + playerColor);
 		}
 
 
@@ -92,6 +94,9 @@ public class Projectil : SceneObject {
     
 	void Update()
 	{
+		if (!isActive)
+			return;
+		
 		if (target != null) {
 			if (target.transform.position.z < transform.position.z) {
 				target = null;
@@ -107,7 +112,6 @@ public class Projectil : SceneObject {
 		Vector3 pos = transform.localPosition;
 		myDist += Time.deltaTime * realSpeed;
         rotation = transform.localEulerAngles;
-		float multiplier = 150 * Time.deltaTime;
 		RectificaRotation ();
 		
        // rotation.y = 0;
@@ -227,7 +231,10 @@ public class Projectil : SceneObject {
 		target = null;
         Pool();
     }
-
+	public override void OnPool()  
+	{
+		target = null;
+	}
 	GameObject target = null;
 	public void StartFollowing(GameObject _target)
 	{
