@@ -8,9 +8,9 @@ public class LevelCreator : MonoBehaviour {
 	public bool isArcadeMultiplayer;
 	public bool Debbug;
 
-	[HideInInspector]
+	//[HideInInspector]
 	public int videoGameID;
-	[HideInInspector]
+	//[HideInInspector]
 	public int missionID;
 
 	public TextAsset mission;

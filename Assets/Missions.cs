@@ -225,6 +225,7 @@ public class Missions : MonoBehaviour {
 	}
 	private void  CreateCurrentArea()
 	{
+		Debug.Log (MissionActive.title);
 		MissionData.AreaSetData areaSetData = MissionActive.areaSetData[areaSetId];
 		string areaName = GetArea(areaSetData);
 
