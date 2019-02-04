@@ -36,6 +36,7 @@ public class Dropper : MonoBehaviour
 	{
 		Vector3 pos = transform.position;
 		SceneObject newSceneObject;
+		print ("ADD: " + SceneObjectName);
 		newSceneObject = Data.Instance.sceneObjectsPool.GetObjectForType(SceneObjectName, false);  
 		Game.Instance.sceneObjectsManager.AddSceneObjectAndInitIt(newSceneObject, pos);  
 	}

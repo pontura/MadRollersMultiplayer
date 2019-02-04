@@ -6,7 +6,7 @@ public class Boss : SceneObject {
 
 	public int time_to_kill;
 	public float distance_from_avatars;
-	int hits;
+	public int hits;
 	//Missions missions;
 	public int totalHits;
 
