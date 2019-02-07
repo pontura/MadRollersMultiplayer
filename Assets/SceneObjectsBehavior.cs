@@ -132,8 +132,10 @@ public class SceneObjectsBehavior : MonoBehaviour {
 			case "enemyShooter": 
 			case "enemyWater":   
 			case "enemySide":  
+			case "ExplotionEffectBoss": 
 			case "enemyBack":  
 			case "castle":
+			case "BossPartMarker":
 			case "SideMountain":
 			case "bonusEntrance":   
 			case "Cascade": 

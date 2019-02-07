@@ -5,9 +5,9 @@ using UnityEngine;
 public class BossPart : MonoBehaviour {
 
 	public Boss boss;
-	public GameObject asset;
 	bool called;
 	bool isOn;
+	BossPartMarker marker;
 
 	public void Init(Boss _boss, string bossAssetPath = null)
 	{
@@ -21,6 +21,13 @@ public class BossPart : MonoBehaviour {
 			newGO.transform.localPosition = Vector3.zero;
 		}
 		isOn = true;
+
+		if(gameObject.activeSelf)
+		{
+			marker = ObjectPool.instance.GetObjectForType("BossPartMarker", false) as BossPartMarker;
+			Game.Instance.sceneObjectsManager.AddSceneObjectAndInitIt(marker, transform.position, transform);
+			marker.transform.localEulerAngles = Vector3.zero;
+		}
 	}
 	void Update()
 	{
@@ -33,6 +40,12 @@ public class BossPart : MonoBehaviour {
 	{
 		if (called)
 			return;
+
+		ParticlesSceneObject effect = ObjectPool.instance.GetObjectForType("ExplotionEffectBoss", false) as ParticlesSceneObject;
+		effect.SetColor (Color.red);
+		Game.Instance.sceneObjectsManager.AddSceneObjectAndInitIt(effect, transform.position);
+
+		marker.Pool ();
 		
 		called = true;
 		CancelInvoke ();
@@ -41,16 +54,17 @@ public class BossPart : MonoBehaviour {
 			Data.Instance.events.OnProjectilStartSnappingTarget (transform.position);		
 
 		boss.OnPartBroken (this);
-		asset.SetActive (false);
+		gameObject.SetActive (false);
+
 	}
 	public void OnActive()
 	{
 		SendMessage ("OnBossPartActive", SendMessageOptions.DontRequireReceiver);
-		asset.SetActive (false);
+		gameObject.SetActive (false);
 		Invoke ("Reactive", 4);
 	}
 	void Reactive()
 	{
-		asset.SetActive (true);
+		gameObject.SetActive (true);
 	}
 }

@@ -16,16 +16,17 @@ public class ParticlesSceneObject : SceneObject {
             _particleSystem.Clear();
             _particleSystem.Play();
         }
-
-        explotion.Clear();
-        explotion.Play();
+		if (explotion != null) {
+			explotion.Clear ();
+			explotion.Play ();
+		}
     }
-    public void SetColor(Color color)
+	public void SetColor(Color color, float alpha = 0.45f)
     {      
 		if (color == lastColor)
 			return;
 		lastColor = color;
-        color.a = 0.45f;
+		color.a = alpha;
 
         foreach (ParticleSystem ps in explotions_to_colorize)
             ps.startColor = color;

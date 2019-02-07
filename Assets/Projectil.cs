@@ -45,7 +45,6 @@ public class Projectil : SceneObject {
     {		
 		base.OnRestart(pos);
 
-		Debug.Log ("Projectil Restart " + Time.time);
 		realSpeed = speed;
 		target = null;
         level = Game.Instance.level;       
